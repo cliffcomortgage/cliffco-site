@@ -11,7 +11,7 @@ for the eventual rebuild of [cliffcomortgage.com](https://cliffcomortgage.com/).
 │   ├── mission-vision-values.md   ← canonical, plain-text version
 │   ├── mission-vision-values.docx ← original Word doc
 │   ├── brand-guide.pdf            ← full brand guide (typography, color, usage)
-│   ├── fonts/                     ← Graphik (Regular, Medium) — trial OTFs
+│   ├── fonts/                     ← Graphik OTFs (gitignored, not in repo)
 │   └── logos/
 │       ├── full/                  ← horizontal lockup, PNG (black + white)
 │       ├── icon/                  ← icon-only, PNG (black + white)
@@ -42,11 +42,12 @@ Full text in [`brand/mission-vision-values.md`](brand/mission-vision-values.md).
 
 ## Fonts
 
-Primary typeface is **Graphik** (Regular + Medium). The OTFs in `brand/fonts/`
-are the trial cuts that ship with the brand guide; production licensing for
-web/app use will need to come from
-[Commercial Type](https://commercialtype.com/catalog/graphik) before the site
-goes live.
+Primary typeface is **Graphik** (Regular + Medium). The OTFs are kept locally
+in `brand/fonts/` for design work but **gitignored** — they're trial cuts that
+ship with the brand guide and aren't licensed for redistribution. A licensed
+web font kit from
+[Commercial Type](https://commercialtype.com/catalog/graphik) is required
+before the rebuilt site can ship.
 
 ## Current website
 
