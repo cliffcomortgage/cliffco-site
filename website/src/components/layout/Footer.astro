@@ -1,0 +1,99 @@
+---
+import { COMPANY } from "../../data/company";
+import { fullDisclosureBlock } from "../../data/disclosures";
+import { priorityProducts, PRODUCTS } from "../../data/products";
+import { LOCATIONS } from "../../data/locations";
+import { STATE_LICENSES } from "../../data/state-licenses";
+
+const year = new Date().getFullYear();
+const yearsInBiz = year - COMPANY.founded;
+const products = priorityProducts();
+const supporting = PRODUCTS.filter((p) => !p.isPriority);
+const featuredLocations = LOCATIONS.filter((l) =>
+  ["new-york/long-island", "florida/orlando", "new-jersey", "arizona", "minnesota"].includes(l.path),
+);
+const fullDisclosure = fullDisclosureBlock();
+---
+
+<footer class="bg-[var(--color-rich-black)] text-white pt-16 pb-8">
+  <div class="container-wide grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <div>
+      <p class="font-[var(--font-logo)] font-semibold tracking-[0.18em] text-base">CLIFFCO MORTGAGE BANKERS</p>
+      <p class="mt-3 text-sm text-white/70 leading-relaxed">
+        {yearsInBiz} years getting families home. NMLS #{COMPANY.nmls}.
+      </p>
+      <address class="mt-4 not-italic text-sm text-white/80 leading-relaxed">
+        {COMPANY.hq.street}<br/>
+        {COMPANY.hq.city}, {COMPANY.hq.region} {COMPANY.hq.postalCode}<br/>
+        <a href={`tel:${COMPANY.hq.phoneE164}`} class="text-white/90 no-underline hover:underline">{COMPANY.hq.phone}</a>
+      </address>
+      <div class="mt-4 flex gap-4">
+        <a href={COMPANY.socials.linkedin} class="text-white/70 hover:text-white no-underline text-sm" rel="noopener">LinkedIn</a>
+        <a href={COMPANY.socials.facebook} class="text-white/70 hover:text-white no-underline text-sm" rel="noopener">Facebook</a>
+        <a href={COMPANY.socials.instagram} class="text-white/70 hover:text-white no-underline text-sm" rel="noopener">Instagram</a>
+      </div>
+    </div>
+
+    <div>
+      <p class="eyebrow text-white/70 mb-3">Loans</p>
+      <ul class="m-0 p-0 list-none space-y-2">
+        {products.map((p) => (
+          <li><a href={`/loans/${p.slug}/`} class="text-sm text-white/80 hover:text-white no-underline">{p.shortName}</a></li>
+        ))}
+        {supporting.map((p) => (
+          <li><a href={`/loans/${p.slug}/`} class="text-sm text-white/60 hover:text-white no-underline">{p.shortName}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <p class="eyebrow text-white/70 mb-3">Locations</p>
+      <ul class="m-0 p-0 list-none space-y-2">
+        {featuredLocations.map((l) => (
+          <li><a href={`/locations/${l.path}/`} class="text-sm text-white/80 hover:text-white no-underline">{l.name}</a></li>
+        ))}
+        <li><a href="/locations/" class="text-sm text-white/60 hover:text-white no-underline">All locations →</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="eyebrow text-white/70 mb-3">Company</p>
+      <ul class="m-0 p-0 list-none space-y-2">
+        <li><a href="/about/" class="text-sm text-white/80 hover:text-white no-underline">About</a></li>
+        <li><a href="/loan-officers/" class="text-sm text-white/80 hover:text-white no-underline">Loan Officers</a></li>
+        <li><a href="/learn/" class="text-sm text-white/80 hover:text-white no-underline">Learn</a></li>
+        <li><a href="/reviews/" class="text-sm text-white/80 hover:text-white no-underline">Reviews</a></li>
+        <li><a href="/press/" class="text-sm text-white/80 hover:text-white no-underline">Press</a></li>
+        <li><a href="/careers/" class="text-sm text-white/80 hover:text-white no-underline">Careers</a></li>
+        <li><a href="/contact/" class="text-sm text-white/80 hover:text-white no-underline">Contact</a></li>
+      </ul>
+
+      <p class="eyebrow text-white/70 mt-6 mb-3">Legal</p>
+      <ul class="m-0 p-0 list-none space-y-2">
+        <li><a href="/licensing/" class="text-sm text-white/80 hover:text-white no-underline">State Licensing</a></li>
+        <li><a href={COMPANY.nmlsConsumerAccessUrl} class="text-sm text-white/80 hover:text-white no-underline" rel="noopener">NMLS Consumer Access</a></li>
+        <li><a href="/legal/privacy/" class="text-sm text-white/80 hover:text-white no-underline">Privacy Policy</a></li>
+        <li><a href="/legal/ccpa/" class="text-sm text-white/80 hover:text-white no-underline">CCPA</a></li>
+        <li><a href="/legal/sms-consent/" class="text-sm text-white/80 hover:text-white no-underline">SMS Consent</a></li>
+        <li><a href="/legal/accessibility/" class="text-sm text-white/80 hover:text-white no-underline">Accessibility</a></li>
+        <li><a href="/legal/texas-complaints/" class="text-sm text-white/80 hover:text-white no-underline">Texas Complaints</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="my-12 border-white/10" />
+
+  <div class="container-wide grid gap-6 lg:grid-cols-[auto_1fr] items-start">
+    <div class="flex items-center gap-3 text-white/70 text-xs">
+      <span class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30" aria-label="Equal Housing Lender">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5"><path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V11z"/><path d="M2 11l10-8.5L22 11"/></svg>
+      </span>
+      <span class="leading-tight">Equal Housing<br/>Lender</span>
+    </div>
+
+    <div class="text-xs text-white/60 leading-relaxed">
+      <p>{fullDisclosure}</p>
+      <p class="mt-3 text-white/50">© {year} {COMPANY.legalName}. All rights reserved. Cliffco operates in Florida as Swish Capital, Inc.</p>
+    </div>
+  </div>
+</footer>

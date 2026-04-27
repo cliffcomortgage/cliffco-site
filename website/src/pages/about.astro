@@ -1,0 +1,161 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../data/company";
+import { BRANCHES } from "../data/branches";
+import { LOAN_OFFICERS, loanOfficer } from "../data/loan-officers";
+import { STATE_LICENSES } from "../data/state-licenses";
+
+const yearsInBiz = COMPANY.yearsInBusiness();
+const president = loanOfficer("christopher-clifford-65234")!;
+const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
+  ["christopher-clifford-65234", "adam-turkewitz-32900", "james-chen-17991", "david-fallarino-673167", "david-mizrahi-40925"].includes(lo.slug),
+);
+---
+
+<Layout
+  title={`About ${COMPANY.brandName}`}
+  description={`Cliffco Mortgage Bankers is a ${yearsInBiz}-year independent, family-built mortgage lender (NMLS #${COMPANY.nmls}) headquartered in Uniondale, NY with eight branches across NY, NJ, AZ, MN, and FL.`}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about/" },
+  ]} />
+
+  <!-- HERO -->
+  <section class="container-wide pt-12 pb-16">
+    <p class="eyebrow">About Cliffco</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">
+      A {yearsInBiz}-year-old independent mortgage banker, still family-owned, still picking up the phone.
+    </h1>
+    <p class="lead mt-6 max-w-3xl">
+      Cliffco was founded in 1989 on Long Island as an alternative to the bank-driven mortgage process —
+      the kind that pre-declines a self-employed borrower in 90 seconds without ever asking who they are
+      or what they actually do for a living. {yearsInBiz} years later, that's still the work.
+    </p>
+  </section>
+
+  <!-- DIRECT-ANSWER (AEO) -->
+  <section class="bg-white pb-16">
+    <div class="container-prose">
+      <div class="direct-answer">
+        Cliffco Mortgage Bankers (legal name <strong>{COMPANY.legalName}</strong> · NMLS
+        #{COMPANY.nmls}) is a privately-held independent mortgage banker headquartered at
+        {COMPANY.hq.street} in {COMPANY.hq.city}, {COMPANY.hq.region}. Founded in 1989, Cliffco
+        is licensed in <strong>32 states</strong> and operates through <strong>eight branches</strong>
+        across New York, New Jersey, Arizona, Minnesota, and Florida — where Cliffco operates as
+        Swish Capital, Inc. The company specializes in non-QM and self-employed loans, reverse
+        mortgages, DSCR loans for real estate investors, and fix-and-flip financing.
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION / VISION / VALUES -->
+  <section class="bg-[var(--color-mist-gray)] section">
+    <div class="container-wide grid gap-12 lg:grid-cols-[1fr_1.4fr]">
+      <div>
+        <p class="eyebrow">Vision · Mission · Values</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Why we exist.</h2>
+      </div>
+
+      <div class="space-y-10">
+        <div>
+          <p class="eyebrow !text-[var(--color-text-muted)]">Vision</p>
+          <p class="mt-2 text-2xl leading-snug text-[var(--color-ink)]">
+            To be the lender every family wishes they'd called first.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow !text-[var(--color-text-muted)]">Mission</p>
+          <p class="mt-2 text-2xl leading-snug text-[var(--color-ink)]">
+            We get families home. Especially the ones other banks turned away. And we grow their
+            net worth and self-worth along the way.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow !text-[var(--color-text-muted)]">Values</p>
+          <ul class="mt-4 grid sm:grid-cols-2 gap-6 m-0 p-0 list-none">
+            <li>
+              <strong class="block text-[var(--color-ink)]">Family</strong>
+              <span class="text-sm text-[var(--color-text-muted)]">We treat every borrower like family — because we've been one for {yearsInBiz} years.</span>
+            </li>
+            <li>
+              <strong class="block text-[var(--color-ink)]">Integrity</strong>
+              <span class="text-sm text-[var(--color-text-muted)]">We do the right thing when it's hard, when it's slow, and when no one's watching.</span>
+            </li>
+            <li>
+              <strong class="block text-[var(--color-ink)]">Care</strong>
+              <span class="text-sm text-[var(--color-text-muted)]">Real hands on every file. No call centers, no handoffs, no shortcuts.</span>
+            </li>
+            <li>
+              <strong class="block text-[var(--color-ink)]">Possibility</strong>
+              <span class="text-sm text-[var(--color-text-muted)]">Other banks see a "no." We see a story worth working with.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">Leadership</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Real names. Real NMLS IDs. Verifiable.</h2>
+      <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
+        Every leader at Cliffco is a licensed loan officer with an NMLS ID you can verify on
+        <a href="https://www.nmlsconsumeraccess.org/" rel="noopener">NMLS Consumer Access</a>.
+      </p>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {seniorLeadership.map((lo) => (
+          <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
+            <p class="eyebrow">{lo.title}</p>
+            <h3 class="mt-2" style="font-size: var(--text-h3);">{lo.displayName}</h3>
+            <p class="text-sm text-[var(--color-text-muted)]">NMLS #{lo.nmls}</p>
+            <p class="text-sm text-[var(--color-text-muted)] mt-2">Licensed in {lo.states.length} state{lo.states.length === 1 ? "" : "s"}.</p>
+            <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
+          </a>
+        ))}
+      </div>
+      <a href="/loan-officers/" class="btn btn-secondary mt-8">See all loan officers</a>
+    </div>
+  </section>
+
+  <!-- BRANCHES -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">Branches</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Eight offices. Real people in each one.</h2>
+
+      <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {BRANCHES.map((b) => (
+          <div class="card">
+            <h3 class="text-base font-semibold text-[var(--color-ink)]">{b.name}</h3>
+            {b.metro && <p class="text-xs text-[var(--color-text-muted)] mt-1">{b.metro}</p>}
+            <p class="text-sm text-[var(--color-text-muted)] mt-2">
+              {b.loanOfficerSlugs.length} loan officer{b.loanOfficerSlugs.length === 1 ? "" : "s"}.
+            </p>
+            {b.isFloridaDba && <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">Operates as Swish Capital, Inc.</p>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LICENSING SUMMARY -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">Licensing</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Licensed in {STATE_LICENSES.length} states.</h2>
+      <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
+        Cliffco, Inc. is a Licensed Mortgage Banker by the New York State Department of Financial
+        Services (LMBC109800), with active licenses in {STATE_LICENSES.length} states across the U.S.
+      </p>
+      <p class="mt-4 text-sm text-[var(--color-text-muted)]">
+        {STATE_LICENSES.map((s) => s.name).join(" · ")}
+      </p>
+      <a href="/licensing/" class="btn btn-secondary mt-6">See full state license details</a>
+    </div>
+  </section>
+</Layout>

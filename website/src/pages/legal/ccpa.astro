@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+const today = new Date().toISOString().slice(0, 10);
+---
+
+<Layout title="CCPA / California Privacy Rights" description={`${COMPANY.brandName} California Consumer Privacy Act notice.`}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Legal", href: "/legal/" },
+    { name: "CCPA", href: "/legal/ccpa/" },
+  ]} />
+  <section class="container-prose pt-12 pb-16">
+    <h1 style="font-size: var(--text-display-lg);">CCPA / California Privacy Rights</h1>
+    <p class="text-sm text-[var(--color-text-muted)] mt-2">Last updated: {today}</p>
+    <p class="mt-6">
+      This notice supplements our <a href="/legal/privacy/">Privacy Policy</a> and applies to
+      California residents under the California Consumer Privacy Act (CCPA), as amended by the
+      California Privacy Rights Act (CPRA).
+    </p>
+    <h2 class="mt-10">Your California rights</h2>
+    <ul>
+      <li><strong>Right to know:</strong> request the categories and specific pieces of personal information we have collected about you.</li>
+      <li><strong>Right to delete:</strong> request deletion of personal information we hold about you, subject to legal exceptions (e.g., active loan files).</li>
+      <li><strong>Right to correct:</strong> request correction of inaccurate personal information.</li>
+      <li><strong>Right to opt out of sale or sharing:</strong> we do not sell personal information.</li>
+      <li><strong>Right to limit use of sensitive personal information.</strong></li>
+      <li><strong>Right to non-discrimination</strong> for exercising your privacy rights.</li>
+    </ul>
+    <h2 class="mt-10">How to exercise your rights</h2>
+    <p>
+      Email <a href="mailto:privacy@cliffcomortgage.com">privacy@cliffcomortgage.com</a> or call
+      {COMPANY.hq.phone}. We will verify your identity before responding.
+    </p>
+  </section>
+</Layout>

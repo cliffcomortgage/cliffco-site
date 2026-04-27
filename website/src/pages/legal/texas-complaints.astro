@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+---
+
+<Layout title="Texas Consumer Complaint Procedure" description={`${COMPANY.brandName} Texas consumer complaint procedure.`}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Legal", href: "/legal/" },
+    { name: "Texas Complaints", href: "/legal/texas-complaints/" },
+  ]} />
+  <section class="container-prose pt-12 pb-16">
+    <h1 style="font-size: var(--text-display-lg);">Texas Consumer Complaint Procedure</h1>
+    <p class="lead mt-6">
+      Texas borrowers wishing to file a complaint against {COMPANY.legalName} (NMLS #{COMPANY.nmls})
+      may do so by contacting the Texas Department of Savings and Mortgage Lending.
+    </p>
+    <h2 class="mt-10">Filing a complaint</h2>
+    <p>
+      Texas Department of Savings and Mortgage Lending<br/>
+      2601 N. Lamar Blvd., Suite 201<br/>
+      Austin, Texas 78705<br/>
+      Toll-free consumer hotline: 1-877-276-5550<br/>
+      Web: <a href="https://www.sml.texas.gov/" rel="noopener">www.sml.texas.gov</a>
+    </p>
+    <p class="text-xs text-[var(--color-text-muted)] mt-8">
+      This page satisfies the disclosure requirement under the Texas Mortgage Banker Registration Act.
+    </p>
+  </section>
+</Layout>

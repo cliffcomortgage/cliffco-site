@@ -1,0 +1,59 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { LOAN_OFFICERS } from "../../data/loan-officers";
+import { BRANCHES } from "../../data/branches";
+
+// Group by branch
+const byBranch = BRANCHES.map((b) => ({
+  branch: b,
+  officers: LOAN_OFFICERS.filter((lo) => lo.branchSlug === b.slug),
+})).filter((g) => g.officers.length > 0);
+---
+
+<Layout
+  title="Cliffco Loan Officers"
+  description="Meet Cliffco Mortgage Bankers' loan officers — every officer is NMLS-licensed and verifiable on NMLS Consumer Access. Browse by branch."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Loan Officers", href: "/loan-officers/" },
+  ]} />
+
+  <section class="container-wide pt-12 pb-16">
+    <p class="eyebrow">Our People</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">
+      Real loan officers. Verifiable credentials. Direct lines.
+    </h1>
+    <p class="lead mt-6 max-w-3xl">
+      Every Cliffco loan officer is licensed through NMLS — you can verify any of us on
+      <a href="https://www.nmlsconsumeraccess.org/" rel="noopener">NMLS Consumer Access</a>.
+      We organize our team by office below; pick the person closest to your situation, or
+      let us match you in a one-business-day callback.
+    </p>
+  </section>
+
+  <section class="bg-white pb-16">
+    <div class="container-wide space-y-12">
+      {byBranch.map((g) => (
+        <div>
+          <h2 class="text-xl font-semibold text-[var(--color-ink)]" id={g.branch.slug}>{g.branch.name}</h2>
+          {g.branch.metro && <p class="text-sm text-[var(--color-text-muted)] mt-1">{g.branch.metro}</p>}
+          <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {g.officers.map((lo) => (
+              <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
+                <p class="eyebrow">{lo.title}</p>
+                <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
+                <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls} · Licensed in {lo.states.join(", ")}</p>
+                {lo.languages && lo.languages.length > 1 && (
+                  <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
+                )}
+                <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,175 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { location } from "../../data/locations";
+import { BRANCHES } from "../../data/branches";
+import { LOAN_OFFICERS } from "../../data/loan-officers";
+import { product } from "../../data/products";
+import { localBusinessSchema, faqPageSchema, breadcrumbSchema } from "../../lib/schema";
+
+export async function getStaticPaths() {
+  // Render top-level state pages: new-jersey, arizona, minnesota, florida.
+  // (new-york + long-island + orlando are dedicated nested files.)
+  const states = ["new-jersey", "arizona", "minnesota", "florida"] as const;
+  return states.map((slug) => {
+    const loc = location(slug)!;
+    return { params: { state: slug }, props: { loc } };
+  });
+}
+
+const { loc } = Astro.props;
+const stateBranches = BRANCHES.filter((b) => loc.branchSlugs?.includes(b.slug));
+const stateLOs = LOAN_OFFICERS.filter((lo) => lo.states.includes(loc.state));
+
+const faq = loc.isFlorida
+  ? [
+      { question: "Is Cliffco licensed to lend in Florida?", answer: "Yes. Cliffco, Inc. doing business in Florida as Swish Capital, Inc., is a New York corporation authorized to transact business in the State of Florida. Corporate NMLS #65328." },
+      { question: "What products is Cliffco strongest at in Florida?", answer: "DSCR for short-term-rental investors (Disney area, Tampa, Naples), fix-and-flip for active flippers, non-QM bank statement loans for self-employed Florida small-business owners and ITIN borrowers, and reverse mortgages in retiree-heavy Central and SW Florida." },
+      { question: "How does Florida's insurance market affect my mortgage?", answer: "Florida homeowners insurance averages roughly 3× the national average (~$7,100/yr for $300K coverage as of 2025/2026). That cost is included in your debt-to-income calculation, which materially affects how much home you can afford. Cliffco's Florida LOs walk through realistic insurance + tax estimates before you write an offer." },
+    ]
+  : loc.state === "MN"
+  ? [
+      { question: "Is Cliffco licensed in Minnesota?", answer: "Yes — Cliffco is licensed by the Minnesota Department of Commerce as MN-MO-65328 (corporate NMLS #65328). Our Excelsior, MN office serves the Twin Cities and beyond." },
+      { question: "Who is Cliffco's Minnesota loan officer?", answer: "Mitchell Patterson (NMLS #2560483) is our Excelsior, MN-based loan officer. Several other Cliffco LOs are also MN-licensed, including President Christopher Clifford." },
+    ]
+  : loc.state === "AZ"
+  ? [
+      { question: "Is Cliffco licensed in Arizona?", answer: "Yes — Cliffco holds Arizona Mortgage Banker License 1045708 (corporate NMLS #65328). Our Scottsdale branch serves the Phoenix metro and statewide." },
+      { question: "What products are strongest in Arizona?", answer: "Reverse mortgages in retiree-heavy areas (Sun City, Sun Lakes), DSCR for the state's investor-friendly SFR market, non-QM bank statement loans, and fix-and-flip in metro Phoenix." },
+    ]
+  : [
+      { question: `Is Cliffco licensed in ${loc.name}?`, answer: `Yes. ${COMPANY.legalName} (NMLS #${COMPANY.nmls}) is licensed to originate residential mortgages in ${loc.name}. See the licensing page for the regulator and license number specific to ${loc.name}.` },
+      { question: `What products does Cliffco offer in ${loc.name}?`, answer: `Cliffco offers all four of our specialty products in ${loc.name}: non-QM and self-employed loans, reverse mortgages, DSCR for investors, and fix-and-flip loans, plus conventional, FHA, VA, USDA, and renovation loans.` },
+    ];
+
+const schema = [
+  ...stateBranches.map((b) => localBusinessSchema(b)),
+  faqPageSchema(faq),
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Locations", url: "/locations/" },
+    { name: loc.name, url: `/locations/${loc.path}/` },
+  ]),
+];
+---
+
+<Layout title={`${loc.name} Mortgage Lender | Cliffco`} description={loc.blurb} schema={schema}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Locations", href: "/locations/" },
+    { name: loc.name, href: `/locations/${loc.path}/` },
+  ]} />
+
+  <section class="container-wide pt-12 pb-12">
+    <p class="eyebrow">{loc.name}</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{loc.name} mortgage lender.</h1>
+    <p class="lead mt-6 max-w-3xl">{loc.blurb}</p>
+    {loc.isFlorida && (
+      <p class="mt-4 text-sm font-semibold text-[var(--color-accent)]">{COMPANY.floridaDba.disclosure}</p>
+    )}
+  </section>
+
+  <section class="bg-white pb-12">
+    <div class="container-prose">
+      <div class="direct-answer">{loc.blurb}</div>
+    </div>
+  </section>
+
+  {stateBranches.length > 0 && (
+    <section class="bg-[var(--color-mist-gray)] section">
+      <div class="container-wide">
+        <p class="eyebrow">Our {loc.name} offices</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Where we are.</h2>
+        <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {stateBranches.map((b) => (
+            <article class="card">
+              <h3 class="text-lg font-semibold">{b.name}</h3>
+              {b.metro && <p class="text-xs text-[var(--color-text-muted)] mt-1">{b.metro}</p>}
+              {b.street && <p class="text-sm text-[var(--color-text-muted)] mt-2">{b.street}<br/>{b.city}, {b.region} {b.postalCode}</p>}
+              <p class="text-sm text-[var(--color-text-muted)] mt-3">{b.loanOfficerSlugs.length} loan officer{b.loanOfficerSlugs.length === 1 ? "" : "s"}.</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">What we lead with in {loc.name}</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Built for {loc.name} borrowers.</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {loc.featuredProducts.map((slug) => {
+          const p = product(slug);
+          if (!p) return null;
+          return (
+            <a href={`/loans/${p.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
+              <h3 class="font-semibold">{p.shortName}</h3>
+              <p class="mt-2 text-sm text-[var(--color-text-muted)] flex-1">{p.oneLiner}</p>
+              <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">Learn more →</span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  {stateLOs.length > 0 && (
+    <section class="section bg-[var(--color-mist-gray)]">
+      <div class="container-wide">
+        <p class="eyebrow">{loc.name} loan officers</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Talk to a person licensed where you live.</h2>
+        <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {stateLOs.slice(0, 9).map((lo) => (
+            <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
+              <p class="eyebrow">{lo.title}</p>
+              <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>
+              {lo.languages && lo.languages.length > 1 && (
+                <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
+              )}
+              <span class="mt-3 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
+            </a>
+          ))}
+        </div>
+        {stateLOs.length > 9 && (
+          <p class="mt-6"><a href={`/loan-officers/?state=${loc.state}`} class="text-sm font-medium">See all {stateLOs.length} {loc.name}-licensed LOs →</a></p>
+        )}
+      </div>
+    </section>
+  )}
+
+  <section class="section bg-white">
+    <div class="container-prose">
+      <p class="eyebrow">{loc.name} FAQ</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Local borrower questions.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">{loc.name} borrowers — talk to a real Cliffco LO.</h2>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get a pre-qual</a>
+        <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  {loc.isFlorida && (
+    <section class="bg-white py-8">
+      <div class="container-wide">
+        <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">{COMPANY.floridaDba.disclosure}</p>
+      </div>
+    </section>
+  )}
+</Layout>

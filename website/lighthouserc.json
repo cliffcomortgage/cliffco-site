@@ -1,0 +1,57 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "./dist",
+      "url": [
+        "http://localhost/index.html",
+        "http://localhost/about/index.html",
+        "http://localhost/loans/index.html",
+        "http://localhost/loans/non-qm-self-employed/index.html",
+        "http://localhost/loans/dscr/index.html",
+        "http://localhost/loans/reverse-mortgage/index.html",
+        "http://localhost/loans/fix-and-flip/index.html",
+        "http://localhost/locations/new-york/long-island/index.html",
+        "http://localhost/locations/florida/orlando/index.html",
+        "http://localhost/loan-officers/christopher-clifford-65234/index.html",
+        "http://localhost/licensing/index.html"
+      ],
+      "numberOfRuns": 1
+    },
+    "assert": {
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "categories:performance": ["error", { "minScore": 0.9 }],
+        "categories:accessibility": ["error", { "minScore": 0.95 }],
+        "categories:best-practices": ["error", { "minScore": 0.9 }],
+        "categories:seo": ["error", { "minScore": 0.95 }],
+
+        "largest-contentful-paint": ["error", { "maxNumericValue": 2500 }],
+        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],
+        "total-blocking-time": ["warn", { "maxNumericValue": 200 }],
+
+        "uses-text-compression": "off",
+        "is-crawlable": "error",
+        "robots-txt": "warn",
+        "csp-xss": "off",
+        "color-contrast": "error",
+        "label": "error",
+        "tap-targets": "error",
+        "viewport": "error",
+        "html-has-lang": "error",
+        "meta-description": "error",
+        "document-title": "error",
+
+        "uses-responsive-images": "warn",
+        "modern-image-formats": "warn",
+        "uses-rel-preconnect": "off",
+        "font-display": "warn",
+        "render-blocking-resources": "warn",
+        "unused-css-rules": "off",
+        "unused-javascript": "warn"
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

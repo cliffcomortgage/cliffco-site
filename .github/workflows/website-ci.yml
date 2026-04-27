@@ -1,0 +1,50 @@
+name: Website CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "website/**"
+      - ".github/workflows/website-ci.yml"
+  pull_request:
+    paths:
+      - "website/**"
+
+jobs:
+  build-and-audit:
+    name: Build + Lighthouse + schema validation
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./website
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check + build
+        run: |
+          npx astro check
+          npx astro build
+
+      - name: Validate JSON-LD schema in built HTML
+        run: node ../scripts/validate-schema.mjs ./dist
+
+      - name: Lighthouse CI
+        run: npx lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Upload built site as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-dist
+          path: website/dist
+          retention-days: 7

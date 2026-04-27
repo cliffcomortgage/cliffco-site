@@ -1,0 +1,72 @@
+---
+import "../styles/global.css";
+import Meta from "../components/seo/Meta.astro";
+import JsonLd from "../components/seo/JsonLd.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import { organizationSchema, websiteSchema } from "../lib/schema";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+  locale?: "en-US" | "es-US";
+  alternateLocales?: { hreflang: string; href: string }[];
+  noindex?: boolean;
+  type?: "website" | "article";
+  /** Additional JSON-LD blocks specific to this page */
+  schema?: object | object[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  image,
+  locale = "en-US",
+  alternateLocales,
+  noindex,
+  type,
+  schema,
+} = Astro.props;
+
+const baseSchema: object[] = [organizationSchema(), websiteSchema()];
+const allSchema = schema
+  ? [...baseSchema, ...(Array.isArray(schema) ? schema : [schema])]
+  : baseSchema;
+---
+
+<!doctype html>
+<html lang={locale.split("-")[0]}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <Meta
+      title={title}
+      description={description}
+      canonical={canonical}
+      image={image}
+      locale={locale}
+      alternateLocales={alternateLocales}
+      noindex={noindex}
+      type={type}
+    />
+
+    <JsonLd data={allSchema} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=swap" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <Header />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

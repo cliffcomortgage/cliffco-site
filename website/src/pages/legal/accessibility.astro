@@ -1,0 +1,51 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+const today = new Date().toISOString().slice(0, 10);
+---
+
+<Layout title="Accessibility Statement" description={`${COMPANY.brandName} accessibility statement and conformance to WCAG 2.2 Level AA.`}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Legal", href: "/legal/" },
+    { name: "Accessibility", href: "/legal/accessibility/" },
+  ]} />
+  <section class="container-prose pt-12 pb-16">
+    <h1 style="font-size: var(--text-display-lg);">Accessibility Statement</h1>
+    <p class="text-sm text-[var(--color-text-muted)] mt-2">Last updated: {today}</p>
+    <p class="mt-6">
+      {COMPANY.legalName} is committed to digital accessibility. We strive to conform to the
+      <a href="https://www.w3.org/TR/WCAG22/" rel="noopener">Web Content Accessibility Guidelines (WCAG) 2.2 Level AA</a>,
+      which is the internationally recognized baseline for digital accessibility and the
+      relevant standard for U.S. financial-services websites.
+    </p>
+
+    <h2 class="mt-10">Conformance commitments</h2>
+    <ul>
+      <li>Color-contrast ratios of at least 4.5:1 for body text and 3:1 for large text and UI elements.</li>
+      <li>Keyboard accessibility for all functionality, with visible focus indicators (Focus Appearance Enhanced).</li>
+      <li>Touch / click target sizes of at least 24×24 CSS pixels (WCAG 2.2 Target Size Minimum).</li>
+      <li>Alternative text for all meaningful images.</li>
+      <li>Form fields with programmatic labels and clear error identification.</li>
+      <li>Accessible authentication that does not require cognitive function tests.</li>
+      <li>Reduced-motion preferences honored across animations and transitions.</li>
+    </ul>
+
+    <h2 class="mt-10">Third-party tools</h2>
+    <p>
+      Cliffco's borrower application portal is hosted by ICE Mortgage Technology (Encompass).
+      We have requested the vendor's most recent VPAT/ACR and continue to work with the vendor
+      to identify and remediate any accessibility gaps.
+    </p>
+
+    <h2 class="mt-10">Feedback</h2>
+    <p>
+      If you encounter an accessibility issue on cliffcomortgage.com, please contact us:
+      <br/>
+      Email: <a href="mailto:accessibility@cliffcomortgage.com">accessibility@cliffcomortgage.com</a><br/>
+      Phone: {COMPANY.hq.phone}<br/>
+      Mail: {COMPANY.legalName}, {COMPANY.hq.street}, {COMPANY.hq.city}, {COMPANY.hq.region} {COMPANY.hq.postalCode}
+    </p>
+  </section>
+</Layout>

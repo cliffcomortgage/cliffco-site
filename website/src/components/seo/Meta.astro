@@ -1,0 +1,63 @@
+---
+/**
+ * Centralized <head> meta tags — title, description, canonical, OG, Twitter,
+ * locale alternates (hreflang). Used by Layout.astro.
+ */
+import { COMPANY, SITE_URL } from "../../data/company";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+  locale?: "en-US" | "es-US";
+  alternateLocales?: { hreflang: string; href: string }[];
+  noindex?: boolean;
+  type?: "website" | "article";
+}
+
+const {
+  title,
+  description,
+  canonical,
+  image = `${SITE_URL}/brand/og-default.png`,
+  locale = "en-US",
+  alternateLocales = [],
+  noindex = false,
+  type = "website",
+} = Astro.props;
+
+const fullTitle = title.includes("Cliffco")
+  ? title
+  : `${title} | ${COMPANY.brandName}`;
+
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE_URL).toString();
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content={type} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:site_name" content={COMPANY.brandName} />
+<meta property="og:image" content={image} />
+<meta property="og:locale" content={locale} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+
+<link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+<link rel="alternate" hreflang={locale} href={canonicalUrl} />
+{alternateLocales.map((alt) => (
+  <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+))}
+
+<meta name="format-detection" content="telephone=yes" />
+<meta name="theme-color" content="#0d0d0d" />
