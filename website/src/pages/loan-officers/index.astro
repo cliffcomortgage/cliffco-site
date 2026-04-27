@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import Headshot from "../../components/ui/Headshot.astro";
 import { LOAN_OFFICERS } from "../../data/loan-officers";
 import { BRANCHES } from "../../data/branches";
 
@@ -42,6 +43,11 @@ const byBranch = BRANCHES.map((b) => ({
           <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {g.officers.map((lo) => (
               <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
+                {lo.hasPhoto && (
+                  <div class="mb-4 -mx-6 -mt-6">
+                    <Headshot slug={lo.slug} name={lo.displayName} size={320} shape="square" class="rounded-t-xl" />
+                  </div>
+                )}
                 <p class="eyebrow">{lo.title}</p>
                 <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
                 <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls} · Licensed in {lo.states.join(", ")}</p>

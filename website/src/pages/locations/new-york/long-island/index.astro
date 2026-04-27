@@ -7,6 +7,7 @@ import { BRANCHES } from "../../../../data/branches";
 import { LOAN_OFFICERS } from "../../../../data/loan-officers";
 import { product } from "../../../../data/products";
 import { localBusinessSchema, faqPageSchema, breadcrumbSchema } from "../../../../lib/schema";
+import Headshot from "../../../../components/ui/Headshot.astro";
 
 const loc = location("new-york/long-island")!;
 const liBranches = BRANCHES.filter((b) => b.metro === "Long Island");
@@ -132,6 +133,11 @@ const yearsInBiz = COMPANY.yearsInBusiness();
       <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {nyLOs.map((lo) => (
           <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
+            {lo.hasPhoto && (
+              <div class="mb-4 -mx-6 -mt-6">
+                <Headshot slug={lo.slug} name={lo.displayName} size={320} shape="square" class="rounded-t-xl" />
+              </div>
+            )}
             <p class="eyebrow">{lo.title}</p>
             <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
             <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>

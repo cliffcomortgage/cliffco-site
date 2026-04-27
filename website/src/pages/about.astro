@@ -1,10 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import Headshot from "../components/ui/Headshot.astro";
 import { COMPANY } from "../data/company";
 import { BRANCHES } from "../data/branches";
 import { LOAN_OFFICERS, loanOfficer } from "../data/loan-officers";
 import { STATE_LICENSES } from "../data/state-licenses";
+import { LEADERSHIP_TEAM } from "../data/leadership-team";
 
 const yearsInBiz = COMPANY.yearsInBusiness();
 const president = loanOfficer("christopher-clifford-65234")!;
@@ -110,6 +112,11 @@ const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
       <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {seniorLeadership.map((lo) => (
           <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
+            {lo.hasPhoto && (
+              <div class="mb-4 -mx-6 -mt-6">
+                <Headshot slug={lo.slug} name={lo.displayName} size={400} shape="square" class="rounded-t-xl" />
+              </div>
+            )}
             <p class="eyebrow">{lo.title}</p>
             <h3 class="mt-2" style="font-size: var(--text-h3);">{lo.displayName}</h3>
             <p class="text-sm text-[var(--color-text-muted)]">NMLS #{lo.nmls}</p>
@@ -119,6 +126,33 @@ const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
         ))}
       </div>
       <a href="/loan-officers/" class="btn btn-secondary mt-8">See all loan officers</a>
+    </div>
+  </section>
+
+  <!-- OPERATIONS LEADERSHIP -->
+  <section class="section bg-white border-t border-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">Operations leadership</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">The team behind every closing.</h2>
+      <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
+        Cliffco runs on long-tenured operations leaders — compliance, underwriting, marketing —
+        whose collective experience underwrites the brand promise.
+      </p>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {LEADERSHIP_TEAM.map((leader) => (
+          <article class="card flex flex-col h-full">
+            {leader.hasPhoto && (
+              <div class="mb-4 -mx-6 -mt-6">
+                <Headshot slug={leader.slug} name={leader.name} size={400} shape="square" class="rounded-t-xl" />
+              </div>
+            )}
+            <p class="eyebrow">{leader.title}</p>
+            <h3 class="mt-2" style="font-size: var(--text-h3);">{leader.name}</h3>
+            <p class="text-sm text-[var(--color-text-muted)] mt-3 leading-relaxed">{leader.bio}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 

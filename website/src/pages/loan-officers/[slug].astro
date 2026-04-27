@@ -7,6 +7,7 @@ import { BRANCHES } from "../../data/branches";
 import { STATE_LICENSES } from "../../data/state-licenses";
 import { fullDisclosureBlock } from "../../data/disclosures";
 import { personSchema, breadcrumbSchema } from "../../lib/schema";
+import Headshot from "../../components/ui/Headshot.astro";
 
 export async function getStaticPaths() {
   return LOAN_OFFICERS.map((lo) => ({ params: { slug: lo.slug }, props: { lo } }));
@@ -47,9 +48,13 @@ const schema = [
   <!-- HERO -->
   <section class="container-wide pt-12 pb-16 grid gap-10 lg:grid-cols-[1fr_2fr] items-start">
     <div>
-      <div class="bg-[var(--color-mist-gray)] rounded-2xl aspect-square flex items-center justify-center text-[var(--color-text-muted)]">
-        <span class="text-sm">[ {lo.firstName}'s photo ]</span>
-      </div>
+      {lo.hasPhoto ? (
+        <Headshot slug={lo.slug} name={lo.displayName} size={400} priority shape="rounded" />
+      ) : (
+        <div class="bg-[var(--color-mist-gray)] rounded-2xl aspect-square flex items-center justify-center text-[var(--color-text-muted)]">
+          <span class="text-sm">Photo coming soon</span>
+        </div>
+      )}
     </div>
 
     <div>

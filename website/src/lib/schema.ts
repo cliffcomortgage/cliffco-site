@@ -88,6 +88,7 @@ export const personSchema = (lo: LoanOfficer) => ({
   name: lo.displayName,
   jobTitle: lo.title,
   worksFor: { "@id": orgId },
+  ...(lo.hasPhoto && { image: `${SITE_URL}/team/${lo.slug}.jpg` }),
   identifier: {
     "@type": "PropertyValue",
     propertyID: "NMLS",

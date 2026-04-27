@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Headshot from "../components/ui/Headshot.astro";
 import { COMPANY } from "../data/company";
 import { priorityProducts } from "../data/products";
 import { LOCATIONS } from "../data/locations";
@@ -153,16 +154,17 @@ const yearsInBiz = COMPANY.yearsInBusiness();
   <!-- LEADERSHIP / FOUNDER STRIP -->
   <section class="section bg-white">
     <div class="container-wide grid gap-10 lg:grid-cols-[1fr_1fr] items-center">
-      <div class="bg-[var(--color-mist-gray)] rounded-2xl aspect-[4/3] flex items-center justify-center text-[var(--color-text-muted)]">
-        <span class="text-sm">[ Leadership photo — to be added ]</span>
+      <div>
+        <Headshot slug={president.slug} name={president.displayName} size={520} shape="rounded" />
       </div>
       <div>
         <p class="eyebrow">Leadership</p>
         <h2 class="mt-3" style="font-size: var(--text-h2);">{yearsInBiz} years isn't a marketing line.</h2>
         <p class="lead mt-4 text-[var(--color-text-muted)]">
           Cliffco was founded in 1989 and has been independently owned ever since. Our President,
-          {president.displayName} (NMLS #{president.nmls}), is personally licensed in 29 of our 32
-          states — which means he can pick up a complex file and underwrite it himself.
+          <a href={`/loan-officers/${president.slug}/`}>{president.displayName}</a> (NMLS #{president.nmls}),
+          is personally licensed in 29 of our 32 states — which means he can pick up a complex file
+          and underwrite it himself.
         </p>
         <a href="/about/" class="btn btn-secondary mt-6">Read our story</a>
       </div>

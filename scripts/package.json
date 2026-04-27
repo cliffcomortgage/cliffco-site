@@ -1,0 +1,8 @@
+{
+  "name": "cliffco-scripts",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "sharp": "^0.34.5"
+  }
+}
