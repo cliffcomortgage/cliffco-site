@@ -14,7 +14,7 @@ What I could verify externally without backend access:
 |---|---|---|
 | **CMS / stack** | WordPress + Elementor / ElementsKit (sitemap names `e-landing-page-sitemap.xml`, `elementskit_content-sitemap.xml`; `wp-content` URLs) | Heavy plugin stack; classic Core Web Vitals risk |
 | **Title tag (homepage)** | "Cliffco Mortgage Bankers \| Home Loans in NY, NJ, FL, CT, PA, TX" | Misses AZ, MN, Long Island specificity, Orlando |
-| **Licensing footer** | 27+ states: AK, AL, AZ, CA, CO, CT, DE, DC, FL, GA, IN, IL, KS, KY, LA, MD, MI, NJ, NY, NM, NC, OH, OR, PA, SC, TN, TX, VA, WA | **MN is not in the list** — priority territory not yet licensed; gate this before site copy promises MN coverage |
+| **Licensing footer** | 27+ states (current published list: AK, AL, AZ, CA, CO, CT, DE, DC, FL, GA, IN, IL, KS, KY, LA, MD, MI, NJ, NY, NM, NC, OH, OR, PA, SC, TN, TX, VA, WA) | **The current published footer list is INCOMPLETE** — Cliffco is also licensed in MN (MN-MO-65328), MA (MC65328), MI, VT, WA, and more. See `compliance/state-licenses.md` for the canonical 32-state list. The rebuild must show the complete list. |
 | **NMLS** | Corporate NMLS #65328, Uniondale NY HQ | Display NMLS prominently per CFPB / SAFE Act |
 | **robots.txt** | `User-agent: * / Disallow:` (allow all) + sitemap pointer | Not blocking AI crawlers (good or bad — see AEO doc) |
 | **Sitemap** | `sitemap_index.xml` with 7 child sitemaps (posts, pages, e-landing-page, elementskit-content, category, post_tag, author) | WordPress/Yoast-style; `author-sitemap.xml` exposes author pages — review for noindex if author pages are thin |
@@ -24,7 +24,9 @@ What I could verify externally without backend access:
 | **Content depth** | Blog, glossary, calculators, product pages, FAQ | Already has the bones of topical authority — rebuild can preserve URLs |
 
 **Top external risks observed:**
-- **Title/meta misalignment with stated territories** (no AZ, MN, no Long Island/Orlando specificity).
+- **Title/meta misalignment with stated territories** (no AZ, MN, no Long Island/Orlando specificity, missing FL "Swish Capital" DBA).
+- **Florida DBA not surfaced.** Cliffco operates in Florida as **Swish Capital, Inc.** Every FL-targeted page, the Orlando branch GBP, and any FL marketing material must show this DBA disclosure (per `compliance/disclosures.md` Block 2).
+- **8 physical branches available, only 1 visible.** Per `compliance/branches.md`: Uniondale NY HQ + Newark NJ + Jamaica NY + Wantagh NY + Bay Shore NY + Orlando FL + Scottsdale AZ + Excelsior MN. Each is a Google Business Profile claim opportunity and a branch landing page.
 - **WordPress + Elementor stack** is notorious for INP failures from page-builder JS. Real-user data check via [PageSpeed Insights](https://pagespeed.web.dev/) and the [Chrome UX Report](https://developer.chrome.com/docs/crux) is the first audit step.
 - **Author sitemap** — WordPress default exposes author archives; if these are bot-thin, [HCU](https://developers.google.com/search/blog/2024/03/core-update-spam-policies) considers this a quality signal.
 - **No visible state-specific landing pages** in the homepage IA.
@@ -102,10 +104,13 @@ Cliffco's site has to scale across 4 priority products × 7 territories + brande
 /locations/new-york/long-island/nassau-county/   ← sub-metro
 /locations/new-york/long-island/suffolk-county/  ← sub-metro
 /locations/new-jersey/
+/locations/new-jersey/newark/                    ← branch (Newark NJ office)
 /locations/arizona/
-/locations/minnesota/                            ← BLOCKED on licensing
+/locations/arizona/phoenix-metro/scottsdale/     ← branch (Scottsdale AZ office)
+/locations/minnesota/                            ← LICENSED (MN-MO-65328)
+/locations/minnesota/twin-cities/excelsior/      ← branch (Excelsior MN office)
 /locations/florida/
-/locations/florida/orlando/                      ← metro hub
+/locations/florida/orlando/                      ← metro hub + branch (Orlando FL)
 
 /loan-officers/                                  ← team hub
 /loan-officers/[firstname-lastname-nmlsid]/      ← LO bio (E-E-A-T critical)
@@ -420,7 +425,8 @@ Cliffco's rebuilt site will probably ship 200–800 indexable URLs across produc
 
 - [ ] Run baseline Core Web Vitals audit on current cliffcomortgage.com (PSI for top 25 pages by traffic; CrUX trend over 90 days).
 - [ ] Crawl current site with Screaming Frog; export indexable URL inventory + redirect map.
-- [ ] Confirm state licensing list — **decide MN status** (license filed? Y/N) before any MN copy commits.
+- [ ] Use `compliance/state-licenses.md` as canonical state-license list (32 states confirmed; MN active as MN-MO-65328).
+- [ ] Collect physical addresses for 7 non-HQ branches (Newark NJ, Jamaica NY, Wantagh NY, Bay Shore NY, Orlando FL, Scottsdale AZ, Excelsior MN) — required for GBP claims and branch landing pages.
 - [ ] Choose stack: Astro + headless CMS (Sanity recommended) + Vercel/Netlify hosting.
 - [ ] Set up Search Console domain property; verify Bing Webmaster.
 - [ ] Lock URL structure (proposed in §4); document in a one-page spec the dev team must follow.
@@ -458,7 +464,7 @@ Cliffco's rebuilt site will probably ship 200–800 indexable URLs across produc
 1. **Switch off WordPress + Elementor.** Astro static + headless CMS will deliver the CWV improvements no plugin stack ever will, and the HCU's "Information Gain" model rewards lean, original pages.
 2. **Disciplined hub-and-spoke IA + JSON-LD schema on every page.** Hub-and-spoke lifts AI citation rates ~3.5× and Google now equally weights the three CWV signals — INP cannot be a tradeoff.
 3. **LO bio pages with NMLS-linked Person schema** are the single biggest E-E-A-T move available. Mortgage YMYL post-March 2026 demands verifiable expertise.
-4. **State-licensing accuracy.** The current homepage promises "NY, NJ, FL, CT, PA, TX" while the user wants AZ, MN, Long Island, Orlando emphasized. Don't ship MN content until the license clears, and rewrite all titles/meta to match real footprint + ambition.
+4. **State-licensing accuracy + Florida DBA.** The current homepage promises only "NY, NJ, FL, CT, PA, TX" while Cliffco is actually licensed in 32 states (see `compliance/state-licenses.md`) including all five priority territories (NY, NJ, AZ, MN, FL). All FL pages must display the **"Swish Capital, Inc." DBA** disclosure (`compliance/disclosures.md` Block 2). Rewrite titles/meta to match the real footprint + ambition.
 5. **Site Reputation Abuse-proof the architecture.** No third-party content rentals on the domain. Every page is first-party, original, and tied to an identifiable Cliffco author.
 
 ---

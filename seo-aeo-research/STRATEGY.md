@@ -15,6 +15,8 @@
 - **`04-local-seo-territories.md`** — per-territory deep dive across NY/Long Island/NJ/AZ/MN/FL/Orlando.
 - **`05-product-content-strategy.md`** — keyword + content cluster + competitor analysis for Non-QM, Reverse, DSCR, Fix-and-Flip + 90-day calendar.
 
+**Companion folder: `/compliance/`** — canonical state-license list, branch addresses, LO roster, and reusable disclosure templates pulled from the NMLS-audited LO compliance roster. Treat that folder as the source of truth for any compliance-relevant claim on the rebuilt site.
+
 ---
 
 ## The strategic insight
@@ -38,8 +40,10 @@ Cliffco's owner is right that LLMs are now the primary discovery surface for man
 From the external audit captured in `01-technical-seo.md`:
 
 - **WordPress + Elementor / ElementsKit stack** — historically tanks Core Web Vitals (especially INP). With INP now equally weighted to LCP and CLS, this is the biggest single drag.
-- **Page title misses priority territories** — current title says NY/NJ/FL/CT/PA/TX; Cliffco's stated priorities are NY/Long Island/NJ/AZ/MN/FL/Orlando.
-- **Minnesota mismatch** — current footer doesn't list MN among 27+ licensed states. **Cliffco's MN licensing must be confirmed before any MN content ships.**
+- **Page title misses priority territories** — current title says NY/NJ/FL/CT/PA/TX; Cliffco's stated priorities are NY/Long Island/NJ/AZ/MN/FL/Orlando, and the actual licensed footprint is 32 states.
+- **Florida DBA missing.** Cliffco operates in Florida as **Swish Capital, Inc.** Every FL-targeted page, the Orlando branch GBP, and any FL marketing material must include the DBA disclosure (`compliance/disclosures.md`).
+- **Outdated state license list in footer.** Current footer shows ~27 states; Cliffco is actually licensed in 32 (MA, MN, MI, VT, WA among those omitted). See `compliance/state-licenses.md` for the canonical list.
+- **8 physical branches but only the HQ is publicly visible.** Per `compliance/branches.md`: Uniondale NY (HQ) + Newark NJ + Jamaica NY + Wantagh NY + Bay Shore NY + Orlando FL + Scottsdale AZ + Excelsior MN. Each is a Google Business Profile claim opportunity.
 - **No visible localized landing pages** in the IA — losing local authority opportunities.
 - **Author sitemap exposed** — needs review for thin author pages (HCU risk).
 - **Schema inventory unverified** externally — needs a full audit during rebuild scoping.
@@ -212,7 +216,8 @@ This is not a marketing budget — it's investment in a primary lead-gen system.
 
 | Risk | Likelihood | Impact | Mitigation |
 |---|---|---|---|
-| MN content shipped before licensing | Medium | High (UDAAP / SAFE Act exposure) | Hard gate: no MN page goes live until NMLS Consumer Access reflects MN license |
+| MN content shipped before licensing | Resolved — Cliffco is licensed in MN (MN-MO-65328) | n/a | Compliance roster confirms MN active; content can ship |
+| FL content omits Swish Capital DBA | High | Medium-High (state regulator exposure) | Use `compliance/disclosures.md` Block 2 templates; require DBA on all FL pages, Orlando GBP, FL LO bios |
 | AI-content shortcuts to scale | High | High (HCU penalty) | All content must be LO-reviewed and tagged; no scaled unedited AI publishing |
 | Inconsistent product info across pages | High | Medium (LLM authority erosion) | Single source-of-truth fact sheets per product, internally enforced |
 | Doorway-page penalty on city pages | Medium | High (algorithmic + manual) | Each location page has 800+ words of unique local proof, real LO bio, real local data |

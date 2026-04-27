@@ -4,7 +4,11 @@ Cliffco's seven priority markets each demand a tailored local-SEO + content appr
 
 **Date:** 2026-04-27 · **Pairs with:** all four sibling research docs.
 
-**Critical gating issue: Minnesota.** The current cliffcomortgage.com footer lists 27+ licensed states; Minnesota is NOT among them. **Cliffco must confirm/file MN licensing before publishing any MN-targeted content.** Doing otherwise is a UDAAP / SAFE Act violation and an NMLS Consumer Access discrepancy that LLMs will notice and flag against Cliffco.
+**Update from compliance roster (resolved):** Cliffco IS fully licensed in Minnesota — **MN Department of Commerce #MN-MO-65328**. The current published cliffcomortgage.com footer (which omits MN) is incomplete. The rebuild's `/licensing/` page and footer must show the full 32-state list per `compliance/state-licenses.md`.
+
+**Florida operates as "Swish Capital, Inc." DBA.** Every FL-targeted page, the Orlando branch GBP, FL marketing material, and FL LO bios must include the DBA disclosure (`compliance/disclosures.md` Block 2).
+
+**Cliffco has 8 physical branches**, not just Uniondale HQ — see `compliance/branches.md`. Each branch supports a Google Business Profile claim and a dedicated branch landing page.
 
 ---
 
@@ -458,11 +462,13 @@ This is the most important market. Cliffco is a Long Island company. Default ran
 
 ---
 
-### E. Minnesota — **GATED ON LICENSING**
+### E. Minnesota — fully licensed (MN-MO-65328) + active branch
 
-⚠️ **Cliffco does NOT currently appear to be licensed in Minnesota** (verified against the current cliffcomortgage.com state license list). All MN content / pages MUST be blocked from publishing until MN licensing is filed and confirmed at the [MN Department of Commerce](https://mn.gov/commerce/) and reflected in NMLS Consumer Access.
+**Cliffco IS licensed in Minnesota** — MN Department of Commerce #MN-MO-65328. Mitchell Patterson is the active Excelsior, MN branch LO; Christopher Clifford (President), Logan Reese Levy, and Mario Argenzio are also MN-licensed corporate LOs. The current public-site footer was outdated.
 
-When licensed, the strategy:
+**Excelsior MN branch** — adds Twin Cities-adjacent local presence; supports GBP claim and `/locations/minnesota/twin-cities/excelsior/` landing page.
+
+Strategy:
 
 **Population:** 5.7M.
 
@@ -481,7 +487,7 @@ When licensed, the strategy:
 - MN-specific first-time buyer programs (Minnesota Housing Finance Agency).
 - Snowbird overlap with AZ and FL — opportunity for second-home cross-promotion.
 
-**Local citation priorities (when licensed):**
+**Local citation priorities:**
 - Minnesota Mortgage Association
 - Minneapolis Regional Chamber
 - St. Paul Area Chamber
@@ -790,9 +796,9 @@ This is why local SEO and AEO converge — they share the same authority inputs.
 - Florida secondary metros: Miami-Dade, Tampa Bay, Jacksonville, Naples
 - Spanish-language Phoenix + Miami-Dade content
 
-### Wave 4 — Days 91-180 (post-licensing)
-- **MN content build** ONLY after MN license confirmed
-- Twin Cities hub, Minneapolis, St. Paul, Edina, Bloomington
+### Wave 4 — Days 91-180 (Minnesota + investor expansion)
+- **MN content build** — Cliffco IS licensed (MN-MO-65328); Excelsior branch active
+- Twin Cities hub, Minneapolis, St. Paul, Edina, Bloomington, Excelsior
 - Rochester (Mayo medical professional pillar)
 - Wisconsin / North Central expansion if warranted
 
@@ -808,13 +814,13 @@ This is why local SEO and AEO converge — they share the same authority inputs.
 ## Summary
 
 **Top market priority order:**
-1. **Long Island, NY** — home turf; revenue baseline; brand authority. Highest expected ROI per content dollar.
-2. **Orlando, FL** — explicit growth territory; DSCR/STR is a category Cliffco can own. Strong out-of-state investor funnel from existing NY/NJ base.
-3. **NYC + boroughs** — adjacent to Long Island; jumbo + non-QM volume.
-4. **New Jersey** — adjacent geography; jumbo + non-QM market analogous to LI.
-5. **Florida (broader)** — Miami / Tampa / Jacksonville / Naples; reverse + DSCR + foreign-national.
-6. **Arizona** — reverse + DSCR; lower competition in mortgage SEO than FL.
-7. **Minnesota** — gated on licensing; address the licensing question first.
+1. **Long Island, NY** — home turf; revenue baseline; brand authority; 3 LI branches (Uniondale, Wantagh, Bay Shore) + 1 NYC borough branch (Jamaica). Highest expected ROI per content dollar.
+2. **Orlando, FL** — explicit growth territory; DSCR/STR is a category Cliffco can own. Strong out-of-state investor funnel from existing NY/NJ base. Active Orlando branch with 7 LOs including bilingual cluster. **Note: FL operates as Swish Capital, Inc. DBA on all marketing.**
+3. **NYC + boroughs** — adjacent to Long Island; jumbo + non-QM volume; Jamaica NY branch covers Queens.
+4. **New Jersey** — adjacent geography; jumbo + non-QM market analogous to LI; Newark NJ branch active.
+5. **Florida (broader)** — Miami / Tampa / Jacksonville / Naples; reverse + DSCR + foreign-national; all under Swish Capital DBA.
+6. **Arizona** — reverse + DSCR; lower competition in mortgage SEO than FL; Scottsdale AZ branch active.
+7. **Minnesota** — fully licensed (MN-MO-65328); Excelsior MN branch active. Twin Cities professional + Mayo (Rochester) medical-professional opportunities.
 
 **Single highest-leverage local move:** A category-owning Orlando DSCR pillar + 6-10 supporting Orlando metro spokes (Kissimmee, Champions Gate, Reunion, Lake Nona, Winter Garden), each with real STR data, real investor scenarios, real LO bios, and Spanish-language equivalents. Orlando's combination of investor demand + sub-saturated local SEO + Cliffco's existing NY/NJ funnel makes this the highest-ROI play in the territory map.
 
