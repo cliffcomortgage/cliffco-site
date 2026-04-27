@@ -75,6 +75,7 @@ const SLUG_TO_FOLDER = {
   "samantha-cardinal": ["Samantha Cardinal"],
   "kathleen-lovece": ["Kathleen Lovece", "Kathy Lovece"],
   "sivon-collinge": ["Sivon Collinge"],
+  "amanda-miller": ["Amanda Miller"],
 };
 
 /**

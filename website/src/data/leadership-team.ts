@@ -48,4 +48,13 @@ export const LEADERSHIP_TEAM: readonly LeaderRole[] = [
       "that supports Cliffco's print, digital, social, and video presence.",
     hasPhoto: true,
   },
+  {
+    slug: "amanda-miller",
+    name: "Amanda Miller",
+    title: "Director of Human Resources",
+    bio:
+      "Amanda leads Human Resources at Cliffco, supporting the team that supports every borrower — " +
+      "from hiring and onboarding to professional development and benefits.",
+    hasPhoto: true,
+  },
 ];
