@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The new Cliffco — Website rebuild internal review</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- =========================================================
+     SLIDE 1 — COVER
+     ========================================================= -->
+<section class="slide cover">
+  <div class="cover-inner">
+    <div>
+      <div class="cover-eyebrow">Internal review · May 2026</div>
+      <div class="cover-rule"></div>
+    </div>
+    <div>
+      <h1 class="display">The new<br/>Cliffco.</h1>
+      <p style="margin-top: 28px; font-size: 22px; font-weight: 400; max-width: 780px; color: rgba(255,255,255,0.82); line-height: 1.4;">
+        A full rebuild of cliffcomortgage.com — engineered for how borrowers
+        actually find a lender in 2026. SEO, AEO, and trust signals, in one site.
+      </p>
+    </div>
+    <div class="cover-meta">Cliffco Mortgage Bankers · Marketing</div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 2 — WHY WE REBUILT
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">01 · Why now</div>
+  <div class="kicker">The landscape shifted</div>
+  <h2 class="title">The way borrowers find a lender<br/>just changed. Twice.</h2>
+
+  <div class="content-grid-2" style="margin-top: 32px;">
+    <div>
+      <h3 class="section">Shift 1 · Google got stricter</h3>
+      <p class="body small">
+        E-E-A-T, Core Web Vitals, and content freshness are no longer "nice to have." Google's
+        Helpful Content updates penalize generic, slow, faceless sites. Our old WordPress build
+        could not pass these thresholds.
+      </p>
+    </div>
+    <div>
+      <h3 class="section">Shift 2 · Borrowers ask AI first</h3>
+      <p class="body small">
+        ChatGPT, Claude, Perplexity, Gemini, and Google AI Overviews now answer high-intent
+        mortgage questions <em>before</em> a borrower clicks anything. If Cliffco isn't named
+        in those answers, we don't get the call.
+      </p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 30px;">
+    <strong>The strategic insight:</strong> the same trust signals that win Google E-E-A-T are
+    the same signals LLMs use to decide who to cite. SEO and AEO are now one system. We built
+    for both at once.
+  </div>
+
+  <div class="slide-number">02</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 3 — THE OLD SITE
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">01 · The audit</div>
+  <div class="kicker">Starting point</div>
+  <h2 class="title">What was broken<br/>on the old site.</h2>
+  <p class="body" style="margin-top: 14px; max-width: 940px;">
+    Findings from the external audit (captured in <code style="font-size: 14px;">seo-aeo-research/01-technical-seo.md</code>):
+  </p>
+
+  <div class="compare-rows" style="grid-template-columns: 1fr; max-width: 1080px;">
+    <div class="old">
+      <div class="col-head">The old cliffcomortgage.com</div>
+      <ul>
+        <li><strong>WordPress + Elementor / ElementsKit stack</strong> — historically tanks Core Web Vitals, especially INP (now weighted equally with LCP and CLS).</li>
+        <li><strong>Page title missed our priority territories</strong> — listed NY/NJ/FL/CT/PA/TX while our actual licensed footprint is 32 states and our priorities are NY/Long Island/NJ/AZ/MN/FL/Orlando.</li>
+        <li><strong>Florida DBA missing.</strong> Cliffco operates in FL as <em>Swish Capital, Inc.</em> — never disclosed on the old site (state regulator exposure).</li>
+        <li><strong>State license list outdated.</strong> Footer showed ~27 states; we're licensed in 32 (MA, MN, MI, VT, WA among those omitted).</li>
+        <li><strong>Of 8 physical branches, only the Uniondale HQ was visible</strong> — losing every local-search opportunity in Newark, Jamaica, Wantagh, Bay Shore, Orlando, Scottsdale, Excelsior.</li>
+        <li><strong>No real loan-officer bios</strong> — no Person schema, no NMLS Consumer Access links. Author authority near-zero.</li>
+        <li><strong>No localized landing pages</strong> for priority markets.</li>
+        <li><strong>Outdated leadership references</strong> still present in copy.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide-number">03</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 4 — THE NEW SITE AT A GLANCE
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">01 · What shipped</div>
+  <div class="kicker">The new site, today</div>
+  <h2 class="title">Everything we fixed —<br/>and how it adds up.</h2>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-num">32 / 32</div>
+      <div class="stat-label">Licensed states</div>
+      <div class="stat-desc">Footer + licensing page now accurately list every state — up from 27 on the old site.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">8 / 8</div>
+      <div class="stat-label">Branches visible</div>
+      <div class="stat-desc">All eight physical branches publicly represented — up from 1 (HQ only).</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">38+</div>
+      <div class="stat-label">LO bio pages live</div>
+      <div class="stat-desc">Each with full Person schema and NMLS Consumer Access link. Roster build-out continues to 80+.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">/es/</div>
+      <div class="stat-label">Spanish site live</div>
+      <div class="stat-desc">Bilingual reach in Orlando, Scottsdale, Newark, Uniondale — markets we'd been leaving on the table.</div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 26px;">
+    <strong>FL compliance fix:</strong> Swish Capital, Inc. DBA is now disclosed everywhere it
+    needs to appear. <strong>Stack swap:</strong> WordPress + Elementor → Astro static. Core
+    Web Vitals are green.
+  </div>
+
+  <div class="slide-number">04</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 5 — IA HUB AND SPOKE
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">02 · Architecture</div>
+  <div class="kicker">Information architecture</div>
+  <h2 class="title">A real hub-and-spoke structure<br/>replaces the old flat sitemap.</h2>
+  <p class="body" style="margin-top: 14px; max-width: 940px;">
+    Every page now has a clear parent, clear siblings, and clear children. Bidirectional
+    internal linking lifts AI citation rates roughly 3.5× on its own.
+  </p>
+
+  <div class="ia-diagram">
+    <div class="ia-hub">
+      <div class="hub-label">The hub</div>
+      <div class="hub-name">Cliffco</div>
+      <div class="hub-sub">cliffcomortgage.com</div>
+    </div>
+    <div class="ia-spokes">
+      <div class="ia-spoke">
+        <div class="name">Loans</div>
+        <div class="path">/loans/[product]/</div>
+        <div class="note">Non-QM · Reverse · DSCR · Fix-and-flip + conv./FHA/VA/USDA</div>
+      </div>
+      <div class="ia-spoke">
+        <div class="name">Locations</div>
+        <div class="path">/locations/[state]/[metro]/</div>
+        <div class="note">NY (Long Island) · FL (Orlando) · NJ · AZ · MN</div>
+      </div>
+      <div class="ia-spoke">
+        <div class="name">Loan officers</div>
+        <div class="path">/loan-officers/[name-nmlsid]/</div>
+        <div class="note">One page per LO, full Person schema, NMLS sameAs</div>
+      </div>
+      <div class="ia-spoke">
+        <div class="name">Trust pages</div>
+        <div class="path">/about/ · /licensing/ · /legal/</div>
+        <div class="note">Founder story · 32-state licensing · disclosures</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-number">05</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 6 — BRANCHES
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">02 · Branches</div>
+  <div class="kicker">All 8, publicly visible</div>
+  <h2 class="title">Every branch, on the site.<br/>Every branch, a local SEO asset.</h2>
+  <p class="body" style="margin-top: 14px; max-width: 940px;">
+    The old site exposed one address — Uniondale HQ. The new site features all eight branches
+    in the IA, each a future Google Business Profile claim and a hook for local-pack visibility.
+  </p>
+
+  <div class="feature-list" style="margin-top: 28px;">
+    <div class="item"><div class="tick">→</div><div class="what"><strong>Uniondale, NY</strong> — Headquarters · 70 Charles Lindbergh Blvd</div></div>
+    <div class="item"><div class="tick">→</div><div class="what"><strong>Orlando, FL</strong> — Operating as <em>Swish Capital, Inc.</em></div></div>
+    <div class="item"><div class="tick">→</div><div class="what"><strong>Newark, NJ</strong> — NJ market anchor + bilingual LO cluster</div></div>
+    <div class="item"><div class="tick">→</div><div class="what"><strong>Scottsdale, AZ</strong> — AZ market anchor + bilingual LO cluster</div></div>
+    <div class="item"><div class="tick">→</div><div class="what"><strong>Jamaica, NY</strong> — Queens / NYC reach</div></div>
+    <div class="item"><div class="tick">→</div><div class="what"><strong>Excelsior, MN</strong> — MN market entry (now actively licensed)</div></div>
+    <div class="item"><div class="tick">→</div><div class="what"><strong>Wantagh, NY</strong> — Long Island depth</div></div>
+    <div class="item"><div class="tick">→</div><div class="what"><strong>Bay Shore, NY</strong> — Suffolk County reach</div></div>
+  </div>
+
+  <div class="slide-number">06</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 7 — LO BIOS AT SCALE
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">02 · Loan officers</div>
+  <div class="kicker">Author authority</div>
+  <h2 class="title">Every loan officer,<br/>individually findable.</h2>
+
+  <p class="body" style="margin-top: 16px; max-width: 940px;">
+    The old site had no LO bio pages. The new site is built so <em>every</em> licensed Cliffco
+    LO gets their own page at <code style="font-size: 15px; background: var(--airy-gray); padding: 2px 8px;">/loan-officers/[name-nmlsid]/</code>.
+  </p>
+
+  <div class="content-grid-2" style="margin-top: 26px;">
+    <div>
+      <h3 class="section">What's on every LO page</h3>
+      <ul class="bullet-list">
+        <li>Full Person schema with NMLS ID</li>
+        <li><code style="font-size: 13px;">sameAs</code> link to NMLS Consumer Access (the federal trust anchor)</li>
+        <li>Real photo, real specialties, real territory, real numbers</li>
+        <li>Licensed-states list per LO</li>
+        <li>Languages spoken (bilingual cluster surfacing)</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="section">Why this is the #1 lever</h3>
+      <p class="body small">
+        Author authority is the single highest-leverage move for both Google E-E-A-T and LLM citation eligibility.
+      </p>
+      <p class="body small" style="margin-top: 10px;">
+        Google's quality raters and ChatGPT/Claude/Perplexity all weight content by who wrote
+        it. Without verifiable, NMLS-linked authors, our content is functionally anonymous.
+        Now it's not.
+      </p>
+      <p class="body small" style="margin-top: 10px; color: var(--soft-gray);">
+        38+ bios live. Build-out continues toward the full 80+ active LO roster.
+      </p>
+    </div>
+  </div>
+
+  <div class="slide-number">07</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 8 — LOCATIONS
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">02 · Locations</div>
+  <div class="kicker">Local SEO depth</div>
+  <h2 class="title">Real local pages —<br/>not "doorway" thin pages.</h2>
+  <p class="body" style="margin-top: 14px; max-width: 940px;">
+    Google penalizes generic "we serve [city]!" doorway pages. Our location pages are built
+    deep on purpose — each has 800+ words of unique local content, real local LOs, real local
+    market data.
+  </p>
+
+  <div class="content-grid-2" style="margin-top: 28px;">
+    <div>
+      <h3 class="section">Live now</h3>
+      <ul class="bullet-list">
+        <li><strong style="color: var(--rich-black);">New York</strong> → Long Island sub-hub (Nassau + Suffolk depth to follow)</li>
+        <li><strong style="color: var(--rich-black);">Florida</strong> → Orlando sub-hub with Swish Capital, Inc. disclosure</li>
+        <li><strong style="color: var(--rich-black);">New Jersey</strong> hub (metro pages 30-day plan)</li>
+        <li><strong style="color: var(--rich-black);">Arizona</strong> hub</li>
+        <li><strong style="color: var(--rich-black);">Minnesota</strong> hub — now active since MN licensing confirmed</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="section">What's on every location page</h3>
+      <ul class="bullet-list">
+        <li>Local LOs licensed in that territory</li>
+        <li>Local branch info (where applicable)</li>
+        <li>Local market data, refreshed quarterly</li>
+        <li>Local closed-loan scenarios + proof</li>
+        <li>Spanish-language version where bilingual demand exists</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide-number">08</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 9 — SPANISH SITE
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">02 · Spanish</div>
+  <div class="kicker">Bilingual reach</div>
+  <h2 class="title">Cliffco, en español.<br/>/es/ is live.</h2>
+
+  <p class="body large" style="margin-top: 20px; max-width: 940px;">
+    Our bilingual LO clusters — Orlando, Scottsdale, Newark, Uniondale — are now reachable in
+    Spanish. The old site offered them nothing. The new site opens up a measurable market we'd
+    been ceding to competitors.
+  </p>
+
+  <div class="content-grid-2" style="margin-top: 24px;">
+    <div>
+      <h3 class="section">What we shipped</h3>
+      <ul class="bullet-list">
+        <li>Spanish homepage at <code style="font-size: 13px;">/es/</code></li>
+        <li><code style="font-size: 13px;">hreflang</code> alternates configured for SEO</li>
+        <li>Bilingual LO discovery in each Spanish-priority market</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="section">What's next (60-day plan)</h3>
+      <ul class="bullet-list">
+        <li>Spanish versions of the four product pillars</li>
+        <li>Spanish versions of FL + Orlando hubs</li>
+        <li>Spanish versions of AZ + Phoenix metro</li>
+        <li>Spanish-language Miami-Dade landing pages</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slide-number">09</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 10 — SEO INVERTED PYRAMID
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">03 · SEO</div>
+  <div class="kicker">SEO upgrade · #1</div>
+  <h2 class="title">Every page leads<br/>with the answer.</h2>
+  <p class="body" style="margin-top: 14px; max-width: 940px;">
+    Google's AI Overviews and every major LLM scan the first 40–60 words for a direct,
+    factual answer to quote. We rewrote every product and location page to lead with that
+    answer — not bury it under marketing copy.
+  </p>
+
+  <div class="demo-answer">
+    <div class="lead-bold">
+      <strong>Cliffco Mortgage Bankers (NMLS #65328)</strong> is an independent mortgage banker
+      founded in 1989 and licensed in 32 states. We specialize in <strong>non-QM and
+      self-employed loans</strong>, <strong>reverse mortgages</strong>, <strong>DSCR loans for
+      investors</strong>, and <strong>fix-and-flip financing</strong> — with eight branches across
+      New York, New Jersey, Arizona, Minnesota, and Florida (where we operate as Swish Capital, Inc.).
+    </div>
+    <div class="note">Above: the literal text Google + LLMs see first when they scan the homepage</div>
+  </div>
+
+  <div class="slide-number">10</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 11 — SEO SCHEMA
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">03 · SEO</div>
+  <div class="kicker">SEO upgrade · #2</div>
+  <h2 class="title">We labeled everything,<br/>so machines can read it.</h2>
+  <p class="body" style="margin-top: 14px; max-width: 940px;">
+    "Schema" is the machine-readable layer of the site — the part Google and AI crawlers parse
+    to understand what each page <em>is</em>. The old site had none. The new site has it on
+    every page, with CI validation on every deploy.
+  </p>
+
+  <div class="feature-list">
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>Organization</strong> — Cliffco as a legal entity, with full <code style="font-size: 12px;">sameAs</code> cluster to LinkedIn, NMLS Consumer Access, branch GBPs</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>MortgageLender</strong> — specific lender type, licensing scope</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>MortgageLoan</strong> — one block per product (Non-QM, Reverse, DSCR, F&amp;F)</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>Person</strong> — one per LO, linked to NMLS Consumer Access</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>FAQPage</strong> — every page with FAQs</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>BreadcrumbList</strong> — every page</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>Article</strong> — every learning piece</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>LocalBusiness</strong> — one per branch (rolling out with each GBP claim)</div></div>
+  </div>
+
+  <div class="slide-number">11</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 12 — CORE WEB VITALS
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">03 · SEO</div>
+  <div class="kicker">SEO upgrade · #3</div>
+  <h2 class="title">The site is fast now.<br/>Structurally fast.</h2>
+  <p class="body" style="margin-top: 14px; max-width: 940px;">
+    Core Web Vitals are Google's measurable user-experience scores — and they're now ranking
+    factors. The WordPress + Elementor stack was structurally incapable of hitting them.
+    Astro static is built for this.
+  </p>
+
+  <div class="stat-grid cols-3" style="margin-top: 28px;">
+    <div class="stat-card">
+      <div class="stat-num">&lt; 2.5s</div>
+      <div class="stat-label">LCP target</div>
+      <div class="stat-desc"><strong>Largest Contentful Paint</strong> — how fast the biggest visual element loads. We're green.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">&lt; 200ms</div>
+      <div class="stat-label">INP target</div>
+      <div class="stat-desc"><strong>Interaction to Next Paint</strong> — responsiveness to clicks/taps. New 2024 ranking signal. We're green.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">&lt; 0.1</div>
+      <div class="stat-label">CLS target</div>
+      <div class="stat-desc"><strong>Cumulative Layout Shift</strong> — page stability while loading. We're green.</div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 26px;">
+    <strong>Why this matters beyond rankings:</strong> faster pages convert better. Every 100ms
+    of latency on a mortgage landing page measurably lowers form-completion rate.
+  </div>
+
+  <div class="slide-number">12</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 13 — COMPLIANCE ACCURACY
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">03 · SEO</div>
+  <div class="kicker">SEO upgrade · #4</div>
+  <h2 class="title">We fixed the compliance details.<br/>The SEO followed.</h2>
+  <p class="body" style="margin-top: 14px; max-width: 940px;">
+    Google's E-E-A-T (Experience, Expertise, Authoritativeness, Trust) framework treats
+    accurate disclosures as a trust signal. So do LLMs. Every compliance fix is also an SEO
+    upgrade.
+  </p>
+
+  <div class="feature-list">
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>State license list</strong> — accurate at 32 states (was 27)</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>FL DBA disclosure</strong> — Swish Capital, Inc. surfaced on every FL-targeted page</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>NMLS ID</strong> on every page, every LO, every disclosure</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>Reviewed-by stamps</strong> on every product page, dated</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>Last-updated</strong> dates surface on every educational piece</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>NMLS Consumer Access</strong> linked from every LO bio</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>Legal pages</strong> — privacy, CCPA, accessibility, SMS consent, TX complaints</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>WCAG 2.2 AA</strong> conformance with a public statement</div></div>
+  </div>
+
+  <div class="slide-number">13</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 14 — WHAT IS AEO
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">04 · AEO</div>
+  <div class="kicker">A new acronym, a real shift</div>
+  <h2 class="title">AEO = being <em>the answer</em>,<br/>not just a link.</h2>
+
+  <div class="content-grid-2" style="margin-top: 30px;">
+    <div>
+      <h3 class="section">SEO (the old game)</h3>
+      <p class="body small">
+        Win Google. Rank #1. The borrower clicks your link and lands on your page.
+      </p>
+      <h3 class="section" style="margin-top: 20px;">AEO (the new game)</h3>
+      <p class="body small">
+        Be named, quoted, and cited by ChatGPT, Claude, Perplexity, Gemini, and Google AI
+        Overviews. The borrower never clicks — they ask, they read the answer, and the lender
+        named in that answer gets the call.
+      </p>
+    </div>
+    <div>
+      <h3 class="section">Why this is urgent</h3>
+      <p class="body small">
+        AI Overviews now appear in 40–50% of US Google searches. Borrowers asking
+        <em>"best non-QM lender for self-employed in Long Island"</em> get an AI-written
+        summary <em>before</em> the blue links.
+      </p>
+      <p class="body small" style="margin-top: 12px;">
+        We have two options: be in that summary, or be invisible to anyone who reads it.
+      </p>
+      <div class="callout" style="margin-top: 16px; padding: 14px 18px; font-size: 14px;">
+        <strong>Goal:</strong> Cliffco named in top-3 AI citations for non-QM, reverse, DSCR,
+        and F&amp;F across NY/NJ/AZ/FL within 12 months.
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-number">14</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 15 — FOUR FLYWHEELS
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">04 · AEO</div>
+  <div class="kicker">The strategy</div>
+  <h2 class="title">Four flywheels.<br/>Each compounds the next.</h2>
+
+  <div class="flywheel">
+    <div class="flywheel-quad">
+      <div class="quad-num">01</div>
+      <h4>Author authority</h4>
+      <p>Real, named, NMLS-licensed loan officers with deep bios and external trust anchors. The #1 LLM-citation enabler. <strong style="color: var(--rich-black);">Built into the new site.</strong></p>
+    </div>
+    <div class="flywheel-quad">
+      <div class="quad-num">02</div>
+      <h4>Information gain</h4>
+      <p>Original Cliffco data — closed-loan scenarios, approval rates, market commentary, the upcoming quarterly Borrower Index. LLMs preferentially cite original sources. <strong style="color: var(--rich-black);">Q3 priority.</strong></p>
+    </div>
+    <div class="flywheel-quad">
+      <div class="quad-num">03</div>
+      <h4>Local depth</h4>
+      <p>Real local pages for each priority market — not boilerplate doorway pages. Local LOs, local data, local proof. <strong style="color: var(--rich-black);">Live for 5 markets; build-out continues.</strong></p>
+    </div>
+    <div class="flywheel-quad">
+      <div class="quad-num">04</div>
+      <h4>Off-site authority</h4>
+      <p>Reddit, YouTube, Bankrate/NerdWallet/Investopedia listicles, podcasts, expert quotes. LLMs cite third parties more than your own site. <strong style="color: var(--rich-black);">90-day priority.</strong></p>
+    </div>
+  </div>
+
+  <div class="slide-number">15</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 16 — AEO SHIPPED
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">04 · AEO</div>
+  <div class="kicker">What we shipped</div>
+  <h2 class="title">The new site is already<br/>AEO-ready out of the box.</h2>
+
+  <div class="feature-list">
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>llms.txt</strong> + <strong>llms-full.txt</strong> published — a structured directory of our content tuned for LLM crawlers</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>robots.txt</strong> explicitly allows GPTBot, ClaudeBot, PerplexityBot, Google-Extended, OAI-SearchBot</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>Organization schema</strong> with full sameAs cluster — gives LLMs a verifiable Cliffco identity</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>NMLS Consumer Access</strong> linked from Org + every LO Person schema</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>Inverted-pyramid</strong> direct-answer block on every product + location page</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>Question-led H2 structure</strong> — every page is built to match how borrowers actually ask</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>Wikidata entity</strong> drafted — pending publication with reliable sources</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>Measurement stack</strong> ready — Profound Growth for AEO citation tracking, Brand24 for mentions</div></div>
+  </div>
+
+  <div class="slide-number">16</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 17 — WHAT'S NEXT (ROADMAP)
+     ========================================================= -->
+<section class="slide content">
+  <div class="side-label">05 · The roadmap</div>
+  <div class="kicker">90-day plan</div>
+  <h2 class="title">The site is the foundation.<br/>Here's how we compound from here.</h2>
+
+  <div class="roadmap">
+    <div class="roadmap-band">
+      <div class="band-when">30<small>days</small></div>
+      <div class="band-body">
+        <strong>Foundation closeout.</strong> Remaining LO bios live · GBP audit + claim across all 8 branches · Experience.com review-flow live · Profound Growth baseline AEO audit · YouTube channel stood up.
+      </div>
+    </div>
+    <div class="roadmap-band">
+      <div class="band-when">60<small>days</small></div>
+      <div class="band-body">
+        <strong>Cluster expansion.</strong> Non-QM 5–7 spoke pages · DSCR calculator live · Long Island Nassau + Suffolk sub-pages · Orlando Kissimmee/Lake Nona/Winter Park · NJ Bergen/Hudson/Monmouth · YouTube cadence (2 videos/week) · Reddit LO presence in r/Mortgages.
+      </div>
+    </div>
+    <div class="roadmap-band">
+      <div class="band-when">90<small>days</small></div>
+      <div class="band-body">
+        <strong>Off-site authority.</strong> Reverse + F&amp;F clusters complete · Spanish-language launch of top pillars · 5 listicle placement pitches (NerdWallet/Bankrate/Investopedia) · 3 podcast appearances booked · <strong>first quarterly Cliffco Borrower Index</strong> published — our information-gain anchor.
+      </div>
+    </div>
+    <div class="roadmap-band">
+      <div class="band-when">180<small>days</small></div>
+      <div class="band-body">
+        <strong>Compounding.</strong> 8–15 spokes per product hub · all 32 states have territory pages · LO video cadence locked · monthly AEO share-of-voice review · Wikipedia attempt if notability accumulated.
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-number">17</div>
+  <div class="slide-meta">The new Cliffco · website rebuild</div>
+</section>
+
+<!-- =========================================================
+     SLIDE 18 — CLOSING
+     ========================================================= -->
+<section class="slide cta">
+  <div class="cta-inner">
+    <div class="kicker" style="color: var(--ice-blue);">The bet we're making</div>
+    <h1>We're not optimizing for Google.<br/>We're optimizing for whatever<br/>borrowers ask first.</h1>
+    <p>
+      ChatGPT today. Claude tomorrow. The next thing after that. The new site is built to be
+      cited by all of them — because the same trust signals that make Google rank us are the
+      same signals LLMs use to decide who to recommend.
+    </p>
+    <p style="margin-top: 22px; font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7);">
+      Engineered for the next decade of mortgage discovery.
+    </p>
+  </div>
+</section>
+
+</body>
+</html>
