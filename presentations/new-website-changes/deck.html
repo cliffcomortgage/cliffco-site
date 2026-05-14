@@ -40,9 +40,7 @@
     <div>
       <h3 class="section">Shift 1 · Google got stricter</h3>
       <p class="body small">
-        E-E-A-T, Core Web Vitals, and content freshness are no longer "nice to have." Google's
-        Helpful Content updates penalize generic, slow, faceless sites. Our old WordPress build
-        could not pass these thresholds.
+        <strong style="color: var(--rich-black);">E-E-A-T</strong> — Experience, Expertise, Authoritativeness, and Trustworthiness — is the framework from Google's Search Quality Rater Guidelines for evaluating content quality. Combined with Core Web Vitals and content freshness, it now defines whether a site ranks. The rebuild is engineered to clear that bar.
       </p>
     </div>
     <div>
@@ -71,23 +69,23 @@
 <section class="slide content">
   <div class="side-label">01 · The audit</div>
   <div class="kicker">Starting point</div>
-  <h2 class="title">What was broken<br/>on the old site.</h2>
+  <h2 class="title">Where the rebuild had<br/>to raise the bar.</h2>
   <p class="body" style="margin-top: 14px; max-width: 940px;">
-    Findings from the external audit (captured in <code style="font-size: 14px;">seo-aeo-research/01-technical-seo.md</code>):
+    The audit (captured in <code style="font-size: 14px;">seo-aeo-research/01-technical-seo.md</code>) flagged areas where the new SEO + AEO standards needed the site to do more:
   </p>
 
   <div class="compare-rows" style="grid-template-columns: 1fr; max-width: 1080px;">
     <div class="old">
       <div class="col-head">The old cliffcomortgage.com</div>
       <ul>
-        <li><strong>WordPress + Elementor / ElementsKit stack</strong> — historically tanks Core Web Vitals, especially INP (now weighted equally with LCP and CLS).</li>
-        <li><strong>Page title missed our priority territories</strong> — listed NY/NJ/FL/CT/PA/TX while our actual licensed footprint is 32 states and our priorities are NY/Long Island/NJ/AZ/MN/FL/Orlando.</li>
-        <li><strong>Florida DBA missing.</strong> Cliffco operates in FL as <em>Swish Capital, Inc.</em> — never disclosed on the old site (state regulator exposure).</li>
-        <li><strong>State license list outdated.</strong> Footer showed ~27 states; we're licensed in 32 (MA, MN, MI, VT, WA among those omitted).</li>
-        <li><strong>Of 8 physical branches, only the Uniondale HQ was visible</strong> — losing every local-search opportunity in Newark, Jamaica, Wantagh, Bay Shore, Orlando, Scottsdale, Excelsior.</li>
-        <li><strong>No real loan-officer bios</strong> — no Person schema, no NMLS Consumer Access links. Author authority near-zero.</li>
-        <li><strong>No localized landing pages</strong> for priority markets.</li>
-        <li><strong>Outdated leadership references</strong> still present in copy.</li>
+        <li><strong>WordPress + Elementor / ElementsKit stack</strong> — predates the current Core Web Vitals bar; structurally limited on INP (now weighted equally with LCP and CLS).</li>
+        <li><strong>Page title narrower than our footprint</strong> — listed NY/NJ/FL/CT/PA/TX while our actual licensed footprint is 32 states and priority markets include AZ/MN/Long Island/Orlando.</li>
+        <li><strong>Florida DBA needed greater prominence</strong> — <em>Swish Capital, Inc.</em> was disclosed on the licensing page but wasn't surfaced on FL-targeted pages where SEO and state regulators expect it.</li>
+        <li><strong>State license list lagged the latest roster</strong> — footer reflected an earlier count of ~27 states while the licensed footprint had grown to 32 (MA, MN, MI, VT, WA newly added).</li>
+        <li><strong>Branches lacked SEO prominence</strong> — all 8 were listed on the branch locations page, but weren't surfaced with the keywords and local-content density needed for Google local-pack visibility.</li>
+        <li><strong>LO bios needed restructuring</strong> — each had a page, but without Person schema or NMLS Consumer Access sameAs links to anchor author authority for Google and LLMs.</li>
+        <li><strong>No metro-level landing pages</strong> for priority markets — local SEO needs unique city/metro content beyond a branch list to win local-pack rankings.</li>
+        <li><strong>Some leadership references hadn't been refreshed</strong> to match the current org structure.</li>
       </ul>
     </div>
   </div>
@@ -191,8 +189,7 @@
   <div class="kicker">All 8, publicly visible</div>
   <h2 class="title">Every branch, on the site.<br/>Every branch, a local SEO asset.</h2>
   <p class="body" style="margin-top: 14px; max-width: 940px;">
-    The old site exposed one address — Uniondale HQ. The new site features all eight branches
-    in the IA, each a future Google Business Profile claim and a hook for local-pack visibility.
+    All eight branches are now surfaced in the new IA with their own paths, each structured as a future Google Business Profile claim and a hook for local-pack visibility in its market.
   </p>
 
   <div class="feature-list" style="margin-top: 28px;">
@@ -216,22 +213,22 @@
 <section class="slide content">
   <div class="side-label">02 · Loan officers</div>
   <div class="kicker">Author authority</div>
-  <h2 class="title">Every loan officer,<br/>individually findable.</h2>
+  <h2 class="title">Every LO page,<br/>restructured for trust signals.</h2>
 
   <p class="body" style="margin-top: 16px; max-width: 940px;">
-    The old site had no LO bio pages. The new site is built so <em>every</em> licensed Cliffco
-    LO gets their own page at <code style="font-size: 15px; background: var(--airy-gray); padding: 2px 8px;">/loan-officers/[name-nmlsid]/</code>.
+    Each LO already had a page on the old site. The rebuild restructures those pages with the
+    schema, URLs, and external trust anchors Google and LLMs now read to verify expertise.
   </p>
 
   <div class="content-grid-2" style="margin-top: 26px;">
     <div>
-      <h3 class="section">What's on every LO page</h3>
+      <h3 class="section">What the restructured pages add</h3>
       <ul class="bullet-list">
-        <li>Full Person schema with NMLS ID</li>
+        <li>Consistent URL pattern: <code style="font-size: 13px;">/loan-officers/[name-nmlsid]/</code></li>
+        <li>Full Person schema with the LO's NMLS ID</li>
         <li><code style="font-size: 13px;">sameAs</code> link to NMLS Consumer Access (the federal trust anchor)</li>
-        <li>Real photo, real specialties, real territory, real numbers</li>
-        <li>Licensed-states list per LO</li>
-        <li>Languages spoken (bilingual cluster surfacing)</li>
+        <li>Schema-tagged specialties, territory, and licensed states</li>
+        <li>Languages-spoken surfaced for bilingual-LO discovery</li>
       </ul>
     </div>
     <div>
@@ -240,12 +237,10 @@
         Author authority is the single highest-leverage move for both Google E-E-A-T and LLM citation eligibility.
       </p>
       <p class="body small" style="margin-top: 10px;">
-        Google's quality raters and ChatGPT/Claude/Perplexity all weight content by who wrote
-        it. Without verifiable, NMLS-linked authors, our content is functionally anonymous.
-        Now it's not.
+        Google's quality raters and ChatGPT/Claude/Perplexity all weight content by <em>who wrote it</em>. Without machine-readable, NMLS-linked authorship, content is functionally anonymous to those systems. The new pages fix that.
       </p>
       <p class="body small" style="margin-top: 10px; color: var(--soft-gray);">
-        38+ bios live. Build-out continues toward the full 80+ active LO roster.
+        38+ LO pages now run on the restructured template. The rest follow as content reviews complete.
       </p>
     </div>
   </div>
@@ -434,16 +429,15 @@
 <section class="slide content">
   <div class="side-label">03 · SEO</div>
   <div class="kicker">SEO upgrade · #4</div>
-  <h2 class="title">We fixed the compliance details.<br/>The SEO followed.</h2>
+  <h2 class="title">We expanded the compliance details.<br/>The SEO followed.</h2>
   <p class="body" style="margin-top: 14px; max-width: 940px;">
-    Google's E-E-A-T (Experience, Expertise, Authoritativeness, Trust) framework treats
-    accurate disclosures as a trust signal. So do LLMs. Every compliance fix is also an SEO
-    upgrade.
+    Google's E-E-A-T framework treats accurate, prominent disclosures as a trust signal. So do
+    LLMs. Every compliance expansion is also an SEO upgrade.
   </p>
 
   <div class="feature-list">
-    <div class="item"><div class="tick">✓</div><div class="what"><strong>State license list</strong> — accurate at 32 states (was 27)</div></div>
-    <div class="item"><div class="tick">✓</div><div class="what"><strong>FL DBA disclosure</strong> — Swish Capital, Inc. surfaced on every FL-targeted page</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>State license list</strong> — refreshed to the current 32-state roster</div></div>
+    <div class="item"><div class="tick">✓</div><div class="what"><strong>FL DBA prominence</strong> — Swish Capital, Inc. now surfaced on every FL-targeted page (previously on the licensing page only)</div></div>
     <div class="item"><div class="tick">✓</div><div class="what"><strong>NMLS ID</strong> on every page, every LO, every disclosure</div></div>
     <div class="item"><div class="tick">✓</div><div class="what"><strong>Reviewed-by stamps</strong> on every product page, dated</div></div>
     <div class="item"><div class="tick">✓</div><div class="what"><strong>Last-updated</strong> dates surface on every educational piece</div></div>
