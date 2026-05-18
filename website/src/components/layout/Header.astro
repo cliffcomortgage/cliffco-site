@@ -15,7 +15,7 @@ const featuredLocations = LOCATIONS.filter((l) =>
 <header class="border-b border-[var(--color-mist-gray)] bg-white sticky top-0 z-40">
   <div class="container-wide flex items-center justify-between gap-6 py-4">
     <a href="/" class="flex items-center no-underline" aria-label={`${COMPANY.legalName} home`}>
-      <Image src={logoBlack} alt={COMPANY.legalName} class="h-10 w-auto" height={40} width={153} />
+      <Image src={logoBlack} alt={COMPANY.legalName} class="h-10 w-auto" widths={[153, 306, 459, 612]} sizes="153px" />
     </a>
 
     <nav aria-label="Primary" class="hidden lg:block">
