@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { LOCATIONS } from "../../data/locations";
+import { BRANCHES } from "../../data/branches";
 import { STATE_LICENSES } from "../../data/state-licenses";
 ---
 
@@ -27,13 +28,22 @@ import { STATE_LICENSES } from "../../data/state-licenses";
   <section class="bg-white pb-16">
     <div class="container-wide">
       <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {LOCATIONS.filter((l) => !l.path.includes("/")).map((l) => (
-          <a href={`/locations/${l.path}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
-            <h2 class="text-lg font-semibold">{l.name}</h2>
-            <p class="mt-3 text-sm text-[var(--color-text-muted)] flex-1">{l.blurb.split(".")[0]}.</p>
-            <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">View market →</span>
-          </a>
-        ))}
+        {LOCATIONS.filter((l) => !l.path.includes("/")).map((l) => {
+          const branches = BRANCHES.filter((b) => l.branchSlugs?.includes(b.slug));
+          return (
+            <a href={`/locations/${l.path}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
+              <h2 class="text-lg font-semibold">{l.name}</h2>
+              {branches.length > 0 && (
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {branches.map((b) => (
+                    <span class="text-xs font-medium px-3 py-1 rounded-full bg-[var(--color-mist-gray)] text-[var(--color-text-muted)]">{b.city}</span>
+                  ))}
+                </div>
+              )}
+              <span class="mt-5 text-sm font-semibold text-[var(--color-accent)]">View market →</span>
+            </a>
+          );
+        })}
       </div>
     </div>
   </section>
