@@ -4,15 +4,11 @@ import Headshot from "../components/ui/Headshot.astro";
 import { COMPANY } from "../data/company";
 import { priorityProducts } from "../data/products";
 import { loanOfficer } from "../data/loan-officers";
+import { LOCATIONS } from "../data/locations";
+import { BRANCHES } from "../data/branches";
 
 const products = priorityProducts();
-const officeLocations = [
-  { state: "New York",    path: "new-york",   cities: ["Uniondale", "Bay Shore", "Jamaica", "Wantagh"] },
-  { state: "New Jersey",  path: "new-jersey",  cities: ["Branchburg"] },
-  { state: "Florida",     path: "florida",     cities: ["Orlando", "Ft. Lauderdale"] },
-  { state: "Minnesota",   path: "minnesota",   cities: ["Excelsior"] },
-  { state: "Arizona",     path: "arizona",     cities: ["Scottsdale"] },
-];
+const officeLocations = LOCATIONS.filter((l) => !l.path.includes("/"));
 const president = loanOfficer("christopher-clifford-65234")!;
 const yearsInBiz = COMPANY.yearsInBusiness();
 ---
@@ -122,17 +118,23 @@ const yearsInBiz = COMPANY.yearsInBusiness();
       </div>
 
       <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {officeLocations.map((l) => (
-          <a href={`/locations/${l.path}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
-            <h3 style="font-size: var(--text-h3);">{l.state}</h3>
-            <div class="mt-4 flex flex-wrap gap-2 flex-1">
-              {l.cities.map((city) => (
-                <span class="text-xs font-medium px-3 py-1 rounded-full bg-[var(--color-mist-gray)] text-[var(--color-text-muted)]">{city}</span>
-              ))}
-            </div>
-            <span class="mt-5 text-sm font-semibold text-[var(--color-accent)]">Visit market →</span>
-          </a>
-        ))}
+        {officeLocations.map((l) => {
+          const branches = BRANCHES.filter((b) => l.branchSlugs?.includes(b.slug));
+          return (
+            <a href={`/locations/${l.path}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
+              <h3 style="font-size: var(--text-h3);">{l.name}</h3>
+              {branches.length > 0 && (
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {branches.map((b) => (
+                    <span class="text-xs font-medium px-3 py-1 rounded-full bg-[var(--color-mist-gray)] text-[var(--color-text-muted)]">{b.city}</span>
+                  ))}
+                </div>
+              )}
+              <p class="mt-4 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{l.blurb.split(".")[0]}.</p>
+              <span class="mt-5 text-sm font-semibold text-[var(--color-accent)]">Visit market →</span>
+            </a>
+          );
+        })}
       </div>
     </div>
   </section>
