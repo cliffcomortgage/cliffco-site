@@ -107,6 +107,7 @@ const yearsInBiz = COMPANY.yearsInBusiness();
             <h3 class="text-lg font-semibold">{b.name}</h3>
             {b.street && <p class="text-sm text-[var(--color-text-muted)] mt-2">{b.street}<br/>{b.city}, {b.region} {b.postalCode}</p>}
             {b.phone && <p class="text-sm mt-1"><a href={`tel:${b.phone.replace(/\D/g, "")}`} class="text-[var(--color-ink)] no-underline font-medium">{b.phone}</a></p>}
+            {b.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{b.nmls}</p>}
             <p class="text-sm text-[var(--color-text-muted)] mt-3">{b.loanOfficerSlugs.length} loan officer{b.loanOfficerSlugs.length === 1 ? "" : "s"}.</p>
           </article>
         ))}
