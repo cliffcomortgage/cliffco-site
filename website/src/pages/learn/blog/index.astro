@@ -1,0 +1,24 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+---
+
+<Layout
+  title="Mortgage Blog | Cliffco Mortgage Bankers"
+  description="Mortgage news, market updates, and tips from the Cliffco team."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Learn", href: "/learn/" },
+    { name: "Blog", href: "/learn/blog/" },
+  ]} />
+
+  <section class="container-wide pt-12 pb-16">
+    <p class="eyebrow">Blog</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Mortgage news and market updates.</h1>
+    <p class="lead mt-6 max-w-3xl">
+      Rate moves, program changes, and straight talk on what's happening in the mortgage market.
+      Check back soon — posts are on the way.
+    </p>
+  </section>
+</Layout>

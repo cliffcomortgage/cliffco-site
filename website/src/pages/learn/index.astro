@@ -40,6 +40,8 @@ const articles = [
     href: "/learn/non-qm-mortgage-self-employed/",
   },
 ];
+
+const categories = ["All", ...new Set(articles.map((a) => a.category))];
 ---
 
 <Layout
@@ -48,11 +50,11 @@ const articles = [
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
-    { name: "Learn", href: "/learn/" },
+    { name: "Mortgage Guides", href: "/learn/" },
   ]} />
 
-  <section class="container-wide pt-12 pb-12">
-    <p class="eyebrow">Learn</p>
+  <section class="container-wide pt-12 pb-10">
+    <p class="eyebrow">Mortgage Guides</p>
     <h1 class="mt-3" style="font-size: var(--text-display-lg);">Mortgage guides, explained plainly.</h1>
     <p class="lead mt-6 max-w-3xl">
       Most mortgage content is written for other lenders. These guides are written for you. No filler,
@@ -63,9 +65,25 @@ const articles = [
 
   <section class="bg-white pb-16">
     <div class="container-wide">
+      <div class="flex flex-wrap gap-2 mb-8" role="group" aria-label="Filter by category">
+        {categories.map((cat, i) => (
+          <button
+            class={`filter-pill${i === 0 ? " active" : ""}`}
+            data-filter={cat === "All" ? "all" : cat}
+            type="button"
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
       <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {articles.map((article) => (
-          <a href={article.href} class="card no-underline text-[var(--color-ink)] flex flex-col hover:shadow-md transition-shadow">
+          <a
+            href={article.href}
+            class="article-card card no-underline text-[var(--color-ink)] flex flex-col hover:shadow-md transition-shadow"
+            data-category={article.category}
+          >
             <p class="eyebrow text-sm">{article.category}</p>
             <h2 class="mt-2 text-xl font-semibold leading-snug">{article.title}</h2>
             <p class="mt-3 text-sm text-[var(--color-text-muted)] flex-1">{article.description}</p>
@@ -73,6 +91,34 @@ const articles = [
           </a>
         ))}
       </div>
+
+      <p id="no-results" class="hidden text-center text-[var(--color-text-muted)] text-sm mt-10">
+        No guides in this category yet.
+      </p>
     </div>
   </section>
 </Layout>
+
+<script>
+  const pills = document.querySelectorAll(".filter-pill");
+  const cards = document.querySelectorAll(".article-card");
+  const noResults = document.getElementById("no-results");
+
+  pills.forEach((pill) => {
+    pill.addEventListener("click", () => {
+      pills.forEach((p) => p.classList.remove("active"));
+      pill.classList.add("active");
+
+      const filter = (pill as HTMLElement).dataset.filter;
+      let visible = 0;
+
+      cards.forEach((card) => {
+        const show = filter === "all" || (card as HTMLElement).dataset.category === filter;
+        (card as HTMLElement).style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+
+      noResults?.classList.toggle("hidden", visible > 0);
+    });
+  });
+</script>

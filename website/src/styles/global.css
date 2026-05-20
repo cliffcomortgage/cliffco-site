@@ -304,4 +304,27 @@
     text-decoration: none;
   }
   .skip-link:focus { left: 0; }
+
+  /* Category filter pills — used on Mortgage Guides and FAQ pages */
+  .filter-pill {
+    border-radius: 999px;
+    padding: 0.375rem 1.125rem;
+    font-size: var(--text-small);
+    font-weight: 500;
+    border: 1px solid var(--color-mist-gray);
+    background: white;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: border-color 120ms ease, color 120ms ease, background-color 120ms ease;
+    line-height: 1.4;
+  }
+  .filter-pill:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+  .filter-pill.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: white;
+  }
 }
