@@ -2,60 +2,48 @@
 
 Nine physical branch offices. Each is a **Google Business Profile claim opportunity** and a candidate location landing page.
 
-**Last verified: 2026-05-20 per Rafe/leadership confirmation.**
+**Last verified: 2026-05-20 — addresses and NMLS IDs confirmed from NMLS Consumer Access branch lookup.**
 
-| # | Branch | LO count (in roster) | Notes |
-|---|---|---|---|
-| 1 | **Uniondale, NY (HQ)** — 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553 · (516) 408-7300 | 50+ | Corporate HQ; majority of LOs route here |
-| 2 | **Branchburg, NJ** | 4+ (Daphne Feliciano [Branch Mgr], Christian Soto, Edward "Eddie" Morais [Branch Mgr], Gary Johansen) | NJ market anchor |
-| 3 | **Jamaica, NY** | 2 (Angelique Street [Branch Mgr], Shahraj Kabir Khan) | Queens / NYC presence |
-| 4 | **Wantagh, NY** | 2 (Julian Giaquinto [Branch Mgr], Syed Hasib) | Nassau County — Long Island secondary |
-| 5 | **Bay Shore, NY** | 3 (Larisa Ann Zambelli, Lauren Zambelli, Lisa Zambelli-Martorana) | Suffolk County — Long Island |
-| 6 | **Orlando, FL** | 7 (Francisco Veras [Branch Mgr], Julia Jorge-Delcarmen, Keyla Cruz, Nadia Geyer Castro, Samantha Roach, Wenceslao Hernandez Romero, Yaisha Romero) | Florida growth-territory anchor; multiple bilingual LOs. Operates as Swish Capital, Inc. |
-| 7 | **Ft. Lauderdale, FL** | TBD | South Florida presence. Operates as Swish Capital, Inc. |
-| 8 | **Scottsdale, AZ** | 2 (Mayra Hernandez [bilingual], Derek Liu) | Arizona presence; small but real |
-| 9 | **Excelsior, MN** | 1 (Mitchell Patterson) | Minnesota anchor — confirms MN is fully active |
+| # | Branch | Street Address | City | State | ZIP | Branch NMLS | LO count | Notes |
+|---|---|---|---|---|---|---|---|---|
+| 1 | **Uniondale, NY (HQ)** | 70 Charles Lindbergh Blvd, Suite 200 | Uniondale | NY | 11553 | (see corporate) | 50+ | Corporate HQ · (516) 408-7300 |
+| 2 | **Branchburg, NJ** | 3121 Route 22 East, 3rd Floor, Office 313 | Branchburg | NJ | 08876-3559 | 2671359 | 4 | NJ market anchor |
+| 3 | **Jamaica, NY** | 142-62 Rockaway Boulevard | Jamaica | NY | 11436-1419 | 2565193 | 2 | Queens / NYC presence |
+| 4 | **Wantagh, NY** | 3265 Merrick Road | Wantagh | NY | 11793 | 988006 | 2 | Nassau County — Long Island |
+| 5 | **Bay Shore, NY** | 50 Park Avenue, 2nd Floor, Suite 1 | Bay Shore | NY | 11706-7309 | 2733073 | 3 | Suffolk County — Long Island |
+| 6 | **Orlando, FL** | 3801 Avalon Park East Blvd, 2nd Floor, Office 229 | Orlando | FL | 32828 | 2526419 | 7 | Swish Capital DBA · bilingual team |
+| 7 | **Ft. Lauderdale, FL** | 300 SE 2nd Street, Suite 600, Office 50 | Fort Lauderdale | FL | 33301-1950 | 2829876 | TBD | Swish Capital DBA · South Florida |
+| 8 | **Scottsdale, AZ** | 15955 Dial Boulevard, Suite 5 | Scottsdale | AZ | 85260 | 2476150 | 2 | Phoenix metro |
+| 9 | **Excelsior, MN** | 276 Water Street | Excelsior | MN | 55331-1874 | 2763960 | 1 | Twin Cities |
+
+## Corporate NMLS
+
+Cliffco, Inc. corporate NMLS: **#65328**. All branch NMLS IDs above are in addition to the corporate number and must be disclosed appropriately per state requirements.
 
 ## Implications for the website rebuild
 
-- **9 GBP claim/optimization passes needed**, not 1. Each is its own local-pack opportunity.
-- **9 branch landing pages** at `/locations/{state}/{metro}/{branch-slug}/` minimum, e.g.:
+- **9 GBP claim/optimization passes needed** — each branch is its own local-pack opportunity.
+- **9 branch landing pages** at `/locations/{state}/{metro}/{branch-slug}/`, e.g.:
   - `/locations/new-york/long-island/uniondale-headquarters/`
   - `/locations/new-jersey/branchburg/`
   - `/locations/new-york/queens/jamaica/`
-  - `/locations/new-york/long-island/nassau-county/wantagh/`
-  - `/locations/new-york/long-island/suffolk-county/bay-shore/`
-  - `/locations/florida/orlando/branch/`
-  - `/locations/florida/fort-lauderdale/branch/`
-  - `/locations/arizona/phoenix-metro/scottsdale/`
-  - `/locations/minnesota/twin-cities/excelsior/`
-- Each branch landing page = LocalBusiness JSON-LD (mortgage subtype) + branch manager bio + LO list working out of that branch + photos + map.
-
-## Address gaps to fill before launch
-
-The CSV only carries the **corporate Uniondale address** in the disclosure language. Specific street addresses for the other 8 branches need to be collected from the company's facilities or HR records. Required per branch:
-
-- Street address with suite/unit
-- ZIP
-- Direct phone number for that branch
-- Photo of exterior + interior
-- Branch hours
-- Branch manager + email + direct line
-
-Without these, GBPs can't be claimed and branch landing pages can't pass the doorway-page test.
+  - `/locations/new-york/long-island/wantagh/`
+  - `/locations/new-york/long-island/bay-shore/`
+  - `/locations/florida/orlando/`
+  - `/locations/florida/fort-lauderdale/`
+  - `/locations/arizona/scottsdale/`
+  - `/locations/minnesota/excelsior/`
+- Each branch landing page = LocalBusiness JSON-LD (mortgage subtype) + branch NMLS + branch manager bio + LO list + photos + map.
 
 ## Branch-specific compliance notes
 
-- **Florida branches (Orlando and Ft. Lauderdale)** must operate under and display the **"Swish Capital, Inc." DBA**. All Florida-branch marketing — landing pages, GBP descriptions, business cards, signage — must include the FL DBA disclosure.
-- **Arizona (Scottsdale) branch** discrepancy noted — see `state-licenses.md` re: Julian Giaquinto's disclosure showing a different AZ license number (0949291 vs. corporate 1045708). Verify which is current.
-- **All branches** display the corporate NMLS #65328 + appropriate state-license language.
+- **Florida branches (Orlando and Ft. Lauderdale)** must display the **"Swish Capital, Inc." DBA** on all marketing: landing pages, GBP descriptions, business cards, signage.
+- **Arizona (Scottsdale)**: AZ license discrepancy noted — most disclosures show AZ #1045708 (corporate); Julian Giaquinto's disclosure shows AZ #0949291. Verify with Rafe before publishing AZ-licensed-state lists.
+- **All branches** display corporate NMLS #65328 plus the branch-level NMLS ID where required by state law.
 
-## Languages spoken (preliminary inference from LO names)
+## Languages spoken
 
-For Spanish-language site planning:
-- **Branchburg, NJ**: Christian Soto, Daphne Feliciano — likely bilingual
+- **Branchburg, NJ**: Christian Soto, Daphne Feliciano — bilingual (English/Spanish)
 - **Orlando, FL**: Keyla Cruz, Nadia Geyer Castro, Wenceslao Hernandez Romero, Yaisha Romero, Julia Jorge-Delcarmen — strong bilingual cluster
 - **Scottsdale, AZ**: Mayra Hernandez — bilingual
-- **Uniondale, NY**: Frances Ortiz, Emmanuel Estinvil, Johana Amaya, Rafael Rojas, Raymond Garcia, Richard Alvarez, Joshua Borrero, Jeannette Zucker, Steven Rivera, Mario Argenzio — likely several bilingual
-
-This needs LO confirmation but is a strong signal that Cliffco can credibly stand up Spanish-language landing pages and route Spanish-speaking inquiries to bilingual LOs in every priority market.
+- **Uniondale, NY**: Several bilingual LOs (confirm with roster)

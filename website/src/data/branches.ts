@@ -1,26 +1,26 @@
 /**
  * Cliffco branch offices.
- * Source: /compliance/branches.md.
+ * Source of truth: /compliance/branches.md + NMLS Consumer Access branch lookup.
+ * Last verified: 2026-05-20.
  *
  * Each branch is a Google Business Profile claim opportunity and a candidate
  * for a /locations/.../{branch-slug}/ landing page with LocalBusiness schema.
- *
- * Street addresses for non-HQ branches are TBD — they need to be collected
- * from facilities/HR before GBP claims and full branch landing pages can ship.
  */
 
 export type Branch = {
   slug: string;
   /** Display name for headers and breadcrumbs */
   name: string;
-  /** Street address — null until collected for non-HQ branches */
+  /** Street address */
   street: string | null;
   city: string;
   region: string;
   postalCode: string | null;
   country: "US";
   phone: string | null;
-  /** Optional latitude/longitude (HQ only for now) */
+  /** Branch NMLS ID (distinct from corporate NMLS #65328) */
+  nmls?: string;
+  /** Optional latitude/longitude */
   geo?: { latitude: number; longitude: number };
   /** Sub-region label (e.g., "Long Island", "Twin Cities") */
   metro?: string;
@@ -52,12 +52,13 @@ export const BRANCHES: readonly Branch[] = [
   {
     slug: "branchburg-nj",
     name: "Branchburg, NJ",
-    street: null,
+    street: "3121 Route 22 East, 3rd Floor, Office 313",
     city: "Branchburg",
     region: "NJ",
-    postalCode: null,
+    postalCode: "08876",
     country: "US",
     phone: null,
+    nmls: "2671359",
     metro: "Central New Jersey",
     branchManagerSlug: "daphne-feliciano-1227421",
     loanOfficerSlugs: [
@@ -70,12 +71,13 @@ export const BRANCHES: readonly Branch[] = [
   {
     slug: "jamaica-ny",
     name: "Jamaica, NY (Queens)",
-    street: null,
+    street: "142-62 Rockaway Boulevard",
     city: "Jamaica",
     region: "NY",
-    postalCode: null,
+    postalCode: "11436",
     country: "US",
     phone: null,
+    nmls: "2565193",
     metro: "New York City",
     branchManagerSlug: "angelique-street-1146282",
     loanOfficerSlugs: ["angelique-street-1146282", "shahraj-kabir-khan-1209249"],
@@ -83,12 +85,13 @@ export const BRANCHES: readonly Branch[] = [
   {
     slug: "wantagh-ny",
     name: "Wantagh, NY",
-    street: null,
+    street: "3265 Merrick Road",
     city: "Wantagh",
     region: "NY",
-    postalCode: null,
+    postalCode: "11793",
     country: "US",
     phone: null,
+    nmls: "988006",
     metro: "Long Island",
     branchManagerSlug: "julian-giaquinto-56473",
     loanOfficerSlugs: ["julian-giaquinto-56473", "syed-hasib-1594778"],
@@ -96,12 +99,13 @@ export const BRANCHES: readonly Branch[] = [
   {
     slug: "bay-shore-ny",
     name: "Bay Shore, NY",
-    street: null,
+    street: "50 Park Avenue, 2nd Floor, Suite 1",
     city: "Bay Shore",
     region: "NY",
-    postalCode: null,
+    postalCode: "11706",
     country: "US",
     phone: null,
+    nmls: "2733073",
     metro: "Long Island",
     loanOfficerSlugs: [
       "larisa-zambelli-1828224",
@@ -112,12 +116,13 @@ export const BRANCHES: readonly Branch[] = [
   {
     slug: "orlando-fl",
     name: "Orlando, FL",
-    street: null,
+    street: "3801 Avalon Park East Blvd, 2nd Floor, Office 229",
     city: "Orlando",
     region: "FL",
-    postalCode: null,
+    postalCode: "32828",
     country: "US",
     phone: null,
+    nmls: "2526419",
     metro: "Orlando",
     isFloridaDba: true,
     branchManagerSlug: "francisco-veras-170512",
@@ -134,12 +139,13 @@ export const BRANCHES: readonly Branch[] = [
   {
     slug: "fort-lauderdale-fl",
     name: "Ft. Lauderdale, FL",
-    street: null,
-    city: "Ft. Lauderdale",
+    street: "300 SE 2nd Street, Suite 600, Office 50",
+    city: "Fort Lauderdale",
     region: "FL",
-    postalCode: null,
+    postalCode: "33301",
     country: "US",
     phone: null,
+    nmls: "2829876",
     metro: "South Florida",
     isFloridaDba: true,
     loanOfficerSlugs: [],
@@ -147,24 +153,26 @@ export const BRANCHES: readonly Branch[] = [
   {
     slug: "scottsdale-az",
     name: "Scottsdale, AZ",
-    street: null,
+    street: "15955 Dial Boulevard, Suite 5",
     city: "Scottsdale",
     region: "AZ",
-    postalCode: null,
+    postalCode: "85260",
     country: "US",
     phone: null,
+    nmls: "2476150",
     metro: "Phoenix metro",
     loanOfficerSlugs: ["mayra-hernandez-625376", "derek-liu-2578555"],
   },
   {
     slug: "excelsior-mn",
     name: "Excelsior, MN",
-    street: null,
+    street: "276 Water Street",
     city: "Excelsior",
     region: "MN",
-    postalCode: null,
+    postalCode: "55331",
     country: "US",
     phone: null,
+    nmls: "2763960",
     metro: "Twin Cities",
     loanOfficerSlugs: ["mitchell-patterson-2560483"],
   },

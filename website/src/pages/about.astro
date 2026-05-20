@@ -167,7 +167,18 @@ const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
           <div class="card">
             <h3 class="text-base font-semibold text-[var(--color-ink)]">{b.name}</h3>
             {b.metro && <p class="text-xs text-[var(--color-text-muted)] mt-1">{b.metro}</p>}
-            <p class="text-sm text-[var(--color-text-muted)] mt-2">
+            {b.street && (
+              <address class="not-italic text-xs text-[var(--color-text-muted)] mt-2 leading-snug">
+                {b.street}<br/>{b.city}, {b.region} {b.postalCode}
+              </address>
+            )}
+            {b.phone && (
+              <p class="text-xs mt-1">
+                <a href={`tel:${b.phone.replace(/\D/g, "")}`} class="text-[var(--color-ink)] no-underline">{b.phone}</a>
+              </p>
+            )}
+            {b.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{b.nmls}</p>}
+            <p class="text-xs text-[var(--color-text-muted)] mt-1">
               {b.loanOfficerSlugs.length} loan officer{b.loanOfficerSlugs.length === 1 ? "" : "s"}.
             </p>
             {b.isFloridaDba && <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">Operates as Swish Capital, Inc.</p>}
