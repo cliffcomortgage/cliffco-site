@@ -46,7 +46,7 @@ const sorted = [...STATE_LICENSES].sort((a, b) => a.name.localeCompare(b.name));
                 <td class="py-3 px-4 font-semibold text-[var(--color-ink)]">{s.name} <span class="text-[var(--color-text-muted)] text-xs ml-1">({s.code})</span></td>
                 <td class="py-3 px-4 text-[var(--color-text)]">{s.regulator}</td>
                 <td class="py-3 px-4 text-[var(--color-text)] font-mono text-xs">
-                  {s.licenseNumber ?? "””"}
+                  {s.licenseNumber ?? “N/A”}
                   {s.notes && <div class="mt-1 not-italic text-[var(--color-text-muted)] font-sans normal-case">{s.notes}</div>}
                 </td>
               </tr>
