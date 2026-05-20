@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../layouts/Layout.astro";
 import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../data/company";
@@ -21,7 +21,7 @@ const sorted = [...STATE_LICENSES].sort((a, b) => a.name.localeCompare(b.name));
     <h1 class="mt-3" style="font-size: var(--text-display-lg);">
       Licensed in {STATE_LICENSES.length} states.
     </h1>
-    <p class="lead mt-6 max-w-3xl">
+    <p class="lead mt-6">
       {COMPANY.legalName} is registered in the Nationwide Multistate Licensing System
       under <strong>NMLS #{COMPANY.nmls}</strong>. Verify our licenses and complaint
       history any time at
@@ -46,7 +46,7 @@ const sorted = [...STATE_LICENSES].sort((a, b) => a.name.localeCompare(b.name));
                 <td class="py-3 px-4 font-semibold text-[var(--color-ink)]">{s.name} <span class="text-[var(--color-text-muted)] text-xs ml-1">({s.code})</span></td>
                 <td class="py-3 px-4 text-[var(--color-text)]">{s.regulator}</td>
                 <td class="py-3 px-4 text-[var(--color-text)] font-mono text-xs">
-                  {s.licenseNumber ?? "—"}
+                  {s.licenseNumber ?? "â€”"}
                   {s.notes && <div class="mt-1 not-italic text-[var(--color-text-muted)] font-sans normal-case">{s.notes}</div>}
                 </td>
               </tr>
@@ -57,14 +57,14 @@ const sorted = [...STATE_LICENSES].sort((a, b) => a.name.localeCompare(b.name));
 
       <div class="mt-12 grid md:grid-cols-2 gap-6">
         <div class="card">
-          <h2 class="text-base font-semibold text-[var(--color-ink)]">Florida — DBA Disclosure</h2>
+          <h2 class="text-base font-semibold text-[var(--color-ink)]">Florida â€” DBA Disclosure</h2>
           <p class="mt-2 text-sm text-[var(--color-text-muted)]">
             {COMPANY.floridaDba.disclosure}
           </p>
         </div>
 
         <div class="card">
-          <h2 class="text-base font-semibold text-[var(--color-ink)]">Texas — Consumer Complaint Procedure</h2>
+          <h2 class="text-base font-semibold text-[var(--color-ink)]">Texas â€” Consumer Complaint Procedure</h2>
           <p class="mt-2 text-sm text-[var(--color-text-muted)]">
             See our <a href="/legal/texas-complaints/">Texas consumer complaint procedure page</a> for the
             statutorily-required complaint contact information for Texas borrowers.
@@ -79,7 +79,7 @@ const sorted = [...STATE_LICENSES].sort((a, b) => a.name.localeCompare(b.name));
           mortgage industry. You can look up Cliffco's company-level record (NMLS #{COMPANY.nmls})
           and any individual loan officer's record there.
         </p>
-        <a href={COMPANY.nmlsConsumerAccessUrl} class="btn btn-primary mt-6" rel="noopener">Verify Cliffco at NMLS Consumer Access ↗</a>
+        <a href={COMPANY.nmlsConsumerAccessUrl} class="btn btn-primary mt-6" rel="noopener">Verify Cliffco at NMLS Consumer Access â†—</a>
       </div>
     </div>
   </section>

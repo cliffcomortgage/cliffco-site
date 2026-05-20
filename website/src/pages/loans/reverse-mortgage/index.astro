@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../data/company";
@@ -16,7 +16,7 @@ const faq = [
   { question: "Who qualifies for a HECM reverse mortgage in 2026?", answer: "Eligibility requires at least one borrower age 62 or older, ownership of the home as a primary residence (with sufficient equity), the financial means to keep up with property charges (taxes, insurance, HOA), and completion of HUD-approved reverse mortgage counseling before signing the application." },
   { question: "Can the bank take my home with a reverse mortgage?", answer: "No. The borrower retains the title to the home for the life of the loan. As long as loan obligations are met (occupancy, taxes, insurance, maintenance), the borrower cannot be forced out. The HECM is a non-recourse loan: when the loan ends (typically when the home is sold or the borrower no longer occupies it), neither the borrower nor heirs are responsible for more than the home's appraised value, with FHA insurance covering any shortfall." },
   { question: "What is the 2026 HECM lending limit?", answer: `For 2026, the FHA HECM maximum claim amount is ${HECM_LIMIT_2026}. Homes valued above that amount may qualify for proprietary (jumbo) reverse mortgage products that Cliffco also offers.` },
-  { question: "Is HUD counseling required, and how long does it take?", answer: "Yes. Every HECM applicant must complete an independent counseling session with a HUD-approved housing counseling agency before signing the loan application. Sessions typically take 60–90 minutes and can be done by phone or in person. Counseling fees are typically $125–$200 and may be financed into the loan." },
+  { question: "Is HUD counseling required, and how long does it take?", answer: "Yes. Every HECM applicant must complete an independent counseling session with a HUD-approved housing counseling agency before signing the loan application. Sessions typically take 60â€“90 minutes and can be done by phone or in person. Counseling fees are typically $125â€“$200 and may be financed into the loan." },
   { question: "What happens to my heirs?", answer: "When the loan becomes due (typically at the borrower's passing or permanent move-out), heirs have several options: pay off the balance and keep the home, sell the home and keep any equity above the loan balance, or sign the home over to the lender via deed-in-lieu. Because HECM is non-recourse, heirs never owe more than the home's value." },
 ];
 
@@ -44,7 +44,7 @@ const schema = [
   <section class="container-wide pt-12 pb-12">
     <p class="eyebrow">{p.category}</p>
     <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name} (HECM and proprietary)</h1>
-    <p class="lead mt-6 max-w-3xl">{p.oneLiner}</p>
+    <p class="lead mt-6">{p.oneLiner}</p>
   </section>
 
   <section class="bg-white pb-12">
@@ -52,7 +52,7 @@ const schema = [
       <div class="direct-answer">{p.directAnswer}</div>
       <div class="reviewed-by mt-6">
         <div><strong>Last reviewed:</strong> {today}</div>
-        <div><strong>Reviewed by:</strong> {reviewer.displayName}, {reviewer.title} · NMLS #{reviewer.nmls} · <a href={nmlsConsumerAccessUrl(reviewer.nmls)} rel="noopener">Verify ↗</a></div>
+        <div><strong>Reviewed by:</strong> {reviewer.displayName}, {reviewer.title} Â· NMLS #{reviewer.nmls} Â· <a href={nmlsConsumerAccessUrl(reviewer.nmls)} rel="noopener">Verify â†—</a></div>
       </div>
     </div>
   </section>
@@ -64,7 +64,7 @@ const schema = [
       <div class="mt-8 grid gap-6 md:grid-cols-2">
         <article class="card">
           <h3 class="text-lg font-semibold">HECM (Home Equity Conversion Mortgage)</h3>
-          <p class="mt-3 text-sm">FHA-insured. Available nationwide for owner-occupied 1–4 unit properties (with primary occupancy). 2026 maximum claim amount: <strong>{HECM_LIMIT_2026}</strong>.</p>
+          <p class="mt-3 text-sm">FHA-insured. Available nationwide for owner-occupied 1â€“4 unit properties (with primary occupancy). 2026 maximum claim amount: <strong>{HECM_LIMIT_2026}</strong>.</p>
         </article>
         <article class="card">
           <h3 class="text-lg font-semibold">Proprietary jumbo reverse</h3>
@@ -82,7 +82,7 @@ const schema = [
       </div>
       <div class="space-y-4">
         <div class="card"><h3 class="text-base font-semibold">Lump sum</h3><p class="mt-2 text-sm text-[var(--color-text-muted)]">A single one-time disbursement at closing. Often used to pay off an existing mortgage or make a major purchase.</p></div>
-        <div class="card"><h3 class="text-base font-semibold">Line of credit (with growth feature)</h3><p class="mt-2 text-sm text-[var(--color-text-muted)]">Draw as needed. The unused portion of the line grows over time at the same rate the loan would accrue — a unique HECM feature financial planners often pair with retirement strategies.</p></div>
+        <div class="card"><h3 class="text-base font-semibold">Line of credit (with growth feature)</h3><p class="mt-2 text-sm text-[var(--color-text-muted)]">Draw as needed. The unused portion of the line grows over time at the same rate the loan would accrue â€” a unique HECM feature financial planners often pair with retirement strategies.</p></div>
         <div class="card"><h3 class="text-base font-semibold">Tenure or term payments</h3><p class="mt-2 text-sm text-[var(--color-text-muted)]">Monthly disbursements for life (tenure) or for a fixed period (term). Useful for supplementing fixed income.</p></div>
       </div>
     </div>
@@ -95,9 +95,9 @@ const schema = [
       <p class="mt-4">
         Federal law requires every HECM borrower to complete a counseling session with an
         independent <a href="https://www.hudexchange.info/programs/housing-counseling/" rel="noopener">HUD-approved housing counseling agency</a>
-        before signing a reverse mortgage application. Sessions take roughly 60–90 minutes, are
-        available by phone or in person, and cost $125–$200 (often financeable into the loan).
-        Cliffco can recommend approved agencies — but the counselor must be independent of the
+        before signing a reverse mortgage application. Sessions take roughly 60â€“90 minutes, are
+        available by phone or in person, and cost $125â€“$200 (often financeable into the loan).
+        Cliffco can recommend approved agencies â€” but the counselor must be independent of the
         lender. That's the law, and we like it that way.
       </p>
     </div>

@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 
@@ -47,7 +47,7 @@ const categories = ["All", ...new Set(allCategories)];
 
 <Layout
   title="Mortgage Guides, Explained Plainly | Cliffco Mortgage Bankers"
-  description="Clear, jargon-free mortgage guides from Cliffco. Reverse mortgages, non-QM loans, DSCR, down payment assistance, and more — written for real people."
+  description="Clear, jargon-free mortgage guides from Cliffco. Reverse mortgages, non-QM loans, DSCR, down payment assistance, and more â€” written for real people."
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
@@ -57,9 +57,9 @@ const categories = ["All", ...new Set(allCategories)];
   <section class="container-wide pt-12 pb-10">
     <p class="eyebrow">Mortgage Guides</p>
     <h1 class="mt-3" style="font-size: var(--text-display-lg);">Mortgage guides, explained plainly.</h1>
-    <p class="lead mt-6 max-w-3xl">
+    <p class="lead mt-6">
       Most mortgage content is written for other lenders. These guides are written for you. No filler,
-      no fine-print traps — just honest explanations of how each loan type works and whether it fits
+      no fine-print traps â€” just honest explanations of how each loan type works and whether it fits
       your situation.
     </p>
   </section>
@@ -88,7 +88,7 @@ const categories = ["All", ...new Set(allCategories)];
             <p class="eyebrow text-sm">{article.categories[0]}</p>
             <h2 class="mt-2 text-xl font-semibold leading-snug">{article.title}</h2>
             <p class="mt-3 text-sm text-[var(--color-text-muted)] flex-1">{article.description}</p>
-            <span class="mt-4 text-sm font-medium text-[var(--color-accent)]">Read article →</span>
+            <span class="mt-4 text-sm font-medium text-[var(--color-accent)]">Read article â†’</span>
           </a>
         ))}
       </div>
