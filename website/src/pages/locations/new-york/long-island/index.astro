@@ -14,10 +14,10 @@ const liBranches = BRANCHES.filter((b) => b.metro === "Long Island");
 const nyLOs = LOAN_OFFICERS.filter((lo) => liBranches.some((b) => b.slug === lo.branchSlug));
 
 const faq = [
-  { question: "Where is Cliffco's Long Island office?", answer: "Cliffco's headquarters is at 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553 ”” phone (516) 408-7300. We also have Long Island branches in Wantagh (Nassau) and Bay Shore (Suffolk)." },
+  { question: "Where is Cliffco's Long Island office?", answer: "Cliffco's headquarters is at 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553, phone (516) 408-7300. We also have Long Island branches in Wantagh (Nassau) and Bay Shore (Suffolk)." },
   { question: "Is Cliffco licensed in New York?", answer: "Yes. Cliffco, Inc. is a Licensed Mortgage Banker by the New York State Department of Financial Services (LMBC109800), NMLS #65328. Cliffco has been originating mortgages on Long Island since 1989." },
-  { question: "What loan products are most relevant on Long Island?", answer: "Long Island's median single-family price is high (Nassau ~$849K, Suffolk ~$700K as of early 2026), which means jumbo loans matter. Long Island also has a heavy self-employed trades workforce ”” a strong fit for Cliffco's bank-statement non-QM. North Shore aging-in-place homeowners drive a steady reverse-mortgage practice. Hamptons buyers tap super-jumbo and asset-utilization programs." },
-  { question: "Does Cliffco do non-warrantable Long Island co-ops or condos?", answer: "Yes ”” Cliffco's non-QM and portfolio programs handle scenarios that conventional Fannie/Freddie cannot, including non-warrantable condos and co-op buildings outside standard agency guidelines. Speak with a Long Island LO for specifics on a building." },
+  { question: "What loan products are most relevant on Long Island?", answer: "Long Island's median single-family price is high (Nassau ~$849K, Suffolk ~$700K as of early 2026), which means jumbo loans matter. Long Island also has a heavy self-employed trades workforce, a strong fit for Cliffco's bank-statement non-QM. North Shore aging-in-place homeowners drive a steady reverse-mortgage practice. Hamptons buyers tap super-jumbo and asset-utilization programs." },
+  { question: "Does Cliffco do non-warrantable Long Island co-ops or condos?", answer: "Yes. Cliffco's non-QM and portfolio programs handle scenarios that conventional Fannie/Freddie cannot, including non-warrantable condos and co-op buildings outside standard agency guidelines. Speak with a Long Island LO for specifics on a building." },
 ];
 
 const schema = [
@@ -57,7 +57,7 @@ const yearsInBiz = COMPANY.yearsInBusiness();
       <div class="direct-answer">
         Cliffco Mortgage Bankers (NMLS #{COMPANY.nmls}) was founded on Long Island in 1989 and
         is headquartered at {COMPANY.hq.street} in {COMPANY.hq.city}. Cliffco operates three
-        Long Island offices ”” Uniondale (HQ), Wantagh (Nassau), and Bay Shore (Suffolk) ”” and
+        Long Island offices (Uniondale HQ, Wantagh in Nassau, and Bay Shore in Suffolk) and
         is the licensed local lender for jumbo, non-QM and self-employed loans, reverse mortgages,
         DSCR investor financing, and business bank statement loans across Nassau and Suffolk counties.
       </div>
@@ -165,7 +165,7 @@ const yearsInBiz = COMPANY.yearsInBusiness();
 
   <section class="accent-gradient">
     <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Long Island borrowers ”” talk to your local Cliffco LO.</h2>
+      <h2 class="text-white" style="font-size: var(--text-h2);">Long Island borrowers: talk to your local Cliffco LO.</h2>
       <div class="mt-8 flex justify-center gap-3 flex-wrap">
         <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get a pre-qual</a>
         <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>

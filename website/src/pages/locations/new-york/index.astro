@@ -12,9 +12,9 @@ const nyBranches = BRANCHES.filter((b) => loc.branchSlugs?.includes(b.slug));
 
 const faq = [
   { question: "Is Cliffco licensed in New York?", answer: "Yes. Cliffco, Inc. is a Licensed Mortgage Banker by the New York State Department of Financial Services (LMBC109800), corporate NMLS #65328. Cliffco was founded on Long Island in 1989 and is headquartered in Uniondale, NY." },
-  { question: “Where is Cliffco's New York office?”, answer: “Cliffco is headquartered at 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553, phone (516) 408-7300. We also have New York branches in Wantagh (Nassau), Bay Shore (Suffolk), and Jamaica (Queens).” },
-  { question: “Does New York require an attorney at closing?”, answer: “Yes. New York is an attorney-state for residential real estate closings. Both buyer and seller typically retain attorneys, and the closing is conducted in the attorney's office. Cliffco can recommend experienced real-estate attorneys in our local markets." },
-  { question: "What is a CEMA refinance?", answer: "A Consolidation, Extension and Modification Agreement (CEMA) is a New York-specific refinance structure that allows you to consolidate the existing mortgage balance with the new mortgage instead of paying it off and originating a fresh one ”” saving the New York mortgage recording tax (typically ~1.8%—2.05%) on the consolidated portion. Cliffco closes CEMAs regularly." },
+  { question: "Where is Cliffco's New York office?", answer: "Cliffco is headquartered at 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553, phone (516) 408-7300. We also have New York branches in Wantagh (Nassau), Bay Shore (Suffolk), and Jamaica (Queens)." },
+  { question: "Does New York require an attorney at closing?", answer: "Yes. New York is an attorney-state for residential real estate closings. Both buyer and seller typically retain attorneys, and the closing is conducted in the attorney's office. Cliffco can recommend experienced real-estate attorneys in our local markets." },
+  { question: "What is a CEMA refinance?", answer: "A Consolidation, Extension and Modification Agreement (CEMA) is a New York-specific refinance structure that allows you to consolidate the existing mortgage balance with the new mortgage instead of paying it off and originating a fresh one, saving the New York mortgage recording tax (typically ~1.8%—2.05%) on the consolidated portion. Cliffco closes CEMAs regularly." },
 ];
 
 const schema = [
@@ -37,7 +37,7 @@ const schema = [
 
   <section class="container-wide pt-12 pb-12">
     <p class="eyebrow">New York</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">New York mortgage lender ”” founded on Long Island in 1989.</h1>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">New York mortgage lender, founded on Long Island in 1989.</h1>
     <p class="lead mt-6">{loc.blurb}</p>
   </section>
 
@@ -57,7 +57,7 @@ const schema = [
     <div class="container-wide grid gap-8 md:grid-cols-3">
       <a href="/locations/new-york/long-island/" class="card no-underline text-[var(--color-ink)]">
         <h2 class="text-lg font-semibold">Long Island</h2>
-        <p class="mt-2 text-sm text-[var(--color-text-muted)]">Cliffco's home market ”” Nassau and Suffolk counties, three branches.</p>
+        <p class="mt-2 text-sm text-[var(--color-text-muted)]">Cliffco's home market: Nassau and Suffolk counties, three branches.</p>
         <span class="mt-3 text-sm font-semibold text-[var(--color-accent)]">Visit Long Island →</span>
       </a>
       <div class="card">
@@ -108,7 +108,7 @@ const schema = [
 
   <section class="accent-gradient">
     <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">New York borrowers ”” talk to a Long Island-based Cliffco LO.</h2>
+      <h2 class="text-white" style="font-size: var(--text-h2);">New York borrowers: talk to a Long Island-based Cliffco LO.</h2>
       <div class="mt-8 flex justify-center gap-3 flex-wrap">
         <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get a pre-qual</a>
         <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
