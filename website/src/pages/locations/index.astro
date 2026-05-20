@@ -7,7 +7,7 @@ import { STATE_LICENSES } from "../../data/state-licenses";
 
 <Layout
   title="Cliffco Locations & Service Areas"
-  description={`Cliffco Mortgage Bankers is licensed in ${STATE_LICENSES.length} states with eight branches across NY, NJ, AZ, MN, and FL. Pick your market.`}
+  description={`Cliffco Mortgage Bankers is licensed in ${STATE_LICENSES.length} states with nine branches across NY, NJ, AZ, MN, and FL. Pick your market.`}
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
@@ -18,7 +18,7 @@ import { STATE_LICENSES } from "../../data/state-licenses";
     <p class="eyebrow">Locations</p>
     <h1 class="mt-3" style="font-size: var(--text-display-lg);">Where we lend.</h1>
     <p class="lead mt-6 max-w-3xl">
-      Cliffco is licensed in {STATE_LICENSES.length} states with eight physical branches.
+      Cliffco is licensed in {STATE_LICENSES.length} states with nine physical branches.
       Our priority markets — NY, NJ, AZ, MN, and FL — get dedicated content, local LOs,
       and detailed market data below.
     </p>
@@ -27,7 +27,7 @@ import { STATE_LICENSES } from "../../data/state-licenses";
   <section class="bg-white pb-16">
     <div class="container-wide">
       <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {LOCATIONS.map((l) => (
+        {LOCATIONS.filter((l) => !l.path.includes("/")).map((l) => (
           <a href={`/locations/${l.path}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
             <h2 class="text-lg font-semibold">{l.name}</h2>
             <p class="mt-3 text-sm text-[var(--color-text-muted)] flex-1">{l.blurb.split(".")[0]}.</p>
