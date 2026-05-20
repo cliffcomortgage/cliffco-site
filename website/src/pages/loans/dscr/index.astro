@@ -11,12 +11,12 @@ const reviewer = loanOfficer("christopher-clifford-65234")!;
 const today = new Date().toISOString().slice(0, 10);
 
 const faq = [
-  { question: "What is a DSCR loan?", answer: "A DSCR (Debt-Service Coverage Ratio) loan is a mortgage for real estate investors that qualifies the borrower based on the rental income of the subject property â€” not the borrower's personal income. The qualifying ratio is monthly rent divided by monthly principal-and-interest, taxes, insurance, and HOA (PITIA). Most DSCR programs accept ratios from 0.75 (with strong reserves) up to 1.25+ for best pricing." },
+  { question: "What is a DSCR loan?", answer: "A DSCR (Debt-Service Coverage Ratio) loan is a mortgage for real estate investors that qualifies the borrower based on the rental income of the subject property ”” not the borrower's personal income. The qualifying ratio is monthly rent divided by monthly principal-and-interest, taxes, insurance, and HOA (PITIA). Most DSCR programs accept ratios from 0.75 (with strong reserves) up to 1.25+ for best pricing." },
   { question: "How is DSCR calculated?", answer: "DSCR = Gross Monthly Rent Ã· Monthly PITIA. For a $2,500/mo rental with $2,000/mo PITIA, the DSCR is 1.25. Cliffco can use long-term lease income or short-term-rental projections (AirDNA-supported for STR markets like Orlando)." },
   { question: "Are Airbnb / short-term rentals eligible?", answer: "Yes. Cliffco's DSCR program accepts short-term-rental income for properties in markets where STR is allowed (e.g., Disney-area Polk County, FL). For new STR purchases without operating history, we use market projections from sources like AirDNA. For existing STRs, we use trailing 12-month operating statements." },
-  { question: "Can I close in an LLC?", answer: "Yes. Cliffco's DSCR loans allow vesting in an LLC (or in a personal name) â€” a common preference among investors building portfolios. We provide the documentation requirements at the application stage." },
+  { question: "Can I close in an LLC?", answer: "Yes. Cliffco's DSCR loans allow vesting in an LLC (or in a personal name) ”” a common preference among investors building portfolios. We provide the documentation requirements at the application stage." },
   { question: "What's the minimum DSCR ratio?", answer: "Cliffco offers programs that go as low as 0.75 DSCR with compensating factors (higher down payment, stronger reserves, experienced investor profile). The most competitive pricing is at 1.25+ DSCR." },
-  { question: "Can I get a DSCR loan from out of state?", answer: "Yes. A large share of Cliffco's DSCR borrowers live out of state â€” particularly New Yorkers and New Jerseyans buying Florida or Arizona investment properties. Cliffco is licensed in 32 states; we can lend in any of them on the property and any of them on the borrower's residence." },
+  { question: "Can I get a DSCR loan from out of state?", answer: "Yes. A large share of Cliffco's DSCR borrowers live out of state ”” particularly New Yorkers and New Jerseyans buying Florida or Arizona investment properties. Cliffco is licensed in 32 states; we can lend in any of them on the property and any of them on the borrower's residence." },
 ];
 
 const schema = [
@@ -51,7 +51,7 @@ const schema = [
       <div class="direct-answer">{p.directAnswer}</div>
       <div class="reviewed-by mt-6">
         <div><strong>Last reviewed:</strong> {today}</div>
-        <div><strong>Reviewed by:</strong> {reviewer.displayName}, {reviewer.title} Â· NMLS #{reviewer.nmls} Â· <a href={nmlsConsumerAccessUrl(reviewer.nmls)} rel="noopener">Verify â†—</a></div>
+        <div><strong>Reviewed by:</strong> {reviewer.displayName}, {reviewer.title} · NMLS #{reviewer.nmls} · <a href={nmlsConsumerAccessUrl(reviewer.nmls)} rel="noopener">Verify ↗</a></div>
       </div>
     </div>
   </section>
@@ -68,7 +68,7 @@ const schema = [
           PITIA = Principal + Interest + Property Taxes + Insurance + HOA dues. For a $2,500/mo
           rental with $2,000/mo PITIA, DSCR = <strong>1.25</strong>.
         </p>
-        <a href="/calculators/dscr/" class="btn btn-primary mt-6">Open the DSCR calculator â†’</a>
+        <a href="/calculators/dscr/" class="btn btn-primary mt-6">Open the DSCR calculator →</a>
       </div>
     </div>
   </section>
@@ -92,7 +92,7 @@ const schema = [
         </a>
         <a href="/locations/new-jersey/" class="card no-underline text-[var(--color-ink)]">
           <h3 class="text-lg font-semibold">North Jersey small-multi</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Bergen, Hudson, Essex 2â€“4 unit cash-flowers refinanced from local banks to DSCR for portfolio scaling.</p>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Bergen, Hudson, Essex 2—4 unit cash-flowers refinanced from local banks to DSCR for portfolio scaling.</p>
         </a>
         <a href="/locations/florida/" class="card no-underline text-[var(--color-ink)]">
           <h3 class="text-lg font-semibold">Florida statewide rental + STR</h3>
@@ -100,7 +100,7 @@ const schema = [
         </a>
         <a href="/locations/minnesota/" class="card no-underline text-[var(--color-ink)]">
           <h3 class="text-lg font-semibold">Twin Cities rentals</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Minneapolisâ€“St. Paul SFR and small-multi, originated from our Excelsior office.</p>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Minneapolis—St. Paul SFR and small-multi, originated from our Excelsior office.</p>
         </a>
       </div>
     </div>
@@ -123,7 +123,7 @@ const schema = [
 
   <section class="accent-gradient">
     <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Pre-qual in 24 hours. Close in 21â€“30 days.</h2>
+      <h2 class="text-white" style="font-size: var(--text-h2);">Pre-qual in 24 hours. Close in 21—30 days.</h2>
       <p class="lead mt-4 text-white/85">Tell us the address, the projected rent, and the down payment. We'll tell you what we can do.</p>
       <div class="mt-8 flex justify-center gap-3 flex-wrap">
         <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get a DSCR pre-qual</a>

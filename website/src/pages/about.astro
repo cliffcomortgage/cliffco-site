@@ -41,7 +41,7 @@ const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
   <section class="bg-white pb-16">
     <div class="container-prose">
       <div class="direct-answer">
-        Cliffco Mortgage Bankers (legal name <strong>{COMPANY.legalName}</strong> Â· NMLS
+        Cliffco Mortgage Bankers (legal name <strong>{COMPANY.legalName}</strong> · NMLS
         #{COMPANY.nmls}) is a privately-held independent mortgage banker headquartered at
         {COMPANY.hq.street} in {COMPANY.hq.city}, {COMPANY.hq.region}. Founded in 1989, Cliffco
         is licensed in <strong>32 states</strong> and operates through <strong>nine branches</strong>
@@ -56,7 +56,7 @@ const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
   <section class="bg-[var(--color-mist-gray)] section">
     <div class="container-wide grid gap-12 lg:grid-cols-[1fr_1.4fr]">
       <div>
-        <p class="eyebrow">Vision Â· Mission Â· Values</p>
+        <p class="eyebrow">Vision · Mission · Values</p>
         <h2 class="mt-3" style="font-size: var(--text-h2);">Why we exist.</h2>
       </div>
 
@@ -79,7 +79,7 @@ const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
           <ul class="mt-4 grid sm:grid-cols-2 gap-6 m-0 p-0 list-none">
             <li>
               <strong class="block text-[var(--color-ink)]">Family</strong>
-              <span class="text-sm text-[var(--color-text-muted)]">We treat every borrower like family â€” because we've been one for {yearsInBiz} years.</span>
+              <span class="text-sm text-[var(--color-text-muted)]">We treat every borrower like family ”” because we've been one for {yearsInBiz} years.</span>
             </li>
             <li>
               <strong class="block text-[var(--color-ink)]">Integrity</strong>
@@ -121,7 +121,7 @@ const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
             <h3 class="mt-2" style="font-size: var(--text-h3);">{lo.displayName}</h3>
             <p class="text-sm text-[var(--color-text-muted)]">NMLS #{lo.nmls}</p>
             <p class="text-sm text-[var(--color-text-muted)] mt-2">Licensed in {lo.states.length} state{lo.states.length === 1 ? "" : "s"}.</p>
-            <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">View bio â†’</span>
+            <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
           </a>
         ))}
       </div>
@@ -187,7 +187,7 @@ const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
         Services (LMBC109800), with active licenses in {STATE_LICENSES.length} states across the U.S.
       </p>
       <p class="mt-4 text-sm text-[var(--color-text-muted)]">
-        {STATE_LICENSES.map((s) => s.name).join(" Â· ")}
+        {STATE_LICENSES.map((s) => s.name).join(" · ")}
       </p>
       <a href="/licensing/" class="btn btn-secondary mt-6">See full state license details</a>
     </div>

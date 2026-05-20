@@ -14,7 +14,7 @@ const byBranch = BRANCHES.map((b) => ({
 
 <Layout
   title="Cliffco Loan Officers"
-  description="Meet Cliffco Mortgage Bankers' loan officers â€” every officer is NMLS-licensed and verifiable on NMLS Consumer Access. Browse by branch."
+  description="Meet Cliffco Mortgage Bankers' loan officers ”” every officer is NMLS-licensed and verifiable on NMLS Consumer Access. Browse by branch."
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
@@ -27,7 +27,7 @@ const byBranch = BRANCHES.map((b) => ({
       Real loan officers. Verifiable credentials. Direct lines.
     </h1>
     <p class="lead mt-6">
-      Every Cliffco loan officer is licensed through NMLS â€” you can verify any of us on
+      Every Cliffco loan officer is licensed through NMLS ”” you can verify any of us on
       <a href="https://www.nmlsconsumeraccess.org/" rel="noopener">NMLS Consumer Access</a>.
       We organize our team by office below; pick the person closest to your situation, or
       let us match you in a one-business-day callback.
@@ -50,11 +50,11 @@ const byBranch = BRANCHES.map((b) => ({
                 )}
                 <p class="eyebrow">{lo.title}</p>
                 <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
-                <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls} Â· Licensed in {lo.states.join(", ")}</p>
+                <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls} · Licensed in {lo.states.join(", ")}</p>
                 {lo.languages && lo.languages.length > 1 && (
-                  <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" Â· ")}</p>
+                  <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
                 )}
-                <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">View bio â†’</span>
+                <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
               </a>
             ))}
           </div>
