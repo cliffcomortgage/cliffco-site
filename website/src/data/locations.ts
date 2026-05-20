@@ -49,8 +49,8 @@ export const LOCATIONS: readonly Location[] = [
     state: "NJ",
     blurb:
       "Cliffco is licensed in New Jersey by the Department of Banking & Insurance, with our " +
-      "Newark branch serving the North Jersey commuter belt, Central Jersey, and the Shore.",
-    branchSlugs: ["newark-nj"],
+      "Branchburg branch serving Central Jersey, the Shore, and the North Jersey commuter belt.",
+    branchSlugs: ["branchburg-nj"],
     featuredProducts: ["non-qm-self-employed", "dscr", "business-bank-statement", "reverse-mortgage"],
   },
   {
@@ -81,8 +81,9 @@ export const LOCATIONS: readonly Location[] = [
     blurb:
       "Cliffco serves Florida borrowers and investors statewide, operating in Florida as " +
       "Swish Capital, Inc. — a New York corporation authorized to transact business in Florida. " +
-      "Our Orlando branch anchors a bilingual team covering Central and South Florida.",
-    branchSlugs: ["orlando-fl"],
+      "We have two Florida branches: Orlando, anchoring a bilingual team covering Central Florida, " +
+      "and Ft. Lauderdale, serving South Florida.",
+    branchSlugs: ["orlando-fl", "fort-lauderdale-fl"],
     featuredProducts: ["dscr", "business-bank-statement", "non-qm-self-employed", "reverse-mortgage"],
   },
   {

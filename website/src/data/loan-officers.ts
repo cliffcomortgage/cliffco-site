@@ -139,7 +139,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     nmls: "1227421",
     title: "Producing Branch Manager",
     states: ["FL", "MD", "NJ", "PA"],
-    branchSlug: "newark-nj",
+    branchSlug: "branchburg-nj",
     hasPhoto: true,
   },
   {
@@ -150,7 +150,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     nmls: "243926",
     title: "Branch Manager",
     states: ["FL", "NC", "NJ", "NY", "PA"],
-    branchSlug: "newark-nj",
+    branchSlug: "branchburg-nj",
     hasPhoto: true,
   },
   {
@@ -194,9 +194,9 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   // Excelsior (MN)
   { slug: "mitchell-patterson-2560483", firstName: "Mitchell", lastName: "Patterson", displayName: "Mitchell Patterson", nmls: "2560483", title: "Loan Officer", states: ["MN", "TX"], branchSlug: "excelsior-mn", hasPhoto: true },
 
-  // Newark (NJ)
-  { slug: "christian-soto-1173591", firstName: "Christian", lastName: "Soto", displayName: "Christian Soto", nmls: "1173591", title: "Loan Officer", states: ["NJ"], branchSlug: "newark-nj", languages: ["English", "Spanish"], hasPhoto: true },
-  { slug: "gary-johansen-339278", firstName: "Gary", lastName: "Johansen", displayName: "Gary Johansen", nmls: "339278", title: "Regional Sales Manager", states: ["NJ", "NY"], branchSlug: "newark-nj", hasPhoto: true },
+  // Branchburg (NJ)
+  { slug: "christian-soto-1173591", firstName: "Christian", lastName: "Soto", displayName: "Christian Soto", nmls: "1173591", title: "Loan Officer", states: ["NJ"], branchSlug: "branchburg-nj", languages: ["English", "Spanish"], hasPhoto: true },
+  { slug: "gary-johansen-339278", firstName: "Gary", lastName: "Johansen", displayName: "Gary Johansen", nmls: "339278", title: "Regional Sales Manager", states: ["NJ", "NY"], branchSlug: "branchburg-nj", hasPhoto: true },
 
   // Jamaica (NY) Queens
   { slug: "shahraj-kabir-khan-1209249", firstName: "Shahraj", lastName: "Kabir Khan", displayName: "Shahraj Kabir Khan", nmls: "1209249", title: "Loan Officer", states: ["NY"], branchSlug: "jamaica-ny", hasPhoto: true },
