@@ -63,12 +63,12 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     title: "President",
     states: ["AK", "AL", "AZ", "CA", "CT", "DC", "DE", "FL", "GA", "IL", "IN", "KS", "KY", "LA", "MD", "MI", "MN", "NC", "NJ", "NM", "NY", "OH", "PA", "SC", "TN", "TX", "VA", "VT", "WA"],
     branchSlug: "uniondale-headquarters",
-    specialties: ["Non-QM & Self-Employed", "Reverse Mortgage (HECM)", "DSCR for Investors", "Fix-and-Flip", "Jumbo"],
+    specialties: ["Non-QM & Self-Employed", "Reverse Mortgage (HECM)", "DSCR for Investors", "Business Bank Statement", "Jumbo"],
     bio:
       "Christopher Clifford leads Cliffco Mortgage Bankers as President, carrying forward a 36-year " +
       "family-built mortgage operation that's licensed in 32 states. He's licensed in 29 of them personally, " +
       "which means he can pick up the file directly when a complex scenario lands — non-QM, reverse, DSCR, " +
-      "fix-and-flip — and underwrite it with the same hands-on approach Cliffco was founded on.",
+      "business bank statement — with the same hands-on approach Cliffco was founded on.",
     hasPhoto: true,
   },
   {

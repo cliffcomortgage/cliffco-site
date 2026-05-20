@@ -3,20 +3,23 @@ import Layout from "../layouts/Layout.astro";
 import Headshot from "../components/ui/Headshot.astro";
 import { COMPANY } from "../data/company";
 import { priorityProducts } from "../data/products";
-import { LOCATIONS } from "../data/locations";
 import { loanOfficer } from "../data/loan-officers";
 
 const products = priorityProducts();
-const homeMarkets = LOCATIONS.filter((l) =>
-  ["new-york/long-island", "florida/orlando", "new-jersey", "arizona", "minnesota"].includes(l.path),
-);
+const officeLocations = [
+  { state: "New York",    path: "new-york",   cities: ["Uniondale", "Bay Shore", "Jamaica", "Wantagh"] },
+  { state: "New Jersey",  path: "new-jersey",  cities: ["Branchburg"] },
+  { state: "Florida",     path: "florida",     cities: ["Orlando", "Ft. Lauderdale"] },
+  { state: "Minnesota",   path: "minnesota",   cities: ["Excelsior"] },
+  { state: "Arizona",     path: "arizona",     cities: ["Scottsdale"] },
+];
 const president = loanOfficer("christopher-clifford-65234")!;
 const yearsInBiz = COMPANY.yearsInBusiness();
 ---
 
 <Layout
   title={`${COMPANY.brandName} — Mortgages for the people other banks turn away`}
-  description={`Cliffco Mortgage Bankers is a ${yearsInBiz}-year independent lender (NMLS #${COMPANY.nmls}) specializing in non-QM, reverse, DSCR, and fix-and-flip loans across NY, NJ, AZ, MN, and FL.`}
+  description={`Cliffco Mortgage Bankers is a ${yearsInBiz}-year independent lender (NMLS #${COMPANY.nmls}) specializing in non-QM, reverse, DSCR, and business bank statement loans across NY, NJ, AZ, MN, and FL.`}
 >
 
   <!-- HERO -->
@@ -24,14 +27,14 @@ const yearsInBiz = COMPANY.yearsInBusiness();
     <div class="container-wide py-20 lg:py-28 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
       <div>
         <p class="eyebrow !text-[var(--color-ice-blue)]">Family-built since 1989 · NMLS #{COMPANY.nmls}</p>
-        <h1 class="mt-4 text-white" style="font-size: var(--text-display-xl); line-height: 1.05;">
+        <h1 class="mt-4 text-white" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
           We get families home.<br/>
           <span class="text-[var(--color-ice-blue)]">Especially the ones other banks turned away.</span>
         </h1>
         <p class="lead mt-6 text-white/90 max-w-2xl">
-          {yearsInBiz} years. {COMPANY.legalName}. Real loan officers, no call center, no hand-offs.
-          Specialists in non-QM and self-employed loans, reverse mortgages, DSCR for investors,
-          and fix-and-flip financing — across New York, New Jersey, Arizona, Minnesota, and Florida.
+          {COMPANY.brandName} has been in the business for over {yearsInBiz} years. Real loan officers, no call center, no hand-offs.
+          Specialists in Non-QM and self-employed loans, reverse mortgages, DSCR for investors,
+          and business bank statement loans across New York, New Jersey, Arizona, Minnesota, and Florida.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Talk to a real LO</a>
@@ -55,17 +58,25 @@ const yearsInBiz = COMPANY.yearsInBusiness();
 
   <!-- DIRECT-ANSWER (inverted pyramid for AEO) -->
   <section class="section bg-white">
-    <div class="container-prose">
-      <p class="eyebrow">What we do</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">A {yearsInBiz}-year independent mortgage bank built for the borrowers banks pre-decline.</h2>
-      <div class="direct-answer mt-6">
-        Cliffco Mortgage Bankers (NMLS #{COMPANY.nmls}) is an independent mortgage banker
-        founded in 1989 and licensed in 32 states. We specialize in <strong>non-QM and
-        self-employed loans</strong>, <strong>reverse mortgages</strong>, <strong>DSCR loans for
-        investors</strong>, and <strong>fix-and-flip financing</strong> — with eight branches
-        across New York, New Jersey, Arizona, Minnesota, and Florida (where we operate as
-        Swish Capital, Inc.). Real loan officers underwrite every file. No call centers.
-        No handoffs. No shortcuts.
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-center">
+      <div class="rounded-2xl overflow-hidden aspect-[4/3] bg-[var(--color-mist-gray)]">
+        <img
+          src="/images/what-we-do.jpeg"
+          alt="Cliffco loan officer sitting with a family"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div>
+        <p class="eyebrow">What we do</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">A {yearsInBiz}-year mortgage bank built for borrowers other banks turn away.</h2>
+        <p class="mt-6" style="font-size: var(--text-lead); line-height: 1.55; color: var(--color-text);">
+          Cliffco Mortgage Bankers (NMLS #{COMPANY.nmls}) is an independent mortgage banker
+          founded in 1989 and licensed in 32 states. We specialize in <strong>non-QM and
+          self-employed loans</strong>, <strong>reverse mortgages</strong>, <strong>DSCR loans for
+          investors</strong>, and <strong>business bank statement loans</strong>. We have eight branches
+          across New York, New Jersey, Arizona, Minnesota, and Florida. Every file is underwritten
+          in-house. No call centers. No handoffs. No shortcuts.
+        </p>
       </div>
     </div>
   </section>
@@ -78,7 +89,7 @@ const yearsInBiz = COMPANY.yearsInBusiness();
         <h2 class="mt-3" style="font-size: var(--text-h2);">Four loans we know better than almost anyone.</h2>
         <p class="lead mt-4 text-[var(--color-text-muted)]">
           Most lenders bolt non-QM and DSCR on as a side product. We've been originating these
-          scenarios since the day they existed — and writing them when other banks said no.
+          scenarios since the day they existed, writing them when other banks said no.
         </p>
       </div>
 
@@ -106,16 +117,20 @@ const yearsInBiz = COMPANY.yearsInBusiness();
         <p class="eyebrow">Where we lend</p>
         <h2 class="mt-3" style="font-size: var(--text-h2);">Eight offices. Five priority states. Real local people.</h2>
         <p class="lead mt-4 text-[var(--color-text-muted)]">
-          Long Island is home — three of our eight offices are here. We've grown into the markets
-          where the people actually live, work, retire, and invest.
+          New York is home to four of our eight offices, including our HQ in Uniondale. We've grown into the markets
+          where people actually live, work, retire, and invest.
         </p>
       </div>
 
       <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {homeMarkets.map((l) => (
+        {officeLocations.map((l) => (
           <a href={`/locations/${l.path}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
-            <h3 style="font-size: var(--text-h3);">{l.name}</h3>
-            <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{l.blurb.split(".")[0]}.</p>
+            <h3 style="font-size: var(--text-h3);">{l.state}</h3>
+            <div class="mt-4 flex flex-wrap gap-2 flex-1">
+              {l.cities.map((city) => (
+                <span class="text-xs font-medium px-3 py-1 rounded-full bg-[var(--color-mist-gray)] text-[var(--color-text-muted)]">{city}</span>
+              ))}
+            </div>
             <span class="mt-5 text-sm font-semibold text-[var(--color-accent)]">Visit market →</span>
           </a>
         ))}
@@ -133,7 +148,7 @@ const yearsInBiz = COMPANY.yearsInBusiness();
       <div class="grid gap-8 sm:grid-cols-2">
         <div>
           <h3 class="text-white" style="font-size: var(--text-h3);">Family</h3>
-          <p class="mt-2 text-white/75">We treat every borrower like family — because we've been one for {yearsInBiz} years.</p>
+          <p class="mt-2 text-white/75">We treat every borrower like family, because we've been one for {yearsInBiz} years.</p>
         </div>
         <div>
           <h3 class="text-white" style="font-size: var(--text-h3);">Integrity</h3>
@@ -163,8 +178,8 @@ const yearsInBiz = COMPANY.yearsInBusiness();
         <p class="lead mt-4 text-[var(--color-text-muted)]">
           Cliffco was founded in 1989 and has been independently owned ever since. Our President,
           <a href={`/loan-officers/${president.slug}/`}>{president.displayName}</a> (NMLS #{president.nmls}),
-          is personally licensed in 29 of our 32 states — which means he can pick up a complex file
-          and underwrite it himself.
+          is personally licensed in 29 of our 32 states. When a complex file comes in, he can
+          step in personally and see it through.
         </p>
         <a href="/about/" class="btn btn-secondary mt-6">Read our story</a>
       </div>

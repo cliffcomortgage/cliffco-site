@@ -27,7 +27,7 @@ export const PRODUCTS: readonly Product[] = [
     directAnswer:
       "Cliffco's non-QM mortgages qualify self-employed borrowers, 1099 contractors, " +
       "freelancers, and small-business owners using bank statements, 1099s, profit-and-loss " +
-      "statements, or asset utilization — instead of two years of tax returns. Programs include " +
+      "statements, or asset utilization, instead of two years of tax returns. Programs include " +
       "12 / 24-month bank statement, P&L only, 1099 only, asset depletion, ITIN, and foreign " +
       "national, with rates typically 1–2 points above conventional.",
     loanType: "Non-QM Bank Statement",
@@ -41,7 +41,7 @@ export const PRODUCTS: readonly Product[] = [
     oneLiner: "HECM and proprietary reverse mortgages for homeowners 62+.",
     directAnswer:
       "A reverse mortgage (HECM) lets homeowners 62 and older convert home equity into cash, " +
-      "a line of credit, or monthly income — with no required monthly payment as long as the home " +
+      "a line of credit, or monthly income, with no required monthly payment as long as the home " +
       "remains the primary residence and property taxes, insurance, and maintenance are kept current. " +
       "HECM is FHA-insured and non-recourse: heirs are never responsible for more than the home's value.",
     loanType: "HECM Reverse",
@@ -63,18 +63,19 @@ export const PRODUCTS: readonly Product[] = [
     category: "Investor",
   },
   {
-    slug: "fix-and-flip",
-    name: "Fix-and-Flip Loans",
-    shortName: "Fix-and-Flip",
-    oneLiner: "Short-term financing for investors flipping properties — close in 7–10 days.",
+    slug: "business-bank-statement",
+    name: "Business Bank Statement Loans",
+    shortName: "Business Bank Statement",
+    oneLiner: "Business owners qualify using 12–24 months of business bank statements — no tax returns required.",
     directAnswer:
-      "Cliffco's fix-and-flip loans finance the purchase and renovation of investment properties " +
-      "for resale or refinance. Pricing is based on After-Repair Value (ARV); we typically fund up to " +
-      "90% of purchase + 100% of approved rehab, with 6–18 month terms, draw schedules tied to project " +
-      "milestones, and closings in 7–10 days for experienced investors.",
-    loanType: "Hard Money / Fix and Flip",
+      "Business bank statement loans qualify self-employed business owners using 12 or 24 months of " +
+      "business bank statements instead of tax returns or W-2s. Cliffco applies a business expense ratio " +
+      "(typically 50%) to gross deposits to calculate qualifying income — making this the right fit for " +
+      "profitable businesses whose tax returns understate actual cash flow. Ideal for LLCs, S-Corps, " +
+      "sole proprietors, and any owner whose books are cleaner than their 1040.",
+    loanType: "Non-QM Business Bank Statement",
     isPriority: true,
-    category: "Investor",
+    category: "Non-QM",
   },
   // Supporting products
   { slug: "conventional", name: "Conventional Loans", shortName: "Conventional", oneLiner: "Fannie Mae / Freddie Mac conforming and high-balance loans.", directAnswer: "Conventional mortgages following Fannie Mae and Freddie Mac guidelines — fixed and adjustable terms, conforming and high-balance limits, with as little as 3% down for first-time buyers.", loanType: "Conventional", isPriority: false, category: "Conventional / Government" },

@@ -1,0 +1,115 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../data/company";
+import { product } from "../../../data/products";
+import { loanOfficer, nmlsConsumerAccessUrl } from "../../../data/loan-officers";
+import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
+
+const p = product("business-bank-statement")!;
+const reviewer = loanOfficer("christopher-clifford-65234")!;
+const today = new Date().toISOString().slice(0, 10);
+
+const faq = [
+  { question: "What is a business bank statement loan?", answer: "A business bank statement loan qualifies self-employed business owners using 12 or 24 months of business bank statements instead of tax returns or W-2s. The lender applies an expense ratio (typically 50%) to gross deposits to calculate qualifying income — making this ideal for profitable businesses whose tax returns understate actual cash flow." },
+  { question: "Who qualifies for a business bank statement loan?", answer: "Business owners who file taxes as an LLC, S-Corp, sole proprietor, or partnership — and whose net income on tax returns is reduced by legitimate business deductions — are the ideal fit. If your business is profitable but your 1040 makes you look broke, this is your program." },
+  { question: "How is qualifying income calculated?", answer: "Cliffco takes 24 (or 12) months of business bank statement deposits, subtracts a standard expense ratio (typically 50% for most business types; lower ratios apply for certain industries), and uses the resulting figure as gross monthly income for qualification. LLCs and S-Corps with CPA-prepared P&L statements may qualify for a lower expense ratio." },
+  { question: "What credit score do I need?", answer: "Most business bank statement programs start at a 620–640 minimum FICO, with best pricing above 700–720. Lower scores are possible with strong compensating factors — higher down payment, strong reserves, or a lower LTV." },
+  { question: "How does this differ from the personal bank statement program?", answer: "Personal bank statement loans use 12–24 months of personal account deposits (with a lower expense ratio, typically 10–20%) and are better suited for sole proprietors who run income through personal accounts. Business bank statement loans use business account deposits and are more appropriate when your business and personal finances are clearly separated." },
+  { question: "How fast can Cliffco close a business bank statement loan?", answer: "Cliffco typically closes business bank statement loans in 21–30 days with a complete file — business bank statements, business license, CPA letter or P&L, and the subject property appraisal. Rush closings are possible for purchase contracts with tight timelines." },
+];
+
+const schema = [
+  mortgageLoanSchema(p, { rateRange: { min: 7.0, max: 9.5 } }),
+  faqPageSchema(faq),
+  articleSchema({
+    headline: p.name,
+    description: p.directAnswer,
+    url: `/loans/${p.slug}/`,
+    datePublished: today,
+    dateModified: today,
+    authorSlug: reviewer.slug,
+  }),
+];
+---
+
+<Layout title={`${p.name} | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Loans", href: "/loans/" },
+    { name: p.shortName, href: `/loans/${p.slug}/` },
+  ]} />
+
+  <section class="container-wide pt-12 pb-12">
+    <p class="eyebrow">{p.category}</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
+    <p class="lead mt-6 max-w-3xl">{p.oneLiner}</p>
+  </section>
+
+  <section class="bg-white pb-12">
+    <div class="container-prose">
+      <div class="direct-answer">{p.directAnswer}</div>
+      <div class="reviewed-by mt-6">
+        <div><strong>Last reviewed:</strong> {today}</div>
+        <div><strong>Reviewed by:</strong> {reviewer.displayName}, {reviewer.title} · NMLS #{reviewer.nmls} · <a href={nmlsConsumerAccessUrl(reviewer.nmls)} rel="noopener">Verify ↗</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-mist-gray)] section">
+    <div class="container-wide grid gap-10 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">The numbers</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">What to expect (illustrative).</h2>
+      </div>
+      <dl class="space-y-3">
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Statement period</dt><dd class="text-[var(--color-text-muted)]">12 or 24 months</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Rate range</dt><dd class="text-[var(--color-text-muted)]">7.00%–9.50%</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Expense ratio</dt><dd class="text-[var(--color-text-muted)]">typically 50% (varies by industry)</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Max LTV</dt><dd class="text-[var(--color-text-muted)]">up to 85%</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min FICO</dt><dd class="text-[var(--color-text-muted)]">620 (best pricing 720+)</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Loan amounts</dt><dd class="text-[var(--color-text-muted)]">$150K–$3M+</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Property types</dt><dd class="text-[var(--color-text-muted)]">SFR, 2–4 unit, condo, PUD</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">Pair with DSCR</p>
+      <h2 class="mt-3 max-w-3xl" style="font-size: var(--text-h2);">Own a business and investment properties? We can handle both.</h2>
+      <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
+        Many of Cliffco's business bank statement borrowers are also real estate investors. We combine
+        the business bank statement program for your primary residence with DSCR financing for your
+        investment portfolio — one relationship, one underwriting team.
+      </p>
+      <a href="/loans/dscr/" class="btn btn-secondary mt-6">See DSCR for investors →</a>
+    </div>
+  </section>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-prose">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Business owner questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Self-employed and ready to buy?</h2>
+      <p class="lead mt-4 text-white/85">Send us 12 months of business bank statements. Pre-qual in one business day.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get a pre-qual</a>
+        <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
+      </div>
+    </div>
+  </section>
+</Layout>

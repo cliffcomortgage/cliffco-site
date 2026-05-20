@@ -30,7 +30,7 @@ export const LOCATIONS: readonly Location[] = [
       "decades of experience with the jumbo, non-QM, and reverse mortgage scenarios " +
       "that Long Island borrowers actually face.",
     branchSlugs: ["uniondale-headquarters", "wantagh-ny", "bay-shore-ny"],
-    featuredProducts: ["non-qm-self-employed", "reverse-mortgage", "dscr", "fix-and-flip"],
+    featuredProducts: ["non-qm-self-employed", "reverse-mortgage", "dscr", "business-bank-statement"],
   },
   {
     path: "new-york",
@@ -41,7 +41,7 @@ export const LOCATIONS: readonly Location[] = [
       "and is headquartered in Uniondale on Long Island. We serve borrowers across the five " +
       "boroughs, Long Island, the Hudson Valley, and Upstate New York.",
     branchSlugs: ["uniondale-headquarters", "wantagh-ny", "bay-shore-ny", "jamaica-ny"],
-    featuredProducts: ["non-qm-self-employed", "reverse-mortgage", "dscr", "fix-and-flip"],
+    featuredProducts: ["non-qm-self-employed", "reverse-mortgage", "dscr", "business-bank-statement"],
   },
   {
     path: "new-jersey",
@@ -51,7 +51,7 @@ export const LOCATIONS: readonly Location[] = [
       "Cliffco is licensed in New Jersey by the Department of Banking & Insurance, with our " +
       "Newark branch serving the North Jersey commuter belt, Central Jersey, and the Shore.",
     branchSlugs: ["newark-nj"],
-    featuredProducts: ["non-qm-self-employed", "dscr", "fix-and-flip", "reverse-mortgage"],
+    featuredProducts: ["non-qm-self-employed", "dscr", "business-bank-statement", "reverse-mortgage"],
   },
   {
     path: "arizona",
@@ -61,7 +61,7 @@ export const LOCATIONS: readonly Location[] = [
       "Cliffco is licensed in Arizona (Mortgage Banker License 1045708) with our Scottsdale " +
       "branch serving the Phoenix metro, Tucson, and the state's growing investor and retiree markets.",
     branchSlugs: ["scottsdale-az"],
-    featuredProducts: ["reverse-mortgage", "dscr", "non-qm-self-employed", "fix-and-flip"],
+    featuredProducts: ["reverse-mortgage", "dscr", "non-qm-self-employed", "business-bank-statement"],
   },
   {
     path: "minnesota",
@@ -71,7 +71,7 @@ export const LOCATIONS: readonly Location[] = [
       "Cliffco is licensed in Minnesota by the Department of Commerce (#MN-MO-65328), with " +
       "our Excelsior office serving the Twin Cities metro and beyond.",
     branchSlugs: ["excelsior-mn"],
-    featuredProducts: ["non-qm-self-employed", "dscr", "reverse-mortgage", "fix-and-flip"],
+    featuredProducts: ["non-qm-self-employed", "dscr", "reverse-mortgage", "business-bank-statement"],
   },
   {
     path: "florida",
@@ -83,7 +83,7 @@ export const LOCATIONS: readonly Location[] = [
       "Swish Capital, Inc. — a New York corporation authorized to transact business in Florida. " +
       "Our Orlando branch anchors a bilingual team covering Central and South Florida.",
     branchSlugs: ["orlando-fl"],
-    featuredProducts: ["dscr", "fix-and-flip", "non-qm-self-employed", "reverse-mortgage"],
+    featuredProducts: ["dscr", "business-bank-statement", "non-qm-self-employed", "reverse-mortgage"],
   },
   {
     path: "florida/orlando",
@@ -95,7 +95,7 @@ export const LOCATIONS: readonly Location[] = [
       "officers serving the Orlando metro, Disney-area short-term-rental investors, and " +
       "borrowers across Central Florida. Cliffco operates in Florida as Swish Capital, Inc.",
     branchSlugs: ["orlando-fl"],
-    featuredProducts: ["dscr", "fix-and-flip", "non-qm-self-employed", "reverse-mortgage"],
+    featuredProducts: ["dscr", "business-bank-statement", "non-qm-self-employed", "reverse-mortgage"],
   },
 ];
 

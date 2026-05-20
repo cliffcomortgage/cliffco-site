@@ -15,7 +15,7 @@ const flLOs = LOAN_OFFICERS.filter((lo) => lo.states.includes("FL"));
 const faq = [
   { question: "Is Cliffco licensed to lend in Florida?", answer: "Yes. Cliffco, Inc. doing business in Florida as Swish Capital, Inc., is a New York corporation authorized to transact business in the State of Florida. Corporate NMLS #65328." },
   { question: "Why does Cliffco operate as Swish Capital in Florida?", answer: "Swish Capital, Inc. is the registered Florida fictitious name (DBA) under which Cliffco, Inc. transacts business in the state. The borrower relationship, NMLS registration, underwriting, and servicing are all Cliffco's; the DBA is a state-required marketing identifier." },
-  { question: "What products is Cliffco strongest at in Florida?", answer: "DSCR for short-term-rental investors (Disney area, Tampa, Naples), fix-and-flip for active flippers, non-QM bank statement loans for self-employed Florida small-business owners and ITIN borrowers, reverse mortgages in retiree-heavy Central and SW Florida, and Spanish-language loan support across the state." },
+  { question: "What products is Cliffco strongest at in Florida?", answer: "DSCR for short-term-rental investors (Disney area, Tampa, Naples), business bank statement loans for self-employed Florida small-business owners and ITIN borrowers, non-QM for a wide range of scenarios, reverse mortgages in retiree-heavy Central and SW Florida, and Spanish-language loan support across the state." },
   { question: "How does Florida's insurance crisis affect my mortgage qualification?", answer: "Florida homeowners insurance averages roughly 3× the national average (~$7,100/yr for $300K coverage as of 2025/2026). That cost is included in your debt-to-income calculation, materially affecting how much home you can afford. Cliffco's Florida LOs walk through realistic insurance + tax estimates before you write an offer." },
   { question: "Does Cliffco finance Florida non-warrantable condos?", answer: "Yes — post-Champlain Towers, Florida passed structural inspection requirements that have made many older condos non-warrantable for conventional Fannie/Freddie financing. Cliffco's non-QM and portfolio programs handle non-warrantable scenarios that conventional cannot." },
 ];
@@ -40,7 +40,7 @@ const schema = [
 
   <section class="container-wide pt-12 pb-12">
     <p class="eyebrow">Florida — operating as Swish Capital, Inc.</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Florida mortgage lender. DSCR, non-QM, reverse, and fix-and-flip.</h1>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Florida mortgage lender. DSCR, non-QM, reverse, and business bank statement.</h1>
     <p class="lead mt-6 max-w-3xl">{loc.blurb}</p>
     <p class="mt-4 text-sm font-semibold text-[var(--color-accent)]">{COMPANY.floridaDba.disclosure}</p>
   </section>
@@ -48,11 +48,9 @@ const schema = [
   <section class="bg-white pb-12">
     <div class="container-prose">
       <div class="direct-answer">
-        Cliffco operates in Florida as <strong>Swish Capital, Inc.</strong> — a New York
-        corporation authorized to transact business in Florida. Our Orlando branch anchors a
-        bilingual Florida team handling DSCR loans for short-term-rental investors, fix-and-flip,
-        non-QM and ITIN scenarios for self-employed Floridians, and reverse mortgages across
-        retiree-heavy Central and SW Florida.
+        Our Orlando branch anchors a bilingual Florida team handling DSCR loans for
+        short-term-rental investors, business bank statement loans, non-QM and ITIN scenarios
+        for self-employed Floridians, and reverse mortgages across retiree-heavy Central and SW Florida.
       </div>
     </div>
   </section>

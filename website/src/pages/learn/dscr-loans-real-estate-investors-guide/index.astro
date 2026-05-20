@@ -1,0 +1,174 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../data/company";
+---
+
+<Layout
+  title="DSCR Loans Explained: A Guide for Real Estate Investors | Cliffco Mortgage Bankers"
+  description="How DSCR loans work, who qualifies, and why real estate investors use them to grow portfolios without relying on personal income documents."
+  type="article"
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Learn", href: "/learn/" },
+    { name: "DSCR Loans Guide", href: "/learn/dscr-loans-real-estate-investors-guide/" },
+  ]} />
+
+  <section class="container-wide pt-12 pb-12">
+    <p class="eyebrow">DSCR</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">DSCR Loans Explained: A Guide for Real Estate Investors</h1>
+    <p class="lead mt-6">
+      DSCR loans qualify based on what the property earns, not what you earn. For investors who own
+      multiple properties or have complex income, that distinction changes everything.
+    </p>
+  </section>
+
+  <section class="bg-white pb-12">
+    <div class="container-prose">
+
+      <h2>What Is a DSCR Loan?</h2>
+      <p>
+        DSCR stands for Debt Service Coverage Ratio. It's a type of non-QM mortgage designed specifically
+        for real estate investors. The defining feature is how it qualifies you: instead of looking at
+        your W-2, tax returns, or personal income, the lender looks at the rental income of the property
+        you're buying or refinancing. If the property generates enough cash flow to cover the debt
+        payment, you qualify.
+      </p>
+      <p>
+        This makes DSCR loans a natural fit for self-employed investors, business owners, and anyone
+        growing a rental portfolio who doesn't want every new acquisition tied to personal income
+        documentation.
+      </p>
+
+      <h2>How DSCR Is Calculated</h2>
+      <p>The formula is straightforward:</p>
+      <p style="font-size: 1.15rem; font-family: monospace; background: var(--color-mist-gray); padding: 1rem; border-radius: 6px;">
+        <strong>DSCR</strong> = Gross Monthly Rent &divide; Monthly PITIA
+      </p>
+      <p>
+        PITIA means Principal, Interest, Property Taxes, Insurance, and any HOA dues. A property
+        renting for $2,500 per month with a total monthly payment of $2,000 has a DSCR of 1.25. Most
+        programs want to see a DSCR of at least 1.0 to 1.25. Cliffco offers programs that go as low
+        as 0.75 with compensating factors like a larger down payment or strong cash reserves.
+      </p>
+
+      <h2>What Are the Requirements?</h2>
+      <ul>
+        <li><strong>DSCR:</strong> 1.0 to 1.25 minimum for most programs; 0.75 with compensating factors</li>
+        <li><strong>Credit score:</strong> 620 or above, with better pricing at higher scores</li>
+        <li><strong>Down payment:</strong> 20% to 25%</li>
+        <li><strong>Property type:</strong> Investment properties only. 1-to-4 unit residential, condos, and short-term rentals (Airbnb, VRBO) in eligible markets</li>
+        <li><strong>Reserves:</strong> 3 to 6 months of payments in liquid accounts after closing</li>
+        <li><strong>Entity vesting:</strong> Loans can close in an individual name or an LLC</li>
+      </ul>
+
+      <h2>Eligible Property Types</h2>
+      <p>
+        DSCR loans work for a range of property types that conventional lenders sometimes won't touch:
+      </p>
+      <ul>
+        <li>Single-family rentals</li>
+        <li>Condominiums (including non-warrantable condos through certain programs)</li>
+        <li>2-to-4 unit residential properties</li>
+        <li>Short-term rentals in markets where STR is legally permitted</li>
+      </ul>
+      <p>
+        Primary residences are not eligible. DSCR is an investment-only product.
+      </p>
+
+      <h2>DSCR vs. Conventional Investment Loans</h2>
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; margin-top: 0.5rem;">
+          <thead>
+            <tr style="background: var(--color-mist-gray);">
+              <th style="text-align: left; padding: 0.75rem; border-bottom: 2px solid var(--color-mist-gray);">Factor</th>
+              <th style="text-align: left; padding: 0.75rem; border-bottom: 2px solid var(--color-mist-gray);">DSCR Loan</th>
+              <th style="text-align: left; padding: 0.75rem; border-bottom: 2px solid var(--color-mist-gray);">Conventional</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 0.75rem; border-bottom: 1px solid var(--color-mist-gray);">Qualification basis</td>
+              <td style="padding: 0.75rem; border-bottom: 1px solid var(--color-mist-gray);">Property rental income</td>
+              <td style="padding: 0.75rem; border-bottom: 1px solid var(--color-mist-gray);">Borrower personal income</td>
+            </tr>
+            <tr style="background: var(--color-mist-gray, #f5f5f5);">
+              <td style="padding: 0.75rem; border-bottom: 1px solid var(--color-mist-gray);">Income documents</td>
+              <td style="padding: 0.75rem; border-bottom: 1px solid var(--color-mist-gray);">None required</td>
+              <td style="padding: 0.75rem; border-bottom: 1px solid var(--color-mist-gray);">W-2s and tax returns</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.75rem; border-bottom: 1px solid var(--color-mist-gray);">Eligible use</td>
+              <td style="padding: 0.75rem; border-bottom: 1px solid var(--color-mist-gray);">Investment only</td>
+              <td style="padding: 0.75rem; border-bottom: 1px solid var(--color-mist-gray);">Primary, second home, investment</td>
+            </tr>
+            <tr style="background: var(--color-mist-gray, #f5f5f5);">
+              <td style="padding: 0.75rem; border-bottom: 1px solid var(--color-mist-gray);">Down payment</td>
+              <td style="padding: 0.75rem; border-bottom: 1px solid var(--color-mist-gray);">20% to 25%</td>
+              <td style="padding: 0.75rem; border-bottom: 1px solid var(--color-mist-gray);">3% to 5% (primary); 15%+ (investment)</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.75rem;">Rates</td>
+              <td style="padding: 0.75rem;">Higher than conventional</td>
+              <td style="padding: 0.75rem;">Lower baseline rates</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Who Should Use a DSCR Loan?</h2>
+      <p>DSCR loans tend to be the right fit for:</p>
+      <ul>
+        <li>Investors growing a portfolio and don't want each deal to require personal income re-verification</li>
+        <li>Self-employed borrowers with complex tax returns that show low taxable income after deductions</li>
+        <li>Business owners who keep personal and business finances separate and prefer not to expose personal financials for investment deals</li>
+        <li>Short-term rental operators on Airbnb or VRBO who need a lender that understands STR income</li>
+        <li>Out-of-state investors buying in markets like Orlando, Phoenix, or the Twin Cities</li>
+      </ul>
+
+      <h2>Benefits</h2>
+      <ul>
+        <li>No personal income documents required for qualification</li>
+        <li>Can close in an LLC or personal name</li>
+        <li>Covers long-term and short-term rentals</li>
+        <li>Works for first-time investors and experienced portfolio builders</li>
+        <li>Faster approval process than conventional investment loans in most cases</li>
+      </ul>
+
+      <h2>Drawbacks to Understand</h2>
+      <ul>
+        <li>Rates run higher than conventional investment loans</li>
+        <li>Larger down payment required (20% to 25%)</li>
+        <li>Fewer lenders offer DSCR than conventional products</li>
+        <li>Not available for primary residences</li>
+      </ul>
+
+      <h2>How the Process Works</h2>
+      <ol>
+        <li>Identify the property and get a sense of market rents (existing leases or a market rental analysis).</li>
+        <li>Provide rental income documentation: signed leases, market rent analysis, or trailing 12-month operating statements for existing STRs.</li>
+        <li>Submit credit authorization and down payment documentation.</li>
+        <li>The lender calculates the DSCR and reviews the full file.</li>
+        <li>Close. Most DSCR transactions close in 21 to 30 days.</li>
+      </ol>
+      <p>
+        Cliffco's DSCR program accepts short-term rental income for properties in eligible STR markets,
+        including Disney-area Polk County in Florida, and can use market projection data for new STR
+        purchases without an operating history.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Ready to talk through your options?</h2>
+      <p class="lead mt-4 text-white/85">A licensed Cliffco loan officer responds in one business day.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get a pre-qual</a>
+        <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
+      </div>
+    </div>
+  </section>
+</Layout>

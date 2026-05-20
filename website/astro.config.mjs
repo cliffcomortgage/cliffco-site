@@ -17,9 +17,17 @@ export default defineConfig({
     : 'https://cliffcomortgage.com',
   base: isPages ? '/cliffco-site' : '/',
   trailingSlash: 'always',
+  redirects: {
+    '/loans/fix-and-flip/': '/loans/business-bank-statement/',
+  },
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    server: {
+      fs: {
+        allow: ['..'],
+      },
+    },
   },
 
   integrations: [sitemap()],

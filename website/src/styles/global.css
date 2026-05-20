@@ -38,10 +38,10 @@
   /* Tracking — per brand guide:
      headers/subheaders: 75-100 InDesign units ≈ 0.075em-0.1em
      body: 0-75 InDesign units ≈ 0-0.075em */
-  --tracking-tight: -0.01em;
+  --tracking-tight: 0;
   --tracking-normal: 0;
-  --tracking-body: 0.005em;
-  --tracking-display: 0.05em;
+  --tracking-body: 0;
+  --tracking-display: 0;
   --tracking-logo: 0.2em;
 
   /* ---------- Type scale ---------- */
@@ -58,6 +58,43 @@
 
   /* ---------- Spacing additions (Tailwind defaults are fine; these add room) ---------- */
   --spacing-section: 5rem;
+}
+
+/* ---------- Graphik (trial OTFs — local dev only, gitignored) ---------- */
+@font-face {
+  font-family: "Graphik";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../../../brand/fonts/Graphik/Graphik-Bold-Desktop.otf") format("opentype");
+}
+@font-face {
+  font-family: "Graphik";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../../../brand/fonts/Graphik/Graphik-Medium-Desktop.otf") format("opentype");
+}
+@font-face {
+  font-family: "Graphik";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../../brand/fonts/Graphik/Graphik-Regular-Desktop.otf") format("opentype");
+}
+@font-face {
+  font-family: "Graphik";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../../brand/fonts/Graphik/Graphik-Regular Italic-Desktop.otf") format("opentype");
+}
+@font-face {
+  font-family: "Graphik";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../../../brand/fonts/Graphik/Graphik-Light-Desktop.otf") format("opentype");
 }
 
 /* ---------- Open Sans web fallback (until Graphik kit is licensed) ---------- */
@@ -97,7 +134,7 @@
   }
 
   h1 { font-size: var(--text-h1); font-weight: 700; }
-  h2 { font-size: var(--text-h2); }
+  h2 { font-size: var(--text-h2); font-weight: 500; }
   h3 { font-size: var(--text-h3); }
 
   a {
@@ -137,6 +174,16 @@
     margin-inline: auto;
     padding-inline: 1.5rem;
   }
+  .container-prose > *:first-child { margin-top: 0; }
+  .container-prose p { margin-top: 1.25rem; }
+  .container-prose h2 { margin-top: 2.75rem; margin-bottom: 0.75rem; }
+  .container-prose h3 { margin-top: 2rem; margin-bottom: 0.5rem; }
+  .container-prose ul,
+  .container-prose ol { margin-top: 1rem; margin-bottom: 1rem; padding-left: 1.5rem; }
+  .container-prose ul { list-style-type: disc; }
+  .container-prose ol { list-style-type: decimal; }
+  .container-prose li { margin-bottom: 0.375rem; }
+  .container-prose table { margin-top: 1.5rem; margin-bottom: 1.5rem; }
   .container-wide {
     width: 100%;
     max-width: 80rem;
@@ -154,8 +201,9 @@
     display: inline-block;
     font-size: var(--text-eyebrow);
     text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-weight: 600;
+    letter-spacing: 0;
+    font-weight: 500;
+    letter-spacing: 0.25em;
     color: var(--color-accent);
   }
 
