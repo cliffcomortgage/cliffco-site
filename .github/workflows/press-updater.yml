@@ -1,0 +1,35 @@
+name: Press auto-updater
+
+on:
+  schedule:
+    # Runs daily at 7am UTC (3am ET). Commits trigger deploy-pages.yml automatically.
+    - cron: "0 7 * * *"
+  workflow_dispatch: # Allow manual runs from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-press:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch latest Cliffco press coverage
+        run: node scripts/update-press.mjs
+
+      - name: Commit new articles if found
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet website/src/data/press.json; then
+            echo "No changes to commit."
+          else
+            git add website/src/data/press.json
+            git commit -m "chore: auto-update press articles"
+            git push
+          fi
