@@ -32,7 +32,7 @@ export const STATE_LICENSES: readonly StateLicense[] = [
   { code: "CT", name: "Connecticut",  regulator: "Connecticut Department of Banking",                                   licenseNumber: "MCL-65328" },
   { code: "DC", name: "District of Columbia", regulator: "DC Department of Insurance, Securities, & Banking",           licenseNumber: "MLB65328" },
   { code: "DE", name: "Delaware",     regulator: "Delaware Office of the State Bank Commissioner",                      licenseNumber: "040096" },
-  { code: "FL", name: "Florida",      regulator: "Operating as Swish Capital, Inc. — NY corporation authorized in FL", licenseNumber: null, notes: "DBA: Swish Capital, Inc." },
+  { code: "FL", name: "Florida",      regulator: "Florida Office of Financial Regulation", licenseNumber: "MLD1245", notes: "DBA: Swish Capital, Inc." },
   { code: "GA", name: "Georgia",      regulator: "Georgia Department of Banking & Finance",                             licenseNumber: "65328" },
   { code: "IL", name: "Illinois",     regulator: "Illinois Department of Financial & Professional Regulation",          licenseNumber: "MB.6761824" },
   { code: "IN", name: "Indiana",      regulator: "Indiana Department of Financial Institutions",                        licenseNumber: "70581" },
