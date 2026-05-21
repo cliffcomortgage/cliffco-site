@@ -1,0 +1,58 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+---
+
+<Layout
+  title="Why Freelancers Struggle to Buy a Home Even When They're Earning Well | Cliffco Mortgage"
+  description="Freelancers with strong incomes get denied for mortgages every day. The problem isn't what they earn. It's how they earn it. Here's what's actually happening and what to do about it."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Mortgage Guides", href: "/mortgage-guides/" },
+    { name: "Blog", href: "/mortgage-guides/blog/" },
+    { name: "Why Freelancers Struggle to Buy a Home", href: "/mortgage-guides/blog/why-freelancers-struggle-to-buy-home/" },
+  ]} />
+
+  <article class="container-prose pt-12 pb-16">
+
+    <h1 style="font-size: var(--text-display-lg);">Why Freelancers Struggle to Buy a Home Even When They're Earning Well</h1>
+
+    <p class="mt-8">If you've been freelancing for a few years, earning a solid income, and recently discovered that buying a home is far more complicated than you expected, you're not misreading the situation. The mortgage system was designed around a financial profile that looks nothing like yours, and the gap between how well you're doing and what a lender will count is one of the more frustrating structural problems in residential lending.</p>
+
+    <h2 class="mt-10">The Shape of Your Income Is the Problem, Not the Amount</h2>
+
+    <p class="mt-4">Conventional mortgage underwriting was built for predictability. A W-2 employee gets paid the same amount on the same schedule from the same employer, and a lender can project that forward with confidence. A freelancer earns differently. The income may be just as strong over a year, but it arrives in bursts, from different clients, through different channels, and on no fixed schedule. That pattern, not the total, is what creates the qualification problem. Lenders don't know how to project income that doesn't follow a straight line, so they discount it, average it down, or disqualify it altogether.</p>
+
+    <h2 class="mt-10">Why the Documents That Prove Your Income Work Against You</h2>
+
+    <p class="mt-4">Here's what most freelancers don't find out until they're already in the application process. The tax returns that document your income are also full of deductions that reduce the number a lender will use to qualify you. Your home office, your equipment, your software subscriptions, your professional development, your travel to client sites, all of it is legitimate and all of it reduces your qualifying income under conventional guidelines.</p>
+
+    <p class="mt-4">A freelancer who grossed a strong annual income but deducted reasonable business expenses may find that their qualifying income is a fraction of what they actually brought in. The lender isn't evaluating what you earned. They're evaluating what's left after your accountant did their job, and those two numbers can be very far apart.</p>
+
+    <h2 class="mt-10">How Lenders Actually Evaluate Freelance Income</h2>
+
+    <p class="mt-4">Conventional lenders require two full years of self-employment history documented through filed tax returns. If you've been freelancing for less than two years, most conventional programs won't count that income at all regardless of how strong it is. If you have two years of returns, the lender averages your net income across both years. If year one was lower than year two, that average pulls your qualifying number down. If year two was lower than year one, even slightly, many lenders use the lower figure rather than the average.</p>
+
+    <p class="mt-4">A bank statement loan qualifies you on your actual deposits over 12 to 24 months rather than your tax return net income. A 1099 loan uses your gross 1099 income rather than the reduced net figure. These products carry higher rates than conventional loans, but for freelancers whose tax returns significantly understate their actual earnings, the access they provide is often worth the premium.</p>
+
+    <h2 class="mt-10">What to Do, In Order</h2>
+
+    <ol class="mt-4 list-decimal list-inside space-y-2">
+      <li><strong>Calculate your conventional qualifying income before you apply anywhere.</strong> Take your net Schedule C income from the last two years, add back depreciation, and divide by 24. That monthly figure is what a conventional lender will use. Know it before they tell you.</li>
+      <li><strong>Total your gross deposits for the last 12 and 24 months separately.</strong> Apply a 50% expense ratio as a rough estimate of what a bank statement lender would count. If that number is meaningfully higher than your tax return income, a bank statement loan is likely your stronger path.</li>
+      <li><strong>Confirm you have at least two years of freelance income history before pursuing conventional financing.</strong> If you don't, Non-QM products with shorter seasoning requirements are worth exploring before you invest time in an application that will be declined.</li>
+      <li><strong>Talk to a lender who works regularly with self-employed borrowers.</strong> A lender whose primary experience is with W-2 borrowers may not know the Non-QM products available to you or how to structure your application to your advantage.</li>
+      <li><strong>Do not apply for a conventional loan if you already know your documented income won't support the purchase price you need.</strong> A denial creates a hard inquiry and a record. Find the right product before anyone pulls your credit.</li>
+    </ol>
+
+    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+      <div>
+        <p class="font-semibold text-[var(--color-ink)]">Find out where you actually stand.</p>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1">See your qualifying income under both conventional and bank statement guidelines so you can see which path fits your income profile before you apply.</p>
+      </div>
+      <a href="/mortgage-guides/calculators/#self-employed-calculator" class="btn btn-primary shrink-0">Get started</a>
+    </div>
+
+  </article>
+</Layout>

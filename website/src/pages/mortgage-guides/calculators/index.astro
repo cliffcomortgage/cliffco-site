@@ -1,27 +1,1021 @@
-﻿---
+---
 import Layout from "../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 ---
 
 <Layout
   title="Mortgage Calculators | Cliffco Mortgage Bankers"
-  description="Free mortgage calculators from Cliffco. Estimate payments, DSCR ratios, refinance savings, and more."
+  description="Free mortgage calculators from Cliffco. Estimate payments, DSCR ratios, refinance break-even, self-employed income, rent vs buy, and more."
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
-    { name: "Learn", href: "/mortgage-guides/" },
+    { name: "Mortgage Guides", href: "/mortgage-guides/" },
     { name: "Calculators", href: "/mortgage-guides/calculators/" },
   ]} />
 
-  <section class="container-wide pt-12 pb-16">
+  <section class="container-wide pt-12 pb-10">
     <p class="eyebrow">Calculators</p>
     <h1 class="mt-3" style="font-size: var(--text-display-lg);">Run the numbers before you apply.</h1>
     <p class="lead mt-6">
-      Mortgage payment estimator, DSCR calculator, refinance break-even, and more (coming soon).
-      In the meantime, a loan officer can run any scenario with you in minutes.
+      Ten free calculators to help you understand what you qualify for, what you can afford,
+      and whether the deal makes sense before you ever sit across from an underwriter.
     </p>
-    <div class="mt-8">
-      <a href="/get-started/" class="btn btn-primary">Talk to a loan officer</a>
+  </section>
+
+  <section class="bg-white pb-20">
+    <div class="container-wide space-y-16">
+
+      <!-- 1. Payment Estimator -->
+      <div id="payment-estimator" class="scroll-mt-24">
+        <div class="border border-[var(--color-mist-gray)] rounded-2xl overflow-hidden">
+          <div class="bg-[var(--color-mist-gray)] px-6 py-5">
+            <p class="eyebrow text-xs mb-1">Calculator 1</p>
+            <h2 class="text-2xl font-semibold text-[var(--color-ink)]">Payment Estimator</h2>
+            <p class="text-sm text-[var(--color-text-muted)] mt-1">See your full monthly payment at any purchase price, rate, and down payment.</p>
+          </div>
+          <div class="p-6">
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Home price ($)</label>
+                <input id="pe-price" type="number" value="500000" min="50000" step="5000" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Down payment (%)</label>
+                <input id="pe-down" type="number" value="20" min="3" max="50" step="1" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Interest rate (%)</label>
+                <input id="pe-rate" type="number" value="7.0" min="1" max="15" step="0.125" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Loan term</label>
+                <select id="pe-term" class="calc-input">
+                  <option value="30">30-year fixed</option>
+                  <option value="20">20-year fixed</option>
+                  <option value="15">15-year fixed</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid gap-4 md:grid-cols-2 mt-4">
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual property taxes ($)</label>
+                <input id="pe-taxes" type="number" value="6000" min="0" step="100" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual homeowner's insurance ($)</label>
+                <input id="pe-insurance" type="number" value="1800" min="0" step="100" class="calc-input" />
+              </div>
+            </div>
+            <button onclick="calcPayment()" class="btn btn-primary mt-5">Calculate</button>
+            <div id="pe-result" class="hidden mt-6 p-5 bg-[var(--color-mist-gray)] rounded-xl">
+              <div class="grid gap-4 sm:grid-cols-3">
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Principal &amp; Interest</p>
+                  <p id="pe-pi" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Taxes &amp; Insurance</p>
+                  <p id="pe-ti" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Total Monthly</p>
+                  <p id="pe-total" class="text-2xl font-bold text-[var(--color-accent)] mt-1"></p>
+                </div>
+              </div>
+              <p id="pe-loan-amount" class="text-sm text-[var(--color-text-muted)] mt-3"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. DSCR Calculator -->
+      <div id="dscr-calculator" class="scroll-mt-24">
+        <div class="border border-[var(--color-mist-gray)] rounded-2xl overflow-hidden">
+          <div class="bg-[var(--color-mist-gray)] px-6 py-5">
+            <p class="eyebrow text-xs mb-1">Calculator 2</p>
+            <h2 class="text-2xl font-semibold text-[var(--color-ink)]">DSCR Calculator</h2>
+            <p class="text-sm text-[var(--color-text-muted)] mt-1">Find out if your rental property generates enough income to qualify for a DSCR loan.</p>
+          </div>
+          <div class="p-6">
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly gross rent ($)</label>
+                <input id="dscr-rent" type="number" value="2500" min="0" step="50" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly principal &amp; interest ($)</label>
+                <input id="dscr-pi" type="number" value="1500" min="0" step="50" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly taxes ($)</label>
+                <input id="dscr-taxes" type="number" value="300" min="0" step="25" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly insurance ($)</label>
+                <input id="dscr-ins" type="number" value="150" min="0" step="25" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly HOA ($)</label>
+                <input id="dscr-hoa" type="number" value="0" min="0" step="25" class="calc-input" />
+              </div>
+            </div>
+            <button onclick="calcDSCR()" class="btn btn-primary mt-5">Calculate DSCR</button>
+            <div id="dscr-result" class="hidden mt-6 p-5 bg-[var(--color-mist-gray)] rounded-xl">
+              <div class="grid gap-4 sm:grid-cols-3">
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">DSCR Ratio</p>
+                  <p id="dscr-ratio" class="text-3xl font-bold mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Total Monthly Obligation</p>
+                  <p id="dscr-obligation" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Monthly Cash Flow</p>
+                  <p id="dscr-cashflow" class="text-2xl font-bold mt-1"></p>
+                </div>
+              </div>
+              <p id="dscr-verdict" class="mt-3 text-sm font-medium"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Budget Builder -->
+      <div id="budget-builder" class="scroll-mt-24">
+        <div class="border border-[var(--color-mist-gray)] rounded-2xl overflow-hidden">
+          <div class="bg-[var(--color-mist-gray)] px-6 py-5">
+            <p class="eyebrow text-xs mb-1">Calculator 3</p>
+            <h2 class="text-2xl font-semibold text-[var(--color-ink)]">Budget Builder</h2>
+            <p class="text-sm text-[var(--color-text-muted)] mt-1">Find the mortgage payment that fits your actual monthly budget, not just your pre-approval.</p>
+          </div>
+          <div class="p-6">
+            <div class="grid gap-4 md:grid-cols-2">
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly take-home pay ($)</label>
+                <input id="bb-income" type="number" value="8000" min="0" step="100" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly fixed expenses ($)</label>
+                <input id="bb-expenses" type="number" value="3000" min="0" step="100" class="calc-input" />
+                <p class="text-xs text-[var(--color-text-muted)] mt-1">Car payments, loans, subscriptions, food, utilities, etc.</p>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly savings goal ($)</label>
+                <input id="bb-savings" type="number" value="500" min="0" step="100" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Expected interest rate (%)</label>
+                <input id="bb-rate" type="number" value="7.0" min="1" max="15" step="0.125" class="calc-input" />
+              </div>
+            </div>
+            <button onclick="calcBudget()" class="btn btn-primary mt-5">Build My Budget</button>
+            <div id="bb-result" class="hidden mt-6 p-5 bg-[var(--color-mist-gray)] rounded-xl">
+              <div class="grid gap-4 sm:grid-cols-3">
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Comfortable Payment Ceiling</p>
+                  <p id="bb-max-payment" class="text-2xl font-bold text-[var(--color-accent)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Estimated Purchase Price</p>
+                  <p id="bb-purchase-price" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Left After Housing</p>
+                  <p id="bb-remaining" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+              </div>
+              <p class="text-xs text-[var(--color-text-muted)] mt-3">Estimated purchase price assumes 20% down payment and 30-year term. Add taxes and insurance to your ceiling before using this number to shop.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Self-Employed Income Calculator -->
+      <div id="self-employed-calculator" class="scroll-mt-24">
+        <div class="border border-[var(--color-mist-gray)] rounded-2xl overflow-hidden">
+          <div class="bg-[var(--color-mist-gray)] px-6 py-5">
+            <p class="eyebrow text-xs mb-1">Calculator 4</p>
+            <h2 class="text-2xl font-semibold text-[var(--color-ink)]">Self-Employed Income Calculator</h2>
+            <p class="text-sm text-[var(--color-text-muted)] mt-1">Compare your qualifying income under conventional guidelines vs. a bank statement loan.</p>
+          </div>
+          <div class="p-6">
+            <p class="text-sm font-medium text-[var(--color-ink)] mb-4">Conventional Path (Tax Returns)</p>
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Year 1 net income ($)</label>
+                <input id="se-y1" type="number" value="80000" min="0" step="1000" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Year 2 net income ($)</label>
+                <input id="se-y2" type="number" value="95000" min="0" step="1000" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Depreciation add-back ($)</label>
+                <input id="se-depreciation" type="number" value="5000" min="0" step="500" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Other add-backs ($)</label>
+                <input id="se-addbacks" type="number" value="0" min="0" step="500" class="calc-input" />
+              </div>
+            </div>
+            <p class="text-sm font-medium text-[var(--color-ink)] mt-6 mb-4">Bank Statement Path</p>
+            <div class="grid gap-4 md:grid-cols-2">
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">12-month total deposits ($)</label>
+                <input id="se-deposits" type="number" value="180000" min="0" step="5000" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Expense ratio (%)</label>
+                <input id="se-expense-ratio" type="number" value="40" min="0" max="90" step="5" class="calc-input" />
+                <p class="text-xs text-[var(--color-text-muted)] mt-1">Lender-assigned ratio for your business type (typically 30–50%)</p>
+              </div>
+            </div>
+            <button onclick="calcSelfEmployed()" class="btn btn-primary mt-5">Compare Paths</button>
+            <div id="se-result" class="hidden mt-6 p-5 bg-[var(--color-mist-gray)] rounded-xl">
+              <div class="grid gap-4 sm:grid-cols-3">
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Conventional Qualifying Income</p>
+                  <p id="se-conventional" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                  <p class="text-xs text-[var(--color-text-muted)] mt-1">per month</p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Bank Statement Qualifying Income</p>
+                  <p id="se-bankstmt" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                  <p class="text-xs text-[var(--color-text-muted)] mt-1">per month</p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Recommended Path</p>
+                  <p id="se-recommendation" class="text-lg font-bold text-[var(--color-accent)] mt-1"></p>
+                </div>
+              </div>
+              <p class="text-xs text-[var(--color-text-muted)] mt-3">This estimate is illustrative. A Cliffco loan officer will calculate your exact qualifying income using your specific documentation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Mortgage Readiness Checkup -->
+      <div id="mortgage-readiness" class="scroll-mt-24">
+        <div class="border border-[var(--color-mist-gray)] rounded-2xl overflow-hidden">
+          <div class="bg-[var(--color-mist-gray)] px-6 py-5">
+            <p class="eyebrow text-xs mb-1">Calculator 5</p>
+            <h2 class="text-2xl font-semibold text-[var(--color-ink)]">Mortgage Readiness Checkup</h2>
+            <p class="text-sm text-[var(--color-text-muted)] mt-1">Get a snapshot of where you stand before you apply.</p>
+          </div>
+          <div class="p-6">
+            <div class="grid gap-4 md:grid-cols-2">
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Credit score range</label>
+                <select id="mr-credit" class="calc-input">
+                  <option value="760">760 or above</option>
+                  <option value="740">740–759</option>
+                  <option value="720">720–739</option>
+                  <option value="700">700–719</option>
+                  <option value="680">680–699</option>
+                  <option value="660">660–679</option>
+                  <option value="640">640–659</option>
+                  <option value="620">620–639</option>
+                  <option value="600">Below 620</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Employment status</label>
+                <select id="mr-employment" class="calc-input">
+                  <option value="w2">W-2 employed</option>
+                  <option value="self">Self-employed / 1099</option>
+                  <option value="retired">Retired / fixed income</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Gross monthly income ($)</label>
+                <input id="mr-income" type="number" value="8000" min="0" step="500" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly debt payments ($)</label>
+                <input id="mr-debt" type="number" value="500" min="0" step="100" class="calc-input" />
+                <p class="text-xs text-[var(--color-text-muted)] mt-1">Car loans, student loans, credit cards (minimum), other obligations</p>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Savings available ($)</label>
+                <input id="mr-savings" type="number" value="60000" min="0" step="1000" class="calc-input" />
+                <p class="text-xs text-[var(--color-text-muted)] mt-1">Liquid funds for down payment, closing costs, and reserves</p>
+              </div>
+            </div>
+            <button onclick="calcReadiness()" class="btn btn-primary mt-5">Check My Readiness</button>
+            <div id="mr-result" class="hidden mt-6 p-5 bg-[var(--color-mist-gray)] rounded-xl">
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Readiness Level</p>
+                  <p id="mr-level" class="text-2xl font-bold mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Estimated Max DTI Budget</p>
+                  <p id="mr-dti-budget" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                  <p class="text-xs text-[var(--color-text-muted)]">available for housing payment</p>
+                </div>
+              </div>
+              <div id="mr-steps" class="mt-4 text-sm text-[var(--color-ink)]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Rent vs Buy -->
+      <div id="rent-vs-buy" class="scroll-mt-24">
+        <div class="border border-[var(--color-mist-gray)] rounded-2xl overflow-hidden">
+          <div class="bg-[var(--color-mist-gray)] px-6 py-5">
+            <p class="eyebrow text-xs mb-1">Calculator 6</p>
+            <h2 class="text-2xl font-semibold text-[var(--color-ink)]">Rent vs Buy Calculator</h2>
+            <p class="text-sm text-[var(--color-text-muted)] mt-1">See when buying beats renting based on your actual numbers.</p>
+          </div>
+          <div class="p-6">
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Current monthly rent ($)</label>
+                <input id="rvb-rent" type="number" value="2200" min="0" step="50" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Home purchase price ($)</label>
+                <input id="rvb-price" type="number" value="400000" min="0" step="5000" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Down payment (%)</label>
+                <input id="rvb-down" type="number" value="10" min="3" max="50" step="1" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Interest rate (%)</label>
+                <input id="rvb-rate" type="number" value="7.0" min="1" max="15" step="0.125" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual home appreciation (%)</label>
+                <input id="rvb-appreciation" type="number" value="3" min="0" max="15" step="0.5" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual rent increase (%)</label>
+                <input id="rvb-rent-growth" type="number" value="3" min="0" max="10" step="0.5" class="calc-input" />
+              </div>
+            </div>
+            <button onclick="calcRentVsBuy()" class="btn btn-primary mt-5">Compare</button>
+            <div id="rvb-result" class="hidden mt-6 p-5 bg-[var(--color-mist-gray)] rounded-xl">
+              <div class="grid gap-4 sm:grid-cols-3">
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Break-Even Point</p>
+                  <p id="rvb-breakeven" class="text-2xl font-bold text-[var(--color-accent)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">5-Year Buy Advantage</p>
+                  <p id="rvb-5yr" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">10-Year Buy Advantage</p>
+                  <p id="rvb-10yr" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+              </div>
+              <p class="text-xs text-[var(--color-text-muted)] mt-3">Includes equity build, appreciation, and rent savings vs. total cost of ownership. Does not include maintenance costs or tax benefits.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. First-Time Buyer Affordability Review -->
+      <div id="affordability-review" class="scroll-mt-24">
+        <div class="border border-[var(--color-mist-gray)] rounded-2xl overflow-hidden">
+          <div class="bg-[var(--color-mist-gray)] px-6 py-5">
+            <p class="eyebrow text-xs mb-1">Calculator 7</p>
+            <h2 class="text-2xl font-semibold text-[var(--color-ink)]">First-Time Buyer Affordability Review</h2>
+            <p class="text-sm text-[var(--color-text-muted)] mt-1">Find the purchase price range that fits both your income and your savings.</p>
+          </div>
+          <div class="p-6">
+            <div class="grid gap-4 md:grid-cols-2">
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual gross income ($)</label>
+                <input id="af-income" type="number" value="100000" min="0" step="5000" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly debt payments ($)</label>
+                <input id="af-debt" type="number" value="400" min="0" step="50" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Down payment savings ($)</label>
+                <input id="af-savings" type="number" value="40000" min="0" step="1000" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Interest rate (%)</label>
+                <input id="af-rate" type="number" value="7.0" min="1" max="15" step="0.125" class="calc-input" />
+              </div>
+            </div>
+            <button onclick="calcAffordability()" class="btn btn-primary mt-5">Review Affordability</button>
+            <div id="af-result" class="hidden mt-6 p-5 bg-[var(--color-mist-gray)] rounded-xl">
+              <div class="grid gap-4 sm:grid-cols-3 mb-4">
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Max Purchase (Income-Based)</p>
+                  <p id="af-max-income" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Max Purchase (Savings-Based)</p>
+                  <p id="af-max-savings" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Your Sweet Spot</p>
+                  <p id="af-sweet-spot" class="text-2xl font-bold text-[var(--color-accent)] mt-1"></p>
+                </div>
+              </div>
+              <div id="af-scenarios" class="text-sm text-[var(--color-ink)] space-y-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Reverse Mortgage Estimator -->
+      <div id="reverse-mortgage-estimator" class="scroll-mt-24">
+        <div class="border border-[var(--color-mist-gray)] rounded-2xl overflow-hidden">
+          <div class="bg-[var(--color-mist-gray)] px-6 py-5">
+            <p class="eyebrow text-xs mb-1">Calculator 8</p>
+            <h2 class="text-2xl font-semibold text-[var(--color-ink)]">Reverse Mortgage Estimator</h2>
+            <p class="text-sm text-[var(--color-text-muted)] mt-1">Get a rough estimate of the equity you may be able to access through a HECM reverse mortgage.</p>
+          </div>
+          <div class="p-6">
+            <div class="grid gap-4 md:grid-cols-3">
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Age of youngest borrower</label>
+                <input id="rm-age" type="number" value="70" min="62" max="95" step="1" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Estimated home value ($)</label>
+                <input id="rm-value" type="number" value="500000" min="50000" step="10000" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Existing mortgage balance ($)</label>
+                <input id="rm-balance" type="number" value="0" min="0" step="5000" class="calc-input" />
+              </div>
+            </div>
+            <button onclick="calcReverse()" class="btn btn-primary mt-5">Estimate Proceeds</button>
+            <div id="rm-result" class="hidden mt-6 p-5 bg-[var(--color-mist-gray)] rounded-xl">
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Estimated Gross Proceeds</p>
+                  <p id="rm-gross" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Net Available (After Payoff)</p>
+                  <p id="rm-net" class="text-2xl font-bold text-[var(--color-accent)] mt-1"></p>
+                </div>
+              </div>
+              <p id="rm-note" class="text-xs text-[var(--color-text-muted)] mt-3"></p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-2">This is an estimate only. HECM proceeds depend on the current lending limit, age, current interest rates, and appraised value. Contact a Cliffco reverse mortgage specialist for a precise calculation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Refi Checkup -->
+      <div id="refi-checkup" class="scroll-mt-24">
+        <div class="border border-[var(--color-mist-gray)] rounded-2xl overflow-hidden">
+          <div class="bg-[var(--color-mist-gray)] px-6 py-5">
+            <p class="eyebrow text-xs mb-1">Calculator 9</p>
+            <h2 class="text-2xl font-semibold text-[var(--color-ink)]">Refi Checkup: Break-Even Analysis</h2>
+            <p class="text-sm text-[var(--color-text-muted)] mt-1">Find out how long it takes for a lower rate to pay off your refinance costs.</p>
+          </div>
+          <div class="p-6">
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Current loan balance ($)</label>
+                <input id="rc-balance" type="number" value="350000" min="0" step="5000" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Current rate (%)</label>
+                <input id="rc-current-rate" type="number" value="7.5" min="1" max="15" step="0.125" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">New rate (%)</label>
+                <input id="rc-new-rate" type="number" value="6.5" min="1" max="15" step="0.125" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Estimated closing costs ($)</label>
+                <input id="rc-costs" type="number" value="6000" min="0" step="500" class="calc-input" />
+              </div>
+            </div>
+            <button onclick="calcRefi()" class="btn btn-primary mt-5">Run the Numbers</button>
+            <div id="rc-result" class="hidden mt-6 p-5 bg-[var(--color-mist-gray)] rounded-xl">
+              <div class="grid gap-4 sm:grid-cols-4">
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Monthly Savings</p>
+                  <p id="rc-monthly-savings" class="text-2xl font-bold text-[var(--color-accent)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Break-Even Point</p>
+                  <p id="rc-breakeven" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">2-Year Net Savings</p>
+                  <p id="rc-2yr" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">5-Year Net Savings</p>
+                  <p id="rc-5yr" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+              </div>
+              <p id="rc-verdict" class="mt-3 text-sm font-medium"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. VA Loan Payment Estimator -->
+      <div id="va-payment-estimator" class="scroll-mt-24">
+        <div class="border border-[var(--color-mist-gray)] rounded-2xl overflow-hidden">
+          <div class="bg-[var(--color-mist-gray)] px-6 py-5">
+            <p class="eyebrow text-xs mb-1">Calculator 10</p>
+            <h2 class="text-2xl font-semibold text-[var(--color-ink)]">VA Loan Payment Estimator</h2>
+            <p class="text-sm text-[var(--color-text-muted)] mt-1">Estimate your VA loan payment including the funding fee.</p>
+          </div>
+          <div class="p-6">
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Home price ($)</label>
+                <input id="va-price" type="number" value="400000" min="50000" step="5000" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Down payment (%)</label>
+                <select id="va-down" class="calc-input">
+                  <option value="0">0% (no down payment)</option>
+                  <option value="5">5%</option>
+                  <option value="10">10% or more</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Interest rate (%)</label>
+                <input id="va-rate" type="number" value="6.5" min="1" max="15" step="0.125" class="calc-input" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">VA loan use</label>
+                <select id="va-use" class="calc-input">
+                  <option value="first">First use</option>
+                  <option value="subsequent">Subsequent use</option>
+                  <option value="exempt">Exempt (disability rating)</option>
+                </select>
+              </div>
+            </div>
+            <button onclick="calcVA()" class="btn btn-primary mt-5">Estimate Payment</button>
+            <div id="va-result" class="hidden mt-6 p-5 bg-[var(--color-mist-gray)] rounded-xl">
+              <div class="grid gap-4 sm:grid-cols-4">
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Loan Amount</p>
+                  <p id="va-loan-amt" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">VA Funding Fee</p>
+                  <p id="va-funding-fee" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Monthly P&amp;I</p>
+                  <p id="va-monthly-pi" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                </div>
+                <div>
+                  <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">vs Conventional</p>
+                  <p id="va-vs-conv" class="text-2xl font-bold text-[var(--color-accent)] mt-1"></p>
+                </div>
+              </div>
+              <p class="text-xs text-[var(--color-text-muted)] mt-3">Funding fee is typically rolled into the loan. Does not include property taxes, insurance, or HOA. Veterans with a service-connected disability rating may be exempt from the funding fee.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA: ITIN Loans -->
+      <div class="p-6 bg-[var(--color-mist-gray)] rounded-2xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+        <div>
+          <p class="eyebrow text-xs mb-1">ITIN Loans</p>
+          <p class="font-semibold text-[var(--color-ink)] text-lg">Buying a home without a Social Security number?</p>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">ITIN mortgage loans aren't something a calculator can fully model. Talk to a Cliffco loan officer who specializes in non-citizen borrowers.</p>
+        </div>
+        <a href="/get-started/" class="btn btn-primary shrink-0">Talk to a loan officer</a>
+      </div>
+
+      <!-- CTA: Foreign National Loans -->
+      <div class="p-6 bg-[var(--color-mist-gray)] rounded-2xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+        <div>
+          <p class="eyebrow text-xs mb-1">Foreign National Loans</p>
+          <p class="font-semibold text-[var(--color-ink)] text-lg">Investing in US property from abroad?</p>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">Foreign national loan qualification depends on your country of origin, visa status, and asset documentation. A loan officer can walk you through the exact requirements.</p>
+        </div>
+        <a href="/get-started/" class="btn btn-primary shrink-0">Get started</a>
+      </div>
+
+      <!-- CTA: VA Loan Consultation -->
+      <div class="p-6 bg-[var(--color-mist-gray)] rounded-2xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+        <div>
+          <p class="eyebrow text-xs mb-1">VA Loan Consultation</p>
+          <p class="font-semibold text-[var(--color-ink)] text-lg">You've earned this benefit. Let's make sure you use it right.</p>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">VA entitlement, occupancy rules, and funding fee exemptions all depend on your specific service record. Talk to a Cliffco VA specialist before you apply.</p>
+        </div>
+        <a href="/get-started/" class="btn btn-primary shrink-0">Get started</a>
+      </div>
+
     </div>
   </section>
 </Layout>
+
+<style>
+  .calc-input {
+    width: 100%;
+    border: 1px solid var(--color-soft-gray);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+</style>
+
+<script>
+  function fmt(n: number, decimals = 0): string {
+    return n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  }
+  function fmtMoney(n: number): string {
+    return "$" + fmt(Math.round(n));
+  }
+  function monthlyPI(principal: number, annualRate: number, termYears: number): number {
+    const r = annualRate / 100 / 12;
+    const n = termYears * 12;
+    if (r === 0) return principal / n;
+    return principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  }
+
+  // 1. Payment Estimator
+  (window as any).calcPayment = function() {
+    const price = +(document.getElementById("pe-price") as HTMLInputElement).value;
+    const downPct = +(document.getElementById("pe-down") as HTMLInputElement).value;
+    const rate = +(document.getElementById("pe-rate") as HTMLInputElement).value;
+    const term = +(document.getElementById("pe-term") as HTMLSelectElement).value;
+    const taxes = +(document.getElementById("pe-taxes") as HTMLInputElement).value;
+    const insurance = +(document.getElementById("pe-insurance") as HTMLInputElement).value;
+
+    const loanAmount = price * (1 - downPct / 100);
+    const pi = monthlyPI(loanAmount, rate, term);
+    const ti = (taxes + insurance) / 12;
+    const total = pi + ti;
+
+    (document.getElementById("pe-pi") as HTMLElement).textContent = fmtMoney(pi);
+    (document.getElementById("pe-ti") as HTMLElement).textContent = fmtMoney(ti);
+    (document.getElementById("pe-total") as HTMLElement).textContent = fmtMoney(total);
+    (document.getElementById("pe-loan-amount") as HTMLElement).textContent = `Loan amount: ${fmtMoney(loanAmount)} | Down payment: ${fmtMoney(price * downPct / 100)}`;
+    (document.getElementById("pe-result") as HTMLElement).classList.remove("hidden");
+  };
+
+  // 2. DSCR Calculator
+  (window as any).calcDSCR = function() {
+    const rent = +(document.getElementById("dscr-rent") as HTMLInputElement).value;
+    const pi = +(document.getElementById("dscr-pi") as HTMLInputElement).value;
+    const taxes = +(document.getElementById("dscr-taxes") as HTMLInputElement).value;
+    const ins = +(document.getElementById("dscr-ins") as HTMLInputElement).value;
+    const hoa = +(document.getElementById("dscr-hoa") as HTMLInputElement).value;
+
+    const obligation = pi + taxes + ins + hoa;
+    const dscr = obligation > 0 ? rent / obligation : 0;
+    const cashflow = rent - obligation;
+
+    const ratioEl = document.getElementById("dscr-ratio") as HTMLElement;
+    ratioEl.textContent = dscr.toFixed(2);
+    ratioEl.className = "text-3xl font-bold mt-1 " + (dscr >= 1.25 ? "text-green-600" : dscr >= 1.0 ? "text-yellow-600" : "text-red-600");
+
+    (document.getElementById("dscr-obligation") as HTMLElement).textContent = fmtMoney(obligation);
+
+    const cfEl = document.getElementById("dscr-cashflow") as HTMLElement;
+    cfEl.textContent = (cashflow >= 0 ? "+" : "") + fmtMoney(cashflow);
+    cfEl.className = "text-2xl font-bold mt-1 " + (cashflow >= 0 ? "text-green-600" : "text-red-600");
+
+    let verdict = "";
+    if (dscr >= 1.25) verdict = "Strong cash flow. This property should qualify at standard DSCR pricing with most lenders.";
+    else if (dscr >= 1.10) verdict = "Good coverage. Most lenders will approve at standard pricing at a 1.10+ ratio.";
+    else if (dscr >= 1.0) verdict = "Breakeven coverage. Some lenders will approve, but you may need a stronger down payment or credit profile.";
+    else verdict = "Below breakeven. This property may not qualify for a standard DSCR loan. A larger down payment or lower rate may help.";
+
+    (document.getElementById("dscr-verdict") as HTMLElement).textContent = verdict;
+    (document.getElementById("dscr-result") as HTMLElement).classList.remove("hidden");
+  };
+
+  // 3. Budget Builder
+  (window as any).calcBudget = function() {
+    const income = +(document.getElementById("bb-income") as HTMLInputElement).value;
+    const expenses = +(document.getElementById("bb-expenses") as HTMLInputElement).value;
+    const savings = +(document.getElementById("bb-savings") as HTMLInputElement).value;
+    const rate = +(document.getElementById("bb-rate") as HTMLInputElement).value;
+
+    const maxPayment = income - expenses - savings;
+    const remaining = income - expenses - savings - maxPayment;
+
+    // Reverse-engineer purchase price from max payment (assumes 20% down, taxes+insurance ≈ 15% of PI)
+    const piCeiling = maxPayment * 0.85;
+    const r = rate / 100 / 12;
+    const n = 30 * 12;
+    const loanFromPI = piCeiling / ((r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1));
+    const purchasePrice = loanFromPI / 0.80;
+
+    (document.getElementById("bb-max-payment") as HTMLElement).textContent = fmtMoney(Math.max(0, maxPayment));
+    (document.getElementById("bb-purchase-price") as HTMLElement).textContent = fmtMoney(Math.max(0, purchasePrice));
+    (document.getElementById("bb-remaining") as HTMLElement).textContent = fmtMoney(Math.max(0, remaining));
+    (document.getElementById("bb-result") as HTMLElement).classList.remove("hidden");
+  };
+
+  // 4. Self-Employed Income Calculator
+  (window as any).calcSelfEmployed = function() {
+    const y1 = +(document.getElementById("se-y1") as HTMLInputElement).value;
+    const y2 = +(document.getElementById("se-y2") as HTMLInputElement).value;
+    const depreciation = +(document.getElementById("se-depreciation") as HTMLInputElement).value;
+    const addbacks = +(document.getElementById("se-addbacks") as HTMLInputElement).value;
+    const deposits = +(document.getElementById("se-deposits") as HTMLInputElement).value;
+    const expenseRatio = +(document.getElementById("se-expense-ratio") as HTMLInputElement).value;
+
+    const convAnnual = y2 < y1
+      ? y2 + depreciation + addbacks
+      : ((y1 + y2) / 2) + depreciation + addbacks;
+    const convMonthly = convAnnual / 12;
+
+    const bankMonthly = (deposits * (1 - expenseRatio / 100)) / 12;
+
+    (document.getElementById("se-conventional") as HTMLElement).textContent = fmtMoney(convMonthly);
+    (document.getElementById("se-bankstmt") as HTMLElement).textContent = fmtMoney(bankMonthly);
+
+    const recEl = document.getElementById("se-recommendation") as HTMLElement;
+    if (bankMonthly > convMonthly * 1.1) {
+      recEl.textContent = "Bank Statement Loan";
+    } else if (convMonthly > bankMonthly * 1.1) {
+      recEl.textContent = "Conventional";
+    } else {
+      recEl.textContent = "Compare both";
+    }
+
+    (document.getElementById("se-result") as HTMLElement).classList.remove("hidden");
+  };
+
+  // 5. Mortgage Readiness Checkup
+  (window as any).calcReadiness = function() {
+    const credit = +(document.getElementById("mr-credit") as HTMLSelectElement).value;
+    const employment = (document.getElementById("mr-employment") as HTMLSelectElement).value;
+    const income = +(document.getElementById("mr-income") as HTMLInputElement).value;
+    const debt = +(document.getElementById("mr-debt") as HTMLInputElement).value;
+    const savings = +(document.getElementById("mr-savings") as HTMLInputElement).value;
+
+    const maxDTI = credit >= 720 ? 0.45 : credit >= 660 ? 0.43 : 0.41;
+    const maxTotalDebt = income * maxDTI;
+    const availableForHousing = Math.max(0, maxTotalDebt - debt);
+
+    let level = "";
+    let steps: string[] = [];
+
+    if (credit < 620) {
+      level = "Not Yet Ready";
+      steps = ["Your credit score needs to reach at least 620 before most lenders will approve a mortgage.", "Focus on paying down balances and removing errors from your credit report.", "Contact a Cliffco loan officer for a personalized credit improvement plan."];
+    } else if (savings < 10000) {
+      level = "Building";
+      steps = ["You'll need more savings to cover a down payment and closing costs.", "Down payment programs may help if you're a first-time buyer.", "A Cliffco loan officer can show you what down payment assistance programs you qualify for."];
+    } else if (employment === "self" || employment === "other") {
+      level = "Ready (Non-QM Path)";
+      steps = ["Your income type may not qualify for conventional financing.", "Non-QM loan programs (bank statement, 1099, DSCR) were built for your situation.", "Talk to a Cliffco Non-QM specialist to identify the best product."];
+    } else if (credit >= 720 && availableForHousing > 1500) {
+      level = "Strong";
+      steps = ["You're in a solid position. Get pre-approved before you start shopping.", "Keep your credit stable, avoid new debt, and gather two years of tax returns.", "A pre-approval will tell you exactly what purchase price you qualify for."];
+    } else {
+      level = "Ready";
+      steps = ["You have the foundation to move forward.", "Ask your loan officer about the right loan program for your credit and income.", "Getting pre-approved now puts you in the strongest position when you find the right home."];
+    }
+
+    (document.getElementById("mr-level") as HTMLElement).textContent = level;
+    (document.getElementById("mr-dti-budget") as HTMLElement).textContent = fmtMoney(availableForHousing);
+
+    const stepsEl = document.getElementById("mr-steps") as HTMLElement;
+    stepsEl.innerHTML = "<strong>Your next steps:</strong><ul class='list-disc list-inside mt-2 space-y-1'>" + steps.map(s => `<li>${s}</li>`).join("") + "</ul>";
+
+    (document.getElementById("mr-result") as HTMLElement).classList.remove("hidden");
+  };
+
+  // 6. Rent vs Buy
+  (window as any).calcRentVsBuy = function() {
+    const rent = +(document.getElementById("rvb-rent") as HTMLInputElement).value;
+    const price = +(document.getElementById("rvb-price") as HTMLInputElement).value;
+    const downPct = +(document.getElementById("rvb-down") as HTMLInputElement).value;
+    const rate = +(document.getElementById("rvb-rate") as HTMLInputElement).value;
+    const appreciation = +(document.getElementById("rvb-appreciation") as HTMLInputElement).value / 100;
+    const rentGrowth = +(document.getElementById("rvb-rent-growth") as HTMLInputElement).value / 100;
+
+    const downAmt = price * downPct / 100;
+    const loan = price - downAmt;
+    const pi = monthlyPI(loan, rate, 30);
+    const closingCosts = price * 0.03;
+
+    function yearBuyCost(yr: number): number {
+      let total = downAmt + closingCosts;
+      for (let m = 1; m <= yr * 12; m++) {
+        total += pi;
+      }
+      const equity = downAmt + (price * Math.pow(1 + appreciation, yr) - price);
+      return total - equity;
+    }
+
+    function yearRentCost(yr: number): number {
+      let total = 0;
+      let r = rent;
+      for (let y = 0; y < yr; y++) {
+        total += r * 12;
+        r *= (1 + rentGrowth);
+      }
+      return total;
+    }
+
+    let breakEvenYr = 0;
+    for (let yr = 1; yr <= 30; yr++) {
+      if (yearBuyCost(yr) <= yearRentCost(yr)) {
+        breakEvenYr = yr;
+        break;
+      }
+    }
+
+    const adv5 = yearRentCost(5) - yearBuyCost(5);
+    const adv10 = yearRentCost(10) - yearBuyCost(10);
+
+    (document.getElementById("rvb-breakeven") as HTMLElement).textContent = breakEvenYr > 0 ? `Year ${breakEvenYr}` : "After 30 years";
+
+    const adv5El = document.getElementById("rvb-5yr") as HTMLElement;
+    adv5El.textContent = (adv5 >= 0 ? "+" : "") + fmtMoney(adv5);
+    adv5El.className = "text-2xl font-bold mt-1 " + (adv5 >= 0 ? "text-green-600" : "text-red-600");
+
+    const adv10El = document.getElementById("rvb-10yr") as HTMLElement;
+    adv10El.textContent = (adv10 >= 0 ? "+" : "") + fmtMoney(adv10);
+    adv10El.className = "text-2xl font-bold mt-1 " + (adv10 >= 0 ? "text-green-600" : "text-red-600");
+
+    (document.getElementById("rvb-result") as HTMLElement).classList.remove("hidden");
+  };
+
+  // 7. First-Time Buyer Affordability Review
+  (window as any).calcAffordability = function() {
+    const income = +(document.getElementById("af-income") as HTMLInputElement).value;
+    const debt = +(document.getElementById("af-debt") as HTMLInputElement).value;
+    const savings = +(document.getElementById("af-savings") as HTMLInputElement).value;
+    const rate = +(document.getElementById("af-rate") as HTMLInputElement).value;
+
+    const monthlyIncome = income / 12;
+    const maxDTI = 0.43;
+    const availableForHousing = (monthlyIncome * maxDTI) - debt;
+    const pi = availableForHousing * 0.85;
+
+    const r = rate / 100 / 12;
+    const n = 30 * 12;
+    const loanFromPI = pi / ((r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1));
+    const priceFromIncome = loanFromPI / 0.80;
+
+    const closingCostPct = 0.03;
+    const maxPriceBySavings = savings / (0.20 + closingCostPct);
+    const sweetSpot = Math.min(priceFromIncome, maxPriceBySavings);
+
+    (document.getElementById("af-max-income") as HTMLElement).textContent = fmtMoney(priceFromIncome);
+    (document.getElementById("af-max-savings") as HTMLElement).textContent = fmtMoney(maxPriceBySavings);
+    (document.getElementById("af-sweet-spot") as HTMLElement).textContent = fmtMoney(sweetSpot);
+
+    const scenarios = [
+      { label: "3.5% down (FHA)", downPct: 0.035 },
+      { label: "5% down", downPct: 0.05 },
+      { label: "10% down", downPct: 0.10 },
+      { label: "20% down", downPct: 0.20 },
+    ];
+
+    const scenariosEl = document.getElementById("af-scenarios") as HTMLElement;
+    scenariosEl.innerHTML = "<strong>Monthly payment at your sweet spot price:</strong><div class='grid gap-2 mt-2 sm:grid-cols-2'>" +
+      scenarios.map(s => {
+        const down = sweetSpot * s.downPct;
+        const loanAmt = sweetSpot - down;
+        const payment = monthlyPI(loanAmt, rate, 30);
+        const canAfford = savings >= down + sweetSpot * closingCostPct;
+        return `<div class='p-3 bg-white rounded-lg border border-[var(--color-soft-gray)]'>
+          <p class='font-medium text-sm'>${s.label}</p>
+          <p class='text-lg font-bold text-[var(--color-accent)]'>${fmtMoney(payment)}/mo P&I</p>
+          <p class='text-xs text-[var(--color-text-muted)]'>Down: ${fmtMoney(down)} ${canAfford ? "✓" : "(savings may be short)"}</p>
+        </div>`;
+      }).join("") + "</div>";
+
+    (document.getElementById("af-result") as HTMLElement).classList.remove("hidden");
+  };
+
+  // 8. Reverse Mortgage Estimator
+  (window as any).calcReverse = function() {
+    const age = +(document.getElementById("rm-age") as HTMLInputElement).value;
+    const value = +(document.getElementById("rm-value") as HTMLInputElement).value;
+    const balance = +(document.getElementById("rm-balance") as HTMLInputElement).value;
+
+    const hecmLimit = 1209750;
+    const lendingLimit = Math.min(value, hecmLimit);
+    const ageFactor = Math.min(0.75, 0.40 + (age - 62) * 0.01);
+    const grossProceeds = lendingLimit * ageFactor;
+    const netProceeds = Math.max(0, grossProceeds - balance);
+
+    (document.getElementById("rm-gross") as HTMLElement).textContent = fmtMoney(grossProceeds);
+    (document.getElementById("rm-net") as HTMLElement).textContent = fmtMoney(netProceeds);
+
+    let note = "";
+    if (value > hecmLimit) {
+      note = `Note: HECM loans are limited to the 2025 FHA lending limit of $1,209,750. Your home value above that limit is not factored into HECM proceeds. A proprietary (jumbo) reverse mortgage may be available for higher-value homes.`;
+    } else if (balance > grossProceeds * 0.6) {
+      note = "Your existing mortgage balance is substantial relative to your estimated proceeds. You may still qualify, but less equity will remain after payoff.";
+    }
+
+    (document.getElementById("rm-note") as HTMLElement).textContent = note;
+    (document.getElementById("rm-result") as HTMLElement).classList.remove("hidden");
+  };
+
+  // 9. Refi Checkup
+  (window as any).calcRefi = function() {
+    const balance = +(document.getElementById("rc-balance") as HTMLInputElement).value;
+    const currentRate = +(document.getElementById("rc-current-rate") as HTMLInputElement).value;
+    const newRate = +(document.getElementById("rc-new-rate") as HTMLInputElement).value;
+    const closingCosts = +(document.getElementById("rc-costs") as HTMLInputElement).value;
+
+    const currentPI = monthlyPI(balance, currentRate, 30);
+    const newPI = monthlyPI(balance, newRate, 30);
+    const monthlySavings = currentPI - newPI;
+    const breakEvenMonths = monthlySavings > 0 ? Math.ceil(closingCosts / monthlySavings) : Infinity;
+
+    const net2yr = monthlySavings * 24 - closingCosts;
+    const net5yr = monthlySavings * 60 - closingCosts;
+
+    const savingsEl = document.getElementById("rc-monthly-savings") as HTMLElement;
+    savingsEl.textContent = fmtMoney(monthlySavings);
+    savingsEl.className = "text-2xl font-bold mt-1 " + (monthlySavings > 0 ? "text-green-600" : "text-red-600");
+
+    (document.getElementById("rc-breakeven") as HTMLElement).textContent =
+      monthlySavings > 0 ? `${breakEvenMonths} months` : "No savings";
+
+    const n2El = document.getElementById("rc-2yr") as HTMLElement;
+    n2El.textContent = (net2yr >= 0 ? "+" : "") + fmtMoney(net2yr);
+    n2El.className = "text-2xl font-bold mt-1 " + (net2yr >= 0 ? "text-green-600" : "text-red-600");
+
+    const n5El = document.getElementById("rc-5yr") as HTMLElement;
+    n5El.textContent = (net5yr >= 0 ? "+" : "") + fmtMoney(net5yr);
+    n5El.className = "text-2xl font-bold mt-1 " + (net5yr >= 0 ? "text-green-600" : "text-red-600");
+
+    let verdict = "";
+    if (monthlySavings <= 0) {
+      verdict = "A higher rate would increase your payment. Refinancing does not make sense at these rates.";
+    } else if (breakEvenMonths <= 24) {
+      verdict = `You break even in ${breakEvenMonths} months. This is a strong refinance case if you plan to stay in the home.`;
+    } else if (breakEvenMonths <= 48) {
+      verdict = `You break even in ${breakEvenMonths} months. Worthwhile if you plan to stay in the home for several years.`;
+    } else {
+      verdict = `Break-even is ${breakEvenMonths} months out. Consider whether you'll stay long enough to recoup the closing costs.`;
+    }
+
+    (document.getElementById("rc-verdict") as HTMLElement).textContent = verdict;
+    (document.getElementById("rc-result") as HTMLElement).classList.remove("hidden");
+  };
+
+  // 10. VA Loan Payment Estimator
+  (window as any).calcVA = function() {
+    const price = +(document.getElementById("va-price") as HTMLInputElement).value;
+    const downPct = +(document.getElementById("va-down") as HTMLSelectElement).value;
+    const rate = +(document.getElementById("va-rate") as HTMLInputElement).value;
+    const use = (document.getElementById("va-use") as HTMLSelectElement).value;
+
+    const downAmt = price * downPct / 100;
+    const baseLoan = price - downAmt;
+
+    let feeRate = 0;
+    if (use === "exempt") {
+      feeRate = 0;
+    } else if (use === "first") {
+      feeRate = downPct >= 10 ? 0.014 : downPct >= 5 ? 0.015 : 0.023;
+    } else {
+      feeRate = downPct >= 10 ? 0.014 : downPct >= 5 ? 0.015 : 0.036;
+    }
+
+    const fundingFee = baseLoan * feeRate;
+    const totalLoan = baseLoan + fundingFee;
+    const vaPI = monthlyPI(totalLoan, rate, 30);
+    const convPI = monthlyPI(baseLoan, rate, 30);
+    const savings = convPI - vaPI;
+
+    (document.getElementById("va-loan-amt") as HTMLElement).textContent = fmtMoney(totalLoan);
+    (document.getElementById("va-funding-fee") as HTMLElement).textContent =
+      use === "exempt" ? "Exempt ($0)" : fmtMoney(fundingFee);
+    (document.getElementById("va-monthly-pi") as HTMLElement).textContent = fmtMoney(vaPI);
+
+    const vsEl = document.getElementById("va-vs-conv") as HTMLElement;
+    if (use === "exempt") {
+      vsEl.textContent = fmtMoney(convPI - monthlyPI(baseLoan, rate, 30)) + " lower";
+      vsEl.className = "text-2xl font-bold mt-1 text-green-600";
+    } else {
+      vsEl.textContent = savings >= 0
+        ? fmtMoney(savings) + " lower"
+        : fmtMoney(Math.abs(savings)) + " higher";
+      vsEl.className = "text-2xl font-bold mt-1 " + (savings >= 0 ? "text-green-600" : "text-red-600");
+    }
+
+    (document.getElementById("va-result") as HTMLElement).classList.remove("hidden");
+  };
+</script>

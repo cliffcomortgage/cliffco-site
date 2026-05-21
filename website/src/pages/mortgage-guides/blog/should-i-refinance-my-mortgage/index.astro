@@ -1,0 +1,62 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+---
+
+<Layout
+  title="Should You Refinance Your Mortgage? How to Know If It Actually Makes Sense | Cliffco Mortgage"
+  description="A lower rate doesn't automatically make a refinance worth doing. Here's the break-even calculation most homeowners skip and how to know whether refinancing actually makes sense for your situation."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Mortgage Guides", href: "/mortgage-guides/" },
+    { name: "Blog", href: "/mortgage-guides/blog/" },
+    { name: "Should I Refinance My Mortgage?", href: "/mortgage-guides/blog/should-i-refinance-my-mortgage/" },
+  ]} />
+
+  <article class="container-prose pt-12 pb-16">
+
+    <h1 style="font-size: var(--text-display-lg);">Should You Refinance Your Mortgage? How to Know If It Actually Makes Sense</h1>
+
+    <p class="mt-8">If you've been thinking about refinancing but haven't pulled the trigger because you're not sure whether the math works in your favor, this article gives you the framework to find out. Most refinance conversations start with the rate. The rate is not the right starting point. The right starting point is how long you plan to stay in the home, because that single variable determines whether the savings from a lower rate outweigh the cost of getting there.</p>
+
+    <h2 class="mt-10">The Calculation Most Homeowners Skip</h2>
+
+    <p class="mt-4">A refinance costs money. Closing costs on a refinance typically run 2 to 5% of the loan amount, covering lender fees, title insurance, appraisal, and other third-party charges. Those costs are paid upfront, either out of pocket at closing or rolled into the new loan balance. The monthly savings from a lower rate don't start delivering value until you've recouped those costs, and that recoupment takes time.</p>
+
+    <p class="mt-4">The break-even point is calculated by dividing your total closing costs by your monthly savings. If a refinance costs a certain amount in closing costs and saves you a specific amount per month, you divide the first number by the second to find how many months it takes to break even. If you sell or refinance again before reaching that point, the refinance cost you money rather than saved it.</p>
+
+    <h2 class="mt-10">Why Rolling Costs Into the Loan Changes the Math</h2>
+
+    <p class="mt-4">Here's where many homeowners miscalculate the value of a refinance. When closing costs are rolled into the new loan balance rather than paid at closing, the monthly savings number looks attractive because no out-of-pocket cost was required. What changes is that you're now paying interest on a higher balance for the life of the loan. The break-even calculation that assumes zero upfront cost doesn't account for the long-term cost of financing those fees. A no-cost refinance is rarely actually free. The costs are present, they're just built into the rate or the balance.</p>
+
+    <p class="mt-4">Running the break-even calculation on the true total cost, not just the payment difference, is what separates a refinance that genuinely benefits you from one that benefits the lender.</p>
+
+    <h2 class="mt-10">When Refinancing Makes Sense and When It Doesn't</h2>
+
+    <p class="mt-4">Refinancing makes sense when your break-even point falls well within your expected remaining time in the home, when your credit profile has improved enough since your original mortgage to qualify for meaningfully better pricing, or when you're converting from an adjustable rate to a fixed rate to eliminate payment uncertainty regardless of the pure rate savings.</p>
+
+    <p class="mt-4">Refinancing makes less sense when your break-even point is close to or beyond your expected time in the home, when you're far enough into your current loan that restarting the amortization clock on a 30-year term costs more in total interest than the rate reduction saves, or when your closing costs are high relative to your monthly savings.</p>
+
+    <p class="mt-4">The amortization point deserves specific attention. Early mortgage payments are primarily interest. As you progress through the loan, an increasing share of each payment goes toward principal. A homeowner 15 years into a 30-year mortgage who refinances into a new 30-year loan resets that amortization clock and pays a much higher proportion of interest again in the early years of the new loan. Even at a lower rate, the total interest paid over the combined loan terms can exceed what remaining on the original loan would have cost.</p>
+
+    <h2 class="mt-10">What to Do, In Order</h2>
+
+    <ol class="mt-4 list-decimal list-inside space-y-2">
+      <li><strong>Calculate your break-even point before you request a quote.</strong> Estimate your total closing costs at roughly 2 to 3% of your loan balance as a starting point. Divide that by an estimated monthly savings based on the rate difference. That number of months is your break-even. Compare it to how long you realistically plan to stay in the home.</li>
+      <li><strong>Run the amortization comparison if you're more than 7 to 10 years into your current loan.</strong> Ask your lender to show you the total interest paid under your current loan versus the new one over your expected remaining time in the home. The payment difference alone doesn't tell the full story.</li>
+      <li><strong>Pull your current mortgage statement before you call a lender.</strong> Know your current rate, remaining balance, remaining term, and monthly payment. Those four numbers are the baseline for every comparison a lender will show you.</li>
+      <li><strong>Get quotes from at least two lenders on the same day.</strong> Refinance rates vary across lenders. A second quote costs nothing and provides a real market comparison rather than a single data point.</li>
+      <li><strong>Decide in advance whether you want to pay closing costs upfront or roll them in.</strong> Both approaches have legitimate uses depending on your timeline and cash position. Knowing your preference before the lender presents options keeps the conversation on your terms.</li>
+    </ol>
+
+    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+      <div>
+        <p class="font-semibold text-[var(--color-ink)]">Run your break-even before you call anyone.</p>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1">Calculate your break-even point based on your current loan details and see whether a refinance makes financial sense at current rates before you invest time in a full application.</p>
+      </div>
+      <a href="/mortgage-guides/calculators/#refi-checkup" class="btn btn-primary shrink-0">Get started</a>
+    </div>
+
+  </article>
+</Layout>

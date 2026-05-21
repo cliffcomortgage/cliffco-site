@@ -1,0 +1,66 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+---
+
+<Layout
+  title="Why Small Business Owners Get Denied for Mortgages and What to Do About It | Cliffco Mortgage"
+  description="Small business owners get denied for mortgages not because they can't afford them but because conventional lending wasn't built for how they earn. Here's what actually works."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Mortgage Guides", href: "/mortgage-guides/" },
+    { name: "Blog", href: "/mortgage-guides/blog/" },
+    { name: "Why Small Business Owners Get Denied", href: "/mortgage-guides/blog/why-small-business-owners-get-denied-mortgages/" },
+  ]} />
+
+  <article class="container-prose pt-12 pb-16">
+
+    <h1 style="font-size: var(--text-display-lg);">Why Small Business Owners Get Denied for Mortgages and What to Do About It</h1>
+
+    <p class="mt-8">If you own a small business, pay yourself from it, and have been denied for a mortgage or told you don't qualify for nearly as much as you expected, you've run into one of the more frustrating structural problems in residential lending. Your business is doing well. Your actual financial picture is strong. The paperwork tells a different story, and conventional lenders use the paperwork.</p>
+
+    <h2 class="mt-10">How Conventional Lending Sees Your Income</h2>
+
+    <p class="mt-4">Conventional mortgage underwriting was designed around W-2 employees. It takes your gross income, applies a debt-to-income calculation, and approves or denies based on that number. For a business owner, gross income doesn't exist in the same form. What the lender sees instead is your net income after every deduction your accountant took to minimize your tax liability. Those deductions are doing exactly what they're supposed to do for your taxes. For mortgage qualification, they work directly against you.</p>
+
+    <h2 class="mt-10">The Structural Problem Nobody Solves Before You Apply</h2>
+
+    <p class="mt-4">The tax code and the mortgage system operate on opposite incentives. The tax code rewards you for reducing your reported income. The mortgage system qualifies you based on that same reported income. The more aggressively you've written off legitimate business expenses (depreciation, home office deductions, vehicle costs, retirement contributions) the lower your qualifying income under conventional guidelines.</p>
+
+    <p class="mt-4">A business owner who generated significant revenue but reported modest net income after deductions may qualify for far less than an employee earning a fraction of what the business actually produces. Non-QM lending exists specifically to bridge that gap, using alternative documentation that more accurately reflects what your business earns and what you have available to cover a mortgage payment.</p>
+
+    <h2 class="mt-10">The Non-QM Options Worth Knowing</h2>
+
+    <p class="mt-4">Non-QM is not a single product. It's a category of loan programs that qualify borrowers outside conventional guidelines. For small business owners, the most relevant options are:</p>
+
+    <p class="mt-4"><strong>Business bank statement loans</strong> qualify you based on your actual business deposits over 12 to 24 months rather than your tax returns. A lender applies an expense ratio to your total deposits to arrive at qualifying income. If your deposits consistently exceed what your tax returns show as net income, this path often unlocks significantly higher qualification.</p>
+
+    <p class="mt-4"><strong>Personal bank statement loans</strong> work similarly but use personal account deposits. These suit sole proprietors or single-member LLCs where business and personal finances are closely tied.</p>
+
+    <p class="mt-4"><strong>1099 loans</strong> are designed for independent contractors and self-employed individuals whose income is documented through 1099 forms. Qualification is based on 1099 income rather than net reported income.</p>
+
+    <p class="mt-4"><strong>P&amp;L loans</strong> use a CPA-prepared profit and loss statement rather than full tax returns, offering a faster documentation path for borrowers whose P&amp;L reflects a more accurate income picture than their most recent returns.</p>
+
+    <p class="mt-4"><strong>WVOE loans</strong> allow a business owner to verify their own income and employment through a written statement rather than full documentation. These carry the lightest documentation requirement of any option but come with the strictest eligibility criteria.</p>
+
+    <h2 class="mt-10">What to Do, In Order</h2>
+
+    <ol class="mt-4 list-decimal list-inside space-y-2">
+      <li><strong>Pull your last two years of tax returns and calculate your actual conventional qualifying income before you apply anywhere.</strong> Add back depreciation and depletion where applicable. Know what a conventional lender will see before they tell you.</li>
+      <li><strong>Total 12 and 24 months of business bank deposits separately.</strong> Apply a rough 50% expense ratio as an estimate. If that number is meaningfully higher than your tax return income, a bank statement loan is likely your strongest path.</li>
+      <li><strong>Do not apply for a conventional loan if you already know your documented income won't support the purchase price you need.</strong> A denial creates a hard inquiry and a record. Identify the right product before anyone pulls your credit.</li>
+      <li><strong>Work with a lender who specializes in Non-QM products.</strong> Not all lenders offer these programs, and not all who offer them understand how to structure the application to your advantage.</li>
+      <li><strong>Coordinate with your CPA before you apply.</strong> Depending on your situation and timeline, there may be documentation strategies that improve your qualification without changing your tax filing.</li>
+    </ol>
+
+    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+      <div>
+        <p class="font-semibold text-[var(--color-ink)]">Find the path that fits your income before you apply.</p>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1">The Self-Employed Income Calculator shows you what your qualifying income looks like under both conventional and bank statement guidelines side by side. If the bank statement number is stronger, that's where to start.</p>
+      </div>
+      <a href="/mortgage-guides/calculators/#self-employed-calculator" class="btn btn-primary shrink-0">Get started</a>
+    </div>
+
+  </article>
+</Layout>

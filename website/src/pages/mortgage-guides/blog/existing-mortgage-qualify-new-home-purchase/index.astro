@@ -1,0 +1,60 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+---
+
+<Layout
+  title="How Your Existing Mortgage Affects Your Ability to Qualify for a New One | Cliffco Mortgage"
+  description="Move-up buyers often don't calculate how their current mortgage affects their new purchase qualification until they're already in the process. Here's what lenders actually look at."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Mortgage Guides", href: "/mortgage-guides/" },
+    { name: "Blog", href: "/mortgage-guides/blog/" },
+    { name: "Existing Mortgage and New Home Qualification", href: "/mortgage-guides/blog/existing-mortgage-qualify-new-home-purchase/" },
+  ]} />
+
+  <article class="container-prose pt-12 pb-16">
+
+    <h1 style="font-size: var(--text-display-lg);">How Your Existing Mortgage Affects Your Ability to Qualify for a New Home Purchase</h1>
+
+    <p class="mt-8">If you've bought a home before, you probably expect the mortgage process to feel familiar the second time around. In some ways it does. In one critical way it doesn't. The mortgage you already carry changes how a lender evaluates your new application, and most repeat buyers don't fully understand the impact until they're in underwriting and the numbers don't add up the way they expected.</p>
+
+    <h2 class="mt-10">The Debt-to-Income Problem Nobody Calculates in Advance</h2>
+
+    <p class="mt-4">When you apply for a new mortgage while still carrying your current one, both payments factor into your debt-to-income ratio. A lender evaluating your new application adds your proposed new monthly payment to your existing mortgage payment, your car loans, your minimum credit card payments, and every other recurring debt obligation you carry. That total is divided by your gross monthly income to produce your DTI. If that ratio exceeds the lender's threshold, you don't qualify regardless of your credit score or down payment.</p>
+
+    <p class="mt-4">Most move-up buyers calculate their new payment in isolation and assume qualification will follow. The DTI calculation that includes the existing mortgage is what actually determines whether it does.</p>
+
+    <h2 class="mt-10">The Departing Residence Variable Lenders Treat Differently</h2>
+
+    <p class="mt-4">Here's the piece that surprises repeat buyers most. If your plan is to sell your current home and use the proceeds for your next purchase, the lender needs to know that before they can treat the existing mortgage favorably in your DTI calculation. If you haven't yet listed your current home or have no documented evidence of a pending sale, most lenders will count the full existing mortgage payment in your DTI alongside the new payment. Carrying both payments simultaneously in the DTI calculation can push a borrower above the qualifying threshold even when their actual plan is to sell and eliminate the first mortgage quickly.</p>
+
+    <p class="mt-4">The documentation that changes this calculation is either a fully executed purchase contract on your current home or evidence that you've listed the property and it's under contract. Some lenders will also accept a documented departure plan, such as a listing agreement showing active marketing, to support a reduced DTI treatment in specific circumstances. Understanding what your lender requires to treat the departing residence favorably is worth asking before you apply.</p>
+
+    <h2 class="mt-10">How Rental Income From Your Current Home Can Help</h2>
+
+    <p class="mt-4">If your plan is to convert your current home to a rental rather than sell it, the calculation changes in a different direction. Rental income from a departing residence can be counted as qualifying income, which offsets the existing mortgage payment in your DTI. Most lenders require a signed lease agreement and apply a percentage of the gross rent, typically 75%, to account for vacancy and expenses.</p>
+
+    <p class="mt-4">This path works well for move-up buyers who want to hold their current property as an investment and have documented rental demand. It creates a different set of requirements than a straight sale scenario but opens the door to qualification that wouldn't exist if the rental income were ignored entirely.</p>
+
+    <h2 class="mt-10">What to Do, In Order</h2>
+
+    <ol class="mt-4 list-decimal list-inside space-y-2">
+      <li><strong>Calculate your combined DTI before you start shopping.</strong> Add your current mortgage payment to a realistic estimate of your new payment, then add all other recurring debt obligations. Divide by your gross monthly income. If that ratio is above 43 to 45%, talk to your lender before you go further.</li>
+      <li><strong>List your current home before you apply for new financing if possible.</strong> An executed purchase contract eliminates the existing mortgage from your DTI calculation in most conventional programs. If you can get your home under contract before your new application, the qualification picture improves significantly.</li>
+      <li><strong>Ask your lender specifically how they treat a departing residence in the DTI calculation.</strong> Requirements vary. Knowing what they need to treat your existing mortgage favorably lets you prepare the right documentation before you apply.</li>
+      <li><strong>If you're converting your current home to a rental, get a signed lease in place before you apply.</strong> The lease is what allows the rental income to count. Without it, the existing mortgage stays in your DTI with no offsetting income.</li>
+      <li><strong>Run your DTI calculation with both properties included as a stress test.</strong> Even if your plan is to sell, knowing that you can qualify while carrying both mortgages gives you flexibility in the timing of your sale that a buyer who can only qualify with the existing mortgage eliminated doesn't have.</li>
+    </ol>
+
+    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+      <div>
+        <p class="font-semibold text-[var(--color-ink)]">Know your qualification ceiling before you fall in love with a purchase price.</p>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1">Model your full DTI including your existing mortgage so you see your actual buying power before you start shopping.</p>
+      </div>
+      <a href="/mortgage-guides/calculators/#payment-estimator" class="btn btn-primary shrink-0">Get started</a>
+    </div>
+
+  </article>
+</Layout>
