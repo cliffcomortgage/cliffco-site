@@ -31,15 +31,6 @@ export const REVIEW_PLATFORMS: readonly ReviewPlatform[] = [
     note: "Verified mortgage borrower reviews",
   },
   {
-    name: "WalletHub",
-    rating: 4.9,
-    ratingDisplay: "4.9 / 5",
-    reviewCount: 1010,
-    url: "https://wallethub.com/profile/cliffco-mortgage-bankers-75825327i",
-    writeUrl: "https://wallethub.com/profile/cliffco-mortgage-bankers-75825327i",
-    note: "Independent financial services reviews",
-  },
-  {
     name: "Zillow",
     rating: 5.0,
     ratingDisplay: "5.0 / 5",
