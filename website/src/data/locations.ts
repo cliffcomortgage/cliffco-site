@@ -54,7 +54,7 @@ export const LOCATIONS: readonly Location[] = [
       "complex financials often hit walls at conventional lenders. Our team includes bilingual " +
       "English/Spanish loan officers.",
     branchSlugs: ["branchburg-nj"],
-    featuredProducts: ["non-qm-self-employed", "dscr", "business-bank-statement", "reverse-mortgage"],
+    featuredProducts: ["non-qm-self-employed", "fha", "dscr", "reverse-mortgage"],
   },
   {
     path: "arizona",
@@ -77,7 +77,7 @@ export const LOCATIONS: readonly Location[] = [
       "borrowers across Minnesota. Whether you're self-employed, investing in rental property, " +
       "or approaching retirement, we have the full product lineup available.",
     branchSlugs: ["excelsior-mn"],
-    featuredProducts: ["non-qm-self-employed", "dscr", "reverse-mortgage", "business-bank-statement"],
+    featuredProducts: ["conventional", "non-qm-self-employed", "dscr", "reverse-mortgage"],
   },
   {
     path: "florida",
@@ -90,7 +90,7 @@ export const LOCATIONS: readonly Location[] = [
       "investors purchasing Florida property. Ft. Lauderdale serves South Florida and the " +
       "greater Miami area.",
     branchSlugs: ["orlando-fl", "fort-lauderdale-fl"],
-    featuredProducts: ["dscr", "business-bank-statement", "non-qm-self-employed", "reverse-mortgage"],
+    featuredProducts: ["dscr", "reverse-mortgage", "non-qm-self-employed", "business-bank-statement"],
   },
   {
     path: "florida/orlando",
@@ -103,7 +103,7 @@ export const LOCATIONS: readonly Location[] = [
       "corridor, plus non-QM and bank statement loans for self-employed Florida small-business " +
       "owners and ITIN borrowers.",
     branchSlugs: ["orlando-fl"],
-    featuredProducts: ["dscr", "business-bank-statement", "non-qm-self-employed", "reverse-mortgage"],
+    featuredProducts: ["dscr", "business-bank-statement", "non-qm-self-employed", "renovation"],
   },
 ];
 
