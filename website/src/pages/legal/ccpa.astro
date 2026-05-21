@@ -5,33 +5,183 @@ import { COMPANY } from "../../data/company";
 const today = new Date().toISOString().slice(0, 10);
 ---
 
-<Layout title="CCPA / California Privacy Rights" description={`${COMPANY.brandName} California Consumer Privacy Act notice.`}>
+<Layout title="CCPA / California Privacy Rights | Cliffco" description={`${COMPANY.brandName} California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA) notice.`}>
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
     { name: "Legal", href: "/legal/" },
     { name: "CCPA", href: "/legal/ccpa/" },
   ]} />
+
   <section class="container-prose pt-12 pb-16">
-    <h1 style="font-size: var(--text-display-lg);">CCPA / California Privacy Rights</h1>
+    <h1 style="font-size: var(--text-display-lg);">California Consumer Privacy Act (CCPA) Disclosure</h1>
     <p class="text-sm text-[var(--color-text-muted)] mt-2">Last updated: {today}</p>
+
     <p class="mt-6">
       This notice supplements our <a href="/legal/privacy/">Privacy Policy</a> and applies to
       California residents under the California Consumer Privacy Act (CCPA), as amended by the
-      California Privacy Rights Act (CPRA).
+      California Privacy Rights Act (CPRA). {COMPANY.legalName} has implemented procedures to
+      ensure that California residents are afforded the rights described below.
     </p>
-    <h2 class="mt-10">Your California rights</h2>
+
+    <h2 class="mt-10">California Resident Rights Under the CCPA</h2>
+
     <ul>
-      <li><strong>Right to know:</strong> request the categories and specific pieces of personal information we have collected about you.</li>
-      <li><strong>Right to delete:</strong> request deletion of personal information we hold about you, subject to legal exceptions (e.g., active loan files).</li>
-      <li><strong>Right to correct:</strong> request correction of inaccurate personal information.</li>
-      <li><strong>Right to opt out of sale or sharing:</strong> we do not sell personal information.</li>
-      <li><strong>Right to limit use of sensitive personal information.</strong></li>
-      <li><strong>Right to non-discrimination</strong> for exercising your privacy rights.</li>
+      <li>
+        <strong>Right to know:</strong> The right to know, both by category and by specific pieces
+        of information, what personal information is collected, used, shared, or sold about you.
+      </li>
+      <li>
+        <strong>Right to delete:</strong> Consumers can generally demand that the Company, as well
+        as its business service providers, delete personal information that is retained by the
+        business. If you make a request to delete information, we may require verification of your
+        identity and a confirmation that you would like your data deleted. The Company is not
+        required to delete information where the information is needed in order to provide a service
+        requested by the consumer, if the Company has a regulatory requirement to retain the data,
+        or if we need to maintain the data for any legal or regulatory purposes.
+      </li>
+      <li>
+        <strong>Right to correct:</strong> Request correction of inaccurate personal information
+        we hold about you.
+      </li>
+      <li>
+        <strong>Right to opt out of sale or sharing:</strong> The right to opt out of the sale of
+        personal information. Note that Cliffco does not sell personal information.
+      </li>
+      <li>
+        <strong>Right to access:</strong> The right to obtain a free copy of all personal
+        information collected about you by the Company, which we share after verifying your identity.
+      </li>
+      <li>
+        <strong>Right to limit use of sensitive personal information.</strong>
+      </li>
+      <li>
+        <strong>Right to equal service and pricing:</strong> The Company will not deny any goods or
+        services to a consumer who chooses to exercise his or her rights under the CCPA.
+        Additionally, we will not charge or propose that a consumer receive different prices or
+        rates for goods or services, or a different level or quality of service, or take any other
+        measures to discriminate against a consumer for exercising his or her rights under the CCPA.
+      </li>
     </ul>
-    <h2 class="mt-10">How to exercise your rights</h2>
+
+    <h2 class="mt-10">How to Exercise Your Rights</h2>
+
     <p>
-      Email <a href="mailto:privacy@cliffcomortgage.com">privacy@cliffcomortgage.com</a> or call
-      {COMPANY.hq.phone}. We will verify your identity before responding.
+      If you are a California resident, you can exercise any of the rights set forth above or
+      submit any questions pertaining to this CCPA Privacy Notice by:
+    </p>
+    <ol>
+      <li>Calling a Cliffco customer service representative at <a href={`tel:${COMPANY.hq.phoneE164}`}>{COMPANY.hq.phone}</a></li>
+      <li>Sending an email to <a href="mailto:privacy@cliffcomortgage.com">privacy@cliffcomortgage.com</a> or <a href="mailto:klovece@cliffcomortgage.com">klovece@cliffcomortgage.com</a> (ATTN: Kathleen Lovece)</li>
+      <li>
+        Mailing us at: {COMPANY.hq.street}, {COMPANY.hq.city}, {COMPANY.hq.region} {COMPANY.hq.postalCode},
+        ATTN: Kathleen Lovece
+      </li>
+    </ol>
+    <p class="mt-4">
+      You may also appoint a natural person or business entity registered with the Secretary of
+      State to exercise your rights under the CCPA, so long as you have authorized that person or
+      entity to act on your behalf. We will verify your identity before responding to any request.
+    </p>
+
+    <h2 class="mt-10">Categories of Personal Information We Collect</h2>
+
+    <p>
+      Cliffco collects personal information for a variety of reasons, including to provide
+      individual financial products and services to customers. Below are the categories of personal
+      information we collect that relate to, describe, identify, or could reasonably be linked,
+      directly or indirectly, with you:
+    </p>
+
+    <div class="mt-6 overflow-x-auto">
+      <table class="w-full text-sm border-collapse">
+        <thead>
+          <tr class="bg-[var(--color-mist-gray)]">
+            <th class="text-left px-4 py-3 font-semibold border border-[var(--color-soft-gray)] w-1/3">Category</th>
+            <th class="text-left px-4 py-3 font-semibold border border-[var(--color-soft-gray)]">Examples</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="px-4 py-3 border border-[var(--color-soft-gray)] align-top font-medium">Personal Unique Identifiers</td>
+            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Full name, address, email address, Social Security number, etc.</td>
+          </tr>
+          <tr class="bg-[var(--color-mist-gray)]/40">
+            <td class="px-4 py-3 border border-[var(--color-soft-gray)] align-top font-medium">Personal Information</td>
+            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Financial account numbers, credit scores, phone number, etc.</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 border border-[var(--color-soft-gray)] align-top font-medium">Purchase Information</td>
+            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Records of personal property, products or services purchased, obtained or considered, and other purchasing histories such as account number, property details, etc.</td>
+          </tr>
+          <tr class="bg-[var(--color-mist-gray)]/40">
+            <td class="px-4 py-3 border border-[var(--color-soft-gray)] align-top font-medium">Protected Classifications</td>
+            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Marital status, sex, racial or ethnic origin, etc.</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 border border-[var(--color-soft-gray)] align-top font-medium">Internet / Browsing Activity</td>
+            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">IP address, browsing history, information regarding interaction with our websites, advertisements, etc.</td>
+          </tr>
+          <tr class="bg-[var(--color-mist-gray)]/40">
+            <td class="px-4 py-3 border border-[var(--color-soft-gray)] align-top font-medium">Professional / Employment-Related Information</td>
+            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Employment history, income information, and related records provided during the loan application process.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="mt-10">How We Collect Personal Information</h2>
+
+    <p>
+      We collect personal information from California residents both directly and indirectly,
+      depending on our relationship with the specific individual.
+    </p>
+
+    <p class="mt-4 font-medium">We collect personal information directly from sources such as:</p>
+    <ul>
+      <li>Paper or electronic applications for a loan, where you provide information such as employment history, contact information, income information, etc.</li>
+      <li>Telephone conversations that you have with employees of Cliffco.</li>
+      <li>Interactions that you have with our website, social media, advertisements, etc.</li>
+    </ul>
+
+    <p class="mt-4 font-medium">We also collect personal information indirectly from sources such as:</p>
+    <ul>
+      <li>Third-party service providers that provide data to support activities like fraud prevention, marketing, etc.</li>
+      <li>Social media websites.</li>
+      <li>Government entities that provide public records.</li>
+      <li>Consumer data resellers.</li>
+    </ul>
+
+    <h2 class="mt-10">How We Use Personal Information</h2>
+
+    <p>We use the personal information that we collect in a variety of ways, including:</p>
+    <ul>
+      <li>Managing and delivering the services that you have engaged us to provide.</li>
+      <li>Improving user experiences through research on marketing, developing and improving products and services.</li>
+      <li>Addressing security issues or system integrity.</li>
+      <li>Supporting everyday business operations such as monitoring, reporting, accounting, and enabling use of service providers for business purposes.</li>
+      <li>Ensuring compliance with our legal and regulatory obligations, such as assisting with legal requests and demands, responding to audit requests, and enabling information security.</li>
+      <li>Conducting other legitimate and lawful business purposes.</li>
+    </ul>
+
+    <h2 class="mt-10">Categories of Third Parties to Whom We Disclose Personal Information</h2>
+
+    <p>
+      {COMPANY.legalName} does not sell your personal information. However, we may share personal
+      information with third parties. The categories of third parties with whom we share personal
+      information include:
+    </p>
+    <ul>
+      <li>Government agencies.</li>
+      <li>Application vendors.</li>
+      <li>Third-party service providers.</li>
+    </ul>
+
+    <h2 class="mt-10">Changes to This CCPA Privacy Notice</h2>
+
+    <p>
+      We may make changes to this CCPA Privacy Notice from time to time. We will inform you of
+      changes by posting the revised notice on our website with a revised "Last Updated" date.
+      Unless otherwise stated, the revised notice is effective as of the date it is posted.
     </p>
   </section>
 </Layout>
