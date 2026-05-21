@@ -2,6 +2,39 @@
 import Layout from "../layouts/Layout.astro";
 import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../data/company";
+
+const scenarios = [
+  {
+    value: "non-qm",
+    headline: "Self-employed or 1099",
+    description: "Your tax returns understate your actual income. Bank statements or a P&L tell a better story.",
+  },
+  {
+    value: "dscr",
+    headline: "Real estate investor",
+    description: "You want to qualify based on what the property earns — not your personal income.",
+  },
+  {
+    value: "reverse",
+    headline: "Homeowner age 62 or older",
+    description: "You want to access your home equity without taking on a monthly mortgage payment.",
+  },
+  {
+    value: "business-bank-statement",
+    headline: "Business owner",
+    description: "You run an LLC, S-Corp, or sole proprietorship and want to use business deposits as income.",
+  },
+  {
+    value: "non-qm",
+    headline: "Turned down by another lender",
+    description: "A bank said no. Cliffco specializes in the borrowers conventional lenders can't figure out.",
+  },
+  {
+    value: "conventional",
+    headline: "W-2 income, standard situation",
+    description: "Traditional employment, solid credit — buying, refinancing, or renovating.",
+  },
+];
 ---
 
 <Layout
@@ -14,17 +47,54 @@ import { COMPANY } from "../data/company";
     { name: "Get Started", href: "/get-started/" },
   ]} />
 
-  <section class="container-wide pt-12 pb-16 grid gap-12 lg:grid-cols-[1.2fr_1fr] items-start">
-    <div>
+  <!-- SCENARIO SELECTOR -->
+  <section class="bg-[var(--color-mist-gray)] section">
+    <div class="container-wide">
       <p class="eyebrow">Get started</p>
-      <h1 class="mt-3" style="font-size: var(--text-display-lg);">Tell us your situation. We'll tell you what we can do.</h1>
-      <p class="lead mt-6 max-w-2xl">
-        A licensed Cliffco loan officer responds in one business day. No bots, no call center,
-        no third-party hand-off. Three short questions to start, then we follow up with a real
-        conversation — by phone or email, your choice.
+      <h1 class="mt-3" style="font-size: var(--text-display-lg);">What's your situation?</h1>
+      <p class="lead mt-4">Pick the one that fits — we'll route you to the right loan officer.</p>
+
+      <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {scenarios.map((s, i) => (
+          <button
+            type="button"
+            class="scenario-card card text-left cursor-pointer transition-all border-2 border-transparent hover:border-[var(--color-accent)]"
+            data-value={s.value}
+            data-index={i}
+          >
+            <p class="font-semibold text-[var(--color-ink)]">{s.headline}</p>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)]">{s.description}</p>
+          </button>
+        ))}
+      </div>
+
+      <p class="mt-6 text-sm text-[var(--color-text-muted)]">
+        Not sure? Skip ahead and describe your situation in the notes field.
+        <a href="#form-section" class="font-medium text-[var(--color-accent)] ml-1">Go to form →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section id="form-section" class="container-wide pt-12 pb-16 grid gap-12 lg:grid-cols-[1.2fr_1fr] items-start">
+    <div>
+      <p class="eyebrow">Your details</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Tell us a bit more. We'll follow up in one business day.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)]">
+        No bots, no call center, no third-party hand-off. A real Cliffco loan officer responds by
+        phone or email, your choice.
       </p>
 
-      <form action="/api/lead" method="post" class="mt-10 space-y-6 max-w-2xl">
+      <form action="/api/lead" method="post" class="mt-8 space-y-6 max-w-2xl">
+
+        <!-- Selected scenario summary (shown after card click) -->
+        <div id="scenario-summary" class="hidden rounded-lg bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/30 px-4 py-3">
+          <p class="text-sm font-medium text-[var(--color-ink)]">
+            Selected: <span id="scenario-label" class="text-[var(--color-accent)]"></span>
+            <button type="button" id="clear-scenario" class="ml-3 text-xs text-[var(--color-text-muted)] underline">change</button>
+          </p>
+        </div>
+
         <div>
           <label for="name" class="block text-sm font-medium text-[var(--color-ink)]">Your name</label>
           <input id="name" name="name" type="text" required class="mt-2 w-full px-4 py-3 rounded-lg border border-[var(--color-mist-gray)] focus:border-[var(--color-accent)] focus:outline-none"/>
@@ -111,3 +181,57 @@ import { COMPANY } from "../data/company";
     </aside>
   </section>
 </Layout>
+
+<script>
+  const cards = document.querySelectorAll<HTMLButtonElement>('.scenario-card');
+  const productSelect = document.getElementById('product') as HTMLSelectElement;
+  const summary = document.getElementById('scenario-summary')!;
+  const summaryLabel = document.getElementById('scenario-label')!;
+  const clearBtn = document.getElementById('clear-scenario')!;
+  const formSection = document.getElementById('form-section')!;
+
+  const ACTIVE_CLASSES = [
+    'border-[var(--color-accent)]',
+    'bg-[var(--color-accent)]/5',
+  ];
+
+  function selectCard(card: HTMLButtonElement) {
+    // Clear all cards
+    cards.forEach((c) => {
+      c.classList.remove(...ACTIVE_CLASSES);
+      c.setAttribute('aria-pressed', 'false');
+    });
+
+    // Highlight selected card
+    card.classList.add(...ACTIVE_CLASSES);
+    card.setAttribute('aria-pressed', 'true');
+
+    // Set product dropdown
+    const value = card.dataset.value ?? '';
+    productSelect.value = value;
+
+    // Show summary strip in form
+    summaryLabel.textContent = card.querySelector('p')?.textContent ?? '';
+    summary.classList.remove('hidden');
+
+    // Scroll to form
+    formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  cards.forEach((card) => {
+    card.setAttribute('aria-pressed', 'false');
+    card.addEventListener('click', () => selectCard(card));
+  });
+
+  clearBtn.addEventListener('click', () => {
+    cards.forEach((c) => {
+      c.classList.remove(...ACTIVE_CLASSES);
+      c.setAttribute('aria-pressed', 'false');
+    });
+    productSelect.value = '';
+    summary.classList.add('hidden');
+    document.querySelector<HTMLElement>('.scenario-card')
+      ?.closest('section')
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
