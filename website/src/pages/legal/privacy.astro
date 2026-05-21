@@ -239,8 +239,8 @@ const today = new Date().toISOString().slice(0, 10);
     </p>
     <p class="mt-4">
       From time to time, we may send you email about our products and services. If you do not
-      wish to receive marketing emails from us, please send an email to
-      <a href="mailto:info@cliffcomortgage.com">info@cliffcomortgage.com</a> and your address
+      wish to receive marketing emails from us, please call us at
+      <a href={`tel:${COMPANY.hq.phoneE164}`}>{COMPANY.hq.phone}</a> and your address
       will be removed from our marketing lists.
     </p>
 
@@ -278,8 +278,7 @@ const today = new Date().toISOString().slice(0, 10);
       {COMPANY.legalName}<br/>
       {COMPANY.hq.street}<br/>
       {COMPANY.hq.city}, {COMPANY.hq.region} {COMPANY.hq.postalCode}<br/>
-      <a href={`tel:${COMPANY.hq.phoneE164}`}>{COMPANY.hq.phone}</a><br/>
-      <a href="mailto:info@cliffcomortgage.com">info@cliffcomortgage.com</a>
+      <a href={`tel:${COMPANY.hq.phoneE164}`}>{COMPANY.hq.phone}</a>
     </address>
   </section>
 </Layout>
