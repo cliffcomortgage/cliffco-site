@@ -1,0 +1,163 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../data/company";
+import { product } from "../../../data/products";
+import { loanOfficer, nmlsConsumerAccessUrl } from "../../../data/loan-officers";
+import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
+
+const p = product("refinancing")!;
+const reviewer = loanOfficer("christopher-clifford-65234")!;
+const today = new Date().toISOString().slice(0, 10);
+
+const faq = [
+  {
+    question: "When does refinancing make sense?",
+    answer: "Refinancing typically makes sense when you can lower your rate by at least 0.5–1 point, reduce your term, switch from an ARM to a fixed rate, or access equity. The break-even calculation: divide your closing costs by the monthly savings to find how many months to recoup the cost. If you plan to stay past that point, a refi usually pencils out.",
+  },
+  {
+    question: "What is a CEMA refinance and who can use it?",
+    answer: "A Consolidation, Extension, and Modification Agreement (CEMA) is a New York-specific refinance structure that modifies your existing mortgage rather than paying it off and recording a new one. Because mortgage recording tax (up to 1.8% in NYC, 1% elsewhere in NY) only applies to new principal, a CEMA can save thousands. It requires lender cooperation and takes longer than a standard refi but is usually worth it for balances above $200K.",
+  },
+  {
+    question: "Can I do a cash-out refinance if I'm self-employed?",
+    answer: "Yes. If you can't qualify for a conventional cash-out refi using tax returns, Cliffco's non-QM programs allow cash-out refinances using bank statements, P&L, 1099s, or asset depletion, up to 75–80% LTV on most programs.",
+  },
+  {
+    question: "How long does a refinance take?",
+    answer: "A conventional refinance typically closes in 21–45 days. Non-QM and CEMA refinances can take 30–60 days. Florida refinances involving title and insurance require additional lead time. Your Cliffco LO will give you a realistic timeline at the application stage.",
+  },
+  {
+    question: "What's the maximum LTV for a cash-out refinance?",
+    answer: "Conventional (Fannie/Freddie): up to 80% LTV on primary residences. FHA: up to 80% LTV. VA: up to 90% LTV for eligible veterans. Non-QM: typically 75–80% LTV, with some programs reaching 85% for strong borrower profiles. Investment properties generally max out at 75% LTV.",
+  },
+  {
+    question: "Can I refinance a reverse mortgage?",
+    answer: "Yes. HECM-to-HECM refinances allow existing reverse mortgage holders to refinance into a new HECM for better terms, a higher line of credit (if home values have risen), or to add a spouse to the loan. Cliffco's reverse mortgage team handles HECM-to-HECM refinances in all states where we're licensed.",
+  },
+];
+
+const schema = [
+  mortgageLoanSchema(p),
+  faqPageSchema(faq),
+  articleSchema({
+    headline: p.name,
+    description: p.directAnswer,
+    url: `/loans/${p.slug}/`,
+    datePublished: today,
+    dateModified: today,
+    authorSlug: reviewer.slug,
+  }),
+];
+---
+
+<Layout title={`Refinancing | Cliffco`} description={p.directAnswer} schema={schema}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Loans", href: "/loans/" },
+    { name: p.shortName, href: `/loans/${p.slug}/` },
+  ]} />
+
+  <section class="container-wide pt-12 pb-12">
+    <p class="eyebrow">{p.category}</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
+    <p class="lead mt-6">{p.oneLiner}</p>
+  </section>
+
+  <section class="bg-white pb-12">
+    <div class="container-prose">
+      <div class="direct-answer">{p.directAnswer}</div>
+      <div class="reviewed-by mt-6">
+        <div><strong>Last reviewed:</strong> {today}</div>
+        <div>
+          <strong>Reviewed by:</strong> {reviewer.displayName}, {reviewer.title} ·
+          NMLS #{reviewer.nmls} ·
+          <a href={nmlsConsumerAccessUrl(reviewer.nmls)} rel="noopener">Verify ↗</a>
+        </div>
+        <div><a href="/about/editorial-process/" class="text-sm">How Cliffco creates and reviews content →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-mist-gray)] section">
+    <div class="container-wide">
+      <p class="eyebrow">Refinance types</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Five refinance programs Cliffco originates.</h2>
+      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+        <article class="card">
+          <h3 class="text-lg font-semibold">Rate-and-term refinance</h3>
+          <p class="mt-3 text-sm">Lower your interest rate, shorten or extend your loan term, or switch from an adjustable-rate to a fixed-rate mortgage. The most common refinance type; available on conventional, FHA, VA, and non-QM loans.</p>
+        </article>
+        <article class="card">
+          <h3 class="text-lg font-semibold">Cash-out refinance</h3>
+          <p class="mt-3 text-sm">Replace your existing mortgage with a larger one and receive the difference in cash. Common uses: home improvements, debt consolidation, down payment on an investment property, or funding a business. Available on conventional (up to 80% LTV), VA (up to 90%), and non-QM programs (up to 75–80%).</p>
+        </article>
+        <article class="card">
+          <h3 class="text-lg font-semibold">CEMA refinance (New York)</h3>
+          <p class="mt-3 text-sm">A Consolidation, Extension, and Modification Agreement saves New York borrowers mortgage recording tax (up to 1.8% in NYC, 1% elsewhere) by modifying the existing mortgage rather than recording a new one. Cliffco originates CEMAs statewide and is one of a shrinking number of lenders that still does them efficiently.</p>
+        </article>
+        <article class="card">
+          <h3 class="text-lg font-semibold">Non-QM refinance</h3>
+          <p class="mt-3 text-sm">For self-employed borrowers, 1099 contractors, and anyone who can't document income conventionally. Cliffco refinances using bank statements, P&L, 1099s, or asset depletion, on both rate-and-term and cash-out transactions.</p>
+        </article>
+        <article class="card lg:col-span-2">
+          <h3 class="text-lg font-semibold">HECM-to-HECM reverse mortgage refinance</h3>
+          <p class="mt-3 text-sm">Existing reverse mortgage holders can refinance into a new HECM to access a higher line of credit (if home values have risen), add a younger spouse to the loan, or secure better terms. Cliffco's reverse mortgage team handles HECM-to-HECM refinances in all states where we're licensed.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-wide grid gap-10 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">When to refinance</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">The break-even math.</h2>
+        <p class="mt-4 text-[var(--color-text-muted)]">
+          A refinance costs money upfront (closing costs typically 2–3% of the loan balance). The question is whether the monthly savings justify that cost before you sell or pay off the home.
+        </p>
+      </div>
+      <div class="card">
+        <p class="text-sm font-semibold text-[var(--color-ink)] mb-4">Break-even example</p>
+        <dl class="space-y-3 text-sm">
+          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
+            <dt>Closing costs</dt><dd class="font-medium">$8,000</dd>
+          </div>
+          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
+            <dt>Monthly savings</dt><dd class="font-medium">$250</dd>
+          </div>
+          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
+            <dt>Break-even point</dt><dd class="font-medium">32 months (~2.7 years)</dd>
+          </div>
+        </dl>
+        <p class="mt-4 text-xs text-[var(--color-text-muted)]">If you plan to stay in the home past 32 months, the refinance saves money. If not, it may not be worth the closing costs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-prose">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Refinance questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Tell us your current loan. We'll run the numbers.</h2>
+      <p class="lead mt-4 text-white/85">A licensed Cliffco loan officer responds in one business day.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get a refi quote</a>
+        <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
+      </div>
+    </div>
+  </section>
+</Layout>

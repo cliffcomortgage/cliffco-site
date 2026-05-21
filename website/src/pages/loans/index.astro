@@ -40,7 +40,7 @@ const supporting = PRODUCTS.filter((p) => !p.isPriority);
         ))}
       </div>
 
-      <h2 class="mt-16 text-2xl font-semibold text-[var(--color-ink)]">Conventional & government loans</h2>
+      <h2 class="mt-16 text-2xl font-semibold text-[var(--color-ink)]">Other loan programs</h2>
       <div class="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {supporting.map((p) => (
           <a href={`/loans/${p.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">

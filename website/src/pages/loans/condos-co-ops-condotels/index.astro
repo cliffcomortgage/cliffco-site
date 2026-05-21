@@ -1,0 +1,162 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../data/company";
+import { product } from "../../../data/products";
+import { loanOfficer, nmlsConsumerAccessUrl } from "../../../data/loan-officers";
+import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
+
+const p = product("condos-co-ops-condotels")!;
+const reviewer = loanOfficer("christopher-clifford-65234")!;
+const today = new Date().toISOString().slice(0, 10);
+
+const faq = [
+  {
+    question: "What makes a condo non-warrantable?",
+    answer: "A condo project is non-warrantable when it fails Fannie Mae or Freddie Mac guidelines. Common reasons: more than 50% of units are investor-owned, the HOA is in active litigation, commercial space exceeds 35% of the building, fewer than 51% of units are sold to owner-occupants, or the project has single-entity ownership issues. Non-warrantable condos cannot use conventional or FHA financing and require portfolio or non-QM programs.",
+  },
+  {
+    question: "What is a co-op and why is financing harder?",
+    answer: "In a co-op, residents own shares in a corporation rather than real property. You don't get a deed; you get a proprietary lease. Financing requires co-op board approval (which can take weeks), review of the building's financials, and the lender to accept the proprietary lease as collateral. Many lenders avoid co-ops entirely. Cliffco has deep co-op experience from decades on Long Island and in the New York metro.",
+  },
+  {
+    question: "What is a condotel?",
+    answer: "A condotel is a unit inside a hotel-style building that operates as a short-term rental with front-desk services, revenue sharing, and often a mandatory hotel pool program. Because the unit functions as a commercial rental, most conventional lenders won't finance them. Cliffco's non-QM programs can finance condotel purchases for investors comfortable with the property type.",
+  },
+  {
+    question: "Can I use FHA financing to buy a condo?",
+    answer: "Only if the condo project is on HUD's FHA-approved condominium list, or if the lender uses FHA spot approval for individual units. Many buildings aren't approved. Cliffco can check the HUD approval list and, if the building doesn't qualify, offer a portfolio or non-QM alternative.",
+  },
+  {
+    question: "Can I get a jumbo loan on a New York co-op?",
+    answer: "Yes. Cliffco has extensive experience with New York co-op financing including jumbo co-op loans, proprietary-lease review, and co-op board package guidance. Our Long Island (Uniondale, Wantagh, Bay Shore) and Jamaica, Queens branches handle co-op files regularly.",
+  },
+  {
+    question: "Does Cliffco finance Florida condo non-warrantable units?",
+    answer: "Yes. Post-Champlain Towers, Florida passed structural inspection requirements (SIRS) that have made many older Florida condos non-warrantable for conventional financing. Cliffco's non-QM programs are a common solution for buyers and investors in those buildings.",
+  },
+];
+
+const schema = [
+  mortgageLoanSchema(p),
+  faqPageSchema(faq),
+  articleSchema({
+    headline: p.name,
+    description: p.directAnswer,
+    url: `/loans/${p.slug}/`,
+    datePublished: today,
+    dateModified: today,
+    authorSlug: reviewer.slug,
+  }),
+];
+---
+
+<Layout title={`${p.name} | Cliffco`} description={p.directAnswer} schema={schema}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Loans", href: "/loans/" },
+    { name: p.shortName, href: `/loans/${p.slug}/` },
+  ]} />
+
+  <section class="container-wide pt-12 pb-12">
+    <p class="eyebrow">{p.category}</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
+    <p class="lead mt-6">{p.oneLiner}</p>
+  </section>
+
+  <section class="bg-white pb-12">
+    <div class="container-prose">
+      <div class="direct-answer">{p.directAnswer}</div>
+      <div class="reviewed-by mt-6">
+        <div><strong>Last reviewed:</strong> {today}</div>
+        <div>
+          <strong>Reviewed by:</strong> {reviewer.displayName}, {reviewer.title} ·
+          NMLS #{reviewer.nmls} ·
+          <a href={nmlsConsumerAccessUrl(reviewer.nmls)} rel="noopener">Verify ↗</a>
+        </div>
+        <div><a href="/about/editorial-process/" class="text-sm">How Cliffco creates and reviews content →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-mist-gray)] section">
+    <div class="container-wide">
+      <p class="eyebrow">Property types we finance</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">When conventional lenders say no.</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        <article class="card">
+          <h3 class="text-lg font-semibold">Non-warrantable condos</h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)]">Buildings that fail Fannie/Freddie guidelines due to investor concentration, litigation, commercial space, or single-entity ownership. Common in Florida (post-SIRS), NYC metro, and high-investor-ratio buildings nationwide.</p>
+          <ul class="mt-3 text-sm space-y-1 text-[var(--color-text-muted)]">
+            <li>Portfolio and non-QM programs</li>
+            <li>Purchase and cash-out refinance</li>
+            <li>Primary, second home, and investment</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 class="text-lg font-semibold">Co-op apartments</h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)]">Share-based ownership in a cooperative corporation. Financing requires co-op board approval, proprietary lease review, and a lender experienced with co-op collateral. Common in New York City and the NYC suburbs.</p>
+          <ul class="mt-3 text-sm space-y-1 text-[var(--color-text-muted)]">
+            <li>Long Island and NYC metro focus</li>
+            <li>Conventional and jumbo co-op loans</li>
+            <li>Co-op board package guidance</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 class="text-lg font-semibold">Condotels</h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)]">Hotel-style buildings with mandatory rental pool programs, front-desk services, and short-term occupancy. Almost no conventional lender will touch them. Cliffco's non-QM and portfolio programs can finance condotel units for investors.</p>
+          <ul class="mt-3 text-sm space-y-1 text-[var(--color-text-muted)]">
+            <li>Non-QM / portfolio financing</li>
+            <li>Investment property focus</li>
+            <li>Florida and resort markets</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-wide grid gap-10 lg:grid-cols-[1fr_2fr]">
+      <div>
+        <p class="eyebrow">Why this matters</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Warrantable vs. non-warrantable: the key distinction.</h2>
+      </div>
+      <div class="space-y-4">
+        <div class="card">
+          <h3 class="font-semibold">Warrantable condos</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">The project meets Fannie Mae and Freddie Mac requirements: owner-occupant majority, no significant litigation, limited commercial space, no single entity owning too many units. These can use conventional, FHA, and VA financing at standard rates.</p>
+        </div>
+        <div class="card">
+          <h3 class="font-semibold">Non-warrantable condos</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">One or more Fannie/Freddie guidelines are not met. Standard conventional and FHA programs are unavailable. Rates are typically 0.25–0.75 points higher. Portfolio or non-QM lending is required. Cliffco handles non-warrantable scenarios daily.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-prose">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Condo, co-op, and condotel questions.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Tell us the building. We'll tell you what we can do.</h2>
+      <p class="lead mt-4 text-white/85">A licensed Cliffco loan officer responds in one business day.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get started</a>
+        <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
