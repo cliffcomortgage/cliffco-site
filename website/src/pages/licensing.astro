@@ -8,7 +8,7 @@ const sorted = [...STATE_LICENSES].sort((a, b) => a.name.localeCompare(b.name));
 ---
 
 <Layout
-  title="State Licensing"
+  title="State Licensing | Cliffco Mortgage Bankers"
   description={`Cliffco Mortgage Bankers (NMLS #${COMPANY.nmls}) is licensed to originate residential mortgage loans in ${STATE_LICENSES.length} states. Full state-by-state license details, regulators, and license numbers.`}
 >
   <Breadcrumbs trail={[
@@ -22,10 +22,9 @@ const sorted = [...STATE_LICENSES].sort((a, b) => a.name.localeCompare(b.name));
       Licensed in {STATE_LICENSES.length} states.
     </h1>
     <p class="lead mt-6">
-      {COMPANY.legalName} is registered in the Nationwide Multistate Licensing System
-      under <strong>NMLS #{COMPANY.nmls}</strong>. Verify our licenses and complaint
-      history any time at
-      <a href={COMPANY.nmlsConsumerAccessUrl} rel="noopener">NMLS Consumer Access</a>.
+      Our NMLS # is {COMPANY.nmls}. {COMPANY.legalName} (d/b/a Cliffco Mortgage Bankers)
+      is licensed in the states listed below. Verify our licenses and complaint history
+      any time at <a href={COMPANY.nmlsConsumerAccessUrl} rel="noopener">NMLS Consumer Access</a>.
     </p>
   </section>
 
@@ -80,6 +79,11 @@ const sorted = [...STATE_LICENSES].sort((a, b) => a.name.localeCompare(b.name));
           and any individual loan officer's record there.
         </p>
         <a href={COMPANY.nmlsConsumerAccessUrl} class="btn btn-primary mt-6" rel="noopener">Verify Cliffco at NMLS Consumer Access ↗</a>
+      </div>
+
+      <div class="mt-12 border-t border-[var(--color-mist-gray)] pt-8 space-y-3 text-xs text-[var(--color-text-muted)]">
+        <p>{COMPANY.legalName} is not affiliated with or acting on behalf of the FHA or any government entity. Equal Housing Lender.</p>
+        <p>This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states.</p>
       </div>
     </div>
   </section>
