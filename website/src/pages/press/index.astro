@@ -1,0 +1,101 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { PRESS, formatPressDate } from "../../data/press";
+---
+
+<Layout
+  title="Press | Cliffco Mortgage Bankers"
+  description="News coverage, press mentions, and media resources for Cliffco Mortgage Bankers."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Press", href: "/press/" },
+  ]} />
+
+  <section class="container-wide pt-12 pb-12">
+    <p class="eyebrow">Press</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Cliffco in the news.</h1>
+    <p class="lead mt-6 max-w-2xl">
+      Press coverage, industry recognition, and media mentions of Cliffco Mortgage Bankers.
+      For press inquiries, contact us at
+      <a href="mailto:marketing@cliffcomortgage.com">marketing@cliffcomortgage.com</a>.
+    </p>
+  </section>
+
+  <section class="bg-white pb-16">
+    <div class="container-wide">
+      {PRESS.length === 0 ? (
+        <p class="text-[var(--color-text-muted)]">No press items yet — check back soon.</p>
+      ) : (
+        <div class="space-y-6 max-w-3xl">
+          {PRESS.map((item) => (
+            <article class="card">
+              <p class="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">
+                {item.publication} &middot; {formatPressDate(item.date)}
+              </p>
+              <h2 class="mt-2 text-lg font-semibold text-[var(--color-ink)] leading-snug">
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-[var(--color-ink)] hover:text-[var(--color-accent)]"
+                >
+                  {item.title}
+                </a>
+              </h2>
+              <p class="mt-3 text-sm text-[var(--color-text-muted)]">{item.summary}</p>
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-4 inline-block text-sm font-semibold text-[var(--color-accent)]"
+              >
+                Read on {item.publication} ↗
+              </a>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-mist-gray)] section">
+    <div class="container-wide grid gap-10 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">Media inquiries</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Working on a story?</h2>
+        <p class="mt-4 text-[var(--color-text-muted)]">
+          We're available for comment on non-QM lending, reverse mortgages, DSCR investor
+          financing, self-employed borrowers, and the Long Island and New York mortgage markets.
+          Christopher Clifford (President, NMLS #65234) is available for interviews.
+        </p>
+        <div class="mt-6 flex flex-col gap-3">
+          <a href="mailto:marketing@cliffcomortgage.com" class="btn btn-primary self-start">
+            Email the press team
+          </a>
+          <a href={`tel:${COMPANY.hq.phoneE164}`} class="text-sm font-medium text-[var(--color-ink)]">
+            {COMPANY.hq.phone}
+          </a>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <div class="card">
+          <p class="text-sm font-semibold text-[var(--color-ink)]">Quick facts</p>
+          <ul class="mt-3 text-sm text-[var(--color-text-muted)] space-y-2">
+            <li>Founded 1989, headquartered in Uniondale, NY (Long Island)</li>
+            <li>Licensed in 32 states</li>
+            <li>Specialty: non-QM, reverse mortgage, DSCR, business bank statement</li>
+            <li>9 branch offices across NY, NJ, FL, AZ, and MN</li>
+            <li>NMLS #{COMPANY.nmls}</li>
+          </ul>
+        </div>
+        <a href="/about/" class="card no-underline text-[var(--color-ink)] flex flex-col">
+          <p class="text-sm font-semibold">Company background →</p>
+          <p class="mt-1 text-sm text-[var(--color-text-muted)]">Full history, leadership, and mission on our About page.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
