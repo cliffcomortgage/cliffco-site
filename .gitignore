@@ -32,3 +32,6 @@ yarn-error.log*
 
 # Trial fonts — kept locally for design work, not redistributed
 brand/fonts/
+
+# Claude Code local settings (personal permissions, not shared)
+.claude/
