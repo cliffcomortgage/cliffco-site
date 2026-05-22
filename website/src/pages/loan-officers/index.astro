@@ -130,15 +130,7 @@ const stateNames: Record<string, string> = {
   const stateResults = document.getElementById("state-results");
   const filterCount = document.getElementById("filter-count");
 
-  // Auto-apply state filter from URL param (e.g. ?state=NY)
-  const initialState = new URLSearchParams(window.location.search).get("state");
-  if (initialState) {
-    select.value = initialState;
-    select.dispatchEvent(new Event("change"));
-  }
-
-  select.addEventListener("change", () => {
-    const state = select.value;
+  function applyFilter(state) {
     if (!state) {
       branchView.classList.remove("hidden");
       stateView.classList.add("hidden");
@@ -162,5 +154,14 @@ const stateNames: Record<string, string> = {
         <span style="margin-top:1rem;font-size:0.875rem;font-weight:600;color:var(--color-accent);">View bio →</span>
       </a>
     `).join("");
-  });
+  }
+
+  select.addEventListener("change", () => applyFilter(select.value));
+
+  // Auto-apply state filter from URL param (e.g. ?state=NY) — must come after listener is registered
+  const initialState = new URLSearchParams(window.location.search).get("state");
+  if (initialState) {
+    select.value = initialState;
+    applyFilter(initialState);
+  }
 </script>
