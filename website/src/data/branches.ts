@@ -148,7 +148,8 @@ export const BRANCHES: readonly Branch[] = [
     nmls: "2829876",
     metro: "South Florida",
     isFloridaDba: true,
-    loanOfficerSlugs: [],
+    branchManagerSlug: "kyle-arabian-1671709",
+    loanOfficerSlugs: ["kyle-arabian-1671709"],
   },
   {
     slug: "scottsdale-az",

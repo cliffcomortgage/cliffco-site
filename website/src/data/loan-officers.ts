@@ -207,6 +207,9 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   { slug: "wenceslao-hernandez-romero-1842661", firstName: "Wenceslao", lastName: "Hernandez Romero", displayName: "Wenceslao Hernandez Romero", nmls: "1842661", title: "Loan Officer", states: ["FL"], branchSlug: "orlando-fl", languages: ["English", "Spanish"], hasPhoto: true },
   { slug: "yaisha-romero-1559680", firstName: "Yaisha", lastName: "Romero", displayName: "Yaisha Romero", nmls: "1559680", title: "Loan Officer", states: ["FL"], branchSlug: "orlando-fl", languages: ["English", "Spanish"], hasPhoto: true },
 
+  // Ft. Lauderdale (FL)
+  { slug: "kyle-arabian-1671709", firstName: "Kyle", lastName: "Arabian", displayName: "Kyle Arabian", nmls: "1671709", title: "Branch Manager", states: ["FL"], branchSlug: "fort-lauderdale-fl", hasPhoto: false },
+
   // Scottsdale (AZ)
   { slug: "mayra-hernandez-625376", firstName: "Mayra", lastName: "Hernandez", displayName: "Mayra Hernandez", nmls: "625376", title: "Senior Loan Officer", states: ["AZ"], branchSlug: "scottsdale-az", languages: ["English", "Spanish"] },
   { slug: "derek-liu-2578555", firstName: "Derek", lastName: "Liu", displayName: "Derek Liu", nmls: "2578555", title: "Loan Officer", states: ["AZ", "CA", "WA"], branchSlug: "scottsdale-az", hasPhoto: true },
