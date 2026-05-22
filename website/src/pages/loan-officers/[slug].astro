@@ -90,11 +90,45 @@ const schema = [
       </dl>
 
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href="/get-started/" class="btn btn-primary">Talk to {lo.firstName.split(" ")[0]}</a>
+        <button id="contact-trigger" class="btn btn-primary">Talk to {lo.firstName.split(" ")[0]}</button>
         <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary">{COMPANY.hq.phone}</a>
       </div>
     </div>
   </section>
+
+  <!-- Contact dialog -->
+  <dialog id="contact-dialog" class="fixed inset-0 z-50 m-auto rounded-2xl shadow-2xl border border-[var(--color-mist-gray)] bg-white p-8 w-full max-w-lg">
+    <div class="flex items-start justify-between mb-6">
+      <div>
+        <p class="eyebrow">Get in touch</p>
+        <h2 class="mt-1" style="font-size: var(--text-h3);">Talk to {lo.displayName}</h2>
+      </div>
+      <button id="contact-close" class="text-[var(--color-text-muted)] hover:text-[var(--color-ink)] text-2xl leading-none" aria-label="Close">&times;</button>
+    </div>
+    <form id="lo-contact-form" action="/api/lead" method="POST" class="space-y-4">
+      <input type="hidden" name="lo_name" value={lo.displayName} />
+      <input type="hidden" name="lo_nmls" value={lo.nmls} />
+      <input type="hidden" name="source" value={`/loan-officers/${lo.slug}/`} />
+      <div>
+        <label class="block text-sm font-medium text-[var(--color-ink)] mb-1" for="cf-name">Your name</label>
+        <input id="cf-name" name="name" type="text" required placeholder="Jane Smith" class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-[var(--color-ink)] mb-1" for="cf-phone">Phone number</label>
+        <input id="cf-phone" name="phone" type="tel" required placeholder="(555) 555-5555" class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-[var(--color-ink)] mb-1" for="cf-email">Email address</label>
+        <input id="cf-email" name="email" type="email" required placeholder="jane@example.com" class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-[var(--color-ink)] mb-1" for="cf-message">What can {lo.firstName.split(" ")[0]} help you with?</label>
+        <textarea id="cf-message" name="message" rows="3" placeholder="Tell us about your situation..." class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] resize-none"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary w-full">Send message to {lo.firstName.split(" ")[0]}</button>
+      <p class="text-xs text-[var(--color-text-muted)] text-center">By submitting you agree to be contacted about your mortgage inquiry.</p>
+    </form>
+  </dialog>
 
   <!-- BIO NARRATIVE -->
   {lo.bio && (
@@ -135,3 +169,15 @@ const schema = [
     </div>
   </section>
 </Layout>
+
+<script>
+  const dialog = document.getElementById("contact-dialog") as HTMLDialogElement | null;
+  const trigger = document.getElementById("contact-trigger");
+  const close = document.getElementById("contact-close");
+
+  trigger?.addEventListener("click", () => dialog?.showModal());
+  close?.addEventListener("click", () => dialog?.close());
+  dialog?.addEventListener("click", (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+</script>

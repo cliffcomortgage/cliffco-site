@@ -4,7 +4,7 @@ import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
 import Headshot from "../components/ui/Headshot.astro";
 import { COMPANY } from "../data/company";
 import { BRANCHES } from "../data/branches";
-import { LOAN_OFFICERS, loanOfficer } from "../data/loan-officers";
+import { LOAN_OFFICERS, loanOfficer, loanOfficersByBranch } from "../data/loan-officers";
 import { STATE_LICENSES } from "../data/state-licenses";
 import { LEADERSHIP_TEAM } from "../data/leadership-team";
 
@@ -179,7 +179,7 @@ const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
             )}
             {b.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{b.nmls}</p>}
             <p class="text-xs text-[var(--color-text-muted)] mt-1">
-              {b.loanOfficerSlugs.length} loan officer{b.loanOfficerSlugs.length === 1 ? "" : "s"}.
+              {loanOfficersByBranch(b.slug).length} loan officer{loanOfficersByBranch(b.slug).length === 1 ? "" : "s"}.
             </p>
             {b.isFloridaDba && <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">Operates as Swish Capital, Inc.</p>}
           </div>

@@ -1,27 +1,44 @@
-﻿---
+---
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import Headshot from "../../components/ui/Headshot.astro";
 import { LOAN_OFFICERS } from "../../data/loan-officers";
 import { BRANCHES } from "../../data/branches";
 
-// Group by branch
+// Group by branch for the default view
 const byBranch = BRANCHES.map((b) => ({
   branch: b,
   officers: LOAN_OFFICERS.filter((lo) => lo.branchSlug === b.slug),
 })).filter((g) => g.officers.length > 0);
+
+// All unique states across all LOs, sorted
+const allStates = [...new Set(LOAN_OFFICERS.flatMap((lo) => [...lo.states]))].sort();
+
+const stateNames: Record<string, string> = {
+  AK: "Alaska", AL: "Alabama", AR: "Arkansas", AZ: "Arizona", CA: "California",
+  CO: "Colorado", CT: "Connecticut", DC: "Washington DC", DE: "Delaware",
+  FL: "Florida", GA: "Georgia", HI: "Hawaii", IA: "Iowa", ID: "Idaho",
+  IL: "Illinois", IN: "Indiana", KS: "Kansas", KY: "Kentucky", LA: "Louisiana",
+  MA: "Massachusetts", MD: "Maryland", ME: "Maine", MI: "Michigan", MN: "Minnesota",
+  MO: "Missouri", MS: "Mississippi", MT: "Montana", NC: "North Carolina",
+  ND: "North Dakota", NE: "Nebraska", NH: "New Hampshire", NJ: "New Jersey",
+  NM: "New Mexico", NV: "Nevada", NY: "New York", OH: "Ohio", OK: "Oklahoma",
+  OR: "Oregon", PA: "Pennsylvania", RI: "Rhode Island", SC: "South Carolina",
+  SD: "South Dakota", TN: "Tennessee", TX: "Texas", UT: "Utah", VA: "Virginia",
+  VT: "Vermont", WA: "Washington", WI: "Wisconsin", WV: "West Virginia", WY: "Wyoming",
+};
 ---
 
 <Layout
   title="Cliffco Loan Officers"
-  description="Meet Cliffco Mortgage Bankers' loan officers: every officer is NMLS-licensed and verifiable on NMLS Consumer Access. Browse by branch."
+  description="Meet Cliffco Mortgage Bankers' loan officers: every officer is NMLS-licensed and verifiable on NMLS Consumer Access. Filter by state or browse by branch."
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
     { name: "Loan Officers", href: "/loan-officers/" },
   ]} />
 
-  <section class="container-wide pt-12 pb-16">
+  <section class="container-wide pt-12 pb-10">
     <p class="eyebrow">Our People</p>
     <h1 class="mt-3" style="font-size: var(--text-display-lg);">
       Real loan officers. Verifiable credentials. Direct lines.
@@ -29,12 +46,27 @@ const byBranch = BRANCHES.map((b) => ({
     <p class="lead mt-6">
       Every Cliffco loan officer is licensed through NMLS: you can verify any of us on
       <a href="https://www.nmlsconsumeraccess.org/" rel="noopener">NMLS Consumer Access</a>.
-      We organize our team by office below; pick the person closest to your situation, or
-      let us match you in a one-business-day callback.
+      Filter by state to see everyone licensed to originate where you are, or browse by office below.
     </p>
+
+    <!-- State filter -->
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <label for="state-filter" class="font-medium text-sm text-[var(--color-ink)]">Filter by state:</label>
+      <select
+        id="state-filter"
+        class="border border-[var(--color-mist-gray)] rounded-lg px-3 py-2 text-sm text-[var(--color-ink)] bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+      >
+        <option value="">All states (browse by office)</option>
+        {allStates.map((s) => (
+          <option value={s}>{stateNames[s] ?? s} ({s})</option>
+        ))}
+      </select>
+      <span id="filter-count" class="text-sm text-[var(--color-text-muted)] hidden"></span>
+    </div>
   </section>
 
-  <section class="bg-white pb-16">
+  <!-- Branch-grouped view (default) -->
+  <section id="branch-view" class="bg-white pb-16">
     <div class="container-wide space-y-12">
       {byBranch.map((g) => (
         <div>
@@ -50,7 +82,8 @@ const byBranch = BRANCHES.map((b) => ({
                 )}
                 <p class="eyebrow">{lo.title}</p>
                 <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
-                <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls} · Licensed in {lo.states.join(", ")}</p>
+                <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>
+                <p class="text-xs text-[var(--color-text-muted)] mt-0.5">Licensed in {lo.states.join(", ")}</p>
                 {lo.languages && lo.languages.length > 1 && (
                   <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
                 )}
@@ -62,4 +95,55 @@ const byBranch = BRANCHES.map((b) => ({
       ))}
     </div>
   </section>
+
+  <!-- State-filtered view (shown when a state is selected) -->
+  <section id="state-view" class="bg-white pb-16 hidden">
+    <div class="container-wide">
+      <div id="state-results" class="grid gap-4 md:grid-cols-2 xl:grid-cols-3"></div>
+    </div>
+  </section>
 </Layout>
+
+<!-- LO data for client-side filtering -->
+<script define:vars={{ loData: LOAN_OFFICERS.map((lo) => ({
+  slug: lo.slug,
+  displayName: lo.displayName,
+  title: lo.title,
+  nmls: lo.nmls,
+  states: lo.states,
+  languages: lo.languages ?? [],
+  hasPhoto: lo.hasPhoto ?? false,
+})) }}>
+  const select = document.getElementById("state-filter");
+  const branchView = document.getElementById("branch-view");
+  const stateView = document.getElementById("state-view");
+  const stateResults = document.getElementById("state-results");
+  const filterCount = document.getElementById("filter-count");
+
+  select.addEventListener("change", () => {
+    const state = select.value;
+    if (!state) {
+      branchView.classList.remove("hidden");
+      stateView.classList.add("hidden");
+      filterCount.classList.add("hidden");
+      return;
+    }
+
+    const matched = loData.filter((lo) => lo.states.includes(state));
+    branchView.classList.add("hidden");
+    stateView.classList.remove("hidden");
+    filterCount.textContent = `${matched.length} loan officer${matched.length === 1 ? "" : "s"} licensed in ${state}`;
+    filterCount.classList.remove("hidden");
+
+    stateResults.innerHTML = matched.map((lo) => `
+      <a href="/loan-officers/${lo.slug}/" class="card no-underline text-[var(--color-ink)] flex flex-col" style="text-decoration:none;">
+        <p style="font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-muted);margin:0 0 0.25rem;">${lo.title}</p>
+        <h3 style="margin:0 0 0.25rem;font-size:1rem;font-weight:600;">${lo.displayName}</h3>
+        <p style="font-size:0.75rem;color:var(--color-text-muted);margin:0 0 0.125rem;">NMLS #${lo.nmls}</p>
+        <p style="font-size:0.75rem;color:var(--color-text-muted);margin:0;">${lo.states.join(", ")}</p>
+        ${lo.languages.length > 1 ? `<p style="font-size:0.75rem;color:var(--color-accent);font-weight:500;margin:0.5rem 0 0;">${lo.languages.join(" · ")}</p>` : ""}
+        <span style="margin-top:1rem;font-size:0.875rem;font-weight:600;color:var(--color-accent);">View bio →</span>
+      </a>
+    `).join("");
+  });
+</script>
