@@ -31,6 +31,8 @@ const branchLOs = LOAN_OFFICERS.filter(
 const licensedOnlyLOs = LOAN_OFFICERS.filter(
   (lo) => lo.states.includes(loc.state) && !stateBranchSlugs.has(lo.branchSlug) && !EXCLUDE_FROM_LOCATIONS.has(lo.slug),
 );
+// Total state-licensed LOs shown in the directory when filtered by state
+const totalStateLOs = LOAN_OFFICERS.filter((lo) => lo.states.includes(loc.state)).length;
 
 const faq = loc.isFlorida
   ? [
@@ -148,9 +150,7 @@ const schema = [
             </a>
           ))}
         </div>
-        {branchLOs.length > 9 && (
-          <p class="mt-6"><a href={`/loan-officers/?state=${loc.state}`} class="text-sm font-medium">See all {branchLOs.length} {loc.name}-based LOs →</a></p>
-        )}
+        <p class="mt-6"><a href={`/loan-officers/?state=${loc.state}`} class="btn btn-primary">View all {totalStateLOs} {loc.name}-licensed loan officers →</a></p>
       </div>
     </section>
   )}
@@ -163,7 +163,7 @@ const schema = [
         <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
           These loan officers are based at other Cliffco offices but are fully licensed to originate loans in {loc.name}.
         </p>
-        <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3 lo-shuffle-grid">
           {licensedOnlyLOs.slice(0, 6).map((lo) => (
             <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
               {lo.hasPhoto && (
@@ -181,9 +181,7 @@ const schema = [
             </a>
           ))}
         </div>
-        {licensedOnlyLOs.length > 6 && (
-          <p class="mt-6"><a href={`/loan-officers/?state=${loc.state}`} class="text-sm font-medium">See all {licensedOnlyLOs.length} {loc.name}-licensed LOs →</a></p>
-        )}
+        <p class="mt-6"><a href={`/loan-officers/?state=${loc.state}`} class="btn btn-primary">View all {totalStateLOs} {loc.name}-licensed loan officers →</a></p>
       </div>
     </section>
   )}
@@ -221,3 +219,13 @@ const schema = [
     </section>
   )}
 </Layout>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".lo-shuffle-grid").forEach((grid) => {
+    const children = [...grid.children] as HTMLElement[];
+    for (let i = children.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      grid.appendChild(children[j]);
+    }
+  });
+</script>
