@@ -77,7 +77,7 @@ const stateNames: Record<string, string> = {
               <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
                 {lo.hasPhoto && (
                   <div class="mb-4 -mx-6 -mt-6">
-                    <Headshot slug={lo.slug} name={lo.displayName} size={320} shape="square" class="rounded-t-xl" />
+                    <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="rounded-t-xl" />
                   </div>
                 )}
                 <p class="eyebrow">{lo.title}</p>

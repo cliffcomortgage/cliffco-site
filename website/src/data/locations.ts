@@ -105,6 +105,19 @@ export const LOCATIONS: readonly Location[] = [
     branchSlugs: ["orlando-fl"],
     featuredProducts: ["dscr", "business-bank-statement", "non-qm-self-employed", "renovation"],
   },
+  {
+    path: "florida/fort-lauderdale",
+    name: "Ft. Lauderdale, FL",
+    state: "FL",
+    isFlorida: true,
+    blurb:
+      "Cliffco's Ft. Lauderdale office serves Broward, Miami-Dade, and Palm Beach counties. " +
+      "South Florida's investor-dense market is a strong fit for DSCR, foreign national, ITIN, " +
+      "non-warrantable condo, and jumbo financing — loan types conventional lenders routinely " +
+      "decline. Operating as Swish Capital, Inc.",
+    branchSlugs: ["fort-lauderdale-fl"],
+    featuredProducts: ["dscr", "non-qm-self-employed", "business-bank-statement", "reverse-mortgage"],
+  },
 ];
 
 export const location = (path: string): Location | undefined =>

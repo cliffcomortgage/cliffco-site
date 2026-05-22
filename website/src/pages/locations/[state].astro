@@ -22,13 +22,14 @@ export async function getStaticPaths() {
 const { loc } = Astro.props;
 const stateBranches = BRANCHES.filter((b) => loc.branchSlugs?.includes(b.slug));
 const stateBranchSlugs = new Set(stateBranches.map((b) => b.slug));
+const EXCLUDE_FROM_LOCATIONS = new Set(["christopher-clifford-65234"]);
 // LOs physically assigned to a branch in this state
 const branchLOs = LOAN_OFFICERS.filter(
-  (lo) => lo.states.includes(loc.state) && stateBranchSlugs.has(lo.branchSlug),
+  (lo) => lo.states.includes(loc.state) && stateBranchSlugs.has(lo.branchSlug) && !EXCLUDE_FROM_LOCATIONS.has(lo.slug),
 );
 // LOs licensed in this state but based at a branch elsewhere
 const licensedOnlyLOs = LOAN_OFFICERS.filter(
-  (lo) => lo.states.includes(loc.state) && !stateBranchSlugs.has(lo.branchSlug),
+  (lo) => lo.states.includes(loc.state) && !stateBranchSlugs.has(lo.branchSlug) && !EXCLUDE_FROM_LOCATIONS.has(lo.slug),
 );
 
 const faq = loc.isFlorida
@@ -134,7 +135,7 @@ const schema = [
             <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
               {lo.hasPhoto && (
                 <div class="mb-4 -mx-6 -mt-6">
-                  <Headshot slug={lo.slug} name={lo.displayName} size={320} shape="square" class="rounded-t-xl" />
+                  <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="rounded-t-xl" />
                 </div>
               )}
               <p class="eyebrow">{lo.title}</p>
@@ -167,7 +168,7 @@ const schema = [
             <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
               {lo.hasPhoto && (
                 <div class="mb-4 -mx-6 -mt-6">
-                  <Headshot slug={lo.slug} name={lo.displayName} size={320} shape="square" class="rounded-t-xl" />
+                  <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="rounded-t-xl" />
                 </div>
               )}
               <p class="eyebrow">{lo.title}</p>

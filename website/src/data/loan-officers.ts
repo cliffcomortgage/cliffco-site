@@ -273,7 +273,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   { slug: "raymond-garcia-2559091", firstName: "Raymond", lastName: "Garcia", displayName: "Raymond Garcia", nmls: "2559091", title: "Loan Officer", states: ["NY", "NJ", "PA"], branchSlug: "uniondale-headquarters" },
   { slug: "renald-appo-53967", firstName: "Renald", lastName: "Appo", displayName: "Renald Appo", nmls: "53967", title: "Loan Officer", states: ["FL", "NY"], branchSlug: "uniondale-headquarters" },
   { slug: "richard-alvarez-1838273", firstName: "Richard", lastName: "Alvarez", displayName: "Richard Alvarez", nmls: "1838273", title: "Loan Officer", states: ["NY"], branchSlug: "uniondale-headquarters" },
-  { slug: "steve-wei-1231095", firstName: "Steve", lastName: "Wei", displayName: "Steve Wei", nmls: "1231095", title: "Vice President of Sales", states: ["AZ", "CA", "TX", "WA"], branchSlug: "uniondale-headquarters" },
+  { slug: "steve-wei-1231095", firstName: "Steve", lastName: "Wei", displayName: "Steve Wei", nmls: "1231095", title: "Branch Manager / Vice President of Sales", states: ["AZ", "CA", "TX", "WA"], branchSlug: "scottsdale-az" },
   { slug: "steven-rivera-1876188", firstName: "Steven", lastName: "Rivera", displayName: "Steven Rivera", nmls: "1876188", title: "Loan Officer", states: ["FL", "NC", "NJ", "NY", "PA"], branchSlug: "uniondale-headquarters" },
   { slug: "tamara-williamson-1933434", firstName: "Tamara", lastName: "Williamson", displayName: "Tamara Williamson", nmls: "1933434", title: "Loan Officer", states: ["NY"], branchSlug: "uniondale-headquarters" },
   { slug: "thomas-whalen-9167", firstName: "Thomas", lastName: "Whalen", displayName: "Thomas Whalen", nmls: "9167", title: "Loan Officer", states: ["NY"], branchSlug: "uniondale-headquarters" },
