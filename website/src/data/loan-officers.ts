@@ -243,6 +243,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   { slug: "christian-nguyen-958635", firstName: "Christian", lastName: "Nguyen", displayName: "Christian H. Nguyen", nmls: "958635", title: "Senior Loan Officer", states: ["CA", "CT", "FL", "NJ", "NY", "PA", "TX"], branchSlug: "uniondale-headquarters" },
   { slug: "daniel-ebbecke-1578785", firstName: "Daniel", lastName: "Ebbecke", displayName: "Daniel Ebbecke", nmls: "1578785", title: "Loan Officer", states: ["NY"], branchSlug: "uniondale-headquarters" },
   { slug: "dick-lee-13202", firstName: "Dick", lastName: "Lee", displayName: "Dick Lee", nmls: "13202", title: "VP of Business Development", states: ["MA"], branchSlug: "uniondale-headquarters" },
+  { slug: "david-illouz-1584179", firstName: "David", lastName: "Illouz", displayName: "David Illouz", nmls: "1584179", title: "Loan Officer", states: ["NY"], branchSlug: "uniondale-headquarters", hasPhoto: false },
   { slug: "donna-hemberger-90881", firstName: "Donna", lastName: "Hemberger", displayName: "Donna Hemberger", nmls: "90881", title: "Loan Officer", states: ["NY"], branchSlug: "uniondale-headquarters" },
   { slug: "emily-cordeira-1262960", firstName: "Emily", lastName: "Cordeira", displayName: "Emily Nicole Cordeira", nmls: "1262960", title: "Loan Officer", states: ["CA", "CT", "FL", "NJ", "NY", "PA", "TX"], branchSlug: "uniondale-headquarters" },
   { slug: "emmanuel-estinvil-66287", firstName: "Emmanuel", lastName: "Estinvil", displayName: "Emmanuel Estinvil", nmls: "66287", title: "Loan Officer", states: ["NY"], branchSlug: "uniondale-headquarters" },
@@ -281,6 +282,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   { slug: "tamara-williamson-1933434", firstName: "Tamara", lastName: "Williamson", displayName: "Tamara Williamson", nmls: "1933434", title: "Loan Officer", states: ["NY"], branchSlug: "uniondale-headquarters" },
   { slug: "thomas-whalen-9167", firstName: "Thomas", lastName: "Whalen", displayName: "Thomas Whalen", nmls: "9167", title: "Loan Officer", states: ["NY"], branchSlug: "uniondale-headquarters" },
   { slug: "andrea-carver-2074055", firstName: "Andrea", lastName: "Carver", displayName: "Andrea Carver", nmls: "2074055", title: "Loan Officer", states: ["NJ"], branchSlug: "uniondale-headquarters" },
+  { slug: "jose-marrero-1962198", firstName: "Jose", lastName: "Marrero", displayName: "Jose Marrero", nmls: "1962198", title: "Loan Officer", states: ["NY"], branchSlug: "uniondale-headquarters", hasPhoto: false },
   { slug: "steve-lazo-2636320", firstName: "Steve", lastName: "Lazo", displayName: "Steve Lazo", nmls: "2636320", title: "Loan Officer", states: ["NY"], branchSlug: "uniondale-headquarters" },
 ];
 

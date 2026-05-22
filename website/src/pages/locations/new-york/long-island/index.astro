@@ -13,12 +13,15 @@ const loc = location("new-york/long-island")!;
 const liBranches = BRANCHES.filter((b) => b.metro === "Long Island");
 
 const EXCLUDE = new Set(["christopher-clifford-65234"]);
-const uniondaleLOs = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "uniondale-headquarters" && !EXCLUDE.has(lo.slug));
+// Zambelli team splits time between Bay Shore and Uniondale, so include them in both sections
+const uniondaleLOs = LOAN_OFFICERS.filter(
+  (lo) => (lo.branchSlug === "uniondale-headquarters" || lo.branchSlug === "bay-shore-ny") && !EXCLUDE.has(lo.slug),
+);
 const wantaghLOs  = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "wantagh-ny");
 const bayShore    = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "bay-shore-ny");
 
 const branchLOCount: Record<string, number> = {
-  "uniondale-headquarters": uniondaleLOs.length,
+  "uniondale-headquarters": LOAN_OFFICERS.filter((lo) => lo.branchSlug === "uniondale-headquarters" && !EXCLUDE.has(lo.slug)).length,
   "wantagh-ny":             wantaghLOs.length,
   "bay-shore-ny":           bayShore.length,
 };
