@@ -1,4 +1,4 @@
-﻿---
+---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
@@ -11,7 +11,17 @@ import Headshot from "../../../../components/ui/Headshot.astro";
 
 const loc = location("new-york/long-island")!;
 const liBranches = BRANCHES.filter((b) => b.metro === "Long Island");
-const nyLOs = LOAN_OFFICERS.filter((lo) => liBranches.some((b) => b.slug === lo.branchSlug));
+
+const EXCLUDE = new Set(["christopher-clifford-65234"]);
+const uniondaleLOs = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "uniondale-headquarters" && !EXCLUDE.has(lo.slug));
+const wantaghLOs  = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "wantagh-ny");
+const bayShore    = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "bay-shore-ny");
+
+const branchLOCount: Record<string, number> = {
+  "uniondale-headquarters": uniondaleLOs.length,
+  "wantagh-ny":             wantaghLOs.length,
+  "bay-shore-ny":           bayShore.length,
+};
 
 const faq = [
   { question: "Where is Cliffco's Long Island office?", answer: "Cliffco's headquarters is at 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553, phone (516) 408-7300. We also have Long Island branches in Wantagh (Nassau) and Bay Shore (Suffolk)." },
@@ -108,34 +118,105 @@ const yearsInBiz = COMPANY.yearsInBusiness();
             {b.street && <p class="text-sm text-[var(--color-text-muted)] mt-2">{b.street}<br/>{b.city}, {b.region} {b.postalCode}</p>}
             {b.phone && <p class="text-sm mt-1"><a href={`tel:${b.phone.replace(/\D/g, "")}`} class="text-[var(--color-ink)] no-underline font-medium">{b.phone}</a></p>}
             {b.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{b.nmls}</p>}
-            <p class="text-sm text-[var(--color-text-muted)] mt-3">{b.loanOfficerSlugs.length} loan officer{b.loanOfficerSlugs.length === 1 ? "" : "s"}.</p>
+            <p class="text-sm text-[var(--color-text-muted)] mt-3">{branchLOCount[b.slug] ?? 0} loan officer{(branchLOCount[b.slug] ?? 0) === 1 ? "" : "s"}.</p>
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section bg-white">
-    <div class="container-wide">
-      <p class="eyebrow">Long Island loan officers</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Talk to a person who lives here.</h2>
-      <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {nyLOs.map((lo) => (
-          <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
-            {lo.hasPhoto && (
-              <div class="mb-4 -mx-6 -mt-6">
-                <Headshot slug={lo.slug} name={lo.displayName} size={320} shape="square" class="rounded-t-xl" />
-              </div>
-            )}
-            <p class="eyebrow">{lo.title}</p>
-            <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
-            <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>
-            <span class="mt-3 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
-          </a>
-        ))}
+  <!-- Uniondale HQ -->
+  {uniondaleLOs.length > 0 && (
+    <section class="section bg-white">
+      <div class="container-wide">
+        <p class="eyebrow">Uniondale, NY (Headquarters)</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Loan officers at our HQ.</h2>
+        <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
+          70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553
+        </p>
+        <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {uniondaleLOs.map((lo) => (
+            <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
+              {lo.hasPhoto && (
+                <div class="mb-4 -mx-6 -mt-6">
+                  <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="rounded-t-xl" />
+                </div>
+              )}
+              <p class="eyebrow">{lo.title}</p>
+              <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>
+              {lo.languages && lo.languages.length > 1 && (
+                <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
+              )}
+              <span class="mt-3 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
+            </a>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
+
+  <!-- Wantagh -->
+  {wantaghLOs.length > 0 && (
+    <section class="section bg-[var(--color-mist-gray)]">
+      <div class="container-wide">
+        <p class="eyebrow">Wantagh, NY</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Loan officers at our Wantagh office.</h2>
+        <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
+          3265 Merrick Road, Wantagh, NY 11793
+        </p>
+        <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {wantaghLOs.map((lo) => (
+            <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
+              {lo.hasPhoto && (
+                <div class="mb-4 -mx-6 -mt-6">
+                  <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="rounded-t-xl" />
+                </div>
+              )}
+              <p class="eyebrow">{lo.title}</p>
+              <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>
+              {lo.languages && lo.languages.length > 1 && (
+                <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
+              )}
+              <span class="mt-3 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Bay Shore -->
+  {bayShore.length > 0 && (
+    <section class="section bg-white">
+      <div class="container-wide">
+        <p class="eyebrow">Bay Shore, NY</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Loan officers at our Bay Shore office.</h2>
+        <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
+          50 Park Avenue, 2nd Floor, Suite 1, Bay Shore, NY 11706
+        </p>
+        <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {bayShore.map((lo) => (
+            <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
+              {lo.hasPhoto && (
+                <div class="mb-4 -mx-6 -mt-6">
+                  <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="rounded-t-xl" />
+                </div>
+              )}
+              <p class="eyebrow">{lo.title}</p>
+              <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>
+              {lo.languages && lo.languages.length > 1 && (
+                <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
+              )}
+              <span class="mt-3 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="section bg-[var(--color-mist-gray)]">
     <div class="container-prose">

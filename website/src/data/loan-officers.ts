@@ -220,7 +220,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   { slug: "mitchell-patterson-2560483", firstName: "Mitchell", lastName: "Patterson", displayName: "Mitchell Patterson", nmls: "2560483", title: "Loan Officer", states: ["MN", "TX"], branchSlug: "excelsior-mn", hasPhoto: true },
 
   // Branchburg (NJ)
-  { slug: "christian-soto-1173591", firstName: "Christian", lastName: "Soto", displayName: "Christian Soto", nmls: "1173591", title: "Loan Officer", states: ["NJ"], branchSlug: "branchburg-nj", languages: ["English", "Spanish"], hasPhoto: true },
+  { slug: "christian-soto-1173591", firstName: "Christian", lastName: "Soto", displayName: "Christian Soto", nmls: "1173591", title: "Loan Officer", states: ["NJ"], branchSlug: "uniondale-headquarters", languages: ["English", "Spanish"], hasPhoto: true },
   { slug: "gary-johansen-339278", firstName: "Gary", lastName: "Johansen", displayName: "Gary Johansen", nmls: "339278", title: "Regional Sales Manager", states: ["NJ", "NY"], branchSlug: "branchburg-nj", hasPhoto: true },
 
   // Jamaica (NY) Queens
