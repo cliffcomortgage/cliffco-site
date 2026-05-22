@@ -3,7 +3,20 @@ import Layout from "../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 
 const articles = [
-  // Investors
+  // Investors — guides
+  {
+    category: "Investors",
+    title: "DSCR Loans Explained: A Guide for Real Estate Investors",
+    description: "How DSCR loans work, who qualifies, and why investors use them to grow portfolios without tying up personal income documents.",
+    href: "/mortgage-guides/dscr-loans-real-estate-investors-guide/",
+  },
+  {
+    category: "Investors",
+    title: "Investment Mortgages: A Complete Guide",
+    description: "How investment property loans work, what they require, and which type fits your situation. From single-family rentals to small multi-family.",
+    href: "/mortgage-guides/what-is-an-investment-mortgage/",
+  },
+  // Investors — articles
   {
     category: "Investors",
     title: "DSCR Loans for Real Estate Investors",
@@ -34,7 +47,14 @@ const articles = [
     description: "Conventional loan vs DSCR loan for investment property isn't just a rate comparison. The right answer depends on how your income looks on paper and how the property cash flows.",
     href: "/mortgage-guides/blog/conventional-loan-vs-dscr-loan-investment-property/",
   },
-  // First-Time Buyers
+  // First-Time Buyers — guides
+  {
+    category: "First-Time Buyers",
+    title: "Down Payment Assistance 101: Your Complete Guide",
+    description: "How down payment assistance programs work, who qualifies, and how to apply in New York and New Jersey. Grants, forgivable loans, and more.",
+    href: "/mortgage-guides/down-payment-assistance-programs/",
+  },
+  // First-Time Buyers — articles
   {
     category: "First-Time Buyers",
     title: "Mortgage Pre-Approval vs Your Actual Budget: What First-Time Buyers Need to Know",
@@ -65,7 +85,14 @@ const articles = [
     description: "Down payment assistance programs for first-time homebuyers are widely available and widely misunderstood. Here's what they actually cover, who qualifies, and what to watch for.",
     href: "/mortgage-guides/blog/down-payment-assistance-programs-first-time-homebuyers/",
   },
-  // Reverse Mortgage
+  // Reverse Mortgage — guide
+  {
+    category: "Reverse Mortgage",
+    title: "Reverse Mortgages: Everything You Need to Know",
+    description: "A complete guide to reverse mortgages (HECM) for homeowners 62 and older. Learn how they work, who qualifies, and when one makes sense.",
+    href: "/mortgage-guides/reverse-mortgage-guide/",
+  },
+  // Reverse Mortgage — articles
   {
     category: "Reverse Mortgage",
     title: "How Does a Reverse Mortgage Work? A Plain-Language Guide for Homeowners 62+",
@@ -96,7 +123,20 @@ const articles = [
     description: "Reverse mortgage costs and fees deserve clear understanding before you decide. Here's an honest breakdown of what you'll pay and how to evaluate whether it's worth it.",
     href: "/mortgage-guides/blog/reverse-mortgage-costs-and-fees/",
   },
-  // Self-Employed
+  // Self-Employed — guides
+  {
+    category: "Self-Employed",
+    title: "Non-QM Loans: The Complete Guide",
+    description: "What non-QM mortgages are, who they're for, and how to get one. Plain-English breakdown of bank statement, DSCR, P&L, and more.",
+    href: "/mortgage-guides/non-qm-loans-guide/",
+  },
+  {
+    category: "Self-Employed",
+    title: "7 Smart Tips to Get a Non-QM Mortgage When You're Self-Employed",
+    description: "Practical advice for self-employed borrowers navigating the non-QM mortgage process with bank statements, 1099s, and P&L docs.",
+    href: "/mortgage-guides/non-qm-mortgage-self-employed/",
+  },
+  // Self-Employed — articles
   {
     category: "Self-Employed",
     title: "Why Small Business Owners Get Denied for Mortgages and What to Do About It",
@@ -318,21 +358,21 @@ const categories = ["All", "Investors", "First-Time Buyers", "Reverse Mortgage",
 ---
 
 <Layout
-  title="Mortgage Blog | Cliffco Mortgage Bankers"
-  description="Mortgage advice written for real borrowers, not bankers. Articles on DSCR loans, first-time buying, reverse mortgages, self-employed financing, VA loans, and more."
+  title="Mortgage Guides | Cliffco Mortgage Bankers"
+  description="Clear, jargon-free mortgage guides and articles from Cliffco. Reverse mortgages, non-QM loans, DSCR, down payment assistance, VA loans, and more, written for real people."
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
-    { name: "Mortgage Guides", href: "/mortgage-guides/" },
-    { name: "Blog", href: "/mortgage-guides/blog/" },
+    { name: "Mortgage Guides", href: "/mortgage-guides/blog/" },
   ]} />
 
   <section class="container-wide pt-12 pb-10">
-    <p class="eyebrow">Blog</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Mortgage advice written for the borrower, not the lender.</h1>
+    <p class="eyebrow">Mortgage Guides</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Real answers to real mortgage questions.</h1>
     <p class="lead mt-6">
-      Plain-language articles on every corner of the mortgage market, written by the people who
-      actually close these loans every day. Pick your topic below.
+      Whether you're buying your first home, investing in rental property, or figuring out
+      if a reverse mortgage makes sense for your retirement — these guides give you the full
+      picture, written by the people who actually close these loans every day.
     </p>
   </section>
 
