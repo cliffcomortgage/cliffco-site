@@ -72,7 +72,7 @@ const stateNames: Record<string, string> = {
         <div>
           <h2 class="text-xl font-semibold text-[var(--color-ink)]" id={g.branch.slug}>{g.branch.name}</h2>
           {g.branch.metro && <p class="text-sm text-[var(--color-text-muted)] mt-1">{g.branch.metro}</p>}
-          <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3 lo-shuffle-grid">
             {g.officers.map((lo) => (
               <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
                 {lo.hasPhoto && (
@@ -103,6 +103,16 @@ const stateNames: Record<string, string> = {
     </div>
   </section>
 </Layout>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".lo-shuffle-grid").forEach((grid) => {
+    const children = [...grid.children] as HTMLElement[];
+    for (let i = children.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      grid.appendChild(children[j]);
+    }
+  });
+</script>
 
 <!-- LO data for client-side filtering -->
 <script define:vars={{ loData: LOAN_OFFICERS.map((lo) => ({
