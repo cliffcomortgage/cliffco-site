@@ -49,13 +49,124 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
       <li><strong>Consider a bank statement loan if your deposit history in a consolidated account is stronger than your tax return net income.</strong> For freelancers with multiple income sources, the bank statement approach often produces a more accurate picture of actual earnings than tax returns alone.</li>
     </ol>
 
-    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
-      <div>
-        <p class="font-semibold text-[var(--color-ink)]">See what your deposit history qualifies you for.</p>
-        <p class="text-sm text-[var(--color-text-muted)] mt-1">Find your estimated qualifying income based on your deposit history so you know what purchase price is realistic before you start the application process.</p>
+    <!-- Embedded lite Self-Employed Income Calculator -->
+    <div class="mt-12 border border-[var(--color-accent)]/25 rounded-2xl overflow-hidden">
+      <div class="bg-[var(--color-accent)]/8 px-6 py-5 border-b border-[var(--color-accent)]/15">
+        <p class="eyebrow text-xs mb-1">Quick check</p>
+        <h2 class="text-xl font-semibold text-[var(--color-ink)]">Compare your qualifying income.</h2>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1">See how conventional lenders vs. bank statement lenders view your income — side by side.</p>
       </div>
-      <a href="/mortgage-guides/calculators/#self-employed-calculator" class="btn btn-primary shrink-0">Get started</a>
+      <div class="p-6">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Year 1 net income — tax return ($)</label>
+            <input id="art-se-y1" type="number" value="80000" min="0" step="1000" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Year 2 net income — tax return ($)</label>
+            <input id="art-se-y2" type="number" value="85000" min="0" step="1000" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual depreciation add-back ($)</label>
+            <input id="art-se-dep" type="number" value="5000" min="0" step="500" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Other add-backs ($)</label>
+            <input id="art-se-add" type="number" value="0" min="0" step="500" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">12-month bank statement deposits ($)</label>
+            <input id="art-se-dep2" type="number" value="180000" min="0" step="1000" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Business expense ratio (%)</label>
+            <input id="art-se-ratio" type="number" value="40" min="0" max="90" step="5" class="art-calc-input" />
+          </div>
+        </div>
+        <button id="art-se-btn" class="btn btn-primary mt-5">Compare My Income</button>
+
+        <div id="art-se-result" class="hidden mt-6">
+          <div class="p-5 bg-[var(--color-mist-gray)] rounded-xl">
+            <div class="grid gap-4 sm:grid-cols-3">
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Conventional Qualifying Income</p>
+                <p id="art-se-conv" class="text-3xl font-bold text-[var(--color-ink)] mt-1"></p>
+                <p class="text-xs text-[var(--color-text-muted)] mt-1">per month</p>
+              </div>
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Bank Statement Qualifying Income</p>
+                <p id="art-se-bank" class="text-3xl font-bold text-[var(--color-ink)] mt-1"></p>
+                <p class="text-xs text-[var(--color-text-muted)] mt-1">per month</p>
+              </div>
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Recommended Path</p>
+                <p id="art-se-rec" class="text-2xl font-bold text-[var(--color-accent)] mt-1"></p>
+              </div>
+            </div>
+            <p class="mt-3 text-xs text-[var(--color-text-muted)]">Conventional path uses 24-month average (or lower year if declining). Bank statement path uses deposits minus expense ratio, annualized. Both are estimates — actual lender guidelines vary.</p>
+          </div>
+
+          <div class="mt-4 p-5 bg-[var(--color-rich-black)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+            <div>
+              <p class="text-white font-semibold">Not sure which path fits your income?</p>
+              <p class="text-white/70 text-sm mt-1">A Cliffco self-employed specialist can run both scenarios with real lender guidelines and tell you what you qualify for.</p>
+            </div>
+            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+          </div>
+
+          <p class="mt-4 text-sm text-center text-[var(--color-text-muted)]">
+            Want to model other scenarios? <a href="/mortgage-guides/calculators/" class="text-[var(--color-accent)] font-medium">See all 10 calculators →</a>
+          </p>
+        </div>
+      </div>
     </div>
 
   </article>
 </Layout>
+
+<style>
+  .art-calc-input {
+    width: 100%;
+    border: 1px solid var(--color-soft-gray, #d1d5db);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .art-calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+</style>
+
+<script>
+  const seBtn = document.getElementById("art-se-btn")!;
+  seBtn.addEventListener("click", () => {
+    const y1 = +(document.getElementById("art-se-y1") as HTMLInputElement).value;
+    const y2 = +(document.getElementById("art-se-y2") as HTMLInputElement).value;
+    const dep = +(document.getElementById("art-se-dep") as HTMLInputElement).value;
+    const add = +(document.getElementById("art-se-add") as HTMLInputElement).value;
+    const deposits = +(document.getElementById("art-se-dep2") as HTMLInputElement).value;
+    const ratio = +(document.getElementById("art-se-ratio") as HTMLInputElement).value;
+
+    const convAnnual = y2 < y1
+      ? y2 + dep + add
+      : ((y1 + y2) / 2) + dep + add;
+    const convMonthly = convAnnual / 12;
+    const bankMonthly = (deposits * (1 - ratio / 100)) / 12;
+    const fmt = (v: number) => "$" + Math.round(v).toLocaleString("en-US");
+
+    (document.getElementById("art-se-conv") as HTMLElement).textContent = fmt(convMonthly);
+    (document.getElementById("art-se-bank") as HTMLElement).textContent = fmt(bankMonthly);
+
+    const recEl = document.getElementById("art-se-rec") as HTMLElement;
+    if (bankMonthly > convMonthly * 1.1) recEl.textContent = "Bank Statement";
+    else if (convMonthly > bankMonthly * 1.1) recEl.textContent = "Conventional";
+    else recEl.textContent = "Compare both";
+
+    (document.getElementById("art-se-result") as HTMLElement).classList.remove("hidden");
+  });
+</script>

@@ -48,13 +48,124 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
       <li><strong>Run your DTI calculation with both properties included as a stress test.</strong> Even if your plan is to sell, knowing that you can qualify while carrying both mortgages gives you flexibility in the timing of your sale that a buyer who can only qualify with the existing mortgage eliminated doesn't have.</li>
     </ol>
 
-    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
-      <div>
-        <p class="font-semibold text-[var(--color-ink)]">Know your qualification ceiling before you fall in love with a purchase price.</p>
-        <p class="text-sm text-[var(--color-text-muted)] mt-1">Model your full DTI including your existing mortgage so you see your actual buying power before you start shopping.</p>
+    <!-- Embedded lite Payment Estimator -->
+    <div class="mt-12 border border-[var(--color-accent)]/25 rounded-2xl overflow-hidden">
+      <div class="bg-[var(--color-accent)]/8 px-6 py-5 border-b border-[var(--color-accent)]/15">
+        <p class="eyebrow text-xs mb-1">Quick check</p>
+        <h2 class="text-xl font-semibold text-[var(--color-ink)]">Estimate your monthly payment.</h2>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1">Enter the numbers for any property to see your estimated monthly payment before you make an offer.</p>
       </div>
-      <a href="/mortgage-guides/calculators/#payment-estimator" class="btn btn-primary shrink-0">Get started</a>
+      <div class="p-6">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Home price ($)</label>
+            <input id="art-pe-price" type="number" value="500000" min="50000" step="5000" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Down payment (%)</label>
+            <input id="art-pe-down" type="number" value="20" min="3" max="50" step="1" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Interest rate (%)</label>
+            <input id="art-pe-rate" type="number" value="7.0" min="1" max="15" step="0.125" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Loan term</label>
+            <select id="art-pe-term" class="art-calc-input">
+              <option value="30">30-year fixed</option>
+              <option value="20">20-year fixed</option>
+              <option value="15">15-year fixed</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual taxes ($)</label>
+            <input id="art-pe-taxes" type="number" value="6000" min="0" step="100" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual insurance ($)</label>
+            <input id="art-pe-ins" type="number" value="2400" min="0" step="100" class="art-calc-input" />
+          </div>
+        </div>
+        <button id="art-pe-btn" class="btn btn-primary mt-5">Estimate Payment</button>
+
+        <div id="art-pe-result" class="hidden mt-6">
+          <div class="p-5 bg-[var(--color-mist-gray)] rounded-xl">
+            <div class="grid gap-4 sm:grid-cols-3">
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Principal &amp; Interest</p>
+                <p id="art-pe-pi" class="text-3xl font-bold text-[var(--color-accent)] mt-1"></p>
+              </div>
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Taxes &amp; Insurance</p>
+                <p id="art-pe-ti" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+              </div>
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Total Monthly Payment</p>
+                <p id="art-pe-total" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+              </div>
+            </div>
+            <p id="art-pe-note" class="mt-3 text-xs text-[var(--color-text-muted)]"></p>
+          </div>
+
+          <div class="mt-4 p-5 bg-[var(--color-rich-black)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+            <div>
+              <p class="text-white font-semibold">Know your number before you make an offer.</p>
+              <p class="text-white/70 text-sm mt-1">A Cliffco loan officer can lock a rate and get you pre-approved the same day.</p>
+            </div>
+            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+          </div>
+
+          <p class="mt-4 text-sm text-center text-[var(--color-text-muted)]">
+            Want to model other scenarios? <a href="/mortgage-guides/calculators/" class="text-[var(--color-accent)] font-medium">See all 10 calculators →</a>
+          </p>
+        </div>
+      </div>
     </div>
 
   </article>
 </Layout>
+
+<style>
+  .art-calc-input {
+    width: 100%;
+    border: 1px solid var(--color-soft-gray, #d1d5db);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .art-calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+</style>
+
+<script>
+  const peBtn = document.getElementById("art-pe-btn")!;
+  peBtn.addEventListener("click", () => {
+    const price = +(document.getElementById("art-pe-price") as HTMLInputElement).value;
+    const downPct = +(document.getElementById("art-pe-down") as HTMLInputElement).value;
+    const rate = +(document.getElementById("art-pe-rate") as HTMLInputElement).value;
+    const term = +(document.getElementById("art-pe-term") as HTMLSelectElement).value;
+    const taxes = +(document.getElementById("art-pe-taxes") as HTMLInputElement).value;
+    const ins = +(document.getElementById("art-pe-ins") as HTMLInputElement).value;
+
+    const loanAmount = price * (1 - downPct / 100);
+    const r = rate / 100 / 12;
+    const n = term * 12;
+    const pi = r === 0 ? loanAmount / n : loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const ti = (taxes + ins) / 12;
+    const total = pi + ti;
+    const fmt = (v: number) => "$" + Math.round(v).toLocaleString("en-US");
+
+    (document.getElementById("art-pe-pi") as HTMLElement).textContent = fmt(pi);
+    (document.getElementById("art-pe-ti") as HTMLElement).textContent = fmt(ti);
+    (document.getElementById("art-pe-total") as HTMLElement).textContent = fmt(total);
+    (document.getElementById("art-pe-note") as HTMLElement).textContent =
+      `Loan amount: ${fmt(loanAmount)} | Down payment: ${fmt(price * downPct / 100)}. Estimate only — does not include PMI, HOA, or other costs.`;
+    (document.getElementById("art-pe-result") as HTMLElement).classList.remove("hidden");
+  });
+</script>

@@ -46,13 +46,124 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
       <li><strong>Understand the reserve requirement.</strong> DSCR lenders typically require several months of total monthly payments held in reserves after closing. For foreign national borrowers, that requirement is often higher. Factor that into your total capital planning before you commit to a purchase price.</li>
     </ol>
 
-    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
-      <div>
-        <p class="font-semibold text-[var(--color-ink)]">Run the property numbers before you engage a lender.</p>
-        <p class="text-sm text-[var(--color-text-muted)] mt-1">The DSCR Calculator can show you whether a target property meets the coverage ratio threshold at current rates before you begin the application process.</p>
+    <!-- Embedded lite DSCR Calculator -->
+    <div class="mt-12 border border-[var(--color-accent)]/25 rounded-2xl overflow-hidden">
+      <div class="bg-[var(--color-accent)]/8 px-6 py-5 border-b border-[var(--color-accent)]/15">
+        <p class="eyebrow text-xs mb-1">Quick check</p>
+        <h2 class="text-xl font-semibold text-[var(--color-ink)]">Does this property qualify?</h2>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1">Enter your numbers to see the DSCR ratio and whether the deal pencils out.</p>
       </div>
-      <a href="/mortgage-guides/calculators/#dscr-calculator" class="btn btn-primary shrink-0">Get started</a>
+      <div class="p-6">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly gross rent ($)</label>
+            <input id="art-dscr-rent" type="number" value="2500" min="0" step="50" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly P&amp;I ($)</label>
+            <input id="art-dscr-pi" type="number" value="1500" min="0" step="50" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly taxes ($)</label>
+            <input id="art-dscr-taxes" type="number" value="300" min="0" step="25" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly insurance ($)</label>
+            <input id="art-dscr-ins" type="number" value="150" min="0" step="25" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly HOA ($)</label>
+            <input id="art-dscr-hoa" type="number" value="0" min="0" step="25" class="art-calc-input" />
+          </div>
+        </div>
+        <button id="art-dscr-btn" class="btn btn-primary mt-5">Calculate DSCR</button>
+
+        <div id="art-dscr-result" class="hidden mt-6">
+          <div class="p-5 bg-[var(--color-mist-gray)] rounded-xl">
+            <div class="grid gap-4 sm:grid-cols-3">
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">DSCR Ratio</p>
+                <p id="art-dscr-ratio" class="text-3xl font-bold mt-1"></p>
+              </div>
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Total Monthly Obligation</p>
+                <p id="art-dscr-obligation" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+              </div>
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Monthly Cash Flow</p>
+                <p id="art-dscr-cashflow" class="text-2xl font-bold mt-1"></p>
+              </div>
+            </div>
+            <p id="art-dscr-verdict" class="mt-3 text-sm font-medium text-[var(--color-text-muted)]"></p>
+          </div>
+
+          <div class="mt-4 p-5 bg-[var(--color-rich-black)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+            <div>
+              <p class="text-white font-semibold">Ready to move on this property?</p>
+              <p class="text-white/70 text-sm mt-1">A Cliffco loan officer can lock a rate, confirm DSCR eligibility, and get you to pre-approval in 24 hours.</p>
+            </div>
+            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+          </div>
+
+          <p class="mt-4 text-sm text-center text-[var(--color-text-muted)]">
+            Want to model other scenarios? <a href="/mortgage-guides/calculators/" class="text-[var(--color-accent)] font-medium">See all 10 calculators →</a>
+          </p>
+        </div>
+      </div>
     </div>
 
   </article>
 </Layout>
+
+<style>
+  .art-calc-input {
+    width: 100%;
+    border: 1px solid var(--color-soft-gray, #d1d5db);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .art-calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+</style>
+
+<script>
+  const dscrBtn = document.getElementById("art-dscr-btn")!;
+  dscrBtn.addEventListener("click", () => {
+    const rent = +(document.getElementById("art-dscr-rent") as HTMLInputElement).value;
+    const pi   = +(document.getElementById("art-dscr-pi")   as HTMLInputElement).value;
+    const tax  = +(document.getElementById("art-dscr-taxes") as HTMLInputElement).value;
+    const ins  = +(document.getElementById("art-dscr-ins")  as HTMLInputElement).value;
+    const hoa  = +(document.getElementById("art-dscr-hoa")  as HTMLInputElement).value;
+
+    const obligation = pi + tax + ins + hoa;
+    const dscr = obligation > 0 ? rent / obligation : 0;
+    const cashflow = rent - obligation;
+    const fmt = (n: number) => "$" + Math.abs(Math.round(n)).toLocaleString("en-US");
+
+    const ratioEl = document.getElementById("art-dscr-ratio")!;
+    ratioEl.textContent = dscr.toFixed(2);
+    ratioEl.className = "text-3xl font-bold mt-1 " + (dscr >= 1.25 ? "text-green-600" : dscr >= 1.0 ? "text-yellow-600" : "text-red-600");
+
+    (document.getElementById("art-dscr-obligation") as HTMLElement).textContent = fmt(obligation);
+
+    const cfEl = document.getElementById("art-dscr-cashflow")!;
+    cfEl.textContent = (cashflow >= 0 ? "+" : "-") + fmt(cashflow);
+    cfEl.className = "text-2xl font-bold mt-1 " + (cashflow >= 0 ? "text-green-600" : "text-red-600");
+
+    let verdict = "";
+    if (dscr >= 1.25)      verdict = "Strong cash flow. This property should qualify at standard DSCR pricing with most lenders.";
+    else if (dscr >= 1.10) verdict = "Good coverage. Most lenders approve at standard pricing at a 1.10+ ratio.";
+    else if (dscr >= 1.0)  verdict = "Breakeven coverage. Some lenders will approve, but you may need a stronger down payment or credit profile.";
+    else                   verdict = "Below breakeven. This property may not qualify for a standard DSCR loan. A larger down payment or lower rate may help.";
+
+    (document.getElementById("art-dscr-verdict") as HTMLElement).textContent = verdict;
+    (document.getElementById("art-dscr-result") as HTMLElement).classList.remove("hidden");
+  });
+</script>

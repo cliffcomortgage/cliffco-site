@@ -54,13 +54,107 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
       <li><strong>Use the HUD counseling session to review the numbers in your specific scenario.</strong> The independent counselor can walk through the cost structure with you in detail and is required to present alternatives to the reverse mortgage before you proceed.</li>
     </ol>
 
-    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
-      <div>
-        <p class="font-semibold text-[var(--color-ink)]">See how the costs project over your time horizon.</p>
-        <p class="text-sm text-[var(--color-text-muted)] mt-1">The Reverse Mortgage Estimator shows you projected loan balances and remaining equity over time based on your specific situation, so the cost picture is concrete rather than abstract.</p>
+    <!-- Embedded lite Reverse Mortgage Estimator -->
+    <div class="mt-12 border border-[var(--color-accent)]/25 rounded-2xl overflow-hidden">
+      <div class="bg-[var(--color-accent)]/8 px-6 py-5 border-b border-[var(--color-accent)]/15">
+        <p class="eyebrow text-xs mb-1">Quick check</p>
+        <h2 class="text-xl font-semibold text-[var(--color-ink)]">Estimate your reverse mortgage proceeds.</h2>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1">Enter your age, home value, and current mortgage balance to see a rough proceeds estimate.</p>
       </div>
-      <a href="/mortgage-guides/calculators/#reverse-mortgage-estimator" class="btn btn-primary shrink-0">Get started</a>
+      <div class="p-6">
+        <div class="grid gap-4 sm:grid-cols-3">
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Borrower age</label>
+            <input id="art-rm-age" type="number" value="70" min="62" max="99" step="1" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Estimated home value ($)</label>
+            <input id="art-rm-value" type="number" value="500000" min="0" step="10000" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Current mortgage balance ($)</label>
+            <input id="art-rm-bal" type="number" value="0" min="0" step="5000" class="art-calc-input" />
+          </div>
+        </div>
+        <button id="art-rm-btn" class="btn btn-primary mt-5">Estimate Proceeds</button>
+
+        <div id="art-rm-result" class="hidden mt-6">
+          <div class="p-5 bg-[var(--color-mist-gray)] rounded-xl">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Gross Proceeds Estimate</p>
+                <p id="art-rm-gross" class="text-3xl font-bold text-[var(--color-accent)] mt-1"></p>
+              </div>
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Net Proceeds After Payoff</p>
+                <p id="art-rm-net" class="text-3xl font-bold text-[var(--color-ink)] mt-1"></p>
+              </div>
+            </div>
+            <p id="art-rm-note" class="mt-3 text-xs text-[var(--color-text-muted)]"></p>
+            <p class="mt-2 text-xs text-[var(--color-text-muted)]">Estimate based on HECM principal limit factors. Actual proceeds depend on current interest rates, FHA MIP, and lender-specific guidelines. A licensed reverse mortgage specialist will provide a personalized illustration.</p>
+          </div>
+
+          <div class="mt-4 p-5 bg-[var(--color-rich-black)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+            <div>
+              <p class="text-white font-semibold">Want the real numbers for your home?</p>
+              <p class="text-white/70 text-sm mt-1">A Cliffco reverse mortgage specialist can give you a personalized illustration with current rates and full fee disclosure.</p>
+            </div>
+            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a specialist</a>
+          </div>
+
+          <p class="mt-4 text-sm text-center text-[var(--color-text-muted)]">
+            Want to model other scenarios? <a href="/mortgage-guides/calculators/" class="text-[var(--color-accent)] font-medium">See all 10 calculators →</a>
+          </p>
+        </div>
+      </div>
     </div>
 
   </article>
 </Layout>
+
+<style>
+  .art-calc-input {
+    width: 100%;
+    border: 1px solid var(--color-soft-gray, #d1d5db);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .art-calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+</style>
+
+<script>
+  const rmBtn = document.getElementById("art-rm-btn")!;
+  rmBtn.addEventListener("click", () => {
+    const age = +(document.getElementById("art-rm-age") as HTMLInputElement).value;
+    const value = +(document.getElementById("art-rm-value") as HTMLInputElement).value;
+    const balance = +(document.getElementById("art-rm-bal") as HTMLInputElement).value;
+
+    const hecmLimit = 1209750;
+    const lendingLimit = Math.min(value, hecmLimit);
+    const ageFactor = Math.min(0.75, 0.40 + (age - 62) * 0.01);
+    const grossProceeds = lendingLimit * ageFactor;
+    const netProceeds = Math.max(0, grossProceeds - balance);
+    const fmt = (v: number) => "$" + Math.round(v).toLocaleString("en-US");
+
+    (document.getElementById("art-rm-gross") as HTMLElement).textContent = fmt(grossProceeds);
+    (document.getElementById("art-rm-net") as HTMLElement).textContent = fmt(netProceeds);
+
+    let note = "";
+    if (value > hecmLimit) {
+      note = "Note: HECM loans are limited to the 2025 FHA lending limit of $1,209,750. Your home value above that limit is not factored into HECM proceeds. A proprietary (jumbo) reverse mortgage may be available for higher-value homes.";
+    } else if (balance > grossProceeds * 0.6) {
+      note = "Your existing mortgage balance is substantial relative to estimated proceeds. You may still qualify, but less equity will remain after payoff.";
+    }
+
+    (document.getElementById("art-rm-note") as HTMLElement).textContent = note;
+    (document.getElementById("art-rm-result") as HTMLElement).classList.remove("hidden");
+  });
+</script>

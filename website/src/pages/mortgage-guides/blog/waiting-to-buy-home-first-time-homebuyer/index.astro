@@ -52,13 +52,147 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
       <li><strong>Model the rent versus buy decision with real numbers, not assumptions.</strong> What does staying in your rental for 24 more months actually cost versus buying today and building equity over that same period?</li>
     </ol>
 
-    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
-      <div>
-        <p class="font-semibold text-[var(--color-ink)]">Put real numbers behind the decision.</p>
-        <p class="text-sm text-[var(--color-text-muted)] mt-1">Model both sides of this decision with your actual rent, a realistic purchase price, and current rates, so you can see the true cost of waiting in your specific situation rather than in the abstract. If the math says wait, wait with confidence. If it says buy, you'll know why.</p>
+    <!-- Embedded lite Rent vs Buy Calculator -->
+    <div class="mt-12 border border-[var(--color-accent)]/25 rounded-2xl overflow-hidden">
+      <div class="bg-[var(--color-accent)]/8 px-6 py-5 border-b border-[var(--color-accent)]/15">
+        <p class="eyebrow text-xs mb-1">Quick check</p>
+        <h2 class="text-xl font-semibold text-[var(--color-ink)]">Rent or buy — which is the better move?</h2>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1">Run the numbers on your situation to find your break-even point and long-term financial advantage.</p>
       </div>
-      <a href="/mortgage-guides/calculators/#rent-vs-buy" class="btn btn-primary shrink-0">Get started</a>
+      <div class="p-6">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Current monthly rent ($)</label>
+            <input id="art-rvb-rent" type="number" value="2500" min="0" step="50" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Home purchase price ($)</label>
+            <input id="art-rvb-price" type="number" value="450000" min="50000" step="5000" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Down payment (%)</label>
+            <input id="art-rvb-down" type="number" value="20" min="3" max="50" step="1" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Mortgage rate (%)</label>
+            <input id="art-rvb-rate" type="number" value="7.0" min="1" max="15" step="0.125" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual home appreciation (%)</label>
+            <input id="art-rvb-appr" type="number" value="3" min="0" max="15" step="0.5" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual rent growth (%)</label>
+            <input id="art-rvb-growth" type="number" value="3" min="0" max="15" step="0.5" class="art-calc-input" />
+          </div>
+        </div>
+        <button id="art-rvb-btn" class="btn btn-primary mt-5">Compare Rent vs Buy</button>
+
+        <div id="art-rvb-result" class="hidden mt-6">
+          <div class="p-5 bg-[var(--color-mist-gray)] rounded-xl">
+            <div class="grid gap-4 sm:grid-cols-3">
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Break-Even Year</p>
+                <p id="art-rvb-be" class="text-3xl font-bold text-[var(--color-accent)] mt-1"></p>
+              </div>
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Buying Advantage at Year 5</p>
+                <p id="art-rvb-5yr" class="text-2xl font-bold mt-1"></p>
+              </div>
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Buying Advantage at Year 10</p>
+                <p id="art-rvb-10yr" class="text-2xl font-bold mt-1"></p>
+              </div>
+            </div>
+            <p class="mt-3 text-xs text-[var(--color-text-muted)]">Includes down payment, closing costs (est. 3%), monthly payments, and appreciation-driven equity. Does not include maintenance, taxes, or insurance.</p>
+          </div>
+
+          <div class="mt-4 p-5 bg-[var(--color-rich-black)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+            <div>
+              <p class="text-white font-semibold">The numbers say buy — ready to move?</p>
+              <p class="text-white/70 text-sm mt-1">A Cliffco loan officer can get you pre-approved and walking into open houses within 24 hours.</p>
+            </div>
+            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+          </div>
+
+          <p class="mt-4 text-sm text-center text-[var(--color-text-muted)]">
+            Want to model other scenarios? <a href="/mortgage-guides/calculators/" class="text-[var(--color-accent)] font-medium">See all 10 calculators →</a>
+          </p>
+        </div>
+      </div>
     </div>
 
   </article>
 </Layout>
+
+<style>
+  .art-calc-input {
+    width: 100%;
+    border: 1px solid var(--color-soft-gray, #d1d5db);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .art-calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+</style>
+
+<script>
+  const rvbBtn = document.getElementById("art-rvb-btn")!;
+  rvbBtn.addEventListener("click", () => {
+    const rent = +(document.getElementById("art-rvb-rent") as HTMLInputElement).value;
+    const price = +(document.getElementById("art-rvb-price") as HTMLInputElement).value;
+    const downPct = +(document.getElementById("art-rvb-down") as HTMLInputElement).value;
+    const rate = +(document.getElementById("art-rvb-rate") as HTMLInputElement).value;
+    const appreciation = +(document.getElementById("art-rvb-appr") as HTMLInputElement).value / 100;
+    const rentGrowth = +(document.getElementById("art-rvb-growth") as HTMLInputElement).value / 100;
+
+    const downAmt = price * downPct / 100;
+    const loan = price - downAmt;
+    const closingCosts = price * 0.03;
+    const r = rate / 100 / 12;
+    const n = 30 * 12;
+    const pi = r === 0 ? loan / n : loan * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+
+    function yearBuyCost(yr: number): number {
+      let total = downAmt + closingCosts + pi * yr * 12;
+      const equity = downAmt + (price * Math.pow(1 + appreciation, yr) - price);
+      return total - equity;
+    }
+
+    function yearRentCost(yr: number): number {
+      let total = 0;
+      let rv = rent;
+      for (let y = 0; y < yr; y++) { total += rv * 12; rv *= (1 + rentGrowth); }
+      return total;
+    }
+
+    let breakEvenYr = 0;
+    for (let yr = 1; yr <= 30; yr++) {
+      if (yearBuyCost(yr) <= yearRentCost(yr)) { breakEvenYr = yr; break; }
+    }
+
+    const adv5 = yearRentCost(5) - yearBuyCost(5);
+    const adv10 = yearRentCost(10) - yearBuyCost(10);
+    const fmt = (v: number) => "$" + Math.abs(Math.round(v)).toLocaleString("en-US");
+
+    (document.getElementById("art-rvb-be") as HTMLElement).textContent =
+      breakEvenYr > 0 ? `Year ${breakEvenYr}` : "After 30 yrs";
+
+    const a5El = document.getElementById("art-rvb-5yr") as HTMLElement;
+    a5El.textContent = (adv5 >= 0 ? "+" : "-") + fmt(adv5);
+    a5El.className = "text-2xl font-bold mt-1 " + (adv5 >= 0 ? "text-green-600" : "text-red-600");
+
+    const a10El = document.getElementById("art-rvb-10yr") as HTMLElement;
+    a10El.textContent = (adv10 >= 0 ? "+" : "-") + fmt(adv10);
+    a10El.className = "text-2xl font-bold mt-1 " + (adv10 >= 0 ? "text-green-600" : "text-red-600");
+
+    (document.getElementById("art-rvb-result") as HTMLElement).classList.remove("hidden");
+  });
+</script>

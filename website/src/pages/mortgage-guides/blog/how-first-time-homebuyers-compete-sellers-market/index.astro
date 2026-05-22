@@ -54,13 +54,141 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
       <li><strong>Don't chase properties outside your genuine comfort range just to win.</strong> Winning an offer on a home that stretches your budget uncomfortably is not a victory. Know your ceiling before you fall in love with anything.</li>
     </ol>
 
-    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
-      <div>
-        <p class="font-semibold text-[var(--color-ink)]">Know your financing position before the next offer.</p>
-        <p class="text-sm text-[var(--color-text-muted)] mt-1">Understand exactly where your financing stands and whether you're a candidate for full underwriting before you shop. The stronger your approval, the less your offer has to do on price alone.</p>
+    <!-- Embedded lite Mortgage Readiness Checkup -->
+    <div class="mt-12 border border-[var(--color-accent)]/25 rounded-2xl overflow-hidden">
+      <div class="bg-[var(--color-accent)]/8 px-6 py-5 border-b border-[var(--color-accent)]/15">
+        <p class="eyebrow text-xs mb-1">Quick check</p>
+        <h2 class="text-xl font-semibold text-[var(--color-ink)]">Check your mortgage readiness.</h2>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1">Answer five questions to see where you stand and what your next move should be.</p>
       </div>
-      <a href="/mortgage-guides/calculators/#mortgage-readiness" class="btn btn-primary shrink-0">Get started</a>
+      <div class="p-6">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Credit score range</label>
+            <select id="art-mr-credit" class="art-calc-input">
+              <option value="780">760 or above</option>
+              <option value="740">720 – 759</option>
+              <option value="700" selected>680 – 719</option>
+              <option value="660">640 – 679</option>
+              <option value="630">620 – 639</option>
+              <option value="580">Below 620</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Employment type</label>
+            <select id="art-mr-emp" class="art-calc-input">
+              <option value="w2">W-2 employee</option>
+              <option value="self">Self-employed</option>
+              <option value="1099">1099 / freelance</option>
+              <option value="other">Other / retired</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Gross monthly income ($)</label>
+            <input id="art-mr-income" type="number" value="8000" min="0" step="500" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly debt payments ($)</label>
+            <input id="art-mr-debt" type="number" value="500" min="0" step="50" class="art-calc-input" />
+            <p class="text-xs text-[var(--color-text-muted)] mt-1">Car, student loans, credit cards, etc.</p>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Liquid savings ($)</label>
+            <input id="art-mr-savings" type="number" value="20000" min="0" step="1000" class="art-calc-input" />
+          </div>
+        </div>
+        <button id="art-mr-btn" class="btn btn-primary mt-5">Check My Readiness</button>
+
+        <div id="art-mr-result" class="hidden mt-6">
+          <div class="p-5 bg-[var(--color-mist-gray)] rounded-xl">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Readiness Level</p>
+                <p id="art-mr-level" class="text-2xl font-bold text-[var(--color-accent)] mt-1"></p>
+              </div>
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Available Housing Budget</p>
+                <p id="art-mr-budget" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+                <p class="text-xs text-[var(--color-text-muted)] mt-1">per month (after existing debts)</p>
+              </div>
+            </div>
+            <div id="art-mr-steps" class="mt-4 text-sm text-[var(--color-text-muted)] leading-relaxed"></div>
+          </div>
+
+          <div class="mt-4 p-5 bg-[var(--color-rich-black)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+            <div>
+              <p class="text-white font-semibold">Ready to move forward?</p>
+              <p class="text-white/70 text-sm mt-1">A Cliffco loan officer will give you a real pre-approval — not just an estimate.</p>
+            </div>
+            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+          </div>
+
+          <p class="mt-4 text-sm text-center text-[var(--color-text-muted)]">
+            Want to model other scenarios? <a href="/mortgage-guides/calculators/" class="text-[var(--color-accent)] font-medium">See all 10 calculators →</a>
+          </p>
+        </div>
+      </div>
     </div>
 
   </article>
 </Layout>
+
+<style>
+  .art-calc-input {
+    width: 100%;
+    border: 1px solid var(--color-soft-gray, #d1d5db);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .art-calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+</style>
+
+<script>
+  const mrBtn = document.getElementById("art-mr-btn")!;
+  mrBtn.addEventListener("click", () => {
+    const credit = +(document.getElementById("art-mr-credit") as HTMLSelectElement).value;
+    const emp = (document.getElementById("art-mr-emp") as HTMLSelectElement).value;
+    const income = +(document.getElementById("art-mr-income") as HTMLInputElement).value;
+    const debt = +(document.getElementById("art-mr-debt") as HTMLInputElement).value;
+    const savings = +(document.getElementById("art-mr-savings") as HTMLInputElement).value;
+
+    const maxDTI = credit >= 720 ? 0.45 : credit >= 660 ? 0.43 : 0.41;
+    const availableForHousing = Math.max(0, income * maxDTI - debt);
+    const fmt = (v: number) => "$" + Math.round(v).toLocaleString("en-US");
+
+    let level = "";
+    let steps: string[] = [];
+
+    if (credit < 620) {
+      level = "Not Yet Ready";
+      steps = ["Your credit score needs to reach at least 620 before most lenders will approve a mortgage.", "Focus on paying down balances and removing errors from your credit report.", "Contact a Cliffco loan officer for a personalized credit improvement plan."];
+    } else if (savings < 10000) {
+      level = "Building";
+      steps = ["You'll need more savings to cover a down payment and closing costs.", "Down payment programs may help if you're a first-time buyer.", "A Cliffco loan officer can show you what down payment assistance programs you qualify for."];
+    } else if (emp === "self" || emp === "1099" || emp === "other") {
+      level = "Ready (Non-QM Path)";
+      steps = ["Your income type may not qualify for conventional financing.", "Non-QM loan programs (bank statement, 1099, DSCR) were built for your situation.", "Talk to a Cliffco Non-QM specialist to identify the best product."];
+    } else if (credit >= 720 && availableForHousing > 1500) {
+      level = "Strong";
+      steps = ["You're in a solid position. Get pre-approved before you start shopping.", "Keep your credit stable, avoid new debt, and gather two years of tax returns.", "A pre-approval will tell you exactly what purchase price you qualify for."];
+    } else {
+      level = "Ready";
+      steps = ["You have the foundation to move forward.", "Ask your loan officer about the right loan program for your credit and income.", "Getting pre-approved now puts you in the strongest position when you find the right home."];
+    }
+
+    (document.getElementById("art-mr-level") as HTMLElement).textContent = level;
+    (document.getElementById("art-mr-budget") as HTMLElement).textContent = fmt(availableForHousing);
+    (document.getElementById("art-mr-steps") as HTMLElement).innerHTML =
+      "<strong>Your next steps:</strong><ul class='list-disc list-inside mt-2 space-y-1'>" +
+      steps.map(s => `<li>${s}</li>`).join("") + "</ul>";
+    (document.getElementById("art-mr-result") as HTMLElement).classList.remove("hidden");
+  });
+</script>

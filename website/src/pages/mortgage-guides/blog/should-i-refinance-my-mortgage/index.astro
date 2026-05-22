@@ -50,13 +50,143 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
       <li><strong>Decide in advance whether you want to pay closing costs upfront or roll them in.</strong> Both approaches have legitimate uses depending on your timeline and cash position. Knowing your preference before the lender presents options keeps the conversation on your terms.</li>
     </ol>
 
-    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
-      <div>
-        <p class="font-semibold text-[var(--color-ink)]">Run your break-even before you call anyone.</p>
-        <p class="text-sm text-[var(--color-text-muted)] mt-1">Calculate your break-even point based on your current loan details and see whether a refinance makes financial sense at current rates before you invest time in a full application.</p>
+    <!-- Embedded lite Refi Checkup -->
+    <div class="mt-12 border border-[var(--color-accent)]/25 rounded-2xl overflow-hidden">
+      <div class="bg-[var(--color-accent)]/8 px-6 py-5 border-b border-[var(--color-accent)]/15">
+        <p class="eyebrow text-xs mb-1">Quick check</p>
+        <h2 class="text-xl font-semibold text-[var(--color-ink)]">Does refinancing make sense for you?</h2>
+        <p class="text-sm text-[var(--color-text-muted)] mt-1">Enter your current loan and the new rate you've been quoted to see your break-even point and net savings.</p>
       </div>
-      <a href="/mortgage-guides/calculators/#refi-checkup" class="btn btn-primary shrink-0">Get started</a>
+      <div class="p-6">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Remaining loan balance ($)</label>
+            <input id="art-rc-bal" type="number" value="350000" min="0" step="5000" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Current interest rate (%)</label>
+            <input id="art-rc-cur" type="number" value="7.5" min="1" max="15" step="0.125" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">New rate you've been quoted (%)</label>
+            <input id="art-rc-new" type="number" value="6.5" min="1" max="15" step="0.125" class="art-calc-input" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Estimated closing costs ($)</label>
+            <input id="art-rc-costs" type="number" value="5000" min="0" step="500" class="art-calc-input" />
+          </div>
+        </div>
+        <button id="art-rc-btn" class="btn btn-primary mt-5">Run Refi Checkup</button>
+
+        <div id="art-rc-result" class="hidden mt-6">
+          <div class="p-5 bg-[var(--color-mist-gray)] rounded-xl">
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Monthly Savings</p>
+                <p id="art-rc-savings" class="text-2xl font-bold mt-1"></p>
+              </div>
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Break-Even</p>
+                <p id="art-rc-be" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
+              </div>
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Net Benefit — 2 Years</p>
+                <p id="art-rc-2yr" class="text-2xl font-bold mt-1"></p>
+              </div>
+              <div>
+                <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Net Benefit — 5 Years</p>
+                <p id="art-rc-5yr" class="text-2xl font-bold mt-1"></p>
+              </div>
+            </div>
+            <p id="art-rc-verdict" class="mt-3 text-sm font-medium text-[var(--color-text-muted)]"></p>
+          </div>
+
+          <div class="mt-4 p-5 bg-[var(--color-rich-black)] rounded-xl flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+            <div>
+              <p class="text-white font-semibold">Ready to lock a lower rate?</p>
+              <p class="text-white/70 text-sm mt-1">A Cliffco loan officer can pull a live rate quote and tell you exactly what it would cost to refinance today.</p>
+            </div>
+            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+          </div>
+
+          <p class="mt-4 text-sm text-center text-[var(--color-text-muted)]">
+            Want to model other scenarios? <a href="/mortgage-guides/calculators/" class="text-[var(--color-accent)] font-medium">See all 10 calculators →</a>
+          </p>
+        </div>
+      </div>
     </div>
 
   </article>
 </Layout>
+
+<style>
+  .art-calc-input {
+    width: 100%;
+    border: 1px solid var(--color-soft-gray, #d1d5db);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .art-calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+</style>
+
+<script>
+  const rcBtn = document.getElementById("art-rc-btn")!;
+  rcBtn.addEventListener("click", () => {
+    const balance = +(document.getElementById("art-rc-bal") as HTMLInputElement).value;
+    const curRate = +(document.getElementById("art-rc-cur") as HTMLInputElement).value;
+    const newRate = +(document.getElementById("art-rc-new") as HTMLInputElement).value;
+    const costs = +(document.getElementById("art-rc-costs") as HTMLInputElement).value;
+
+    function monthlyPI(principal: number, annualRate: number, termYears: number): number {
+      const r = annualRate / 100 / 12;
+      const n = termYears * 12;
+      if (r === 0) return principal / n;
+      return principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    }
+
+    const curPI = monthlyPI(balance, curRate, 30);
+    const newPI = monthlyPI(balance, newRate, 30);
+    const monthlySavings = curPI - newPI;
+    const breakEvenMonths = monthlySavings > 0 ? Math.ceil(costs / monthlySavings) : Infinity;
+    const net2yr = monthlySavings * 24 - costs;
+    const net5yr = monthlySavings * 60 - costs;
+    const fmt = (v: number) => "$" + Math.abs(Math.round(v)).toLocaleString("en-US");
+
+    const savEl = document.getElementById("art-rc-savings") as HTMLElement;
+    savEl.textContent = fmt(monthlySavings);
+    savEl.className = "text-2xl font-bold mt-1 " + (monthlySavings > 0 ? "text-green-600" : "text-red-600");
+
+    (document.getElementById("art-rc-be") as HTMLElement).textContent =
+      monthlySavings > 0 ? `${breakEvenMonths} months` : "No savings";
+
+    const n2El = document.getElementById("art-rc-2yr") as HTMLElement;
+    n2El.textContent = (net2yr >= 0 ? "+" : "-") + fmt(net2yr);
+    n2El.className = "text-2xl font-bold mt-1 " + (net2yr >= 0 ? "text-green-600" : "text-red-600");
+
+    const n5El = document.getElementById("art-rc-5yr") as HTMLElement;
+    n5El.textContent = (net5yr >= 0 ? "+" : "-") + fmt(net5yr);
+    n5El.className = "text-2xl font-bold mt-1 " + (net5yr >= 0 ? "text-green-600" : "text-red-600");
+
+    let verdict = "";
+    if (monthlySavings <= 0) {
+      verdict = "A higher rate would increase your payment. Refinancing does not make sense at these rates.";
+    } else if (breakEvenMonths <= 24) {
+      verdict = `You break even in ${breakEvenMonths} months. This is a strong refinance case if you plan to stay in the home.`;
+    } else if (breakEvenMonths <= 48) {
+      verdict = `You break even in ${breakEvenMonths} months. Worthwhile if you plan to stay in the home for several years.`;
+    } else {
+      verdict = `Break-even is ${breakEvenMonths} months out. Consider whether you'll stay long enough to recoup the closing costs.`;
+    }
+
+    (document.getElementById("art-rc-verdict") as HTMLElement).textContent = verdict;
+    (document.getElementById("art-rc-result") as HTMLElement).classList.remove("hidden");
+  });
+</script>
