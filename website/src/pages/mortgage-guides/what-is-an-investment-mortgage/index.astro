@@ -1,11 +1,23 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { faqPageSchema } from "../../../lib/schema";
+
+const faq = faqPageSchema([
+  { question: "Is an investment mortgage the same as a regular mortgage?", answer: "No. Investment mortgages typically carry higher interest rates (0.5 to 0.75 percent above primary residence rates), require larger down payments (15 to 25 percent), and have stricter credit and income requirements than regular residential mortgages." },
+  { question: "Can I put less than 20% down on an investment property?", answer: "In some cases, yes. Using an FHA loan for a multi-family property while occupying one unit allows down payments as low as 3.5 percent. Some private lenders and portfolio loan programs also offer lower down payment options, typically with higher interest rates." },
+  { question: "What is the minimum down payment for an investment property?", answer: "For conventional investment mortgages, the minimum is 15 percent for single-family properties and 25 percent for multi-family properties. Some non-QM and portfolio lenders may consider as low as 10 percent for highly qualified borrowers." },
+  { question: "Can you use an FHA loan for an investment property?", answer: "FHA loans are primarily for owner-occupied properties, but they can be used for multi-family properties of up to four units if you occupy one unit as your primary residence. This house hacking strategy allows down payments as low as 3.5 percent." },
+  { question: "What is an example of an investment loan?", answer: "An investor buys a single-family rental for $300,000, puts 20 percent down ($60,000), and secures a 30-year conventional loan at 6.5 percent for $240,000, resulting in about $1,517 per month in principal and interest. For a DSCR loan, a duplex generating $4,000 monthly rent with a $2,800 payment yields a DSCR of 1.43, qualifying based on property income rather than personal income." },
+  { question: "What type of mortgage should I get for an investment property?", answer: "It depends on your goals and profile. Conventional loans offer the best rates for well-qualified borrowers. DSCR loans work well for cash-flow investors qualifying on rental income. Non-QM loans suit self-employed investors with complex income. Renovation loans combine purchase and repair costs for fix-and-flip projects." },
+]);
 ---
 
 <Layout
   title="Investment Mortgage: A Complete Guide | Cliffco Mortgage Bankers"
   description="How investment property mortgages work, loan types, qualification requirements, down payment rules, and how to choose the right loan for your rental property."
+  type="article"
+  schema={faq}
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },

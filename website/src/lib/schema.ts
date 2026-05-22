@@ -164,21 +164,24 @@ export const articleSchema = (opts: {
   url: string;
   datePublished: string;
   dateModified: string;
-  authorSlug: string;
+  authorSlug?: string;
   image?: string;
 }) => {
-  const author = loanOfficer(opts.authorSlug);
+  const author = opts.authorSlug ? loanOfficer(opts.authorSlug) : null;
+  const mainEntityOfPage = opts.url.startsWith("http")
+    ? opts.url
+    : `${SITE_URL}${opts.url}`;
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: opts.headline,
     description: opts.description,
-    mainEntityOfPage: opts.url,
+    mainEntityOfPage,
     image: opts.image ?? `${SITE_URL}/brand/og-default.png`,
     datePublished: opts.datePublished,
     dateModified: opts.dateModified,
     publisher: { "@id": orgId },
-    ...(author && { author: personSchema(author) }),
+    author: author ? personSchema(author) : { "@id": orgId },
   };
 };
 

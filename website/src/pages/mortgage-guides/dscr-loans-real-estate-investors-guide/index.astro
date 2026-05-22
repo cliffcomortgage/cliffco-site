@@ -1,11 +1,22 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { faqPageSchema } from "../../../lib/schema";
+
+const faq = faqPageSchema([
+  { question: "What does DSCR stand for?", answer: "Debt Service Coverage Ratio, which measures whether a property's income covers its debt obligations." },
+  { question: "What is the minimum DSCR ratio to qualify?", answer: "Most lenders require between 1.0 and 1.25, though requirements vary by lender." },
+  { question: "Can I use a DSCR loan for Airbnb or short-term rentals?", answer: "Yes. Many DSCR programs allow short-term rentals if income documentation is provided." },
+  { question: "Is a DSCR loan considered Non-QM?", answer: "Yes. A DSCR loan is a Non-Qualified Mortgage because it does not use traditional income documentation such as W-2s or tax returns." },
+  { question: "Do I need reserves to qualify for a DSCR loan?", answer: "Often, yes. Many lenders require 3 to 6 months of mortgage payments in liquid reserves." },
+]);
 ---
 
 <Layout
   title="DSCR Loans Explained: A Guide for Real Estate Investors | Cliffco"
   description="What DSCR loans are, how they work, requirements, pros and cons, and how to apply. A complete guide for real estate investors who want to qualify based on property income."
+  type="article"
+  schema={faq}
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },

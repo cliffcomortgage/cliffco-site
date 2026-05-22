@@ -1,11 +1,30 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { faqPageSchema } from "../../../lib/schema";
+
+const faq = faqPageSchema([
+  { question: "Can I qualify for a mortgage if I'm newly self-employed?", answer: "Yes. If you have a strong employment history in the same field and can show income through bank statements or 1099s, some Non-QM lenders may accept less than two years of self-employment." },
+  { question: "Do I need to submit tax returns to get a Non-QM mortgage?", answer: "Not necessarily. You can qualify using bank statement loans, profit and loss statements, or CPA-prepared income statements without traditional tax returns." },
+  { question: "Is it harder to get a mortgage when you're self-employed?", answer: "It's not harder, it's just different. Getting a mortgage when self-employed involves more custom documentation, but with the right preparation and guidance, self-employed people can qualify as easily as traditional borrowers." },
+  { question: "What credit score do I need for a Non-QM mortgage?", answer: "Many Non-QM loans accept credit scores starting at 620. A score of 700 or higher generally qualifies you for better rates and terms." },
+  { question: "Do I need a larger down payment for a Non-QM mortgage?", answer: "Not necessarily. Some Non-QM loans go up to 90% loan-to-value, especially for well-qualified self-employed individuals." },
+  { question: "What is considered self-employed for mortgage purposes?", answer: "You are considered self-employed if you own 25% or more of a business, work as a sole proprietor, freelancer, or independent contractor, or receive most of your income from 1099 sources." },
+  { question: "Can I qualify with just one year of self-employment income?", answer: "In some cases, yes. Non-QM lenders may accept one year if you can demonstrate prior work in the same industry and show consistent income through bank statements or other documentation." },
+  { question: "What is the debt-to-income ratio requirement for Non-QM loans?", answer: "Non-QM lenders typically allow higher DTI ratios than conventional lenders, sometimes up to 50%, depending on other compensating factors." },
+  { question: "Can I use business income if my personal income is low?", answer: "Yes. Many Non-QM programs evaluate gross or net income from your business as long as it is well-documented through profit and loss reports, bank statement summaries, or CPA letters." },
+  { question: "What types of properties can I buy with a Non-QM loan?", answer: "Non-QM loans can be used for primary residences, second homes, and investment properties. DSCR loans are especially popular with real estate investors." },
+  { question: "Are Non-QM loans only for people with poor credit?", answer: "No. Non-QM loans are for borrowers who do not fit traditional documentation standards, regardless of credit score. Many self-employed borrowers have excellent credit but need flexible income verification." },
+  { question: "Can I refinance my existing mortgage with a Non-QM loan?", answer: "Yes. Non-QM refinancing is a good option if your financial profile has changed since you originally financed your home, or if you want to tap into home equity." },
+  { question: "How long does the mortgage application process take for self-employed borrowers?", answer: "Most Non-QM loans close within 30 to 45 days, similar to conventional mortgages. The timeline depends largely on how quickly you provide documentation and how complex your financial picture is." },
+]);
 ---
 
 <Layout
   title="7 Smart Tips to Get a Non-QM Mortgage When You're Self-Employed | Cliffco"
   description="Self-employed and need a mortgage? Learn 7 tips to get approved with Non-QM loans using bank statements, 1099s, DSCR, and more. Expert guidance from Cliffco."
+  type="article"
+  schema={faq}
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },

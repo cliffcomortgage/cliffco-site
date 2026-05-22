@@ -4,7 +4,7 @@ import Meta from "../components/seo/Meta.astro";
 import JsonLd from "../components/seo/JsonLd.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
-import { organizationSchema, websiteSchema } from "../lib/schema";
+import { organizationSchema, websiteSchema, articleSchema } from "../lib/schema";
 
 interface Props {
   title: string;
@@ -31,7 +31,22 @@ const {
   schema,
 } = Astro.props;
 
-const baseSchema: object[] = [organizationSchema(), websiteSchema()];
+const autoArticleSchema =
+  type === "article"
+    ? articleSchema({
+        headline: title,
+        description,
+        url: Astro.url.pathname,
+        datePublished: "2026-05-22",
+        dateModified: "2026-05-22",
+      })
+    : null;
+
+const baseSchema: object[] = [
+  organizationSchema(),
+  websiteSchema(),
+  ...(autoArticleSchema ? [autoArticleSchema] : []),
+];
 const allSchema = schema
   ? [...baseSchema, ...(Array.isArray(schema) ? schema : [schema])]
   : baseSchema;

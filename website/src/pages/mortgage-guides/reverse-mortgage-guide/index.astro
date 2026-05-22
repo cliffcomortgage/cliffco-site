@@ -1,11 +1,26 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { faqPageSchema } from "../../../lib/schema";
+
+const faq = faqPageSchema([
+  { question: "What is a reverse mortgage?", answer: "A reverse mortgage is a loan for homeowners aged 62 and older that lets them convert home equity into cash without monthly payments or selling their home. The lender pays you, and the loan is repaid when you sell, move out permanently, or pass away." },
+  { question: "How do you qualify for a reverse mortgage?", answer: "You must be at least 62 years old, own your home outright or have a low remaining mortgage balance, live in the property as your primary residence, and complete a HUD-approved counseling session. Lenders also assess your ability to cover property taxes, insurance, and maintenance." },
+  { question: "Who is a good candidate for a reverse mortgage?", answer: "Homeowners aged 62 or older with significant home equity who plan to stay in their home long-term, have limited retirement cash flow, and can reliably cover ongoing property costs like taxes and insurance." },
+  { question: "Which type of property is ineligible for a reverse mortgage?", answer: "Second homes, vacation properties, rental units, and investment properties are ineligible. Homes in poor condition that fail FHA appraisal standards or carry unresolved liens may also not qualify." },
+  { question: "At what age is a reverse mortgage a good idea?", answer: "The minimum age is 62. Older borrowers typically qualify for larger amounts because lenders factor in life expectancy. Waiting until your 70s or 80s means more proceeds and less time for the loan balance to grow." },
+  { question: "When is a reverse mortgage a good idea?", answer: "When you need cash for retirement expenses, healthcare, or home repairs without selling, want to delay Social Security to increase future benefits, or want to protect investments during a market downturn while planning to stay in your home long-term." },
+  { question: "Are reverse mortgages too good to be true?", answer: "No. They are legitimate financial tools with real benefits, but they come with upfront costs, growing loan balances over time, and reduced equity for heirs. The right fit depends on your individual situation and goals." },
+  { question: "What happens to a reverse mortgage when the homeowner dies?", answer: "The loan becomes due. Heirs typically have six months to sell the property to repay the loan, pay it off with other funds to keep the house, or walk away. For HECM loans, federal insurance covers any shortfall if the balance exceeds the home's value." },
+  { question: "Is it hard to sell a house with a reverse mortgage?", answer: "Not inherently. You can sell at any time and the loan is repaid from the proceeds. If the home's value exceeds the loan balance, you or your heirs keep the difference. Challenges arise when the loan balance equals or exceeds the sale price." },
+]);
 ---
 
 <Layout
   title="Reverse Mortgage: Everything You Need To Know | Cliffco"
   description="A complete guide to reverse mortgages (HECM) for homeowners 62 and older — how they work, who qualifies, pros and cons, and what happens when the homeowner dies."
+  type="article"
+  schema={faq}
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },

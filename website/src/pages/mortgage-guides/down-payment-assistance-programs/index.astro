@@ -1,11 +1,22 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { faqPageSchema } from "../../../lib/schema";
+
+const faq = faqPageSchema([
+  { question: "Do I have to pay back down payment assistance?", answer: "Not always. Grants never need repayment. Forgivable loans are waived after a set period. Deferred loans do not require payment until you refinance, sell, or pay off the home." },
+  { question: "Can I combine multiple down payment assistance programs?", answer: "Yes. Many borrowers stack national and state programs for maximum benefit, such as combining a state grant with closing cost assistance." },
+  { question: "Can DPA cover closing costs as well as the down payment?", answer: "Yes. Programs like SONYMA DPAL and New Jersey's HFA Advantage cover both down payment and closing costs." },
+  { question: "What credit score and DTI do I need for down payment assistance?", answer: "Most programs require around a 620 credit score and a debt-to-income ratio typically under 43 to 50 percent." },
+  { question: "How long does down payment assistance approval take?", answer: "It depends on the program. Some approve quickly, while others run on a lottery or limited funding cycle that may require patience." },
+]);
 ---
 
 <Layout
   title="Down Payment Assistance 101: Your Complete Guide | Cliffco"
   description="How down payment assistance programs work, who qualifies, and how to apply in New York and New Jersey. Grants, forgivable loans, deferred loans, and more."
+  type="article"
+  schema={faq}
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },

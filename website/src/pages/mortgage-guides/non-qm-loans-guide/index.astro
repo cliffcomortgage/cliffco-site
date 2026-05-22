@@ -1,11 +1,22 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { faqPageSchema } from "../../../lib/schema";
+
+const faq = faqPageSchema([
+  { question: "What are Non-QM loans?", answer: "Non-QM loans are home financing solutions that fall outside the qualified mortgage definition established by the Consumer Financial Protection Bureau. They serve borrowers who do not meet conventional documentation requirements but still demonstrate a reasonable ability to repay, such as self-employed individuals, real estate investors, and those with complex income sources." },
+  { question: "What is the difference between a DSCR loan and a Non-QM loan?", answer: "All DSCR loans are Non-QM loans, but not all Non-QM loans are DSCR loans. DSCR loans are a specific type designed for investment properties that qualify based on the property's rental income rather than the borrower's personal income." },
+  { question: "Is a bank statement loan a Non-QM loan?", answer: "Yes. Bank statement loans use 12 to 24 months of bank statements instead of tax returns to verify income, which places them outside conventional qualified mortgage guidelines." },
+  { question: "What property types are eligible for Non-QM loans?", answer: "Eligible property types include primary residences, investment properties, mixed-use buildings, non-warrantable condominiums, co-ops, and some properties in distressed sale situations." },
+  { question: "What banks do Non-QM loans?", answer: "The Non-QM market is primarily served by non-bank mortgage lenders, credit unions, and private lenders. Major banks have largely focused on conventional loans. Specialized mortgage lenders like Cliffco Mortgage Bankers offer a broad range of Non-QM programs tailored to diverse borrower needs." },
+]);
 ---
 
 <Layout
   title="Non-QM Loans: The Complete Guide | Cliffco Mortgage Bankers"
   description="Everything you need to know about non-qualified mortgage loans — who they're for, how they work, types of programs, and how to qualify."
+  type="article"
+  schema={faq}
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
