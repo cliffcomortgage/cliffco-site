@@ -126,7 +126,7 @@ const yearsInBiz = COMPANY.yearsInBusiness();
               {branches.length > 0 && (
                 <div class="mt-4 flex flex-wrap gap-2">
                   {branches.map((b) => (
-                    <span class="text-xs font-medium px-3 py-1 rounded-full bg-[var(--color-mist-gray)] text-[var(--color-text-muted)]">{b.city}</span>
+                    <span class="text-xs font-medium px-3 py-1 rounded-full bg-[var(--color-mist-gray)] text-[var(--color-text-muted)]">{b.displayCity ?? b.city}</span>
                   ))}
                 </div>
               )}

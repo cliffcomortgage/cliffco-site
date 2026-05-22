@@ -38,11 +38,22 @@ export const LOCATIONS: readonly Location[] = [
     state: "NY",
     blurb:
       "Cliffco has been headquartered on Long Island since 1989, with four New York offices " +
-      "across Uniondale, Wantagh, Bay Shore, and Jamaica (Queens). From jumbo loans and CEMA " +
+      "across Uniondale, Wantagh, Bay Shore, and Queens. From jumbo loans and CEMA " +
       "refinances to non-QM, reverse mortgages, and DSCR financing, we handle the loan types " +
       "New York borrowers actually need.",
     branchSlugs: ["uniondale-headquarters", "wantagh-ny", "bay-shore-ny", "jamaica-ny"],
     featuredProducts: ["non-qm-self-employed", "reverse-mortgage", "dscr", "business-bank-statement"],
+  },
+  {
+    path: "new-york/queens",
+    name: "Queens, NY",
+    state: "NY",
+    blurb:
+      "Cliffco's Queens office is located in Jamaica and serves buyers and investors across all " +
+      "five boroughs. From co-op and condo financing to non-QM and DSCR loans, our Queens team " +
+      "handles the loan types New York City borrowers actually need.",
+    branchSlugs: ["jamaica-ny"],
+    featuredProducts: ["non-qm-self-employed", "dscr", "business-bank-statement", "reverse-mortgage"],
   },
   {
     path: "new-jersey",

@@ -1,0 +1,143 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../../data/company";
+import { location } from "../../../../data/locations";
+import { BRANCHES } from "../../../../data/branches";
+import { LOAN_OFFICERS } from "../../../../data/loan-officers";
+import { product } from "../../../../data/products";
+import { localBusinessSchema, faqPageSchema, breadcrumbSchema } from "../../../../lib/schema";
+import Headshot from "../../../../components/ui/Headshot.astro";
+
+const loc = location("new-york/queens")!;
+const queensBranch = BRANCHES.find((b) => b.slug === "jamaica-ny")!;
+const branchLOs = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "jamaica-ny");
+
+const faq = [
+  { question: "Where is Cliffco's Queens office?", answer: "Cliffco's Queens branch is located at 142-62 Rockaway Boulevard, Jamaica, NY 11436, Branch NMLS #2565193. It serves Queens, Brooklyn, and borrowers across the five boroughs." },
+  { question: "Is Cliffco licensed in New York?", answer: "Yes. Cliffco, Inc. is a Licensed Mortgage Banker by the New York State Department of Financial Services (LMBC109800), corporate NMLS #65328. Cliffco has been originating mortgages in New York since 1989." },
+  { question: "Can Cliffco finance a Queens co-op?", answer: "Yes. Co-op financing is a core part of the NYC market and something Cliffco handles regularly. Approval depends on the co-op building's financials and house rules in addition to borrower qualification. Speak with a Queens loan officer about the specific building." },
+  { question: "Does Cliffco work with first-time buyers in Queens?", answer: "Yes. Queens is one of New York's most active first-time buyer markets. Cliffco offers FHA, conventional, and down payment assistance programs for qualifying borrowers. Our Queens loan officers can walk you through what programs apply to your situation." },
+  { question: "Can Cliffco finance a multi-family property in Queens?", answer: "Yes. Two- to four-unit owner-occupied properties can be financed with conventional or FHA loans. Investor multi-family (non-owner-occupied) typically uses DSCR or non-QM programs. Queens has significant demand for both." },
+];
+
+const schema = [
+  localBusinessSchema(queensBranch),
+  faqPageSchema(faq),
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Locations", url: "/locations/" },
+    { name: "New York", url: "/locations/new-york/" },
+    { name: "Queens", url: "/locations/new-york/queens/" },
+  ]),
+];
+---
+
+<Layout
+  title="Queens Mortgage Lender | Cliffco Mortgage Bankers"
+  description={loc.blurb}
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Locations", href: "/locations/" },
+    { name: "New York", href: "/locations/new-york/" },
+    { name: "Queens", href: "/locations/new-york/queens/" },
+  ]} />
+
+  <section class="container-wide pt-12 pb-12">
+    <p class="eyebrow">Queens, NY</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Queens mortgage lender. Co-op, condo, non-QM, and DSCR specialists.</h1>
+    <p class="lead mt-6">{loc.blurb}</p>
+  </section>
+
+  <section class="bg-[var(--color-mist-gray)] section">
+    <div class="container-wide">
+      <p class="eyebrow">Our Queens office</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Where we are.</h2>
+      <div class="mt-8 max-w-sm">
+        <article class="card">
+          <h3 class="text-lg font-semibold">{queensBranch.name}</h3>
+          {queensBranch.street && <p class="text-sm text-[var(--color-text-muted)] mt-2">{queensBranch.street}<br/>{queensBranch.city}, {queensBranch.region} {queensBranch.postalCode}</p>}
+          {queensBranch.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{queensBranch.nmls}</p>}
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">What we lead with in Queens</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Built for New York City borrowers.</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {loc.featuredProducts.map((slug) => {
+          const p = product(slug);
+          if (!p) return null;
+          return (
+            <a href={`/loans/${p.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
+              <h3 class="font-semibold">{p.shortName}</h3>
+              <p class="mt-2 text-sm text-[var(--color-text-muted)] flex-1">{p.oneLiner}</p>
+              <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">Learn more →</span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  {branchLOs.length > 0 && (
+    <section class="section bg-[var(--color-mist-gray)]">
+      <div class="container-wide">
+        <p class="eyebrow">Located at our Queens office</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Loan officers based here.</h2>
+        <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
+          These loan officers are based at Cliffco's Queens office in Jamaica, NY.
+        </p>
+        <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {branchLOs.map((lo) => (
+            <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
+              {lo.hasPhoto && (
+                <div class="mb-4 -mx-6 -mt-6">
+                  <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="rounded-t-xl" />
+                </div>
+              )}
+              <p class="eyebrow">{lo.title}</p>
+              <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>
+              {lo.languages && lo.languages.length > 1 && (
+                <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
+              )}
+              <span class="mt-3 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section bg-white">
+    <div class="container-prose">
+      <p class="eyebrow">Queens FAQ</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Borrower and investor questions.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Queens borrowers: talk to our local team.</h2>
+      <p class="lead mt-4 text-white/85">Co-op, condo, non-QM, and investor specialists. Real underwriting in 24 hours.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get a pre-qual</a>
+        <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
+      </div>
+    </div>
+  </section>
+</Layout>

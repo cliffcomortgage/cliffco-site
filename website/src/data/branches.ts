@@ -24,6 +24,8 @@ export type Branch = {
   geo?: { latitude: number; longitude: number };
   /** Sub-region label (e.g., "Long Island", "Twin Cities") */
   metro?: string;
+  /** Override city label for UI bubbles (e.g., "Queens" instead of postal city "Jamaica") */
+  displayCity?: string;
   isHeadquarters?: true;
   /** True for FL branches — must show Swish Capital DBA */
   isFloridaDba?: true;
@@ -119,7 +121,7 @@ export const BRANCHES: readonly Branch[] = [
   },
   {
     slug: "jamaica-ny",
-    name: "Jamaica, NY (Queens)",
+    name: "Queens, NY",
     street: "142-62 Rockaway Boulevard",
     city: "Jamaica",
     region: "NY",
@@ -128,6 +130,7 @@ export const BRANCHES: readonly Branch[] = [
     phone: null,
     nmls: "2565193",
     metro: "New York City",
+    displayCity: "Queens",
     branchManagerSlug: "angelique-street-1146282",
     loanOfficerSlugs: ["angelique-street-1146282", "shahraj-kabir-khan-1209249"],
   },
