@@ -42,19 +42,27 @@ const schema = [
   </section>
 
   <section class="bg-[var(--color-mist-gray)] section">
-    <div class="container-wide grid gap-8 md:grid-cols-3">
-      <a href="/locations/new-york/long-island/" class="card no-underline text-[var(--color-ink)]">
-        <h2 class="text-lg font-semibold">Long Island</h2>
-        <p class="mt-2 text-sm text-[var(--color-text-muted)]">Cliffco's home market: Nassau and Suffolk counties, three branches.</p>
-        <span class="mt-3 text-sm font-semibold text-[var(--color-accent)]">Visit Long Island →</span>
+    <div class="container-wide space-y-4">
+      <!-- Long Island — prominent featured card -->
+      <a href="/locations/new-york/long-island/" class="card no-underline text-[var(--color-ink)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border-2 border-[var(--color-accent)]/30 hover:border-[var(--color-accent)] transition-colors">
+        <div>
+          <p class="eyebrow">Our home market since 1989</p>
+          <h2 class="mt-1" style="font-size: var(--text-h3);">Long Island</h2>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)] max-w-xl">Nassau and Suffolk counties, three offices (Uniondale HQ, Wantagh, Bay Shore). More Long Island loan officers and more Long Island experience than any other independent mortgage bank our size.</p>
+        </div>
+        <span class="btn btn-primary shrink-0">Find Long Island Loan Officers</span>
       </a>
-      <div class="card">
-        <h2 class="text-lg font-semibold">New York City</h2>
-        <p class="mt-2 text-sm text-[var(--color-text-muted)]">Five boroughs. Co-op + condo financing, jumbo, non-QM. Jamaica, NY office in Queens.</p>
-      </div>
-      <div class="card">
-        <h2 class="text-lg font-semibold">Hudson Valley + upstate</h2>
-        <p class="mt-2 text-sm text-[var(--color-text-muted)]">Cliffco lends statewide. Loan officers based in Long Island serve all 62 NY counties remotely.</p>
+
+      <!-- Secondary regions -->
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="card">
+          <h2 class="text-lg font-semibold">New York City</h2>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Five boroughs. Co-op + condo financing, jumbo, non-QM. Jamaica, NY office in Queens.</p>
+        </div>
+        <div class="card">
+          <h2 class="text-lg font-semibold">Hudson Valley + Upstate</h2>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Cliffco lends statewide. Loan officers based on Long Island serve all 62 NY counties remotely.</p>
+        </div>
       </div>
     </div>
   </section>

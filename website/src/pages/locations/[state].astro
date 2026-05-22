@@ -4,7 +4,7 @@ import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
 import { location } from "../../data/locations";
 import { BRANCHES } from "../../data/branches";
-import { LOAN_OFFICERS } from "../../data/loan-officers";
+import { LOAN_OFFICERS, loanOfficersByBranch } from "../../data/loan-officers";
 import { product } from "../../data/products";
 import { localBusinessSchema, faqPageSchema, breadcrumbSchema } from "../../lib/schema";
 import Headshot from "../../components/ui/Headshot.astro";
@@ -21,7 +21,15 @@ export async function getStaticPaths() {
 
 const { loc } = Astro.props;
 const stateBranches = BRANCHES.filter((b) => loc.branchSlugs?.includes(b.slug));
-const stateLOs = LOAN_OFFICERS.filter((lo) => lo.states.includes(loc.state));
+const stateBranchSlugs = new Set(stateBranches.map((b) => b.slug));
+// LOs physically assigned to a branch in this state
+const branchLOs = LOAN_OFFICERS.filter(
+  (lo) => lo.states.includes(loc.state) && stateBranchSlugs.has(lo.branchSlug),
+);
+// LOs licensed in this state but based at a branch elsewhere
+const licensedOnlyLOs = LOAN_OFFICERS.filter(
+  (lo) => lo.states.includes(loc.state) && !stateBranchSlugs.has(lo.branchSlug),
+);
 
 const faq = loc.isFlorida
   ? [
@@ -85,7 +93,7 @@ const schema = [
               {b.street && <p class="text-sm text-[var(--color-text-muted)] mt-2">{b.street}<br/>{b.city}, {b.region} {b.postalCode}</p>}
               {b.phone && <p class="text-sm mt-1"><a href={`tel:${b.phone.replace(/\D/g, "")}`} class="text-[var(--color-ink)] no-underline font-medium">{b.phone}</a></p>}
               {b.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{b.nmls}</p>}
-              <p class="text-sm text-[var(--color-text-muted)] mt-3">{b.loanOfficerSlugs.length} loan officer{b.loanOfficerSlugs.length === 1 ? "" : "s"}.</p>
+              <p class="text-sm text-[var(--color-text-muted)] mt-3">{loanOfficersByBranch(b.slug).length} loan officer{loanOfficersByBranch(b.slug).length === 1 ? "" : "s"}.</p>
             </article>
           ))}
         </div>
@@ -113,13 +121,16 @@ const schema = [
     </div>
   </section>
 
-  {stateLOs.length > 0 && (
+  {branchLOs.length > 0 && (
     <section class="section bg-[var(--color-mist-gray)]">
       <div class="container-wide">
-        <p class="eyebrow">{loc.name} loan officers</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Talk to a person licensed where you live.</h2>
+        <p class="eyebrow">Located at our {loc.name} offices</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Loan officers based here.</h2>
+        <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
+          These loan officers are physically located at a Cliffco branch in {loc.name}.
+        </p>
         <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {stateLOs.slice(0, 9).map((lo) => (
+          {branchLOs.slice(0, 9).map((lo) => (
             <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
               {lo.hasPhoto && (
                 <div class="mb-4 -mx-6 -mt-6">
@@ -136,8 +147,41 @@ const schema = [
             </a>
           ))}
         </div>
-        {stateLOs.length > 9 && (
-          <p class="mt-6"><a href={`/loan-officers/?state=${loc.state}`} class="text-sm font-medium">See all {stateLOs.length} {loc.name}-licensed LOs →</a></p>
+        {branchLOs.length > 9 && (
+          <p class="mt-6"><a href={`/loan-officers/?state=${loc.state}`} class="text-sm font-medium">See all {branchLOs.length} {loc.name}-based LOs →</a></p>
+        )}
+      </div>
+    </section>
+  )}
+
+  {licensedOnlyLOs.length > 0 && (
+    <section class="section bg-white">
+      <div class="container-wide">
+        <p class="eyebrow">Also licensed in {loc.name}</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Other {loc.name}-licensed loan officers.</h2>
+        <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
+          These loan officers are based at other Cliffco offices but are fully licensed to originate loans in {loc.name}.
+        </p>
+        <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {licensedOnlyLOs.slice(0, 6).map((lo) => (
+            <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
+              {lo.hasPhoto && (
+                <div class="mb-4 -mx-6 -mt-6">
+                  <Headshot slug={lo.slug} name={lo.displayName} size={320} shape="square" class="rounded-t-xl" />
+                </div>
+              )}
+              <p class="eyebrow">{lo.title}</p>
+              <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls} · Based in {BRANCHES.find((b) => b.slug === lo.branchSlug)?.city ?? "NY"}</p>
+              {lo.languages && lo.languages.length > 1 && (
+                <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
+              )}
+              <span class="mt-3 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
+            </a>
+          ))}
+        </div>
+        {licensedOnlyLOs.length > 6 && (
+          <p class="mt-6"><a href={`/loan-officers/?state=${loc.state}`} class="text-sm font-medium">See all {licensedOnlyLOs.length} {loc.name}-licensed LOs →</a></p>
         )}
       </div>
     </section>
