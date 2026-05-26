@@ -24,7 +24,8 @@ const featuredLocations = LOCATIONS.filter((l) =>
       <address class="mt-4 not-italic text-sm text-white/80 leading-relaxed">
         {COMPANY.hq.street}<br/>
         {COMPANY.hq.city}, {COMPANY.hq.region} {COMPANY.hq.postalCode}<br/>
-        <a href={`tel:${COMPANY.hq.phoneE164}`} class="text-white/90 no-underline hover:underline">{COMPANY.hq.phone}</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="text-white/90 no-underline hover:underline">{COMPANY.tollFree}</a><br/>
+        <a href={`tel:${COMPANY.hq.phoneE164}`} class="text-white/70 no-underline hover:underline">{COMPANY.hq.phone}</a>
       </address>
       <div class="mt-4 flex gap-3">
         <a href={COMPANY.socials.linkedin} class="text-white/70 hover:text-white no-underline" rel="noopener" aria-label="LinkedIn">

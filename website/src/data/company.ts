@@ -24,6 +24,8 @@ export const COMPANY = {
     phoneE164: "+15164087300",
     geo: { latitude: 40.7186, longitude: -73.5959 },
   },
+  tollFree: "(800) 834-4040",
+  tollFreeE164: "+18008344040",
   socials: {
     linkedin: "https://www.linkedin.com/company/cliffco-mortgage-bankers",
     facebook: "https://www.facebook.com/cliffcomortgage",

@@ -8,23 +8,16 @@ export type LeaderRole = {
 };
 
 export const LEADERSHIP_TEAM: readonly LeaderRole[] = [
-  // --- Has photo, alphabetical by last name ---
+  {
+    slug: "amanda-miller",
+    name: "Amanda Miller",
+    title: "Director of Human Resources",
+    hasPhoto: true,
+  },
   {
     slug: "antonio-baines",
     name: "Antonio Baines",
     title: "Operations Manager",
-    hasPhoto: true,
-  },
-  {
-    slug: "samantha-cardinal",
-    name: "Samantha Cardinal",
-    title: "Operations Manager",
-    hasPhoto: true,
-  },
-  {
-    slug: "sivon-collinge",
-    name: "Sivon Collinge",
-    title: "Chief Marketing Officer",
     hasPhoto: true,
   },
   {
@@ -52,9 +45,15 @@ export const LEADERSHIP_TEAM: readonly LeaderRole[] = [
     hasPhoto: true,
   },
   {
-    slug: "amanda-miller",
-    name: "Amanda Miller",
-    title: "Director of Human Resources",
+    slug: "samantha-cardinal",
+    name: "Samantha Cardinal",
+    title: "Operations Manager",
+    hasPhoto: true,
+  },
+  {
+    slug: "sivon-collinge",
+    name: "Sivon Collinge",
+    title: "Head of Marketing",
     hasPhoto: true,
   },
   {
@@ -63,15 +62,14 @@ export const LEADERSHIP_TEAM: readonly LeaderRole[] = [
     title: "Head of Media & Creative",
     hasPhoto: true,
   },
-  // --- No photo, alphabetical by last name ---
-  {
-    slug: "paul-jacobs",
-    name: "Paul Jacobs",
-    title: "VP of Quality Control",
-  },
   {
     slug: "michele-sclafani",
     name: "Michele Sclafani",
     title: "Assistant VP Closing",
+  },
+  {
+    slug: "paul-jacobs",
+    name: "Paul Jacobs",
+    title: "VP of Quality Control",
   },
 ];

@@ -1,6 +1,7 @@
 ---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../../data/company";
 ---
 
 <Layout
@@ -130,6 +131,7 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
           <p class="text-white/70 text-sm mt-1">A Cliffco loan officer can confirm your eligibility, lock a rate, and get you pre-approved today.</p>
         </div>
         <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="text-white/80 hover:text-white no-underline text-sm font-semibold whitespace-nowrap shrink-0">{COMPANY.tollFree}</a>
       </div>
     </div>
   </section>
