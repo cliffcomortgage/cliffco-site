@@ -89,9 +89,28 @@ const schema = [
         )}
       </dl>
 
-      <div class="mt-8 flex flex-wrap gap-3">
-        <button id="contact-trigger" class="btn btn-primary">Talk to {lo.firstName.split(" ")[0]}</button>
-        <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary">{COMPANY.hq.phone}</a>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm">
+        {lo.links?.email && (
+          <a href={`mailto:${lo.links.email}`} class="inline-flex items-center gap-1.5 text-[var(--color-ink)] hover:text-[var(--color-accent)] transition-colors">
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+            {lo.links.email}
+          </a>
+        )}
+        {lo.links?.directPhone && (
+          <a href={`tel:${lo.links.directPhone.replace(/[^+\d]/g, "")}`} class="inline-flex items-center gap-1.5 text-[var(--color-ink)] hover:text-[var(--color-accent)] transition-colors">
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+            {lo.links.directPhone}
+          </a>
+        )}
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        {lo.links?.applyNow ? (
+          <a href={lo.links.applyNow} class="btn btn-primary" target="_blank" rel="noopener">Apply Now</a>
+        ) : (
+          <button id="contact-trigger" class="btn btn-primary">Talk to {lo.firstName.split(" ")[0]}</button>
+        )}
+        <button id="contact-trigger-2" class="btn btn-secondary">Contact {lo.firstName.split(" ")[0]}</button>
       </div>
     </div>
   </section>
@@ -153,10 +172,11 @@ const schema = [
 
 <script>
   const dialog = document.getElementById("contact-dialog") as HTMLDialogElement | null;
-  const trigger = document.getElementById("contact-trigger");
   const close = document.getElementById("contact-close");
 
-  trigger?.addEventListener("click", () => dialog?.showModal());
+  ["contact-trigger", "contact-trigger-2"].forEach((id) => {
+    document.getElementById(id)?.addEventListener("click", () => dialog?.showModal());
+  });
   close?.addEventListener("click", () => dialog?.close());
   dialog?.addEventListener("click", (e) => {
     if (e.target === dialog) dialog.close();
