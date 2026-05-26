@@ -1,0 +1,107 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../data/company";
+import { product } from "../../../data/products";
+import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
+
+const p = product("renovation")!;
+const today = new Date().toISOString().slice(0, 10);
+
+const faq = [
+  { question: "What is a renovation loan?", answer: "A renovation mortgage rolls the cost of buying (or refinancing) a home and the cost of renovations into a single loan, based on the home's after-renovation value. The two main programs are FHA 203(k) (government-insured, for primary residences) and Fannie Mae HomeStyle (conventional, also allows investment properties and luxury upgrades)." },
+  { question: "What is the difference between FHA 203(k) and HomeStyle?", answer: "FHA 203(k): Government-insured, 3.5% down (580+ FICO), maximum loan equals FHA county limit, requires a HUD-approved consultant for standard 203(k), allows 1–4 unit primary residences. Fannie Mae HomeStyle: Conventional, 5% down (primary) or 10–15% (investment), up to conforming/high-balance limits, allows all property types including investment properties, and allows luxury upgrades that FHA 203(k) prohibits." },
+  { question: "How does the renovation disbursement work?", answer: "At closing, the renovation funds are held in an escrow account. As work is completed, the contractor submits draw requests and an inspector verifies progress before funds are released. This protects both the borrower and the lender." },
+  { question: "Can I do the renovation work myself?", answer: "On FHA 203(k), owner-occupant borrowers can act as their own general contractor for a Limited 203(k) (up to $75,000 in repairs), but this requires demonstrated experience and lender approval. On HomeStyle, borrowers may self-perform work, but lenders typically require a licensed contractor for major structural or mechanical work." },
+  { question: "What types of renovation work qualify?", answer: "Both programs cover structural repairs, kitchen and bath remodels, roof replacement, HVAC, plumbing, electrical, energy-efficiency upgrades, and accessibility modifications. HomeStyle also allows luxury items (pools, outdoor kitchens) that FHA 203(k) does not. Luxury-only renovations without a structural component are not eligible for FHA 203(k)." },
+  { question: "How long does a renovation loan take to close?", answer: "Renovation loans take longer than standard mortgages because of the additional documentation (contractor bids, work plans, appraisal of after-renovation value). Typical timeline is 45–60 days. Your Cliffco loan officer will coordinate with the appraiser and HUD consultant (if applicable) to keep the process moving." },
+];
+
+const schema = [
+  mortgageLoanSchema(p),
+  faqPageSchema(faq),
+  articleSchema({
+    headline: p.name,
+    description: p.directAnswer,
+    url: `/loans/${p.slug}/`,
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "christopher-clifford-65234",
+  }),
+];
+---
+
+<Layout title={`Renovation Loans (FHA 203k & HomeStyle) | Cliffco`} description={p.directAnswer} schema={schema}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Loans", href: "/loans/" },
+    { name: p.shortName, href: `/loans/${p.slug}/` },
+  ]} />
+
+  <section class="container-wide pt-12 pb-12">
+    <p class="eyebrow">{p.category}</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
+    <p class="lead mt-6">{p.oneLiner}</p>
+  </section>
+
+  <section class="bg-white pb-12">
+    <div class="container-prose">
+      <p class="lead">{p.directAnswer}</p>
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-mist-gray)] section">
+    <div class="container-wide">
+      <p class="eyebrow">Program comparison</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">FHA 203(k) vs. Fannie Mae HomeStyle.</h2>
+      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+        <article class="card">
+          <h3 class="text-lg font-semibold">FHA 203(k)</h3>
+          <dl class="mt-4 space-y-2 text-sm">
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Down payment</dt><dd>3.5% (580+ FICO)</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Loan limit</dt><dd>FHA county limit</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Property types</dt><dd>Primary residence, 1–4 units</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Luxury items</dt><dd>Not eligible</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Mortgage insurance</dt><dd>FHA MIP (typically for life of loan)</dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <h3 class="text-lg font-semibold">Fannie Mae HomeStyle</h3>
+          <dl class="mt-4 space-y-2 text-sm">
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Down payment</dt><dd>5% primary; 10–15% investment</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Loan limit</dt><dd>Conforming / high-balance</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Property types</dt><dd>Primary, second home, investment</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Luxury items</dt><dd>Eligible</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Mortgage insurance</dt><dd>PMI (removable at 80% LTV)</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-prose">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Renovation loan questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Buy the house. Fund the renovation. One loan.</h2>
+      <p class="lead mt-4 text-white/85">A Cliffco loan officer can walk you through the right program for your project.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Start the conversation</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+</Layout>

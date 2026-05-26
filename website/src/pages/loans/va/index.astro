@@ -1,0 +1,95 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../data/company";
+import { product } from "../../../data/products";
+import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
+
+const p = product("va")!;
+const today = new Date().toISOString().slice(0, 10);
+
+const faq = [
+  { question: "Who is eligible for a VA loan?", answer: "Active-duty service members, veterans with an honorable discharge, National Guard and Reserve members (with qualifying service), and surviving spouses of service members who died in the line of duty or from a service-connected disability may be eligible. Eligibility is confirmed through a Certificate of Eligibility (COE), which Cliffco can pull directly from the VA system." },
+  { question: "Is there really no down payment required?", answer: "For most VA purchases, yes. Qualified borrowers can finance up to 100% of the home's value with no down payment and no PMI. A funding fee applies (typically 2.15%–3.3% for first use), which can be financed into the loan. Veterans with a VA disability rating of 10% or more are exempt from the funding fee." },
+  { question: "What is the VA funding fee?", answer: "The VA funding fee helps sustain the program. For a first use with no down payment, it's 2.15% of the loan amount for most veterans (3.3% for subsequent use). With 5%+ down it drops to 1.5%, and 10%+ down reduces it further to 1.25%. Veterans receiving VA disability compensation are exempt entirely." },
+  { question: "Is there a VA loan limit in 2026?", answer: "As of 2020, VA loan limits were removed for eligible borrowers with full VA entitlement. There is no cap on how much you can borrow — though lenders still apply their own underwriting standards. Borrowers with remaining entitlement (partial) may still be subject to county-level limits." },
+  { question: "Can I use a VA loan to buy an investment property or second home?", answer: "No. VA loans are restricted to primary residences only. However, you can use a VA loan to buy a multi-family property (up to 4 units) as long as you occupy one unit." },
+  { question: "Can I refinance with a VA loan?", answer: "Yes. VA offers two refinance options: the Interest Rate Reduction Refinance Loan (IRRRL), sometimes called the VA Streamline, which simplifies refinancing an existing VA loan; and the VA cash-out refinance, which allows eligible borrowers to access equity up to 90% LTV." },
+];
+
+const schema = [
+  mortgageLoanSchema(p),
+  faqPageSchema(faq),
+  articleSchema({
+    headline: p.name,
+    description: p.directAnswer,
+    url: `/loans/${p.slug}/`,
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "christopher-clifford-65234",
+  }),
+];
+---
+
+<Layout title={`VA Loans | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Loans", href: "/loans/" },
+    { name: p.shortName, href: `/loans/${p.slug}/` },
+  ]} />
+
+  <section class="container-wide pt-12 pb-12">
+    <p class="eyebrow">{p.category}</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
+    <p class="lead mt-6">{p.oneLiner}</p>
+  </section>
+
+  <section class="bg-white pb-12">
+    <div class="container-prose">
+      <p class="lead">{p.directAnswer}</p>
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-mist-gray)] section">
+    <div class="container-wide grid gap-10 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">At a glance</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">What to expect.</h2>
+      </div>
+      <dl class="space-y-3">
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Down payment</dt><dd class="text-[var(--color-text-muted)]">0% for eligible borrowers with full entitlement</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Mortgage insurance</dt><dd class="text-[var(--color-text-muted)]">None (VA funding fee applies instead)</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Funding fee</dt><dd class="text-[var(--color-text-muted)]">2.15% (first use, 0% down); exempt for 10%+ disability</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Loan limit</dt><dd class="text-[var(--color-text-muted)]">No cap with full entitlement (as of 2020)</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Eligible property types</dt><dd class="text-[var(--color-text-muted)]">Primary residence, 1–4 units</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min FICO (Cliffco)</dt><dd class="text-[var(--color-text-muted)]">580 (program dependent)</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-prose">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">VA loan questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">You served. Zero down is your benefit.</h2>
+      <p class="lead mt-4 text-white/85">A Cliffco loan officer can pull your Certificate of Eligibility and pre-qual you in one business day.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get a VA pre-qual</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+</Layout>

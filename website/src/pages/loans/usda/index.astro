@@ -1,0 +1,95 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../data/company";
+import { product } from "../../../data/products";
+import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
+
+const p = product("usda")!;
+const today = new Date().toISOString().slice(0, 10);
+
+const faq = [
+  { question: "What is a USDA loan?", answer: "A USDA Rural Development loan is a government-backed mortgage for eligible properties in rural and many suburban areas. The program offers 0% down payment, below-market rates, and reduced mortgage insurance costs. USDA loans are not just for farms — many suburban neighborhoods outside major cities qualify." },
+  { question: "How do I know if a property is in an eligible area?", answer: "USDA publishes an online eligibility map at eligibility.sc.egov.usda.gov. Many areas outside major metros that feel suburban qualify, including parts of Long Island, New Jersey, upstate New York, and central Florida. Your Cliffco loan officer can check any address." },
+  { question: "Are there income limits for USDA loans?", answer: "Yes. USDA sets income limits based on household size and county median income — typically 115% of the area median income (AMI). Limits vary significantly by location. In high-cost areas, the limits are higher than in rural areas. Your Cliffco loan officer can confirm eligibility based on your household income and the specific property county." },
+  { question: "What is the USDA guarantee fee?", answer: "USDA loans include an upfront guarantee fee (1% of the loan amount, typically financed into the loan) and an annual fee of 0.35% of the outstanding balance. These are significantly lower than FHA mortgage insurance premiums, making USDA one of the most affordable low-down-payment programs available." },
+  { question: "What credit score is required for a USDA loan?", answer: "There is no official USDA minimum, but most lenders require at least 640 FICO for automated underwriting approval. Lower scores may be eligible through manual underwriting with compensating factors." },
+  { question: "Can I refinance with a USDA loan?", answer: "Yes. USDA offers a streamlined refinance program for existing USDA borrowers that can reduce the rate with minimal documentation, and a non-streamlined option for borrowers who want to roll in closing costs." },
+];
+
+const schema = [
+  mortgageLoanSchema(p),
+  faqPageSchema(faq),
+  articleSchema({
+    headline: p.name,
+    description: p.directAnswer,
+    url: `/loans/${p.slug}/`,
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "christopher-clifford-65234",
+  }),
+];
+---
+
+<Layout title={`USDA Loans | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Loans", href: "/loans/" },
+    { name: p.shortName, href: `/loans/${p.slug}/` },
+  ]} />
+
+  <section class="container-wide pt-12 pb-12">
+    <p class="eyebrow">{p.category}</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
+    <p class="lead mt-6">{p.oneLiner}</p>
+  </section>
+
+  <section class="bg-white pb-12">
+    <div class="container-prose">
+      <p class="lead">{p.directAnswer}</p>
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-mist-gray)] section">
+    <div class="container-wide grid gap-10 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">At a glance</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">What to expect.</h2>
+      </div>
+      <dl class="space-y-3">
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Down payment</dt><dd class="text-[var(--color-text-muted)]">0%</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Guarantee fee (upfront)</dt><dd class="text-[var(--color-text-muted)]">1% (financeable)</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Annual fee</dt><dd class="text-[var(--color-text-muted)]">0.35% of outstanding balance</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Income limit</dt><dd class="text-[var(--color-text-muted)]">115% of area median income (varies by county)</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Property eligibility</dt><dd class="text-[var(--color-text-muted)]">USDA-designated rural and suburban areas</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min FICO (typical)</dt><dd class="text-[var(--color-text-muted)]">640 for automated approval</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-prose">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">USDA loan questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Zero down. Check if your address qualifies.</h2>
+      <p class="lead mt-4 text-white/85">A Cliffco loan officer can confirm property and income eligibility in minutes.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Check eligibility</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+</Layout>

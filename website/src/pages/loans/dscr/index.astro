@@ -3,11 +3,9 @@ import Layout from "../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../data/company";
 import { product } from "../../../data/products";
-import { loanOfficer, nmlsConsumerAccessUrl } from "../../../data/loan-officers";
 import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
 
 const p = product("dscr")!;
-const reviewer = loanOfficer("christopher-clifford-65234")!;
 const today = new Date().toISOString().slice(0, 10);
 
 const faq = [
@@ -28,7 +26,7 @@ const schema = [
     url: `/loans/${p.slug}/`,
     datePublished: today,
     dateModified: today,
-    authorSlug: reviewer.slug,
+    authorSlug: "christopher-clifford-65234",
   }),
 ];
 ---
@@ -48,11 +46,8 @@ const schema = [
 
   <section class="bg-white pb-12">
     <div class="container-prose">
-      <div class="direct-answer">{p.directAnswer}</div>
-      <div class="reviewed-by mt-6">
-        <div><strong>Last reviewed:</strong> {today}</div>
-        <div><strong>Reviewed by:</strong> {reviewer.displayName}, {reviewer.title} · NMLS #{reviewer.nmls} · <a href={nmlsConsumerAccessUrl(reviewer.nmls)} rel="noopener">Verify ↗</a></div>
-      </div>
+      <p class="lead">{p.directAnswer}</p>
+</div>
     </div>
   </section>
 
