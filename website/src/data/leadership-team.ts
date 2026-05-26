@@ -53,13 +53,13 @@ export const LEADERSHIP_TEAM: readonly LeaderRole[] = [
   {
     slug: "sivon-collinge",
     name: "Sivon Collinge",
-    title: "Head of Marketing",
+    title: "Chief Marketing Officer",
     hasPhoto: true,
   },
   {
     slug: "rafe-tangorra",
     name: "Rafe Tangorra",
-    title: "Head of Media & Creative",
+    title: "Chief of Media",
     hasPhoto: true,
   },
   {
