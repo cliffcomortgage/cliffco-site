@@ -1,0 +1,229 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+
+const faq = [
+  {
+    question: "What is a DSCR loan?",
+    answer: "A DSCR (Debt Service Coverage Ratio) loan qualifies you based on the rental income of the property, not your personal income. If the property's monthly rent covers the mortgage payment, you may qualify regardless of your personal tax returns or W-2 income.",
+  },
+  {
+    question: "What DSCR ratio do I need to qualify?",
+    answer: "Most programs require a minimum DSCR of 1.0, meaning rent covers the full monthly payment. Programs with better pricing typically start at 1.25. Sub-1.0 DSCR is possible in some scenarios with a larger down payment. Your Cliffco loan officer can run the numbers for your specific property.",
+  },
+  {
+    question: "Can I borrow through an LLC or corporation?",
+    answer: "Yes. DSCR loans are available to both individual borrowers and business entities including LLCs, S-Corps, and C-Corps. Many investors prefer entity borrowing for liability protection, and Cliffco works with both.",
+  },
+  {
+    question: "Is there a limit on how many properties I can finance?",
+    answer: "Unlike conventional investment loans, which cap out at 10 financed properties, DSCR programs have no standard portfolio limit. Cliffco works with investors at all stages, from a first rental purchase to multi-property portfolios.",
+  },
+  {
+    question: "What property types qualify for DSCR loans?",
+    answer: "Single-family residences (1 to 4 units), condos, townhomes, and in some cases short-term rental properties qualify. Properties must be non-owner-occupied investment properties.",
+  },
+  {
+    question: "Do I need to verify personal income?",
+    answer: "No personal income documentation is required for DSCR loans. No tax returns, no W-2s, no pay stubs. The loan is underwritten entirely on the property's rental income and cash flow.",
+  },
+];
+
+const schema = [
+  faqPageSchema(faq),
+  articleSchema({
+    headline: "Real Estate Investor Mortgage: DSCR Loans",
+    description: "DSCR loans for real estate investors: qualify based on your rental property's cash flow, not your personal income. No tax returns or W-2s required. Portfolio and entity borrowing available.",
+    url: "/real-estate-investor-mortgage/",
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "christopher-clifford-65234",
+  }),
+];
+---
+
+<Layout
+  title="Real Estate Investor Mortgage: DSCR Loans | Cliffco"
+  description="Qualify for investment property financing using your property's rental income. DSCR loans from Cliffco require no personal income verification, no tax returns, and no portfolio limits."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Real Estate Investor Mortgage", href: "/real-estate-investor-mortgage/" },
+  ]} />
+
+  <!-- HERO -->
+  <section class="accent-gradient">
+    <div class="container-wide py-20 lg:py-28">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">DSCR Lending · Portfolio Financing</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        Qualifying Shouldn't Be About Your Salary.<br/>
+        <span class="text-[var(--color-ice-blue)]">It Should Be About Your Property's Cash Flow.</span>
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">
+        DSCR loans let the rental income do the qualifying work. No personal income verification. No tax returns. Your portfolio is the collateral. Your cash flow is the qualification.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="/mortgage-guides/calculators/dscr/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Run a DSCR Scenario</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+      <p class="mt-4 text-white/70 text-sm">No credit pull. No commitment. A loan officer responds in one business day.</p>
+    </div>
+  </section>
+
+  <!-- WHAT IS DSCR -->
+  <section class="section bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="eyebrow">The qualification method</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">What is DSCR and how does it work?</h2>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed">
+          DSCR stands for Debt Service Coverage Ratio. It is the ratio of a property's monthly rental income to its monthly mortgage payment (principal, interest, taxes, insurance, and HOA if applicable).
+        </p>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed">
+          A DSCR of 1.0 means the rent exactly covers the payment. A DSCR of 1.25 means the rent is 25% higher than the payment. Lenders use this ratio, not your personal W-2 or tax return, to determine whether the property can sustain itself.
+        </p>
+        <div class="mt-6 p-5 bg-[var(--color-mist-gray)] rounded-xl">
+          <p class="text-sm text-[var(--color-text-muted)] font-medium uppercase tracking-wider">Example</p>
+          <p class="mt-2 text-[var(--color-ink)]">Monthly rent: $2,500 &nbsp;|&nbsp; Monthly payment: $2,000</p>
+          <p class="mt-1 font-semibold text-[var(--color-ink)]">DSCR: 2,500 / 2,000 = 1.25 ✓ Qualifies</p>
+        </div>
+        <div class="mt-4">
+          <a href="/mortgage-guides/calculators/dscr/" class="text-sm font-semibold text-[var(--color-accent)]">Run your own DSCR calculation →</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Who qualifies</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Built for the serious investor.</h2>
+        <ul class="mt-6 space-y-3">
+          {[
+            "First-time rental property buyers",
+            "Multi-property portfolio investors",
+            "Self-employed investors with complex income",
+            "Investors borrowing through LLCs, S-Corps, or C-Corps",
+            "Foreign national investors",
+            "Investors who've maxed out conventional investment property loans",
+            "Short-term rental operators (program dependent)",
+          ].map((item) => (
+            <li class="flex gap-3 items-start">
+              <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center font-bold">✓</span>
+              <span class="text-[var(--color-text)] text-sm">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOAN PARAMETERS -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">Loan parameters</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">What to expect.</h2>
+
+      <dl class="mt-8 grid gap-3 max-w-2xl">
+        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+          <dt class="text-[var(--color-text-muted)]">Min DSCR ratio</dt>
+          <dd class="font-medium text-[var(--color-ink)]">0.75 (higher ratio = better pricing)</dd>
+        </div>
+        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+          <dt class="text-[var(--color-text-muted)]">Max LTV (purchase)</dt>
+          <dd class="font-medium text-[var(--color-ink)]">Up to 80%</dd>
+        </div>
+        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+          <dt class="text-[var(--color-text-muted)]">Max LTV (cash-out refi)</dt>
+          <dd class="font-medium text-[var(--color-ink)]">Up to 75%</dd>
+        </div>
+        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+          <dt class="text-[var(--color-text-muted)]">Loan amount</dt>
+          <dd class="font-medium text-[var(--color-ink)]">$100K to $3M+</dd>
+        </div>
+        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+          <dt class="text-[var(--color-text-muted)]">Property types</dt>
+          <dd class="font-medium text-[var(--color-ink)]">1 to 4 unit non-owner-occupied</dd>
+        </div>
+        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+          <dt class="text-[var(--color-text-muted)]">Entity borrowing</dt>
+          <dd class="font-medium text-[var(--color-ink)]">Yes (LLC, S-Corp, C-Corp)</dd>
+        </div>
+        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+          <dt class="text-[var(--color-text-muted)]">Personal income verification</dt>
+          <dd class="font-medium text-[var(--color-ink)]">Not required</dd>
+        </div>
+        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+          <dt class="text-[var(--color-text-muted)]">Loan terms</dt>
+          <dd class="font-medium text-[var(--color-ink)]">30-year fixed, ARM, 40-year interest-only</dd>
+        </div>
+        <div class="flex justify-between pb-3">
+          <dt class="text-[var(--color-text-muted)]">Portfolio limit</dt>
+          <dd class="font-medium text-[var(--color-ink)]">None</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">Program comparison</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">DSCR vs. traditional investment loan.</h2>
+      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+        <article class="card border-2 border-[var(--color-accent)]">
+          <p class="eyebrow text-[var(--color-accent)]">DSCR Loan (Cliffco)</p>
+          <h3 class="mt-2 text-lg font-semibold">Qualifies on property income</h3>
+          <dl class="mt-4 space-y-2 text-sm">
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Income verification</dt><dd>Rental income only, no personal income required</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Tax returns</dt><dd>Not required</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Portfolio limit</dt><dd>None</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Entity borrowing</dt><dd>Yes</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Qualification basis</dt><dd>Property cash flow (DSCR ratio)</dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Traditional Investment Loan</p>
+          <h3 class="mt-2 text-lg font-semibold">Qualifies on personal income</h3>
+          <dl class="mt-4 space-y-2 text-sm">
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Income verification</dt><dd>Full personal income documentation required</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Tax returns</dt><dd>2 years required</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Portfolio limit</dt><dd>Max 10 financed properties (Fannie/Freddie)</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Entity borrowing</dt><dd>Generally not allowed</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Qualification basis</dt><dd>Personal DTI</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">DSCR loan questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-border)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Run your numbers. Talk to a real investor specialist.</h2>
+      <p class="lead mt-4 text-white/85">Cliffco originates DSCR loans across 32 states. A loan officer responds in one business day.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/mortgage-guides/calculators/dscr/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Run a DSCR Scenario</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+</Layout>

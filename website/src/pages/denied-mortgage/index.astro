@@ -1,0 +1,247 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+
+const denialReasons = [
+  {
+    id: "credit",
+    label: "Credit Score Below 640",
+    solution: {
+      heading: "Your credit score isn't the end of the story.",
+      body: "Non-QM programs work with credit scores as low as 500. The lower the score, the larger the down payment typically required, but there is no hard floor that makes your situation automatic. With compensating factors such as strong cash reserves, low debt, or a larger down payment, scores in the 500s can qualify. Your Cliffco loan officer will review your full profile, not just the number.",
+    },
+  },
+  {
+    id: "selfemployed",
+    label: "Self-Employment Income",
+    solution: {
+      heading: "Your tax return isn't the only way to show income.",
+      body: "If your tax returns show less income than you actually earn because your accountant has maximized deductions, bank statement programs let us use 12 to 24 months of actual deposits instead. No tax returns required. This is one of the most common reasons self-employed borrowers are denied by conventional lenders, and one of the clearest cases where Cliffco has an alternative path.",
+    },
+  },
+  {
+    id: "bankruptcy",
+    label: "Recent Bankruptcy or Foreclosure",
+    solution: {
+      heading: "You may not have to wait as long as you think.",
+      body: "Conventional loans require 2 to 7 years after a bankruptcy or foreclosure before you can qualify again. Non-QM programs can approve borrowers as soon as 1 day after discharge (Chapter 7) or 1 day after a short sale, depending on the program and down payment. If the waiting period is the only thing between you and a home, let's talk.",
+    },
+  },
+  {
+    id: "debt",
+    label: "Too Much Existing Debt",
+    solution: {
+      heading: "DTI limits aren't universal.",
+      body: "Conventional lenders cap debt-to-income ratios at 43 to 50%. If your total monthly debt payments exceed that threshold, you're denied even if the mortgage payment itself is well within your means. Non-QM programs allow higher DTI ratios. DSCR loans for investment properties don't use personal DTI at all. The right approach depends on your specific situation.",
+    },
+  },
+  {
+    id: "property",
+    label: "Property Didn't Qualify",
+    solution: {
+      heading: "Not every home fits conventional guidelines. That's where we come in.",
+      body: "Condotels, mixed-use properties, non-warrantable condos, rural properties, and unique homes regularly fail conventional property tests. Cliffco has programs for property types that fall outside standard eligibility. Tell us the address and property type and we'll check what programs apply.",
+    },
+  },
+  {
+    id: "documentation",
+    label: "Couldn't Document Income",
+    solution: {
+      heading: "There are programs built for exactly your income type.",
+      body: "Tip earners, freelancers, seasonal workers, and business owners often can't show income the way W-2 employees can. Bank statement programs, asset depletion loans (qualifying based on investment assets rather than income), and DSCR programs for investment properties are all designed for this situation. The right program depends on your specific income type and the property you're financing.",
+    },
+  },
+];
+
+const faq = [
+  {
+    question: "What is a non-QM mortgage?",
+    answer: "A non-qualified mortgage (non-QM) is a loan that doesn't meet the standard documentation requirements of Fannie Mae and Freddie Mac. Non-QM loans are regulated by the same federal consumer protection laws as conventional mortgages. They simply allow alternative income documentation, higher debt-to-income ratios, and shorter waiting periods after credit events.",
+  },
+  {
+    question: "Is non-QM the same as subprime?",
+    answer: "No. Non-QM is not subprime. Subprime loans from the 2000s were often poorly documented, with hidden terms and predatory structures. Today's non-QM loans are fully documented (just with alternative documentation), priced transparently, and subject to the same federal ability-to-repay rules as conventional mortgages.",
+  },
+  {
+    question: "Why would a bank deny someone who can afford the mortgage?",
+    answer: "Conventional underwriting uses rigid formulas: W-2 income only, specific credit score thresholds, fixed DTI limits. If your income is real but doesn't fit the formula (self-employment, variable income, recent credit events), you can be denied despite being perfectly capable of managing the payment. Non-QM exists to serve borrowers who fall outside the formula.",
+  },
+  {
+    question: "Are non-QM interest rates higher?",
+    answer: "Yes, typically. Non-QM rates are usually 0.5% to 2% above conventional rates depending on the scenario, because the loan doesn't qualify for sale to Fannie Mae or Freddie Mac. This is a known trade-off. Many borrowers refinance into a conventional loan once their income or credit profile meets standard guidelines.",
+  },
+  {
+    question: "How long after a bankruptcy can I qualify for a non-QM loan?",
+    answer: "Some non-QM programs allow borrowing as soon as 1 day after discharge (Chapter 7) with a larger down payment. Conventional loans require 2 to 4 years. FHA requires 2 years. Non-QM provides options for borrowers who cannot wait the standard period.",
+  },
+  {
+    question: "How do I know if I qualify for a non-QM loan?",
+    answer: "The fastest way is to talk to a Cliffco loan officer. There is no single non-QM qualification checklist that applies to all programs. Every scenario is reviewed individually based on the full picture: credit, income type, down payment, property, and reserves. Call us or use the form below and we'll review your situation within one business day.",
+  },
+];
+
+const schema = [
+  faqPageSchema(faq),
+  articleSchema({
+    headline: "Denied for a Mortgage? Non-QM Lending Was Built for This",
+    description: "If you were denied by a bank or conventional lender, non-QM mortgage programs may be the path forward. Credit issues, self-employment income, bankruptcy recovery, and alternative documentation programs available.",
+    url: "/denied-mortgage/",
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "christopher-clifford-65234",
+  }),
+];
+---
+
+<Layout
+  title="Denied for a Mortgage? Non-QM Lending Was Built for This | Cliffco"
+  description="A mortgage denial from a conventional lender isn't the final word. Non-QM programs exist for exactly your situation. Cliffco specializes in getting loans done that others turn down."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Denied Mortgage Help", href: "/denied-mortgage/" },
+  ]} />
+
+  <!-- HERO -->
+  <section class="accent-gradient">
+    <div class="container-wide py-20 lg:py-28">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">Non-QM Lending · Denial Recovery</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        You Were Told No.<br/>
+        <span class="text-[var(--color-ice-blue)]">We Hear That a Lot.</span>
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">
+        Most denial letters don't tell you what they could: that non-QM lending exists, and it was built for exactly your situation.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Tell Us Why You Were Denied</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+      <p class="mt-4 text-white/70 text-sm">No credit pull. No commitment. A loan officer responds in one business day.</p>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE DENIAL SELECTOR -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">Your situation</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Why were you denied? We'll tell you if we can help.</h2>
+      <p class="lead mt-4 text-[var(--color-text-muted)] max-w-2xl">Select the reason closest to what the lender told you.</p>
+
+      <div class="mt-8 grid grid-cols-2 md:grid-cols-3 gap-3" id="denial-tiles">
+        {denialReasons.map((r) => (
+          <button
+            type="button"
+            data-denial-tile={r.id}
+            class="denial-tile border border-[var(--color-mist-gray)] rounded-xl px-4 py-3 text-left text-sm font-medium text-[var(--color-ink)] bg-white hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors cursor-pointer"
+          >
+            {r.label}
+          </button>
+        ))}
+      </div>
+
+      <div class="mt-8" id="denial-solutions">
+        {denialReasons.map((r) => (
+          <div data-denial-solution={r.id} class="hidden card max-w-2xl">
+            <h3 class="text-lg font-semibold text-[var(--color-ink)]">{r.solution.heading}</h3>
+            <p class="mt-3 text-[var(--color-text)] leading-relaxed">{r.solution.body}</p>
+            <div class="mt-6">
+              <a href="/get-started/" class="btn btn-primary">Tell us your full situation →</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- NON-QM EXPLAINER -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow">What non-QM means</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Non-QM is not subprime. Here's the difference.</h2>
+        <div class="mt-6 space-y-4 text-[var(--color-text)] leading-relaxed">
+          <p>A non-qualified mortgage (non-QM) is a loan that doesn't meet the standard documentation requirements of Fannie Mae and Freddie Mac. It is regulated by the same federal consumer protection laws as conventional mortgages. It is simply documented differently.</p>
+          <p>Non-QM exists for one reason: conventional guidelines were written for W-2 employees with predictable, documentable income. A large and growing portion of Americans don't fit that mold. Self-employed borrowers, investors, seasonal earners, and recent credit event survivors are all denied daily by lenders who have no alternative to offer. Non-QM fills that gap.</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow">What banks don't tell you</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">The denial letter leaves a lot out.</h2>
+        <ul class="mt-6 space-y-3">
+          {[
+            "Bank statement programs exist that don't require tax returns",
+            "Some non-QM lenders work with credit scores as low as 500",
+            "DSCR loans for investment properties require no personal income verification",
+            "Some programs have no waiting period after bankruptcy or foreclosure",
+            "Your denial was based on a formula, not a judgment of your ability to pay",
+          ].map((item) => (
+            <li class="flex gap-3 items-start">
+              <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center font-bold">✓</span>
+              <span class="text-[var(--color-text)] text-sm">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Non-QM questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-border)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Tell us why you were denied. We'll tell you if we can help.</h2>
+      <p class="lead mt-4 text-white/85">A Cliffco loan officer reviews your situation within one business day. No judgment. No pressure.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get a Second Opinion</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .denial-tile.active {
+    background-color: var(--color-accent);
+    color: white;
+    border-color: var(--color-accent);
+  }
+</style>
+
+<script>
+  const tiles = document.querySelectorAll<HTMLButtonElement>('[data-denial-tile]');
+  const solutions = document.querySelectorAll<HTMLElement>('[data-denial-solution]');
+
+  tiles.forEach((tile) => {
+    tile.addEventListener('click', () => {
+      const reason = tile.dataset.denialTile;
+
+      tiles.forEach((t) => t.classList.remove('active'));
+      solutions.forEach((s) => s.classList.add('hidden'));
+
+      tile.classList.add('active');
+      document.querySelector<HTMLElement>(`[data-denial-solution="${reason}"]`)?.classList.remove('hidden');
+    });
+  });
+</script>

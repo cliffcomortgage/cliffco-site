@@ -1,0 +1,215 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+
+const faq = [
+  {
+    question: "What is a bank statement mortgage?",
+    answer: "A bank statement mortgage lets you qualify using 12 to 24 months of bank deposits instead of tax returns or W-2s. Lenders analyze your average monthly deposits to calculate qualifying income. This program was built specifically for self-employed borrowers whose tax returns understate their actual cash flow.",
+  },
+  {
+    question: "How many months of bank statements do I need?",
+    answer: "Most programs require 12 months, though some allow 24 months, which can be beneficial if your income has grown over time. Cliffco works with both personal and business bank statements.",
+  },
+  {
+    question: "What if my business income varies month to month?",
+    answer: "Lenders average your monthly deposits over the full statement period. Some variation is expected and accepted. What matters is your consistent average, not any single month's performance.",
+  },
+  {
+    question: "Can I qualify if my tax returns show a loss or very low income?",
+    answer: "Yes, in many cases. Bank statement programs look at actual deposits, not taxable income. If your business generates strong cash flow but your accountant has minimized taxable income through deductions, you may still qualify.",
+  },
+  {
+    question: "What credit score do I need for a bank statement loan?",
+    answer: "Cliffco's bank statement programs typically require a minimum 620 FICO, though some scenarios can work with scores as low as 580 with compensating factors such as a larger down payment or strong reserves.",
+  },
+  {
+    question: "How is my income calculated from bank statements?",
+    answer: "For personal bank statements, lenders typically use 100% of average monthly deposits. For business bank statements, lenders apply an expense factor (typically 50-75%) to account for operating costs. Your loan officer will calculate both and use whichever is more favorable.",
+  },
+];
+
+const schema = [
+  faqPageSchema(faq),
+  articleSchema({
+    headline: "Self-Employed Mortgage Loans: Bank Statement Qualifying",
+    description: "Bank statement mortgages for self-employed borrowers, business owners, and 1099 contractors. Qualify using 12 months of bank deposits instead of tax returns.",
+    url: "/self-employed-mortgage/",
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "christopher-clifford-65234",
+  }),
+];
+---
+
+<Layout
+  title="Self-Employed Mortgage Loans | Bank Statement Qualifying | Cliffco"
+  description="Qualify for a mortgage using 12 months of bank statements — no tax returns required. Cliffco's bank statement loan programs are built for business owners, sole proprietors, and 1099 contractors."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Self-Employed Mortgage", href: "/self-employed-mortgage/" },
+  ]} />
+
+  <!-- HERO -->
+  <section class="accent-gradient">
+    <div class="container-wide py-20 lg:py-28">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">Non-QM Lending · Bank Statement Qualifying</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        You Built a Business.<br/>
+        <span class="text-[var(--color-ice-blue)]">Your Mortgage Should Reflect That.</span>
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">
+        Conventional lenders require W-2s. We require 12 months of bank statements. If your income is real but your tax returns don't tell the whole story, Cliffco has a path forward.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">See If I Qualify</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+      <p class="mt-4 text-white/70 text-sm">No credit pull. No commitment. A loan officer responds in one business day.</p>
+    </div>
+  </section>
+
+  <!-- WHO THIS IS FOR -->
+  <section class="section bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow">Who qualifies</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">This program was built for you specifically.</h2>
+        <p class="lead mt-4 text-[var(--color-text-muted)]">
+          Conventional mortgage guidelines were written for W-2 employees. If you don't fit that mold, bank statement qualifying changes the equation entirely.
+        </p>
+      </div>
+      <ul class="space-y-3 mt-2">
+        {[
+          "Sole proprietors and single-member LLC owners",
+          "S-Corp and C-Corp owners",
+          "1099 contractors and freelancers",
+          "Seasonal business owners",
+          "Restaurant, retail, and service business owners",
+          "Real estate agents and commissioned salespeople",
+          "Borrowers whose tax returns show less income than they actually earn",
+        ].map((item) => (
+          <li class="flex gap-3 items-start">
+            <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center font-bold">✓</span>
+            <span class="text-[var(--color-text)]">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">The process</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Three steps. No tax returns required.</h2>
+
+      <div class="mt-10 grid gap-8 md:grid-cols-3">
+        <div class="card">
+          <p class="text-[var(--color-accent)] font-bold text-3xl">01</p>
+          <h3 class="mt-4" style="font-size: var(--text-h3);">Share your bank statements</h3>
+          <p class="mt-2 text-[var(--color-text-muted)] text-sm leading-relaxed">12 months of personal or business bank statements. We analyze actual deposits, not tax return figures.</p>
+        </div>
+        <div class="card">
+          <p class="text-[var(--color-accent)] font-bold text-3xl">02</p>
+          <h3 class="mt-4" style="font-size: var(--text-h3);">We calculate your qualifying income</h3>
+          <p class="mt-2 text-[var(--color-text-muted)] text-sm leading-relaxed">Your loan officer averages your monthly deposits and identifies the program with the best fit for your situation.</p>
+        </div>
+        <div class="card">
+          <p class="text-[var(--color-accent)] font-bold text-3xl">03</p>
+          <h3 class="mt-4" style="font-size: var(--text-h3);">Close in 30 to 45 days</h3>
+          <p class="mt-2 text-[var(--color-text-muted)] text-sm leading-relaxed">Underwriting is done in-house. No handoffs, no call centers. Your file gets personal attention from start to close.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU NEED + LOAN DETAILS -->
+  <section class="section bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-12">
+      <div>
+        <p class="eyebrow">Document checklist</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">What to have ready.</h2>
+        <ul class="mt-6 space-y-3">
+          {[
+            "12 to 24 months of bank statements (personal or business)",
+            "Proof of self-employment: business license, CPA letter, or business bank statements",
+            "Most recent 2 years of personal tax returns (some programs waive this)",
+            "Minimum 10 to 20% down payment (program dependent)",
+            "3 to 6 months of reserves (PITI)",
+          ].map((item) => (
+            <li class="flex gap-3 items-start text-sm text-[var(--color-text)]">
+              <span class="mt-0.5 shrink-0 text-[var(--color-accent)]">→</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <p class="eyebrow">At a glance</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Loan details.</h2>
+        <dl class="mt-6 space-y-3">
+          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
+            <dt class="text-sm text-[var(--color-text-muted)]">Down payment</dt>
+            <dd class="text-sm font-medium">10 to 25% (program dependent)</dd>
+          </div>
+          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
+            <dt class="text-sm text-[var(--color-text-muted)]">Min FICO</dt>
+            <dd class="text-sm font-medium">620 (some programs as low as 580)</dd>
+          </div>
+          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
+            <dt class="text-sm text-[var(--color-text-muted)]">Loan amount</dt>
+            <dd class="text-sm font-medium">Up to $3M+</dd>
+          </div>
+          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
+            <dt class="text-sm text-[var(--color-text-muted)]">Property types</dt>
+            <dd class="text-sm font-medium">Primary, second home, investment</dd>
+          </div>
+          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
+            <dt class="text-sm text-[var(--color-text-muted)]">Loan terms</dt>
+            <dd class="text-sm font-medium">30-year fixed, ARM options available</dd>
+          </div>
+          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
+            <dt class="text-sm text-[var(--color-text-muted)]">Tax returns required</dt>
+            <dd class="text-sm font-medium">Not required (program dependent)</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Bank statement mortgage questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-border)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Your income is real. Your mortgage should be too.</h2>
+      <p class="lead mt-4 text-white/85">A Cliffco loan officer specializing in bank statement programs responds in one business day.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Tell us your situation</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
