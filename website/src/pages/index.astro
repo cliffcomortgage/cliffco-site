@@ -6,6 +6,7 @@ import { priorityProducts } from "../data/products";
 import { loanOfficer } from "../data/loan-officers";
 import { LOCATIONS } from "../data/locations";
 import { BRANCHES } from "../data/branches";
+import { FEATURED_REVIEWS } from "../data/reviews";
 
 const products = priorityProducts();
 const officeLocations = LOCATIONS.filter((l) => !l.path.includes("/"));
@@ -20,39 +21,63 @@ const yearsInBiz = COMPANY.yearsInBusiness();
 
   <!-- HERO -->
   <section class="accent-gradient">
-    <div class="container-wide py-20 lg:py-28 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
-      <div>
-        <p class="eyebrow !text-[var(--color-ice-blue)]">Family-built since 1989 · NMLS #{COMPANY.nmls}</p>
-        <h1 class="mt-4 text-white" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
-          We get families home.<br/>
-          <span class="text-[var(--color-ice-blue)]">Especially the ones other banks turned away.</span>
-        </h1>
-        <p class="lead mt-6 text-white/90 max-w-2xl">
-          {COMPANY.brandName} has been in the business for over {yearsInBiz} years. Real loan officers, no call center, no hand-offs.
-          Specialists in Non-QM and self-employed loans, reverse mortgages, DSCR for investors,
-          and business bank statement loans across New York, New Jersey, Arizona, Minnesota, and Florida.
-        </p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Talk to a real LO</a>
-          <a href="/loans/" class="btn btn-secondary !border-white !text-white">See loan products</a>
-        </div>
+    <div class="container-wide py-20 lg:py-28">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">Family-built since 1989 · NMLS #{COMPANY.nmls}</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        You Were Told No.<br/>
+        <span class="text-[var(--color-ice-blue)]">We Start There.</span>
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">
+        Most lenders have one playbook. We have fifteen. Bank statements, DSCR, reverse, non-QM. Your income doesn't have to look perfect to qualify.
+      </p>
+
+      <div class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-2xl">
+        <a href="/loans/non-qm-self-employed/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-white font-medium text-center no-underline transition-colors text-sm">I'm Self-Employed</a>
+        <a href="/loans/dscr/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-white font-medium text-center no-underline transition-colors text-sm">I'm an Investor</a>
+        <a href="/loans/reverse-mortgage/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-white font-medium text-center no-underline transition-colors text-sm">I'm 62+</a>
+        <a href="/get-started/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-white font-medium text-center no-underline transition-colors text-sm">I Was Denied</a>
       </div>
 
-      <aside class="bg-white text-[var(--color-text)] rounded-2xl p-8 shadow-2xl">
-        <p class="eyebrow">Quick Pre-Qualification</p>
-        <h2 class="mt-2" style="font-size: var(--text-h3);">Tell us your situation. We'll tell you what we can do.</h2>
-        <p class="text-sm text-[var(--color-text-muted)] mt-2">
-          Three questions. No credit pull. A licensed Cliffco loan officer responds in one business day.
-        </p>
-        <a href="/get-started/" class="btn btn-primary w-full mt-4">Start now →</a>
-        <p class="mt-4 text-xs text-[var(--color-text-muted)]">
-          Or call <a href={`tel:${COMPANY.tollFreeE164}`} class="font-semibold text-[var(--color-ink)]">{COMPANY.tollFree}</a>
-        </p>
-      </aside>
+      <div class="mt-8">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">See What's Possible</a>
+        <p class="mt-3 text-white/70 text-sm">No credit pull. No commitment. Takes 2 minutes.</p>
+      </div>
     </div>
   </section>
 
-  <!-- DIRECT-ANSWER (inverted pyramid for AEO) -->
+  <!-- TRUST BAR -->
+  <section class="bg-white border-b border-[var(--color-mist-gray)]">
+    <div class="container-wide py-5">
+      <dl class="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-center text-sm">
+        <div>
+          <dt class="text-[var(--color-text-muted)] text-xs uppercase tracking-wider">Experience.com</dt>
+          <dd class="font-semibold text-[var(--color-ink)] mt-0.5">4.9&#9733;&nbsp;&nbsp;3,617 reviews</dd>
+        </div>
+        <div class="hidden md:block w-px h-8 bg-[var(--color-mist-gray)]" aria-hidden="true"></div>
+        <div>
+          <dt class="text-[var(--color-text-muted)] text-xs uppercase tracking-wider">BBB Rating</dt>
+          <dd class="font-semibold text-[var(--color-ink)] mt-0.5">A+</dd>
+        </div>
+        <div class="hidden md:block w-px h-8 bg-[var(--color-mist-gray)]" aria-hidden="true"></div>
+        <div>
+          <dt class="text-[var(--color-text-muted)] text-xs uppercase tracking-wider">Total Closed</dt>
+          <dd class="font-semibold text-[var(--color-ink)] mt-0.5">$6B+</dd>
+        </div>
+        <div class="hidden md:block w-px h-8 bg-[var(--color-mist-gray)]" aria-hidden="true"></div>
+        <div>
+          <dt class="text-[var(--color-text-muted)] text-xs uppercase tracking-wider">Est.</dt>
+          <dd class="font-semibold text-[var(--color-ink)] mt-0.5">1989</dd>
+        </div>
+        <div class="hidden md:block w-px h-8 bg-[var(--color-mist-gray)]" aria-hidden="true"></div>
+        <div>
+          <dt class="text-[var(--color-text-muted)] text-xs uppercase tracking-wider">Licensed In</dt>
+          <dd class="font-semibold text-[var(--color-ink)] mt-0.5">32 States</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
   <section class="section bg-white">
     <div class="container-wide grid lg:grid-cols-2 gap-12 items-center">
       <div class="rounded-2xl overflow-hidden aspect-[4/3] bg-[var(--color-mist-gray)]">
@@ -77,8 +102,44 @@ const yearsInBiz = COMPANY.yearsInBusiness();
     </div>
   </section>
 
-  <!-- PRODUCT CARDS -->
+  <!-- WHO WE HELP — SITUATION CARDS -->
   <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <p class="eyebrow">Who we help</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Built for the borrower other lenders can't figure out.</h2>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <a href="/loans/non-qm-self-employed/" class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
+          <h3 style="font-size: var(--text-h3);">Self-Employed and Business Owners</h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">Can't show W-2 income? We work from your bank statements: 12 months, personal or business.</p>
+          <span class="mt-5 text-sm font-semibold text-[var(--color-accent)]">See my options →</span>
+        </a>
+
+        <a href="/loans/dscr/" class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
+          <h3 style="font-size: var(--text-h3);">Real Estate Investors</h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">Income from properties, not paystubs. DSCR loans built for your portfolio. No personal income required.</p>
+          <span class="mt-5 text-sm font-semibold text-[var(--color-accent)]">See my options →</span>
+        </a>
+
+        <a href="/loans/reverse-mortgage/" class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
+          <h3 style="font-size: var(--text-h3);">Homeowners 62 and Older</h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">Tap your home's equity. Stay in your home. On your terms.</p>
+          <span class="mt-5 text-sm font-semibold text-[var(--color-accent)]">Learn more →</span>
+        </a>
+
+        <a href="/get-started/" class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
+          <h3 style="font-size: var(--text-h3);">Denied Before?</h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">Tell us why you were denied. We find paths other lenders miss.</p>
+          <span class="mt-5 text-sm font-semibold text-[var(--color-accent)]">Get a second opinion →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOAN PROGRAMS -->
+  <section class="section bg-white">
     <div class="container-wide">
       <div class="max-w-3xl">
         <p class="eyebrow">Our niche</p>
@@ -101,6 +162,64 @@ const yearsInBiz = COMPANY.yearsInBusiness();
 
       <div class="mt-8 text-center">
         <a href="/loans/" class="text-sm font-medium">See conventional, FHA, VA, USDA, and renovation loans →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section bg-[var(--color-rich-black)] text-white">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <p class="eyebrow !text-[var(--color-ice-blue)]">How it works</p>
+        <h2 class="mt-3 text-white" style="font-size: var(--text-h2);">Simple process. Complex situations welcome.</h2>
+      </div>
+
+      <div class="mt-10 grid gap-10 md:grid-cols-3">
+        <div>
+          <p class="text-[var(--color-ice-blue)] font-bold" style="font-size: var(--text-display-lg);">01</p>
+          <h3 class="mt-4 text-white" style="font-size: var(--text-h3);">Tell us your situation</h3>
+          <p class="mt-2 text-white/75">No credit pull. No commitment. Just a conversation about where you are and where you want to go.</p>
+        </div>
+        <div>
+          <p class="text-[var(--color-ice-blue)] font-bold" style="font-size: var(--text-display-lg);">02</p>
+          <h3 class="mt-4 text-white" style="font-size: var(--text-h3);">We find your path</h3>
+          <p class="mt-2 text-white/75">A real mortgage specialist reviews your file within 24 hours and identifies the right program, not a bot.</p>
+        </div>
+        <div>
+          <p class="text-[var(--color-ice-blue)] font-bold" style="font-size: var(--text-display-lg);">03</p>
+          <h3 class="mt-4 text-white" style="font-size: var(--text-h3);">Close with confidence</h3>
+          <p class="mt-2 text-white/75">We manage every step from application to keys. You focus on what's next.</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Tell us your situation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">From our borrowers</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Real stories. Real loans. Real people.</h2>
+
+      <div class="mt-10 grid gap-6 lg:grid-cols-3">
+        {FEATURED_REVIEWS.map((r) => (
+          <figure class="card flex flex-col m-0">
+            <blockquote class="flex-1 m-0 p-0 border-0">
+              <p class="text-[var(--color-text)] leading-relaxed">"{r.quote}"</p>
+            </blockquote>
+            <figcaption class="mt-6 pt-4 border-t border-[var(--color-mist-gray)]">
+              <p class="font-semibold text-[var(--color-ink)] text-sm">{r.author}</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-0.5">{r.platform}</p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <div class="mt-8 text-center">
+        <a href="/reviews/" class="text-sm font-medium">Read all reviews →</a>
       </div>
     </div>
   </section>
@@ -139,7 +258,7 @@ const yearsInBiz = COMPANY.yearsInBusiness();
     </div>
   </section>
 
-  <!-- VALUES STRIP -->
+  <!-- VALUES -->
   <section class="section bg-[var(--color-rich-black)] text-white">
     <div class="container-wide grid gap-10 lg:grid-cols-[1fr_2fr] items-start">
       <div>
@@ -167,7 +286,7 @@ const yearsInBiz = COMPANY.yearsInBusiness();
     </div>
   </section>
 
-  <!-- LEADERSHIP / FOUNDER STRIP -->
+  <!-- LEADERSHIP -->
   <section class="section bg-white">
     <div class="container-wide grid gap-10 lg:grid-cols-[1fr_1fr] items-center">
       <div>
@@ -187,7 +306,7 @@ const yearsInBiz = COMPANY.yearsInBusiness();
     </div>
   </section>
 
-  <!-- TRUST / CTA -->
+  <!-- FINAL CTA -->
   <section class="accent-gradient">
     <div class="container-wide py-16 grid gap-8 lg:grid-cols-[2fr_1fr] items-center">
       <div>
