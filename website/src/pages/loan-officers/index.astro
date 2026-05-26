@@ -49,18 +49,33 @@ const stateNames: Record<string, string> = {
       Filter by state to see everyone licensed to originate where you are, or browse by office below.
     </p>
 
-    <!-- State filter -->
-    <div class="mt-8 inline-flex flex-wrap items-center gap-4 bg-[var(--color-mist-gray)] rounded-xl px-6 py-4 border border-[var(--color-accent)]/20">
-      <label for="state-filter" class="font-semibold text-sm text-[var(--color-ink)] whitespace-nowrap">Filter by state:</label>
-      <select
-        id="state-filter"
-        class="border-2 border-[var(--color-accent)]/40 rounded-lg px-4 py-2 text-sm font-medium text-[var(--color-ink)] bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] min-w-[220px] cursor-pointer"
-      >
-        <option value="">All states (browse by office)</option>
-        {allStates.map((s) => (
-          <option value={s}>{stateNames[s] ?? s} ({s})</option>
-        ))}
-      </select>
+    <!-- Filters -->
+    <div class="mt-8 flex flex-wrap items-center gap-3 bg-[var(--color-mist-gray)] rounded-xl px-6 py-4 border border-[var(--color-accent)]/20">
+      <div class="flex items-center gap-2 flex-1 min-w-[200px]">
+        <label for="lo-search" class="font-semibold text-sm text-[var(--color-ink)] whitespace-nowrap">Search:</label>
+        <div class="relative flex-1">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-text-muted)] pointer-events-none" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803 7.5 7.5 0 0015.803 15.803z" /></svg>
+          <input
+            id="lo-search"
+            type="search"
+            placeholder="Name..."
+            autocomplete="off"
+            class="w-full border-2 border-[var(--color-accent)]/40 rounded-lg pl-9 pr-4 py-2 text-sm font-medium text-[var(--color-ink)] bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+          />
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <label for="state-filter" class="font-semibold text-sm text-[var(--color-ink)] whitespace-nowrap">State:</label>
+        <select
+          id="state-filter"
+          class="border-2 border-[var(--color-accent)]/40 rounded-lg px-4 py-2 text-sm font-medium text-[var(--color-ink)] bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] min-w-[200px] cursor-pointer"
+        >
+          <option value="">All states</option>
+          {allStates.map((s) => (
+            <option value={s}>{stateNames[s] ?? s} ({s})</option>
+          ))}
+        </select>
+      </div>
       <span id="filter-count" class="text-sm font-medium text-[var(--color-accent)] hidden"></span>
     </div>
   </section>
@@ -124,27 +139,15 @@ const stateNames: Record<string, string> = {
   languages: lo.languages ?? [],
   hasPhoto: lo.hasPhoto ?? false,
 })) }}>
+  const searchInput = document.getElementById("lo-search");
   const select = document.getElementById("state-filter");
   const branchView = document.getElementById("branch-view");
   const stateView = document.getElementById("state-view");
   const stateResults = document.getElementById("state-results");
   const filterCount = document.getElementById("filter-count");
 
-  function applyFilter(state) {
-    if (!state) {
-      branchView.classList.remove("hidden");
-      stateView.classList.add("hidden");
-      filterCount.classList.add("hidden");
-      return;
-    }
-
-    const matched = loData.filter((lo) => lo.states.includes(state));
-    branchView.classList.add("hidden");
-    stateView.classList.remove("hidden");
-    filterCount.textContent = `${matched.length} loan officer${matched.length === 1 ? "" : "s"} licensed in ${state}`;
-    filterCount.classList.remove("hidden");
-
-    stateResults.innerHTML = matched.map((lo) => `
+  function cardHtml(lo) {
+    return `
       <a href="/loan-officers/${lo.slug}/" class="card no-underline text-[var(--color-ink)] flex flex-col" style="text-decoration:none;">
         <p style="font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-muted);margin:0 0 0.25rem;">${lo.title}</p>
         <h3 style="margin:0 0 0.25rem;font-size:1rem;font-weight:600;">${lo.displayName}</h3>
@@ -153,15 +156,49 @@ const stateNames: Record<string, string> = {
         ${lo.languages.length > 1 ? `<p style="font-size:0.75rem;color:var(--color-accent);font-weight:500;margin:0.5rem 0 0;">${lo.languages.join(" · ")}</p>` : ""}
         <span style="margin-top:1rem;font-size:0.875rem;font-weight:600;color:var(--color-accent);">View bio →</span>
       </a>
-    `).join("");
+    `;
   }
 
-  select.addEventListener("change", () => applyFilter(select.value));
+  function applyFilters() {
+    const state = select.value;
+    const query = searchInput.value.trim().toLowerCase();
 
-  // Auto-apply state filter from URL param (e.g. ?state=NY) — must come after listener is registered
+    if (!state && !query) {
+      branchView.classList.remove("hidden");
+      stateView.classList.add("hidden");
+      filterCount.classList.add("hidden");
+      return;
+    }
+
+    let matched = loData;
+    if (state) matched = matched.filter((lo) => lo.states.includes(state));
+    if (query) matched = matched.filter((lo) => lo.displayName.toLowerCase().includes(query));
+
+    branchView.classList.add("hidden");
+    stateView.classList.remove("hidden");
+
+    let label = "";
+    if (query && state) label = `${matched.length} result${matched.length === 1 ? "" : "s"} for "${searchInput.value}" in ${state}`;
+    else if (query) label = `${matched.length} loan officer${matched.length === 1 ? "" : "s"} matching "${searchInput.value}"`;
+    else label = `${matched.length} loan officer${matched.length === 1 ? "" : "s"} licensed in ${state}`;
+
+    filterCount.textContent = label;
+    filterCount.classList.remove("hidden");
+
+    if (matched.length === 0) {
+      stateResults.innerHTML = `<p style="color:var(--color-text-muted);grid-column:1/-1;">No loan officers found. Try a different name or state.</p>`;
+    } else {
+      stateResults.innerHTML = matched.map(cardHtml).join("");
+    }
+  }
+
+  select.addEventListener("change", applyFilters);
+  searchInput.addEventListener("input", applyFilters);
+
+  // Auto-apply state filter from URL param (e.g. ?state=NY)
   const initialState = new URLSearchParams(window.location.search).get("state");
   if (initialState) {
     select.value = initialState;
-    applyFilter(initialState);
+    applyFilters();
   }
 </script>
