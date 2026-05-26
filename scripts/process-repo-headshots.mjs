@@ -74,7 +74,7 @@ const FILE_TO_SLUG = {
   "Gary Johansen.jpg":                           "gjohansen",
   "Christian Soto.jpg":                          "csoto",
   "David Illouz Square Web.JPG":                 "dillouz",
-  "Jose Marrero Cruz Square Web.png":            "jmarrero",
+  "Jose Marrero Cruz Square Web.png":            "jcruz",
   "David Fallarino.jpg":                         "dfallarino",
   "Syed Hasib headshot web.jpg":                 "shasib",
   "Julian headshot web square.jpg":              "jgiaquinto",

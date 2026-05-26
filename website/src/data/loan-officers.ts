@@ -415,10 +415,10 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "jmarrero",
+    slug: "jcruz",
     firstName: "Jose",
-    lastName: "Marrero",
-    displayName: "Jose Marrero",
+    lastName: "Cruz",
+    displayName: "Jose Cruz",
     nmls: "1962198",
     title: "Loan Officer",
     states: ["NY"],
@@ -429,7 +429,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       directPhone: "407-729-3280",
       applyNow: "https://fastapp.cliffcomortgage.com/#/milestones?referrerId=jcruz%40cliffcomortgage.com&loanType=MORTGAGE",
     },
-    bio: "My name is Jose Marrero and I have over 10 years of experience in the real estate industry. I love helping 1st time home buyers and investors in Central Florida with different mortgage products. What makes me stand out is that I don't give up and I will find you a product to accomplish your goals in Real Estate. Call me today and let's start working on achieving your dreams and goals.",
+    bio: "My name is Jose Cruz and I have over 10 years of experience in the real estate industry. I love helping 1st time home buyers and investors in Central Florida with different mortgage products. What makes me stand out is that I don't give up and I will find you a product to accomplish your goals in Real Estate. Call me today and let's start working on achieving your dreams and goals.",
     hasPhoto: true,
   },
 
