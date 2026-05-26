@@ -1,0 +1,241 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+---
+
+<Layout
+  title="Self-Employed Income Calculator | Cliffco Mortgage Bankers"
+  description="Compare your qualifying income on tax returns vs. bank statements side by side. See which loan program gives you the higher number and the higher loan amount."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Calculators", href: "/mortgage-guides/calculators/" },
+    { name: "Self-Employed Income", href: "/mortgage-guides/calculators/self-employed-income/" },
+  ]} />
+
+  <!-- Hero -->
+  <section class="container-wide pt-14 pb-10">
+    <p class="eyebrow">For self-employed borrowers and 1099 contractors</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Self-Employed Income Calculator</h1>
+    <p class="lead mt-5 max-w-2xl">Compare your qualifying income on tax returns vs. bank statements side by side. See which loan program gives you the higher number and the higher loan amount.</p>
+  </section>
+
+  <!-- Calculator + Context -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <div class="lg:grid lg:grid-cols-[2fr_3fr] lg:gap-16 lg:items-start">
+
+        <!-- Left: context panel -->
+        <div class="mb-10 lg:mb-0 lg:sticky lg:top-8">
+          <h2 class="text-xl font-semibold text-[var(--color-ink)]">Two ways lenders count your income</h2>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Self-employed borrowers qualify differently than W-2 earners. Lenders use either your tax returns or your bank deposits to measure income, and the method that produces a higher number usually qualifies you for a higher purchase price. This calculator shows you both side by side.
+          </p>
+          <ul class="mt-5 space-y-3">
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              Tax return loans average your net income over 24 months, after write-offs
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              Bank statement loans use 12 or 24 months of deposits, minus an expense ratio
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              The method that produces more income usually qualifies you for a higher purchase price
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              Add-backs (depreciation, depletion, business use of home) can significantly boost your tax-return income
+            </li>
+          </ul>
+          <p class="mt-6 text-xs text-[var(--color-text-muted)] leading-relaxed border-t border-[var(--color-mist-gray)] pt-4">
+            Estimate only. Actual qualifying income requires a full file review with your CPA. Both methods require documentation: 2 years of returns for tax-return loans, 12-24 bank statements for bank-statement loans.
+          </p>
+        </div>
+
+        <!-- Right: calculator widget -->
+        <div class="rounded-2xl overflow-hidden border border-[var(--color-mist-gray)] shadow-sm">
+          <!-- Calculator header (dark) -->
+          <div class="bg-[var(--color-rich-black)] px-6 py-5">
+            <h2 class="text-lg font-semibold text-white">Self-Employed Income Calculator</h2>
+            <p class="text-sm text-white/60 mt-1">Results update as you type</p>
+          </div>
+          <!-- Inputs -->
+          <div class="bg-white p-6 space-y-5">
+
+            <!-- Tax Return Method -->
+            <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)]">Tax Return Method</p>
+
+            <div>
+              <label for="se-y1net" class="block text-sm font-medium text-[var(--color-ink)]">Year 1 net income from Schedule C or K-1 ($)</label>
+              <input id="se-y1net" type="number" class="calc-input mt-1.5" value="60000" min="0" step="1000" />
+            </div>
+            <div>
+              <label for="se-y2net" class="block text-sm font-medium text-[var(--color-ink)]">Year 2 net income ($)</label>
+              <input id="se-y2net" type="number" class="calc-input mt-1.5" value="55000" min="0" step="1000" />
+            </div>
+            <div>
+              <label for="se-addbacks" class="block text-sm font-medium text-[var(--color-ink)]">Annual add-backs (depreciation, depletion, etc.) ($)</label>
+              <input id="se-addbacks" type="number" class="calc-input mt-1.5" value="8000" min="0" step="500" />
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">Add-backs such as depreciation are added back to increase qualifying income</p>
+            </div>
+
+            <!-- Bank Statement Method -->
+            <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] pt-2">Bank Statement Method</p>
+
+            <div>
+              <label for="se-deposits12" class="block text-sm font-medium text-[var(--color-ink)]">Total deposits over 12 months ($)</label>
+              <input id="se-deposits12" type="number" class="calc-input mt-1.5" value="120000" min="0" step="1000" />
+            </div>
+            <div>
+              <label for="se-expratio" class="block text-sm font-medium text-[var(--color-ink)]">Expense ratio (%)</label>
+              <input id="se-expratio" type="number" class="calc-input mt-1.5" value="50" min="0" max="100" step="5" />
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">Lenders apply an expense ratio to deposits. 50% is common for service businesses; 30-40% for others.</p>
+            </div>
+          </div>
+
+          <!-- Results panel -->
+          <div class="border-t border-[var(--color-mist-gray)] bg-[var(--color-mist-gray)]/40 p-6">
+            <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-5">Your results</p>
+            <div class="grid gap-5 sm:grid-cols-3">
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Best Qualifying Income / Month</p>
+                <p id="se-better" class="result-num primary">—</p>
+              </div>
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Tax Return / Month</p>
+                <p id="se-taxreturn" class="result-num">—</p>
+              </div>
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Bank Statement / Month</p>
+                <p id="se-bankstmt" class="result-num">—</p>
+              </div>
+            </div>
+            <p id="se-winner" class="mt-4 text-sm font-semibold"></p>
+            <p id="se-verdict" class="mt-2 text-sm text-[var(--color-text-muted)]"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-14 bg-[var(--color-rich-black)] rounded-2xl p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
+        <div>
+          <p class="text-white font-semibold text-lg">Not sure which method works best for your file?</p>
+          <p class="text-white/70 text-sm mt-1">A Cliffco loan officer can review your returns and bank statements and tell you which program qualifies you for more.</p>
+        </div>
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <div class="bg-[var(--color-mist-gray)] py-6 text-center">
+    <a href="/mortgage-guides/calculators/" class="text-sm font-medium text-[var(--color-accent)]">← See all calculators</a>
+  </div>
+</Layout>
+
+<style>
+  .calc-input {
+    width: 100%;
+    border: 1.5px solid var(--color-soft-gray, #e5e7eb);
+    border-radius: 0.625rem;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9375rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+  select.calc-input {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.25rem;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+  .result-num {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink);
+  }
+  .result-num.primary {
+    font-size: 3rem;
+    color: var(--color-accent);
+  }
+</style>
+
+<script>
+  function fmt(n: number): string {
+    return "$" + Math.round(n).toLocaleString("en-US");
+  }
+
+  function calc() {
+    const y1net = parseFloat((document.getElementById("se-y1net") as HTMLInputElement).value) || 0;
+    const y2net = parseFloat((document.getElementById("se-y2net") as HTMLInputElement).value) || 0;
+    const addbacks = parseFloat((document.getElementById("se-addbacks") as HTMLInputElement).value) || 0;
+    const deposits12 = parseFloat((document.getElementById("se-deposits12") as HTMLInputElement).value) || 0;
+    const expratio = parseFloat((document.getElementById("se-expratio") as HTMLInputElement).value) || 0;
+
+    // Tax return method
+    const avgNetIncome = (y1net + y2net) / 2;
+    const taxReturnAnnual = avgNetIncome + addbacks;
+    const taxReturnMonthly = taxReturnAnnual / 12;
+
+    // Bank statement method
+    const bankStmtAnnual = deposits12 * (1 - expratio / 100);
+    const bankStmtMonthly = bankStmtAnnual / 12;
+
+    const betterMonthly = Math.max(taxReturnMonthly, bankStmtMonthly);
+    const winner = taxReturnMonthly >= bankStmtMonthly ? "Tax return" : "Bank statement";
+
+    const hasData = (y1net + y2net + deposits12) > 0;
+
+    const betterEl = document.getElementById("se-better");
+    const taxEl = document.getElementById("se-taxreturn");
+    const bankEl = document.getElementById("se-bankstmt");
+    const winnerEl = document.getElementById("se-winner");
+    const verdictEl = document.getElementById("se-verdict");
+
+    if (betterEl) betterEl.textContent = hasData ? fmt(betterMonthly) + "/mo" : "—";
+    if (taxEl) taxEl.textContent = hasData ? fmt(taxReturnMonthly) + "/mo" : "—";
+    if (bankEl) bankEl.textContent = hasData ? fmt(bankStmtMonthly) + "/mo" : "—";
+
+    if (winnerEl && hasData) {
+      winnerEl.textContent = winner + " wins";
+      winnerEl.className = "mt-4 text-sm font-semibold text-green-600";
+    } else if (winnerEl) {
+      winnerEl.textContent = "";
+    }
+
+    if (verdictEl && hasData) {
+      const losingMethod = winner === "Tax return" ? "bank statement" : "tax return";
+      verdictEl.textContent =
+        "The " + winner.toLowerCase() + " method produces " + fmt(betterMonthly) +
+        "/month in qualifying income. Pursue a " + winner.toLowerCase() +
+        " loan program to maximize your purchase price. Your loan officer can also run the " +
+        losingMethod + " method to confirm which qualifies you for more.";
+    } else if (verdictEl) {
+      verdictEl.textContent = "";
+    }
+  }
+
+  function init() {
+    ["se-y1net", "se-y2net", "se-addbacks", "se-deposits12", "se-expratio"].forEach((id) => {
+      document.getElementById(id)?.addEventListener("input", calc);
+      document.getElementById(id)?.addEventListener("change", calc);
+    });
+    calc();
+  }
+
+  init();
+</script>

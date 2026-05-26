@@ -1,0 +1,263 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+---
+
+<Layout
+  title="Refi Checkup Calculator | Cliffco Mortgage Bankers"
+  description="Calculate your monthly savings, break-even point, and net benefit at 2 and 5 years before you refinance. Know whether the math works before you apply."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Calculators", href: "/mortgage-guides/calculators/" },
+    { name: "Refi Checkup", href: "/mortgage-guides/calculators/refi-checkup/" },
+  ]} />
+
+  <!-- Hero -->
+  <section class="container-wide pt-14 pb-10">
+    <p class="eyebrow">For homeowners considering a refinance</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Refi Checkup Calculator</h1>
+    <p class="lead mt-5 max-w-2xl">See your monthly savings, break-even point, and net benefit at 2 and 5 years before you refinance. Know whether the math works before you apply.</p>
+  </section>
+
+  <!-- Calculator + Context -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <div class="lg:grid lg:grid-cols-[2fr_3fr] lg:gap-16 lg:items-start">
+
+        <!-- Left: context panel -->
+        <div class="mb-10 lg:mb-0 lg:sticky lg:top-8">
+          <h2 class="text-xl font-semibold text-[var(--color-ink)]">What this shows you</h2>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Monthly savings alone does not tell the full story. You need to recover the closing costs before you come out ahead. This calculator shows how long that takes and how much you net over time.
+          </p>
+          <ul class="mt-5 space-y-3">
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              Monthly savings alone does not tell the full story — you need to recover the closing costs before you come out ahead
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              Break-even = closing costs divided by monthly savings. If you plan to stay longer than the break-even, refinancing usually makes sense
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              A rate reduction of 0.5% or more often produces a break-even of under 24 months at most loan sizes
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              Cash-out refis have different math: the added loan balance affects both the monthly payment and long-term interest cost
+            </li>
+          </ul>
+          <p class="mt-6 text-xs text-[var(--color-text-muted)] leading-relaxed border-t border-[var(--color-mist-gray)] pt-4">
+            Estimate only. Does not account for tax deductibility of mortgage interest or opportunity cost of closing costs. Actual savings confirmed with a full loan review.
+          </p>
+        </div>
+
+        <!-- Right: calculator widget -->
+        <div class="rounded-2xl overflow-hidden border border-[var(--color-mist-gray)] shadow-sm">
+          <!-- Calculator header (dark) -->
+          <div class="bg-[var(--color-rich-black)] px-6 py-5">
+            <h2 class="text-lg font-semibold text-white">Refi Checkup Calculator</h2>
+            <p class="text-sm text-white/60 mt-1">Results update as you type</p>
+          </div>
+          <!-- Inputs -->
+          <div class="bg-white p-6 space-y-5">
+            <div>
+              <label for="rc-current" class="block text-sm font-medium text-[var(--color-ink)]">Current monthly P&amp;I ($)</label>
+              <input id="rc-current" type="number" class="calc-input mt-1.5" value="2200" min="0" step="10" />
+            </div>
+            <div>
+              <label for="rc-balance" class="block text-sm font-medium text-[var(--color-ink)]">Current loan balance ($)</label>
+              <input id="rc-balance" type="number" class="calc-input mt-1.5" value="380000" min="0" step="1000" />
+            </div>
+            <div>
+              <label for="rc-newrate" class="block text-sm font-medium text-[var(--color-ink)]">New interest rate (%)</label>
+              <input id="rc-newrate" type="number" class="calc-input mt-1.5" value="6.5" min="1" max="15" step="0.125" />
+            </div>
+            <div>
+              <label for="rc-term" class="block text-sm font-medium text-[var(--color-ink)]">New loan term</label>
+              <select id="rc-term" class="calc-input mt-1.5">
+                <option value="30" selected>30-year fixed</option>
+                <option value="20">20-year fixed</option>
+                <option value="15">15-year fixed</option>
+              </select>
+            </div>
+            <div>
+              <label for="rc-closing" class="block text-sm font-medium text-[var(--color-ink)]">Estimated closing costs ($)</label>
+              <input id="rc-closing" type="number" class="calc-input mt-1.5" value="6000" min="0" step="100" />
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">Typical range: $3,000 to $8,000. Your loan officer can give you a Loan Estimate.</p>
+            </div>
+          </div>
+          <!-- Results panel -->
+          <div class="border-t border-[var(--color-mist-gray)] bg-[var(--color-mist-gray)]/40 p-6">
+            <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-5">Your results</p>
+            <div class="grid gap-5 sm:grid-cols-3">
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Break-even Month</p>
+                <p id="rc-breakeven" class="result-num primary">—</p>
+              </div>
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Monthly Savings</p>
+                <p id="rc-savings" class="result-num">—</p>
+              </div>
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Net Benefit at 5 Years</p>
+                <p id="rc-net5" class="result-num">—</p>
+              </div>
+            </div>
+            <p id="rc-verdict" class="mt-4 text-sm text-[var(--color-text-muted)]"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-14 bg-[var(--color-rich-black)] rounded-2xl p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
+        <div>
+          <p class="text-white font-semibold text-lg">See if the refi math works for your loan.</p>
+          <p class="text-white/70 text-sm mt-1">A Cliffco loan officer can pull a full rate comparison and issue a Loan Estimate the same day.</p>
+        </div>
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <div class="bg-[var(--color-mist-gray)] py-6 text-center">
+    <a href="/mortgage-guides/calculators/" class="text-sm font-medium text-[var(--color-accent)]">← See all calculators</a>
+  </div>
+</Layout>
+
+<style>
+  .calc-input {
+    width: 100%;
+    border: 1.5px solid var(--color-soft-gray, #e5e7eb);
+    border-radius: 0.625rem;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9375rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+  select.calc-input {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.25rem;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+  .result-num {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink);
+  }
+  .result-num.primary {
+    font-size: 3rem;
+    color: var(--color-accent);
+  }
+</style>
+
+<script>
+  function fmtDollar(n: number): string {
+    return "$" + Math.round(Math.abs(n)).toLocaleString("en-US");
+  }
+
+  function calc() {
+    const currentPI = parseFloat((document.getElementById("rc-current") as HTMLInputElement).value) || 0;
+    const balance = parseFloat((document.getElementById("rc-balance") as HTMLInputElement).value) || 0;
+    const newRate = parseFloat((document.getElementById("rc-newrate") as HTMLInputElement).value) || 0;
+    const term = parseInt((document.getElementById("rc-term") as HTMLSelectElement).value) || 30;
+    const closingCosts = parseFloat((document.getElementById("rc-closing") as HTMLInputElement).value) || 0;
+
+    const r = newRate / 100 / 12;
+    const n = term * 12;
+    const newPI = r > 0
+      ? balance * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1)
+      : balance / n;
+
+    const monthlySavings = currentPI - newPI;
+    const breakEvenMonths = monthlySavings > 0 ? Math.ceil(closingCosts / monthlySavings) : 9999;
+    const net5yr = monthlySavings > 0 ? (monthlySavings * 60) - closingCosts : -(closingCosts);
+
+    const breakevenEl = document.getElementById("rc-breakeven");
+    const savingsEl = document.getElementById("rc-savings");
+    const net5El = document.getElementById("rc-net5");
+    const verdictEl = document.getElementById("rc-verdict");
+
+    if (!breakevenEl || !savingsEl || !net5El || !verdictEl) return;
+
+    if (balance === 0 && currentPI === 0) {
+      breakevenEl.textContent = "—";
+      savingsEl.textContent = "—";
+      net5El.textContent = "—";
+      verdictEl.textContent = "";
+      return;
+    }
+
+    // Break-even display and color
+    breakevenEl.className = "result-num primary";
+    if (monthlySavings <= 0) {
+      breakevenEl.textContent = "Never";
+      breakevenEl.classList.add("text-red-600");
+      breakevenEl.style.color = "";
+    } else if (breakEvenMonths > 360) {
+      breakevenEl.textContent = "Never";
+      breakevenEl.classList.add("text-red-600");
+      breakevenEl.style.color = "";
+    } else {
+      breakevenEl.textContent = "Month " + breakEvenMonths;
+      if (breakEvenMonths <= 24) {
+        breakevenEl.style.color = "";
+      } else if (breakEvenMonths <= 48) {
+        breakevenEl.style.color = "var(--color-accent)";
+      } else {
+        breakevenEl.style.color = "var(--color-accent)";
+      }
+    }
+
+    // Monthly savings
+    savingsEl.textContent = monthlySavings > 0 ? fmtDollar(monthlySavings) : "-" + fmtDollar(Math.abs(monthlySavings));
+
+    // Net at 5 years
+    net5El.textContent = net5yr >= 0 ? fmtDollar(net5yr) : "-" + fmtDollar(Math.abs(net5yr));
+    net5El.className = "result-num" + (net5yr >= 0 ? " text-green-600" : " text-red-600");
+
+    // Verdict
+    let verdict = "";
+    if (monthlySavings <= 0) {
+      verdict = "The new rate does not produce monthly savings at this balance. A lower rate or different term may change the picture.";
+      verdictEl.className = "mt-4 text-sm text-red-600";
+    } else if (breakEvenMonths <= 24) {
+      verdict = "Strong case for refinancing. You break even in under 2 years, and the savings compound from there.";
+      verdictEl.className = "mt-4 text-sm text-green-600";
+    } else if (breakEvenMonths <= 48) {
+      const beYears = Math.ceil(breakEvenMonths / 12);
+      verdict = `Moderate case. The math works if you plan to stay in the home at least ${beYears} years.`;
+      verdictEl.className = "mt-4 text-sm text-yellow-600";
+    } else {
+      verdict = "Long break-even. Consider whether you plan to stay long enough to recover closing costs.";
+      verdictEl.className = "mt-4 text-sm text-red-600";
+    }
+    verdictEl.textContent = verdict;
+  }
+
+  function init() {
+    ["rc-current", "rc-balance", "rc-newrate", "rc-term", "rc-closing"].forEach((id) => {
+      document.getElementById(id)?.addEventListener("input", calc);
+      document.getElementById(id)?.addEventListener("change", calc);
+    });
+    calc();
+  }
+
+  init();
+</script>

@@ -1,0 +1,238 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+---
+
+<Layout
+  title="Mortgage Affordability Calculator | Cliffco Mortgage Bankers"
+  description="Find the home price range that fits your income and savings. See the down payment scenarios and max purchase price at your real numbers."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Calculators", href: "/mortgage-guides/calculators/" },
+    { name: "Affordability Review", href: "/mortgage-guides/calculators/affordability/" },
+  ]} />
+
+  <!-- Hero -->
+  <section class="container-wide pt-14 pb-10">
+    <p class="eyebrow">For first-time buyers setting a realistic budget</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Mortgage Affordability Calculator</h1>
+    <p class="lead mt-5 max-w-2xl">Find the home price range that fits your income and savings. See both limits side by side so you know exactly what you can offer before you start shopping.</p>
+  </section>
+
+  <!-- Calculator + Context -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <div class="lg:grid lg:grid-cols-[2fr_3fr] lg:gap-16 lg:items-start">
+
+        <!-- Left: context panel -->
+        <div class="mb-10 lg:mb-0 lg:sticky lg:top-8">
+          <h2 class="text-xl font-semibold text-[var(--color-ink)]">How affordability works</h2>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Two separate limits determine what you can afford: your income sets a ceiling through the debt-to-income ratio, and your savings set a floor through the required down payment. The lower of the two is your real budget.
+          </p>
+          <ul class="mt-5 space-y-3">
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              Two limits determine what you can afford: your income (DTI) and your savings (down payment)
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              Conventional lenders want your total monthly debt including the new mortgage below 43% of gross income
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              The minimum down payment affects both your max price AND whether you need PMI
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              This calculator shows you both limits, then gives you the lower of the two as your realistic ceiling
+            </li>
+          </ul>
+          <p class="mt-6 text-xs text-[var(--color-text-muted)] leading-relaxed border-t border-[var(--color-mist-gray)] pt-4">
+            Estimate only. Assumes 7% rate, 30-year term, and no HOA. Actual qualification confirmed at pre-approval with full income and credit review.
+          </p>
+        </div>
+
+        <!-- Right: calculator widget -->
+        <div class="rounded-2xl overflow-hidden border border-[var(--color-mist-gray)] shadow-sm">
+          <!-- Calculator header (dark) -->
+          <div class="bg-[var(--color-rich-black)] px-6 py-5">
+            <h2 class="text-lg font-semibold text-white">Affordability Calculator</h2>
+            <p class="text-sm text-white/60 mt-1">Results update as you type</p>
+          </div>
+          <!-- Inputs -->
+          <div class="bg-white p-6 space-y-5">
+            <div>
+              <label for="af-income" class="block text-sm font-medium text-[var(--color-ink)]">Gross monthly income ($)</label>
+              <input id="af-income" type="number" class="calc-input mt-1.5" value="8000" min="0" step="500" />
+            </div>
+            <div>
+              <label for="af-debts" class="block text-sm font-medium text-[var(--color-ink)]">Existing monthly debt payments ($)</label>
+              <input id="af-debts" type="number" class="calc-input mt-1.5" value="400" min="0" step="50" />
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">Car loans, student loans, minimum credit card payments</p>
+            </div>
+            <div>
+              <label for="af-savings" class="block text-sm font-medium text-[var(--color-ink)]">Total savings available for down payment ($)</label>
+              <input id="af-savings" type="number" class="calc-input mt-1.5" value="50000" min="0" step="1000" />
+            </div>
+            <div>
+              <label for="af-taxes" class="block text-sm font-medium text-[var(--color-ink)]">Annual property taxes estimate ($)</label>
+              <input id="af-taxes" type="number" class="calc-input mt-1.5" value="6000" min="0" step="100" />
+            </div>
+            <div>
+              <label for="af-ins" class="block text-sm font-medium text-[var(--color-ink)]">Annual homeowners insurance estimate ($)</label>
+              <input id="af-ins" type="number" class="calc-input mt-1.5" value="1800" min="0" step="100" />
+            </div>
+          </div>
+          <!-- Results panel -->
+          <div class="border-t border-[var(--color-mist-gray)] bg-[var(--color-mist-gray)]/40 p-6">
+            <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-5">Your results</p>
+            <div class="grid gap-5 sm:grid-cols-3">
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Max Home Price</p>
+                <p id="af-maxprice" class="result-num primary">—</p>
+              </div>
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Est. Down Payment</p>
+                <p id="af-downscen" class="result-num">—</p>
+              </div>
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Est. Monthly Payment</p>
+                <p id="af-payment" class="result-num">—</p>
+              </div>
+            </div>
+            <p id="af-verdict" class="mt-4 text-sm font-medium"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-14 bg-[var(--color-rich-black)] rounded-2xl p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
+        <div>
+          <p class="text-white font-semibold text-lg">Ready to know your real number?</p>
+          <p class="text-white/70 text-sm mt-1">A Cliffco loan officer reviews your full picture and issues a pre-approval letter the same day.</p>
+        </div>
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <div class="bg-[var(--color-mist-gray)] py-6 text-center">
+    <a href="/mortgage-guides/calculators/" class="text-sm font-medium text-[var(--color-accent)]">← See all calculators</a>
+  </div>
+</Layout>
+
+<style>
+  .calc-input {
+    width: 100%;
+    border: 1.5px solid var(--color-soft-gray, #e5e7eb);
+    border-radius: 0.625rem;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9375rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+  .result-num {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink);
+  }
+  .result-num.primary {
+    font-size: 3rem;
+    color: var(--color-accent);
+  }
+</style>
+
+<script>
+  function fmt(n: number): string {
+    return "$" + Math.round(n).toLocaleString("en-US");
+  }
+
+  function calc() {
+    const income = parseFloat((document.getElementById("af-income") as HTMLInputElement).value) || 0;
+    const debts = parseFloat((document.getElementById("af-debts") as HTMLInputElement).value) || 0;
+    const savings = parseFloat((document.getElementById("af-savings") as HTMLInputElement).value) || 0;
+    const taxes = parseFloat((document.getElementById("af-taxes") as HTMLInputElement).value) || 0;
+    const ins = parseFloat((document.getElementById("af-ins") as HTMLInputElement).value) || 0;
+
+    const maxPriceEl = document.getElementById("af-maxprice");
+    const downScenEl = document.getElementById("af-downscen");
+    const paymentEl = document.getElementById("af-payment");
+    const verdictEl = document.getElementById("af-verdict");
+
+    if (income <= 0) {
+      if (maxPriceEl) maxPriceEl.textContent = "—";
+      if (downScenEl) downScenEl.textContent = "—";
+      if (paymentEl) paymentEl.textContent = "—";
+      if (verdictEl) verdictEl.textContent = "";
+      return;
+    }
+
+    const rate = 0.07;
+    const r = rate / 12;
+    const n = 360;
+    const tiMonthly = (taxes + ins) / 12;
+
+    // DTI-based limit
+    const maxHousingPayment = Math.max(0, 0.43 * income - debts);
+    const maxPI = Math.max(0, maxHousingPayment - tiMonthly);
+    const factor = r > 0 ? (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1) : 1 / n;
+    const maxLoanByIncome = maxPI / factor;
+
+    // Savings-based limit
+    const reserves = 2 * maxHousingPayment;
+    const availableForDown = Math.max(0, savings - reserves);
+
+    let maxPriceBySavings = 0;
+    for (const pct of [0.20, 0.10, 0.05, 0.035]) {
+      const priceAtPct = availableForDown / pct;
+      const loanAtPct = priceAtPct * (1 - pct);
+      if (loanAtPct <= maxLoanByIncome) {
+        maxPriceBySavings = priceAtPct;
+        break;
+      }
+    }
+    if (maxPriceBySavings === 0) {
+      maxPriceBySavings = maxLoanByIncome + availableForDown;
+    }
+
+    const maxPriceByIncome = maxLoanByIncome / 0.80;
+    const maxPrice = Math.min(maxPriceByIncome, maxPriceBySavings);
+    const downDollars = Math.min(savings * 0.8, maxPrice * 0.20);
+    const loanAmount = maxPrice - downDollars;
+    const pi = loanAmount * factor;
+    const totalPayment = pi + tiMonthly;
+    const bindingConstraint = maxPriceBySavings < maxPriceByIncome ? "savings" : "income";
+
+    if (maxPriceEl) maxPriceEl.textContent = fmt(maxPrice);
+    if (downScenEl) downScenEl.textContent = fmt(downDollars);
+    if (paymentEl) paymentEl.textContent = fmt(totalPayment);
+
+    if (verdictEl) {
+      verdictEl.textContent = `Your ${bindingConstraint} is the binding constraint at these numbers.`;
+      verdictEl.className = "mt-4 text-sm font-medium text-[var(--color-text-muted)]";
+    }
+  }
+
+  function init() {
+    ["af-income", "af-debts", "af-savings", "af-taxes", "af-ins"].forEach((id) => {
+      document.getElementById(id)?.addEventListener("input", calc);
+      document.getElementById(id)?.addEventListener("change", calc);
+    });
+    calc();
+  }
+
+  init();
+</script>

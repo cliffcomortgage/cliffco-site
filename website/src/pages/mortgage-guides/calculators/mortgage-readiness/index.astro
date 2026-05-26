@@ -1,0 +1,290 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+---
+
+<Layout
+  title="Mortgage Readiness Checkup | Cliffco Mortgage Bankers"
+  description="See your mortgage readiness score based on credit, income, debt load, and savings. Know exactly where you stand before you apply."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Calculators", href: "/mortgage-guides/calculators/" },
+    { name: "Mortgage Readiness Checkup", href: "/mortgage-guides/calculators/mortgage-readiness/" },
+  ]} />
+
+  <!-- Hero -->
+  <section class="container-wide pt-14 pb-10">
+    <p class="eyebrow">For first-time buyers and anyone rebuilding credit</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Mortgage Readiness Checkup</h1>
+    <p class="lead mt-5 max-w-2xl">See your mortgage readiness score based on credit, income, debt load, and savings. Know exactly where you stand before you apply.</p>
+  </section>
+
+  <!-- Calculator + Context -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <div class="lg:grid lg:grid-cols-[2fr_3fr] lg:gap-16 lg:items-start">
+
+        <!-- Left: context panel -->
+        <div class="mb-10 lg:mb-0 lg:sticky lg:top-8">
+          <h2 class="text-xl font-semibold text-[var(--color-ink)]">What lenders actually look at</h2>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Before you walk into a lender's office, it helps to know how you look on paper. This checkup scores you on the same four factors underwriters use: credit, debt-to-income, reserves, and loan-to-value. See where you're strong and where you have room to improve.
+          </p>
+          <ul class="mt-5 space-y-3">
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              Lenders look at four things: credit score, DTI ratio, employment history, and cash reserves
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              A DTI above 43% is a hard stop for most conventional loans
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              FHA loans are more flexible but require a minimum 580 credit score for 3.5% down
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              Your score here is directional; a loan officer will give you the definitive read
+            </li>
+          </ul>
+          <p class="mt-6 text-xs text-[var(--color-text-muted)] leading-relaxed border-t border-[var(--color-mist-gray)] pt-4">
+            Estimate only. Readiness scores are directional, not a credit decision. Actual qualification depends on full underwriting review.
+          </p>
+        </div>
+
+        <!-- Right: calculator widget -->
+        <div class="rounded-2xl overflow-hidden border border-[var(--color-mist-gray)] shadow-sm">
+          <!-- Calculator header (dark) -->
+          <div class="bg-[var(--color-rich-black)] px-6 py-5">
+            <h2 class="text-lg font-semibold text-white">Mortgage Readiness Checkup</h2>
+            <p class="text-sm text-white/60 mt-1">Results update as you type</p>
+          </div>
+          <!-- Inputs -->
+          <div class="bg-white p-6 space-y-5">
+            <div>
+              <label for="mr-credit" class="block text-sm font-medium text-[var(--color-ink)]">Credit score estimate</label>
+              <select id="mr-credit" class="calc-input mt-1.5">
+                <option value="below580">Below 580</option>
+                <option value="580-619">580 to 619</option>
+                <option value="620-659">620 to 659</option>
+                <option value="660-699">660 to 699</option>
+                <option value="700-739" selected>700 to 739</option>
+                <option value="740+">740 or higher</option>
+              </select>
+            </div>
+            <div>
+              <label for="mr-income" class="block text-sm font-medium text-[var(--color-ink)]">Gross monthly income ($)</label>
+              <input id="mr-income" type="number" class="calc-input mt-1.5" value="6000" min="0" step="500" />
+            </div>
+            <div>
+              <label for="mr-debts" class="block text-sm font-medium text-[var(--color-ink)]">Monthly minimum debt payments (car, student loans, credit cards) ($)</label>
+              <input id="mr-debts" type="number" class="calc-input mt-1.5" value="500" min="0" step="50" />
+            </div>
+            <div>
+              <label for="mr-savings" class="block text-sm font-medium text-[var(--color-ink)]">Liquid savings (checking, savings, investment accounts) ($)</label>
+              <input id="mr-savings" type="number" class="calc-input mt-1.5" value="20000" min="0" step="1000" />
+            </div>
+            <div>
+              <label for="mr-price" class="block text-sm font-medium text-[var(--color-ink)]">Target home price ($)</label>
+              <input id="mr-price" type="number" class="calc-input mt-1.5" value="400000" min="50000" step="5000" />
+            </div>
+          </div>
+          <!-- Results panel -->
+          <div class="border-t border-[var(--color-mist-gray)] bg-[var(--color-mist-gray)]/40 p-6">
+            <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-5">Your results</p>
+            <div class="grid gap-5 sm:grid-cols-3">
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Readiness Score</p>
+                <p id="mr-score" class="result-num primary">—</p>
+                <p id="mr-label" class="text-sm font-semibold mt-1"></p>
+              </div>
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Back-End DTI</p>
+                <p id="mr-dti" class="result-num">—</p>
+              </div>
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Months of Reserves</p>
+                <p id="mr-reserves" class="result-num">—</p>
+              </div>
+            </div>
+            <p id="mr-verdict" class="mt-4 text-sm text-[var(--color-text-muted)]"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-14 bg-[var(--color-rich-black)] rounded-2xl p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
+        <div>
+          <p class="text-white font-semibold text-lg">Ready to find out where you really stand?</p>
+          <p class="text-white/70 text-sm mt-1">A Cliffco loan officer reviews your full picture, not just a score. We help borrowers other banks turned away.</p>
+        </div>
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <div class="bg-[var(--color-mist-gray)] py-6 text-center">
+    <a href="/mortgage-guides/calculators/" class="text-sm font-medium text-[var(--color-accent)]">&#8592; See all calculators</a>
+  </div>
+</Layout>
+
+<style>
+  .calc-input {
+    width: 100%;
+    border: 1.5px solid var(--color-soft-gray, #e5e7eb);
+    border-radius: 0.625rem;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9375rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+  select.calc-input {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.25rem;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+  .result-num {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink);
+  }
+  .result-num.primary {
+    font-size: 3rem;
+    color: var(--color-accent);
+  }
+</style>
+
+<script>
+  function calc() {
+    const creditScores: Record<string, number> = {
+      "below580": 550,
+      "580-619": 599,
+      "620-659": 639,
+      "660-699": 679,
+      "700-739": 719,
+      "740+": 760,
+    };
+
+    const mrCreditSelect = document.getElementById("mr-credit") as HTMLSelectElement;
+    const income = parseFloat((document.getElementById("mr-income") as HTMLInputElement).value) || 0;
+    const debts = parseFloat((document.getElementById("mr-debts") as HTMLInputElement).value) || 0;
+    const savings = parseFloat((document.getElementById("mr-savings") as HTMLInputElement).value) || 0;
+    const price = parseFloat((document.getElementById("mr-price") as HTMLInputElement).value) || 0;
+
+    const creditScore = creditScores[mrCreditSelect?.value] ?? 719;
+
+    const scoreEl = document.getElementById("mr-score");
+    const labelEl = document.getElementById("mr-label");
+    const dtiEl = document.getElementById("mr-dti");
+    const reservesEl = document.getElementById("mr-reserves");
+    const verdictEl = document.getElementById("mr-verdict");
+
+    if (!price || !income) {
+      if (scoreEl) { scoreEl.textContent = "—"; scoreEl.className = "result-num primary"; }
+      if (labelEl) { labelEl.textContent = ""; labelEl.className = "text-sm font-semibold mt-1"; }
+      if (dtiEl) dtiEl.textContent = "—";
+      if (reservesEl) reservesEl.textContent = "—";
+      if (verdictEl) verdictEl.textContent = "";
+      return;
+    }
+
+    const downEst = price * 0.05;
+    const r = 0.07 / 12;
+    const n = 360;
+    const piEst = (price - downEst) * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const tiEst = price * 0.015 / 12;
+    const housingPayment = piEst + tiEst;
+
+    const backDTI = income > 0 ? (housingPayment + debts) / income * 100 : 999;
+    const reserveMonths = housingPayment > 0 ? savings / housingPayment : 0;
+
+    let score = 100;
+
+    if (creditScore < 580) score -= 40;
+    else if (creditScore < 620) score -= 25;
+    else if (creditScore < 660) score -= 15;
+    else if (creditScore < 700) score -= 5;
+
+    if (backDTI > 50) score -= 30;
+    else if (backDTI > 43) score -= 20;
+    else if (backDTI > 36) score -= 10;
+
+    if (reserveMonths < 2) score -= 20;
+    else if (reserveMonths < 3) score -= 10;
+    else if (reserveMonths < 6) score -= 5;
+
+    score = Math.max(0, score);
+
+    const label = score >= 80 ? "Strong" : score >= 60 ? "On Track" : score >= 40 ? "Needs Work" : "Not Ready";
+    const colorClass = score >= 80 ? "text-green-600" : score >= 60 ? "text-yellow-600" : "text-red-600";
+
+    if (scoreEl) {
+      scoreEl.textContent = String(score);
+      scoreEl.className = "result-num primary";
+      // Override accent color via inline style based on score
+      if (score >= 80) scoreEl.style.color = "#16a34a";
+      else if (score >= 60) scoreEl.style.color = "#ca8a04";
+      else scoreEl.style.color = "#dc2626";
+    }
+
+    if (labelEl) {
+      labelEl.textContent = label;
+      labelEl.className = `text-sm font-semibold mt-1 ${colorClass}`;
+    }
+
+    if (dtiEl) dtiEl.textContent = backDTI < 999 ? backDTI.toFixed(1) + "%" : "—";
+    if (reservesEl) reservesEl.textContent = reserveMonths.toFixed(1) + " mo";
+
+    // Verdict: explain the biggest limiting factor
+    let verdict = "";
+    if (score >= 80) {
+      verdict = "You're in strong shape. Your credit, debt load, and reserves all check out at conventional loan standards. Talk to a loan officer to confirm your pre-approval range.";
+    } else if (score >= 60) {
+      if (backDTI > 43) {
+        verdict = `Your back-end DTI of ${backDTI.toFixed(1)}% is above the 43% conventional threshold. Paying down existing debts or targeting a lower purchase price will improve your position.`;
+      } else if (reserveMonths < 3) {
+        verdict = `You're on track, but your cash reserves (${reserveMonths.toFixed(1)} months) are on the low side. Building savings to cover 3 or more months of housing costs strengthens your application.`;
+      } else {
+        verdict = "You're on track overall. Minor gaps in credit score or reserves are holding back a perfect score. A loan officer can walk you through your best loan options.";
+      }
+    } else if (score >= 40) {
+      if (creditScore < 620) {
+        verdict = `A credit score in the ${mrCreditSelect?.value?.replace("-", " to ")} range limits your options to FHA and some non-QM products. Getting your score above 620 opens up significantly better terms.`;
+      } else if (backDTI > 43) {
+        verdict = `Your back-end DTI of ${backDTI.toFixed(1)}% is a meaningful obstacle. Lenders want to see this below 43% for most programs. Reducing existing debts is the fastest path forward.`;
+      } else {
+        verdict = "Some work to do, but you're not far off. A Cliffco loan officer can help you identify which factors to address first to qualify faster.";
+      }
+    } else {
+      verdict = "Based on these numbers, you're not quite ready yet. That said, Cliffco specializes in helping borrowers other lenders turn away. A conversation with a loan officer is worth it.";
+    }
+
+    if (verdictEl) verdictEl.textContent = verdict;
+  }
+
+  function init() {
+    ["mr-credit", "mr-income", "mr-debts", "mr-savings", "mr-price"].forEach((id) => {
+      document.getElementById(id)?.addEventListener("input", calc);
+      document.getElementById(id)?.addEventListener("change", calc);
+    });
+    calc();
+  }
+
+  init();
+</script>

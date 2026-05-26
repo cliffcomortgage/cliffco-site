@@ -1,0 +1,234 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+---
+
+<Layout
+  title="Mortgage Budget Builder | Cliffco Mortgage Bankers"
+  description="Free mortgage budget calculator. Enter your take-home pay, expenses, and savings goal to find the mortgage payment you can actually sustain."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Calculators", href: "/mortgage-guides/calculators/" },
+    { name: "Budget Builder", href: "/mortgage-guides/calculators/budget-builder/" },
+  ]} />
+
+  <!-- Hero -->
+  <section class="container-wide pt-14 pb-10">
+    <p class="eyebrow">For buyers and move-up borrowers</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Mortgage Budget Builder</h1>
+    <p class="lead mt-5 max-w-2xl">Find the mortgage payment that fits your real monthly cash flow — not just what a lender will approve, but what you can actually live with every month.</p>
+  </section>
+
+  <!-- Calculator + Context -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <div class="lg:grid lg:grid-cols-[2fr_3fr] lg:gap-16 lg:items-start">
+
+        <!-- Left: context panel -->
+        <div class="mb-10 lg:mb-0 lg:sticky lg:top-8">
+          <h2 class="text-xl font-semibold text-[var(--color-ink)]">Pre-approval vs. real budget</h2>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Lenders approve loans based on gross income. This calculator works from your take-home pay and real expenses to find the ceiling you can actually sustain. The two numbers can differ significantly — knowing your real ceiling before you shop keeps you from falling in love with a payment that strains your monthly life.
+          </p>
+          <ul class="mt-5 space-y-3">
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              Start with your monthly take-home (after taxes, 401k, etc.)
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              Include all real fixed costs: car, subscriptions, utilities, food, childcare
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              Build in a savings buffer — don't zero out your emergency fund for a mortgage
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
+              The purchase price output assumes 20% down and a 30-year term at your rate
+            </li>
+          </ul>
+          <p class="mt-6 text-xs text-[var(--color-text-muted)] leading-relaxed border-t border-[var(--color-mist-gray)] pt-4">
+            Estimate only. Assumes 20% down and 30-year term for purchase price calculation. Add estimated taxes and insurance to the payment ceiling before using this number to shop.
+          </p>
+        </div>
+
+        <!-- Right: calculator widget -->
+        <div class="rounded-2xl overflow-hidden border border-[var(--color-mist-gray)] shadow-sm">
+          <!-- Calculator header (dark) -->
+          <div class="bg-[var(--color-rich-black)] px-6 py-5">
+            <h2 class="text-lg font-semibold text-white">Mortgage Budget Builder</h2>
+            <p class="text-sm text-white/60 mt-1">Results update as you type</p>
+          </div>
+          <!-- Inputs -->
+          <div class="bg-white p-6 space-y-5">
+            <div>
+              <label for="bb-income" class="block text-sm font-medium text-[var(--color-ink)]">Monthly take-home pay ($)</label>
+              <input id="bb-income" type="number" class="calc-input mt-1.5" value="8000" min="0" step="100" />
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">After taxes, 401k contributions, and other payroll deductions</p>
+            </div>
+            <div>
+              <label for="bb-expenses" class="block text-sm font-medium text-[var(--color-ink)]">Monthly fixed expenses ($)</label>
+              <input id="bb-expenses" type="number" class="calc-input mt-1.5" value="3000" min="0" step="100" />
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">Car payments, subscriptions, food, utilities, childcare, student loans, etc.</p>
+            </div>
+            <div>
+              <label for="bb-savings" class="block text-sm font-medium text-[var(--color-ink)]">Monthly savings goal ($)</label>
+              <input id="bb-savings" type="number" class="calc-input mt-1.5" value="500" min="0" step="100" />
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">Amount you want to keep saving each month after housing</p>
+            </div>
+            <div>
+              <label for="bb-rate" class="block text-sm font-medium text-[var(--color-ink)]">Expected interest rate (%)</label>
+              <input id="bb-rate" type="number" class="calc-input mt-1.5" value="7.0" min="2" max="15" step="0.125" />
+            </div>
+          </div>
+          <!-- Results panel -->
+          <div class="border-t border-[var(--color-mist-gray)] bg-[var(--color-mist-gray)]/40 p-6">
+            <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-5">Your results</p>
+            <div class="grid gap-5 sm:grid-cols-3">
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Comfortable Payment Ceiling</p>
+                <p id="bb-ceiling" class="result-num primary">—</p>
+              </div>
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Estimated Purchase Price</p>
+                <p id="bb-price" class="result-num">—</p>
+              </div>
+              <div>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Monthly Savings Protected</p>
+                <p id="bb-remaining" class="result-num">—</p>
+              </div>
+            </div>
+            <p id="bb-note" class="mt-4 text-xs text-[var(--color-text-muted)]">Estimated purchase price assumes 20% down, 30-year term. Taxes and insurance will reduce your real payment ceiling.</p>
+            <p id="bb-warning" class="mt-3 text-sm font-medium"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-14 bg-[var(--color-rich-black)] rounded-2xl p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
+        <div>
+          <p class="text-white font-semibold text-lg">Ready to find out what you qualify for?</p>
+          <p class="text-white/70 text-sm mt-1">A Cliffco loan officer can match your real budget to the right loan program — same day.</p>
+        </div>
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <div class="bg-[var(--color-mist-gray)] py-6 text-center">
+    <a href="/mortgage-guides/calculators/" class="text-sm font-medium text-[var(--color-accent)]">← See all calculators</a>
+  </div>
+</Layout>
+
+<style>
+  .calc-input {
+    width: 100%;
+    border: 1.5px solid var(--color-soft-gray, #e5e7eb);
+    border-radius: 0.625rem;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9375rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+  .result-num {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink);
+  }
+  .result-num.primary {
+    font-size: 3rem;
+    color: var(--color-accent);
+  }
+</style>
+
+<script>
+  function fmt(n: number): string {
+    return "$" + Math.round(n).toLocaleString("en-US");
+  }
+
+  function calc() {
+    const income = parseFloat((document.getElementById("bb-income") as HTMLInputElement).value) || 0;
+    const expenses = parseFloat((document.getElementById("bb-expenses") as HTMLInputElement).value) || 0;
+    const savings = parseFloat((document.getElementById("bb-savings") as HTMLInputElement).value) || 0;
+    const rate = parseFloat((document.getElementById("bb-rate") as HTMLInputElement).value) || 0;
+
+    const ceilingEl = document.getElementById("bb-ceiling");
+    const priceEl = document.getElementById("bb-price");
+    const remainingEl = document.getElementById("bb-remaining");
+    const warningEl = document.getElementById("bb-warning");
+
+    // Payment ceiling: everything left after expenses and savings goal
+    const maxPayment = income - expenses - savings;
+
+    if (maxPayment <= 0) {
+      if (ceilingEl) ceilingEl.textContent = "$0";
+      if (priceEl) priceEl.textContent = "—";
+      if (remainingEl) remainingEl.textContent = fmt(savings);
+      if (warningEl) {
+        warningEl.textContent = "Your current expenses and savings goal leave no room for a housing payment. Review your expenses or savings target.";
+        warningEl.style.color = "#dc2626";
+      }
+      return;
+    }
+
+    // Reserve 15% of the ceiling for taxes and insurance, leaving 85% for P&I
+    const piCeiling = maxPayment * 0.85;
+
+    // Reverse-engineer loan amount from P&I ceiling
+    const r = rate / 100 / 12;
+    const n = 360; // 30-year term
+
+    let loanAmount: number;
+    if (r === 0) {
+      loanAmount = piCeiling * n;
+    } else {
+      loanAmount = piCeiling / ((r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1));
+    }
+
+    // Purchase price assumes 20% down (loan = 80% of price)
+    const purchasePrice = loanAmount / 0.80;
+
+    // Monthly savings protected = the savings goal the user entered
+    const savingsProtected = savings;
+
+    if (ceilingEl) ceilingEl.textContent = fmt(maxPayment);
+    if (priceEl) priceEl.textContent = purchasePrice > 0 ? fmt(purchasePrice) : "—";
+    if (remainingEl) remainingEl.textContent = fmt(savingsProtected);
+
+    if (warningEl) {
+      if (maxPayment < 800) {
+        warningEl.textContent = "Your payment ceiling is tight. Consider whether your expense or savings estimates can flex before you shop.";
+        warningEl.style.color = "#d97706";
+      } else if (maxPayment >= 800 && maxPayment < 2000) {
+        warningEl.textContent = "Moderate budget. This ceiling works for many markets — your Cliffco loan officer can show you what it qualifies for in your target area.";
+        warningEl.style.color = "#ca8a04";
+      } else {
+        warningEl.textContent = "Strong budget. You have meaningful room to shop. Keep in mind taxes and insurance will use part of this ceiling.";
+        warningEl.style.color = "#16a34a";
+      }
+    }
+  }
+
+  function init() {
+    ["bb-income", "bb-expenses", "bb-savings", "bb-rate"].forEach((id) => {
+      document.getElementById(id)?.addEventListener("input", calc);
+      document.getElementById(id)?.addEventListener("change", calc);
+    });
+    calc();
+  }
+
+  init();
+</script>
