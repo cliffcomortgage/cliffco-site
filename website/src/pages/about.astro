@@ -13,6 +13,8 @@ const president = loanOfficer("christopher-clifford-65234")!;
 const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
   ["christopher-clifford-65234", "rriddle", "abroder"].includes(lo.slug),
 );
+const photoLeaders = LEADERSHIP_TEAM.filter((l) => l.hasPhoto);
+const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
 ---
 
 <Layout
@@ -145,18 +147,27 @@ const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
       </p>
 
       <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {LEADERSHIP_TEAM.map((leader) => (
+        {photoLeaders.map((leader) => (
           <article class="card flex flex-col h-full">
-            {leader.hasPhoto && (
-              <div class="mb-4 -mx-6 -mt-6">
-                <Headshot slug={leader.slug} name={leader.name} size={400} shape="square" class="rounded-t-xl" />
-              </div>
-            )}
+            <div class="mb-4 -mx-6 -mt-6">
+              <Headshot slug={leader.slug} name={leader.name} size={400} shape="square" class="rounded-t-xl" />
+            </div>
             <p class="eyebrow">{leader.title}</p>
             <h3 class="mt-2" style="font-size: var(--text-h3);">{leader.name}</h3>
           </article>
         ))}
       </div>
+
+      {compactLeaders.length > 0 && (
+        <div class="mt-4 flex flex-row gap-3">
+          {compactLeaders.map((leader) => (
+            <article class="card py-4">
+              <p class="eyebrow">{leader.title}</p>
+              <h3 class="mt-1" style="font-size: var(--text-h3);">{leader.name}</h3>
+            </article>
+          ))}
+        </div>
+      )}
     </div>
   </section>
 

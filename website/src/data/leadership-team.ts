@@ -21,6 +21,12 @@ export const LEADERSHIP_TEAM: readonly LeaderRole[] = [
     hasPhoto: true,
   },
   {
+    slug: "atrion-faiola",
+    name: "Atrion Faiola",
+    title: "Chief Technology Officer",
+    hasPhoto: true,
+  },
+  {
     slug: "dan-humphrey",
     name: "Dan Humphrey",
     title: "Chief Financial Officer",
