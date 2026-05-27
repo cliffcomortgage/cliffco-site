@@ -1,0 +1,250 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+
+const loanOptions = [
+  {
+    name: "FHA Loan",
+    downPayment: "3.5% down",
+    minFICO: "580+",
+    highlight: true,
+    description: "Government-backed, most flexible credit standards. The most common choice for first-time buyers. Mortgage insurance required.",
+  },
+  {
+    name: "Conventional 97",
+    downPayment: "3% down",
+    minFICO: "620+",
+    highlight: false,
+    description: "Conventional loan with just 3% down. No upfront mortgage insurance premium. PMI cancels once you reach 20% equity.",
+  },
+  {
+    name: "VA Loan",
+    downPayment: "0% down",
+    minFICO: "No hard minimum",
+    highlight: false,
+    description: "For active military, veterans, and eligible spouses. No down payment, no monthly mortgage insurance. One of the best programs available.",
+  },
+];
+
+const faq = [
+  {
+    question: "How much do I really need to buy my first home?",
+    answer: "Less than most people think. FHA loans require 3.5% down with a 580+ credit score. Conventional options go as low as 3%. VA loans require nothing down if you qualify. On top of the down payment, budget for 2 to 5 percent of the purchase price in closing costs, though seller concessions and lender credits can reduce what you bring to the table. Your Cliffco loan officer will walk through the exact numbers for your situation.",
+  },
+  {
+    question: "What credit score do I need to buy a house?",
+    answer: "FHA allows scores as low as 500 (with 10% down) or 580 for the standard 3.5% down option. Conventional loans typically require 620 or higher. VA loans don't have a government-mandated minimum, though lenders apply their own overlays. If your score is below 580, there are still paths forward depending on your full financial picture.",
+  },
+  {
+    question: "Should I get pre-qualified or pre-approved?",
+    answer: "Pre-qualification is a quick estimate based on what you tell us. Pre-approval involves verifying your income, assets, and credit, which makes your offer much stronger. In a competitive market, sellers and real estate agents take pre-approved buyers more seriously. Cliffco provides full pre-approval letters, not just soft pre-quals.",
+  },
+  {
+    question: "How long does it take to close on a first home?",
+    answer: "Typically 30 to 45 days from accepted offer to closing, assuming the file is complete and the appraisal comes in cleanly. Cliffco loan officers are in contact with you throughout the process so there are no surprises. You will always know where you stand.",
+  },
+  {
+    question: "What's the difference between the interest rate and APR?",
+    answer: "The interest rate is the cost of borrowing expressed as a percentage. The APR (annual percentage rate) includes the rate plus certain fees, giving you a fuller picture of the loan's total cost. When comparing lenders, look at both. A low rate with high fees can cost more over time than a slightly higher rate with lower fees.",
+  },
+  {
+    question: "Can I buy a home if I have student loans?",
+    answer: "Yes. Student loan debt is factored into your debt-to-income (DTI) ratio. As long as the total of your monthly obligations, including the proposed mortgage payment, falls within program guidelines, student loans don't automatically disqualify you. FHA and conventional programs have different rules for how income-driven repayment plans are calculated, so the specific program matters. Your loan officer will review the best fit.",
+  },
+];
+
+const schema = [
+  faqPageSchema(faq),
+  articleSchema({
+    headline: "First-Time Homebuyer Mortgage Guide",
+    description: "FHA, conventional, and VA loan options for first-time buyers. Low down payment programs, pre-approval, and real guidance from loan officers who walk you through every step.",
+    url: "/first-time-homebuyer/",
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "christopher-clifford-65234",
+  }),
+];
+---
+
+<Layout
+  title="First-Time Homebuyer Mortgages | FHA, Conventional & VA | Cliffco"
+  description="Buying your first home? Cliffco walks you through FHA, conventional, and VA loan options, low down payment programs, and what to expect at every step. Get pre-approved in one business day."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "First-Time Homebuyer", href: "/first-time-homebuyer/" },
+  ]} />
+
+  <!-- HERO -->
+  <section class="accent-gradient">
+    <div class="container-wide py-20 lg:py-28">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">First-Time Homebuyer · FHA, Conventional, and VA Loans</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        Your First Home<br/>
+        <span class="text-[var(--color-ice-blue)]">Shouldn't Be Your Hardest Loan.</span>
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">
+        Low down payments. Flexible credit standards. A loan officer who explains every step in plain English.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">See What I Qualify For</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+      <p class="mt-4 text-white/70 text-sm">No credit pull. No commitment. A loan officer responds in one business day.</p>
+    </div>
+  </section>
+
+  <!-- WHO THIS IS FOR -->
+  <section class="section bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow">Who this is for</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">You don't need a perfect financial picture to buy your first home.</h2>
+        <p class="lead mt-4 text-[var(--color-text-muted)]">
+          Most first-time buyers are surprised by how accessible homeownership actually is. The barriers are usually smaller than they appear.
+        </p>
+      </div>
+      <div>
+        <p class="font-semibold text-[var(--color-ink)] mb-4">You may be ready if you:</p>
+        <ul class="space-y-3">
+          {[
+            "Have a credit score of 580 or higher (lower scores may still have options)",
+            "Can put 3 to 3.5% down, or qualify for VA with zero down",
+            "Have stable income for at least 2 years (W-2 or self-employed)",
+            "Are buying a primary residence (not an investment property)",
+            "Are a first-time buyer, or haven't owned a home in the past 3 years",
+          ].map((item) => (
+            <li class="flex gap-3 items-start" style="font-size: 1.0625rem;">
+              <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center font-bold">✓</span>
+              <span class="text-[var(--color-text)]">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOAN OPTIONS -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">Your options</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">The most common first-time buyer loan programs.</h2>
+      <p class="lead mt-4 text-[var(--color-text-muted)] max-w-2xl">There is no single "best" program. The right fit depends on your credit, down payment, and whether you have military service.</p>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {loanOptions.map((opt) => (
+          <div class={`card flex flex-col gap-3 ${opt.highlight ? "border-2 border-[var(--color-accent)]" : ""}`}>
+            {opt.highlight && (
+              <span class="text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">Most Common</span>
+            )}
+            <h3 class="text-lg font-semibold text-[var(--color-ink)]">{opt.name}</h3>
+            <div class="flex gap-4 text-sm">
+              <span class="font-medium text-[var(--color-accent)]">{opt.downPayment}</span>
+              <span class="text-[var(--color-text-muted)]">{opt.minFICO} FICO</span>
+            </div>
+            <p class="text-sm text-[var(--color-text)] leading-relaxed">{opt.description}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-sm text-[var(--color-text-muted)]">Down payment assistance programs may be available in your state. Ask your Cliffco loan officer what's offered where you're buying.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">The process</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">What buying your first home actually looks like.</h2>
+      <div class="mt-8 grid gap-8 md:grid-cols-3">
+        {[
+          {
+            step: "01",
+            heading: "Get pre-approved",
+            body: "Your loan officer reviews your income, credit, and assets and gives you a pre-approval letter. This tells you exactly what you can afford and makes your offer competitive. Takes one business day.",
+          },
+          {
+            step: "02",
+            heading: "Find your home and go under contract",
+            body: "Once you have an accepted offer, your loan officer orders the appraisal and begins underwriting. You'll provide documents and answer questions as they come up. We keep you informed at every stage.",
+          },
+          {
+            step: "03",
+            heading: "Close and get your keys",
+            body: "Closing typically takes 30 to 45 days from accepted offer. You'll sign documents, pay closing costs (or roll them in), and walk away with the keys. Your loan officer is reachable the entire way.",
+          },
+        ].map((s) => (
+          <div class="flex flex-col gap-3">
+            <span class="text-4xl font-bold text-[var(--color-accent)] opacity-40">{s.step}</span>
+            <h3 class="text-lg font-semibold text-[var(--color-ink)]">{s.heading}</h3>
+            <p class="text-[var(--color-text)] leading-relaxed">{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT PEOPLE WORRY ABOUT -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">Common concerns</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">The things first-time buyers worry about most.</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        {[
+          {
+            concern: "I don't have enough saved for a down payment.",
+            response: "FHA requires 3.5%. Conventional goes to 3%. VA requires nothing. On a $400,000 home, 3.5% is $14,000. Down payment assistance programs in many states can reduce this further. Most buyers need less than they think.",
+          },
+          {
+            concern: "My credit isn't great.",
+            response: "FHA works with scores as low as 580 for the standard 3.5% down option. Scores between 500 and 579 can still qualify with 10% down. If you're below 580, your loan officer can walk you through what it would take to get there, or whether a different program fits now.",
+          },
+          {
+            concern: "I don't understand the process.",
+            response: "That's exactly what we're here for. Cliffco loan officers explain every document, every step, and every decision point in plain language. You are never left guessing what comes next.",
+          },
+          {
+            concern: "I'm not sure how much house I can afford.",
+            response: "That's what pre-approval is for. Before you look at a single listing, your loan officer will tell you your real number: what the payment looks like, what you'd need at closing, and what range makes sense for your budget.",
+          },
+        ].map((item) => (
+          <div class="card">
+            <p class="text-sm font-semibold text-[var(--color-text-muted)]">"{item.concern}"</p>
+            <p class="mt-2 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{item.response}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">First-time buyer questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-border)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer list-none" style="font-size: 1.0625rem;">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]" style="font-size: 1.0625rem;">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Find out what you qualify for. No pressure, no credit pull.</h2>
+      <p class="lead mt-4 text-white/85">A Cliffco loan officer reviews your situation within one business day and tells you exactly where you stand.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Pre-Approved</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
