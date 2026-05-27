@@ -1,0 +1,179 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+
+const rateFactors = [
+  {
+    factor: "Loan type",
+    impact: "Non-QM rates are typically 0.5% to 2% higher than conventional rates because these loans are not eligible for sale to Fannie Mae or Freddie Mac. The exact spread depends on the program.",
+  },
+  {
+    factor: "Credit score",
+    impact: "The lower the credit score, the higher the rate adjustment. In non-QM programs, the range spans from 500 to 800+, and pricing steps are more granular than in conventional lending.",
+  },
+  {
+    factor: "Loan-to-value (LTV)",
+    impact: "A larger down payment reduces your LTV and typically lowers your rate. Most non-QM programs have defined LTV tiers (65%, 70%, 75%, 80%) with different pricing at each level.",
+  },
+  {
+    factor: "Property type",
+    impact: "Non-owner-occupied properties, investment condos, multi-family, and short-term rental properties carry additional rate adjustments. Primary residences get the best pricing.",
+  },
+  {
+    factor: "Income documentation type",
+    impact: "Full documentation (W-2, tax returns) gets the best rate. Bank statement programs and no-ratio DSCR programs carry a premium that reflects the additional lender risk.",
+  },
+  {
+    factor: "Loan amount",
+    impact: "Jumbo loan amounts (above conventional conforming limits) carry their own pricing. Very high loan amounts on non-QM programs can add additional adjustments.",
+  },
+];
+
+const faq = [
+  {
+    question: "Why don't you post your current rates on this page?",
+    answer: "Non-QM rates are scenario-specific. Unlike conventional rates, which are set against a narrow range of borrower profiles, non-QM rates adjust for 6 to 10 factors simultaneously: credit score, LTV, documentation type, property type, loan amount, and more. A rate quoted without knowing your scenario is meaningless at best and misleading at worst. Call us or start a conversation and you'll have a real number in one business day.",
+  },
+  {
+    question: "How much higher are non-QM rates than conventional rates?",
+    answer: "Typically 0.5% to 2% higher, depending on the program and scenario. Bank statement loans usually run 0.75% to 1.5% above conventional. DSCR loans vary based on the property's cash flow ratio and LTV. Non-QM rates for borrowers with strong credit and significant equity can be competitive. The gap narrows the stronger the overall profile.",
+  },
+  {
+    question: "Can I refinance out of a non-QM loan into a conventional loan later?",
+    answer: "Yes, and many borrowers plan to do exactly that. If a borrower's situation changes — for example, a self-employed borrower files two years of stronger tax returns, or a recent credit event clears the conventional waiting period — refinancing into a conventional loan at a lower rate is a straightforward path. Your Cliffco loan officer will help you understand what that transition looks like from day one.",
+  },
+  {
+    question: "What's a rate lock, and how long does it last?",
+    answer: "A rate lock guarantees your interest rate for a set period, typically 30, 45, or 60 days. This protects you from rate increases while your loan is in underwriting. Locks typically require a property address and accepted contract. Extended locks are available for new construction or longer timelines but usually carry a cost.",
+  },
+  {
+    question: "Are non-QM rates fixed or adjustable?",
+    answer: "Both options exist. Most non-QM loans are offered as 30-year fixed rates, which are the most common choice. ARM options (5/1, 7/1) are available and can offer lower initial rates for borrowers who plan to sell or refinance within the initial fixed period. Your loan officer will explain the trade-offs for your specific timeline.",
+  },
+];
+
+const schema = [
+  faqPageSchema(faq),
+  articleSchema({
+    headline: "Non-QM and Conventional Mortgage Rates: What Affects Your Rate",
+    description: "Mortgage rates are scenario-specific. Learn what factors affect your non-QM, bank statement, or DSCR mortgage rate — and how to get a real number for your situation.",
+    url: "/mortgage-rates/",
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "christopher-clifford-65234",
+  }),
+];
+---
+
+<Layout
+  title="Mortgage Rates | Non-QM, Bank Statement & DSCR Rates | Cliffco"
+  description="Non-QM mortgage rates depend on your specific scenario — loan type, credit, LTV, and documentation. Learn what factors affect your rate and how to get a real quote in one business day."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Mortgage Rates", href: "/mortgage-rates/" },
+  ]} />
+
+  <!-- HERO -->
+  <section class="accent-gradient">
+    <div class="container-wide py-20 lg:py-28">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">Non-QM, Bank Statement, DSCR, and Conventional Rates</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        Your Rate Depends<br/>
+        <span class="text-[var(--color-ice-blue)]">On Your Situation.</span>
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">
+        Non-QM rates aren't posted because they're specific. Tell us your scenario and we'll give you a real number in one business day.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Get My Rate</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+      <p class="mt-4 text-white/70 text-sm">No credit pull. No commitment. Rates are scenario-specific and can change daily.</p>
+    </div>
+  </section>
+
+  <!-- WHY NO RATE TABLE -->
+  <section class="section bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow">Why we don't post a rate table</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">A rate without context is just a number.</h2>
+        <div class="mt-6 space-y-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
+          <p>Conventional lenders can post a rate because their borrowers are largely the same: W-2 income, 720+ credit score, 20% down, primary residence. The rate for that profile on a given day is a meaningful data point.</p>
+          <p>Non-QM lending doesn't work that way. A bank statement loan for a self-employed borrower with 680 credit and 25% down is priced differently than a DSCR loan for an investor with an 800 score and a 75% LTV property generating strong cash flow. Posting a rate that covers neither accurately would mislead you.</p>
+          <p>We'd rather give you a real number for your real situation. That takes one business day and requires no credit pull.</p>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">What you can expect</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Non-QM rate context.</h2>
+        <div class="mt-6 space-y-4">
+          {[
+            { program: "Conventional (30-yr fixed)", context: "Best available pricing for W-2 borrowers with 620+ credit. Benchmark for comparison." },
+            { program: "FHA (30-yr fixed)", context: "Slightly above conventional. Lower credit threshold. Mortgage insurance required." },
+            { program: "Bank Statement Loans", context: "Typically 0.75% to 1.5% above conventional depending on credit and LTV." },
+            { program: "DSCR Investment Loans", context: "Varies by property cash flow ratio, credit score, and LTV. Often competitive with conventional investor rates." },
+            { program: "Non-QM (general)", context: "0.5% to 2% above conventional. Specific pricing depends heavily on the full scenario." },
+          ].map((item) => (
+            <div class="border-b border-[var(--color-mist-gray)] pb-4">
+              <p class="font-semibold text-[var(--color-ink)] text-sm">{item.program}</p>
+              <p class="mt-1 text-sm text-[var(--color-text-muted)]">{item.context}</p>
+            </div>
+          ))}
+          <p class="text-xs text-[var(--color-text-muted)]">Ranges are indicative only. Rates change daily and vary based on your specific scenario. Not a commitment to lend.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATE FACTORS -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">What affects your rate</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Six factors that move your non-QM rate.</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {rateFactors.map((item) => (
+          <div class="card">
+            <h3 class="font-semibold text-[var(--color-ink)]">{item.factor}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text)] leading-relaxed">{item.impact}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Rate questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-border)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer list-none" style="font-size: 1.0625rem;">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]" style="font-size: 1.0625rem;">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Get a real rate for your real situation.</h2>
+      <p class="lead mt-4 text-white/85">Tell us your scenario. A Cliffco loan officer responds with a real rate within one business day. No credit pull. No commitment.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get My Rate</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+      <p class="mt-6 text-white/50 text-xs max-w-2xl mx-auto">Rate information on this page is indicative and for educational purposes only. Rates change daily and are not guaranteed. A rate quote requires a complete loan application. {COMPANY.legalName} NMLS #{COMPANY.nmls}. Equal Housing Lender.</p>
+    </div>
+  </section>
+</Layout>

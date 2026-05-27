@@ -58,10 +58,18 @@ const yearsInBiz = COMPANY.yearsInBusiness();
     { name: "Long Island", href: "/locations/new-york/long-island/" },
   ]} />
 
-  <section class="container-wide pt-12 pb-12">
-    <p class="eyebrow">Long Island, NY</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Long Island mortgage lender. {yearsInBiz} years on the Island.</h1>
-    <p class="lead mt-6">{loc.blurb}</p>
+  <section class="accent-gradient">
+    <div class="container-wide py-16 lg:py-24">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">Long Island, NY · Founded Here in 1989</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        Long Island Mortgage Lender
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">{loc.blurb}</p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Get Pre-Qualified</a>
+        <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
+      </div>
+    </div>
   </section>
 
   <section class="bg-[var(--color-mist-gray)] section">

@@ -35,10 +35,18 @@ const schema = [
     { name: "New York", href: "/locations/new-york/" },
   ]} />
 
-  <section class="container-wide pt-12 pb-12">
-    <p class="eyebrow">New York</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">New York mortgage lender, founded on Long Island in 1989.</h1>
-    <p class="lead mt-6">{loc.blurb}</p>
+  <section class="accent-gradient">
+    <div class="container-wide py-16 lg:py-24">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">New York · Cliffco Mortgage Bankers</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        New York Mortgage Lender
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">{loc.blurb}</p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Get Pre-Qualified</a>
+        <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
+      </div>
+    </div>
   </section>
 
   <section class="bg-[var(--color-mist-gray)] section">

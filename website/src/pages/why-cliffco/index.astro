@@ -1,0 +1,175 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+const yearsInBiz = new Date().getFullYear() - COMPANY.founded;
+
+const schema = [
+  articleSchema({
+    headline: "Why Cliffco Mortgage Bankers",
+    description: "36 years of mortgage lending, 32 states, 9 branches, and a specialty in loans conventional lenders won't touch. Here's what makes Cliffco different.",
+    url: "/why-cliffco/",
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "christopher-clifford-65234",
+  }),
+];
+---
+
+<Layout
+  title="Why Cliffco Mortgage Bankers | Non-QM Specialists Since 1989"
+  description="Cliffco has been getting families home since 1989 — especially the ones other banks turned away. 32 states, 9 branches, $6B+ closed. Here's what sets us apart."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Why Cliffco", href: "/why-cliffco/" },
+  ]} />
+
+  <!-- HERO -->
+  <section class="accent-gradient">
+    <div class="container-wide py-20 lg:py-28">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">About Cliffco · Since {COMPANY.founded}</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        {yearsInBiz} Years.<br/>
+        <span class="text-[var(--color-ice-blue)]">One Focus. You.</span>
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">
+        We specialize in the loans conventional lenders won't touch: self-employed, denied, investor, 62 and older. That's not a niche. That's who we built this company for.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Talk to a Loan Officer</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STATS -->
+  <section class="bg-white section">
+    <div class="container-wide">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        {[
+          { stat: `${yearsInBiz}+`, label: "Years in business" },
+          { stat: "32", label: "Licensed states" },
+          { stat: "$6B+", label: "Mortgages closed" },
+          { stat: "4.9★", label: "Experience.com rating" },
+        ].map((item) => (
+          <div class="flex flex-col gap-1">
+            <span class="text-4xl font-bold text-[var(--color-accent)]">{item.stat}</span>
+            <span class="text-sm text-[var(--color-text-muted)]">{item.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- THE CLIFFCO DIFFERENCE -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">What makes us different</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">We close loans others call impossible.</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {[
+          {
+            heading: "Non-QM Specialists",
+            body: "Most lenders have one answer for complex borrowers: no. We have 15+ alternative loan products — bank statement programs, DSCR, asset depletion, non-warrantable condo financing, and more. Complex is not a problem here. It is the job.",
+          },
+          {
+            heading: "Transparent Process",
+            body: "You'll know your options, your rate, and your timeline before you commit to anything. No bait-and-switch. No surprises at the closing table. Cliffco loan officers work for you, not for a quota.",
+          },
+          {
+            heading: "Licensed Coast to Coast",
+            body: "32 states. 9 branch offices. Whether you're in New York, Arizona, Florida, or Minnesota, you work with a real loan officer who knows your market, your state's rules, and your specific loan type.",
+          },
+        ].map((item) => (
+          <div class="card flex flex-col gap-3">
+            <h3 class="text-lg font-semibold text-[var(--color-ink)]">{item.heading}</h3>
+            <p class="text-[var(--color-text)] leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR STORY -->
+  <section class="section bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow">Our story</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Founded on Long Island. Still here.</h2>
+        <div class="mt-6 space-y-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
+          <p>Cliffco was founded in {COMPANY.founded} on Long Island, where we remain headquartered today. For {yearsInBiz} years, our core business has been the loans that don't fit the standard mold: self-employed borrowers, real estate investors, seniors who want to stay in their homes, and borrowers who walked in with a denial letter from somewhere else.</p>
+          <p>We grew into 32 states and 9 offices not by chasing volume, but by building a reputation for saying yes when everyone else said no. That reputation travels. About half our business today comes from referrals.</p>
+          <p>Christopher Clifford, our President (NMLS #65234), has been with Cliffco since the beginning. The company he leads today is built on the same conviction it started with: every family deserves a real chance at homeownership, regardless of whether their financial life fits a box.</p>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">What borrowers say</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">3,617 reviews. 4.9 stars.</h2>
+        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+          Cliffco is rated 4.9 out of 5 on Experience.com with over 3,600 verified borrower reviews. We also hold an A+ rating from the Better Business Bureau.
+        </p>
+        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+          Most reviews mention the same things: a loan officer who answered the phone, explained what was happening, and delivered what they promised. That is not accidental. It is the standard we hold ourselves to.
+        </p>
+        <div class="mt-6 flex gap-4 flex-wrap">
+          <div class="card text-center min-w-[120px]">
+            <p class="text-2xl font-bold text-[var(--color-accent)]">4.9★</p>
+            <p class="text-xs text-[var(--color-text-muted)] mt-1">Experience.com</p>
+          </div>
+          <div class="card text-center min-w-[120px]">
+            <p class="text-2xl font-bold text-[var(--color-accent)]">A+</p>
+            <p class="text-xs text-[var(--color-text-muted)] mt-1">BBB Rating</p>
+          </div>
+          <div class="card text-center min-w-[120px]">
+            <p class="text-2xl font-bold text-[var(--color-accent)]">5.0★</p>
+            <p class="text-xs text-[var(--color-text-muted)] mt-1">Zillow</p>
+          </div>
+        </div>
+        <p class="mt-6">
+          <a href="/reviews/" class="text-sm font-semibold text-[var(--color-accent)]">Read borrower reviews →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE SERVE -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">Who we're built for</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">The borrowers the system failed.</h2>
+      <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {[
+          { label: "Self-employed borrowers", href: "/self-employed-mortgage/", desc: "Bank statement qualifying. No tax returns required." },
+          { label: "Real estate investors", href: "/real-estate-investor-mortgage/", desc: "DSCR loans based on property cash flow, not your salary." },
+          { label: "Homeowners 62 and older", href: "/reverse-mortgage/", desc: "Tap your equity without selling or making monthly payments." },
+          { label: "Denied mortgage applicants", href: "/denied-mortgage/", desc: "Non-QM programs for credit issues, recent bankruptcy, or unusual income." },
+          { label: "First-time homebuyers", href: "/first-time-homebuyer/", desc: "FHA, conventional 3%, VA, and down payment assistance programs." },
+          { label: "Business owners", href: "/self-employed-mortgage/", desc: "12 months of bank deposits can replace 2 years of W-2s." },
+        ].map((item) => (
+          <a href={item.href} class="card no-underline text-[var(--color-ink)] flex flex-col gap-2 hover:border-[var(--color-accent)] transition-colors">
+            <h3 class="font-semibold">{item.label}</h3>
+            <p class="text-sm text-[var(--color-text-muted)]">{item.desc}</p>
+            <span class="text-sm font-semibold text-[var(--color-accent)] mt-auto pt-2">Learn more →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Ready to see if we can help?</h2>
+      <p class="lead mt-4 text-white/85">Tell us your situation. A Cliffco loan officer responds within one business day.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Started</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+</Layout>

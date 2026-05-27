@@ -1,0 +1,222 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+
+const steps = [
+  {
+    number: "01",
+    heading: "Tell us your situation",
+    duration: "10 minutes",
+    body: "Start with our short intake form or call us directly. No credit pull. No commitment. We ask about your income type, the property you're buying or refinancing, your approximate credit, and your timeline. That's enough to point you toward the right program.",
+    details: [
+      "No credit pull at this stage",
+      "Takes about 10 minutes",
+      "Can be done online or by phone",
+      "Non-QM scenarios welcome",
+    ],
+  },
+  {
+    number: "02",
+    heading: "We review your scenario and identify your path",
+    duration: "1 business day",
+    body: "A licensed Cliffco loan officer reviews your file and calls or emails you back within one business day. They'll tell you which programs fit, what the approximate rate looks like, what you'd need to bring to the table, and what the timeline looks like. This is a real conversation with a real person, not an automated pre-qual.",
+    details: [
+      "Real loan officer review, not a bot",
+      "Multiple program options if applicable",
+      "Honest assessment, including if we can't help",
+      "No obligation to proceed",
+    ],
+  },
+  {
+    number: "03",
+    heading: "Submit your application and documents",
+    duration: "2 to 5 days",
+    body: "Once you decide to move forward, you'll complete a full application and provide your documentation. For conventional loans, this means W-2s and tax returns. For bank statement loans, it's 12 to 24 months of statements. For DSCR, it's the property lease and appraisal. Your loan officer will give you a specific checklist — no guessing.",
+    details: [
+      "Secure online document upload",
+      "Dedicated loan officer as your single point of contact",
+      "Bank statement, DSCR, or conventional docs depending on your program",
+      "Credit is pulled at this stage with your consent",
+    ],
+  },
+  {
+    number: "04",
+    heading: "Underwriting",
+    duration: "7 to 21 days",
+    body: "Your file goes to underwriting. This is where your income, credit, assets, and the property are evaluated against the loan program guidelines. Non-QM underwriting is more nuanced than conventional — your loan officer stays in contact throughout and manages any conditions that come up. You'll receive a conditional approval outlining exactly what's needed to close.",
+    details: [
+      "Non-QM underwriting tailored to your income type",
+      "Conditions are communicated clearly and promptly",
+      "Appraisal ordered and coordinated during this phase",
+      "Loan officer advocates for your file",
+    ],
+  },
+  {
+    number: "05",
+    heading: "Clear to close",
+    duration: "1 to 3 days before closing",
+    body: "Once all conditions are satisfied, your loan receives a Clear to Close. You'll receive a Closing Disclosure at least 3 business days before your closing date showing the final numbers: loan amount, rate, monthly payment, and closing costs. No surprises.",
+    details: [
+      "Closing Disclosure delivered 3+ days before closing",
+      "Final cash-to-close confirmed",
+      "Closing attorney or escrow company coordinated",
+      "Loan officer available for questions up to the table",
+    ],
+  },
+  {
+    number: "06",
+    heading: "Closing day",
+    duration: "1 to 2 hours",
+    body: "You sign documents, funds are disbursed, and you get your keys or complete your refinance. In New York, this happens at an attorney's office. In other states, it may be at a title company or escrow. Your loan officer will walk you through what to expect before you arrive.",
+    details: [
+      "NY: attorney closing; other states: title or escrow",
+      "Bring your ID and cashier's check or wire for closing costs",
+      "Loan funds typically disbursed same day",
+      "Your servicer information provided at closing",
+    ],
+  },
+];
+
+const faq = [
+  {
+    question: "How long does the entire process take?",
+    answer: "From application to closing, most conventional loans close in 30 to 45 days. Non-QM loans typically take 30 to 45 days as well, though bank statement loans with large document packages can take up to 60 days. DSCR loans often close in 25 to 35 days because they don't require personal income documentation. Your loan officer will give you a specific timeline estimate based on your scenario.",
+  },
+  {
+    question: "What's the difference between pre-qualification and pre-approval?",
+    answer: "Pre-qualification is a quick estimate based on what you tell us. Pre-approval involves verifying your income, assets, and credit, and results in a letter you can use when making an offer on a home. Sellers and agents treat pre-approval seriously. Pre-qualification is a starting point; pre-approval is what you want before you shop.",
+  },
+  {
+    question: "Can I get a rate lock before I find a home?",
+    answer: "Standard rate locks require a property address and an accepted purchase contract. Extended locks are available for new construction or longer search timelines, though they typically carry a cost. Once you have an accepted offer, your loan officer will walk you through lock options and timing.",
+  },
+  {
+    question: "What happens if my appraisal comes in low?",
+    answer: "If the appraisal comes in below the purchase price, you have a few options: negotiate the price down with the seller, make up the difference in cash, challenge the appraisal with a reconsideration of value, or walk away (if your contract includes an appraisal contingency). Your loan officer will advise you on the best path based on your specific situation.",
+  },
+  {
+    question: "Do non-QM loans take longer to close than conventional?",
+    answer: "Not necessarily. DSCR loans often close faster than conventional because they skip personal income documentation entirely. Bank statement loans can take slightly longer if the document package is large, but the overall timeline is comparable. The main variable is how quickly you can gather and submit your documents.",
+  },
+];
+
+const schema = [
+  faqPageSchema(faq),
+  articleSchema({
+    headline: "The Cliffco Mortgage Process: From First Call to Closing",
+    description: "Step-by-step guide to the Cliffco mortgage process. Conventional, FHA, VA, bank statement, DSCR, and non-QM loans. Clear timelines, no surprises.",
+    url: "/process/",
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "christopher-clifford-65234",
+  }),
+];
+---
+
+<Layout
+  title="The Mortgage Process, Explained | Cliffco Mortgage Bankers"
+  description="From first call to closing day — a plain-language walkthrough of the Cliffco mortgage process. Conventional, FHA, VA, bank statement, and DSCR loans. No surprises."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Our Process", href: "/process/" },
+  ]} />
+
+  <!-- HERO -->
+  <section class="accent-gradient">
+    <div class="container-wide py-20 lg:py-28">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">How It Works · Conventional, FHA, VA, and Non-QM</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        From First Call<br/>
+        <span class="text-[var(--color-ice-blue)]">To Keys in Hand.</span>
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">
+        The mortgage process doesn't have to be a mystery. Here's what happens at every step, and how long each one takes.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Start the Process</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+      <p class="mt-4 text-white/70 text-sm">No credit pull. No commitment. Just a conversation about your options.</p>
+    </div>
+  </section>
+
+  <!-- TIMELINE STRIP -->
+  <section class="bg-white py-8 border-b border-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <div class="flex gap-0 overflow-x-auto">
+        {steps.map((s, i) => (
+          <div class="flex items-center gap-0 shrink-0">
+            <div class="flex flex-col items-center gap-1 px-4">
+              <span class="text-xs font-bold text-[var(--color-accent)]">{s.number}</span>
+              <span class="text-xs text-center text-[var(--color-text-muted)] max-w-[80px] leading-tight">{s.heading.split(" ").slice(0, 3).join(" ")}</span>
+            </div>
+            {i < steps.length - 1 && <span class="text-[var(--color-mist-gray)] text-lg shrink-0">›</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP BY STEP -->
+  <section class="section bg-white">
+    <div class="container-wide space-y-12">
+      {steps.map((s, i) => (
+        <div class={`grid lg:grid-cols-[80px_1fr_1fr] gap-6 items-start ${i > 0 ? "border-t border-[var(--color-mist-gray)] pt-12" : ""}`}>
+          <div class="flex flex-col gap-1">
+            <span class="text-5xl font-bold text-[var(--color-accent)] opacity-30">{s.number}</span>
+            <span class="text-xs text-[var(--color-text-muted)] font-medium">{s.duration}</span>
+          </div>
+          <div>
+            <h2 style="font-size: var(--text-h3);" class="font-semibold text-[var(--color-ink)]">{s.heading}</h2>
+            <p class="mt-3 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{s.body}</p>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-[var(--color-ink)] mb-3">What this means for you:</p>
+            <ul class="space-y-2">
+              {s.details.map((d) => (
+                <li class="flex gap-2 items-start text-sm text-[var(--color-text)]">
+                  <span class="mt-0.5 shrink-0 w-4 h-4 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center font-bold">✓</span>
+                  {d}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Process questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-border)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer list-none" style="font-size: 1.0625rem;">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]" style="font-size: 1.0625rem;">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Ready to take the first step?</h2>
+      <p class="lead mt-4 text-white/85">No credit pull. No commitment. A loan officer reviews your scenario and responds within one business day.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Start the Process</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
