@@ -1,0 +1,224 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { BRANCHES } from "../../data/branches";
+
+const allBranches = BRANCHES;
+---
+
+<Layout
+  title="Contact Cliffco Mortgage Bankers | (800) 834-4040"
+  description="Reach Cliffco by phone, online, or in person. 9 branch offices across NY, NJ, FL, AZ, and MN. Toll-free (800) 834-4040. A loan officer responds within one business day."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Contact", href: "/contact/" },
+  ]} />
+
+  <!-- HERO -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 lg:py-20">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">Contact Us</p>
+      <h1 class="mt-4 text-white" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        Talk to a Real<br/>
+        <span class="text-[var(--color-ice-blue)]">Loan Officer.</span>
+      </h1>
+      <p class="lead mt-5 text-white/90 max-w-xl">
+        No bots. No call centers. When you reach out, a licensed Cliffco loan officer responds within one business day.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-4 items-center">
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">
+          Call {COMPANY.tollFree}
+        </a>
+        <a href="/get-started/" class="btn btn-secondary !border-white !text-white">Start an Application</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT OPTIONS + FORM -->
+  <section class="section bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+
+      <!-- Left: contact channels -->
+      <div>
+        <p class="eyebrow">Get in touch</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">However works best for you.</h2>
+
+        <div class="mt-8 space-y-6">
+          <div class="flex gap-4 items-start">
+            <div class="shrink-0 w-10 h-10 rounded-full bg-[var(--color-accent)] flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-[var(--color-ink)]">Call or text</p>
+              <a href={`tel:${COMPANY.tollFreeE164}`} class="text-[var(--color-accent)] font-semibold no-underline text-lg">{COMPANY.tollFree}</a>
+              <p class="text-sm text-[var(--color-text-muted)] mt-1">Mon–Fri 9am–6pm ET. Leave a voicemail anytime.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="shrink-0 w-10 h-10 rounded-full bg-[var(--color-accent)] flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-[var(--color-ink)]">Headquarters</p>
+              <address class="not-italic text-sm text-[var(--color-text)] mt-1 leading-relaxed">
+                {COMPANY.hq.street}<br/>
+                {COMPANY.hq.city}, {COMPANY.hq.region} {COMPANY.hq.postalCode}<br/>
+                <a href={`tel:${COMPANY.hq.phoneE164}`} class="text-[var(--color-ink)] no-underline hover:underline">{COMPANY.hq.phone}</a>
+              </address>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="shrink-0 w-10 h-10 rounded-full bg-[var(--color-accent)] flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-[var(--color-ink)]">Response time</p>
+              <p class="text-sm text-[var(--color-text-muted)] mt-1">We respond to all online inquiries within one business day. Usually much faster.</p>
+            </div>
+          </div>
+
+          <div class="mt-4 p-4 bg-[var(--color-mist-gray)] rounded-lg">
+            <p class="text-sm font-semibold text-[var(--color-ink)]">Ready to apply?</p>
+            <p class="text-sm text-[var(--color-text-muted)] mt-1">If you're ready to start the mortgage process, use our guided intake instead.</p>
+            <a href="/get-started/" class="btn btn-primary text-sm mt-3 inline-block">Start Your Application →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: general inquiry form -->
+      <div>
+        <p class="eyebrow">Send a message</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">General inquiry form.</h2>
+        <p class="mt-3 text-sm text-[var(--color-text-muted)]">For mortgage applications, use the <a href="/get-started/" class="text-[var(--color-accent)]">guided intake</a> instead. This form is for general questions and non-application inquiries.</p>
+
+        <form
+          action="/api/lead"
+          method="POST"
+          class="mt-6 space-y-4"
+        >
+          <input type="hidden" name="form_source" value="contact" />
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="contact-name" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Full name</label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                required
+                autocomplete="name"
+                class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)]"
+                placeholder="Jane Smith"
+              />
+            </div>
+            <div>
+              <label for="contact-phone" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Phone number</label>
+              <input
+                id="contact-phone"
+                name="phone"
+                type="tel"
+                autocomplete="tel"
+                class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)]"
+                placeholder="(555) 000-0000"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="contact-email" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Email address</label>
+            <input
+              id="contact-email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)]"
+              placeholder="jane@example.com"
+            />
+          </div>
+
+          <div>
+            <label for="contact-subject" class="block text-sm font-medium text-[var(--color-ink)] mb-1">What's this about?</label>
+            <select
+              id="contact-subject"
+              name="subject"
+              class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)] bg-white"
+            >
+              <option value="">Select a topic</option>
+              <option value="mortgage-question">General mortgage question</option>
+              <option value="existing-loan">Question about an existing loan</option>
+              <option value="loan-officer">Connect me with a specific loan officer</option>
+              <option value="press">Press / media inquiry</option>
+              <option value="careers">Careers / joining Cliffco</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="contact-message" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Message</label>
+            <textarea
+              id="contact-message"
+              name="message"
+              rows={4}
+              class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)] resize-none"
+              placeholder="How can we help?"
+            ></textarea>
+          </div>
+
+          <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+            By submitting this form you consent to be contacted by Cliffco, Inc. (NMLS #65328) regarding your inquiry. Cliffco operates in Florida as Swish Capital, Inc. Message and data rates may apply. Reply STOP to opt out.
+          </p>
+
+          <button type="submit" class="btn btn-primary w-full">Send Message</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BRANCH OFFICES -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">Our offices</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">9 branches across 5 states.</h2>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        {allBranches.map((b) => (
+          <div class="card">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="font-semibold text-[var(--color-ink)]">{b.displayCity ?? b.city}{b.isHeadquarters ? " (HQ)" : ""}</h3>
+              {b.isFloridaDba && (
+                <span class="text-xs font-medium text-[var(--color-accent)] shrink-0">Swish Capital</span>
+              )}
+            </div>
+            {b.metro && <p class="text-xs text-[var(--color-text-muted)] mt-0.5">{b.metro}</p>}
+            {b.street && (
+              <address class="not-italic text-sm text-[var(--color-text)] mt-2 leading-relaxed">
+                {b.street}<br/>
+                {b.city}, {b.region} {b.postalCode}
+              </address>
+            )}
+            {b.phone && (
+              <a href={`tel:${b.phone.replace(/\D/g, "")}`} class="block mt-2 text-sm font-medium text-[var(--color-ink)] no-underline hover:text-[var(--color-accent)]">{b.phone}</a>
+            )}
+            {b.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{b.nmls}</p>}
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-sm text-[var(--color-text-muted)]">
+        Cliffco is licensed in 32 states. <a href="/locations/" class="text-[var(--color-accent)]">View all locations and loan officers →</a>
+      </p>
+    </div>
+  </section>
+
+</Layout>
