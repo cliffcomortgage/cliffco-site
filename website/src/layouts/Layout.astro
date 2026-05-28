@@ -85,5 +85,152 @@ const allSchema = schema
       <slot />
     </main>
     <Footer />
+
+    <!-- Custom cursor dot — positioned and colored by JS below -->
+    <div id="cf-cursor" aria-hidden="true"></div>
+
+    <script>
+    (() => {
+      // ═══════════════════════════════════════════════
+      // SECTION 1 — CUSTOM CURSOR
+      // Skip on touch / pointer-coarse devices.
+      // ═══════════════════════════════════════════════
+      const dot = document.getElementById('cf-cursor');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isTouch = window.matchMedia('(pointer: coarse)').matches;
+
+      if (dot && !prefersReduced && !isTouch) {
+        let mx = window.innerWidth / 2;
+        let my = window.innerHeight / 2;
+        let cx = mx, cy = my;
+        let scale = 1, targetScale = 1;
+
+        const LERP_POS   = 0.22;
+        const LERP_SCALE = 0.18;
+
+        const COLORS = {
+          default : '#6633cc',  // bright plum
+          link    : '#9966ee',  // lighter plum
+          button  : '#4a1fa0',  // deeper plum
+          card    : '#bde8f1',  // ice blue (brand color)
+          dark    : '#ffffff',  // white on dark backgrounds
+        };
+
+        let targetColor = COLORS.default;
+
+        const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+        // Mark dark-background sections once DOM is ready
+        document.querySelectorAll('section, footer').forEach(el => {
+          const bg = getComputedStyle(el).backgroundColor;
+          if (bg === 'rgb(13, 13, 13)' || bg === 'rgb(26, 0, 64)') {
+            (el as HTMLElement).dataset.cursorDark = '';
+          }
+        });
+
+        // Also mark accent-gradient sections (computed style may not reflect CSS gradient bg)
+        document.querySelectorAll('.accent-gradient').forEach(el => {
+          (el as HTMLElement).dataset.cursorDark = '';
+        });
+
+        function getContext(el: Element | null): keyof typeof COLORS {
+          if (!el) return 'default';
+          if (el.closest('[data-cursor-dark]')) return 'dark';
+          if (el.closest('.btn, button, [role="button"], input[type="submit"]')) return 'button';
+          if (el.closest('a')) return 'link';
+          if (el.closest('.card, article, figure, picture')) return 'card';
+          return 'default';
+        }
+
+        document.addEventListener('mousemove', (e) => {
+          mx = e.clientX;
+          my = e.clientY;
+          const hit = document.elementFromPoint(mx, my);
+          const ctx = getContext(hit);
+          targetColor = COLORS[ctx];
+          targetScale = ctx === 'default' ? 1 : 1.6;
+        });
+
+        document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; });
+        document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; });
+
+        let lastColor = COLORS.default;
+        function tick() {
+          cx = lerp(cx, mx, LERP_POS);
+          cy = lerp(cy, my, LERP_POS);
+          scale = lerp(scale, targetScale, LERP_SCALE);
+          dot.style.transform = `translate(${cx}px, ${cy}px) scale(${scale})`;
+          if (lastColor !== targetColor) {
+            dot.style.background = targetColor;
+            lastColor = targetColor;
+          }
+          requestAnimationFrame(tick);
+        }
+        tick();
+      }
+
+      // ═══════════════════════════════════════════════
+      // SECTION 2 — HEADER GLASSMORPHISM ON SCROLL
+      // ═══════════════════════════════════════════════
+      const header = document.querySelector('header');
+      if (header) {
+        const onScroll = () => {
+          header.classList.toggle('scrolled', window.scrollY > 16);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+
+      // ═══════════════════════════════════════════════
+      // SECTION 3 — SCROLL-REVEAL (IntersectionObserver)
+      // ═══════════════════════════════════════════════
+      if (!prefersReduced) {
+        const SELECTORS = [
+          'main h1', 'main h2', 'main h3',
+          'main .lead', 'main .eyebrow',
+          'main .card', 'main article',
+          'main picture', 'main dl',
+          'main .btn:not(header .btn)',
+        ].join(', ');
+
+        const vh = window.innerHeight;
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              (entry.target as HTMLElement).classList.add('cf-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+
+        document.querySelectorAll(SELECTORS).forEach((el, siblingIdx) => {
+          // Skip elements already fully in view on load (avoids flash)
+          const rect = el.getBoundingClientRect();
+          if (rect.top > vh * 0.92) {
+            el.classList.add('cf-reveal');
+            // Stagger siblings in the same parent
+            const siblings = Array.from(el.parentElement?.querySelectorAll(':scope > *') ?? []);
+            const idx = siblings.indexOf(el);
+            (el as HTMLElement).style.transitionDelay = `${Math.min(idx * 55, 320)}ms`;
+            observer.observe(el);
+          }
+        });
+      }
+
+      // ═══════════════════════════════════════════════
+      // SECTION 4 — HERO STAGGER ON PAGE LOAD
+      // ═══════════════════════════════════════════════
+      if (!prefersReduced) {
+        const hero = document.querySelector<HTMLElement>('main section:first-of-type');
+        if (hero) {
+          const children = hero.querySelectorAll<HTMLElement>(':scope > .container-wide > *');
+          children.forEach((el, i) => {
+            el.style.animation = `cf-hero-reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${i * 120}ms both`;
+          });
+        }
+      }
+    })();
+    </script>
   </body>
 </html>
