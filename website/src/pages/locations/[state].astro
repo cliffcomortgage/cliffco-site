@@ -21,8 +21,13 @@ export async function getStaticPaths() {
 
 const { loc } = Astro.props;
 const stateBranches = BRANCHES.filter((b) => loc.branchSlugs?.includes(b.slug));
+const branchLandingPages: Record<string, string> = {
+  'scottsdale-az': '/scottsdale-az/',
+  'excelsior-mn': '/excelsior-mn/',
+  'branchburg-nj': '/branchburg-nj/',
+};
 const stateBranchSlugs = new Set(stateBranches.map((b) => b.slug));
-const EXCLUDE_FROM_LOCATIONS = new Set(["christopher-clifford-65234"]);
+const EXCLUDE_FROM_LOCATIONS = new Set(["christopher-clifford"]);
 // LOs physically assigned to a branch in this state
 const branchLOs = LOAN_OFFICERS.filter(
   (lo) => lo.states.includes(loc.state) && stateBranchSlugs.has(lo.branchSlug) && !EXCLUDE_FROM_LOCATIONS.has(lo.slug),
@@ -97,16 +102,29 @@ const schema = [
         <p class="eyebrow">Our {loc.name} offices</p>
         <h2 class="mt-3" style="font-size: var(--text-h2);">Where we are.</h2>
         <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {stateBranches.map((b) => (
-            <article class="card">
-              <h3 class="text-lg font-semibold">{b.name}</h3>
-              {b.metro && <p class="text-xs text-[var(--color-text-muted)] mt-1">{b.metro}</p>}
-              {b.street && <p class="text-sm text-[var(--color-text-muted)] mt-2">{b.street}<br/>{b.city}, {b.region} {b.postalCode}</p>}
-              {b.phone && <p class="text-sm mt-1"><a href={`tel:${b.phone.replace(/\D/g, "")}`} class="text-[var(--color-ink)] no-underline font-medium">{b.phone}</a></p>}
-              {b.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{b.nmls}</p>}
-              <p class="text-sm text-[var(--color-text-muted)] mt-3">{loanOfficersByBranch(b.slug).length} loan officer{loanOfficersByBranch(b.slug).length === 1 ? "" : "s"}.</p>
-            </article>
-          ))}
+          {stateBranches.map((b) => {
+            const landingUrl = branchLandingPages[b.slug];
+            return landingUrl ? (
+              <a href={landingUrl} class="card no-underline text-[var(--color-ink)] flex flex-col">
+                <h3 class="text-lg font-semibold">{b.name}</h3>
+                {b.metro && <p class="text-xs text-[var(--color-text-muted)] mt-1">{b.metro}</p>}
+                {b.street && <p class="text-sm text-[var(--color-text-muted)] mt-2">{b.street}<br/>{b.city}, {b.region} {b.postalCode}</p>}
+                {b.phone && <p class="text-sm mt-1 font-medium">{b.phone}</p>}
+                {b.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{b.nmls}</p>}
+                <p class="text-sm text-[var(--color-text-muted)] mt-3">{loanOfficersByBranch(b.slug).length} loan officer{loanOfficersByBranch(b.slug).length === 1 ? "" : "s"}.</p>
+                <span class="mt-auto pt-3 text-sm font-semibold text-[var(--color-accent)]">View office →</span>
+              </a>
+            ) : (
+              <article class="card">
+                <h3 class="text-lg font-semibold">{b.name}</h3>
+                {b.metro && <p class="text-xs text-[var(--color-text-muted)] mt-1">{b.metro}</p>}
+                {b.street && <p class="text-sm text-[var(--color-text-muted)] mt-2">{b.street}<br/>{b.city}, {b.region} {b.postalCode}</p>}
+                {b.phone && <p class="text-sm mt-1"><a href={`tel:${b.phone.replace(/\D/g, "")}`} class="text-[var(--color-ink)] no-underline font-medium">{b.phone}</a></p>}
+                {b.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{b.nmls}</p>}
+                <p class="text-sm text-[var(--color-text-muted)] mt-3">{loanOfficersByBranch(b.slug).length} loan officer{loanOfficersByBranch(b.slug).length === 1 ? "" : "s"}.</p>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

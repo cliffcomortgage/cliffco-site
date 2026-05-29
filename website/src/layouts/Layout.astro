@@ -5,6 +5,19 @@ import JsonLd from "../components/seo/JsonLd.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 import { organizationSchema, websiteSchema, articleSchema } from "../lib/schema";
+import { LOAN_OFFICERS } from "../data/loan-officers";
+
+// Compact LO map passed to client — only what the attribution bar needs
+const loMap = Object.fromEntries(
+  LOAN_OFFICERS.map(lo => [lo.slug, {
+    name: lo.displayName,
+    title: lo.title,
+    nmls: lo.nmls,
+    phone: lo.links?.directPhone ?? null,
+    apply: lo.links?.applyNow ?? null,
+    photo: lo.hasPhoto ?? false,
+  }])
+);
 
 interface Props {
   title: string;
@@ -232,5 +245,118 @@ const allSchema = schema
       }
     })();
     </script>
+
+    <!-- ═══════════════════════════════════════════════
+         LO ATTRIBUTION BAR
+         Sets a 30-day cookie on LO profile visits.
+         Shows a sticky bar with the LO's info on all
+         other pages. Dismiss persists for the session.
+         ═══════════════════════════════════════════════ -->
+    <script define:vars={{ loMap }}>
+    (() => {
+      const COOKIE  = 'cliffco_lo';
+      const SESSION = 'cliffco_lo_dismissed';
+
+      function getCookie(name) {
+        const m = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)'));
+        return m ? decodeURIComponent(m[1]) : null;
+      }
+      function setCookie(name, value, days) {
+        const exp = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + exp + '; path=/; SameSite=Lax';
+      }
+
+      const path = window.location.pathname;
+      // Detect LO detail page: /loan-officers/{slug}/
+      const loMatch = path.match(/^\/loan-officers\/([^\/]+)\/?$/);
+      const pageSlug = loMatch ? loMatch[1] : null;
+
+      // On any LO page: set/refresh the cookie, then stop — bar never shows here
+      if (pageSlug && loMap[pageSlug]) {
+        setCookie(COOKIE, pageSlug, 30);
+        return;
+      }
+
+      // Everywhere else: check for the stored LO
+      const slug = getCookie(COOKIE);
+      if (!slug || !loMap[slug]) return;
+
+      // Respect session dismissal
+      if (sessionStorage.getItem(SESSION) === slug) return;
+
+      const lo = loMap[slug];
+
+      // ── Build the bar ──────────────────────────────
+      const bar = document.createElement('div');
+      bar.id = 'lo-bar';
+      bar.setAttribute('role', 'region');
+      bar.setAttribute('aria-label', 'Your loan officer: ' + lo.name);
+      bar.style.cssText = [
+        'position:fixed', 'bottom:0', 'left:0', 'right:0', 'z-index:9998',
+        'background:#0d0d0d', 'color:#fff',
+        'display:flex', 'align-items:center', 'gap:12px',
+        'padding:10px 20px',
+        'box-shadow:0 -2px 20px rgba(0,0,0,0.4)',
+        'border-top:1px solid rgba(102,51,204,0.5)',
+        'font-family:inherit', 'font-size:14px',
+        'animation:lo-bar-slide-up 0.35s cubic-bezier(0.16,1,0.3,1) both',
+      ].join(';');
+
+      // Photo or initial avatar
+      const photoHtml = lo.photo
+        ? '<img src="/team/' + slug + '.jpg" alt="' + lo.name + '" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid rgba(102,51,204,0.7);flex-shrink:0;" loading="lazy" />'
+        : '<div style="width:40px;height:40px;border-radius:50%;background:rgba(102,51,204,0.25);border:2px solid rgba(102,51,204,0.5);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:700;color:#bde8f1;font-size:15px;">' + lo.name.charAt(0) + '</div>';
+
+      // Info block
+      const infoHtml = '<div style="flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;">'
+        + '<span style="font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:#bde8f1;white-space:nowrap;">Browsing with</span>'
+        + '<strong style="font-size:15px;white-space:nowrap;">' + lo.name + '</strong>'
+        + '<span style="font-size:12px;color:rgba(255,255,255,0.55);white-space:nowrap;">' + lo.title + '</span>'
+        + '<span style="font-size:11px;color:rgba(255,255,255,0.35);white-space:nowrap;">NMLS #' + lo.nmls + '</span>'
+        + '</div>';
+
+      // Action buttons
+      const phoneBtn = lo.phone
+        ? '<a href="tel:' + lo.phone.replace(/[^+\d]/g, '') + '" style="display:inline-flex;align-items:center;gap:6px;background:#6633cc;color:#fff;text-decoration:none;padding:7px 16px;border-radius:999px;font-size:13px;font-weight:600;white-space:nowrap;flex-shrink:0;">'
+          + '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>'
+          + 'Call</a>'
+        : '';
+
+      const applyBtn = lo.apply
+        ? '<a href="' + lo.apply + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;background:transparent;color:#fff;text-decoration:none;padding:7px 16px;border-radius:999px;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,0.3);white-space:nowrap;flex-shrink:0;">Apply Now</a>'
+        : '';
+
+      const dismissBtn = '<button id="lo-bar-x" aria-label="Dismiss" style="background:none;border:none;color:rgba(255,255,255,0.45);font-size:22px;line-height:1;padding:4px 6px;flex-shrink:0;cursor:auto;">×</button>';
+
+      bar.innerHTML = photoHtml + infoHtml
+        + '<div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">'
+        + phoneBtn + applyBtn + dismissBtn
+        + '</div>';
+
+      document.body.appendChild(bar);
+      // Push page content up so footer isn't hidden behind bar
+      document.body.style.paddingBottom = '68px';
+
+      document.getElementById('lo-bar-x').addEventListener('click', () => {
+        bar.style.animation = 'lo-bar-slide-down 0.25s ease-in both';
+        setTimeout(() => {
+          bar.remove();
+          document.body.style.paddingBottom = '';
+        }, 240);
+        sessionStorage.setItem(SESSION, slug);
+      });
+    })();
+    </script>
+
+    <style>
+      @keyframes lo-bar-slide-up {
+        from { transform: translateY(100%); opacity: 0; }
+        to   { transform: translateY(0);    opacity: 1; }
+      }
+      @keyframes lo-bar-slide-down {
+        from { transform: translateY(0);    opacity: 1; }
+        to   { transform: translateY(100%); opacity: 0; }
+      }
+    </style>
   </body>
 </html>

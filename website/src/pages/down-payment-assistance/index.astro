@@ -1,0 +1,258 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+const yearsInBiz = COMPANY.yearsInBusiness();
+
+const faq = [
+  {
+    question: "Do I have to be a first-time homebuyer to qualify for DPA?",
+    answer: "Not always. Many programs do require that you haven't owned a home in the past three years, which the federal government defines as a first-time homebuyer. But a significant number of programs — including several national programs — have no first-time buyer requirement at all. Ask your Cliffco loan officer which programs you're eligible for based on your situation.",
+  },
+  {
+    question: "Does down payment assistance affect my interest rate?",
+    answer: "It can. Some DPA programs are rate-subsidized and come with a below-market rate. Others are paired with market-rate loans and the assistance simply covers the down payment or closing costs. A small number of programs involve a slightly higher rate to offset the cost of the assistance. Your loan officer will show you the full picture — net payment, rate, and total cost — so you can compare options fairly.",
+  },
+  {
+    question: "Is down payment assistance a grant or a loan?",
+    answer: "It depends on the program. Grants are outright gifts — no repayment required. Forgivable loans are structured as a second mortgage that is cancelled after you live in the home for a set number of years (commonly 3–10 years). Deferred-payment loans require repayment when you sell, refinance, or pay off the first mortgage. Each type has trade-offs, and your loan officer can explain which structure fits your plans.",
+  },
+  {
+    question: "Are there income limits?",
+    answer: "Most programs have income limits tied to the area median income (AMI) for your county — typically 80% to 120% of AMI. In high-cost areas like New York City and Long Island, those limits are often higher than buyers expect. Some programs have no income cap at all. Your Cliffco loan officer can check your household income against the specific programs available in your area.",
+  },
+  {
+    question: "Can DPA be combined with an FHA, VA, or conventional loan?",
+    answer: "Yes — most DPA programs are designed to layer on top of a first mortgage. FHA is the most commonly paired loan type because of its flexible credit guidelines. Some programs work with conventional loans as well. VA loans can sometimes be paired with closing cost assistance even though they require no down payment.",
+  },
+  {
+    question: "How do I find out what programs are available where I'm buying?",
+    answer: "DPA programs vary by state, county, city, and lender — and they change frequently. The most reliable way is to speak with a Cliffco loan officer who actively originates in your area. They know which programs are currently funded, accepting applications, and compatible with your credit and income profile.",
+  },
+];
+
+const schema = [
+  faqPageSchema(faq),
+  articleSchema({
+    headline: "Down Payment Assistance Programs",
+    description: "Down payment assistance programs can cover your down payment, closing costs, or both. Learn how DPA works, who qualifies, and how to find out what's available where you're buying.",
+    url: "/down-payment-assistance/",
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "christopher-clifford",
+  }),
+];
+
+const assistanceTypes = [
+  {
+    name: "Grants",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />`,
+    blurb: "Outright gift — no repayment required under any circumstances. Typically the most limited programs with the strictest income and purchase price requirements.",
+  },
+  {
+    name: "Forgivable loans",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />`,
+    blurb: "A second mortgage that is cancelled — forgiven — after you live in the home for a set period, commonly 3 to 10 years. If you sell or move before then, you repay a prorated amount.",
+  },
+  {
+    name: "Deferred-payment loans",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />`,
+    blurb: "A second mortgage with no monthly payments. The balance comes due when you sell, refinance, or pay off the first mortgage. Most programs charge zero or very low interest.",
+  },
+  {
+    name: "Matched savings",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />`,
+    blurb: "Some programs match your savings dollar-for-dollar up to a cap — if you save $3,000 the program contributes $3,000. Less common but available through certain nonprofits and state agencies.",
+  },
+];
+---
+
+<Layout
+  title="Down Payment Assistance Programs | Cliffco Mortgage Bankers"
+  description="Down payment assistance programs can cover your down payment, closing costs, or both — and you don't always have to be a first-time buyer. Cliffco works with DPA programs across NY, NJ, FL, AZ, MN, and beyond."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Down Payment Assistance", href: "/down-payment-assistance/" },
+  ]} />
+
+  <!-- HERO -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 lg:py-24">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">For buyers with limited savings</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        Down Payment<br/>
+        <span class="text-[var(--color-ice-blue)]">Assistance Programs.</span>
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">
+        Not having 20% saved doesn't mean you're not ready to buy. Down payment assistance programs can cover your down payment, closing costs, or both — and many don't require you to be a first-time buyer.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Find My Options</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">
+          <span class="text-white/70 font-normal text-xs">Toll Free</span>&nbsp;{COMPANY.tollFree}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS DPA -->
+  <section class="section bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow">What is down payment assistance?</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Money toward your down payment or closing costs — from a source other than you.</h2>
+        <p class="mt-5 text-[var(--color-text)] leading-relaxed">
+          Down payment assistance (DPA) programs provide funds to help buyers cover their down payment, closing costs, or both. They're offered by state housing finance agencies, city and county programs, nonprofit organizations, and lenders — and they're more widely available than most buyers realize.
+        </p>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed">
+          The programs change constantly. Funding gets exhausted, income limits shift, new programs launch. The most reliable way to know what you qualify for is to work with a loan officer who actively originates in your area and keeps up with which programs are currently open.
+        </p>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed">
+          Cliffco has worked with DPA programs across New York, New Jersey, Florida, Arizona, Minnesota, and nationally for over {yearsInBiz} years. We know which ones are active, which ones work for complex borrower situations, and how to layer them with the right first mortgage.
+        </p>
+      </div>
+      <div class="space-y-4">
+        {assistanceTypes.map((t) => (
+          <div class="card flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-lg bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent)] shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5" aria-hidden="true">
+                <Fragment set:html={t.icon} />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-[var(--color-ink)]" style="font-size: var(--text-body);">{t.name}</h3>
+              <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">{t.blurb}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO QUALIFIES -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <p class="eyebrow">Who qualifies</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">More people are eligible than you'd think.</h2>
+        <p class="lead mt-4 text-[var(--color-text-muted)]">
+          Eligibility varies by program, but these are the factors most commonly evaluated.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          {
+            label: "Income limits",
+            body: "Most programs cap household income at 80–120% of the area median income (AMI) for your county. In high-cost markets like NYC and Long Island, those limits are higher than most buyers expect.",
+          },
+          {
+            label: "Credit score",
+            body: "Most DPA programs require a minimum 620 FICO, though some go as low as 580 when paired with an FHA loan. A higher credit score often unlocks better assistance amounts and first mortgage rates.",
+          },
+          {
+            label: "Purchase price limits",
+            body: "Programs often cap the home purchase price. Limits vary by county and are often higher in expensive markets. Your loan officer can check the limit for the specific property you're considering.",
+          },
+          {
+            label: "First-time buyer",
+            body: "Many programs require that you haven't owned a home in the past three years. Many others have no such restriction. If you've owned before, programs still exist — just fewer of them.",
+          },
+          {
+            label: "Primary residence",
+            body: "Almost all DPA programs require the home to be your primary residence. Investment properties and second homes are not eligible.",
+          },
+          {
+            label: "Homebuyer education",
+            body: "Many programs require completion of a HUD-approved homebuyer education course before closing. These are typically free or low-cost and available online.",
+          },
+        ].map((item) => (
+          <div class="card">
+            <h3 class="font-semibold text-[var(--color-ink)]" style="font-size: var(--text-body);">{item.label}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE WE LEND + CTA INLINE -->
+  <section class="section bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow">Where we work</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">DPA programs across the states we serve.</h2>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed">
+          Cliffco actively originates in 32 states and works with DPA programs in every market where we have a presence. Programs vary significantly by state — what's available in New York is very different from Florida or Arizona.
+        </p>
+        <div class="mt-6 grid grid-cols-2 gap-3">
+          {[
+            { state: "New York", note: "SONYMA, local housing agencies, NYC and county programs" },
+            { state: "New Jersey", note: "NJHMFA programs and county-level assistance" },
+            { state: "Florida", note: "FHFC and local city/county programs" },
+            { state: "Arizona", note: "State and county programs for the Phoenix metro" },
+            { state: "Minnesota", note: "MHFA and Twin Cities area programs" },
+            { state: "Other states", note: "National programs available in most states we're licensed" },
+          ].map((item) => (
+            <div class="p-4 rounded-xl border border-[var(--color-mist-gray)]">
+              <p class="font-semibold text-sm text-[var(--color-ink)]">{item.state}</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-1 leading-relaxed">{item.note}</p>
+            </div>
+          ))}
+        </div>
+        <p class="mt-5 text-sm text-[var(--color-text-muted)]">
+          Program availability changes. A Cliffco loan officer will confirm what's currently funded and open in your specific county.
+        </p>
+      </div>
+      <div class="space-y-5">
+        <div class="bg-[var(--color-rich-black)] rounded-2xl p-8 text-white">
+          <p class="eyebrow !text-[var(--color-ice-blue)]">The honest answer</p>
+          <h3 class="mt-3 text-white text-xl font-semibold leading-snug">DPA programs change too fast to publish a list. Talk to a real person instead.</h3>
+          <p class="mt-4 text-white/75 text-sm leading-relaxed">
+            State agencies run out of funding mid-year. Programs open and close. Income limits shift. A published list of programs is often outdated before the page loads. The right move is a 10-minute conversation with a loan officer who knows your market.
+          </p>
+          <a href="/get-started/" class="mt-6 inline-block btn btn-primary !bg-white !text-[var(--color-rich-black)]">Find my options →</a>
+        </div>
+        <div class="card">
+          <p class="font-semibold text-[var(--color-ink)]">Already working with a Cliffco loan officer?</p>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">Ask them directly — they have access to current program availability for your county and can run a side-by-side comparison of DPA options against a standard low-down-payment loan.</p>
+          <a href="/loan-officers/" class="mt-4 inline-block text-sm font-semibold text-[var(--color-accent)] no-underline hover:underline">Find a loan officer →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-prose">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Down payment assistance questions.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Find out what you qualify for.</h2>
+      <p class="lead mt-4 text-white/85 max-w-xl mx-auto">
+        Tell us where you're buying and what you have saved. A Cliffco loan officer will tell you which programs are currently available and whether they make sense for your situation.
+      </p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Check my eligibility</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+</Layout>

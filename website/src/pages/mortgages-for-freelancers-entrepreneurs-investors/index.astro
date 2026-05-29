@@ -1,0 +1,121 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { loanOfficer } from "../../data/loan-officers";
+import Headshot from "../../components/ui/Headshot.astro";
+
+const david = loanOfficer("david-fallarino")!;
+---
+
+<Layout
+  title="Freelancers, Entrepreneurs, Investors: We've Got a Mortgage Built Just for You | 500:1 Blog"
+  description="Non-QM loans are designed for creditworthy borrowers who don't check the standard boxes. At Cliffco, this is exactly where we shine."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "500:1 Blog", href: `/loan-officers/${david.slug}/` },
+    { name: "Mortgages for Freelancers, Entrepreneurs & Investors", href: "/mortgages-for-freelancers-entrepreneurs-investors/" },
+  ]} />
+
+  <article class="section bg-white relative overflow-hidden">
+    <div class="absolute inset-x-0 top-0 h-[300px] bg-[var(--color-rich-black)]" aria-hidden="true"></div>
+    <div class="container-prose relative z-10">
+      <div class="rounded-2xl overflow-hidden mb-10 aspect-video bg-[var(--color-mist-gray)] shadow-2xl">
+        <img src="/images/DFallarino%20Blog/Freelancers%20Blog.jpg" alt="Mortgages for Freelancers, Entrepreneurs and Investors" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+
+      <p class="eyebrow mb-4">500:1 Blog · David Fallarino</p>
+      <h1 style="font-size: var(--text-display-lg); letter-spacing: -0.03em; line-height: 1.1;">Freelancers, Entrepreneurs, Investors: We've Got a Mortgage Built Just for You.</h1>
+
+      <p class="lead mt-6">If you've ever tried applying for a mortgage as a freelancer, entrepreneur, or business owner, you know how quickly the process can grind to a halt. Traditional lenders expect tidy W-2s, two years of tax returns, and a picture-perfect credit profile. But what if your income doesn't fit inside those lines? What if your revenue looks different from month to month—or your tax strategy means your returns don't reflect the full story?</p>
+
+      <p>That's where Non-QM loans come in. And at Cliffco, this is exactly where we shine.</p>
+
+      <h2>What is a Non-QM Loan?</h2>
+      <p>"Non-QM" stands for Non-Qualified Mortgage. In plain English, that means it doesn't fit the rigid criteria set by Fannie Mae or Freddie Mac—the agencies that buy most conventional mortgages.</p>
+      <p>But here's the important part: non-QM doesn't mean "subprime" or "risky." It simply means flexibility. Non-QM loans are designed for creditworthy borrowers who don't check the standard boxes, whether that's due to their income type, asset structure, or credit history.</p>
+      <p>In other words, they're built for real people with real stories—the kind of borrowers we see every day at Cliffco.</p>
+
+      <h2>Who Benefits Most from Non-QM Loans?</h2>
+      <p>Non-QM loans aren't for everyone, but for the right borrower they can be a game-changer. Common examples include:</p>
+      <ul>
+        <li><strong>Self-Employed Professionals:</strong> Consultants, freelancers, and gig workers often earn solid income but lack W-2s. A bank-statement loan (a popular Non-QM product) uses your actual cash flow instead of tax returns to prove income.</li>
+        <li><strong>Entrepreneurs and Business Owners:</strong> Many reinvest profits back into their companies, which lowers taxable income. Non-QM lenders look at the big picture.</li>
+        <li><strong>Real Estate Investors:</strong> Debt service coverage ratio (DSCR) loans allow you to qualify based on rental income rather than personal income.</li>
+        <li><strong>Borrowers with Credit Events:</strong> A past bankruptcy or foreclosure doesn't necessarily disqualify you. Non-QM programs often have more flexible seasoning requirements.</li>
+        <li><strong>High Net-Worth Borrowers:</strong> There are loans that let you qualify using your liquid assets as proof of repayment ability.</li>
+      </ul>
+      <p>If you see yourself in any of these categories, Non-QM might just be the door to homeownership—or your next investment property—that traditional lenders keep closed.</p>
+
+      <h2>How Do Non-QM Loans Work?</h2>
+      <p>The biggest difference is in how income is evaluated. With a conventional loan, it's all about W-2s and tax returns. With Non-QM, lenders can use:</p>
+      <ul>
+        <li>12–24 months of bank statements to average your deposits</li>
+        <li>Rental income projections for investment properties</li>
+        <li>Assets like retirement accounts or savings as income stand-ins</li>
+        <li>Alternative credit documentation for borrowers without a long FICO history</li>
+        <li>P&L's—detailed Profit and Loss statement from your business outlining the cash flow after expenses</li>
+      </ul>
+      <p>This approach matters because it captures the full scope of your financial life. A freelance designer who earns $10,000 one month and $3,000 the next might look "unstable" to a conventional lender. But with a Non-QM program, that person's average income over 12 months tells a more accurate—and often stronger—story.</p>
+      <p>It's also worth noting that Non-QM loans may allow for higher loan amounts (jumbo scenarios), lower down payments depending on the program, and faster turnaround times because underwriting is more specialized.</p>
+      <p>Yes, Non-QM loans usually carry slightly higher interest rates than conventional mortgages. But for many borrowers, that tradeoff is worth it—because access to financing matters more than shaving off a fraction of a point.</p>
+
+      <h2>Non-QM Myths (and the Truth)</h2>
+      <p>Because Non-QM loans are less understood, they've picked up some misconceptions. Let's set the record straight.</p>
+      <p><strong>Myth #1: Non-QM loans are only for people with bad credit.</strong><br/>Truth: Many Non-QM borrowers have excellent credit. The difference is in how income is documented.</p>
+      <p><strong>Myth #2: Non-QM loans are too risky.</strong><br/>Truth: These loans are underwritten carefully with full documentation. Lenders simply use alternative methods to assess your ability to repay.</p>
+      <p><strong>Myth #3: Non-QM loans disappeared after 2008.</strong><br/>Truth: What disappeared were subprime "no-doc" loans. Non-QM products today are structured, regulated, and built for transparency.</p>
+      <p>At Cliffco, part of our job is helping clients cut through the noise and understand the facts.</p>
+
+      <h2>Why Borrowers Choose Cliffco for Non-QM Loans</h2>
+      <p>Plenty of lenders dabble in Non-QM. Cliffco specializes in it. That difference matters.</p>
+      <p>Here's why:</p>
+      <ul>
+        <li><strong>We've seen it all.</strong> From entrepreneurs who just launched their startup to real estate investors managing multiple properties, our team understands the nuances of complex financial situations.</li>
+        <li><strong>We go deeper.</strong> While other lenders stop at the guidelines, we find solutions. That might mean structuring your application differently, choosing the right Non-QM product, or connecting you with a program you didn't know existed.</li>
+        <li><strong>We make it personal.</strong> Non-QM lending isn't a one-size-fits-all process. We'll walk you through every step, explain your options clearly, and keep the process as straightforward as possible.</li>
+      </ul>
+
+      <h2>Is a Non-QM Loan Right for You?</h2>
+      <p>If you're trying to figure out whether Non-QM is the right path, here are a few questions to ask yourself:</p>
+      <ul>
+        <li>Do I have income that's difficult to document with W-2s or tax returns?</li>
+        <li>Have I been turned away by a traditional lender even though I know I can afford the payment?</li>
+        <li>Am I an investor who wants to qualify based on property cash flow rather than personal income?</li>
+        <li>Do I have strong assets or savings that could be used to demonstrate repayment ability?</li>
+      </ul>
+      <p>If you answered "yes" to one or more of these, it's worth exploring Non-QM options. Even if you're not sure, a consultation can help clarify whether a conventional or Non-QM program will serve you best.</p>
+      <p>At Cliffco, we believe flexibility should be part of the mortgage process. Our job is to look at the whole picture, not just one piece of paper.</p>
+
+      <h2>The Bottom Line</h2>
+      <p>The mortgage world isn't one-size-fits-all, and neither are you. Non-QM loans exist to bridge that gap—to give freelancers, entrepreneurs, investors, and nontraditional earners the same opportunity to buy, build, and invest.</p>
+      <p>If you've been told "no" before, it doesn't mean you don't qualify. It just means you haven't found the right partner yet.</p>
+      <p>At Cliffco, we specialize in saying "yes" when others won't—by taking the time to understand your story, your numbers, and your goals.</p>
+      <p>Ready to explore your options? Reach out today and let's find the Non-QM solution that works for you.</p>
+    </div>
+  </article>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <div class="max-w-2xl mx-auto card flex flex-col sm:flex-row gap-6 items-start">
+        {david.hasPhoto && (
+          <div class="w-20 h-20 shrink-0 rounded-full overflow-hidden">
+            <Headshot slug={david.slug} name={david.displayName} size={80} shape="circle" />
+          </div>
+        )}
+        <div>
+          <p class="eyebrow text-xs mb-1">Written by</p>
+          <h3 class="font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">{david.displayName}</h3>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">{david.title} · NMLS #{david.nmls}</p>
+          <p class="text-sm text-[var(--color-text)] mt-3 leading-relaxed">Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors.</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href={`/loan-officers/${david.slug}/`} class="btn btn-primary text-sm">View David's profile</a>
+            {david.links?.email && (
+              <a href={`mailto:${david.links.email}`} class="btn btn-secondary text-sm">Email David</a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

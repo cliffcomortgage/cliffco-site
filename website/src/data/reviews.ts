@@ -84,18 +84,18 @@ export type FeaturedReview = {
 
 export const FEATURED_REVIEWS: readonly FeaturedReview[] = [
   {
-    quote: "Lisa and her team were an absolute pleasure to work with! As first-time homeowners, they made the entire process feel seamless and took away so much of the stress and uncertainty.",
-    author: "First-time homeowner",
+    quote: "Josh was absolutely amazing throughout my entire mortgage process. From start to finish, he made everything easy to understand and was always there to answer my questions. Buying a home can be stressful, but Josh stayed on top of everything.",
+    author: "Christian J.",
     platform: "Experience.com",
   },
   {
-    quote: "David was incredible. He helped us with our home purchase from start to finish and was available to speak with us around the clock answering any and all questions!",
-    author: "Verified borrower",
+    quote: "Christian was both competent and incredibly affable. He made the complicated journey through loan approval both fun and seamless. He is the perfect representative!",
+    author: "Emanuel E.",
     platform: "Experience.com",
   },
   {
-    quote: "They were the people who supported me throughout this significant life experience, and they were always on top of every step of the process.",
-    author: "Verified borrower",
+    quote: "Adam and Leah were highly responsive and helpful through the process.",
+    author: "Samuel P.",
     platform: "Experience.com",
   },
 ];

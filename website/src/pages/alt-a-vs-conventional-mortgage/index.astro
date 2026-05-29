@@ -1,0 +1,137 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { loanOfficer } from "../../data/loan-officers";
+import Headshot from "../../components/ui/Headshot.astro";
+
+const david = loanOfficer("david-fallarino")!;
+---
+
+<Layout
+  title="Alt-A vs. A-Paper Loans: Which One Fits the Way You Earn? | 500:1 Blog"
+  description="Both loans serve qualified borrowers—but one rewards predictability, the other rewards entrepreneurship. Here's how to tell which one actually works for you."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "500:1 Blog", href: `/loan-officers/${david.slug}/` },
+    { name: "Alt-A vs. A-Paper Loans", href: "/alt-a-vs-conventional-mortgage/" },
+  ]} />
+
+  <article class="section bg-white relative overflow-hidden">
+    <div class="absolute inset-x-0 top-0 h-[300px] bg-[var(--color-rich-black)]" aria-hidden="true"></div>
+    <div class="container-prose relative z-10">
+      <div class="rounded-2xl overflow-hidden mb-10 aspect-video bg-[var(--color-mist-gray)] shadow-2xl">
+        <img src="/images/DFallarino%20Blog/Alt%20A%20Blog.jpg" alt="Alt-A vs A-Paper Loans" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+
+      <p class="eyebrow mb-4">500:1 Blog · David Fallarino</p>
+      <h1 style="font-size: var(--text-display-lg); letter-spacing: -0.03em; line-height: 1.1;">Alt-A vs. A-Paper Loans: Which One Fits the Way You Earn?</h1>
+      <p class="lead mt-4">Both loans serve qualified borrowers—but one rewards predictability, the other rewards entrepreneurship. Here's how to tell which one actually works for you.</p>
+
+      <h2>The Big Question: How Do You Make Your Money?</h2>
+      <p>That's really what this decision comes down to.</p>
+      <p>If your income shows up neatly on a W-2 every two weeks, A-Paper loans were made for you.</p>
+      <p>If your income fluctuates, comes from multiple sources, or is optimized through smart tax strategy, Alt-A loans might be the better fit.</p>
+      <p>At Cliffco, we see this every day. Two borrowers with identical credit scores and assets—but one is a salaried professional, the other a business owner. The first gets approved instantly through a big bank's automated system. The second gets stuck in paperwork purgatory.</p>
+      <p>The difference isn't creditworthiness, it's structure. Alt-A programs exist to solve that.</p>
+
+      <h2>The Safe Bet: A-Paper Loans</h2>
+      <p>A-Paper loans—also called prime or traditional loans—are the most common mortgage type in America. They're the loans conventional lenders sell to Fannie Mae or Freddie Mac, built on predictability and tight underwriting. Or the big banks use those same underwriting guidelines (income calculation) - or often times more strict - for their Jumbo Portfolio.</p>
+      <p>They offer the lowest rates and the most familiar process. But they come with a catch: they assume everyone earns money the same way.</p>
+      <p>To qualify, you typically need:</p>
+      <ul>
+        <li>Two full years of tax returns</li>
+        <li>Consistent W-2</li>
+        <li>Clean credit (usually 760+)</li>
+        <li>A low debt-to-income (DTI) ratio</li>
+        <li>Assets in your personal name, not business.</li>
+      </ul>
+      <p>For borrowers with stable, documentable income, A-Paper is an easy choice. It's fast, inexpensive, and widely available. But for entrepreneurs—people whose income doesn't fit perfectly into those lines—A-Paper loans can feel like trying to squeeze into the wrong size suit.</p>
+
+      <h2>The Smarter Play for Entrepreneurs: Alt-A Loans</h2>
+      <p>Alt-A loans were designed for borrowers who are financially strong but don't fit inside conventional boundaries.</p>
+      <p>Entrepreneurs, self-employed professionals, and real estate investors often earn substantial income but show less of it on tax returns due to write-offs, reinvestment, or equity-based compensation.</p>
+      <p>Alt-A lending gives these borrowers room to breathe.</p>
+      <p>Instead of relying solely on W-2s and the bottom line on tax returns, lenders can use alternative documentation such as:</p>
+      <ul>
+        <li>The gross revenue on a tax return, minus only the essential expenses. Often times adding back a lot of expenses into your final income calc.</li>
+        <li>CPA letters to address one-time expenses and business events.</li>
+        <li>Asset depletion models that convert savings or investments into qualifying income</li>
+        <li>Rental income projections for investment properties</li>
+      </ul>
+      <p>The result: a loan program that sees the whole financial picture instead of just one year of adjusted gross income.</p>
+      <p>For entrepreneurs, Alt-A loans aren't a loophole—they're a lifeline.</p>
+
+      <h2>Real-World Example</h2>
+      <p><strong>Case 1 – The A-Paper Fit:</strong><br/>Sophia, a software engineer earning a six-figure salary, has a decade-long W-2 history and minimal debt. Her file checks every conventional box. She chooses an A-Paper jumbo loan with the lowest possible rate.</p>
+      <p><strong>Case 2 – The Alt-A Fit:</strong><br/>Ethan, a business owner, earns $400,000 a year through his LLC. He writes off equipment, marketing, and travel—leaving his taxable income at $75,000. On paper, he looks underqualified. But his bank statements show consistent deposits and strong reserves. Through an Alt-A jumbo program, Cliffco structures a loan based on cash flow instead of the bottom line on his tax returns—and Ethan closes on his dream home. We are able to use both the statements AND the tax returns (adding back investments he made into his business as INCOME), offering a better rate than "Non QM".</p>
+      <p>Both borrowers are qualified. They just need different tools.</p>
+
+      <h2>The Problem with Trying to "Fit" a Conventional Box</h2>
+      <p>Many high-performing entrepreneurs waste months trying to force their financial reality into conventional guidelines. They rewrite tax returns, chase accountants for explanations, or shop around at banks that don't understand business owners.</p>
+      <p>Eventually, frustration sets in.</p>
+      <p>The truth? There's no gold star for struggling to qualify the traditional way.</p>
+      <p>Choosing the right loan isn't about appeasing an underwriter—it's about using a structure that recognizes your financial strength as it is.</p>
+      <p>That's why understanding the Alt-A vs. A-Paper difference matters. It's not just semantics—it's strategy.</p>
+
+      <h2>How to Decide Between Alt-A and A-Paper</h2>
+      <p>Here's a quick way to think about it:</p>
+      <p><strong>Choose A-Paper if:</strong></p>
+      <ul>
+        <li>You're a W-2 employee with consistent income</li>
+        <li>Your credit profile and DTI meet strict guidelines</li>
+      </ul>
+      <p><strong>Choose Alt-A if:</strong></p>
+      <ul>
+        <li>You're self-employed or own multiple businesses</li>
+        <li>Your tax returns don't reflect your true income</li>
+        <li>You need jumbo or super-jumbo financing</li>
+        <li>You want a faster, more flexible approval</li>
+      </ul>
+      <p>In some cases, borrowers even qualify for both—and Cliffco compares them side by side so you can choose the smartest balance of rate and flexibility. Oftentimes the Alt-A rate is comparable or the same as A-Paper (A sign that investors in mortgage backed securities see these loans performing well, AKA the borrowers PAY).</p>
+
+      <h2>How Cliffco Makes This Simple</h2>
+      <p>At Cliffco, we don't see "loan types"—we see financial profiles.</p>
+      <p>Our team works with both traditional and entrepreneurial clients, tailoring the right structure for each. We don't push A-Paper or Alt-A; we show you how both work, what each costs, and which one makes the most sense given your goals.</p>
+      <p>We handle complex income verification every day. From founders with multiple LLCs to consultants with variable cash flow, we know how to build strong loan files that tell your real financial story.</p>
+      <p>That's the Cliffco/Fallarino Group difference: we translate entrepreneurship into approvals.</p>
+
+      <h2>FAQs: Alt-A vs. A-Paper</h2>
+      <p><strong>Do Alt-A loans have higher rates?</strong><br/>Sometimes—but the trade-off is access. Most Alt-A rates are still competitive, especially for prime-credit borrowers.</p>
+      <p><strong>Can Alt-A loans be used for investment properties?</strong><br/>Yes. Many investors use Alt-A jumbo programs to acquire or refinance high-value rentals.</p>
+      <p><strong>Is Alt-A riskier than A-Paper?</strong><br/>Not in today's market. Modern Alt-A loans are fully documented and carefully underwritten—they simply use different qualifying methods.</p>
+      <p><strong>Can I switch from Alt-A to A-Paper later?</strong><br/>Absolutely. Many borrowers refinance into A-Paper loans once they've restructured income or met seasoning requirements.</p>
+
+      <h2>The Bottom Line</h2>
+      <p>If your income is predictable, A-Paper offers the simplest, lowest-cost path to homeownership.</p>
+      <p>If your income is powerful but unconventional, Alt-A offers flexibility without compromise.</p>
+      <p>Both can be great options. The key is knowing which one fits you.</p>
+      <p>At Cliffco and The Fallarino Group, we help high-achieving borrowers—and High Growth entrepreneurs, investors, and professionals—choose the smartest strategy for how they actually earn. Whether that means a traditional A-Paper approval or a creative Alt-A structure, our team makes the path clear, simple, and fast.</p>
+      <p>Ready to see which loan type fits your story best? Reach out to us today and discover the smarter way to finance your success.</p>
+    </div>
+  </article>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <div class="max-w-2xl mx-auto card flex flex-col sm:flex-row gap-6 items-start">
+        {david.hasPhoto && (
+          <div class="w-20 h-20 shrink-0 rounded-full overflow-hidden">
+            <Headshot slug={david.slug} name={david.displayName} size={80} shape="circle" />
+          </div>
+        )}
+        <div>
+          <p class="eyebrow text-xs mb-1">Written by</p>
+          <h3 class="font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">{david.displayName}</h3>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">{david.title} · NMLS #{david.nmls}</p>
+          <p class="text-sm text-[var(--color-text)] mt-3 leading-relaxed">Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors.</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href={`/loan-officers/${david.slug}/`} class="btn btn-primary text-sm">View David's profile</a>
+            {david.links?.email && (
+              <a href={`mailto:${david.links.email}`} class="btn btn-secondary text-sm">Email David</a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

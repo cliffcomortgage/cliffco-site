@@ -1,0 +1,150 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { loanOfficer } from "../../data/loan-officers";
+import Headshot from "../../components/ui/Headshot.astro";
+
+const david = loanOfficer("david-fallarino")!;
+---
+
+<Layout
+  title="Alt-A Loans Make a Comeback: How Entrepreneurs Can Leverage Jumbo Alt-A Programs When Big Banks Can't Lend | 500:1 Blog"
+  description="When your income, assets, or tax strategy don't fit conventional jumbo guidelines, Alt-A loans bridge the gap—offering flexible approval for qualified borrowers who've outgrown traditional lending."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "500:1 Blog", href: `/loan-officers/${david.slug}/` },
+    { name: "Jumbo Alt-A Loans for Entrepreneurs", href: "/jumbo-alt-a-loans-entrepreneurs-david-fallarino/" },
+  ]} />
+
+  <article class="section bg-white relative overflow-hidden">
+    <div class="absolute inset-x-0 top-0 h-[300px] bg-[var(--color-rich-black)]" aria-hidden="true"></div>
+    <div class="container-prose relative z-10">
+      <div class="rounded-2xl overflow-hidden mb-10 aspect-video bg-[var(--color-mist-gray)] shadow-2xl">
+        <img src="/images/DFallarino%20Blog/Jumbo%20Blog.jpg" alt="Jumbo Alt-A Loans for Entrepreneurs" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+
+      <p class="eyebrow mb-4">500:1 Blog · David Fallarino</p>
+      <h1 style="font-size: var(--text-display-lg); letter-spacing: -0.03em; line-height: 1.1;">Alt-A Loans Make a Comeback: How Entrepreneurs Can Leverage Jumbo Alt-A Programs When Big Banks Can't Lend</h1>
+
+      <p class="lead mt-6">When your income, assets, or tax strategy don't fit conventional jumbo guidelines, Alt-A loans bridge the gap—offering flexible approval for qualified borrowers who've outgrown traditional lending.</p>
+
+      <h2>The Return of Alt-A Lending</h2>
+      <p>If you follow mortgage markets, you've probably noticed a familiar term re-emerging: Alt-A. Once a niche product from the early 2000s, Alt-A loans are making a smart, more regulated comeback—this time built for entrepreneurs, investors, and high-income/High-Growth professionals who don't fit neatly into conventional jumbo requirements.</p>
+      <p>The modern Alt-A loan isn't the "anything goes" mortgage of decades past. It's a carefully structured, fully documented product designed for creditworthy borrowers whose financial picture doesn't fit the cookie-cutter model banks expect. These loans offer better rates &amp; terms than Non-QM loans (Business Bank Statement Loans, P&amp;L Loans, etc.). Underwriting has the ability to use more aggressive income calculations (specifically for Entrepreneurs) while still being "full doc" and competing with "A-Paper" rates.</p>
+
+      <h2>What Exactly Is an Alt-A Loan?</h2>
+      <p>"Alt-A" stands for Alternative-A, meaning it falls between A-paper (traditional, fully qualified) and Non-QM (flexible documentation).</p>
+      <p>Think of it as the middle ground—still prime credit, but with more flexibility around documentation and underwriting.</p>
+      <p>Whereas traditional jumbo loans require perfect ratios and standardized documentation, Alt-A programs:</p>
+      <ul>
+        <li>Accept alternative income documentation and are able to make sense of a business tax return that writes off non-cash flow items or re-investments back into your business.</li>
+        <li>Consider higher loan amounts (jumbo and super-jumbo levels) and higher LTV's.</li>
+        <li>Allow for moderate exceptions on debt-to-income (DTI) or credit events.</li>
+        <li>Provide creative structuring for borrowers with complex income streams. And able to combine multiple income streams such as capital gains and asset dissipation without the rigorous backup documentation that a big bank would ask for.</li>
+      </ul>
+      <p>In short, Alt-A loans serve the high-performing, HIGH-GROWTH, borrower who's just a bit too unconventional for the big-bank box.</p>
+
+      <h2>Why Alt-A Loans Are Back (and Better Than Before)</h2>
+      <p>Two major shifts are driving the return of Alt-A programs:</p>
+      <p><strong>The rise of entrepreneurship and self-employment.</strong> More borrowers now earn income from businesses, equity distributions, or multiple revenue streams that don't translate cleanly into W-2s and pay stubs.</p>
+      <p><strong>Stricter big-bank lending standards.</strong> Conventional jumbo guidelines have tightened, especially for borrowers with variable income, recent credit events, or heavy reinvestment strategies.</p>
+      <p>Alt-A lending fills that space—offering responsible, fully documented financing for people who deserve approval but don't check every conventional box.</p>
+
+      <h2>Who Benefits Most from Alt-A Programs?</h2>
+      <p>Alt-A loans are ideal for borrowers who:</p>
+      <ul>
+        <li><strong>Own businesses or are self-employed.</strong> Entrepreneurs who reinvest profits or minimize taxable income can use alternative verification to qualify. Including using business assets for the transaction.</li>
+        <li><strong>Need jumbo-sized financing.</strong> Borrowers purchasing or refinancing high-value properties that exceed conforming limits.</li>
+        <li><strong>Have complex financial portfolios.</strong> Those with multiple properties, partnerships, or investment income streams.</li>
+        <li><strong>Experienced short-term credit events.</strong> A previous liquidity crunch, tax lien, or business-related credit dip doesn't automatically disqualify you.</li>
+      </ul>
+      <p>Alt-A programs recognize that financial sophistication doesn't always look simple on paper.</p>
+
+      <h2>Alt-A vs. Conventional Jumbo: The Key Differences</h2>
+      <div class="overflow-x-auto mt-4">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-[var(--color-mist-gray)]">
+              <th class="text-left px-4 py-3 font-semibold text-[var(--color-ink)] border border-[var(--color-mist-gray)]">Feature</th>
+              <th class="text-left px-4 py-3 font-semibold text-[var(--color-ink)] border border-[var(--color-mist-gray)]">Conventional Jumbo</th>
+              <th class="text-left px-4 py-3 font-semibold text-[var(--color-ink)] border border-[var(--color-mist-gray)]">Alt-A Jumbo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)] font-medium">Income Verification</td>
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)]">W-2s &amp; full tax returns. Bottom line income after deductions</td>
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Uses the same tax returns and looks at gross income and only essential cash flow deductions.</td>
+            </tr>
+            <tr class="bg-[var(--color-mist-gray)]/30">
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)] font-medium">Credit Flexibility</td>
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Strict</td>
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Moderate exceptions allowed</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)] font-medium">Loan Size</td>
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Up to conforming jumbo limits typically $5M</td>
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Extends into super-jumbo. $40M</td>
+            </tr>
+            <tr class="bg-[var(--color-mist-gray)]/30">
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)] font-medium">Underwriting Style</td>
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Boxed, checklist-driven</td>
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Holistic and borrower-focused</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)] font-medium">Processing Speed</td>
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Slower</td>
+              <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Faster and more personalized</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-4">With Alt-A, qualified borrowers can access jumbo-level financing without the friction of traditional underwriting.</p>
+
+      <h2>Why Entrepreneurs Turn to Cliffco for Alt-A Loans</h2>
+      <p>Plenty of lenders talk about flexibility—but few truly understand how to structure Alt-A financing around a High-Growth Entrepreneur's financial life.</p>
+      <p>At Cliffco, we specialize in this balance:</p>
+      <ul>
+        <li><strong>Strategic qualification.</strong> We help borrowers tell their full financial story, not just the tax-optimized version.</li>
+        <li><strong>Tailored jumbo programs.</strong> From $1M to $40M loan amounts, we connect clients to Alt-A options that align with income complexity.</li>
+        <li><strong>Speed with precision.</strong> Our team moves quickly without sacrificing diligence—because opportunities in high-value markets don't wait.</li>
+      </ul>
+
+      <h2>FAQs About Alt-A Loans</h2>
+      <p><strong>Are Alt-A loans risky?</strong><br/>Not in today's market. Modern Alt-A loans are fully documented, transparent, and underwritten with a clear ability-to-repay standard.</p>
+      <p><strong>Can I get a jumbo Alt-A loan if I'm self-employed?</strong><br/>Yes. In fact, Alt-A loans are specifically designed for High Growth Entrepreneurs who are in the beginning stages of their career and company.</p>
+      <p><strong>How large can an Alt-A loan be?</strong><br/>Depending on the lender, Alt-A programs can range from standard jumbo levels ($806,500) up to super-jumbo ($40M).</p>
+      <p><strong>Is Alt-A the same as Non-QM?</strong><br/>No. Alt-A loans sit between traditional and Non-QM products—offering more flexibility than conventional loans but typically with stronger credit and lower rates than Non-QM options.</p>
+
+      <h2>The Bottom Line</h2>
+      <p>Alt-A loans are back—and smarter than ever. For entrepreneurs, investors, and high-net-worth borrowers who don't fit the big-bank mold, these programs unlock access to jumbo financing with flexible documentation and responsible underwriting.</p>
+      <p>At Cliffco, and The Fallarino Group, we help high-performing, High-Growth borrowers secure the right mortgage for how they really earn. Whether you're scaling your portfolio or buying your next dream home, our Alt-A specialists will guide you through every step.</p>
+      <p>Ready to explore your Alt-A options? Reach out to us today and discover how flexible jumbo financing can help you keep growing without compromise.</p>
+    </div>
+  </article>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <div class="max-w-2xl mx-auto card flex flex-col sm:flex-row gap-6 items-start">
+        {david.hasPhoto && (
+          <div class="w-20 h-20 shrink-0 rounded-full overflow-hidden">
+            <Headshot slug={david.slug} name={david.displayName} size={80} shape="circle" />
+          </div>
+        )}
+        <div>
+          <p class="eyebrow text-xs mb-1">Written by</p>
+          <h3 class="font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">{david.displayName}</h3>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">{david.title} · NMLS #{david.nmls}</p>
+          <p class="text-sm text-[var(--color-text)] mt-3 leading-relaxed">Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors.</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href={`/loan-officers/${david.slug}/`} class="btn btn-primary text-sm">View David's profile</a>
+            {david.links?.email && (
+              <a href={`mailto:${david.links.email}`} class="btn btn-secondary text-sm">Email David</a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

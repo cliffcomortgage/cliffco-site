@@ -54,6 +54,7 @@ const allBranches = BRANCHES;
             </div>
             <div>
               <p class="font-semibold text-[var(--color-ink)]">Call or text</p>
+              <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide mt-0.5">Toll Free</p>
               <a href={`tel:${COMPANY.tollFreeE164}`} class="text-[var(--color-accent)] font-semibold no-underline text-lg">{COMPANY.tollFree}</a>
               <p class="text-sm text-[var(--color-text-muted)] mt-1">Mon–Fri 9am–6pm ET. Leave a voicemail anytime.</p>
             </div>
@@ -71,7 +72,7 @@ const allBranches = BRANCHES;
               <address class="not-italic text-sm text-[var(--color-text)] mt-1 leading-relaxed">
                 {COMPANY.hq.street}<br/>
                 {COMPANY.hq.city}, {COMPANY.hq.region} {COMPANY.hq.postalCode}<br/>
-                <a href={`tel:${COMPANY.hq.phoneE164}`} class="text-[var(--color-ink)] no-underline hover:underline">{COMPANY.hq.phone}</a>
+                <span class="text-[var(--color-text-muted)] text-xs uppercase tracking-wide">Main</span> <a href={`tel:${COMPANY.hq.phoneE164}`} class="text-[var(--color-ink)] no-underline hover:underline">{COMPANY.hq.phone}</a>
               </address>
             </div>
           </div>

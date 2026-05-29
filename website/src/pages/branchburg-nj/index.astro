@@ -1,0 +1,117 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { BRANCHES } from "../../data/branches";
+import { LOAN_OFFICERS } from "../../data/loan-officers";
+import Headshot from "../../components/ui/Headshot.astro";
+import { localBusinessSchema, breadcrumbSchema } from "../../lib/schema";
+
+const branch = BRANCHES.find((b) => b.slug === "branchburg-nj")!;
+const los = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "branchburg-nj");
+
+const schema = [
+  localBusinessSchema(branch),
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Locations", url: "/locations/" },
+    { name: "New Jersey", url: "/locations/new-jersey/" },
+    { name: "Branchburg", url: "/branchburg-nj/" },
+  ]),
+];
+---
+
+<Layout
+  title="Branchburg, NJ Mortgage Office | Cliffco Mortgage Bankers"
+  description="Cliffco Mortgage Bankers Branchburg, NJ office — 3121 Route 22 East, 3rd Floor, Office 313, Branchburg, NJ 08876. Branch NMLS #2671359. Serving Central New Jersey."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Locations", href: "/locations/" },
+    { name: "New Jersey", href: "/locations/new-jersey/" },
+    { name: "Branchburg", href: "/branchburg-nj/" },
+  ]} />
+
+  <section class="accent-gradient">
+    <div class="container-wide py-16 lg:py-24">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">Branchburg, NJ · Central New Jersey</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        Branchburg Mortgage Office
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">
+        Our Branchburg branch serves Central New Jersey. Bilingual loan officers specializing in self-employed borrowers, DSCR for investors, and first-time homebuyer programs.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Get Pre-Qualified</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">
+          <span class="text-white/70 font-normal text-xs">Toll Free</span>&nbsp;{COMPANY.tollFree}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-10 items-start">
+      <div>
+        <p class="eyebrow">Branch information</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Find us in Branchburg.</h2>
+        <address class="not-italic mt-6 space-y-2 text-[var(--color-text)]">
+          <p class="font-semibold text-[var(--color-ink)]">{branch.name}</p>
+          <p>{branch.street}</p>
+          <p>{branch.city}, {branch.region} {branch.postalCode}</p>
+        </address>
+        {branch.nmls && <p class="mt-4 text-sm text-[var(--color-text-muted)]">Branch NMLS #{branch.nmls}</p>}
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-primary text-sm">Call Toll Free: {COMPANY.tollFree}</a>
+          <a href="/get-started/" class="btn btn-secondary text-sm">Start Application</a>
+        </div>
+      </div>
+      <div class="card">
+        <p class="eyebrow">About this office</p>
+        <p class="mt-3 text-[var(--color-text)] leading-relaxed">
+          The Branchburg office is part of Cliffco's bilingual lending cluster serving New Jersey's Spanish-speaking communities. Loan officers here specialize in Non-QM, bank statement loans, DSCR, and first-time homebuyer programs across NJ, FL, and PA.
+        </p>
+        <a href="/locations/new-jersey/" class="mt-4 inline-block text-sm font-semibold text-[var(--color-accent)] no-underline hover:underline">← All New Jersey offices</a>
+      </div>
+    </div>
+  </section>
+
+  {los.length > 0 && (
+    <section class="section bg-[var(--color-mist-gray)]">
+      <div class="container-wide">
+        <p class="eyebrow">Loan officers at this office</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Your Branchburg team.</h2>
+        <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {los.map((lo) => (
+            <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
+              {lo.hasPhoto && (
+                <div class="mb-4 -mx-6 -mt-6">
+                  <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="rounded-t-xl" />
+                </div>
+              )}
+              <p class="eyebrow">{lo.title}</p>
+              <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>
+              {lo.languages && lo.languages.length > 1 && (
+                <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
+              )}
+              <span class="mt-auto pt-3 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Ready to get started?</h2>
+      <p class="lead mt-4 text-white/85">A licensed Cliffco loan officer responds in one business day.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Pre-Qualified</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+</Layout>

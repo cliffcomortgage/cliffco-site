@@ -1,0 +1,408 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../../data/company";
+---
+
+<Layout
+  title="Closing Costs Calculator | Cliffco Mortgage Bankers"
+  description="Estimate your mortgage closing costs by home price, down payment, property type, and state. Itemized breakdown of lender fees, title, taxes, and prepaids."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Calculators", href: "/mortgage-guides/calculators/" },
+    { name: "Closing Costs Calculator", href: "/mortgage-guides/calculators/closing-costs/" },
+  ]} />
+
+  <section class="container-wide pt-14 pb-10">
+    <p class="eyebrow">For all buyers</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Closing Costs Calculator</h1>
+    <p class="lead mt-5 max-w-2xl">
+      Get an itemized estimate of closing costs before you make an offer. Know exactly what to expect at the table — not a surprise on closing day.
+    </p>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-wide">
+      <div class="lg:grid lg:grid-cols-[5fr_7fr] lg:gap-12 lg:items-start">
+
+        <!-- Left: inputs -->
+        <div class="mb-10 lg:mb-0 lg:sticky lg:top-8 space-y-5">
+          <div class="rounded-2xl border border-[var(--color-mist-gray)] overflow-hidden shadow-sm">
+            <div class="bg-[var(--color-rich-black)] px-6 py-5">
+              <h2 class="text-lg font-semibold text-white">Your purchase details</h2>
+              <p class="text-sm text-white/60 mt-1">Results update as you type</p>
+            </div>
+            <div class="bg-white p-6 space-y-5">
+              <div>
+                <label for="cc-price" class="block text-sm font-medium text-[var(--color-ink)]">Home price ($)</label>
+                <div class="relative mt-1.5">
+                  <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)] font-medium">$</span>
+                  <input id="cc-price" type="number" class="calc-input pl-7" value="500000" min="50000" step="5000" />
+                </div>
+              </div>
+              <div>
+                <label for="cc-down" class="block text-sm font-medium text-[var(--color-ink)]">Down payment (%)</label>
+                <div class="relative mt-1.5">
+                  <input id="cc-down" type="number" class="calc-input pr-8" value="20" min="0" max="100" step="1" />
+                  <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)] font-medium">%</span>
+                </div>
+              </div>
+              <div>
+                <label for="cc-rate" class="block text-sm font-medium text-[var(--color-ink)]">Interest rate (%)</label>
+                <div class="relative mt-1.5">
+                  <input id="cc-rate" type="number" class="calc-input pr-8" value="7.0" min="2" max="20" step="0.125" />
+                  <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)] font-medium">%</span>
+                </div>
+                <p class="text-xs text-[var(--color-text-muted)] mt-1.5">Used to estimate prepaid interest</p>
+              </div>
+              <div>
+                <label for="cc-state" class="block text-sm font-medium text-[var(--color-ink)]">State</label>
+                <select id="cc-state" class="calc-input mt-1.5">
+                  <option value="NY">New York</option>
+                  <option value="NJ">New Jersey</option>
+                  <option value="FL">Florida</option>
+                  <option value="AZ">Arizona</option>
+                  <option value="MN">Minnesota</option>
+                  <option value="other">Other state</option>
+                </select>
+              </div>
+              <div>
+                <label for="cc-type" class="block text-sm font-medium text-[var(--color-ink)]">Property type</label>
+                <select id="cc-type" class="calc-input mt-1.5">
+                  <option value="house">Single family / condo</option>
+                  <option value="coop">Co-op</option>
+                  <option value="multi">2–4 family</option>
+                </select>
+              </div>
+              <div id="cc-new-dev-row">
+                <label class="block text-sm font-medium text-[var(--color-ink)] mb-1.5">New development?</label>
+                <div class="flex gap-3">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="radio" name="cc-new-dev" id="cc-new-no" value="no" checked class="accent-[var(--color-accent)]" />
+                    <span class="text-sm text-[var(--color-ink)]">No</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="radio" name="cc-new-dev" id="cc-new-yes" value="yes" class="accent-[var(--color-accent)]" />
+                    <span class="text-sm text-[var(--color-ink)]">Yes</span>
+                  </label>
+                </div>
+                <p class="text-xs text-[var(--color-text-muted)] mt-1.5">New developments may add sponsor attorney fees and larger transfer taxes in NYC</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-[var(--color-mist-gray)] p-5">
+            <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+              This is an estimate. Actual closing costs vary by lender, property, and negotiated terms. A Cliffco loan officer will provide a Loan Estimate within 3 business days of your application — that document itemizes every cost to the cent.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: results -->
+        <div>
+          <!-- Summary card -->
+          <div class="rounded-2xl overflow-hidden border border-[var(--color-mist-gray)] shadow-sm mb-5">
+            <div class="px-6 py-5 flex items-center justify-between" style="background: linear-gradient(135deg, #0d0d0d 0%, #6633cc 100%);">
+              <div>
+                <p class="text-white/70 text-sm">Estimated closing costs</p>
+                <div class="flex items-baseline gap-3 mt-1">
+                  <p id="cc-total-low" class="text-4xl font-bold text-white">—</p>
+                  <p class="text-white/50 text-lg">to</p>
+                  <p id="cc-total-high" class="text-4xl font-bold text-white">—</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="text-white/50 text-xs uppercase tracking-wide">As % of purchase</p>
+                <p id="cc-pct" class="text-xl font-semibold text-[var(--color-ice-blue)] mt-1">—</p>
+              </div>
+            </div>
+            <div class="bg-[var(--color-mist-gray)]/40 px-6 py-3 flex gap-6 text-sm">
+              <div>
+                <span class="text-[var(--color-text-muted)] text-xs">Loan amount</span>
+                <p id="cc-loan-amt" class="font-semibold text-[var(--color-ink)]">—</p>
+              </div>
+              <div>
+                <span class="text-[var(--color-text-muted)] text-xs">Down payment</span>
+                <p id="cc-down-amt" class="font-semibold text-[var(--color-ink)]">—</p>
+              </div>
+              <div>
+                <span class="text-[var(--color-text-muted)] text-xs">Cash to close (est.)</span>
+                <p id="cc-cash-to-close" class="font-semibold text-[var(--color-ink)]">—</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Itemized breakdown -->
+          <div class="rounded-2xl border border-[var(--color-mist-gray)] overflow-hidden shadow-sm">
+            <div class="px-6 py-4 border-b border-[var(--color-mist-gray)] bg-[var(--color-mist-gray)]/40">
+              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)]">Itemized cost estimate</p>
+            </div>
+
+            <!-- Lender fees -->
+            <div class="border-b border-[var(--color-mist-gray)]">
+              <div class="px-6 py-3 bg-[var(--color-mist-gray)]/20">
+                <p class="text-xs font-semibold text-[var(--color-ink)] uppercase tracking-wide">Lender fees</p>
+              </div>
+              <div id="cc-lender-rows" class="divide-y divide-[var(--color-mist-gray)]/60"></div>
+              <div class="px-6 py-2.5 flex justify-between text-sm font-semibold text-[var(--color-ink)] bg-[var(--color-mist-gray)]/10">
+                <span>Lender subtotal</span><span id="cc-lender-sub">—</span>
+              </div>
+            </div>
+
+            <!-- Third-party fees -->
+            <div class="border-b border-[var(--color-mist-gray)]">
+              <div class="px-6 py-3 bg-[var(--color-mist-gray)]/20">
+                <p class="text-xs font-semibold text-[var(--color-ink)] uppercase tracking-wide">Title, inspection & settlement</p>
+              </div>
+              <div id="cc-thirdparty-rows" class="divide-y divide-[var(--color-mist-gray)]/60"></div>
+              <div class="px-6 py-2.5 flex justify-between text-sm font-semibold text-[var(--color-ink)] bg-[var(--color-mist-gray)]/10">
+                <span>Third-party subtotal</span><span id="cc-thirdparty-sub">—</span>
+              </div>
+            </div>
+
+            <!-- Government / taxes -->
+            <div class="border-b border-[var(--color-mist-gray)]">
+              <div class="px-6 py-3 bg-[var(--color-mist-gray)]/20">
+                <p class="text-xs font-semibold text-[var(--color-ink)] uppercase tracking-wide">Government fees & taxes</p>
+              </div>
+              <div id="cc-gov-rows" class="divide-y divide-[var(--color-mist-gray)]/60"></div>
+              <div class="px-6 py-2.5 flex justify-between text-sm font-semibold text-[var(--color-ink)] bg-[var(--color-mist-gray)]/10">
+                <span>Government subtotal</span><span id="cc-gov-sub">—</span>
+              </div>
+            </div>
+
+            <!-- Prepaids -->
+            <div>
+              <div class="px-6 py-3 bg-[var(--color-mist-gray)]/20">
+                <p class="text-xs font-semibold text-[var(--color-ink)] uppercase tracking-wide">Prepaids & escrow</p>
+              </div>
+              <div id="cc-prepaid-rows" class="divide-y divide-[var(--color-mist-gray)]/60"></div>
+              <div class="px-6 py-2.5 flex justify-between text-sm font-semibold text-[var(--color-ink)] bg-[var(--color-mist-gray)]/10">
+                <span>Prepaids subtotal</span><span id="cc-prepaid-sub">—</span>
+              </div>
+            </div>
+          </div>
+
+          <p id="cc-state-note" class="mt-4 text-xs text-[var(--color-text-muted)] leading-relaxed p-4 bg-[var(--color-mist-gray)] rounded-xl"></p>
+        </div>
+      </div>
+
+      <div class="mt-14 bg-[var(--color-rich-black)] rounded-2xl p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
+        <div>
+          <p class="text-white font-semibold text-lg">Get a real Loan Estimate in 3 business days.</p>
+          <p class="text-white/70 text-sm mt-1">Your official Loan Estimate itemizes every closing cost to the cent and is legally required within 3 days of your application.</p>
+        </div>
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Start application</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="text-white/80 hover:text-white no-underline text-sm font-semibold whitespace-nowrap shrink-0">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-[var(--color-mist-gray)] py-6 text-center">
+    <a href="/mortgage-guides/calculators/" class="text-sm font-medium text-[var(--color-accent)]">← See all calculators</a>
+  </div>
+</Layout>
+
+<style>
+  .calc-input {
+    width: 100%;
+    border: 1.5px solid var(--color-soft-gray, #e5e7eb);
+    border-radius: 0.625rem;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9375rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+</style>
+
+<script>
+  const fmt = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
+  const fmtRange = (lo: number, hi: number) => `${fmt(lo)} – ${fmt(hi)}`;
+
+  function row(label: string, lo: number, hi: number, note?: string): string {
+    return `<div class="px-6 py-3.5 flex items-start justify-between gap-4">
+      <div>
+        <p class="text-sm text-[var(--color-ink)]">${label}</p>
+        ${note ? `<p class="text-xs text-[var(--color-text-muted)] mt-0.5">${note}</p>` : ""}
+      </div>
+      <p class="text-sm font-medium text-[var(--color-ink)] shrink-0 tabular-nums">${fmtRange(lo, hi)}</p>
+    </div>`;
+  }
+
+  function setRows(id: string, rows: string): void {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = rows;
+  }
+
+  function setSub(id: string, lo: number, hi: number): void {
+    const el = document.getElementById(id);
+    if (el) el.textContent = fmtRange(lo, hi);
+  }
+
+  function calc() {
+    const price     = parseFloat((document.getElementById("cc-price") as HTMLInputElement).value) || 0;
+    const downPct   = parseFloat((document.getElementById("cc-down") as HTMLInputElement).value) || 0;
+    const rate      = parseFloat((document.getElementById("cc-rate") as HTMLInputElement).value) || 0;
+    const state     = (document.getElementById("cc-state") as HTMLSelectElement).value;
+    const propType  = (document.getElementById("cc-type") as HTMLSelectElement).value;
+    const newDev    = (document.querySelector('input[name="cc-new-dev"]:checked') as HTMLInputElement)?.value === "yes";
+
+    if (price <= 0) return;
+
+    const downAmt  = price * downPct / 100;
+    const loanAmt  = price - downAmt;
+    const isNY     = state === "NY";
+    const isNJ     = state === "NJ";
+    const isFL     = state === "FL";
+    const isCoop   = propType === "coop";
+
+    // ── LENDER FEES ──────────────────────────────────────
+    const origLo = loanAmt * 0.005;
+    const origHi = loanAmt * 0.01;
+    const appFlatLo = 500, appFlatHi = 900;
+    const lenderLo = origLo + appFlatLo;
+    const lenderHi = origHi + appFlatHi;
+
+    setRows("cc-lender-rows",
+      row("Origination fee", origLo, origHi, "0.5–1% of loan amount; varies by program") +
+      row("Underwriting, processing & application", appFlatLo, appFlatHi)
+    );
+    setSub("cc-lender-sub", lenderLo, lenderHi);
+
+    // ── THIRD-PARTY ───────────────────────────────────────
+    const appraisalLo = 600, appraisalHi = 1000;
+    const inspectionLo = 400, inspectionHi = 700;
+    const titleLenderLo = 300, titleLenderHi = 600;
+    const titleOwnerLo = price * 0.003, titleOwnerHi = price * 0.005;
+    const attyLo = isCoop ? 1800 : 1200;
+    const attyHi = isCoop ? 3500 : 2500;
+    const surveyLo = isNY ? 600 : 0;
+    const surveyHi = isNY ? 1000 : 0;
+
+    let thirdPartyRows =
+      row("Appraisal", appraisalLo, appraisalHi) +
+      row("Home inspection", inspectionLo, inspectionHi) +
+      row("Title insurance — lender's policy", titleLenderLo, titleLenderHi) +
+      row("Title insurance — owner's policy", titleOwnerLo, titleOwnerHi, "~0.3–0.5% of purchase price") +
+      row("Attorney / settlement fees", attyLo, attyHi, isCoop ? "Co-ops typically require additional board application review" : (isNY || isNJ) ? "Required in NY and NJ" : "Optional but recommended");
+
+    if (isNY) {
+      thirdPartyRows += row("Survey / title search", surveyLo, surveyHi);
+    }
+
+    const thirdPartyLo = appraisalLo + inspectionLo + titleLenderLo + titleOwnerLo + attyLo + surveyLo;
+    const thirdPartyHi = appraisalHi + inspectionHi + titleLenderHi + titleOwnerHi + attyHi + surveyHi;
+    setRows("cc-thirdparty-rows", thirdPartyRows);
+    setSub("cc-thirdparty-sub", thirdPartyLo, thirdPartyHi);
+
+    // ── GOVERNMENT / TAXES ────────────────────────────────
+    const recordingLo = 300, recordingHi = 600;
+    let govRows = row("Recording fees", recordingLo, recordingHi);
+    let govLo = recordingLo, govHi = recordingHi;
+
+    if (isNY) {
+      // NYS transfer tax: 0.4% of purchase price
+      const nysTransfer = price * 0.004;
+      govRows += row("NYS transfer tax", nysTransfer, nysTransfer, "0.4% of purchase price");
+      govLo += nysTransfer; govHi += nysTransfer;
+
+      // NYS mortgage recording tax (varies by county)
+      const mrtLo = loanAmt * 0.0075;
+      const mrtHi = loanAmt * 0.018;
+      govRows += row("NYS mortgage recording tax", mrtLo, mrtHi, "0.75% (Nassau/Suffolk) to 1.8% (NYC) of loan amount — the largest NY-specific closing cost");
+      govLo += mrtLo; govHi += mrtHi;
+
+      // Mansion tax
+      if (price >= 1_000_000) {
+        const mansionTax = price * 0.01;
+        govRows += row("NYS mansion tax", mansionTax, mansionTax, "1% of purchase price for homes $1M+");
+        govLo += mansionTax; govHi += mansionTax;
+      }
+
+      if (newDev) {
+        const nyctaxLo = price * 0.01, nyctaxHi = price * 0.01425;
+        govRows += row("NYC/sponsor transfer tax (new dev)", nyctaxLo, nyctaxHi, "Typically paid by buyer on new development");
+        govLo += nyctaxLo; govHi += nyctaxHi;
+      }
+    } else if (isNJ) {
+      const njTransferLo = price * 0.01, njTransferHi = price * 0.015;
+      govRows += row("NJ realty transfer fee", njTransferLo, njTransferHi, "~1–1.5% — typically split buyer/seller");
+      govLo += njTransferLo; govHi += njTransferHi;
+    } else if (isFL) {
+      const flDocStamp = loanAmt * 0.0035;
+      const flIntangLo = loanAmt * 0.002;
+      govRows += row("FL doc stamps on mortgage", flDocStamp, flDocStamp, "0.35% of loan amount");
+      govRows += row("FL intangible tax on mortgage", flIntangLo, flIntangLo, "0.2% of loan amount");
+      govLo += flDocStamp + flIntangLo; govHi += flDocStamp + flIntangLo;
+    }
+
+    setRows("cc-gov-rows", govRows);
+    setSub("cc-gov-sub", govLo, govHi);
+
+    // ── PREPAIDS ──────────────────────────────────────────
+    const dailyInterest = loanAmt * (rate / 100) / 365;
+    const prepaidInterestLo = Math.round(dailyInterest * 10);
+    const prepaidInterestHi = Math.round(dailyInterest * 30);
+    const estimatedMonthlyTax = Math.round(price * 0.012 / 12);
+    const taxEscrowLo = estimatedMonthlyTax * 2;
+    const taxEscrowHi = estimatedMonthlyTax * 3;
+    const insEscrowLo = 100 * 2, insEscrowHi = 250 * 3;
+    const insurancePremLo = 800, insurancePremHi = 1800;
+
+    const prepaidLo = prepaidInterestLo + taxEscrowLo + insEscrowLo + insurancePremLo;
+    const prepaidHi = prepaidInterestHi + taxEscrowHi + insEscrowHi + insurancePremHi;
+
+    setRows("cc-prepaid-rows",
+      row("Prepaid interest (10–30 days)", prepaidInterestLo, prepaidInterestHi, `${fmt(Math.round(dailyInterest))}/day at ${rate}%`) +
+      row("Property tax escrow (2–3 months)", taxEscrowLo, taxEscrowHi, "Based on estimated 1.2% annual rate — verify your actual tax bill") +
+      row("Homeowner's insurance premium", insurancePremLo, insurancePremHi, "First year paid at closing") +
+      row("Insurance escrow (2–3 months)", insEscrowLo, insEscrowHi)
+    );
+    setSub("cc-prepaid-sub", prepaidLo, prepaidHi);
+
+    // ── TOTALS ────────────────────────────────────────────
+    const totalLo = lenderLo + thirdPartyLo + govLo + prepaidLo;
+    const totalHi = lenderHi + thirdPartyHi + govHi + prepaidHi;
+
+    const el = (id: string) => document.getElementById(id);
+    const t = el("cc-total-low"); if (t) t.textContent = fmt(totalLo);
+    const h = el("cc-total-high"); if (h) h.textContent = fmt(totalHi);
+    const pctEl = el("cc-pct");
+    if (pctEl) pctEl.textContent = `${((totalLo / price) * 100).toFixed(1)}–${((totalHi / price) * 100).toFixed(1)}%`;
+    const lEl = el("cc-loan-amt"); if (lEl) lEl.textContent = fmt(loanAmt);
+    const dEl = el("cc-down-amt"); if (dEl) dEl.textContent = fmt(downAmt);
+    const cEl = el("cc-cash-to-close"); if (cEl) cEl.textContent = `${fmt(downAmt + totalLo)} – ${fmt(downAmt + totalHi)}`;
+
+    const noteEl = el("cc-state-note");
+    if (noteEl) {
+      const notes: Record<string, string> = {
+        NY: "New York note: The mortgage recording tax is the largest NY-specific closing cost — 0.75% in Nassau and Suffolk counties, up to 1.8% in NYC. Co-op purchases avoid this tax entirely but require additional board application fees. Always confirm the exact MRT rate with your attorney.",
+        NJ: "New Jersey note: The realty transfer fee is split between buyer and seller — confirm your allocation in the contract. NJ also requires an attorney at closing.",
+        FL: "Florida note: FL doc stamps and intangible tax apply to the mortgage note. Florida's high homeowner's insurance market means first-year premiums can be significantly higher than the national average — get a quote early.",
+        AZ: "Arizona note: Arizona has relatively low closing costs compared to NY and NJ — no mortgage recording tax, moderate transfer fees, and title insurance rates are competitive.",
+        MN: "Minnesota note: Minnesota requires a mortgage registration tax of 0.23% of the mortgage amount on purchase transactions. Attorney involvement is optional but common.",
+        other: "Note: Government taxes and fees vary significantly by state and county. This estimate uses national averages for your state. A Cliffco loan officer can give you a state-specific breakdown.",
+      };
+      noteEl.textContent = notes[state] || notes["other"];
+    }
+  }
+
+  ["cc-price", "cc-down", "cc-rate", "cc-state", "cc-type"].forEach(id => {
+    document.getElementById(id)?.addEventListener("input", calc);
+    document.getElementById(id)?.addEventListener("change", calc);
+  });
+  document.querySelectorAll('input[name="cc-new-dev"]').forEach(el => {
+    el.addEventListener("change", calc);
+  });
+
+  calc();
+</script>

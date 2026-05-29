@@ -10,7 +10,7 @@ import { FEATURED_REVIEWS } from "../data/reviews";
 
 const products = priorityProducts();
 const officeLocations = LOCATIONS.filter((l) => !l.path.includes("/"));
-const president = loanOfficer("christopher-clifford-65234")!;
+const president = loanOfficer("christopher-clifford")!;
 const yearsInBiz = COMPANY.yearsInBusiness();
 
 const productIcons: Record<string, string> = {
@@ -38,11 +38,12 @@ const productIcons: Record<string, string> = {
         Most lenders have one playbook. We have multiple. Bank statements, DSCR, reverse, non-QM. Your income doesn't have to look perfect to qualify.
       </p>
 
-      <div class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-2xl">
-        <a href="/self-employed-mortgage/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-white font-medium text-center no-underline transition-colors text-sm">I'm Self-Employed</a>
+      <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 max-w-3xl">
+        <a href="/self-employed-mortgage/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-white font-medium flex items-center justify-center no-underline transition-colors text-sm whitespace-nowrap">I'm Self-Employed</a>
         <a href="/real-estate-investor-mortgage/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-white font-medium text-center no-underline transition-colors text-sm">I'm an Investor</a>
         <a href="/reverse-mortgage/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-white font-medium text-center no-underline transition-colors text-sm">I'm 62+</a>
         <a href="/denied-mortgage/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-white font-medium text-center no-underline transition-colors text-sm">I Was Denied</a>
+        <a href="/purchasing-refinancing/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-white font-medium text-center no-underline transition-colors text-sm">I'm Purchasing</a>
       </div>
 
       <div class="mt-8">

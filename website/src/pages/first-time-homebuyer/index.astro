@@ -65,7 +65,7 @@ const schema = [
     url: "/first-time-homebuyer/",
     datePublished: today,
     dateModified: today,
-    authorSlug: "christopher-clifford-65234",
+    authorSlug: "christopher-clifford",
   }),
 ];
 ---
@@ -232,6 +232,26 @@ const schema = [
             <p class="mt-3 text-[var(--color-text)]" style="font-size: 1.0625rem;">{q.answer}</p>
           </details>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DPA CALLOUT -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <div class="rounded-2xl bg-[var(--color-mist-gray)] p-8 lg:p-10 grid lg:grid-cols-[2fr_1fr] gap-8 items-center">
+        <div>
+          <p class="eyebrow">Don't have enough saved?</p>
+          <h2 class="mt-3" style="font-size: var(--text-h2);">Down payment assistance programs may cover it.</h2>
+          <p class="mt-4 text-[var(--color-text)] leading-relaxed">
+            Many first-time buyers don't realize that state, county, and nonprofit programs can cover some or all of your down payment and closing costs. Grants, forgivable loans, and deferred-payment second mortgages are all available in most of the markets we serve.
+          </p>
+          <a href="/down-payment-assistance/" class="mt-5 inline-block text-sm font-semibold text-[var(--color-accent)] no-underline hover:underline">Learn about down payment assistance →</a>
+        </div>
+        <div class="flex flex-col gap-3">
+          <a href="/down-payment-assistance/" class="btn btn-primary">Explore DPA options</a>
+          <a href="/get-started/" class="btn btn-secondary">Start my pre-qual</a>
+        </div>
       </div>
     </div>
   </section>

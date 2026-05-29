@@ -1,0 +1,289 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../../data/company";
+---
+
+<Layout
+  title="Mortgage Buydown Calculator | Cliffco Mortgage Bankers"
+  description="Calculate the exact cost of a 3-2-1, 2-1, or 1-0 mortgage buydown. See annual subsidies, monthly savings, and total upfront cost for each plan."
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Calculators", href: "/mortgage-guides/calculators/" },
+    { name: "Buydown Calculator", href: "/mortgage-guides/calculators/buydown/" },
+  ]} />
+
+  <section class="container-wide pt-14 pb-10">
+    <p class="eyebrow">For buyers & builders</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Buydown Calculator</h1>
+    <p class="lead mt-5 max-w-2xl">
+      See exactly what a 3-2-1, 2-1, or 1-0 buydown costs — and how much it saves per month — before you negotiate who pays for it.
+    </p>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-wide">
+      <div class="lg:grid lg:grid-cols-[5fr_7fr] lg:gap-12 lg:items-start">
+
+        <!-- Left: context + inputs -->
+        <div class="lg:sticky lg:top-8 space-y-6 mb-10 lg:mb-0">
+          <div class="rounded-2xl border border-[var(--color-mist-gray)] overflow-hidden shadow-sm">
+            <div class="bg-[var(--color-rich-black)] px-6 py-5">
+              <h2 class="text-lg font-semibold text-white">Your loan details</h2>
+              <p class="text-sm text-white/60 mt-1">Results update instantly</p>
+            </div>
+            <div class="bg-white p-6 space-y-5">
+              <div>
+                <label for="bd-loan" class="block text-sm font-medium text-[var(--color-ink)]">Loan amount ($)</label>
+                <div class="relative mt-1.5">
+                  <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)] font-medium">$</span>
+                  <input id="bd-loan" type="number" class="calc-input pl-7" value="450000" min="10000" step="5000" />
+                </div>
+              </div>
+              <div>
+                <label for="bd-rate" class="block text-sm font-medium text-[var(--color-ink)]">Note rate (%)</label>
+                <div class="relative mt-1.5">
+                  <input id="bd-rate" type="number" class="calc-input pr-8" value="7.5" min="2" max="20" step="0.125" />
+                  <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)] font-medium">%</span>
+                </div>
+                <p class="text-xs text-[var(--color-text-muted)] mt-1.5">The rate on the mortgage note, before any buydown</p>
+              </div>
+              <div class="bg-[var(--color-mist-gray)] rounded-xl px-4 py-3">
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide">Loan term</p>
+                <p class="text-sm font-semibold text-[var(--color-ink)] mt-1">30 years (360 months)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-[var(--color-mist-gray)] p-5 space-y-3">
+            <h3 class="text-sm font-semibold text-[var(--color-ink)]">How buydowns work</h3>
+            <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+              A temporary buydown reduces your interest rate for the first 1–3 years. The difference between your reduced payment and the full payment is covered by an upfront subsidy — typically paid by the seller, builder, or lender.
+            </p>
+            <ul class="space-y-2">
+              {[
+                "3-2-1: rate drops 3% in year 1, 2% in year 2, 1% in year 3",
+                "2-1: rate drops 2% in year 1, 1% in year 2",
+                "1-0: rate drops 1% in year 1 only",
+              ].map(item => (
+                <li class="flex items-start gap-2 text-xs text-[var(--color-text-muted)]">
+                  <span class="text-[var(--color-accent)] font-bold shrink-0 mt-0.5">›</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p class="text-xs text-[var(--color-text-muted)] border-t border-[var(--color-mist-gray)] pt-3 leading-relaxed">
+              Estimate only. Actual buydown cost and eligibility depend on the lender's program requirements.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: results -->
+        <div class="space-y-4" id="bd-results">
+          <!-- 3-2-1 Plan -->
+          <div class="rounded-2xl border border-[var(--color-mist-gray)] overflow-hidden shadow-sm">
+            <div class="px-6 py-4 flex items-center justify-between" style="background: linear-gradient(135deg, #0d0d0d 0%, #6633cc 100%);">
+              <div>
+                <p class="text-white font-bold text-lg">3-2-1 Buydown</p>
+                <p class="text-white/60 text-sm mt-0.5">Three-year subsidy period</p>
+              </div>
+              <div class="text-right">
+                <p class="text-xs text-white/50 uppercase tracking-wide">Total subsidy</p>
+                <p id="bd-321-total" class="text-2xl font-bold text-white mt-0.5">—</p>
+              </div>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-[var(--color-mist-gray)]/60">
+                    <th class="text-left px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Year</th>
+                    <th class="text-right px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Rate</th>
+                    <th class="text-right px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Monthly pmt</th>
+                    <th class="text-right px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Mo. savings</th>
+                    <th class="text-right px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Annual subsidy</th>
+                  </tr>
+                </thead>
+                <tbody id="bd-321-body" class="divide-y divide-[var(--color-mist-gray)]">
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 2-1 Plan -->
+          <div class="rounded-2xl border border-[var(--color-mist-gray)] overflow-hidden shadow-sm">
+            <div class="px-6 py-4 flex items-center justify-between bg-[var(--color-rich-black)]">
+              <div>
+                <p class="text-white font-bold text-lg">2-1 Buydown</p>
+                <p class="text-white/60 text-sm mt-0.5">Two-year subsidy period</p>
+              </div>
+              <div class="text-right">
+                <p class="text-xs text-white/50 uppercase tracking-wide">Total subsidy</p>
+                <p id="bd-21-total" class="text-2xl font-bold text-white mt-0.5">—</p>
+              </div>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-[var(--color-mist-gray)]/60">
+                    <th class="text-left px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Year</th>
+                    <th class="text-right px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Rate</th>
+                    <th class="text-right px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Monthly pmt</th>
+                    <th class="text-right px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Mo. savings</th>
+                    <th class="text-right px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Annual subsidy</th>
+                  </tr>
+                </thead>
+                <tbody id="bd-21-body" class="divide-y divide-[var(--color-mist-gray)]">
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 1-0 Plan -->
+          <div class="rounded-2xl border border-[var(--color-mist-gray)] overflow-hidden shadow-sm">
+            <div class="px-6 py-4 flex items-center justify-between" style="background-color: #3d1f7a;">
+              <div>
+                <p class="text-white font-bold text-lg">1-0 Buydown</p>
+                <p class="text-white/60 text-sm mt-0.5">One-year subsidy period</p>
+              </div>
+              <div class="text-right">
+                <p class="text-xs text-white/50 uppercase tracking-wide">Total subsidy</p>
+                <p id="bd-10-total" class="text-2xl font-bold text-white mt-0.5">—</p>
+              </div>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-[var(--color-mist-gray)]/60">
+                    <th class="text-left px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Year</th>
+                    <th class="text-right px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Rate</th>
+                    <th class="text-right px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Monthly pmt</th>
+                    <th class="text-right px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Mo. savings</th>
+                    <th class="text-right px-5 py-3 text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Annual subsidy</th>
+                  </tr>
+                </thead>
+                <tbody id="bd-10-body" class="divide-y divide-[var(--color-mist-gray)]">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-14 bg-[var(--color-rich-black)] rounded-2xl p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
+        <div>
+          <p class="text-white font-semibold text-lg">Negotiate a buydown into your purchase contract.</p>
+          <p class="text-white/70 text-sm mt-1">A Cliffco loan officer can tell you how to structure the ask and which plan makes sense for your scenario.</p>
+        </div>
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="text-white/80 hover:text-white no-underline text-sm font-semibold whitespace-nowrap shrink-0">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-[var(--color-mist-gray)] py-6 text-center">
+    <a href="/mortgage-guides/calculators/" class="text-sm font-medium text-[var(--color-accent)]">← See all calculators</a>
+  </div>
+</Layout>
+
+<style>
+  .calc-input {
+    width: 100%;
+    border: 1.5px solid var(--color-soft-gray, #e5e7eb);
+    border-radius: 0.625rem;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9375rem;
+    color: var(--color-ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .calc-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  }
+  .full-rate-row td {
+    background: color-mix(in srgb, var(--color-accent) 5%, white);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+</style>
+
+<script>
+  const fmt = (n: number) => "$" + Math.round(Math.abs(n)).toLocaleString("en-US");
+  const fmtRate = (r: number) => r.toFixed(3).replace(/\.?0+$/, "") + "%";
+
+  function monthlyPmt(principal: number, annualRatePct: number, months: number): number {
+    const r = annualRatePct / 100 / 12;
+    if (r <= 0 || principal <= 0) return 0;
+    return principal * (r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
+  }
+
+  function buildTable(
+    tbodyId: string,
+    totalId: string,
+    loan: number,
+    noteRate: number,
+    reductions: number[]
+  ) {
+    const tbody = document.getElementById(tbodyId);
+    const totalEl = document.getElementById(totalId);
+    if (!tbody || !totalEl) return;
+
+    const fullPmt = monthlyPmt(loan, noteRate, 360);
+    let totalSubsidy = 0;
+    let html = "";
+
+    reductions.forEach((reduction, i) => {
+      const year = i + 1;
+      const buyRate = Math.max(0, noteRate - reduction);
+      const pmt = monthlyPmt(loan, buyRate, 360);
+      const moSavings = fullPmt - pmt;
+      const annualSubsidy = moSavings * 12;
+      totalSubsidy += annualSubsidy;
+
+      html += `<tr>
+        <td class="px-5 py-3.5 text-[var(--color-ink)] font-medium">Year ${year}</td>
+        <td class="px-5 py-3.5 text-right">
+          <span class="inline-flex items-center gap-1">
+            <span class="text-[var(--color-accent)] font-bold">${fmtRate(buyRate)}</span>
+            <span class="text-xs text-[var(--color-text-muted)]">(−${reduction}%)</span>
+          </span>
+        </td>
+        <td class="px-5 py-3.5 text-right font-medium text-[var(--color-ink)]">${fmt(pmt)}</td>
+        <td class="px-5 py-3.5 text-right font-semibold text-green-600">+${fmt(moSavings)}</td>
+        <td class="px-5 py-3.5 text-right font-semibold text-green-600">${fmt(annualSubsidy)}</td>
+      </tr>`;
+    });
+
+    // Full rate row
+    html += `<tr class="full-rate-row">
+      <td class="px-5 py-3.5">Year ${reductions.length + 1}+</td>
+      <td class="px-5 py-3.5 text-right">${fmtRate(noteRate)}</td>
+      <td class="px-5 py-3.5 text-right">${fmt(fullPmt)}</td>
+      <td class="px-5 py-3.5 text-right text-[var(--color-text-muted)]">—</td>
+      <td class="px-5 py-3.5 text-right text-[var(--color-text-muted)]">—</td>
+    </tr>`;
+
+    tbody.innerHTML = html;
+    totalEl.textContent = fmt(totalSubsidy);
+  }
+
+  function calc() {
+    const loan = parseFloat((document.getElementById("bd-loan") as HTMLInputElement).value) || 0;
+    const rate = parseFloat((document.getElementById("bd-rate") as HTMLInputElement).value) || 0;
+    if (loan <= 0 || rate <= 0) return;
+    buildTable("bd-321-body", "bd-321-total", loan, rate, [3, 2, 1]);
+    buildTable("bd-21-body",  "bd-21-total",  loan, rate, [2, 1]);
+    buildTable("bd-10-body",  "bd-10-total",  loan, rate, [1]);
+  }
+
+  ["bd-loan", "bd-rate"].forEach(id => {
+    document.getElementById(id)?.addEventListener("input", calc);
+    document.getElementById(id)?.addEventListener("change", calc);
+  });
+
+  calc();
+</script>

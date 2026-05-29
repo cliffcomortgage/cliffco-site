@@ -11,7 +11,7 @@ import Headshot from "../../../../components/ui/Headshot.astro";
 
 const loc = location("florida/orlando")!;
 const orlandoBranch = BRANCHES.find((b) => b.slug === "orlando-fl")!;
-const EXCLUDE = new Set(["christopher-clifford-65234"]);
+const EXCLUDE = new Set(["christopher-clifford"]);
 const branchLOs = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "orlando-fl" && !EXCLUDE.has(lo.slug));
 const licensedOnlyLOs = LOAN_OFFICERS.filter(
   (lo) => lo.states.includes("FL") && lo.branchSlug !== "orlando-fl" && lo.branchSlug !== "fort-lauderdale-fl" && !EXCLUDE.has(lo.slug),

@@ -26,6 +26,8 @@ import logoBlack from "../../assets/logo-black.png";
                 <li><a href="/reverse-mortgage/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">I'm 62 or Older</a></li>
                 <li><a href="/denied-mortgage/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">I Was Denied Elsewhere</a></li>
                 <li><a href="/first-time-homebuyer/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">I'm Buying My First Home</a></li>
+                <li><a href="/purchasing-refinancing/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">I'm Purchasing or Refinancing</a></li>
+                <li><a href="/down-payment-assistance/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">I Need Down Payment Help</a></li>
               </ul>
             </div>
           </div>
@@ -91,7 +93,7 @@ import logoBlack from "../../assets/logo-black.png";
     <div class="flex items-center gap-3">
       <!-- Phone text: tablet and up -->
       <a href={`tel:${COMPANY.tollFreeE164}`} class="hidden md:inline text-sm font-medium text-[var(--color-ink)] no-underline">
-        {COMPANY.tollFree}
+        <span class="text-xs text-[var(--color-text-muted)] font-normal">Toll Free</span> {COMPANY.tollFree}
       </a>
       <!-- Phone icon: mobile only -->
       <a href={`tel:${COMPANY.tollFreeE164}`} class="md:hidden p-2 text-[var(--color-ink)]" aria-label={`Call ${COMPANY.tollFree}`}>
@@ -158,6 +160,8 @@ import logoBlack from "../../assets/logo-black.png";
         <li><a href="/reverse-mortgage/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">I'm 62 or Older</a></li>
         <li><a href="/denied-mortgage/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">I Was Denied Elsewhere</a></li>
         <li><a href="/first-time-homebuyer/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">I'm Buying My First Home</a></li>
+        <li><a href="/purchasing-refinancing/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">I'm Purchasing or Refinancing</a></li>
+        <li><a href="/down-payment-assistance/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">I Need Down Payment Help</a></li>
       </ul>
     </details>
 
@@ -216,7 +220,7 @@ import logoBlack from "../../assets/logo-black.png";
   <div class="px-5 py-5 border-t border-[var(--color-mist-gray)] space-y-3">
     <a href="/get-started/" class="btn btn-primary w-full text-center block">Apply Now</a>
     <a href={`tel:${COMPANY.tollFreeE164}`} class="block text-center text-sm font-medium text-[var(--color-ink)] no-underline">
-      {COMPANY.tollFree}
+      <span class="text-xs text-[var(--color-text-muted)] font-normal">Toll Free</span> {COMPANY.tollFree}
     </a>
   </div>
 </nav>

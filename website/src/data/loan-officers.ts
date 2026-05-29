@@ -46,6 +46,14 @@ export type LoanOfficer = {
   yearsAtCliffco?: number;
   /** True if /public/team/{slug}.{avif,webp,jpg} exists */
   hasPhoto?: boolean;
+  /** Personal blog posts authored by this LO */
+  blog?: readonly {
+    title: string;
+    slug: string;
+    description: string;
+    image: string;
+    section: string;
+  }[];
 };
 
 export const nmlsConsumerAccessUrl = (nmls: string): string =>
@@ -56,7 +64,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   // LEADERSHIP
   // ============================================================
   {
-    slug: "christopher-clifford-65234",
+    slug: "christopher-clifford",
     firstName: "Christopher",
     lastName: "Clifford",
     displayName: "Christopher Clifford",
@@ -76,10 +84,10 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "rriddle",
+    slug: "ryan-riddle",
     firstName: "Ryan",
     lastName: "Riddle",
-    displayName: "Ryan Dennis Riddle",
+    displayName: "Ryan Riddle",
     nmls: "1730872",
     title: "Vice President / COO",
     states: ["AL", "AZ", "CA", "CT", "DC", "DE", "FL", "GA", "IL", "IN", "KS", "KY", "LA", "MD", "MI", "NC", "NJ", "NM", "NY", "OH", "OR", "PA", "SC", "TN", "TX", "VA", "WA"],
@@ -93,7 +101,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "abroder",
+    slug: "adam-broder",
     firstName: "Adam",
     lastName: "Broder",
     displayName: "Adam Broder",
@@ -110,25 +118,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "aturkewitz",
-    firstName: "Adam",
-    lastName: "Turkewitz",
-    displayName: "Adam Turkewitz",
-    nmls: "32900",
-    title: "Senior VP of Sales",
-    states: ["AL", "AZ", "CA", "CT", "DC", "FL", "GA", "IL", "IN", "KS", "KY", "LA", "MD", "MN", "NC", "NJ", "NY", "OH", "PA", "SC", "TX", "VA", "VT", "WA"],
-    branchSlug: "uniondale-headquarters",
-    specialties: ["Non-QM & Self-Employed", "DSCR", "Jumbo"],
-    links: {
-      email: "adam.turkewitz@cliffcomortgage.com",
-      directPhone: "516-874-6541",
-      applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=aturkewitz&workFlowId=33774",
-    },
-    bio: "With nearly two decades in the mortgage industry and over $3 billion in residential mortgage business closed, I've made it my mission to simplify the mortgage process and help clients achieve their homeownership dreams with ease. Growing up on Long Island and graduating from SUNY Geneseo, I began my career in mortgage banking in 2005. After 16 years at a large retail bank, I knew there had to be a better way to serve clients, and that's what led me to Cliffco Mortgage Bankers. I specialize in a wide range of loan products, including conforming, FHA, VA, Jumbo, Foreign National Loans, and flexible options designed for borrowers with unique financial situations, such as self-employed individuals or those with irregular income. My goal is to make the mortgage experience as smooth as possible, whether you're buying your first home, refinancing to lower your monthly payments, or taking equity out for renovations or debt consolidation. Transparency and accessibility are at the heart of everything I do. I take the time to understand your goals and work alongside you to make your journey to homeownership a seamless and successful one. When I'm not helping clients, I'm all about family. I've been married to my amazing wife since 2011, and together, we have four wonderful kids. My favorite way to spend time is with them, cheering them on at ice hockey, gymnastics, cheerleading, or flag football. I'm also passionate about the outdoors — you'll often find me fishing, hiking, or spending time at the off-road beach. As a foodie and avid traveler, I'm always on the hunt for new culinary adventures.",
-    hasPhoto: true,
-  },
-  {
-    slug: "jchen",
+    slug: "james-chen",
     firstName: "James",
     lastName: "Chen",
     displayName: "James Chen",
@@ -145,7 +135,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "dfallarino",
+    slug: "david-fallarino",
     firstName: "David",
     lastName: "Fallarino",
     displayName: "David Fallarino",
@@ -160,9 +150,39 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     },
     bio: "David Fallarino is one of the country's top-performing mortgage professionals, with over $3 billion in closed loan volume across a 20+ year career. As Senior Vice President at Cliffco Mortgage Bankers, he leads The Fallarino Group, a high-impact origination team specializing in smart, strategic financing solutions for High Growth Entrepreneurs, self-employed professionals, and clients with complex financial profiles. David's experience spans sales and leadership roles at Independent Mortgage Banks, Regional Banks, and National Banks, giving him a 360-degree view of how to navigate even the most challenging loan scenarios. He and his team are known for delivering tailored mortgage strategies, backed by the strength and control of a Direct Lender, with the flexibility to Broker loans when it benefits the client. They offer a full suite of products — from Conventional to Jumbo loan amounts, Conforming loans, A-Paper loans, Non-QM, Alt-A, DSCR, Bridge, Construction Loans, and truly custom-designed solutions others can't match. Raised on Long Island, David spent 15+ years living and working in Manhattan, building relationships and closing deals at some of the largest banks in the country. He now lives back on Long Island with his wife Paula (married 12 years), their 7-year-old twins Ruby and Rome, and their energetic dog, Cash.",
     hasPhoto: true,
+    blog: [
+      {
+        title: "Alt-A vs. A-Paper Loans: Which One Fits the Way You Earn?",
+        slug: "alt-a-vs-conventional-mortgage",
+        description: "The core distinction between these loan types hinges on income documentation. Here's how to choose the right structure based on the way you actually earn.",
+        image: "/images/DFallarino%20Blog/Alt%20A%20Blog.jpg",
+        section: "500:1 Blog",
+      },
+      {
+        title: "Alt-A Loans Make a Comeback: How Entrepreneurs Can Leverage Jumbo Alt-A Programs When Big Banks Can't Lend",
+        slug: "jumbo-alt-a-loans-entrepreneurs-david-fallarino",
+        description: "Modern Alt-A mortgages are re-emerging as structured products for entrepreneurs and high-income professionals who need flexible jumbo financing.",
+        image: "/images/DFallarino%20Blog/Jumbo%20Blog.jpg",
+        section: "500:1 Blog",
+      },
+      {
+        title: "Freelancers, Entrepreneurs, Investors: We've Got a Mortgage Built Just for You.",
+        slug: "mortgages-for-freelancers-entrepreneurs-investors",
+        description: "Traditional lenders reject non-traditional earners. Non-QM loans exist for creditworthy borrowers who don't check the standard boxes.",
+        image: "/images/DFallarino%20Blog/Freelancers%20Blog.jpg",
+        section: "500:1 Blog",
+      },
+      {
+        title: "DSCR Loans Demystified: How Real Estate Investors Can Use Rental Income to Qualify & Scale Their Portfolio",
+        slug: "dscr-loans-real-estate-investors",
+        description: "DSCR loans flip the script on traditional mortgage underwriting — qualifying you based on rental property cash flow, not your W-2.",
+        image: "/images/DFallarino%20Blog/DSCR%20Blog.jpg",
+        section: "500:1 Blog",
+      },
+    ],
   },
   {
-    slug: "dmizrahi",
+    slug: "david-mizrahi",
     firstName: "David",
     lastName: "Mizrahi",
     displayName: "David Mizrahi",
@@ -179,7 +199,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "myoussef",
+    slug: "moses-youssef",
     firstName: "Moses",
     lastName: "Youssef",
     displayName: "Moses Youssef",
@@ -200,7 +220,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   // BRANCH MANAGERS
   // ============================================================
   {
-    slug: "astreet",
+    slug: "angelique-street",
     firstName: "Angelique",
     lastName: "Street",
     displayName: "Angelique Street",
@@ -217,7 +237,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "dfeliciano",
+    slug: "daphne-feliciano",
     firstName: "Daphne",
     lastName: "Feliciano",
     displayName: "Daphne Feliciano",
@@ -235,7 +255,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "emorais",
+    slug: "edward-morais",
     firstName: "Edward",
     lastName: "Morais",
     displayName: "Edward (Eddie) Morais",
@@ -252,7 +272,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "fveras",
+    slug: "francisco-veras",
     firstName: "Francisco",
     lastName: "Veras",
     displayName: "Francisco Veras",
@@ -270,7 +290,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "jgiaquinto",
+    slug: "julian-giaquinto",
     firstName: "Julian",
     lastName: "Giaquinto",
     displayName: "Julian Giaquinto",
@@ -287,7 +307,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "karabian",
+    slug: "kyle-arabian",
     firstName: "Kyle",
     lastName: "Arabian",
     displayName: "Kyle Arabian",
@@ -308,7 +328,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   // ORLANDO (FL) CLUSTER
   // ============================================================
   {
-    slug: "jjorge",
+    slug: "julia-jorge",
     firstName: "Julia",
     lastName: "Jorge-Delcarmen",
     displayName: "Julia Jorge-Delcarmen",
@@ -326,7 +346,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "kcruz",
+    slug: "keyla-cruz",
     firstName: "Keyla",
     lastName: "Cruz",
     displayName: "Keyla Cruz",
@@ -344,7 +364,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "ngeyer",
+    slug: "nadia-geyer",
     firstName: "Nadia",
     lastName: "Geyer",
     displayName: "Nadia Geyer",
@@ -362,24 +382,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "sroach",
-    firstName: "Samantha",
-    lastName: "Roach",
-    displayName: "Samantha Roach",
-    nmls: "1956150",
-    title: "Loan Officer",
-    states: ["FL"],
-    branchSlug: "orlando-fl",
-    links: {
-      email: "sroach@cliffcomortgage.com",
-      directPhone: "407-844-8899",
-      applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=sroach&workFlowId=33774",
-    },
-    bio: "My contribution of work history includes over 5 years in the banking industry and over 10 years in finance also in banking and accounting firms. It's my due diligence to find ways to go above and beyond in saving my clients time and money and delivering a plan of execution to accomplishing their real estate needs. My skill sets include financial planning and financial advising which allows me to go above and beyond than most loan officers in this business!",
-    hasPhoto: true,
-  },
-  {
-    slug: "wromero",
+    slug: "wenceslao-romero",
     firstName: "Wenceslao",
     lastName: "Hernandez Romero",
     displayName: "Wenceslao Hernandez Romero",
@@ -397,7 +400,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "yromero",
+    slug: "yaisha-romero",
     firstName: "Yaisha",
     lastName: "Romero",
     displayName: "Yaisha Romero",
@@ -415,7 +418,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "jcruz",
+    slug: "jose-cruz",
     firstName: "Jose",
     lastName: "Cruz",
     displayName: "Jose Cruz",
@@ -437,7 +440,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   // SCOTTSDALE (AZ) CLUSTER
   // ============================================================
   {
-    slug: "swei",
+    slug: "steve-wei",
     firstName: "Steve",
     lastName: "Wei",
     displayName: "Steve Wei",
@@ -455,7 +458,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "kchiang",
+    slug: "katherine-chiang",
     firstName: "Katherine",
     lastName: "Chiang",
     displayName: "Katherine Chiang",
@@ -473,7 +476,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "dliu",
+    slug: "derek-liu",
     firstName: "Derek",
     lastName: "Liu",
     displayName: "Derek Liu",
@@ -490,7 +493,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "mhernandez",
+    slug: "mayra-hernandez",
     firstName: "Mayra",
     lastName: "Hernandez",
     displayName: "Mayra Hernandez",
@@ -512,7 +515,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   // EXCELSIOR (MN)
   // ============================================================
   {
-    slug: "mpatterson",
+    slug: "mitchell-patterson",
     firstName: "Mitchell",
     lastName: "Patterson",
     displayName: "Mitchell Patterson",
@@ -533,7 +536,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   // BRANCHBURG (NJ)
   // ============================================================
   {
-    slug: "gjohansen",
+    slug: "gary-johansen",
     firstName: "Gary",
     lastName: "Johansen",
     displayName: "Gary Johansen",
@@ -550,7 +553,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "csoto",
+    slug: "christian-soto",
     firstName: "Christian",
     lastName: "Soto",
     displayName: "Christian Soto",
@@ -568,7 +571,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "acarver",
+    slug: "andrea-carver",
     firstName: "Andrea",
     lastName: "Carver",
     displayName: "Andrea Carver",
@@ -589,7 +592,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   // JAMAICA (NY)
   // ============================================================
   {
-    slug: "skhan",
+    slug: "shahraj-khan",
     firstName: "Shahraj",
     lastName: "Kabir Khan",
     displayName: "Shahraj Kabir Khan",
@@ -610,7 +613,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   // WANTAGH (NY)
   // ============================================================
   {
-    slug: "shasib",
+    slug: "syed-hasib",
     firstName: "Syed",
     lastName: "Hasib",
     displayName: "Syed Hasib",
@@ -627,7 +630,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "slazo",
+    slug: "steve-lazo",
     firstName: "Steve",
     lastName: "Lazo",
     displayName: "Steve Lazo",
@@ -703,7 +706,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   // UNIONDALE HQ — FULL ROSTER
   // ============================================================
   {
-    slug: "azervas",
+    slug: "anastasios-zervas",
     firstName: "Anastasios",
     lastName: "Zervas",
     displayName: "Anastasios Zervas",
@@ -720,7 +723,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "bkenney",
+    slug: "brandon-kenney",
     firstName: "Brandon",
     lastName: "Kenney",
     displayName: "Brandon Kenney",
@@ -737,7 +740,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "bmcclarnon",
+    slug: "brendan-mcclarnon",
     firstName: "Brendan",
     lastName: "McClarnon",
     displayName: "Brendan McClarnon",
@@ -754,7 +757,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "cnguyen",
+    slug: "christian-nguyen",
     firstName: "Christian",
     lastName: "Nguyen",
     displayName: "Christian H. Nguyen",
@@ -771,7 +774,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "debbecke",
+    slug: "daniel-ebbecke",
     firstName: "Daniel",
     lastName: "Ebbecke",
     displayName: "Daniel Ebbecke",
@@ -788,7 +791,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "dillouz",
+    slug: "david-illouz",
     firstName: "David",
     lastName: "Illouz",
     displayName: "David Illouz",
@@ -805,7 +808,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "dhemberger",
+    slug: "donna-hemberger",
     firstName: "Donna",
     lastName: "Hemberger",
     displayName: "Donna Hemberger",
@@ -822,7 +825,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "ecordeira",
+    slug: "emily-cordeira",
     firstName: "Emily",
     lastName: "Cordeira",
     displayName: "Emily Cordeira",
@@ -839,7 +842,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "eestinvil",
+    slug: "emmanuel-estinvil",
     firstName: "Emmanuel",
     lastName: "Estinvil",
     displayName: "Emmanuel Estinvil",
@@ -855,7 +858,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "emueller",
+    slug: "eric-mueller",
     firstName: "Eric",
     lastName: "Mueller",
     displayName: "Eric Mueller",
@@ -872,7 +875,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "falosa",
+    slug: "fabrizio-alosa",
     firstName: "Fabrizio",
     lastName: "Alosa",
     displayName: "Fabrizio Alosa",
@@ -890,7 +893,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "glai",
+    slug: "gary-lai",
     firstName: "Gary",
     lastName: "Lai",
     displayName: "Gary Lai",
@@ -907,7 +910,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "gdiamantakis",
+    slug: "george-diamantakis",
     firstName: "George",
     lastName: "Diamantakis",
     displayName: "George Diamantakis",
@@ -924,7 +927,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "jperrone",
+    slug: "james-perrone",
     firstName: "James",
     lastName: "Perrone",
     displayName: "James P. Perrone",
@@ -941,7 +944,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "jzucker",
+    slug: "jeannette-zucker",
     firstName: "Jeannette",
     lastName: "Zucker",
     displayName: "Jeannette Zucker",
@@ -958,7 +961,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "jamaya",
+    slug: "johana-amaya",
     firstName: "Johana",
     lastName: "Amaya",
     displayName: "Johana Amaya",
@@ -975,7 +978,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "jcordeira",
+    slug: "joseph-cordeira",
     firstName: "Joseph",
     lastName: "Cordeira",
     displayName: "Joseph Cordeira",
@@ -992,7 +995,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "jborrero",
+    slug: "joshua-borrero",
     firstName: "Joshua",
     lastName: "Borrero",
     displayName: "Joshua Miguel Borrero",
@@ -1009,7 +1012,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "jbrenner",
+    slug: "joshua-brenner",
     firstName: "Joshua",
     lastName: "Brenner",
     displayName: "Joshua Brenner",
@@ -1026,7 +1029,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "jhu",
+    slug: "justin-hu",
     firstName: "Justin",
     lastName: "Hu",
     displayName: "Justin Hu",
@@ -1042,7 +1045,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "kadler",
+    slug: "kathie-adler",
     firstName: "Kathie",
     lastName: "Adler",
     displayName: "Kathie Adler",
@@ -1059,7 +1062,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "kdaniel",
+    slug: "kendra-daniel",
     firstName: "Kendra",
     lastName: "Daniel",
     displayName: "Kendra Daniel",
@@ -1076,7 +1079,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "kscott",
+    slug: "kevan-scott",
     firstName: "Kevan",
     lastName: "Scott",
     displayName: "Kevan Scott",
@@ -1093,7 +1096,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "lsilvestri",
+    slug: "leah-silvestri",
     firstName: "Leah",
     lastName: "Silvestri",
     displayName: "Leah Silvestri",
@@ -1110,7 +1113,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "lhoren",
+    slug: "lee-horen",
     firstName: "Lee",
     lastName: "Horen",
     displayName: "Lee Horen",
@@ -1127,7 +1130,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "lhartman",
+    slug: "lisa-hartman",
     firstName: "Lisa",
     lastName: "Hartman",
     displayName: "Lisa A. Hartman",
@@ -1144,7 +1147,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "llevy",
+    slug: "logan-levy",
     firstName: "Logan",
     lastName: "Levy",
     displayName: "Logan Reese Levy",
@@ -1161,7 +1164,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "margenzio",
+    slug: "mario-argenzio",
     firstName: "Mario",
     lastName: "Argenzio",
     displayName: "Mario Argenzio",
@@ -1178,7 +1181,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "maziz",
+    slug: "michael-aziz",
     firstName: "Michael",
     lastName: "Aziz",
     displayName: "Michael Aziz",
@@ -1195,7 +1198,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "mbisbee",
+    slug: "michael-bisbee",
     firstName: "Michael",
     lastName: "Bisbee",
     displayName: "Michael Bisbee",
@@ -1212,7 +1215,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "pmontesano",
+    slug: "paul-montesano",
     firstName: "Paul",
     lastName: "Montesano",
     displayName: "Paul J. Montesano",
@@ -1229,7 +1232,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "qduong",
+    slug: "queeny-duong",
     firstName: "Queeny",
     lastName: "Duong",
     displayName: "Queeny Duong",
@@ -1247,7 +1250,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "rrojas",
+    slug: "rafael-rojas",
     firstName: "Rafael",
     lastName: "Rojas",
     displayName: "Rafael Rojas",
@@ -1264,7 +1267,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "rgarcia",
+    slug: "raymond-garcia",
     firstName: "Raymond",
     lastName: "Garcia",
     displayName: "Raymond Garcia",
@@ -1282,7 +1285,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "rappo",
+    slug: "renald-appo",
     firstName: "Renald",
     lastName: "Appo",
     displayName: "Renald Appo",
@@ -1299,7 +1302,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "ralvarez",
+    slug: "richard-alvarez",
     firstName: "Richard",
     lastName: "Alvarez",
     displayName: "Richard Alvarez",
@@ -1316,7 +1319,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "srivera",
+    slug: "steven-rivera",
     firstName: "Steven",
     lastName: "Rivera",
     displayName: "Steven Rivera",
@@ -1333,7 +1336,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "twilliamson",
+    slug: "tamara-williamson",
     firstName: "Tamara",
     lastName: "Williamson",
     displayName: "Tamara Williamson",
@@ -1350,7 +1353,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "twhalen",
+    slug: "thomas-whalen",
     firstName: "Thomas",
     lastName: "Whalen",
     displayName: "Thomas Whalen",

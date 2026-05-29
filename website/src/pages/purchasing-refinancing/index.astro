@@ -1,0 +1,243 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+
+const faq = [
+  {
+    question: "How much do I need to put down to buy a home?",
+    answer: "It depends on the loan type. Conventional loans allow as little as 5% down for repeat buyers (3% for first-time buyers on certain programs). FHA loans allow 3.5% down with a 580+ credit score. VA loans offer 0% down for eligible veterans. The larger your down payment, the lower your monthly payment and the better your rate — but many buyers close with much less than 20% down.",
+  },
+  {
+    question: "What credit score do I need to buy a home?",
+    answer: "Conventional loans typically require a 620 minimum FICO, with best pricing at 740+. FHA allows scores as low as 580 for a 3.5% down payment. VA has no official minimum but most lenders including Cliffco require 580+. If your score is below these thresholds, we can discuss what it would take to improve your position before applying.",
+  },
+  {
+    question: "When does refinancing make sense?",
+    answer: "Refinancing typically makes sense when you can lower your rate by at least 0.5 to 1 point, reduce your loan term, switch from an adjustable rate to a fixed rate, or access equity for a major expense. The key question is break-even: divide your closing costs by your monthly savings to find out how many months it takes to recoup the cost. If you plan to stay past that point, refinancing usually pencils out.",
+  },
+  {
+    question: "How long does the purchase or refinance process take?",
+    answer: "A conventional purchase typically closes in 21 to 45 days from a signed contract. A conventional refinance closes in a similar window. FHA and VA loans may take a few days longer due to additional appraisal requirements. Non-QM loans and CEMA refinances in New York can take 30 to 60 days. Your Cliffco loan officer will give you a realistic timeline at the start.",
+  },
+  {
+    question: "Can I get pre-qualified without a hard credit pull?",
+    answer: "Yes. Cliffco's pre-qualification is a soft inquiry — it does not affect your credit score. We review your income, assets, and goals to give you an honest picture of what you can qualify for. We don't pull a hard inquiry until you're ready to formally apply.",
+  },
+  {
+    question: "What's the difference between pre-qualification and pre-approval?",
+    answer: "Pre-qualification is based on information you provide — it's fast, soft-pull, and gives you a ballpark figure. Pre-approval goes deeper: we verify income, employment, and assets and issue a formal letter that sellers take seriously. In competitive markets, a pre-approval letter is often required before a seller will consider an offer.",
+  },
+];
+
+const schema = [
+  faqPageSchema(faq),
+  articleSchema({
+    headline: "Home Purchase & Refinance Loans",
+    description: "Whether you're buying your next home or refinancing the one you're in, Cliffco originates conventional, FHA, VA, and refinance loans across 32 states.",
+    url: "/purchasing-refinancing/",
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "christopher-clifford",
+  }),
+];
+
+const loanOptions = [
+  {
+    name: "Conventional Purchase",
+    href: "/loans/conventional/",
+    tag: "Most common",
+    blurb: "Fannie Mae and Freddie Mac conforming loans for buyers with solid credit. As little as 5% down for repeat buyers, PMI removable once you reach 20% equity.",
+    specs: [
+      { label: "Min down payment", value: "5% (repeat buyers); 3% (first-time)" },
+      { label: "Min FICO", value: "620 (best pricing 740+)" },
+      { label: "Loan limit", value: "$806,500 standard; up to $1,209,750 high-cost" },
+      { label: "Mortgage insurance", value: "PMI under 20% down; removable at 80% LTV" },
+    ],
+  },
+  {
+    name: "FHA Purchase",
+    href: "/loans/fha/",
+    tag: "Lower credit OK",
+    blurb: "Government-insured loans that allow lower credit scores and smaller down payments. A good fit for buyers who don't quite qualify for conventional.",
+    specs: [
+      { label: "Min down payment", value: "3.5% (580+ FICO)" },
+      { label: "Min FICO", value: "580 for 3.5% down" },
+      { label: "Loan limit", value: "$524,225 standard; up to $1,209,750 high-cost" },
+      { label: "Mortgage insurance", value: "Upfront MIP + annual MIP (typically for life of loan)" },
+    ],
+  },
+  {
+    name: "VA Purchase",
+    href: "/loans/va/",
+    tag: "Veterans & active duty",
+    blurb: "Zero-down financing for eligible service members, veterans, and surviving spouses. No PMI, no loan limit with full entitlement.",
+    specs: [
+      { label: "Down payment", value: "0% with full entitlement" },
+      { label: "Mortgage insurance", value: "None (VA funding fee applies)" },
+      { label: "Funding fee", value: "2.15% first use, 0% down; waived for 10%+ disability" },
+      { label: "Loan limit", value: "No cap with full entitlement" },
+    ],
+  },
+  {
+    name: "Rate-and-Term Refinance",
+    href: "/loans/refinancing/",
+    tag: "Lower your rate",
+    blurb: "Replace your existing mortgage with a new one at a lower rate or shorter term. Available on conventional, FHA, VA, and non-QM loans.",
+    specs: [
+      { label: "Goal", value: "Lower rate, shorter term, or switch from ARM to fixed" },
+      { label: "Typical timeline", value: "21 to 45 days" },
+      { label: "Closing costs", value: "Typically 2 to 3% of the loan balance" },
+      { label: "NY option", value: "CEMA refinance eliminates mortgage recording tax on existing balance" },
+    ],
+  },
+  {
+    name: "Cash-Out Refinance",
+    href: "/loans/refinancing/",
+    tag: "Access your equity",
+    blurb: "Refinance into a larger loan and receive the difference in cash. Common uses include home improvements, debt consolidation, or a down payment on an investment property.",
+    specs: [
+      { label: "Max LTV", value: "80% conventional; up to 90% VA; 75 to 80% non-QM" },
+      { label: "Min FICO", value: "620 conventional; 580+ non-QM" },
+      { label: "Available on", value: "Primary, second home, investment property" },
+      { label: "Self-employed option", value: "Non-QM cash-out using bank statements or P&L" },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Home Purchase & Refinance Loans | Cliffco Mortgage Bankers"
+  description="Buying your next home or refinancing the one you're in? Cliffco originates conventional, FHA, VA, and refinance loans across 32 states. No bots, no call centers."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "I'm Purchasing or Refinancing", href: "/purchasing-refinancing/" },
+  ]} />
+
+  <!-- HERO -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 lg:py-24">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">Purchase & Refinance</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        Buying or Refinancing.<br/>
+        <span class="text-[var(--color-ice-blue)]">Let's Make It Happen.</span>
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">
+        Whether you're buying your next home or refinancing the one you're in, Cliffco originates conventional, FHA, VA, and refinance loans across 32 states. A real loan officer handles your file start to finish.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Get Pre-Qualified</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">
+          <span class="text-white/70 font-normal text-xs">Toll Free</span>&nbsp;{COMPANY.tollFree}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO THIS IS FOR -->
+  <section class="section bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow">Who this is for</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">You don't have to be a first-time buyer to need a great lender.</h2>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed">
+          Most of our borrowers in this category are move-up buyers, repeat purchasers, or homeowners looking to improve their mortgage terms. The process is straightforward, but having an experienced loan officer makes it faster and less stressful.
+        </p>
+      </div>
+      <ul class="mt-2 space-y-3 list-none m-0 p-0">
+        {[
+          "You're buying your next home and have owned before",
+          "You want to move up to a larger home or downsize",
+          "You're refinancing to get a lower rate or shorter term",
+          "You want to access equity through a cash-out refinance",
+          "You're switching from an adjustable-rate to a fixed-rate mortgage",
+          "You're a veteran or active-duty service member eligible for a VA loan",
+          "Your situation doesn't fit the non-QM or reverse mortgage categories",
+        ].map((item) => (
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            <span class="text-[var(--color-text)]">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- LOAN OPTIONS -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">Your options</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Five programs we originate for this situation.</h2>
+      <div class="mt-10 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+        {loanOptions.map((loan) => (
+          <article class="card flex flex-col h-full">
+            <div class="flex items-start justify-between gap-3 flex-wrap">
+              <div>
+                <h3 class="font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">{loan.name}</h3>
+              </div>
+              <span class="text-xs font-semibold text-[var(--color-accent)] bg-[var(--color-accent)]/8 px-2.5 py-1 rounded-full shrink-0">{loan.tag}</span>
+            </div>
+            <p class="mt-3 text-sm text-[var(--color-text)] leading-relaxed">{loan.blurb}</p>
+            <dl class="mt-4 space-y-2 border-t border-[var(--color-mist-gray)] pt-4 flex-1">
+              {loan.specs.map((s) => (
+                <div class="flex justify-between gap-4 text-sm">
+                  <dt class="text-[var(--color-text-muted)] shrink-0">{s.label}</dt>
+                  <dd class="text-[var(--color-ink)] text-right">{s.value}</dd>
+                </div>
+              ))}
+            </dl>
+            <a href={loan.href} class="mt-5 text-sm font-semibold text-[var(--color-accent)] no-underline hover:underline">Full program details →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Common questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DPA MENTION -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <div class="rounded-xl border border-[var(--color-mist-gray)] p-6 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
+        <div>
+          <p class="font-semibold text-[var(--color-ink)]">Need help with the down payment?</p>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">Down payment assistance programs — grants, forgivable loans, and deferred second mortgages — may be available in your county and can cover your entire down payment.</p>
+        </div>
+        <a href="/down-payment-assistance/" class="btn btn-secondary text-sm shrink-0">Explore DPA options →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Ready to get pre-qualified?</h2>
+      <p class="lead mt-4 text-white/85">A licensed Cliffco loan officer responds in one business day. No bots, no call centers.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Pre-Qualified</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+</Layout>

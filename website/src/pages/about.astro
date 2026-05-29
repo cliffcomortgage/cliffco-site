@@ -9,9 +9,9 @@ import { STATE_LICENSES } from "../data/state-licenses";
 import { LEADERSHIP_TEAM } from "../data/leadership-team";
 
 const yearsInBiz = COMPANY.yearsInBusiness();
-const president = loanOfficer("christopher-clifford-65234")!;
+const president = loanOfficer("christopher-clifford")!;
 const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
-  ["christopher-clifford-65234", "rriddle", "abroder"].includes(lo.slug),
+  ["christopher-clifford", "ryan-riddle", "adam-broder"].includes(lo.slug),
 );
 const photoLeaders = LEADERSHIP_TEAM.filter((l) => l.hasPhoto);
 const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);

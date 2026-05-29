@@ -26,7 +26,7 @@ const schema = [
     url: `/loans/${p.slug}/`,
     datePublished: today,
     dateModified: today,
-    authorSlug: "christopher-clifford-65234",
+    authorSlug: "christopher-clifford",
   }),
 ];
 ---
@@ -78,6 +78,18 @@ const schema = [
             <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
           </details>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-wide">
+      <div class="rounded-xl border border-[var(--color-mist-gray)] p-6 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
+        <div>
+          <p class="font-semibold text-[var(--color-ink)]">Still need help with the down payment?</p>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">FHA pairs well with many down payment assistance programs — grants, forgivable loans, and deferred second mortgages that can cover your 3.5%.</p>
+        </div>
+        <a href="/down-payment-assistance/" class="btn btn-secondary text-sm shrink-0">Explore DPA options →</a>
       </div>
     </div>
   </section>

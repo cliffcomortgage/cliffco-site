@@ -48,9 +48,9 @@ export const BRANCHES: readonly Branch[] = [
     geo: { latitude: 40.7186, longitude: -73.5959 },
     metro: "Long Island",
     isHeadquarters: true,
-    branchManagerSlug: "christopher-clifford-65234",
+    branchManagerSlug: "christopher-clifford",
     loanOfficerSlugs: [
-      "christopher-clifford-65234",
+      "christopher-clifford",
       "ryan-riddle-1730872",
       "adam-broder-167538",
       "adam-turkewitz-32900",

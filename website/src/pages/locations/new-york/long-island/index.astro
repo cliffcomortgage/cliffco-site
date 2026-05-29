@@ -11,8 +11,13 @@ import Headshot from "../../../../components/ui/Headshot.astro";
 
 const loc = location("new-york/long-island")!;
 const liBranches = BRANCHES.filter((b) => b.metro === "Long Island");
+const branchLandingPages: Record<string, string> = {
+  'uniondale-headquarters': '/uniondale/',
+  'wantagh-ny': '/wantagh-ny/',
+  'bay-shore-ny': '/bay-shore-ny/',
+};
 
-const EXCLUDE = new Set(["christopher-clifford-65234"]);
+const EXCLUDE = new Set(["christopher-clifford"]);
 const uniondaleLOs = LOAN_OFFICERS.filter(
   (lo) => lo.branchSlug === "uniondale-headquarters" && !EXCLUDE.has(lo.slug),
 );
@@ -122,15 +127,27 @@ const yearsInBiz = COMPANY.yearsInBusiness();
       <p class="eyebrow">Our Long Island offices</p>
       <h2 class="mt-3" style="font-size: var(--text-h2);">Three offices across the Island.</h2>
       <div class="mt-8 grid gap-6 md:grid-cols-3">
-        {liBranches.map((b) => (
-          <article class="card">
-            <h3 class="text-lg font-semibold">{b.name}</h3>
-            {b.street && <p class="text-sm text-[var(--color-text-muted)] mt-2">{b.street}<br/>{b.city}, {b.region} {b.postalCode}</p>}
-            {b.phone && <p class="text-sm mt-1"><a href={`tel:${b.phone.replace(/\D/g, "")}`} class="text-[var(--color-ink)] no-underline font-medium">{b.phone}</a></p>}
-            {b.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{b.nmls}</p>}
-            <p class="text-sm text-[var(--color-text-muted)] mt-3">{branchLOCount[b.slug] ?? 0} loan officer{(branchLOCount[b.slug] ?? 0) === 1 ? "" : "s"}.</p>
-          </article>
-        ))}
+        {liBranches.map((b) => {
+          const landingUrl = branchLandingPages[b.slug];
+          return landingUrl ? (
+            <a href={landingUrl} class="card no-underline text-[var(--color-ink)] flex flex-col">
+              <h3 class="text-lg font-semibold">{b.name}</h3>
+              {b.street && <p class="text-sm text-[var(--color-text-muted)] mt-2">{b.street}<br/>{b.city}, {b.region} {b.postalCode}</p>}
+              {b.phone && <p class="text-sm mt-1 font-medium">{b.phone}</p>}
+              {b.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{b.nmls}</p>}
+              <p class="text-sm text-[var(--color-text-muted)] mt-3">{branchLOCount[b.slug] ?? 0} loan officer{(branchLOCount[b.slug] ?? 0) === 1 ? "" : "s"}.</p>
+              <span class="mt-auto pt-3 text-sm font-semibold text-[var(--color-accent)]">View office →</span>
+            </a>
+          ) : (
+            <article class="card">
+              <h3 class="text-lg font-semibold">{b.name}</h3>
+              {b.street && <p class="text-sm text-[var(--color-text-muted)] mt-2">{b.street}<br/>{b.city}, {b.region} {b.postalCode}</p>}
+              {b.phone && <p class="text-sm mt-1"><a href={`tel:${b.phone.replace(/\D/g, "")}`} class="text-[var(--color-ink)] no-underline font-medium">{b.phone}</a></p>}
+              {b.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{b.nmls}</p>}
+              <p class="text-sm text-[var(--color-text-muted)] mt-3">{branchLOCount[b.slug] ?? 0} loan officer{(branchLOCount[b.slug] ?? 0) === 1 ? "" : "s"}.</p>
+            </article>
+          );
+        })}
       </div>
     </div>
   </section>

@@ -83,6 +83,22 @@ const calculators = [
     icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />`,
     color: "warm",
   },
+  {
+    slug: "buydown",
+    title: "Buydown Calculator",
+    audience: "Buyers & sellers",
+    description: "Calculate the exact cost of a 3-2-1, 2-1, or 1-0 temporary buydown. See year-by-year savings and total subsidy for each plan.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6L9 12.75l4.286-4.286a11.948 11.948 0 014.306 6.43l.776 2.898m0 0 3.182-5.511m-3.182 5.51-5.511-3.181" />`,
+    color: "purple",
+  },
+  {
+    slug: "closing-costs",
+    title: "Closing Costs Calculator",
+    audience: "All buyers",
+    description: "Get an itemized closing cost estimate by state, property type, and purchase price — including taxes, title, lender fees, and prepaids.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185zM9.75 9h.008v.008H9.75V9zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm4.125 4.5h.008v.008h-.008V13.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />`,
+    color: "green",
+  },
 ];
 
 const colorMap: Record<string, { bg: string; icon: string }> = {
@@ -97,7 +113,7 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
 
 <Layout
   title="Mortgage Calculators | Cliffco Mortgage Bankers"
-  description="Ten free mortgage calculators: payment estimator, DSCR, self-employed income, refi break-even, VA loan, reverse mortgage, rent vs buy, and more."
+  description="Twelve free mortgage calculators: payment estimator, DSCR, buydown, closing costs, self-employed income, refi break-even, VA loan, reverse mortgage, rent vs buy, and more."
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
@@ -108,8 +124,8 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
     <p class="eyebrow">Free tools</p>
     <h1 class="mt-3" style="font-size: var(--text-display-lg);">Run the numbers before you apply.</h1>
     <p class="lead mt-5 max-w-2xl">
-      Ten calculators covering every common mortgage scenario: from first-time buyers and self-employed
-      borrowers to investors, veterans, and homeowners considering a refinance or reverse mortgage.
+      Twelve calculators covering every common mortgage scenario: from first-time buyers and self-employed
+      borrowers to investors, veterans, and homeowners considering a refinance, buydown, or reverse mortgage.
     </p>
   </section>
 

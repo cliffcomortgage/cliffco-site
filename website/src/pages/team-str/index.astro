@@ -1,0 +1,296 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { COMPANY } from "../../data/company";
+import { faqPageSchema } from "../../lib/schema";
+
+const faq = [
+  {
+    question: "Can I use Airbnb or VRBO income to qualify for a DSCR loan?",
+    answer: "Yes. Cliffco's DSCR programs for short-term rentals evaluate the property's projected or actual short-term rental income — from AirDNA projections, a comparable market analysis, or your existing booking history. You do not need to show W-2 income or tax returns. The property's cash flow is what qualifies.",
+  },
+  {
+    question: "What DSCR ratio do I need for an STR property?",
+    answer: "Most DSCR programs require a minimum ratio of 1.0 (rent covers the full PITIA), with best pricing at 1.25 or higher. Well-located short-term rentals in high-demand markets frequently achieve ratios well above 1.25, which is part of what makes the STR model attractive for DSCR financing.",
+  },
+  {
+    question: "Can I hold the property in an LLC?",
+    answer: "Yes. Cliffco's DSCR programs allow LLC vesting, which is important for STR investors who want liability separation between their properties and personal assets. We can also fund out-of-state borrowers — if you're buying in a different state from where you live, that's no problem.",
+  },
+  {
+    question: "How much do I need to put down?",
+    answer: "Most DSCR programs for investment properties require 20 to 25% down. Some programs go as low as 15% for strong credit profiles with solid projected DSCR ratios. Your Cliffco loan officer will show you the full range of options for your specific market and property.",
+  },
+  {
+    question: "Do I need to be a first-time real estate investor?",
+    answer: "Not at all. DSCR loans work for first-time investors and experienced operators alike. Whether this is your first STR purchase or you're adding to an existing portfolio, the qualification is based on the property's income — not how many properties you currently own.",
+  },
+  {
+    question: "What's the process from first call to closing?",
+    answer: "It starts with a short conversation about your target property and financial profile. Once we have basic info, we can issue a pre-approval letter typically within 24 hours. From there: appraisal (which includes a rental income analysis for STR properties), underwriting, and closing. DSCR loans typically close in 21 to 35 days.",
+  },
+];
+
+const schema = [faqPageSchema(faq)];
+---
+
+<Layout
+  title="STR Financing | Cliffco Mortgage Bankers × STR Like the Best"
+  description="Exclusive lending partner for STR Like the Best. DSCR loans for short-term rental investors — qualify on property income, not W-2 salary. No tax returns required."
+  schema={schema}
+>
+  <!-- CO-BRANDED HERO -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 lg:py-24">
+      <!-- Partner logos lockup -->
+      <div class="flex items-center gap-4 mb-8 flex-wrap">
+        <span class="text-white font-bold tracking-widest text-sm uppercase opacity-90">{COMPANY.legalName.toUpperCase()}</span>
+        <span class="text-white/40 text-2xl font-thin">×</span>
+        <span class="text-white font-bold tracking-widest text-sm uppercase opacity-90">STR Like the Best</span>
+      </div>
+      <h1 class="text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        Finance Your Short-Term Rental.<br/>
+        <span class="text-[var(--color-ice-blue)]">No Tax Returns Required.</span>
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">
+        Cliffco is the exclusive lending partner for STR Like the Best. We specialize in DSCR loans that qualify on your property's rental income — not your W-2. Built for STR investors who are ready to scale.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="#apply" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Apply Now</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">
+          <span class="text-white/70 font-normal text-xs">Toll Free</span>&nbsp;{COMPANY.tollFree}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY DSCR FOR STR -->
+  <section class="section bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow">Why DSCR + STR</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">The loan built for how STR cash flow actually works.</h2>
+        <p class="mt-5 text-[var(--color-text)] leading-relaxed">
+          Traditional mortgage underwriting uses your W-2 or tax returns to determine what you can borrow. For STR investors — especially those using the STR tax loophole — those numbers often understate your actual financial position. DSCR loans solve this.
+        </p>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed">
+          With a DSCR loan, the lender underwrites the property's income, not yours. If the projected or actual rental income covers the monthly debt service, the deal qualifies. No W-2. No tax returns. No personal income documentation.
+        </p>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed">
+          This makes DSCR the ideal tool for high-income W-2 professionals whose tax returns look light due to depreciation — exactly the situation STR Like the Best clients are in.
+        </p>
+      </div>
+      <div class="space-y-4">
+        {[
+          {
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />`,
+            title: "No tax returns required",
+            body: "Qualification is based on the property's income, not your personal returns — even if depreciation makes them look unfavorable.",
+          },
+          {
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />`,
+            title: "STR income accepted",
+            body: "Airbnb and VRBO rental income qualifies. We use AirDNA projections or your actual booking history — whichever is stronger.",
+          },
+          {
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12 12 2.25 21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />`,
+            title: "LLC vesting allowed",
+            body: "Hold the property in an LLC for liability protection. Out-of-state investors welcome — we fund across all 32 states we're licensed in.",
+          },
+          {
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />`,
+            title: "Scale your portfolio",
+            body: "No limit on the number of properties financed. Build your STR portfolio one property at a time — each deal underwrites on its own income.",
+          },
+        ].map((item) => (
+          <div class="card flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-lg bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent)] shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5" aria-hidden="true">
+                <Fragment set:html={item.icon} />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-[var(--color-ink)]" style="font-size: var(--text-body);">{item.title}</h3>
+              <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">{item.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">Loan programs</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">What we offer STR investors.</h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="card flex flex-col">
+          <div class="w-10 h-10 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent)] mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
+          </div>
+          <p class="eyebrow text-xs">Most popular for STR</p>
+          <h3 class="mt-2 font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">DSCR Loans</h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">Qualify on property income only. No W-2, no tax returns. STR income from AirDNA or booking history accepted. LLC vesting. Out-of-state buyers welcome.</p>
+          <dl class="mt-4 pt-4 border-t border-[var(--color-mist-gray)] space-y-2 text-sm">
+            <div class="flex justify-between"><dt class="text-[var(--color-text-muted)]">Min down payment</dt><dd class="font-medium">20–25%</dd></div>
+            <div class="flex justify-between"><dt class="text-[var(--color-text-muted)]">Min FICO</dt><dd class="font-medium">660+</dd></div>
+            <div class="flex justify-between"><dt class="text-[var(--color-text-muted)]">Min DSCR</dt><dd class="font-medium">1.0 (best pricing 1.25+)</dd></div>
+            <div class="flex justify-between"><dt class="text-[var(--color-text-muted)]">LLC vesting</dt><dd class="font-medium">Yes</dd></div>
+          </dl>
+          <a href="/loans/dscr/" class="mt-4 text-sm font-semibold text-[var(--color-accent)] no-underline hover:underline">Full DSCR details →</a>
+        </div>
+
+        <div class="card flex flex-col">
+          <div class="w-10 h-10 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent)] mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+          </div>
+          <p class="eyebrow text-xs">For self-employed operators</p>
+          <h3 class="mt-2 font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">Bank Statement Loans</h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">Qualify on 12 to 24 months of personal or business bank statements. Ideal for STR operators who manage their portfolio as a business and whose tax returns understate actual cash flow.</p>
+          <dl class="mt-4 pt-4 border-t border-[var(--color-mist-gray)] space-y-2 text-sm">
+            <div class="flex justify-between"><dt class="text-[var(--color-text-muted)]">Income docs</dt><dd class="font-medium">12–24 months bank stmts</dd></div>
+            <div class="flex justify-between"><dt class="text-[var(--color-text-muted)]">Property types</dt><dd class="font-medium">Primary, 2nd home, investment</dd></div>
+            <div class="flex justify-between"><dt class="text-[var(--color-text-muted)]">Tax returns</dt><dd class="font-medium">Not required</dd></div>
+          </dl>
+          <a href="/loans/business-bank-statement/" class="mt-4 text-sm font-semibold text-[var(--color-accent)] no-underline hover:underline">Full program details →</a>
+        </div>
+
+        <div class="card flex flex-col">
+          <div class="w-10 h-10 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent)] mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+          </div>
+          <p class="eyebrow text-xs">Vacation home + STR</p>
+          <h3 class="mt-2 font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">Second Home / Conventional</h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">If you plan to use the property personally as well as rent it short-term, a conventional second home loan may offer the best rate. Requires personal income documentation but avoids investment property pricing.</p>
+          <dl class="mt-4 pt-4 border-t border-[var(--color-mist-gray)] space-y-2 text-sm">
+            <div class="flex justify-between"><dt class="text-[var(--color-text-muted)]">Min down payment</dt><dd class="font-medium">10%</dd></div>
+            <div class="flex justify-between"><dt class="text-[var(--color-text-muted)]">Min FICO</dt><dd class="font-medium">620+</dd></div>
+            <div class="flex justify-between"><dt class="text-[var(--color-text-muted)]">Best for</dt><dd class="font-medium">Personal + rental use</dd></div>
+          </dl>
+          <a href="/loans/conventional/" class="mt-4 text-sm font-semibold text-[var(--color-accent)] no-underline hover:underline">Full program details →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section id="apply" class="section bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow">Get started</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Talk to a Cliffco loan officer today.</h2>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed">
+          As the exclusive lending partner for STR Like the Best, Cliffco loan officers understand the STR investment model. Tell us about your target property and we'll show you exactly which program fits.
+        </p>
+        <ul class="mt-6 space-y-3">
+          {[
+            "No credit pull for pre-qualification",
+            "Response within one business day",
+            "Pre-approval letters issued same day in most cases",
+            "We finance STR properties in all 32 states we're licensed",
+          ].map(item => (
+            <li class="flex items-start gap-2.5 text-sm text-[var(--color-text)]">
+              <svg class="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <div class="mt-8 p-5 rounded-xl bg-[var(--color-mist-gray)]">
+          <p class="text-sm font-semibold text-[var(--color-ink)]">Prefer to call?</p>
+          <a href={`tel:${COMPANY.tollFreeE164}`} class="text-[var(--color-accent)] font-semibold no-underline text-lg mt-1 block">{COMPANY.tollFree}</a>
+          <p class="text-xs text-[var(--color-text-muted)] mt-1">Mon–Fri 9am–6pm ET. Leave a voicemail anytime.</p>
+        </div>
+      </div>
+
+      <div>
+        <form action="/api/lead" method="POST" class="space-y-4">
+          <input type="hidden" name="form_source" value="team-str" />
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="str-name" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Full name</label>
+              <input id="str-name" name="name" type="text" required autocomplete="name"
+                class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)]"
+                placeholder="Jane Smith" />
+            </div>
+            <div>
+              <label for="str-phone" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Phone number</label>
+              <input id="str-phone" name="phone" type="tel" autocomplete="tel"
+                class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)]"
+                placeholder="(555) 000-0000" />
+            </div>
+          </div>
+
+          <div>
+            <label for="str-email" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Email address</label>
+            <input id="str-email" name="email" type="email" required autocomplete="email"
+              class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)]"
+              placeholder="jane@example.com" />
+          </div>
+
+          <div>
+            <label for="str-program" class="block text-sm font-medium text-[var(--color-ink)] mb-1">I'm interested in</label>
+            <select id="str-program" name="program"
+              class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)] bg-white">
+              <option value="">Select a program</option>
+              <option value="dscr">DSCR loan (qualify on rental income)</option>
+              <option value="bank-statement">Bank statement loan (self-employed)</option>
+              <option value="second-home">Second home / conventional</option>
+              <option value="not-sure">Not sure — help me figure it out</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="str-message" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Tell us about your situation</label>
+            <textarea id="str-message" name="message" rows={4}
+              class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)] resize-none"
+              placeholder="Target market, property type, purchase price estimate, where you are in the process..."></textarea>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <input type="checkbox" id="str-sms" name="sms_consent" value="yes"
+              class="mt-1 h-4 w-4 rounded border-gray-300 accent-[var(--color-accent)]" />
+            <label for="str-sms" class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+              I agree to receive SMS messages from Cliffco regarding my inquiry. Message and data rates may apply. Reply STOP to opt out.
+            </label>
+          </div>
+
+          <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+            By submitting this form you consent to be contacted by Cliffco, Inc. (NMLS #{COMPANY.nmls}) regarding your inquiry. Cliffco operates in Florida as Swish Capital, Inc.
+          </p>
+
+          <button type="submit" class="btn btn-primary w-full">Apply Now</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-prose">
+      <p class="eyebrow">STR investor questions</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Common questions about STR financing.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">Cliffco × STR Like the Best</p>
+      <h2 class="mt-3 text-white" style="font-size: var(--text-h2);">Ready to finance your next STR property?</h2>
+      <p class="lead mt-4 text-white/85 max-w-xl mx-auto">A Cliffco loan officer familiar with the STR model responds within one business day.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="#apply" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Apply Now</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
