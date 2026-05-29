@@ -62,7 +62,7 @@ const productIcons: Record<string, string> = {
             <svg class="w-3.5 h-3.5 text-[var(--color-accent)]" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
             Experience.com
           </dt>
-          <dd class="font-semibold text-[var(--color-ink)] text-base mt-1">4.9&#9733;&nbsp;&nbsp;3,617 reviews</dd>
+          <dd class="font-semibold text-[var(--color-ink)] text-base mt-1">4.9&#9733;&nbsp;&nbsp;<span data-countup data-target="3617" data-format="comma">3,617</span> reviews</dd>
         </div>
         <div class="hidden md:block w-px h-10 bg-[var(--color-mist-gray)]" aria-hidden="true"></div>
         <div>
@@ -94,7 +94,7 @@ const productIcons: Record<string, string> = {
             <svg class="w-3.5 h-3.5 text-[var(--color-accent)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0 1 15 0Z"/></svg>
             Licensed In
           </dt>
-          <dd class="font-semibold text-[var(--color-ink)] text-base mt-1">32 States</dd>
+          <dd class="font-semibold text-[var(--color-ink)] text-base mt-1"><span data-countup data-target="32">32</span> States</dd>
         </div>
       </dl>
     </div>
@@ -402,4 +402,43 @@ const productIcons: Record<string, string> = {
       </div>
     </div>
   </section>
+
+<script>
+// Trust bar count-up animation
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const els = document.querySelectorAll('[data-countup]');
+  if (!els.length) return;
+
+  function run(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const useComma = el.dataset.format === 'comma';
+    const duration = 1400;
+    const start = performance.now();
+    const initial = el.textContent;
+
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
+      const val = Math.round(eased * target);
+      el.textContent = useComma ? val.toLocaleString('en-US') : val.toString();
+      if (p < 1) requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        run(e.target);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.8 });
+
+  els.forEach(el => obs.observe(el));
+})();
+</script>
 </Layout>

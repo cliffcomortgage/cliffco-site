@@ -485,6 +485,42 @@ a:not(.btn):not(.card):not(.no-underline) {
   box-shadow: 0 0 0 4px rgba(102, 51, 204, 0.15);
 }
 
+/* ---------- Dot grid: mist-gray card sections ---------- */
+section[class*="mist-gray"] {
+  background-image: radial-gradient(rgba(102,51,204,0.18) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+}
+
+/* ---------- Dot grid: rich-black sections ---------- */
+section[class*="rich-black"] {
+  background-image: radial-gradient(rgba(189,232,241,0.14) 1.5px, transparent 1.5px);
+  background-size: 30px 30px;
+}
+
+/* ---------- Dot grid: footer ---------- */
+footer {
+  background-image: radial-gradient(rgba(189,232,241,0.1) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ---------- Decorative opening quote on testimonial blockquotes ---------- */
+.card blockquote { position: relative; }
+.card blockquote::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.2em;
+  left: -0.05em;
+  font-size: 5.5rem;
+  line-height: 1;
+  color: var(--color-accent);
+  opacity: 0.08;
+  font-family: Georgia, 'Times New Roman', serif;
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+.card blockquote > * { position: relative; z-index: 1; }
+
 /* ---------- Reduced motion: disable all enhancements ---------- */
 @media (prefers-reduced-motion: reduce) {
   .accent-gradient {
