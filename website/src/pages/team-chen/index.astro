@@ -1,0 +1,289 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { LOAN_OFFICERS, loanOfficer } from "../../data/loan-officers";
+import Headshot from "../../components/ui/Headshot.astro";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+
+const teamSlugs = ["james-chen", "christian-nguyen", "jeannette-zucker"];
+const teamMembers = teamSlugs.map(s => LOAN_OFFICERS.find(lo => lo.slug === s)!).filter(Boolean);
+const james = loanOfficer("james-chen")!;
+
+const faq = [
+  {
+    question: "What is a foreign national loan and who qualifies?",
+    answer: "A foreign national loan allows non-US citizens and non-permanent residents to purchase or refinance US real estate without a Social Security number. Eligible borrowers include visa holders, international investors, and individuals who live and work abroad. Documentation requirements differ from standard loans — typically a foreign passport, visa (if applicable), and evidence of foreign income or assets. Team Chen specializes in these transactions and works with programs that accommodate borrowers from most countries.",
+  },
+  {
+    question: "Can I qualify for a DSCR loan if I'm an international investor?",
+    answer: "Yes. DSCR loans are particularly well-suited for foreign national investors because qualification is based on the rental income of the US property, not the borrower's personal income or employment. You do not need US tax returns, a Social Security number, or domestic income documentation. The property's cash flow carries the loan.",
+  },
+  {
+    question: "What is a Non-QM loan and how does it differ from a conventional mortgage?",
+    answer: "Non-QM stands for Non-Qualified Mortgage — it doesn't conform to the standard Fannie Mae and Freddie Mac guidelines used by most banks. Non-QM loans use alternative documentation methods such as bank statements, P&L statements, asset depletion, or rental income to qualify borrowers. They're designed for self-employed professionals, investors, and borrowers with complex income structures. Team Chen originates Non-QM programs across all income documentation types.",
+  },
+  {
+    question: "What is a Business Bank Statement loan?",
+    answer: "A business bank statement loan allows business owners to qualify using 12 to 24 months of business bank deposits rather than tax returns. A standard expense ratio is applied to the gross deposits to calculate qualifying income. This is designed for LLCs, S-Corps, and sole proprietors whose tax returns understate their actual cash flow. No W-2 or personal income documentation is required.",
+  },
+  {
+    question: "Does Team Chen serve Chinese-speaking clients?",
+    answer: "Yes. James Chen is bilingual in English and Chinese (Mandarin and written), and has served the Asian American community for over 20 years through his membership in AREAA and CAREA. The team is experienced in navigating complex financial situations for clients across the US and abroad, including those purchasing US property from overseas.",
+  },
+  {
+    question: "What states does Team Chen originate loans in?",
+    answer: "James Chen is licensed in Arizona, Connecticut, Florida, Georgia, Maryland, North Carolina, New Jersey, New York, Oregon, Pennsylvania, South Carolina, Texas, and Virginia. Christian Nguyen is licensed in California, Connecticut, Florida, Georgia, New Jersey, New York, Pennsylvania, and Texas. Reach out to confirm coverage for your specific state and property.",
+  },
+];
+
+const schema = [
+  faqPageSchema(faq),
+  articleSchema({
+    headline: "Team Chen | Cliffco Mortgage Bankers",
+    description: "Team Chen at Cliffco Mortgage Bankers. Non-QM, DSCR, Business Bank Statement, and Foreign National loan specialists. Bilingual English and Chinese. AREAA recognized.",
+    url: "/team-chen/",
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "james-chen",
+  }),
+];
+---
+
+<Layout
+  title="Team Chen | Non-QM, DSCR & Foreign National Specialists | Cliffco"
+  description="Team Chen at Cliffco Mortgage Bankers. Non-QM, DSCR, Business Bank Statement, and Foreign National loan specialists. Bilingual English and Chinese. AREAA recognized. 20+ years."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Team Chen", href: "/team-chen/" },
+  ]} />
+
+  <!-- ═══ HERO ═════════════════════════════════════════════════ -->
+  <section class="bg-[var(--color-rich-black)] relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(rgba(189,232,241,0.06) 1px,transparent 1px);background-size:32px 32px;" aria-hidden="true"></div>
+    <div class="container-wide pt-20 pb-16 lg:pt-28 lg:pb-20 relative z-10">
+      <div class="text-center">
+        <img
+          src="/images/team%20logos/Team%20Chen_Stacked_White.png"
+          alt="Team Chen"
+          class="mx-auto mb-8 select-none"
+          style="max-height:108px;width:auto;"
+          loading="eager"
+        />
+        <p class="text-[var(--color-ice-blue)] text-xs tracking-[0.3em] uppercase font-light mb-5">Cliffco Mortgage Bankers · Uniondale, New York</p>
+        <h1 class="text-white" style="font-size:clamp(2.25rem,5vw,4rem);font-weight:200;letter-spacing:-0.04em;line-height:1.08;">
+          Non-QM, DSCR, and Foreign National<br/>
+          <em style="font-style:italic;font-weight:300;color:rgba(189,232,241,0.9);">specialists since 2003.</em>
+        </h1>
+        <p class="mt-6 text-white/65 font-light leading-relaxed max-w-xl mx-auto" style="font-size:1.05rem;">
+          Team Chen originates complex mortgage transactions for self-employed borrowers, real estate investors, and international buyers. Bilingual in English and Chinese. AREAA recognized for over five consecutive years.
+        </p>
+        <div class="mt-14 flex justify-center gap-4 flex-wrap">
+          <a href={james.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener"
+            style="background:#fff;color:#0d0d0d;text-decoration:none;padding:0.875rem 2.25rem;border-radius:999px;font-weight:600;font-size:0.9375rem;letter-spacing:0.02em;">
+            Work With The Team
+          </a>
+          {james.links?.directPhone && (
+            <a href={`tel:${james.links.directPhone.replace(/[^+\d]/g, "")}`}
+              style="background:transparent;color:rgba(255,255,255,0.8);text-decoration:none;padding:0.875rem 2.25rem;border-radius:999px;font-weight:400;font-size:0.9375rem;border:1px solid rgba(255,255,255,0.25);">
+              {james.links.directPhone}
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="mt-16 pt-14 border-t border-white/15 grid sm:grid-cols-3 gap-10 sm:gap-0 sm:divide-x divide-white/15">
+        {[
+          { stat: "20+", label: "Years originating", sub: "Licensed since 2003" },
+          { stat: "AREAA", label: "Top 10 Asian American LO", sub: "Five consecutive years" },
+          { stat: "2", label: "Languages", sub: "English · Chinese (Mandarin)" },
+        ].map(d => (
+          <div class="sm:px-16 first:pl-0 last:pr-0 text-center sm:text-left">
+            <p style="font-size:clamp(1.75rem,4vw,2.75rem);font-weight:200;letter-spacing:-0.04em;color:#fff;line-height:1;">{d.stat}</p>
+            <p class="text-white/65 font-light text-sm mt-3">{d.label}</p>
+            <p class="text-white/40 text-xs mt-1.5 tracking-wide">{d.sub}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ THE TEAM ══════════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-white">
+    <div class="container-wide">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">The team</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Meet Team Chen.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] font-light leading-relaxed max-w-xl" style="font-size:1.05rem;">
+        Three specialists. Deep expertise in Non-QM, DSCR, Business Bank Statement, and Foreign National programs. Serving borrowers across the US and internationally.
+      </p>
+      <div class="mt-12 grid gap-8 sm:grid-cols-3">
+        {teamMembers.map((lo) => (
+          <a href={`/loan-officers/${lo.slug}/`} class="group no-underline text-[var(--color-ink)] flex flex-col">
+            {lo.hasPhoto && (
+              <div class="rounded-xl overflow-hidden aspect-square bg-[var(--color-mist-gray)] mb-4">
+                <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="group-hover:scale-105 transition-transform duration-500" />
+              </div>
+            )}
+            <div class="border-t border-[var(--color-mist-gray)] pt-3">
+              <p class="font-medium text-[var(--color-ink)] text-sm">{lo.displayName}</p>
+              <p class="text-xs text-[var(--color-text-muted)] font-light mt-0.5">{lo.title}</p>
+              <p class="text-xs text-[var(--color-text-muted)]/60 mt-0.5">NMLS #{lo.nmls}</p>
+              <span class="mt-2 text-xs font-medium text-[var(--color-accent)] inline-block">View profile →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SPECIALTIES ═══════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">What we do best</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Four programs.<br/>One team that knows them inside out.</h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2">
+        {[
+          {
+            name: "Non-QM Loans",
+            range: "Alternative documentation",
+            href: "/loans/non-qm-self-employed/",
+            body: "For self-employed borrowers, 1099 contractors, and anyone whose tax returns don't reflect their true income. Bank statements, P&L, asset depletion, 1099-only, and ITIN programs. No W-2 required.",
+          },
+          {
+            name: "DSCR Loans",
+            range: "Qualify on rental income",
+            href: "/loans/dscr/",
+            body: "Qualify investment properties on their own cash flow. No personal income documentation. Short-term and long-term rentals both accepted. LLC vesting allowed. Portfolio scaling without personal DTI caps.",
+          },
+          {
+            name: "Business Bank Statement",
+            range: "12–24 months of deposits",
+            href: "/loans/business-bank-statement/",
+            body: "Business owners qualify using 12 to 24 months of business bank deposits. A standard expense ratio is applied to gross deposits. No tax returns. Built for LLCs, S-Corps, and sole proprietors.",
+          },
+          {
+            name: "Foreign National Loans",
+            range: "No SSN required",
+            href: "/get-started/",
+            body: "US real estate financing for non-citizens and non-permanent residents. Purchase or refinance without a Social Security number. Programs for visa holders, international investors, and buyers based abroad. Bilingual team.",
+          },
+        ].map(spec => (
+          <a href={spec.href} class="group card no-underline text-[var(--color-ink)] flex flex-col gap-3 h-full">
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="font-medium text-[var(--color-ink)]" style="font-size:1.15rem;letter-spacing:-0.01em;">{spec.name}</h3>
+              <span class="text-xs font-semibold text-[var(--color-accent)] bg-[var(--color-accent)]/8 px-2.5 py-1 rounded-full shrink-0 mt-0.5">{spec.range}</span>
+            </div>
+            <p class="text-sm text-[var(--color-text-muted)] font-light leading-relaxed flex-1">{spec.body}</p>
+            <span class="text-xs font-medium text-[var(--color-accent)] mt-auto group-hover:translate-x-1 inline-block transition-transform">Learn more →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOREIGN NATIONAL SPOTLIGHT ═══════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-16 items-start">
+      <div>
+        <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">A unique specialty</p>
+        <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">US real estate for international buyers.</h2>
+        <p class="mt-5 text-[var(--color-text)] font-light leading-relaxed" style="font-size:1.05rem;">
+          Purchasing or investing in US property as a non-citizen involves documentation requirements that most lenders are not equipped to handle. Team Chen originates foreign national loans regularly and understands the nuances across different visa types, countries of origin, and income structures.
+        </p>
+        <p class="mt-4 text-[var(--color-text)] font-light leading-relaxed" style="font-size:1.05rem;">
+          James Chen's fluency in Chinese and two decades of serving the Asian American community through AREAA and CAREA makes Team Chen a natural fit for Chinese-speaking buyers and investors purchasing US real estate from abroad.
+        </p>
+        <a href={james.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener" class="mt-10 inline-block btn btn-primary text-sm">
+          Start a conversation
+        </a>
+      </div>
+      <div class="space-y-4 lg:pt-10">
+        {[
+          { label: "No SSN required", detail: "Foreign national programs use a foreign passport and visa as primary identification. A Social Security number is not required." },
+          { label: "No US credit history required", detail: "International credit history and foreign bank documentation are accepted. Borrowers don't need a US credit file to qualify." },
+          { label: "DSCR available for investors", detail: "Foreign investors can use DSCR programs to qualify US rental properties on their cash flow alone, with no personal income docs needed." },
+          { label: "Bilingual service", detail: "James Chen conducts business in English and Chinese. The team is experienced navigating complex transactions for clients across the US and abroad." },
+        ].map(p => (
+          <div class="border border-[var(--color-mist-gray)] rounded-xl p-6">
+            <h3 class="font-medium text-[var(--color-ink)]" style="font-size:1rem;">{p.label}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] font-light leading-relaxed">{p.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══════════════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-3xl">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">Frequently asked</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Questions we answer every day.</h2>
+      <div class="mt-10 space-y-2">
+        {faq.map((item) => (
+          <details class="bg-white rounded-xl border border-[var(--color-mist-gray)] overflow-hidden group">
+            <summary class="flex items-center justify-between px-6 py-5 font-medium text-[var(--color-ink)] cursor-pointer list-none text-sm">
+              {item.question}
+              <svg class="w-4 h-4 shrink-0 text-[var(--color-accent)] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="px-6 pb-6 text-sm text-[var(--color-text)] font-light leading-relaxed border-t border-[var(--color-mist-gray)] pt-4">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══════════════════════════════════════════════════ -->
+  <section class="bg-[var(--color-rich-black)] relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(rgba(189,232,241,0.06) 1px,transparent 1px);background-size:32px 32px;" aria-hidden="true"></div>
+    <div class="container-wide py-20 lg:py-28 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="text-[var(--color-ice-blue)] text-xs tracking-[0.3em] uppercase font-light mb-5">Ready to get started?</p>
+          <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:200;letter-spacing:-0.04em;color:#fff;line-height:1.1;">
+            Complex file.<br/>
+            <span style="font-weight:300;color:rgba(255,255,255,0.6);">Simple process.</span>
+          </h2>
+          <p class="mt-5 text-white/50 font-light leading-relaxed" style="font-size:1rem;">
+            No credit pull. No commitment. A 10-minute conversation with Team Chen clarifies which program fits and what documentation is needed.
+          </p>
+        </div>
+        <div class="flex flex-col items-center gap-4">
+          <div style="width:100%;max-width:260px;">
+            <img
+              src="/images/team%20logos/Team%20Chen_Stacked_White.png"
+              alt="Team Chen"
+              class="w-full h-auto mb-7 select-none"
+              style="max-height:108px;object-fit:contain;object-position:center;"
+              loading="lazy"
+            />
+            <a href={james.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener"
+              style="display:block;width:100%;text-align:center;background:#fff;color:#0d0d0d;text-decoration:none;padding:0.875rem 1.5rem;border-radius:999px;font-weight:600;font-size:0.9375rem;letter-spacing:0.01em;">
+              Start Your Application
+            </a>
+          </div>
+          <div class="flex flex-col gap-2 items-center text-center">
+            {james.links?.email && (
+              <a href={`mailto:${james.links.email}`}
+                style="color:rgba(255,255,255,0.4);font-size:0.8125rem;font-weight:300;text-decoration:none;"
+                class="hover:text-white transition-colors">
+                {james.links.email}
+              </a>
+            )}
+            {james.links?.directPhone && (
+              <a href={`tel:${james.links.directPhone.replace(/[^+\d]/g, "")}`}
+                style="color:rgba(255,255,255,0.4);font-size:0.8125rem;font-weight:300;text-decoration:none;"
+                class="hover:text-white transition-colors">
+                {james.links.directPhone}
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

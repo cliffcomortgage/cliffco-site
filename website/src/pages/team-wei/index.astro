@@ -1,0 +1,263 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { LOAN_OFFICERS, loanOfficer } from "../../data/loan-officers";
+import Headshot from "../../components/ui/Headshot.astro";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+
+const teamSlugs = ["steve-wei", "katherine-chiang", "derek-liu", "mayra-hernandez"];
+const teamMembers = teamSlugs.map(s => LOAN_OFFICERS.find(lo => lo.slug === s)!).filter(Boolean);
+const steve = loanOfficer("steve-wei")!;
+
+const faq = [
+  {
+    question: "What Non-QM programs does Team Wei specialize in?",
+    answer: "Team Wei originates the full range of Non-QM products: business bank statement loans (12 to 24 months of deposits), P&L loans, 1099 loans for independent contractors, DSCR loans for real estate investors, asset depletion programs for high-net-worth borrowers, jumbo Non-QM, and bridge financing. Steve Wei has been originating these programs for over a decade.",
+  },
+  {
+    question: "Can a business owner qualify without two years of tax returns?",
+    answer: "Yes. Bank statement loan programs allow business owners to qualify using 12 to 24 months of business bank deposits. A standard expense ratio is applied to the gross deposits to calculate qualifying income. No tax returns required. This is designed specifically for business owners whose write-offs make taxable income appear lower than actual cash flow.",
+  },
+  {
+    question: "Does Team Wei serve Mandarin-speaking clients?",
+    answer: "Yes. Steve Wei and Katherine Chiang are both fluent in Mandarin Chinese and English, and Steve also speaks Spanish. The team regularly serves Chinese-speaking business owners and investors purchasing properties in Arizona, California, Texas, and beyond.",
+  },
+  {
+    question: "What states does Team Wei originate loans in?",
+    answer: "Steve Wei is licensed in Arizona, California, Colorado, Texas, and additional states. Katherine Chiang is licensed in Texas and other states. Team Wei serves clients across the Southwest and Western US. Reach out to confirm coverage for your specific state.",
+  },
+  {
+    question: "Can Team Wei help with investment properties?",
+    answer: "Yes. DSCR loans for investment properties are a core part of the team's business. These programs qualify based on the property's rental income, not personal income. No W-2 or tax returns required. Long-term and short-term rentals both accepted. LLC vesting allowed.",
+  },
+  {
+    question: "What is the difference between a bank statement loan and a DSCR loan?",
+    answer: "A bank statement loan qualifies you as the borrower based on your business or personal deposits. It's used for primary residences, second homes, and investment properties. A DSCR loan qualifies the investment property itself based on its rental income. If you're buying an investment property and want to keep your personal income out of the qualification entirely, DSCR is usually the right program. Team Wei can walk you through the tradeoffs for your specific scenario.",
+  },
+];
+
+const schema = [
+  faqPageSchema(faq),
+  articleSchema({
+    headline: "Team Wei | Cliffco Mortgage Bankers",
+    description: "Team Wei at Cliffco Mortgage Bankers in Scottsdale, AZ. Non-QM, business bank statement, and DSCR specialists. Trilingual in English, Mandarin, and Spanish.",
+    url: "/team-wei/",
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "steve-wei",
+  }),
+];
+---
+
+<Layout
+  title="Team Wei | Non-QM & Business Owner Specialists | Cliffco"
+  description="Team Wei at Cliffco Mortgage Bankers in Scottsdale, AZ. Non-QM, bank statement, and DSCR specialists serving business owners and investors. Trilingual English, Mandarin, Spanish."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Team Wei", href: "/team-wei/" },
+  ]} />
+
+  <!-- ═══ HERO ═════════════════════════════════════════════════ -->
+  <section class="bg-[var(--color-rich-black)] relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(rgba(189,232,241,0.06) 1px,transparent 1px);background-size:32px 32px;" aria-hidden="true"></div>
+    <div class="container-wide pt-20 pb-16 lg:pt-28 lg:pb-20 relative z-10">
+      <div class="text-center">
+        <img
+          src="/images/team%20logos/Team%20Wei_White@4x.png"
+          alt="Team Wei"
+          class="mx-auto mb-8 select-none"
+          style="max-height:108px;width:auto;"
+          loading="eager"
+        />
+        <p class="text-[var(--color-ice-blue)] text-xs tracking-[0.3em] uppercase font-light mb-5">Cliffco Mortgage Bankers · Scottsdale, Arizona</p>
+        <h1 class="text-white" style="font-size:clamp(2.25rem,5vw,4rem);font-weight:200;letter-spacing:-0.04em;line-height:1.08;">
+          Non-QM and business owner specialists<br/>
+          <em style="font-style:italic;font-weight:300;color:rgba(189,232,241,0.9);">serving the Southwest since 2013.</em>
+        </h1>
+        <p class="mt-6 text-white/65 font-light leading-relaxed max-w-xl mx-auto" style="font-size:1.05rem;">
+          Team Wei helps business owners, self-employed professionals, and real estate investors access financing that fits how they actually operate. Trilingual in English, Mandarin, and Spanish.
+        </p>
+        <div class="mt-14 flex justify-center gap-4 flex-wrap">
+          <a href={steve.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener"
+            style="background:#fff;color:#0d0d0d;text-decoration:none;padding:0.875rem 2.25rem;border-radius:999px;font-weight:600;font-size:0.9375rem;letter-spacing:0.02em;">
+            Work With The Team
+          </a>
+          {steve.links?.directPhone && (
+            <a href={`tel:${steve.links.directPhone.replace(/[^+\d]/g, "")}`}
+              style="background:transparent;color:rgba(255,255,255,0.8);text-decoration:none;padding:0.875rem 2.25rem;border-radius:999px;font-weight:400;font-size:0.9375rem;border:1px solid rgba(255,255,255,0.25);">
+              {steve.links.directPhone}
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="mt-16 pt-14 border-t border-white/15 grid sm:grid-cols-3 gap-10 sm:gap-0 sm:divide-x divide-white/15">
+        {[
+          { stat: "10+", label: "Years originating Non-QM", sub: "Business owners · Investors · Self-employed" },
+          { stat: "3", label: "Languages", sub: "English · Mandarin · Spanish" },
+          { stat: "4", label: "Specialists on the team", sub: "Scottsdale · Phoenix Metro · Southwest" },
+        ].map(d => (
+          <div class="sm:px-16 first:pl-0 last:pr-0 text-center sm:text-left">
+            <p style="font-size:clamp(1.75rem,4vw,2.75rem);font-weight:200;letter-spacing:-0.04em;color:#fff;line-height:1;">{d.stat}</p>
+            <p class="text-white/65 font-light text-sm mt-3">{d.label}</p>
+            <p class="text-white/40 text-xs mt-1.5 tracking-wide">{d.sub}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ THE TEAM ══════════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-white">
+    <div class="container-wide">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">The team</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Meet Team Wei.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] font-light leading-relaxed max-w-xl" style="font-size:1.05rem;">
+        Four specialists serving business owners and investors across Arizona, California, Texas, and beyond. Fluent in English, Mandarin Chinese, and Spanish.
+      </p>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {teamMembers.map((lo) => (
+          <a href={`/loan-officers/${lo.slug}/`} class="group no-underline text-[var(--color-ink)] flex flex-col">
+            {lo.hasPhoto && (
+              <div class="rounded-xl overflow-hidden aspect-square bg-[var(--color-mist-gray)] mb-4">
+                <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="group-hover:scale-105 transition-transform duration-500" />
+              </div>
+            )}
+            <div class="border-t border-[var(--color-mist-gray)] pt-3">
+              <p class="font-medium text-[var(--color-ink)] text-sm">{lo.displayName}</p>
+              <p class="text-xs text-[var(--color-text-muted)] font-light mt-0.5">{lo.title}</p>
+              <p class="text-xs text-[var(--color-text-muted)]/60 mt-0.5">NMLS #{lo.nmls}</p>
+              <span class="mt-2 text-xs font-medium text-[var(--color-accent)] inline-block">View profile →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROGRAMS ══════════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">Core programs</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Built for how business owners actually earn.</h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          {
+            name: "Business Bank Statement",
+            range: "12–24 months",
+            href: "/loans/business-bank-statement/",
+            body: "Qualify using business deposits rather than tax returns. A standard expense ratio applied to gross deposits determines qualifying income. For LLCs, S-Corps, and sole proprietors whose returns understate cash flow.",
+          },
+          {
+            name: "DSCR Loans",
+            range: "Qualify on rental income",
+            href: "/loans/dscr/",
+            body: "Investment properties qualify on their own cash flow. No personal income needed. Short-term and long-term rentals accepted. LLC vesting allowed. Portfolio scaling without personal DTI caps.",
+          },
+          {
+            name: "Non-QM / P&L",
+            range: "Alternative documentation",
+            href: "/loans/non-qm-self-employed/",
+            body: "P&L statements, 1099 income, and other alternative documentation for business owners and contractors. No W-2 or tax returns required. Multiple programs across income types.",
+          },
+          {
+            name: "Jumbo Loans",
+            range: "Above conforming limits",
+            href: "/loans/conventional/",
+            body: "Financing above the conforming limit for high-value properties in Arizona, California, and Texas. Conventional and Non-QM jumbo programs available depending on income documentation.",
+          },
+          {
+            name: "FHA / VA / Conventional",
+            range: "Full program access",
+            href: "/loans/conventional-government/",
+            body: "Team Wei originates the full range of conventional government programs for buyers who qualify through traditional documentation. Non-QM is the specialty, but all paths are on the table.",
+          },
+        ].map(spec => (
+          <a href={spec.href} class="group card no-underline text-[var(--color-ink)] flex flex-col gap-3 h-full">
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="font-medium text-[var(--color-ink)]" style="font-size:1.05rem;letter-spacing:-0.01em;">{spec.name}</h3>
+              <span class="text-xs font-semibold text-[var(--color-accent)] bg-[var(--color-accent)]/8 px-2.5 py-1 rounded-full shrink-0 mt-0.5">{spec.range}</span>
+            </div>
+            <p class="text-sm text-[var(--color-text-muted)] font-light leading-relaxed flex-1">{spec.body}</p>
+            <span class="text-xs font-medium text-[var(--color-accent)] mt-auto group-hover:translate-x-1 inline-block transition-transform">Learn more →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══════════════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-white">
+    <div class="container-wide max-w-3xl">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">Frequently asked</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Business owner and Non-QM questions.</h2>
+      <div class="mt-10 space-y-2">
+        {faq.map((item) => (
+          <details class="bg-[var(--color-mist-gray)]/40 rounded-xl border border-[var(--color-mist-gray)] overflow-hidden group">
+            <summary class="flex items-center justify-between px-6 py-5 font-medium text-[var(--color-ink)] cursor-pointer list-none text-sm">
+              {item.question}
+              <svg class="w-4 h-4 shrink-0 text-[var(--color-accent)] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="px-6 pb-6 text-sm text-[var(--color-text)] font-light leading-relaxed bg-white border-t border-[var(--color-mist-gray)] pt-4">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══════════════════════════════════════════════════ -->
+  <section class="bg-[var(--color-rich-black)] relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(rgba(189,232,241,0.06) 1px,transparent 1px);background-size:32px 32px;" aria-hidden="true"></div>
+    <div class="container-wide py-20 lg:py-28 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="text-[var(--color-ice-blue)] text-xs tracking-[0.3em] uppercase font-light mb-5">English · 中文 · Español</p>
+          <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:200;letter-spacing:-0.04em;color:#fff;line-height:1.1;">
+            Your business is complex.<br/>
+            <span style="font-weight:300;color:rgba(255,255,255,0.6);">Your mortgage doesn't have to be.</span>
+          </h2>
+          <p class="mt-5 text-white/50 font-light leading-relaxed" style="font-size:1rem;">
+            No credit pull. No commitment. A conversation with Team Wei starts with how you earn and ends with the right program for you.
+          </p>
+        </div>
+        <div class="flex flex-col items-center gap-4">
+          <div style="width:100%;max-width:260px;">
+            <img
+              src="/images/team%20logos/Team%20Wei_White@4x.png"
+              alt="Team Wei"
+              class="w-full h-auto mb-7 select-none"
+              style="max-height:108px;object-fit:contain;object-position:center;"
+              loading="lazy"
+            />
+            <a href={steve.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener"
+              style="display:block;width:100%;text-align:center;background:#fff;color:#0d0d0d;text-decoration:none;padding:0.875rem 1.5rem;border-radius:999px;font-weight:600;font-size:0.9375rem;letter-spacing:0.01em;">
+              Start Your Application
+            </a>
+          </div>
+          <div class="flex flex-col gap-2 items-center text-center">
+            {steve.links?.email && (
+              <a href={`mailto:${steve.links.email}`}
+                style="color:rgba(255,255,255,0.4);font-size:0.8125rem;font-weight:300;text-decoration:none;"
+                class="hover:text-white transition-colors">
+                {steve.links.email}
+              </a>
+            )}
+            {steve.links?.directPhone && (
+              <a href={`tel:${steve.links.directPhone.replace(/[^+\d]/g, "")}`}
+                style="color:rgba(255,255,255,0.4);font-size:0.8125rem;font-weight:300;text-decoration:none;"
+                class="hover:text-white transition-colors">
+                {steve.links.directPhone}
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

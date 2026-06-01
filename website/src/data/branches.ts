@@ -180,7 +180,6 @@ export const BRANCHES: readonly Branch[] = [
     branchManagerSlug: "francisco-veras-170512",
     loanOfficerSlugs: [
       "francisco-veras-170512",
-      "julia-jorge-delcarmen-1555712",
       "keyla-cruz-486181",
       "nadia-geyer-castro-2498365",
       "samantha-roach-1956150",

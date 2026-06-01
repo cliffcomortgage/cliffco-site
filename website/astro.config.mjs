@@ -19,6 +19,9 @@ export default defineConfig({
   trailingSlash: 'always',
   redirects: {
     '/loans/fix-and-flip/': '/loans/business-bank-statement/',
+    '/loan-officers/julia-jorge/': '/loan-officers/',
+    '/loan-officers/jjorge/': '/loan-officers/',
+    '/loan-officers/julia-jorge-delcarmen/': '/loan-officers/',
     '/loan-officers/adam-turkewitz/': '/loan-officers/',
     '/loan-officers/aturkewitz/': '/loan-officers/',
     '/loan-officers/samantha-roach/': '/loan-officers/',

@@ -1,0 +1,283 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { LOAN_OFFICERS, loanOfficer } from "../../data/loan-officers";
+import Headshot from "../../components/ui/Headshot.astro";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+
+const teamSlugs = ["lisa-zambelli", "lauren-zambelli", "larisa-zambelli"];
+const teamMembers = teamSlugs.map(s => LOAN_OFFICERS.find(lo => lo.slug === s)!).filter(Boolean);
+const lisa = loanOfficer("lisa-zambelli")!;
+
+const faq = [
+  {
+    question: "What is a SONYMA loan and is it only for first-time buyers?",
+    answer: "SONYMA stands for State of New York Mortgage Agency. SONYMA's Achieving the Dream program offers 97% LTV fixed-rate financing with just 3% down, and their Down Payment Assistance Loan (DPAL) can provide up to $15,000 that is forgiven after 10 years of staying in the home. The program is primarily designed for first-time buyers, though exceptions exist for purchasing in certain target areas or for veterans. Team Zambelli are SONYMA-certified specialists and can confirm your eligibility in minutes.",
+  },
+  {
+    question: "How much down payment do I actually need to buy my first home?",
+    answer: "Less than most people think. FHA loans require 3.5% down with a 580+ credit score. SONYMA's Achieving the Dream program allows just 3% down. With down payment assistance programs layered on top, many of our clients close with far less than they expected to bring to the table. We always start with a full picture of what programs are available for your situation before assuming you need 10 or 20 percent.",
+  },
+  {
+    question: "What down payment assistance programs are available on Long Island?",
+    answer: "The most impactful programs we work with are SONYMA's DPAL (up to $15,000 forgivable over 10 years), CHENOA Fund (FHA down payment assistance typically covering the full 3.5%), and various Nassau and Suffolk County programs. Availability and funding change frequently. Our team knows which programs are currently active and which ones your specific property and income qualify for.",
+  },
+  {
+    question: "What credit score do I need to buy my first home?",
+    answer: "FHA allows scores as low as 580 for the 3.5% down option. SONYMA programs typically require 620 or higher. Conventional loans start at 620, with best pricing at 740+. If your score needs improvement before you apply, we can walk you through exactly what to address and how long it will take to get there.",
+  },
+  {
+    question: "Can I use a gift for my down payment?",
+    answer: "Yes. FHA and SONYMA programs both allow gift funds from family members for the down payment. There are documentation requirements for the gift, but our team handles this routinely and will walk you through exactly what's needed so nothing delays your closing.",
+  },
+  {
+    question: "What is a family buyout and how does it work?",
+    answer: "A family buyout is when one family member purchases the ownership share of another in a property. This is common when parents want to transfer a home to a child, or when siblings need to divide an inherited property. Team Zambelli specializes in these transactions, which have specific title and appraisal requirements that differ from a standard purchase.",
+  },
+];
+
+const schema = [
+  faqPageSchema(faq),
+  articleSchema({
+    headline: "Team Zambelli | Cliffco Mortgage Bankers",
+    description: "Team Zambelli at Cliffco Mortgage Bankers. SONYMA specialists, down payment assistance experts, and trusted guides for first-time homebuyers on Long Island for over 20 years.",
+    url: "/team-zambelli/",
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "lisa-zambelli",
+  }),
+];
+---
+
+<Layout
+  title="Team Zambelli | SONYMA & First-Time Homebuyer Specialists | Cliffco"
+  description="Team Zambelli at Cliffco Mortgage Bankers. SONYMA specialists and down payment assistance experts helping first-time buyers on Long Island for over 20 years. Bay Shore, NY."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Team Zambelli", href: "/team-zambelli/" },
+  ]} />
+
+  <!-- ═══ HERO + STATS (unified purple section) ════════════════ -->
+  <section class="accent-gradient">
+    <div class="container-wide pt-20 pb-16 lg:pt-28 lg:pb-20">
+      <!-- Centered hero content -->
+      <div class="text-center">
+        <img
+          src="/images/team%20logos/Team%20Zambelli_White.png"
+          alt="Team Zambelli"
+          class="mx-auto mb-8 select-none"
+          style="max-height:108px;width:auto;"
+          loading="eager"
+        />
+        <p class="text-[var(--color-ice-blue)] text-xs tracking-[0.3em] uppercase font-light mb-5">Cliffco Mortgage Bankers · Bay Shore, New York</p>
+        <h1 class="text-white" style="font-size:clamp(2.25rem,5vw,4rem);font-weight:200;letter-spacing:-0.04em;line-height:1.08;">
+          A mother-daughter team helping<br/>
+          <em style="font-style:italic;font-weight:300;color:rgba(189,232,241,0.9);">Long Island families get home.</em>
+        </h1>
+        <p class="mt-6 text-white/65 font-light leading-relaxed max-w-xl mx-auto" style="font-size:1.05rem;">
+          SONYMA certified specialists and first-time homebuyer guides with over 20 years of experience on Long Island. We know the programs, the process, and how to get you into a home with less than you think.
+        </p>
+        <div class="mt-14 flex justify-center gap-4 flex-wrap">
+          <a href={lisa.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener"
+            style="background:#fff;color:#0d0d0d;text-decoration:none;padding:0.875rem 2.25rem;border-radius:999px;font-weight:600;font-size:0.9375rem;letter-spacing:0.02em;">
+            Start Your Journey
+          </a>
+          {lisa.links?.directPhone && (
+            <a href={`tel:${lisa.links.directPhone.replace(/[^+\d]/g, "")}`}
+              style="background:transparent;color:rgba(255,255,255,0.8);text-decoration:none;padding:0.875rem 2.25rem;border-radius:999px;font-weight:400;font-size:0.9375rem;border:1px solid rgba(255,255,255,0.25);">
+              {lisa.links.directPhone}
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- Stats row — same purple background, thin separator -->
+      <div class="mt-16 pt-14 border-t border-white/15 grid sm:grid-cols-3 gap-10 sm:gap-0 sm:divide-x divide-white/15">
+        {[
+          { stat: "20+", label: "Years serving Long Island", sub: "Nassau · Suffolk · New York City" },
+          { stat: "SONYMA", label: "Certified specialists", sub: "Achieving the Dream · DPAL" },
+          { stat: "$15K", label: "Max forgivable DPA", sub: "Via SONYMA DPAL for eligible buyers" },
+        ].map(d => (
+          <div class="sm:px-16 first:pl-0 last:pr-0 text-center sm:text-left">
+            <p style="font-size:clamp(1.75rem,4vw,2.75rem);font-weight:200;letter-spacing:-0.04em;color:#fff;line-height:1;">{d.stat}</p>
+            <p class="text-white/65 font-light text-sm mt-3">{d.label}</p>
+            <p class="text-white/40 text-xs mt-1.5 tracking-wide">{d.sub}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ THE TEAM ══════════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-white">
+    <div class="container-wide">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">The team</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Meet Team Zambelli.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] font-light leading-relaxed max-w-xl" style="font-size:1.05rem;">
+        A mother and two daughters. Over two decades of combined experience. One team built on trust, family, and an honest commitment to getting every client to the closing table.
+      </p>
+      <div class="mt-12 grid gap-8 sm:grid-cols-3">
+        {teamMembers.map((lo) => (
+          <a href={`/loan-officers/${lo.slug}/`} class="group no-underline text-[var(--color-ink)] flex flex-col">
+            {lo.hasPhoto && (
+              <div class="rounded-xl overflow-hidden aspect-square bg-[var(--color-mist-gray)] mb-4">
+                <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="group-hover:scale-105 transition-transform duration-500" />
+              </div>
+            )}
+            <div class="border-t border-[var(--color-mist-gray)] pt-3">
+              <p class="font-medium text-[var(--color-ink)] text-sm">{lo.displayName}</p>
+              <p class="text-xs text-[var(--color-text-muted)] font-light mt-0.5">{lo.title}</p>
+              <p class="text-xs text-[var(--color-text-muted)]/60 mt-0.5">NMLS #{lo.nmls}</p>
+              <span class="mt-2 text-xs font-medium text-[var(--color-accent)] inline-block">View profile →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SONYMA SPOTLIGHT ══════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-[var(--color-mist-gray)]">
+    <div class="container-wide grid lg:grid-cols-2 gap-16 items-start">
+      <div>
+        <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">Our specialty</p>
+        <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">SONYMA specialists.<br/>Not just participants.</h2>
+        <p class="mt-5 text-[var(--color-text)] font-light leading-relaxed" style="font-size:1.05rem;">
+          Most loan officers can access SONYMA programs. Team Zambelli specializes in them. There is a meaningful difference in how cleanly and quickly these transactions close when you work with a team that navigates them daily.
+        </p>
+        <p class="mt-4 text-[var(--color-text)] font-light leading-relaxed" style="font-size:1.05rem;">
+          SONYMA's Achieving the Dream program offers 97% financing at fixed rates, and their Down Payment Assistance Loan can provide up to $15,000 that is forgiven after ten years of owner-occupancy. Combined with other assistance programs, many first-time buyers on Long Island close with significantly less out of pocket than they expected.
+        </p>
+        <a href="/down-payment-assistance/" class="mt-14 inline-block btn btn-primary text-sm">
+          Explore down payment assistance
+        </a>
+      </div>
+      <div class="space-y-4 lg:pt-10">
+        {[
+          {
+            name: "SONYMA Achieving the Dream",
+            detail: "97% LTV, just 3% down. Fixed rate. For first-time buyers or buyers in eligible target areas.",
+          },
+          {
+            name: "SONYMA Down Payment Assistance Loan",
+            detail: "Up to $15,000 forgivable after 10 years of owner-occupancy. Covers both down payment and closing costs.",
+          },
+          {
+            name: "CHENOA Fund",
+            detail: "National FHA down payment assistance program. Covers up to 3.5%, often forgivable. Can stack with state programs.",
+          },
+          {
+            name: "County and local programs",
+            detail: "Nassau and Suffolk County maintain active DPA programs. Team Zambelli tracks which programs are currently funded and accepting applications.",
+          },
+        ].map(p => (
+          <div class="bg-white rounded-xl border border-[var(--color-mist-gray)] p-6">
+            <h3 class="font-medium text-[var(--color-ink)]" style="font-size:1rem;letter-spacing:-0.01em;">{p.name}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] font-light leading-relaxed">{p.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WHAT WE DO ════════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-white">
+    <div class="container-wide">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">Full program menu</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Beyond first-time buyers.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] font-light leading-relaxed max-w-xl" style="font-size:1.05rem;">
+        SONYMA and first-time buyer programs are our specialty, but Team Zambelli originates a full range of loan programs for every stage of homeownership.
+      </p>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          { name: "FHA Loans", range: "3.5% down · 580+ FICO", href: "/loans/fha/", body: "Government-insured with flexible credit requirements. The most common pairing with down payment assistance programs." },
+          { name: "Conventional", range: "3–5% down · 620+ FICO", href: "/loans/conventional-government/", body: "Fannie Mae and Freddie Mac conforming loans including high-balance options for Long Island's above-average purchase prices." },
+          { name: "VA Loans", range: "0% down · Eligible veterans", href: "/loans/va/", body: "Zero-down financing for veterans and active-duty service members. No PMI, no loan cap with full entitlement." },
+          { name: "SONYMA Programs", range: "97% LTV · DPA available", href: "/down-payment-assistance/", body: "Achieving the Dream fixed-rate program with optional DPAL up to $15,000 forgivable. Certified specialists on staff." },
+          { name: "Refinancing", range: "Rate-term · Cash-out", href: "/loans/refinancing/", body: "Lower your rate, shorten your term, or access equity. Available for primary residences, second homes, and investment properties." },
+          { name: "Family Buyouts", range: "Specialized transactions", href: "/contact/", body: "When a family member purchases another's ownership share, specialized title and appraisal requirements apply. Team Zambelli handles these routinely." },
+        ].map(spec => (
+          <a href={spec.href} class="group card no-underline text-[var(--color-ink)] flex flex-col gap-3 h-full">
+            <span class="text-xs tracking-widest uppercase text-[var(--color-accent)] font-light">{spec.range}</span>
+            <h3 class="font-medium text-[var(--color-ink)]" style="font-size:1.1rem;letter-spacing:-0.01em;">{spec.name}</h3>
+            <p class="text-sm text-[var(--color-text-muted)] font-light leading-relaxed flex-1">{spec.body}</p>
+            <span class="text-xs font-medium text-[var(--color-accent)] group-hover:translate-x-1 inline-block transition-transform mt-auto">Learn more →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══════════════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-3xl">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">First-time buyer questions</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Questions we answer every day.</h2>
+      <div class="mt-10 space-y-2">
+        {faq.map((item) => (
+          <details class="bg-white rounded-xl border border-[var(--color-mist-gray)] overflow-hidden group">
+            <summary class="flex items-center justify-between px-6 py-5 font-medium text-[var(--color-ink)] cursor-pointer list-none text-sm">
+              {item.question}
+              <svg class="w-4 h-4 shrink-0 text-[var(--color-accent)] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="px-6 pb-6 text-sm text-[var(--color-text)] font-light leading-relaxed border-t border-[var(--color-mist-gray)] pt-4">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══════════════════════════════════════════════════ -->
+  <section class="accent-gradient relative overflow-hidden">
+    <div class="container-wide py-20 lg:py-28 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="text-[var(--color-ice-blue)] text-xs tracking-[0.3em] uppercase font-light mb-5">Ready when you are</p>
+          <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:200;letter-spacing:-0.04em;color:#fff;line-height:1.1;">
+            Your first home is closer<br/>
+            <span style="font-weight:300;color:rgba(255,255,255,0.6);">than you think.</span>
+          </h2>
+          <p class="mt-5 text-white/55 font-light leading-relaxed" style="font-size:1rem;">
+            No pressure, no credit pull. A conversation with Team Zambelli starts with where you are today and what it takes to get you there.
+          </p>
+        </div>
+        <div class="flex flex-col items-center gap-4">
+          <div style="width:100%;max-width:260px;">
+            <img
+              src="/images/team%20logos/Team%20Zambelli_White.png"
+              alt="Team Zambelli"
+              class="w-full h-auto mb-7 select-none"
+              style="max-height:108px;object-fit:contain;object-position:center;"
+              loading="lazy"
+            />
+            <a href={lisa.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener"
+              style="display:block;width:100%;text-align:center;background:#fff;color:#0d0d0d;text-decoration:none;padding:0.875rem 1.5rem;border-radius:999px;font-weight:600;font-size:0.9375rem;letter-spacing:0.01em;">
+              Start Your Journey
+            </a>
+          </div>
+          <div class="flex flex-col gap-2 items-center text-center">
+            {lisa.links?.email && (
+              <a href={`mailto:${lisa.links.email}`}
+                style="color:rgba(255,255,255,0.4);font-size:0.8125rem;font-weight:300;text-decoration:none;"
+                class="hover:text-white transition-colors">
+                {lisa.links.email}
+              </a>
+            )}
+            {lisa.links?.directPhone && (
+              <a href={`tel:${lisa.links.directPhone.replace(/[^+\d]/g, "")}`}
+                style="color:rgba(255,255,255,0.4);font-size:0.8125rem;font-weight:300;text-decoration:none;"
+                class="hover:text-white transition-colors">
+                {lisa.links.directPhone}
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

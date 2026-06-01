@@ -66,6 +66,13 @@ const schema = [
         <a href={verifyUrl} class="text-[var(--color-accent)] font-semibold no-underline hover:underline" rel="noopener">Verify on NMLS Consumer Access ↗</a>
       </div>
 
+      {lo.team && (
+        <div class="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--color-accent)]/20 bg-[var(--color-accent)]/5">
+          <span class="text-xs text-[var(--color-text-muted)]">Part of</span>
+          <span class="text-xs font-semibold text-[var(--color-accent)]">{lo.team.name}</span>
+        </div>
+      )}
+
       <dl class="mt-6 grid gap-4 sm:grid-cols-2 max-w-2xl">
         <div>
           <dt class="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">Branch</dt>
@@ -130,10 +137,47 @@ const schema = [
     </div>
   </dialog>
 
+  <!-- TEAM BANNER (shown for team members only) -->
+  {lo.team && (
+    <section class="bg-[var(--color-rich-black)]">
+      <div class="container-wide py-7 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+          <img
+            src={lo.team.logoUrl}
+            alt={lo.team.name}
+            class={`${lo.team.bannerLogoHeight ?? 'h-12'} select-none`}
+            loading="lazy"
+          />
+          <div class="hidden sm:block w-px h-8 bg-white/15"></div>
+          <p class="text-white/50 text-sm font-light text-center sm:text-left">
+            Jumbo &middot; Alt-A &middot; DSCR &middot; Non-QM specialists
+          </p>
+        </div>
+        <a
+          href={`/${lo.team.slug}/`}
+          class="shrink-0 text-sm font-semibold no-underline"
+          style="background:#fff;color:#0d0d0d;padding:0.625rem 1.5rem;border-radius:999px;white-space:nowrap;"
+        >
+          View {lo.team.name} →
+        </a>
+      </div>
+    </section>
+  )}
+
   <!-- BIO NARRATIVE -->
   {lo.bio && (
-    <section class="bg-white pb-16">
-      <div class="container-prose">
+    <section class="bg-white py-16">
+      <div class="container-prose relative">
+        {lo.personalLogo && (
+          <div class="hidden lg:block absolute top-0 right-full pr-8" style="width:180px;">
+            <img
+              src={lo.personalLogo}
+              alt={`${lo.firstName.split(" ")[0]}'s personal brand`}
+              class="w-full object-contain"
+              loading="lazy"
+            />
+          </div>
+        )}
         <p class="eyebrow">About {lo.firstName.split(" ")[0]}</p>
         <h2 class="mt-3" style="font-size: var(--text-h2);">In their own words.</h2>
         <p class="lead mt-6">{lo.bio}</p>
@@ -185,6 +229,104 @@ const schema = [
       </div>
     </section>
   )}
+
+  <!-- CALCULATORS -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">Free tools</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Run the numbers before you apply.</h2>
+      <p class="lead mt-4 max-w-2xl text-[var(--color-text-muted)]">
+        Use these calculators to estimate your payment, buying power, and closing costs — then talk to {lo.firstName.split(" ")[0]} about the specifics.
+      </p>
+      <div class="mt-8 grid gap-5 sm:grid-cols-3">
+        {[
+          {
+            href: "/mortgage-guides/calculators/payment-estimator/",
+            title: "Payment Estimator",
+            desc: "See your full monthly payment at any price, rate, and down payment.",
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V13.5zm0 2.25h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V18zm2.498-6.75h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V13.5zm0 2.25h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V18zm2.504-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zm0 2.25h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V18zm2.498-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zM8.25 6h7.5v2.25h-7.5V6zM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.548 4.5 4.553v15.448c0 1.006.807 1.853 1.907 1.98C7.67 22.12 9.805 22.5 12 22.5s4.33-.38 5.593-.519c1.1-.127 1.907-.974 1.907-1.98V4.553c0-1.005-.807-1.853-1.907-1.98A48.507 48.507 0 0 0 12 2.25z" />`,
+          },
+          {
+            href: "/mortgage-guides/calculators/affordability/",
+            title: "Affordability Review",
+            desc: "Find the price range that fits your income and savings with real down payment scenarios.",
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />`,
+          },
+          {
+            href: "/mortgage-guides/calculators/closing-costs/",
+            title: "Closing Costs Estimator",
+            desc: "Get an itemized closing cost estimate by state, property type, and purchase price.",
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0c1.1.128 1.907 1.077 1.907 2.185zM9.75 9h.008v.008H9.75V9zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0zm4.125 4.5h.008v.008h-.008V13.5zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0z" />`,
+          },
+        ].map((calc) => (
+          <a href={calc.href} class="group card no-underline text-[var(--color-ink)] flex flex-col gap-4">
+            <div class="w-11 h-11 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent)]">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5" aria-hidden="true" set:html={calc.icon} />
+            </div>
+            <div class="flex-1">
+              <h3 class="font-semibold text-[var(--color-ink)]">{calc.title}</h3>
+              <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">{calc.desc}</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-accent)] group-hover:gap-2 transition-all">
+              Use calculator
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-3xl">
+      <p class="eyebrow">Common questions</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Answers before you reach out.</h2>
+      <div class="mt-8 space-y-4">
+        {[
+          {
+            q: "How do I get started?",
+            a: `The first step is a short conversation — no credit pull, no paperwork. ${lo.firstName.split(" ")[0]} will ask about your goals, income situation, and timeline to identify the right program. From there, you can move into a formal pre-approval when you're ready.`,
+          },
+          {
+            q: "Will getting pre-qualified hurt my credit score?",
+            a: "Pre-qualification at Cliffco uses a soft credit inquiry, which has no impact on your score. A hard pull only happens when you formally apply for a loan and authorize it — and we'll always tell you before that step.",
+          },
+          {
+            q: "What's the difference between pre-qualification and pre-approval?",
+            a: "Pre-qualification is a quick estimate based on what you share with us. Pre-approval goes deeper — we verify your income, assets, and credit and issue a formal letter. Sellers take pre-approved buyers more seriously, and in competitive markets it's often required before an offer is considered.",
+          },
+          {
+            q: "How long does the mortgage process take?",
+            a: "A conventional purchase typically closes in 21–45 days from an accepted offer. Non-QM, DSCR, and reverse mortgage transactions can take 30–45 days. Your timeline depends on the loan type, appraisal scheduling, and how quickly documents come together — we'll give you a realistic estimate at the start.",
+          },
+          {
+            q: "What documents will I need?",
+            a: "For most loans: two years of tax returns, recent pay stubs or bank statements, W-2s, and two months of asset statements. For non-QM and bank statement loans, requirements differ — typically 12–24 months of personal or business bank statements in place of tax returns. We'll give you a specific checklist based on your situation.",
+          },
+          {
+            q: "Can I qualify if I'm self-employed?",
+            a: "Yes. Cliffco specializes in non-traditional income scenarios — bank statement loans, P&L-based loans, DSCR for investors, and Alt-A programs for high-income borrowers whose tax returns don't reflect their full financial picture. Being self-employed isn't a barrier; it just means using the right program.",
+          },
+        ].map((item) => (
+          <details class="bg-white rounded-xl border border-[var(--color-mist-gray)] overflow-hidden group">
+            <summary class="flex items-center justify-between px-6 py-4 font-semibold text-[var(--color-ink)] cursor-pointer list-none">
+              {item.q}
+              <svg class="w-5 h-5 shrink-0 text-[var(--color-accent)] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="px-6 pb-5 text-sm text-[var(--color-text)] leading-relaxed border-t border-[var(--color-mist-gray)] pt-4">{item.a}</p>
+          </details>
+        ))}
+      </div>
+      <p class="mt-8 text-sm text-[var(--color-text-muted)]">
+        Have a question not answered here?{" "}
+        {lo.links?.email
+          ? <a href={`mailto:${lo.links.email}`} class="text-[var(--color-accent)] font-medium">Email {lo.firstName.split(" ")[0]} directly →</a>
+          : <a href="/contact/" class="text-[var(--color-accent)] font-medium">Contact us →</a>
+        }
+      </p>
+    </div>
+  </section>
 
   <!-- DISCLOSURE -->
   <section class="bg-white py-12">

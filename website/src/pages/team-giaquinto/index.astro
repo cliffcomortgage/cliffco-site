@@ -1,0 +1,312 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { LOAN_OFFICERS, loanOfficer } from "../../data/loan-officers";
+import Headshot from "../../components/ui/Headshot.astro";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+
+const teamSlugs = ["julian-giaquinto", "syed-hasib", "steve-lazo", "kathie-adler"];
+const teamMembers = teamSlugs.map(s => LOAN_OFFICERS.find(lo => lo.slug === s)!).filter(Boolean);
+const julian = loanOfficer("julian-giaquinto")!;
+
+const faq = [
+  {
+    question: "What is a reverse mortgage and who qualifies?",
+    answer: "A reverse mortgage (HECM) allows homeowners 62 and older to convert home equity into tax-free cash, a line of credit, or monthly income. No monthly mortgage payment is required as long as the home remains your primary residence and you maintain property taxes, insurance, and upkeep. Eligibility is based on age, home equity, and the property being your primary residence. Team Giaquinto has specialized in reverse mortgages since 2008 and will walk you through every aspect of the program before you decide.",
+  },
+  {
+    question: "What is a HELOC and how is it different from a reverse mortgage?",
+    answer: "A HELOC (Home Equity Line of Credit) is a revolving credit line secured by your home equity. Unlike a reverse mortgage, a HELOC requires monthly payments and is available to homeowners of any age. Our HELOC program offers approval in as little as five minutes and funding in as few as five business days. It's ideal for homeowners who want to access equity without refinancing their first mortgage and who can service monthly payments.",
+  },
+  {
+    question: "What happens to my home when I pass away if I have a reverse mortgage?",
+    answer: "Your heirs have options. They can sell the home and use the proceeds to pay off the reverse mortgage, keeping any remaining equity. They can also refinance into a conventional loan and keep the property. The reverse mortgage is non-recourse, meaning heirs are never responsible for more than the home's value at the time of sale, even if the loan balance exceeds it.",
+  },
+  {
+    question: "Can I lose my home with a reverse mortgage?",
+    answer: "A reverse mortgage remains in good standing as long as the home is your primary residence and you maintain property taxes, homeowner's insurance, and basic upkeep. The loan does not become due as long as these conditions are met. Team Giaquinto takes time to fully explain these obligations so every client understands exactly what is required.",
+  },
+  {
+    question: "Do I still own my home with a reverse mortgage?",
+    answer: "Yes. You retain title to your home throughout the life of the reverse mortgage. The lender does not own your home. The reverse mortgage is simply a loan secured by your home equity, just like a traditional mortgage.",
+  },
+  {
+    question: "What Non-QM programs does Team Giaquinto offer?",
+    answer: "Team Giaquinto originates a range of Non-QM products for borrowers who don't qualify conventionally, including bank statement loans for self-employed borrowers, no-income check loans for high-asset individuals, and programs for clients turned down by other lenders. Reach out and describe your situation and the team will identify which program fits.",
+  },
+];
+
+const schema = [
+  faqPageSchema(faq),
+  articleSchema({
+    headline: "Team Giaquinto | Cliffco Mortgage Bankers",
+    description: "Team Giaquinto at Cliffco Mortgage Bankers. Reverse mortgage specialists since 2008, HELOC programs, and Non-QM solutions for Long Island and New York homeowners.",
+    url: "/team-giaquinto/",
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "julian-giaquinto",
+  }),
+];
+---
+
+<Layout
+  title="Team Giaquinto | Reverse Mortgage & HELOC Specialists | Cliffco"
+  description="Team Giaquinto at Cliffco Mortgage Bankers. Reverse mortgage specialists since 2008, HELOC programs approved in minutes, and Non-QM solutions for Long Island homeowners."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Team Giaquinto", href: "/team-giaquinto/" },
+  ]} />
+
+  <!-- ═══ HERO ═════════════════════════════════════════════════ -->
+  <section class="accent-gradient">
+    <div class="container-wide pt-20 pb-16 lg:pt-28 lg:pb-20">
+      <div class="text-center">
+        <img
+          src="/images/team%20logos/Team%20Giaquinto_Stacked_White.png"
+          alt="Team Giaquinto"
+          class="mx-auto mb-8 select-none"
+          style="max-height:108px;width:auto;"
+          loading="eager"
+        />
+        <p class="text-[var(--color-ice-blue)] text-xs tracking-[0.3em] uppercase font-light mb-5">Cliffco Mortgage Bankers · Wantagh, New York</p>
+        <h1 class="text-white" style="font-size:clamp(2.25rem,5vw,4rem);font-weight:200;letter-spacing:-0.04em;line-height:1.08;">
+          Reverse Mortgage and HELOC specialists<br/>
+          <em style="font-style:italic;font-weight:300;color:rgba(189,232,241,0.9);">serving Long Island since 2003.</em>
+        </h1>
+        <p class="mt-6 text-white/65 font-light leading-relaxed max-w-xl mx-auto" style="font-size:1.05rem;">
+          Team Giaquinto has guided hundreds of Long Island seniors and homeowners through reverse mortgages, HELOCs, and non-traditional mortgage solutions. We take the time to educate first, advise second, and close with confidence.
+        </p>
+        <div class="mt-14 flex justify-center gap-4 flex-wrap">
+          <a href={julian.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener"
+            style="background:#fff;color:#0d0d0d;text-decoration:none;padding:0.875rem 2.25rem;border-radius:999px;font-weight:600;font-size:0.9375rem;letter-spacing:0.02em;">
+            Talk to Our Team
+          </a>
+          {julian.links?.directPhone && (
+            <a href={`tel:${julian.links.directPhone.replace(/[^+\d]/g, "")}`}
+              style="background:transparent;color:rgba(255,255,255,0.8);text-decoration:none;padding:0.875rem 2.25rem;border-radius:999px;font-weight:400;font-size:0.9375rem;border:1px solid rgba(255,255,255,0.25);">
+              {julian.links.directPhone}
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="mt-16 pt-14 border-t border-white/15 grid sm:grid-cols-3 gap-10 sm:gap-0 sm:divide-x divide-white/15">
+        {[
+          { stat: "2008", label: "Reverse mortgage specialty", sub: "15+ years of dedicated expertise" },
+          { stat: "5 min", label: "HELOC approval time", sub: "Funded in as few as 5 business days" },
+          { stat: "20+", label: "Years on Long Island", sub: "Wantagh · Nassau · Suffolk" },
+        ].map(d => (
+          <div class="sm:px-16 first:pl-0 last:pr-0 text-center sm:text-left">
+            <p style="font-size:clamp(1.75rem,4vw,2.75rem);font-weight:200;letter-spacing:-0.04em;color:#fff;line-height:1;">{d.stat}</p>
+            <p class="text-white/65 font-light text-sm mt-3">{d.label}</p>
+            <p class="text-white/40 text-xs mt-1.5 tracking-wide">{d.sub}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ THE TEAM ══════════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-white">
+    <div class="container-wide">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">The team</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Meet Team Giaquinto.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] font-light leading-relaxed max-w-xl" style="font-size:1.05rem;">
+        Four loan officers with decades of combined experience. Two reverse mortgage specialists. One team dedicated to helping Long Island homeowners make the most of their equity.
+      </p>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {teamMembers.map((lo) => (
+          <a href={`/loan-officers/${lo.slug}/`} class="group no-underline text-[var(--color-ink)] flex flex-col">
+            {lo.hasPhoto && (
+              <div class="rounded-xl overflow-hidden aspect-square bg-[var(--color-mist-gray)] mb-4">
+                <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="group-hover:scale-105 transition-transform duration-500" />
+              </div>
+            )}
+            <div class="border-t border-[var(--color-mist-gray)] pt-3">
+              <p class="font-medium text-[var(--color-ink)] text-sm">{lo.displayName}</p>
+              <p class="text-xs text-[var(--color-text-muted)] font-light mt-0.5">{lo.title}</p>
+              <p class="text-xs text-[var(--color-text-muted)]/60 mt-0.5">NMLS #{lo.nmls}</p>
+              <span class="mt-2 text-xs font-medium text-[var(--color-accent)] inline-block">View profile →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROGRAMS ══════════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">What we do best</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Three ways to put your home equity to work.</h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-3">
+        {[
+          {
+            name: "Reverse Mortgage (HECM)",
+            range: "Homeowners 62+",
+            href: "/loans/reverse-mortgage/",
+            body: "Convert your home equity into tax-free cash, a line of credit, or monthly income with no required monthly payment. FHA-insured and non-recourse. Julian has specialized in reverse mortgages since 2008.",
+          },
+          {
+            name: "HELOC",
+            range: "Approved in 5 minutes",
+            href: "/down-payment-assistance/",
+            body: "A revolving home equity line of credit funded in as few as five business days using our remote online notary. No need to refinance your first mortgage. Available to homeowners of any age.",
+          },
+          {
+            name: "Non-QM Loans",
+            range: "Alternative documentation",
+            href: "/loans/non-qm-self-employed/",
+            body: "For self-employed borrowers, high-asset individuals, and clients turned down elsewhere. Bank statement loans, no-income check programs, and flexible qualification for unique financial situations.",
+          },
+        ].map(spec => (
+          <a href={spec.href} class="group card no-underline text-[var(--color-ink)] flex flex-col gap-3 h-full">
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="font-medium text-[var(--color-ink)]" style="font-size:1.1rem;letter-spacing:-0.01em;">{spec.name}</h3>
+              <span class="text-xs font-semibold text-[var(--color-accent)] bg-[var(--color-accent)]/8 px-2.5 py-1 rounded-full shrink-0 mt-0.5">{spec.range}</span>
+            </div>
+            <p class="text-sm text-[var(--color-text-muted)] font-light leading-relaxed flex-1">{spec.body}</p>
+            <span class="text-xs font-medium text-[var(--color-accent)] mt-auto group-hover:translate-x-1 inline-block transition-transform">Learn more →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ REVERSE MORTGAGE SPOTLIGHT ═══════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-16 items-start">
+      <div>
+        <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">Our core specialty</p>
+        <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Reverse mortgages done right. Education first.</h2>
+        <p class="mt-5 text-[var(--color-text)] font-light leading-relaxed" style="font-size:1.05rem;">
+          A reverse mortgage is one of the most significant financial decisions a senior homeowner can make. Team Giaquinto believes that no client should sign a reverse mortgage without fully understanding how it works, what it costs, and how it affects their estate.
+        </p>
+        <p class="mt-4 text-[var(--color-text)] font-light leading-relaxed" style="font-size:1.05rem;">
+          Julian Giaquinto has guided Long Island seniors through reverse mortgages since 2008. Both Julian and Kathie Adler specialize in the program and take pride in patient, thorough guidance that puts the borrower's long-term wellbeing first.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/reverse-mortgage/" class="btn btn-primary text-sm">Learn about reverse mortgages</a>
+          <a href={julian.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener" class="btn btn-secondary text-sm">Talk to the team</a>
+        </div>
+      </div>
+      <div class="space-y-4 lg:pt-10">
+        {[
+          { label: "No monthly payment required", detail: "As long as the home is your primary residence and you maintain taxes, insurance, and upkeep, no monthly mortgage payment is due." },
+          { label: "FHA-insured and non-recourse", detail: "HECM reverse mortgages are insured by the FHA. Heirs are never responsible for more than the home's value, even if the loan balance exceeds it." },
+          { label: "You retain ownership", detail: "You keep title to your home throughout the life of the loan. The lender does not own your property." },
+          { label: "Multiple payout options", detail: "Receive funds as a lump sum, a line of credit that grows over time, fixed monthly payments, or a combination of these options." },
+        ].map(p => (
+          <div class="border border-[var(--color-mist-gray)] rounded-xl p-6">
+            <h3 class="font-medium text-[var(--color-ink)]" style="font-size:1rem;">{p.label}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] font-light leading-relaxed">{p.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HELOC SPOTLIGHT ═══════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <div class="bg-[var(--color-rich-black)] rounded-2xl p-8 lg:p-12 grid lg:grid-cols-[2fr_1fr] gap-10 items-center">
+        <div>
+          <p class="text-[var(--color-ice-blue)] text-xs tracking-[0.3em] uppercase font-light mb-4">Also from Team Giaquinto</p>
+          <h2 class="text-white" style="font-size:clamp(1.5rem,3vw,2.25rem);font-weight:300;letter-spacing:-0.03em;">HELOC: Approved in 5 minutes.<br/>Funded in 5 days.<sup class="text-sm">*</sup></h2>
+          <p class="mt-4 text-white/65 font-light leading-relaxed">
+            Access your home equity as a revolving line of credit without touching your first mortgage. Our HELOC program delivers an approval decision in five minutes and funding in as few as five business days using our remote online notary.
+          </p>
+          <p class="mt-5 text-xs text-white/35 leading-relaxed max-w-2xl">
+            *Approval subject to verification of income, employment, and a property condition report. Five business day funding assumes closing with our remote online notary. Timelines may be longer in counties that do not permit recording of e-signatures.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <a href={julian.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener"
+            class="btn btn-primary !bg-white !text-[var(--color-rich-black)] text-sm">
+            Check my eligibility
+          </a>
+          {julian.links?.directPhone && (
+            <a href={`tel:${julian.links.directPhone.replace(/[^+\d]/g, "")}`}
+              class="btn btn-secondary !border-white/40 !text-white text-sm">
+              Talk to Julian
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══════════════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-white">
+    <div class="container-wide max-w-3xl">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">Frequently asked</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Reverse mortgage and HELOC questions.</h2>
+      <div class="mt-10 space-y-2">
+        {faq.map((item) => (
+          <details class="bg-[var(--color-mist-gray)]/50 rounded-xl border border-[var(--color-mist-gray)] overflow-hidden group">
+            <summary class="flex items-center justify-between px-6 py-5 font-medium text-[var(--color-ink)] cursor-pointer list-none text-sm">
+              {item.question}
+              <svg class="w-4 h-4 shrink-0 text-[var(--color-accent)] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="px-6 pb-6 text-sm text-[var(--color-text)] font-light leading-relaxed bg-white border-t border-[var(--color-mist-gray)] pt-4">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══════════════════════════════════════════════════ -->
+  <section class="accent-gradient">
+    <div class="container-wide py-20 lg:py-28">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="text-[var(--color-ice-blue)] text-xs tracking-[0.3em] uppercase font-light mb-5">Ready to explore your options?</p>
+          <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:200;letter-spacing:-0.04em;color:#fff;line-height:1.1;">
+            Your home equity is an asset.<br/>
+            <span style="font-weight:300;color:rgba(255,255,255,0.6);">Let's put it to work.</span>
+          </h2>
+          <p class="mt-5 text-white/55 font-light leading-relaxed" style="font-size:1rem;">
+            No pressure, no commitment. A conversation with Team Giaquinto starts with what you need and what makes sense for your situation.
+          </p>
+        </div>
+        <div class="flex flex-col items-center gap-4">
+          <div style="width:100%;max-width:260px;">
+            <img
+              src="/images/team%20logos/Team%20Giaquinto_Stacked_White.png"
+              alt="Team Giaquinto"
+              class="w-full h-auto mb-7 select-none"
+              style="max-height:108px;object-fit:contain;object-position:center;"
+              loading="lazy"
+            />
+            <a href={julian.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener"
+              style="display:block;width:100%;text-align:center;background:#fff;color:#0d0d0d;text-decoration:none;padding:0.875rem 1.5rem;border-radius:999px;font-weight:600;font-size:0.9375rem;letter-spacing:0.01em;">
+              Talk to Our Team
+            </a>
+          </div>
+          <div class="flex flex-col gap-2 items-center text-center">
+            {julian.links?.email && (
+              <a href={`mailto:${julian.links.email}`}
+                style="color:rgba(255,255,255,0.4);font-size:0.8125rem;font-weight:300;text-decoration:none;"
+                class="hover:text-white transition-colors">
+                {julian.links.email}
+              </a>
+            )}
+            {julian.links?.directPhone && (
+              <a href={`tel:${julian.links.directPhone.replace(/[^+\d]/g, "")}`}
+                style="color:rgba(255,255,255,0.4);font-size:0.8125rem;font-weight:300;text-decoration:none;"
+                class="hover:text-white transition-colors">
+                {julian.links.directPhone}
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

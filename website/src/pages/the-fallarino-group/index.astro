@@ -1,0 +1,364 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { LOAN_OFFICERS, loanOfficer } from "../../data/loan-officers";
+import Headshot from "../../components/ui/Headshot.astro";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+
+const teamSlugs = ["david-fallarino", "lee-horen", "fabrizio-alosa", "brandon-kenney", "kevan-scott"];
+const teamMembers = teamSlugs.map(s => LOAN_OFFICERS.find(lo => lo.slug === s)!).filter(Boolean);
+const david = loanOfficer("david-fallarino")!;
+
+const faq = [
+  {
+    question: "What types of borrowers does The Fallarino Group work with?",
+    answer: "We specialize in high-income professionals, entrepreneurs, business owners, and real estate investors whose financial profiles don't fit conventional bank guidelines. If you have complex income, need jumbo or super-jumbo financing, want to qualify on investment property cash flow, or are optimizing a tax strategy that makes your returns look light, we're built for exactly that.",
+  },
+  {
+    question: "What is the largest loan The Fallarino Group has originated?",
+    answer: "Our programs reach into the super-jumbo range, up to $40M, on Alt-A and portfolio products. Loan size is rarely the limiting factor for our borrowers. The conversation starts with your financial profile and goals, not a loan limit.",
+  },
+  {
+    question: "How is Alt-A different from Non-QM?",
+    answer: "Alt-A loans sit between A-paper conventional and Non-QM. They use the same tax returns as conventional underwriting but evaluate gross income and essential expenses rather than the after-deduction bottom line. This typically produces better rates than Non-QM while still accommodating the income complexity that makes conventional underwriting fall short for entrepreneurs.",
+  },
+  {
+    question: "Can I qualify for a DSCR loan if the property is an Airbnb or short-term rental?",
+    answer: "Yes. DSCR programs accept projected or historical short-term rental income using AirDNA projections or your actual booking history. You do not need to show W-2 income. The property's cash flow is the qualification. LLC vesting is also allowed.",
+  },
+  {
+    question: "How quickly can The Fallarino Group issue a pre-approval?",
+    answer: "In most cases, same day. Our team reviews complex financial files daily and understands how to move quickly without sacrificing precision. A pre-approval letter for a high-value purchase or investment transaction is typically issued within 24 hours of receiving your documentation.",
+  },
+  {
+    question: "Do you work with out-of-state buyers?",
+    answer: "Yes. David is licensed in 13 states and the team collectively covers a broad footprint. If you're purchasing investment property outside New York or refinancing a property in another state, reach out and we'll confirm coverage.",
+  },
+];
+
+const schema = [
+  faqPageSchema(faq),
+  articleSchema({
+    headline: "The Fallarino Group | Cliffco Mortgage Bankers",
+    description: "The Fallarino Group at Cliffco Mortgage Bankers specializes in jumbo, Alt-A, DSCR, and non-QM financing for high-growth entrepreneurs, investors, and high-net-worth professionals.",
+    url: "/the-fallarino-group/",
+    datePublished: today,
+    dateModified: today,
+    authorSlug: "david-fallarino",
+  }),
+];
+---
+
+<Layout
+  title="The Fallarino Group | Jumbo, Alt-A & DSCR Specialists | Cliffco"
+  description="The Fallarino Group at Cliffco Mortgage Bankers. Jumbo up to $40M, Alt-A, DSCR, and non-QM financing for high-growth entrepreneurs, investors, and high-net-worth professionals. $3B+ closed."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "The Fallarino Group", href: "/the-fallarino-group/" },
+  ]} />
+
+  <!-- ═══ HERO ═════════════════════════════════════════════════ -->
+  <section class="bg-[var(--color-rich-black)] relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(rgba(189,232,241,0.06) 1px,transparent 1px);background-size:32px 32px;" aria-hidden="true"></div>
+    <div class="container-wide pt-20 pb-24 lg:pt-28 lg:pb-36 text-center relative z-10">
+      <img
+        src="/images/team%20logos/The%20Fallarino%20Group_Stacked_White.png"
+        alt="The Fallarino Group"
+        class="h-20 lg:h-28 mx-auto mb-12 select-none"
+        loading="eager"
+      />
+      <div class="max-w-4xl mx-auto">
+        <p class="text-[var(--color-ice-blue)] text-xs tracking-[0.3em] uppercase font-light mb-6">Cliffco Mortgage Bankers · Uniondale, New York</p>
+        <h1 style="font-size: clamp(2.5rem,6vw,5rem); font-weight: 200; letter-spacing: -0.04em; line-height: 1.05; color: #fff;">
+          Strategic financing for<br/>high-growth entrepreneurs<br/><em style="font-style:italic;font-weight:300;color:rgba(189,232,241,0.85);">and investors.</em>
+        </h1>
+        <p class="mt-8 text-white/60 font-light leading-relaxed max-w-xl mx-auto" style="font-size:1.1rem;">
+          Over $3 billion closed. Jumbo to $40M. Alt-A, DSCR, Non-QM structured around how you actually earn. Not how a W-2 says you do.
+        </p>
+        <div class="mt-10 flex justify-center gap-4 flex-wrap">
+          <a href={david.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener"
+            style="background:#fff;color:#0d0d0d;text-decoration:none;padding:0.875rem 2.25rem;border-radius:999px;font-weight:600;font-size:0.9375rem;letter-spacing:0.02em;">
+            Work With The Team
+          </a>
+          {david.links?.directPhone && (
+            <a href={`tel:${david.links.directPhone.replace(/[^+\d]/g, "")}`}
+              style="background:transparent;color:rgba(255,255,255,0.75);text-decoration:none;padding:0.875rem 2.25rem;border-radius:999px;font-weight:400;font-size:0.9375rem;border:1px solid rgba(255,255,255,0.2);">
+              {david.links.directPhone}
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STATS ═════════════════════════════════════════════════ -->
+  <section class="bg-[var(--color-rich-black)] border-t border-white/8">
+    <div class="container-wide py-12">
+      <div class="grid sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+        {[
+          { stat: "$3B+", label: "In closed loan volume", sub: "Across a 20+ year career" },
+          { stat: "$40M", label: "Maximum loan amount", sub: "Alt-A and portfolio programs" },
+          { stat: "5", label: "Specialists on the team", sub: "Jumbo · Alt-A · DSCR · Non-QM" },
+        ].map(d => (
+          <div class="py-8 sm:py-0 sm:px-12 first:pl-0 last:pr-0 text-center sm:text-left">
+            <p style="font-size:clamp(2.25rem,5vw,3.5rem);font-weight:200;letter-spacing:-0.04em;color:#fff;line-height:1;">{d.stat}</p>
+            <p class="text-white/70 font-light text-sm mt-2">{d.label}</p>
+            <p class="text-white/35 text-xs mt-1 tracking-wide">{d.sub}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TEAM ══════════════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-white">
+    <div class="container-wide">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">The team</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Meet The Fallarino Group.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] font-light leading-relaxed max-w-xl" style="font-size:1.05rem;">
+        Five specialists. One team. Every file gets the full resources of a direct lender with the flexibility to broker when it benefits the client.
+      </p>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        {teamMembers.map((lo) => (
+          <a href={`/loan-officers/${lo.slug}/`} class="group no-underline text-[var(--color-ink)] flex flex-col">
+            {lo.hasPhoto && (
+              <div class="rounded-xl overflow-hidden aspect-square bg-[var(--color-mist-gray)] mb-4">
+                <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="group-hover:scale-105 transition-transform duration-500" />
+              </div>
+            )}
+            <div class="border-t border-[var(--color-mist-gray)] pt-3">
+              <p class="font-medium text-[var(--color-ink)] text-sm">{lo.displayName}</p>
+              <p class="text-xs text-[var(--color-text-muted)] font-light mt-0.5">{lo.title}</p>
+              <p class="text-xs text-[var(--color-text-muted)]/60 mt-0.5">NMLS #{lo.nmls}</p>
+              <span class="mt-2 text-xs font-medium text-[var(--color-accent)] inline-block">View profile →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SPECIALTIES ═══════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">What we do best</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Built for complexity.<br/>Optimized for performance.</h2>
+      <div class="mt-12 grid gap-px bg-[var(--color-soft-gray)]/30 rounded-2xl overflow-hidden md:grid-cols-2 lg:grid-cols-3">
+        {[
+          {
+            name: "Jumbo & Super Jumbo",
+            range: "Up to $40M",
+            href: "/loans/conventional/",
+            body: "High-balance conforming, jumbo, and super-jumbo financing for primary residences, second homes, and investment properties. Conventional and Alt-A structures available.",
+          },
+          {
+            name: "Alt-A Mortgage",
+            range: "Better terms than Non-QM",
+            href: "/jumbo-alt-a-loans-entrepreneurs-david-fallarino/",
+            body: "For entrepreneurs whose tax returns understate their income. Alt-A uses gross revenue minus essential expenses, offering rates competitive with A-paper while accommodating complex business income.",
+          },
+          {
+            name: "DSCR for Investors",
+            range: "Qualify on rental income",
+            href: "/loans/dscr/",
+            body: "No W-2. No tax returns. DSCR loans qualify investment properties on their own rental cash flow, short-term or long-term. LLC vesting allowed. Portfolio scaling without personal income caps.",
+          },
+          {
+            name: "Non-QM",
+            range: "No tax returns required",
+            href: "/loans/non-qm-self-employed/",
+            body: "For business owners and self-employed professionals who need flexibility beyond what Alt-A covers. P&L, 1099-only, asset depletion, ITIN, and foreign national programs.",
+          },
+          {
+            name: "Business Bank Statement",
+            range: "12–24 months of statements",
+            href: "/loans/business-bank-statement/",
+            body: "12–24 months of business deposits with a standard expense ratio applied. Built for LLCs, S-Corps, and sole proprietors whose returns understate actual cash flow.",
+          },
+          {
+            name: "Conventional",
+            range: "Conforming & high-balance",
+            href: "/loans/conventional-government/",
+            body: "Fannie Mae and Freddie Mac conforming loans, including high-balance programs up to $1,209,750 in high-cost markets like Nassau and Suffolk. Competitive rates for buyers with strong credit profiles.",
+          },
+        ].map((spec) => (
+          <a href={spec.href}
+            class="group bg-white no-underline text-[var(--color-ink)] p-8 flex flex-col gap-4 hover:bg-[var(--color-accent)]/[0.03] transition-colors">
+            <div>
+              <span class="text-xs tracking-widest uppercase text-[var(--color-accent)] font-light">{spec.range}</span>
+              <h3 class="mt-2 font-medium text-[var(--color-ink)]" style="font-size:1.125rem;letter-spacing:-0.01em;">{spec.name}</h3>
+            </div>
+            <p class="text-sm text-[var(--color-text-muted)] font-light leading-relaxed flex-1">{spec.body}</p>
+            <span class="text-xs font-medium text-[var(--color-accent)] group-hover:translate-x-1 inline-block transition-transform">Learn more →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MARKET CONTEXT ════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-20 lg:gap-32 items-start">
+      <div>
+        <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">The Long Island market</p>
+        <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Where we operate.<br/>What it means for your loan.</h2>
+        <p class="mt-6 text-[var(--color-text)] font-light leading-relaxed" style="font-size:1.05rem;">
+          Long Island is one of the most expensive residential markets in the country. Nassau and Suffolk median prices are well above conforming limits. Jumbo financing isn't a luxury product here; it's the baseline for a significant segment of buyers.
+        </p>
+        <p class="mt-4 text-[var(--color-text)] font-light leading-relaxed" style="font-size:1.05rem;">
+          The Fallarino Group has operated on Long Island for decades. We know the local lenders, appraisers, attorneys, and market dynamics. That local knowledge makes a material difference when a high-value transaction needs to close on time.
+        </p>
+        <a href={david.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener"
+          class="mt-8 inline-block btn btn-primary text-sm">Start a conversation</a>
+      </div>
+      <div class="grid grid-cols-2 gap-4 lg:pt-10">
+        {[
+          { label: "Nassau median price", value: "$849K", note: "Single-family · 2026" },
+          { label: "Suffolk median price", value: "$700K", note: "Single-family · 2026" },
+          { label: "High-balance limit", value: "$1.21M", note: "Nassau-Suffolk MSA" },
+          { label: "Alt-A max loan", value: "$40M", note: "Via The Fallarino Group" },
+        ].map((s) => (
+          <div class="border border-[var(--color-mist-gray)] rounded-2xl p-6">
+            <p style="font-size:clamp(1.5rem,3vw,2.25rem);font-weight:200;letter-spacing:-0.04em;color:var(--color-ink);">{s.value}</p>
+            <p class="text-xs font-medium text-[var(--color-text-muted)] mt-2 leading-snug">{s.label}</p>
+            <p class="text-xs text-[var(--color-text-muted)]/50 mt-1">{s.note}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 500:1 BLOG ════════════════════════════════════════════ -->
+  {david.blog && david.blog.length > 0 && (
+    <section style="padding-block:6rem;" class="bg-[var(--color-mist-gray)]">
+      <div class="container-wide">
+        <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">500:1 Blog</p>
+        <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Written by David Fallarino.</h2>
+        <p class="mt-4 text-[var(--color-text-muted)] font-light leading-relaxed max-w-xl" style="font-size:1.05rem;">
+          Insights on Alt-A, DSCR, jumbo, and non-QM from someone who has structured $3 billion worth of these transactions.
+        </p>
+        <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {david.blog.map((post) => (
+            <a href={`/${post.slug}/`} class="group bg-white rounded-2xl border border-[var(--color-mist-gray)] overflow-hidden no-underline flex flex-col hover:border-[var(--color-accent)]/30 hover:shadow-lg transition-all duration-300">
+              <div class="aspect-[16/9] overflow-hidden bg-[var(--color-mist-gray)]">
+                <img src={post.image} alt={post.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+              </div>
+              <div class="p-5 flex flex-col flex-1">
+                <h3 class="font-medium text-[var(--color-ink)] leading-snug text-sm flex-1">{post.title}</h3>
+                <span class="mt-4 text-xs font-medium text-[var(--color-accent)] inline-flex items-center gap-1">
+                  Read article
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ═══ CALCULATORS ══════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-white">
+    <div class="container-wide">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">Free tools</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Run the numbers first.</h2>
+      <div class="mt-10 grid gap-px bg-[var(--color-mist-gray)] rounded-2xl overflow-hidden sm:grid-cols-3">
+        {[
+          { href: "/mortgage-guides/calculators/dscr/", title: "DSCR Calculator", desc: "Instantly see whether an investment property qualifies and what your coverage ratio is.", badge: "Investors" },
+          { href: "/mortgage-guides/calculators/buydown/", title: "Buydown Calculator", desc: "See the exact cost of a 3-2-1, 2-1, or 1-0 buydown and monthly savings per plan.", badge: "Buyers" },
+          { href: "/mortgage-guides/calculators/closing-costs/", title: "Closing Costs", desc: "Itemized estimate with NY mortgage recording tax, transfer tax, and title by state.", badge: "NY-aware" },
+        ].map((c) => (
+          <a href={c.href} class="group bg-white no-underline p-8 flex flex-col gap-4 hover:bg-[var(--color-accent)]/[0.03] transition-colors">
+            <span class="text-xs tracking-widest uppercase text-[var(--color-accent)] font-light">{c.badge}</span>
+            <h3 class="font-medium text-[var(--color-ink)]" style="font-size:1.125rem;letter-spacing:-0.01em;">{c.title}</h3>
+            <p class="text-sm text-[var(--color-text-muted)] font-light leading-relaxed flex-1">{c.desc}</p>
+            <span class="text-xs font-medium text-[var(--color-accent)] group-hover:translate-x-1 inline-block transition-transform">Use calculator →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══════════════════════════════════════════════════ -->
+  <section style="padding-block:6rem;" class="bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-3xl">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">Frequently asked</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Questions we answer every day.</h2>
+      <div class="mt-10 space-y-2">
+        {faq.map((item) => (
+          <details class="bg-white rounded-xl border border-[var(--color-mist-gray)] overflow-hidden group">
+            <summary class="flex items-center justify-between px-6 py-5 font-medium text-[var(--color-ink)] cursor-pointer list-none text-sm">
+              {item.question}
+              <svg class="w-4 h-4 shrink-0 text-[var(--color-accent)] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <p class="px-6 pb-6 text-sm text-[var(--color-text)] font-light leading-relaxed border-t border-[var(--color-mist-gray)] pt-4">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══════════════════════════════════════════════════ -->
+  <section class="bg-[var(--color-rich-black)] relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(rgba(189,232,241,0.06) 1px,transparent 1px);background-size:32px 32px;" aria-hidden="true"></div>
+    <div class="container-wide py-20 lg:py-28 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="text-[var(--color-ice-blue)] text-xs tracking-[0.3em] uppercase font-light mb-6">Ready to get started?</p>
+          <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:200;letter-spacing:-0.04em;color:#fff;line-height:1.1;">
+            Your situation is complex.<br/>
+            <span style="font-weight:300;color:rgba(255,255,255,0.6);">Let's keep the process simple.</span>
+          </h2>
+          <p class="mt-6 text-white/50 font-light leading-relaxed" style="font-size:1rem;">
+            No credit pull. No commitment. A 10-minute conversation with David or a team member tells you which program fits and what it costs.
+          </p>
+        </div>
+        <div class="flex flex-col items-center gap-4">
+          <!-- Logo above the button, constrained to button width -->
+          <div style="width:100%;max-width:280px;">
+            <img
+              src="/images/team%20logos/The%20Fallarino%20Group_Stacked_White.png"
+              alt="The Fallarino Group"
+              class="w-full h-auto mb-7 select-none"
+              style="max-height:48px;object-fit:contain;object-position:center;"
+              loading="lazy"
+            />
+            <a href={david.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener"
+              style="display:block;width:100%;text-align:center;background:#fff;color:#0d0d0d;text-decoration:none;padding:0.875rem 1.5rem;border-radius:999px;font-weight:600;font-size:0.9375rem;letter-spacing:0.01em;">
+              Start Your Application
+            </a>
+          </div>
+          <div class="flex flex-col gap-2 mt-1 items-center text-center">
+            {david.links?.email && (
+              <a href={`mailto:${david.links.email}`}
+                style="color:rgba(255,255,255,0.45);font-size:0.8125rem;font-weight:300;text-decoration:none;"
+                class="hover:text-white transition-colors">
+                {david.links.email}
+              </a>
+            )}
+            {david.links?.directPhone && (
+              <a href={`tel:${david.links.directPhone.replace(/[^+\d]/g, "")}`}
+                style="color:rgba(255,255,255,0.45);font-size:0.8125rem;font-weight:300;text-decoration:none;"
+                class="hover:text-white transition-colors">
+                {david.links.directPhone}
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Premium override: reduce dot grid opacity on this page's mist-gray sections */
+  .the-fallarino-page section[class*="mist-gray"] {
+    background-image: radial-gradient(rgba(102,51,204,0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+</style>
