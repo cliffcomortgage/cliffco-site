@@ -62,7 +62,7 @@ const schema = [
     headline: "Non-QM and Conventional Mortgage Rates: What Affects Your Rate",
     description: "Mortgage rates are scenario-specific. Learn what factors affect your non-QM, bank statement, or DSCR mortgage rate — and how to get a real number for your situation.",
     url: "/mortgage-rates/",
-    datePublished: today,
+    datePublished: "2026-04-15",
     dateModified: today,
     authorSlug: "christopher-clifford",
   }),
@@ -100,20 +100,27 @@ const schema = [
 
   <!-- WHY NO RATE TABLE -->
   <section class="section bg-white">
-    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
-      <div>
-        <p class="eyebrow">Why we don't post a rate table</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">A rate without context is just a number.</h2>
-        <div class="mt-6 space-y-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
-          <p>Conventional lenders can post a rate because their borrowers are largely the same: W-2 income, 720+ credit score, 20% down, primary residence. The rate for that profile on a given day is a meaningful data point.</p>
-          <p>Non-QM lending doesn't work that way. A bank statement loan for a self-employed borrower with 680 credit and 25% down is priced differently than a DSCR loan for an investor with an 800 score and a 75% LTV property generating strong cash flow. Posting a rate that covers neither accurately would mislead you.</p>
-          <p>We'd rather give you a real number for your real situation. That takes one business day and requires no credit pull.</p>
+    <div class="container-wide">
+      <!-- Row 1: Image + Why no rate table -->
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div class="rounded-2xl overflow-hidden aspect-[4/3] bg-[var(--color-mist-gray)]">
+          <img src="/images/content%20images/Mortgage%20Rates.jpg" alt="Mortgage rate consultation" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div>
+          <p class="eyebrow">Why we don't post a rate table</p>
+          <h2 class="mt-3" style="font-size: var(--text-h2);">A rate without context is just a number.</h2>
+          <div class="mt-6 space-y-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
+            <p>Conventional lenders can post a rate because their borrowers are largely the same: W-2 income, 720+ credit score, 20% down, primary residence. The rate for that profile on a given day is a meaningful data point.</p>
+            <p>Non-QM lending doesn't work that way. A bank statement loan for a self-employed borrower with 680 credit and 25% down is priced differently than a DSCR loan for an investor with an 800 score and a 75% LTV property generating strong cash flow. Posting a rate that covers neither accurately would mislead you.</p>
+            <p>We'd rather give you a real number for your real situation. That takes one business day and requires no credit pull.</p>
+          </div>
         </div>
       </div>
-      <div>
+      <!-- Row 2: What you can expect — 2-col grid below -->
+      <div class="mt-14">
         <p class="eyebrow">What you can expect</p>
         <h2 class="mt-3" style="font-size: var(--text-h2);">Non-QM rate context.</h2>
-        <div class="mt-6 space-y-4">
+        <div class="mt-6 grid gap-4 md:grid-cols-2">
           {[
             { program: "Conventional (30-yr fixed)", context: "Best available pricing for W-2 borrowers with 620+ credit. Benchmark for comparison." },
             { program: "FHA (30-yr fixed)", context: "Slightly above conventional. Lower credit threshold. Mortgage insurance required." },
@@ -121,13 +128,13 @@ const schema = [
             { program: "DSCR Investment Loans", context: "Varies by property cash flow ratio, credit score, and LTV. Often competitive with conventional investor rates." },
             { program: "Non-QM (general)", context: "0.5% to 2% above conventional. Specific pricing depends heavily on the full scenario." },
           ].map((item) => (
-            <div class="border-b border-[var(--color-mist-gray)] pb-4">
+            <div class="border border-[var(--color-mist-gray)] rounded-xl p-5">
               <p class="font-semibold text-[var(--color-ink)] text-sm">{item.program}</p>
               <p class="mt-1 text-sm text-[var(--color-text-muted)]">{item.context}</p>
             </div>
           ))}
-          <p class="text-xs text-[var(--color-text-muted)]">Ranges are indicative only. Rates change daily and vary based on your specific scenario. Not a commitment to lend.</p>
         </div>
+        <p class="mt-4 text-xs text-[var(--color-text-muted)]">Ranges are indicative only. Rates change daily and vary based on your specific scenario. Not a commitment to lend.</p>
       </div>
     </div>
   </section>

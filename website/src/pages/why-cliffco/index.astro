@@ -12,7 +12,7 @@ const schema = [
     headline: "Why Cliffco Mortgage Bankers",
     description: "36 years of mortgage lending, 32 states, 9 branches, and a specialty in loans conventional lenders won't touch. Here's what makes Cliffco different.",
     url: "/why-cliffco/",
-    datePublished: today,
+    datePublished: "2026-04-15",
     dateModified: today,
     authorSlug: "christopher-clifford",
   }),
@@ -97,17 +97,12 @@ const schema = [
 
   <!-- OUR STORY -->
   <section class="section bg-white">
-    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
-      <div>
-        <p class="eyebrow">Our story</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Founded on Long Island. Still here.</h2>
-        <div class="mt-6 space-y-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
-          <p>Cliffco was founded in {COMPANY.founded} on Long Island, where we remain headquartered today. For {yearsInBiz} years, our core business has been the loans that don't fit the standard mold: self-employed borrowers, real estate investors, seniors who want to stay in their homes, and borrowers who walked in with a denial letter from somewhere else.</p>
-          <p>We grew into 32 states and 9 offices not by chasing volume, but by building a reputation for saying yes when everyone else said no. That reputation travels. About half our business today comes from referrals.</p>
-          <p>Christopher Clifford, our President (NMLS #65234), has been with Cliffco since the beginning. The company he leads today is built on the same conviction it started with: every family deserves a real chance at homeownership, regardless of whether their financial life fits a box.</p>
+    <div class="container-wide">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div class="rounded-2xl overflow-hidden aspect-[4/3] bg-[var(--color-mist-gray)]">
+          <img src="/images/content%20images/Uniondale_Why%20Cliffco.jpg" alt="Cliffco Mortgage Bankers Uniondale headquarters" class="w-full h-full object-cover" loading="lazy" />
         </div>
-      </div>
-      <div>
+        <div>
         <p class="eyebrow">What borrowers say</p>
         <h2 class="mt-3" style="font-size: var(--text-h2);">3,617 reviews. 4.9 stars.</h2>
         <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
@@ -133,6 +128,17 @@ const schema = [
         <p class="mt-6">
           <a href="/reviews/" class="text-sm font-semibold text-[var(--color-accent)]">Read borrower reviews →</a>
         </p>
+        </div>
+      </div>
+      <!-- Story text full-width below -->
+      <div class="mt-12">
+        <p class="eyebrow">Our story</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Founded on Long Island. Still here.</h2>
+        <div class="mt-6 space-y-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
+          <p>Cliffco was founded in {COMPANY.founded} on Long Island, where we remain headquartered today. For {yearsInBiz} years, our core business has been the loans that don't fit the standard mold: self-employed borrowers, real estate investors, seniors who want to stay in their homes, and borrowers who walked in with a denial letter from somewhere else.</p>
+          <p>We grew into 32 states and 9 offices not by chasing volume, but by building a reputation for saying yes when everyone else said no. That reputation travels. About half our business today comes from referrals.</p>
+          <p>Christopher Clifford, our President (NMLS #65234), has been with Cliffco since the beginning. The company he leads today is built on the same conviction it started with: every family deserves a real chance at homeownership, regardless of whether their financial life fits a box.</p>
+        </div>
       </div>
     </div>
   </section>

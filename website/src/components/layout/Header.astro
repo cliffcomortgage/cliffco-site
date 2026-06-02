@@ -1,13 +1,11 @@
 ---
-import { Image } from "astro:assets";
 import { COMPANY } from "../../data/company";
-import logoBlack from "../../assets/logo-black.png";
 ---
 
 <header class="border-b border-[var(--color-mist-gray)] bg-white sticky top-0 z-40">
   <div class="container-wide flex items-center justify-between gap-6 py-4">
     <a href="/" class="flex items-center no-underline" aria-label={`${COMPANY.legalName} home`}>
-      <Image src={logoBlack} alt={COMPANY.legalName} class="h-[30px] w-auto" widths={[153, 306, 459, 612]} sizes="153px" />
+      <img src="/images/content%20images/Cliffco%20Only@4x.png" alt={COMPANY.legalName} class="h-[20px] w-auto" loading="eager" />
     </a>
 
     <nav aria-label="Primary" class="hidden lg:block">

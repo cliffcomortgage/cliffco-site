@@ -170,27 +170,27 @@ const purposes = [
             <div>
               <label for="name" class="block text-sm font-medium text-[var(--color-ink)]">Your name</label>
               <input id="name" name="name" type="text" required autocomplete="name"
-                class="mt-2 w-full px-4 py-3 rounded-lg border border-[var(--color-mist-gray)] focus:border-[var(--color-accent)] focus:outline-none" />
+                class="mt-2 w-full px-4 py-3 rounded-lg border border-[var(--color-soft-gray)] bg-white focus:border-[var(--color-accent)] focus:outline-none" />
             </div>
 
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
                 <label for="phone" class="block text-sm font-medium text-[var(--color-ink)]">Phone</label>
                 <input id="phone" name="phone" type="tel" required autocomplete="tel"
-                  class="mt-2 w-full px-4 py-3 rounded-lg border border-[var(--color-mist-gray)] focus:border-[var(--color-accent)] focus:outline-none" />
+                  class="mt-2 w-full px-4 py-3 rounded-lg border border-[var(--color-soft-gray)] bg-white focus:border-[var(--color-accent)] focus:outline-none" />
                 <p class="mt-1 text-xs text-[var(--color-text-muted)]">No credit pull. We won't share your number.</p>
               </div>
               <div>
                 <label for="email" class="block text-sm font-medium text-[var(--color-ink)]">Email</label>
                 <input id="email" name="email" type="email" required autocomplete="email"
-                  class="mt-2 w-full px-4 py-3 rounded-lg border border-[var(--color-mist-gray)] focus:border-[var(--color-accent)] focus:outline-none" />
+                  class="mt-2 w-full px-4 py-3 rounded-lg border border-[var(--color-soft-gray)] bg-white focus:border-[var(--color-accent)] focus:outline-none" />
               </div>
             </div>
 
             <div>
               <label for="state" class="block text-sm font-medium text-[var(--color-ink)]">Property state</label>
               <select id="state" name="state" required
-                class="mt-2 w-full px-4 py-3 rounded-lg border border-[var(--color-mist-gray)] focus:border-[var(--color-accent)] focus:outline-none bg-white">
+                class="mt-2 w-full px-4 py-3 rounded-lg border border-[var(--color-soft-gray)] bg-white focus:border-[var(--color-accent)] focus:outline-none bg-white">
                 <option value="">Select…</option>
                 <option value="NY">New York</option>
                 <option value="NJ">New Jersey</option>
@@ -204,7 +204,7 @@ const purposes = [
             <div>
               <label for="notes" class="block text-sm font-medium text-[var(--color-ink)]">Anything we should know? <span class="font-normal text-[var(--color-text-muted)]">(optional)</span></label>
               <textarea id="notes" name="notes" rows="3"
-                class="mt-2 w-full px-4 py-3 rounded-lg border border-[var(--color-mist-gray)] focus:border-[var(--color-accent)] focus:outline-none"></textarea>
+                class="mt-2 w-full px-4 py-3 rounded-lg border border-[var(--color-soft-gray)] bg-white focus:border-[var(--color-accent)] focus:outline-none"></textarea>
             </div>
 
             <div class="rounded-lg bg-white border border-[var(--color-mist-gray)] p-4">
@@ -323,14 +323,28 @@ const purposes = [
   document.getElementById("next-1")?.addEventListener("click", () => goToStep(2));
   document.getElementById("next-2")?.addEventListener("click", () => goToStep(3));
   document.getElementById("next-3")?.addEventListener("click", () => {
+    const credit = (document.getElementById("credit-range") as HTMLSelectElement)?.value ?? "";
+    const price  = (document.getElementById("price-range") as HTMLSelectElement)?.value ?? "";
+
+    if (!selections.purpose) {
+      alert("Please select what you're looking to do.");
+      return;
+    }
+    if (!credit) {
+      alert("Please select your estimated credit score range.");
+      return;
+    }
+    if (!price) {
+      alert("Please select your estimated purchase or loan amount.");
+      return;
+    }
+
     // Populate hidden fields
     (document.getElementById("h-situation") as HTMLInputElement).value = selections.situation;
     (document.getElementById("h-income") as HTMLInputElement).value = selections.incomeType;
     (document.getElementById("h-purpose") as HTMLInputElement).value = selections.purpose;
-    (document.getElementById("h-credit") as HTMLInputElement).value =
-      (document.getElementById("credit-range") as HTMLSelectElement)?.value ?? "";
-    (document.getElementById("h-price") as HTMLInputElement).value =
-      (document.getElementById("price-range") as HTMLSelectElement)?.value ?? "";
+    (document.getElementById("h-credit") as HTMLInputElement).value = credit;
+    (document.getElementById("h-price") as HTMLInputElement).value = price;
     goToStep(4);
   });
 

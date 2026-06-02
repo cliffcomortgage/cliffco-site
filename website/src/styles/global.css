@@ -403,8 +403,10 @@
 }
 
 /* ---------- Custom cursor ---------- */
-/* Hides native cursor; cursor-dot rendered via JS */
-html, html * { cursor: none !important; }
+/* Only hides native cursor on mouse devices — keyboard and touch users keep default cursor */
+@media (pointer: fine) and (hover: hover) {
+  html, html * { cursor: none !important; }
+}
 
 #cf-cursor {
   position: fixed;
