@@ -37,6 +37,8 @@ export type LoanOfficer = {
   };
   /** Specialties — align to the four priority products */
   specialties?: readonly string[];
+  /** Featured specialties shown highlighted at the top of the pill list */
+  featuredSpecialties?: readonly string[];
   /** Long-form bio narrative */
   bio?: string;
   /** Anonymized closing scenarios — only populated when LO confirms */
@@ -154,6 +156,8 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=dfallarino&workFlowId=33774",
     },
     team: { name: "The Fallarino Group", slug: "the-fallarino-group", logoUrl: "/images/team%20logos/The%20Fallarino%20Group_Stacked_White.png" },
+    featuredSpecialties: ["High Growth Entrepreneur", "Super Jumbo", "Alt-A"],
+    specialties: ["High Growth Entrepreneur","Super Jumbo","Alt-A","Non-QM","DSCR","P&L Loans","Bank Statement","Investment Properties","Renovation Loans","Condo & Co-op","VA Loans","FNMA","Complex Deals","Jumbo & Super Jumbo","Complex Income","Self-Employed","First-Time Buyers"],
     bio: "David Fallarino is one of the country's top-performing mortgage professionals, with over $3 billion in closed loan volume across a 20+ year career. As Senior Vice President at Cliffco Mortgage Bankers, he leads The Fallarino Group, a high-impact origination team specializing in smart, strategic financing solutions for High Growth Entrepreneurs, self-employed professionals, and clients with complex financial profiles. David's experience spans sales and leadership roles at Independent Mortgage Banks, Regional Banks, and National Banks, giving him a 360-degree view of how to navigate even the most challenging loan scenarios. He and his team are known for delivering tailored mortgage strategies, backed by the strength and control of a Direct Lender, with the flexibility to Broker loans when it benefits the client. They offer a full suite of products — from Conventional to Jumbo loan amounts, Conforming loans, A-Paper loans, Non-QM, Alt-A, DSCR, Bridge, Construction Loans, and truly custom-designed solutions others can't match. Raised on Long Island, David spent 15+ years living and working in Manhattan, building relationships and closing deals at some of the largest banks in the country. He now lives back on Long Island with his wife Paula (married 12 years), their 7-year-old twins Ruby and Rome, and their energetic dog, Cash.",
     hasPhoto: true,
     blog: [
@@ -311,6 +315,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=jgiaqui&workFlowId=33774",
     },
     team: { name: "Team Giaquinto", slug: "team-giaquinto", logoUrl: "/images/team%20logos/Team%20Giaquinto_Stacked_White.png" },
+    specialties: ["Reverse Mortgage"],
     bio: "With over 20 years in the mortgage financing industry, Julian Giaquinto has built a reputation as a dedicated and trusted mortgage banker in New York. As part of Cliffco Mortgage Bankers, Julian offers a wide range of residential loan solutions designed to meet the needs of diverse borrowers, from first-time homebuyers to seasoned real estate investors. His deep knowledge of FHA, conventional, jumbo, and investor loans allows him to tailor mortgage strategies that fit each client's financial goals. Since 2008, Julian has developed a strong specialty in reverse mortgages, guiding seniors and retirees through one of the most important financial decisions of their lives. He believes that when it comes to reverse mortgages, education and personalized guidance are key. In addition to reverse mortgages, Julian also provides innovative financing for clients who may face unique challenges, including self-employed borrowers, no-income check loans, and clients turned down by other banks.",
     hasPhoto: true,
   },
@@ -409,24 +414,6 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     },
     team: { name: "Team Veras", slug: "team-veras", logoUrl: "/images/team%20logos/Team%20Veras_White@4x.png" },
     bio: "With a passion for financial empowerment and a commitment to exceptional service, I am proud to serve as a trusted loan officer. My extensive knowledge of the lending industry, combined with a genuine care for my clients, has earned me a reputation as a reliable and honest professional. I approach each client's unique financial situation with dedication and a willingness to go the extra mile, ensuring their needs are met. Over the years, I have built lasting relationships based on trust and integrity. My mission is not only to facilitate loans but to make a positive impact on people's lives, helping them achieve their dreams and financial goals.",
-    hasPhoto: true,
-  },
-  {
-    slug: "jose-cruz",
-    firstName: "Jose",
-    lastName: "Cruz",
-    displayName: "Jose Cruz",
-    nmls: "1962198",
-    title: "Loan Officer",
-    states: ["NY"],
-    branchSlug: "orlando-fl",
-    languages: ["English", "Spanish"],
-    links: {
-      email: "jcruz@cliffcomortgage.com",
-      directPhone: "407-729-3280",
-      applyNow: "https://fastapp.cliffcomortgage.com/#/milestones?referrerId=jcruz%40cliffcomortgage.com&loanType=MORTGAGE",
-    },
-    bio: "My name is Jose Cruz and I have over 10 years of experience in the real estate industry. I love helping 1st time home buyers and investors in Central Florida with different mortgage products. What makes me stand out is that I don't give up and I will find you a product to accomplish your goals in Real Estate. Call me today and let's start working on achieving your dreams and goals.",
     hasPhoto: true,
   },
 
@@ -741,6 +728,8 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=bkenney&workFlowId=33774",
     },
     team: { name: "The Fallarino Group", slug: "the-fallarino-group", logoUrl: "/images/team%20logos/The%20Fallarino%20Group_Stacked_White.png" },
+    featuredSpecialties: ["Renovation Loans", "Investment Properties", "VA Loans"],
+    specialties: ["High Growth Entrepreneur","Super Jumbo","Alt-A","Non-QM","DSCR","P&L Loans","Bank Statement","Investment Properties","Renovation Loans","Condo & Co-op","VA Loans","FNMA","Complex Deals","Jumbo & Super Jumbo","Complex Income","Self-Employed","First-Time Buyers"],
     bio: "I am here to answer all of your mortgage and real estate related questions and concerns! When I'm not building my network in the real estate world, I am president of High IQ Basketball, a youth travel basketball program located here on Long Island, NY. I have been coaching youth basketball for over 10 years. I am also COO of the holistic health brand called Sunday Swim. We spread mental health awareness by holding community cold plunges throughout the beaches of Long Island. I love chasing the entrepreneurship dream and believe in impacting the world to make it a better place. I am a part of multiple charity organizations such as Sunrise Day Camp, a camp that is free for children who have cancer and their siblings, and United Way of Long Island, one of the biggest charity organizations in the country.",
     hasPhoto: true,
   },
@@ -897,6 +886,8 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=falosa&workFlowId=33774",
     },
     team: { name: "The Fallarino Group", slug: "the-fallarino-group", logoUrl: "/images/team%20logos/The%20Fallarino%20Group_Stacked_White.png" },
+    featuredSpecialties: ["Spanish-Speaking", "First-Time Buyers", "Non-QM", "FHA"],
+    specialties: ["High Growth Entrepreneur","Super Jumbo","Alt-A","Non-QM","DSCR","P&L Loans","Bank Statement","Investment Properties","Renovation Loans","Condo & Co-op","VA Loans","FNMA","Complex Deals","Jumbo & Super Jumbo","Complex Income","Self-Employed","First-Time Buyers","Spanish-Speaking"],
     bio: "At the heart of every successful loan experience is a personalized approach — and that's exactly what I deliver. As a bilingual loan officer serving the New York City area, I take the time to understand your unique goals, financial situation, and long-term objectives. My focus is on helping borrowers who may not fit the traditional mold — whether you're self-employed, seeking a jumbo or FHA loan, exploring Non-QM solutions, or refinancing an existing mortgage. I know that no two financial journeys are alike. That's why I work with you to find the right path forward, whether that's through conventional financing, alternative income documentation like bank statements or P&L loans, or tailored refinancing strategies. With guidance in both English and Spanish, I'm dedicated to ensuring that every client feels supported, informed, and confident on their path to homeownership.",
     hasPhoto: true,
   },
@@ -1069,6 +1060,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       applyNow: "https://fastapp.cliffcomortgage.com/#/milestones?referrerId=kadler%40cliffcomortgage.com&loanType=MORTGAGE",
     },
     team: { name: "Team Giaquinto", slug: "team-giaquinto", logoUrl: "/images/team%20logos/Team%20Giaquinto_Stacked_White.png" },
+    specialties: ["Reverse Mortgage"],
     bio: "An industry professional for over 20 years (starting in 2003), Kathie offers experience, expertise, and unparalleled customer service. During the buying process, you need a trusted resource with the ability to walk a homebuyer through the process with ease. And with Reverse Mortgages, you need an expert who can teach as well as assist a senior client with their mortgage. Kathie's expertise includes various mortgage products such as: FHA, VA, Conventional, Commercial, Non-QM (bank statement loans), and Reverse Mortgages to name a few. Kathie always puts her borrowers at ease especially when complicated situations arise. Respect and understanding are essential when doing a mortgage. And that's what you'll get with Kathie Adler.",
     hasPhoto: true,
   },
@@ -1104,6 +1096,8 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       applyNow: "https://fastapp.cliffcomortgage.com/#/milestones?referrerId=kscott%40cliffcomortgage.com&loanType=MORTGAGE",
     },
     team: { name: "The Fallarino Group", slug: "the-fallarino-group", logoUrl: "/images/team%20logos/The%20Fallarino%20Group_Stacked_White.png" },
+    featuredSpecialties: ["DSCR", "P&L Loans", "Real Estate Investors"],
+    specialties: ["High Growth Entrepreneur","Super Jumbo","Alt-A","Non-QM","DSCR","P&L Loans","Bank Statement","Investment Properties","Renovation Loans","Condo & Co-op","VA Loans","FNMA","Complex Deals","Jumbo & Super Jumbo","Complex Income","Self-Employed","First-Time Buyers"],
     bio: "Kevan Scott is a Mortgage Loan Originator with Cliffco Mortgage Bankers, proudly serving clients throughout Suffolk County, Nassau County, Queens, and Brooklyn, NY. He specializes in jumbo loans, Non-QM mortgage products, and investment property financing, with a focus on helping business owners and self-employed borrowers access flexible lending solutions that fit their unique financial profiles. With extensive experience in both traditional and alternative mortgage programs — including bank statement, P&L, and other Non-QM loan options — Kevan helps clients overcome income documentation challenges and structure loans that align with their goals. His deep product knowledge, creativity, and commitment to timely closings make him a valuable resource for first-time homebuyers, investors, and high-net-worth borrowers seeking tailored financing strategies.",
     hasPhoto: true,
   },
@@ -1139,6 +1133,8 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=lhoren&workFlowId=33774",
     },
     team: { name: "The Fallarino Group", slug: "the-fallarino-group", logoUrl: "/images/team%20logos/The%20Fallarino%20Group_Stacked_White.png" },
+    featuredSpecialties: ["Complex Deals", "Jumbo & Super Jumbo", "Complex Income"],
+    specialties: ["High Growth Entrepreneur","Super Jumbo","Alt-A","Non-QM","DSCR","P&L Loans","Bank Statement","Investment Properties","Renovation Loans","Condo & Co-op","VA Loans","FNMA","Complex Deals","Jumbo & Super Jumbo","Complex Income","Self-Employed","First-Time Buyers"],
     bio: "With more than 25 years in the residential mortgage business, Lee Horen has built a reputation for helping clients secure financing in even the most complex scenarios. Serving New York City, Long Island, Westchester, Northern New Jersey, and Florida, Lee specializes in jumbo and super jumbo mortgage loans, with a strong focus on serving self-employed borrowers. Nearly 70% of his clients are entrepreneurs, business owners, or professionals with unique income structures, making Lee highly experienced in addressing complicated tax returns, cash flow analysis, and debt restructuring. Lee's approach is rooted in problem-solving and personalized service. Whether you are purchasing a luxury property requiring a super jumbo mortgage over $5M, refinancing to optimize cash flow, or exploring flexible loan programs designed for self-employed borrowers, Lee takes the time to structure financing that aligns with each client's goals.",
     hasPhoto: true,
   },
@@ -1312,23 +1308,6 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=rappo&workFlowId=33774",
     },
     bio: "I am a dedicated mortgage loan officer who puts client needs at the center of every decision. Whether someone is buying their first home, upgrading to their dream property, or refinancing to build long-term stability, I take the time to understand their goals and guide them toward the loan program that fits their unique situation. Helping people achieve homeownership is my passion. I look forward to assisting you on your journey to owning a home.",
-    hasPhoto: true,
-  },
-  {
-    slug: "richard-alvarez",
-    firstName: "Richard",
-    lastName: "Alvarez",
-    displayName: "Richard Alvarez",
-    nmls: "1838273",
-    title: "Loan Officer",
-    states: ["NY"],
-    branchSlug: "uniondale-headquarters",
-    links: {
-      email: "ralvarez@cliffcomortgage.com",
-      directPhone: "631-316-3654",
-      applyNow: "https://fastapp.cliffcomortgage.com/#/milestones?referrerId=ralverez%40cliffcomortgage.com&loanType=MORTGAGE",
-    },
-    bio: "Ever since I became a Real Estate Agent in Manhattan at the age of 19, I fell in love with Real Estate. The thrill of deal-making combined with helping clients find their dream home gave me a rush like no other. Now that I am a Mortgage Loan Originator, I help clients secure affordable mortgages to finance their dreams. My goal is to provide concierge-style service to all clients and be their most trusted confidant. With over 5 years in this business, I have a huge pool of knowledge to share with my clients. At Cliffco, we have multiple mortgage products such as FHA, VA and Conventional that we can customize to meet the client's specific needs.",
     hasPhoto: true,
   },
   {

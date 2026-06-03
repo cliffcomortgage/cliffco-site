@@ -88,10 +88,25 @@ const schema = [
             <dd class="mt-1 text-[var(--color-ink)]">{lo.languages.join(", ")}</dd>
           </div>
         )}
-        {lo.specialties && lo.specialties.length > 0 && (
-          <div>
+        {(lo.featuredSpecialties || lo.specialties) && (
+          <div class="col-span-2 space-y-3">
             <dt class="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">Specialties</dt>
-            <dd class="mt-1 text-[var(--color-ink)]">{lo.specialties.join(" · ")}</dd>
+            {lo.featuredSpecialties && lo.featuredSpecialties.length > 0 && (
+              <dd class="flex flex-wrap gap-2">
+                {lo.featuredSpecialties.map((s) => (
+                  <span class="text-xs font-bold px-3 py-1.5 rounded-full bg-[var(--color-accent)] text-white">{s}</span>
+                ))}
+              </dd>
+            )}
+            {lo.specialties && lo.specialties.length > 0 && (
+              <dd class="flex flex-wrap gap-1.5">
+                {lo.specialties
+                  .filter((s) => !lo.featuredSpecialties?.includes(s))
+                  .map((s) => (
+                    <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-[var(--color-accent)]/8 text-[var(--color-accent)]/80 border border-[var(--color-accent)]/15">{s}</span>
+                  ))}
+              </dd>
+            )}
           </div>
         )}
       </dl>

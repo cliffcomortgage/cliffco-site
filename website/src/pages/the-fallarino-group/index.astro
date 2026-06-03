@@ -143,6 +143,61 @@ const schema = [
     </div>
   </section>
 
+  <!-- ═══ WHO TO CALL ══════════════════════════════════════════ -->
+  <section style="padding-block:5rem;" class="bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">Who handles what</p>
+      <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">The right specialist for your deal.</h2>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          {
+            name: "David Fallarino",
+            slug: "david-fallarino",
+            role: "High Growth Entrepreneurs",
+            tags: ["Super Jumbo", "Alt-A", "Non-QM", "Condo & Co-op", "Renovation Loans"],
+          },
+          {
+            name: "Lee Horen",
+            slug: "lee-horen",
+            role: "Complex & Jumbo Deals",
+            tags: ["Jumbo & Super Jumbo", "Complex Income", "Self-Employed", "Tough Scenarios"],
+          },
+          {
+            name: "Kevan Scott",
+            slug: "kevan-scott",
+            role: "Investors & Entrepreneurs",
+            tags: ["DSCR", "P&L Loans", "Bank Statement", "Real Estate Investors"],
+          },
+          {
+            name: "Brandon Kenney",
+            slug: "brandon-kenney",
+            role: "Investment Properties",
+            tags: ["Investment Properties", "Renovation Loans", "VA Loans", "FNMA"],
+          },
+          {
+            name: "Fabrizio Alosa",
+            slug: "fabrizio-alosa",
+            role: "First-Time Buyers & Non-QM",
+            tags: ["Spanish-Speaking", "First-Time Buyers", "Non-QM", "FHA"],
+          },
+        ].map((m) => (
+          <a href={`/loan-officers/${m.slug}/`} class="group bg-white rounded-2xl border border-[var(--color-mist-gray)] p-5 no-underline flex flex-col gap-3 hover:border-[var(--color-accent)]/40 hover:shadow-md transition-all duration-200">
+            <div>
+              <p class="font-semibold text-[var(--color-ink)] text-sm">{m.name}</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-0.5">{m.role}</p>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              {m.tags.map((tag) => (
+                <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-[var(--color-accent)]/8 text-[var(--color-accent)]">{tag}</span>
+              ))}
+            </div>
+            <span class="text-xs font-semibold text-[var(--color-accent)] mt-auto">View profile →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ SPECIALTIES ═══════════════════════════════════════════ -->
   <section style="padding-block:6rem;" class="bg-[var(--color-mist-gray)]">
     <div class="container-wide">

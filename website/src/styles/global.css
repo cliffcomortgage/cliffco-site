@@ -424,6 +424,11 @@
   will-change: transform;
 }
 
+/* Hide cursor dot on touch/coarse-pointer devices (mobile/tablet) */
+@media (pointer: coarse) {
+  #cf-cursor { display: none !important; }
+}
+
 /* ---------- Scroll-reveal classes (applied by JS) ---------- */
 .cf-reveal {
   opacity: 0;
