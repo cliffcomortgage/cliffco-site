@@ -429,6 +429,14 @@
   #cf-cursor { display: none !important; }
 }
 
+/* Restore native cursor inside modal dialogs — dialogs render in the browser
+   top layer above z-index stacking, so the custom dot can't appear over them.
+   Restoring auto cursor lets users see where to click on form fields. */
+@media (pointer: fine) and (hover: hover) {
+  dialog:modal,
+  dialog:modal * { cursor: auto !important; }
+}
+
 /* ---------- Scroll-reveal classes (applied by JS) ---------- */
 .cf-reveal {
   opacity: 0;

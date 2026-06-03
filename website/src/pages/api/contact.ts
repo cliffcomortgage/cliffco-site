@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 
-export const prerender = false;
+// Static for GitHub Pages preview (no server), server-rendered for Vercel production
+export const prerender = process.env.DEPLOY_TARGET === 'pages';
 
 // All recipients must be @cliffcomortgage.com for security
 const ALLOWED_DOMAIN = 'cliffcomortgage.com';

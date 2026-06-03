@@ -12,7 +12,8 @@ const isPages = process.env.DEPLOY_TARGET === 'pages';
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: vercel(),
+  // Vercel adapter only for production — GitHub Pages preview uses static output
+  ...(isPages ? {} : { adapter: vercel() }),
   site: isPages
     ? 'https://rafetangorra-tech.github.io'
     : 'https://cliffcomortgage.com',
