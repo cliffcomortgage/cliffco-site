@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
 import { BRANCHES } from "../../data/branches";
+import ContactForm from "../../components/forms/ContactForm.astro";
 
 const allBranches = BRANCHES;
 ---
@@ -102,87 +103,13 @@ const allBranches = BRANCHES;
         <p class="eyebrow">Send a message</p>
         <h2 class="mt-3" style="font-size: var(--text-h2);">General inquiry form.</h2>
         <p class="mt-3 text-sm text-[var(--color-text-muted)]">For mortgage applications, use the <a href="/get-started/" class="text-[var(--color-accent)]">guided intake</a> instead. This form is for general questions and non-application inquiries.</p>
-
-        <form
-          action="/api/lead"
-          method="POST"
-          class="mt-6 space-y-4"
-        >
-          <input type="hidden" name="form_source" value="contact" />
-
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label for="contact-name" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Full name</label>
-              <input
-                id="contact-name"
-                name="name"
-                type="text"
-                required
-                autocomplete="name"
-                class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)]"
-                placeholder="Jane Smith"
-              />
-            </div>
-            <div>
-              <label for="contact-phone" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Phone number</label>
-              <input
-                id="contact-phone"
-                name="phone"
-                type="tel"
-                autocomplete="tel"
-                class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)]"
-                placeholder="(555) 000-0000"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label for="contact-email" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Email address</label>
-            <input
-              id="contact-email"
-              name="email"
-              type="email"
-              required
-              autocomplete="email"
-              class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)]"
-              placeholder="jane@example.com"
-            />
-          </div>
-
-          <div>
-            <label for="contact-subject" class="block text-sm font-medium text-[var(--color-ink)] mb-1">What's this about?</label>
-            <select
-              id="contact-subject"
-              name="subject"
-              class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)] bg-white"
-            >
-              <option value="">Select a topic</option>
-              <option value="mortgage-question">General mortgage question</option>
-              <option value="existing-loan">Question about an existing loan</option>
-              <option value="loan-officer">Connect me with a specific loan officer</option>
-              <option value="press">Press / media inquiry</option>
-              <option value="careers">Careers / joining Cliffco</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="contact-message" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Message</label>
-            <textarea
-              id="contact-message"
-              name="message"
-              rows={4}
-              class="w-full border border-[var(--color-mist-gray)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-accent)] resize-none"
-              placeholder="How can we help?"
-            ></textarea>
-          </div>
-
-          <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-            By submitting this form you consent to be contacted by Cliffco, Inc. (NMLS #65328) regarding your inquiry. Cliffco operates in Florida as Swish Capital, Inc. Message and data rates may apply. Reply STOP to opt out.
-          </p>
-
-          <button type="submit" class="btn btn-primary w-full">Send Message</button>
-        </form>
+        <div class="mt-6">
+          <ContactForm
+            formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
+            formSource="contact-page"
+            ctaLabel="Send Message"
+          />
+        </div>
       </div>
 
     </div>

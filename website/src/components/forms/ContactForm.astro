@@ -1,0 +1,174 @@
+---
+/**
+ * Shared contact form used across LO pages, team pages, situation pages,
+ * and loan product pages. Posts to /api/contact via fetch (no page reload).
+ *
+ * Props:
+ *   formTo      — recipient email(s), comma-separated @cliffcomortgage.com addresses
+ *   formSource  — identifier for tracking (e.g. "lo-david-fallarino", "team-zambelli")
+ *   ctaLabel    — button label (default: "Send Message")
+ *   dark        — true to render for dark backgrounds
+ */
+interface Props {
+  formTo: string;
+  formSource?: string;
+  ctaLabel?: string;
+  dark?: boolean;
+}
+
+const {
+  formTo,
+  formSource = 'website',
+  ctaLabel = 'Send Message',
+  dark = false,
+} = Astro.props;
+
+const inputClass = dark
+  ? 'w-full rounded-lg border border-white/20 bg-white/10 text-white placeholder-white/40 px-4 py-2.5 text-sm focus:outline-none focus:border-white/60'
+  : 'w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]';
+
+const labelClass = dark
+  ? 'block text-xs font-medium text-white/70 mb-1'
+  : 'block text-xs font-medium text-[var(--color-text-muted)] mb-1';
+
+const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<form
+  id={id}
+  class="cf-contact-form space-y-4"
+  data-form-to={formTo}
+  data-form-source={formSource}
+  novalidate
+>
+  <!-- Name row -->
+  <div class="grid sm:grid-cols-2 gap-4">
+    <div>
+      <label for={`${id}-fname`} class={labelClass}>First name <span class="text-red-400">*</span></label>
+      <input id={`${id}-fname`} name="first_name" type="text" required autocomplete="given-name"
+        placeholder="Jane" class={inputClass} />
+    </div>
+    <div>
+      <label for={`${id}-lname`} class={labelClass}>Last name <span class="text-red-400">*</span></label>
+      <input id={`${id}-lname`} name="last_name" type="text" required autocomplete="family-name"
+        placeholder="Smith" class={inputClass} />
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div>
+    <label for={`${id}-email`} class={labelClass}>Email <span class="text-red-400">*</span></label>
+    <input id={`${id}-email`} name="email" type="email" required autocomplete="email"
+      placeholder="jane@example.com" class={inputClass} />
+  </div>
+
+  <!-- Phone -->
+  <div>
+    <label for={`${id}-phone`} class={labelClass}>Phone <span class="text-red-400">*</span></label>
+    <input id={`${id}-phone`} name="phone" type="tel" required autocomplete="tel"
+      placeholder="(555) 000-0000" class={inputClass} />
+  </div>
+
+  <!-- Purpose -->
+  <div>
+    <label for={`${id}-purpose`} class={labelClass}>I'm looking to <span class="text-red-400">*</span></label>
+    <select id={`${id}-purpose`} name="purpose" required
+      class={dark
+        ? 'w-full rounded-lg border border-white/20 bg-white/10 text-white px-4 py-2.5 text-sm focus:outline-none focus:border-white/60'
+        : 'w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]'}>
+      <option value="">Select one…</option>
+      <option value="Purchase">Purchase a home</option>
+      <option value="Refinance">Refinance</option>
+      <option value="Cash-Out Refinance">Cash-out refinance</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <!-- State -->
+  <div>
+    <label for={`${id}-state`} class={labelClass}>Property state <span class="text-red-400">*</span></label>
+    <select id={`${id}-state`} name="state" required
+      class={dark
+        ? 'w-full rounded-lg border border-white/20 bg-white/10 text-white px-4 py-2.5 text-sm focus:outline-none focus:border-white/60'
+        : 'w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]'}>
+      <option value="">Select a state…</option>
+      {["Alabama","Alaska","Arizona","California","Colorado","Connecticut","Delaware","District of Columbia","Florida","Georgia","Idaho","Illinois","Indiana","Kansas","Kentucky","Louisiana","Maryland","Michigan","Minnesota","New Jersey","New Mexico","New York","North Carolina","Ohio","Oregon","Pennsylvania","South Carolina","Tennessee","Texas","Vermont","Virginia","Washington"].map(s => (
+        <option value={s}>{s}</option>
+      ))}
+    </select>
+  </div>
+
+  <!-- Notes -->
+  <div>
+    <label for={`${id}-notes`} class={labelClass}>Anything else we should know? <span class={dark ? 'text-white/40' : 'text-[var(--color-text-muted)]'}>(optional)</span></label>
+    <textarea id={`${id}-notes`} name="notes" rows={3}
+      placeholder="Tell us about your situation…"
+      class={dark
+        ? 'w-full rounded-lg border border-white/20 bg-white/10 text-white placeholder-white/40 px-4 py-2.5 text-sm focus:outline-none focus:border-white/60 resize-none'
+        : 'w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)] resize-none'}></textarea>
+  </div>
+
+  <!-- TCPA -->
+  <div class="flex items-start gap-3">
+    <input type="checkbox" id={`${id}-tcpa`} name="tcpa_consent" value="yes" required
+      class="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 accent-[var(--color-accent)]" />
+    <label for={`${id}-tcpa`} class={`text-xs leading-relaxed ${dark ? 'text-white/50' : 'text-[var(--color-text-muted)]'}`}>
+      By submitting this form I consent to be contacted by Cliffco, Inc. (NMLS #65328) regarding my inquiry via calls, texts, and emails, including via automated technology. Consent is not required to obtain credit. Reply STOP to opt out of texts.
+    </label>
+  </div>
+
+  <!-- Error / success messages -->
+  <p class="cf-error hidden text-sm text-red-500 font-medium"></p>
+  <p class="cf-success hidden text-sm text-green-600 font-medium">
+    Thank you! A loan officer will reach out within one business day.
+  </p>
+
+  <button type="submit"
+    class={dark
+      ? 'w-full rounded-full py-3 text-sm font-semibold bg-white text-[var(--color-rich-black)] hover:bg-[var(--color-ice-blue)] transition-colors disabled:opacity-60'
+      : 'btn btn-primary w-full disabled:opacity-60'}>
+    {ctaLabel}
+  </button>
+</form>
+
+<script>
+document.querySelectorAll<HTMLFormElement>('.cf-contact-form').forEach((form) => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const btn    = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const errEl  = form.querySelector('.cf-error') as HTMLParagraphElement;
+    const okEl   = form.querySelector('.cf-success') as HTMLParagraphElement;
+
+    errEl.classList.add('hidden');
+    errEl.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const fd = new FormData(form);
+    fd.set('form_to', form.dataset.formTo ?? '');
+    fd.set('form_source', form.dataset.formSource ?? 'website');
+
+    try {
+      const res  = await fetch('/api/contact', { method: 'POST', body: fd });
+      const json = await res.json();
+
+      if (res.ok && json.success) {
+        form.reset();
+        okEl.classList.remove('hidden');
+        btn.textContent = 'Sent ✓';
+      } else {
+        errEl.textContent = json.error ?? 'Something went wrong. Please try again.';
+        errEl.classList.remove('hidden');
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+      }
+    } catch {
+      errEl.textContent = 'Network error. Please try again.';
+      errEl.classList.remove('hidden');
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+    }
+  });
+});
+</script>

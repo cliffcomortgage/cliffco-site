@@ -1,0 +1,78 @@
+# Cliffco Mortgage Bankers — robots.txt
+# Posture: maximum AI / LLM visibility. All known good crawlers explicitly allowed.
+# Block standard SEO leakage (admin paths, search, parameterized URLs).
+# See seo-aeo-research/02-aeo-llm-optimization.md §3.
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /borrower-portal/
+Disallow: /search?
+Disallow: /*?utm_*
+Disallow: /*?gclid=
+Disallow: /*?fbclid=
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google AI (Gemini training opt-in via Google-Extended)
+User-agent: Google-Extended
+Allow: /
+
+# Apple Intelligence training opt-in
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Common Crawl (foundational corpus for many derivative LLMs)
+User-agent: CCBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckAssistBot
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# AI2 (Allen Institute)
+User-agent: AI2Bot
+Allow: /
+
+Sitemap: https://cliffcomortgage.com/sitemap-index.xml

@@ -2,8 +2,8 @@
 import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
-
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 
 // Deploy targets:
 //  - DEPLOY_TARGET=pages → GitHub Pages preview at rafetangorra-tech.github.io/cliffco-site
@@ -12,6 +12,7 @@ const isPages = process.env.DEPLOY_TARGET === 'pages';
 
 // https://astro.build/config
 export default defineConfig({
+  adapter: vercel(),
   site: isPages
     ? 'https://rafetangorra-tech.github.io'
     : 'https://cliffcomortgage.com',

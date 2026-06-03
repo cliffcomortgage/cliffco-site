@@ -36,6 +36,7 @@ const schema = [
     { name: "Ft. Lauderdale", url: "/locations/florida/fort-lauderdale/" },
   ]),
 ];
+import ContactForm from "../../../../components/forms/ContactForm.astro";
 ---
 
 <Layout
@@ -192,6 +193,21 @@ const schema = [
   <section class="bg-white py-8">
     <div class="container-wide">
       <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">{COMPANY.floridaDba.disclosure}</p>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-2xl">
+      <p class="eyebrow">Get in touch</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Ready to talk to a loan officer?</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">No credit pull. No commitment. Fill out the form and a loan officer will reach out within one business day.</p>
+      <div class="mt-8">
+        <ContactForm
+          formTo="karabian@cliffcomortgage.com"
+          formSource="location-ftlauderdale"
+        />
+      </div>
     </div>
   </section>
 </Layout>

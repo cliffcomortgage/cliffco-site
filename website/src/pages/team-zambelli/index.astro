@@ -50,6 +50,7 @@ const schema = [
     authorSlug: "lisa-zambelli",
   }),
 ];
+import ContactForm from "../../components/forms/ContactForm.astro";
 ---
 
 <Layout
@@ -277,6 +278,21 @@ const schema = [
             )}
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-2xl">
+      <p class="eyebrow">Get in touch</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Ready to talk to a loan officer?</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">No credit pull. No commitment. Fill out the form and a loan officer will reach out within one business day.</p>
+      <div class="mt-8">
+        <ContactForm
+          formTo="lzambelli@cliffcomortgage.com"
+          formSource="team-zambelli"
+        />
       </div>
     </div>
   </section>

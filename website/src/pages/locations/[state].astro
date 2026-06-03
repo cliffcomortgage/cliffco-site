@@ -8,6 +8,7 @@ import { LOAN_OFFICERS, loanOfficersByBranch } from "../../data/loan-officers";
 import { product } from "../../data/products";
 import { localBusinessSchema, faqPageSchema, breadcrumbSchema } from "../../lib/schema";
 import Headshot from "../../components/ui/Headshot.astro";
+import ContactForm from "../../components/forms/ContactForm.astro";
 
 export async function getStaticPaths() {
   // Render top-level state pages: new-jersey, arizona, minnesota, florida.
@@ -243,6 +244,21 @@ const schema = [
       </div>
     </section>
   )}
+
+  <!-- CONTACT FORM -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-2xl">
+      <p class="eyebrow">Get in touch</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Ready to talk to a loan officer?</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">No credit pull. No commitment. Fill out the form and a loan officer will reach out within one business day.</p>
+      <div class="mt-8">
+        <ContactForm
+          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
+          formSource={`location-${loc.state.toLowerCase()}`}
+        />
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <script>

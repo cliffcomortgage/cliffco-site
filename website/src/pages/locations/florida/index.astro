@@ -27,6 +27,7 @@ const schema = [
     { name: "Florida", url: "/locations/florida/" },
   ]),
 ];
+import ContactForm from "../../../components/forms/ContactForm.astro";
 ---
 
 <Layout title="Florida Mortgage Lender | Cliffco (Swish Capital)" description={loc.blurb} schema={schema}>
@@ -144,6 +145,21 @@ const schema = [
   <section class="bg-white py-8">
     <div class="container-wide">
       <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">{COMPANY.floridaDba.disclosure}</p>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-2xl">
+      <p class="eyebrow">Get in touch</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Ready to talk to a loan officer?</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">No credit pull. No commitment. Fill out the form and a loan officer will reach out within one business day.</p>
+      <div class="mt-8">
+        <ContactForm
+          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
+          formSource="location-florida"
+        />
+      </div>
     </div>
   </section>
 </Layout>

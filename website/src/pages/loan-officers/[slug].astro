@@ -8,6 +8,7 @@ import { STATE_LICENSES } from "../../data/state-licenses";
 import { fullDisclosureBlock } from "../../data/disclosures";
 import { personSchema, breadcrumbSchema } from "../../lib/schema";
 import Headshot from "../../components/ui/Headshot.astro";
+import ContactForm from "../../components/forms/ContactForm.astro";
 
 export async function getStaticPaths() {
   return LOAN_OFFICERS.map((lo) => ({ params: { slug: lo.slug }, props: { lo } }));
@@ -146,10 +147,11 @@ const schema = [
       </div>
       <button id="contact-close" class="text-[var(--color-text-muted)] hover:text-[var(--color-ink)] text-2xl leading-none" aria-label="Close">&times;</button>
     </div>
-    <!-- HubSpot form: replace this placeholder with the embed code for {lo.displayName} -->
-    <div class="hubspot-form-placeholder py-8 text-center border-2 border-dashed border-[var(--color-mist-gray)] rounded-xl">
-      <p class="text-sm text-[var(--color-text-muted)]">HubSpot form for {lo.displayName} goes here.</p>
-    </div>
+    <ContactForm
+      formTo={lo.links?.email ?? 'websiteleads@cliffcomortgage.com'}
+      formSource={`lo-${lo.slug}`}
+      ctaLabel={`Send message to ${lo.firstName.split(' ')[0]}`}
+    />
   </dialog>
 
   <!-- TEAM BANNER (shown for team members only) -->
