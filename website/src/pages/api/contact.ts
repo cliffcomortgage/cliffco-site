@@ -75,7 +75,7 @@ export const POST: APIRoute = async ({ request }) => {
               <td style="padding:8px 0;"><a href="tel:${phone.replace(/\D/g,'')}">${phone}</a></td></tr>
           <tr style="background:#f9f8fa;"><td style="padding:8px 4px;color:#5a5d5d;font-size:13px;">Looking to</td>
               <td style="padding:8px 4px;">${purpose}</td></tr>
-          <tr><td style="padding:8px 0;color:#5a5d5d;font-size:13px;">Property state</td>
+          <tr><td style="padding:8px 0;color:#5a5d5d;font-size:13px;">State</td>
               <td style="padding:8px 0;">${state}</td></tr>
           ${notes ? `<tr style="background:#f9f8fa;"><td style="padding:8px 4px;color:#5a5d5d;font-size:13px;vertical-align:top;">Notes</td>
               <td style="padding:8px 4px;">${notes}</td></tr>` : ''}
