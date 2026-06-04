@@ -63,8 +63,8 @@ import ContactForm from "../../components/forms/ContactForm.astro";
     <div class="container-wide py-20 lg:py-28 relative z-10">
       <p class="eyebrow !text-[var(--color-ice-blue)]">DSCR Lending · Portfolio Financing</p>
       <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
-        Qualifying Shouldn't Be About Your Salary.<br/>
-        <span class="text-[var(--color-ice-blue)]">It Should Be About Your Property's Cash Flow.</span>
+        Qualify With Your Property's Cash Flow.<br/>
+        <span class="text-[var(--color-ice-blue)]">Not Your Income.</span>
       </h1>
       <p class="lead mt-6 text-white/90 max-w-2xl">
         DSCR loans let the rental income do the qualifying work. No personal income verification. No tax returns. Your portfolio is the collateral. Your cash flow is the qualification.
@@ -128,44 +128,55 @@ import ContactForm from "../../components/forms/ContactForm.astro";
       <p class="eyebrow">Loan parameters</p>
       <h2 class="mt-3" style="font-size: var(--text-h2);">What to expect.</h2>
 
-      <dl class="mt-8 grid gap-3 max-w-2xl">
-        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
-          <dt class="text-[var(--color-text-muted)]">Min DSCR ratio</dt>
-          <dd class="font-medium text-[var(--color-ink)]">0.75 (higher ratio = better pricing)</dd>
+      <div class="mt-8 grid lg:grid-cols-2 gap-12 items-center">
+        <dl class="grid gap-3">
+          <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+            <dt class="text-[var(--color-text-muted)]">Min DSCR ratio</dt>
+            <dd class="font-medium text-[var(--color-ink)]">0.75 (higher ratio = better pricing)</dd>
+          </div>
+          <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+            <dt class="text-[var(--color-text-muted)]">Max LTV (purchase)</dt>
+            <dd class="font-medium text-[var(--color-ink)]">Up to 80%</dd>
+          </div>
+          <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+            <dt class="text-[var(--color-text-muted)]">Max LTV (cash-out refi)</dt>
+            <dd class="font-medium text-[var(--color-ink)]">Up to 75%</dd>
+          </div>
+          <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+            <dt class="text-[var(--color-text-muted)]">Loan amount</dt>
+            <dd class="font-medium text-[var(--color-ink)]">$100K to $3M+</dd>
+          </div>
+          <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+            <dt class="text-[var(--color-text-muted)]">Property types</dt>
+            <dd class="font-medium text-[var(--color-ink)]">1 to 4 unit non-owner-occupied</dd>
+          </div>
+          <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+            <dt class="text-[var(--color-text-muted)]">Entity borrowing</dt>
+            <dd class="font-medium text-[var(--color-ink)]">Yes (LLC, S-Corp, C-Corp)</dd>
+          </div>
+          <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+            <dt class="text-[var(--color-text-muted)]">Personal income verification</dt>
+            <dd class="font-medium text-[var(--color-ink)]">Not required</dd>
+          </div>
+          <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
+            <dt class="text-[var(--color-text-muted)]">Loan terms</dt>
+            <dd class="font-medium text-[var(--color-ink)]">30-year fixed, ARM, 40-year interest-only</dd>
+          </div>
+          <div class="flex justify-between pb-3">
+            <dt class="text-[var(--color-text-muted)]">Portfolio limit</dt>
+            <dd class="font-medium text-[var(--color-ink)]">None</dd>
+          </div>
+        </dl>
+        <div class="hidden lg:block">
+          <img
+            src="/images/content%20images/Investment%20Property.jpg"
+            alt="Investment property"
+            class="rounded-2xl w-full h-full object-cover"
+            style="max-height:520px;"
+            loading="lazy"
+          />
         </div>
-        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
-          <dt class="text-[var(--color-text-muted)]">Max LTV (purchase)</dt>
-          <dd class="font-medium text-[var(--color-ink)]">Up to 80%</dd>
-        </div>
-        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
-          <dt class="text-[var(--color-text-muted)]">Max LTV (cash-out refi)</dt>
-          <dd class="font-medium text-[var(--color-ink)]">Up to 75%</dd>
-        </div>
-        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
-          <dt class="text-[var(--color-text-muted)]">Loan amount</dt>
-          <dd class="font-medium text-[var(--color-ink)]">$100K to $3M+</dd>
-        </div>
-        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
-          <dt class="text-[var(--color-text-muted)]">Property types</dt>
-          <dd class="font-medium text-[var(--color-ink)]">1 to 4 unit non-owner-occupied</dd>
-        </div>
-        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
-          <dt class="text-[var(--color-text-muted)]">Entity borrowing</dt>
-          <dd class="font-medium text-[var(--color-ink)]">Yes (LLC, S-Corp, C-Corp)</dd>
-        </div>
-        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
-          <dt class="text-[var(--color-text-muted)]">Personal income verification</dt>
-          <dd class="font-medium text-[var(--color-ink)]">Not required</dd>
-        </div>
-        <div class="flex justify-between border-b border-[var(--color-border)] pb-3">
-          <dt class="text-[var(--color-text-muted)]">Loan terms</dt>
-          <dd class="font-medium text-[var(--color-ink)]">30-year fixed, ARM, 40-year interest-only</dd>
-        </div>
-        <div class="flex justify-between pb-3">
-          <dt class="text-[var(--color-text-muted)]">Portfolio limit</dt>
-          <dd class="font-medium text-[var(--color-ink)]">None</dd>
-        </div>
-      </dl>
+      </div>
     </div>
   </section>
 
@@ -220,7 +231,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
   <!-- CTA -->
   <section class="accent-gradient">
     <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Run your numbers. Talk to a real investor specialist.</h2>
+      <h2 class="text-white" style="font-size: var(--text-h2);">Run your numbers. Consult us on your next investment.</h2>
       <p class="lead mt-4 text-white/85">Cliffco originates DSCR loans across 32 states. A loan officer responds in one business day.</p>
       <div class="mt-8 flex justify-center gap-3 flex-wrap">
         <a href="/mortgage-guides/calculators/dscr/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Run a DSCR Scenario</a>
