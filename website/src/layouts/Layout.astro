@@ -270,7 +270,7 @@ const allSchema = schema
 
       const path = window.location.pathname;
       // Detect LO detail page: /loan-officers/{slug}/
-      const loMatch = path.match(/^\/loan-officers\/([^\/]+)\/?$/);
+      const loMatch = path.match(/\/loan-officers\/([^\/]+)\/?$/);
       const pageSlug = loMatch ? loMatch[1] : null;
 
       // On any LO page: set/refresh the cookie, then stop - bar never shows here
