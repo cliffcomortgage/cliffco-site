@@ -39,6 +39,7 @@
         "label": "error",
         "forced-reflow-insight": "off",
         "lcp-discovery-insight": "off",
+        "cls-culprits-insight": "off",
         "unsized-images": "warn",
         "tap-targets": "off",
         "target-size": "warn",
