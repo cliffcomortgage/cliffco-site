@@ -147,16 +147,16 @@ const schema = [
   </section>
 
   <!-- TIMELINE STRIP -->
-  <section class="bg-white py-8 border-b border-[var(--color-mist-gray)]">
+  <section class="bg-white py-10 border-b border-[var(--color-mist-gray)]">
     <div class="container-wide">
-      <div class="flex gap-0 overflow-x-auto">
+      <div class="flex items-center w-full">
         {steps.map((s, i) => (
-          <div class="flex items-center gap-0 shrink-0">
-            <div class="flex flex-col items-center gap-1 px-4">
-              <span class="text-xs font-bold text-[var(--color-accent)]">{s.number}</span>
-              <span class="text-xs text-center text-[var(--color-text-muted)] max-w-[80px] leading-tight">{s.heading.split(" ").slice(0, 3).join(" ")}</span>
+          <div class="flex items-center flex-1 min-w-0">
+            <div class="flex flex-col items-center gap-2 flex-1 px-2">
+              <span class="text-sm font-bold text-[var(--color-accent)]">{s.number}</span>
+              <span class="text-sm text-center text-[var(--color-text-muted)] leading-tight">{s.heading.split(" ").slice(0, 3).join(" ")}</span>
             </div>
-            {i < steps.length - 1 && <span class="text-[var(--color-mist-gray)] text-lg shrink-0">›</span>}
+            {i < steps.length - 1 && <span class="text-[var(--color-mist-gray)] text-2xl shrink-0">›</span>}
           </div>
         ))}
       </div>

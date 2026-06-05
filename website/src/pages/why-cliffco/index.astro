@@ -3,6 +3,10 @@ import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
 import { articleSchema } from "../../lib/schema";
+import { REVIEW_PLATFORMS } from "../../data/reviews";
+
+const numericRatings = REVIEW_PLATFORMS.filter(p => p.rating !== null).map(p => p.rating as number);
+const avgRating = (numericRatings.reduce((a, b) => a + b, 0) / numericRatings.length).toFixed(1);
 
 const today = new Date().toISOString().slice(0, 10);
 const yearsInBiz = new Date().getFullYear() - COMPANY.founded;
@@ -38,7 +42,7 @@ const schema = [
         <span class="text-[var(--color-ice-blue)]">One Focus. You.</span>
       </h1>
       <p class="lead mt-6 text-white/90 max-w-2xl">
-        We specialize in the loans conventional lenders won't touch: self-employed, denied, investor, 62 and older. That's not a niche. That's who we built this company for.
+        We specialize in the loans conventional lenders won't touch: self-employed, denied, investor, 62 and older. These are the families we built Cliffco to serve.
       </p>
       <div class="mt-8 flex flex-wrap gap-4 items-center">
         <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Talk to a Loan Officer</a>
@@ -55,7 +59,7 @@ const schema = [
           { stat: `${yearsInBiz}+`, label: "Years in business" },
           { stat: "32", label: "Licensed states" },
           { stat: "$6B+", label: "Mortgages closed" },
-          { stat: "4.9★", label: "Experience.com rating" },
+          { stat: `${avgRating}★`, label: "Average rating" },
         ].map((item) => (
           <div class="flex flex-col gap-1">
             <span class="text-4xl font-bold text-[var(--color-accent)]">{item.stat}</span>
