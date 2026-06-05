@@ -29,11 +29,11 @@
   --color-accent-soft: #bde8f1;
 
   /* ---------- Typography ---------- */
-  --font-sans: "Graphik", "Open Sans", ui-sans-serif, system-ui, -apple-system,
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display: "Graphik", "Open Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-logo: "Montserrat", "Graphik", ui-sans-serif, system-ui, sans-serif;
-  --font-accent: "Righten", "Graphik", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-logo: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-accent: "Open Sans", ui-sans-serif, system-ui, sans-serif;
 
   /* Tracking - per brand guide:
      headers/subheaders: 75-100 InDesign units ≈ 0.075em-0.1em
