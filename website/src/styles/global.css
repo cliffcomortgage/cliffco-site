@@ -97,16 +97,6 @@
   src: url("../../../brand/fonts/Graphik/Graphik-Light-Desktop.otf") format("opentype");
 }
 
-/* ---------- Open Sans web fallback (until Graphik kit is licensed) ---------- */
-/* Self-hosted via Google Fonts proxy - replace with a self-hosted woff2
-   subset for production-grade CWV. */
-@font-face {
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: local("Open Sans"), local("OpenSans");
-}
 
 /* ---------- Base typography ---------- */
 @layer base {
