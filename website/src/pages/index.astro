@@ -406,7 +406,7 @@ const productIcons: Record<string, string> = {
   if (!els.length) return;
 
   function run(el: HTMLElement) {
-    const target = parseInt(el.dataset.target, 10);
+    const target = parseInt(el.dataset.target ?? '0', 10);
     const useComma = el.dataset.format === 'comma';
     const duration = 1400;
     const start = performance.now();
@@ -426,7 +426,7 @@ const productIcons: Record<string, string> = {
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        run(e.target);
+        run(e.target as HTMLElement);
         obs.unobserve(e.target);
       }
     });
