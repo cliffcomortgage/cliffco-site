@@ -14,6 +14,10 @@ interface Props {
   formSource?: string;
   ctaLabel?: string;
   dark?: boolean;
+  showPurpose?: boolean;
+  showState?: boolean;
+  notesRequired?: boolean;
+  notesLabel?: string;
 }
 
 const {
@@ -21,6 +25,10 @@ const {
   formSource = 'website',
   ctaLabel = 'Send Message',
   dark = false,
+  showPurpose = true,
+  showState = true,
+  notesRequired = false,
+  notesLabel = 'Anything else we should know?',
 } = Astro.props;
 
 const inputClass = dark
@@ -70,6 +78,7 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
   </div>
 
   <!-- Purpose -->
+  {showPurpose && (
   <div>
     <label for={`${id}-purpose`} class={labelClass}>I'm looking to <span class="text-red-400">*</span></label>
     <select id={`${id}-purpose`} name="purpose" required
@@ -83,8 +92,10 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
       <option value="Other">Other</option>
     </select>
   </div>
+  )}
 
   <!-- State -->
+  {showState && (
   <div>
     <label for={`${id}-state`} class={labelClass}>State <span class="text-red-400">*</span></label>
     <select id={`${id}-state`} name="state" required
@@ -97,11 +108,19 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
       ))}
     </select>
   </div>
+  )}
 
   <!-- Notes -->
   <div>
-    <label for={`${id}-notes`} class={labelClass}>Anything else we should know? <span class={dark ? 'text-white/40' : 'text-[var(--color-text-muted)]'}>(optional)</span></label>
+    <label for={`${id}-notes`} class={labelClass}>
+      {notesLabel}
+      {notesRequired
+        ? <span class="text-red-400"> *</span>
+        : <span class={dark ? 'text-white/40' : 'text-[var(--color-text-muted)]'}> (optional)</span>
+      }
+    </label>
     <textarea id={`${id}-notes`} name="notes" rows={3}
+      required={notesRequired}
       placeholder="Tell us about your situation…"
       class={dark
         ? 'w-full rounded-lg border border-white/20 bg-white/10 text-white placeholder-white/40 px-4 py-2.5 text-sm focus:outline-none focus:border-white/60 resize-none'

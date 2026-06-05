@@ -15,6 +15,7 @@ const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
 );
 const photoLeaders = LEADERSHIP_TEAM.filter((l) => l.hasPhoto);
 const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
+const kathleenIdx = photoLeaders.findIndex((l) => l.slug === "samantha-cardinal");
 ---
 
 <Layout
@@ -30,12 +31,12 @@ const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
   <section class="container-wide pt-12 pb-4">
     <p class="eyebrow">About Cliffco</p>
     <h1 class="mt-3" style="font-size: var(--text-display-lg);">
-      A {yearsInBiz}-year-old independent mortgage bank, still family-owned, still picking up the phone.
+      Nearly 40 years in business, still family-owned, and still picking up the phone.
     </h1>
     <p class="lead mt-6">
       Cliffco was founded in 1989 on Long Island as an alternative to the bank-driven mortgage process.
       The kind that turns away a self-employed borrower in 90 seconds without ever asking who they are
-      or what they actually do for a living. {yearsInBiz} years later, that's still the work.
+      or what they actually do for a living. {yearsInBiz} years later, that's still the work we do.
     </p>
   </section>
 
@@ -111,7 +112,7 @@ const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
   <section class="section bg-white">
     <div class="container-wide">
       <p class="eyebrow">Leadership</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Real names. Real NMLS IDs. Verifiable.</h2>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Leaders who started as loan officers, and never stopped.</h2>
       <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
         Every leader at Cliffco is a licensed loan officer with an NMLS ID you can verify on
         <a href="https://www.nmlsconsumeraccess.org/" rel="noopener">NMLS Consumer Access</a>.
@@ -147,7 +148,26 @@ const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
       </p>
 
       <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {photoLeaders.map((leader) => (
+        {photoLeaders.slice(0, kathleenIdx + 1).map((leader) => (
+          <article class="card flex flex-col h-full">
+            <div class="mb-4 -mx-6 -mt-6">
+              <Headshot slug={leader.slug} name={leader.name} size={400} shape="square" class="rounded-t-xl" />
+            </div>
+            <p class="eyebrow">{leader.title}</p>
+            <h3 class="mt-2" style="font-size: var(--text-h3);">{leader.name}</h3>
+          </article>
+        ))}
+        {compactLeaders.length > 0 && (
+          <div class="flex flex-col gap-3">
+            {compactLeaders.map((leader) => (
+              <article class="card py-4 flex-1">
+                <p class="eyebrow">{leader.title}</p>
+                <h3 class="mt-1" style="font-size: var(--text-h3);">{leader.name}</h3>
+              </article>
+            ))}
+          </div>
+        )}
+        {photoLeaders.slice(kathleenIdx + 1).map((leader) => (
           <article class="card flex flex-col h-full">
             <div class="mb-4 -mx-6 -mt-6">
               <Headshot slug={leader.slug} name={leader.name} size={400} shape="square" class="rounded-t-xl" />
@@ -157,17 +177,6 @@ const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
           </article>
         ))}
       </div>
-
-      {compactLeaders.length > 0 && (
-        <div class="mt-4 flex flex-row gap-3">
-          {compactLeaders.map((leader) => (
-            <article class="card py-4">
-              <p class="eyebrow">{leader.title}</p>
-              <h3 class="mt-1" style="font-size: var(--text-h3);">{leader.name}</h3>
-            </article>
-          ))}
-        </div>
-      )}
     </div>
   </section>
 

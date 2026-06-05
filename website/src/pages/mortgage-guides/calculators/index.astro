@@ -101,6 +101,8 @@ const calculators = [
   },
 ];
 
+const audiences = ["All", ...Array.from(new Set(calculators.map((c) => c.audience)))];
+
 const colorMap: Record<string, { bg: string; icon: string }> = {
   blue:   { bg: "bg-blue-50",   icon: "text-blue-600" },
   green:  { bg: "bg-green-50",  icon: "text-green-600" },
@@ -131,13 +133,25 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
 
   <section class="bg-[var(--color-mist-gray)] section">
     <div class="container-wide">
-      <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+
+      <!-- Category filter -->
+      <div class="flex flex-wrap gap-2 mb-8" id="calc-filters">
+        {audiences.map((a) => (
+          <button
+            data-filter={a}
+            class={`calc-filter-btn px-4 py-2 rounded-full text-sm font-semibold border transition-colors ${a === "All" ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)] hover:text-[var(--color-ice-blue)]" : "bg-white text-[var(--color-text-muted)] border-[var(--color-mist-gray)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"}`}
+          >{a}</button>
+        ))}
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3" id="calc-grid">
         {calculators.map((c) => {
           const colors = colorMap[c.color];
           return (
             <a
               href={`/mortgage-guides/calculators/${c.slug}/`}
-              class="group bg-white rounded-2xl border border-[var(--color-mist-gray)] p-6 no-underline flex flex-col h-full hover:border-[var(--color-accent)]/40 hover:shadow-md transition-all duration-200"
+              data-audience={c.audience}
+              class="calc-card group bg-white rounded-2xl border border-[var(--color-mist-gray)] p-6 no-underline flex flex-col h-full hover:border-[var(--color-accent)]/40 hover:shadow-md transition-all duration-200"
             >
               <div class="flex items-start justify-between mb-4">
                 <div class={`w-11 h-11 rounded-xl ${colors.bg} flex items-center justify-center shrink-0`}>
@@ -180,4 +194,30 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
       </div>
     </div>
   </section>
+
+<script>
+  const btns = document.querySelectorAll<HTMLButtonElement>('.calc-filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.calc-card');
+
+  const activeClass = ['bg-[var(--color-accent)]', 'text-white', 'border-[var(--color-accent)]', 'hover:text-[var(--color-ice-blue)]'];
+  const inactiveClass = ['bg-white', 'text-[var(--color-text-muted)]', 'border-[var(--color-mist-gray)]', 'hover:border-[var(--color-accent)]', 'hover:text-[var(--color-accent)]'];
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter ?? 'All';
+
+      btns.forEach(b => {
+        b.classList.remove(...activeClass);
+        b.classList.add(...inactiveClass);
+      });
+      btn.classList.remove(...inactiveClass);
+      btn.classList.add(...activeClass);
+
+      cards.forEach(card => {
+        const match = filter === 'All' || card.dataset.audience === filter;
+        card.style.display = match ? '' : 'none';
+      });
+    });
+  });
+</script>
 </Layout>
