@@ -114,6 +114,7 @@ const allSchema = schema
       const isTouch = window.matchMedia('(pointer: coarse)').matches;
 
       if (dot && !prefersReduced && !isTouch) {
+        const dotEl = dot as HTMLElement;
         let mx = window.innerWidth / 2;
         let my = window.innerHeight / 2;
         let cx = mx, cy = my;
@@ -165,17 +166,17 @@ const allSchema = schema
           targetScale = ctx === 'default' ? 1 : 1.6;
         });
 
-        document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; });
-        document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; });
+        document.addEventListener('mouseleave', () => { dotEl.style.opacity = '0'; });
+        document.addEventListener('mouseenter', () => { dotEl.style.opacity = '1'; });
 
         let lastColor = COLORS.default;
         function tick() {
           cx = lerp(cx, mx, LERP_POS);
           cy = lerp(cy, my, LERP_POS);
           scale = lerp(scale, targetScale, LERP_SCALE);
-          dot.style.transform = `translate(${cx}px, ${cy}px) scale(${scale})`;
+          dotEl.style.transform = `translate(${cx}px, ${cy}px) scale(${scale})`;
           if (lastColor !== targetColor) {
-            dot.style.background = targetColor;
+            dotEl.style.background = targetColor;
             lastColor = targetColor;
           }
           requestAnimationFrame(tick);
