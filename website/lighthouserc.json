@@ -12,7 +12,7 @@
         "http://localhost/loans/business-bank-statement/index.html",
         "http://localhost/locations/new-york/long-island/index.html",
         "http://localhost/locations/florida/orlando/index.html",
-        "http://localhost/loan-officers/christopher-clifford-65234/index.html",
+        "http://localhost/loan-officers/christopher-clifford/index.html",
         "http://localhost/licensing/index.html"
       ],
       "numberOfRuns": 1
