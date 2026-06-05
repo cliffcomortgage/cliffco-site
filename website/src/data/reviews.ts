@@ -1,6 +1,6 @@
-/**
+﻿/**
  * Review platform data for /reviews/.
- * Update counts quarterly — they grow fast on Experience.com and Zillow.
+ * Update counts quarterly - they grow fast on Experience.com and Zillow.
  * Last verified: May 2026.
  */
 

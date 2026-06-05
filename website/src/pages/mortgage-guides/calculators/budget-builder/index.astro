@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
@@ -90,15 +90,15 @@ import { COMPANY } from "../../../../data/company";
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Comfortable Payment Ceiling</p>
-                <p id="bb-ceiling" class="result-num primary">—</p>
+                <p id="bb-ceiling" class="result-num primary">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Estimated Purchase Price</p>
-                <p id="bb-price" class="result-num">—</p>
+                <p id="bb-price" class="result-num">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Monthly Savings Protected</p>
-                <p id="bb-remaining" class="result-num">—</p>
+                <p id="bb-remaining" class="result-num">-</p>
               </div>
             </div>
             <p id="bb-note" class="mt-4 text-xs text-[var(--color-text-muted)]">Estimated purchase price assumes 20% down, 30-year term. Taxes and insurance will reduce your real payment ceiling.</p>
@@ -177,7 +177,7 @@ import { COMPANY } from "../../../../data/company";
 
     if (maxPayment <= 0) {
       if (ceilingEl) ceilingEl.textContent = "$0";
-      if (priceEl) priceEl.textContent = "—";
+      if (priceEl) priceEl.textContent = "-";
       if (remainingEl) remainingEl.textContent = fmt(savings);
       if (warningEl) {
         warningEl.textContent = "Your current expenses and savings goal leave no room for a housing payment. Review your expenses or savings target.";
@@ -207,7 +207,7 @@ import { COMPANY } from "../../../../data/company";
     const savingsProtected = savings;
 
     if (ceilingEl) ceilingEl.textContent = fmt(maxPayment);
-    if (priceEl) priceEl.textContent = purchasePrice > 0 ? fmt(purchasePrice) : "—";
+    if (priceEl) priceEl.textContent = purchasePrice > 0 ? fmt(purchasePrice) : "-";
     if (remainingEl) remainingEl.textContent = fmt(savingsProtected);
 
     if (warningEl) {

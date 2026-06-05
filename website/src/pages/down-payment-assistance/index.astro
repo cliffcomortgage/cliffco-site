@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
@@ -10,27 +10,27 @@ const yearsInBiz = COMPANY.yearsInBusiness();
 const faq = [
   {
     question: "Do I have to be a first-time homebuyer to qualify for DPA?",
-    answer: "Not always. Many programs do require that you haven't owned a home in the past three years, which the federal government defines as a first-time homebuyer. But a significant number of programs — including several national programs — have no first-time buyer requirement at all. Ask your Cliffco loan officer which programs you're eligible for based on your situation.",
+    answer: "Not always. Many programs do require that you haven't owned a home in the past three years, which the federal government defines as a first-time homebuyer. But a significant number of programs - including several national programs - have no first-time buyer requirement at all. Ask your Cliffco loan officer which programs you're eligible for based on your situation.",
   },
   {
     question: "Does down payment assistance affect my interest rate?",
-    answer: "It can. Some DPA programs are rate-subsidized and come with a below-market rate. Others are paired with market-rate loans and the assistance simply covers the down payment or closing costs. A small number of programs involve a slightly higher rate to offset the cost of the assistance. Your loan officer will show you the full picture — net payment, rate, and total cost — so you can compare options fairly.",
+    answer: "It can. Some DPA programs are rate-subsidized and come with a below-market rate. Others are paired with market-rate loans and the assistance simply covers the down payment or closing costs. A small number of programs involve a slightly higher rate to offset the cost of the assistance. Your loan officer will show you the full picture - net payment, rate, and total cost - so you can compare options fairly.",
   },
   {
     question: "Is down payment assistance a grant or a loan?",
-    answer: "It depends on the program. Grants are outright gifts — no repayment required. Forgivable loans are structured as a second mortgage that is cancelled after you live in the home for a set number of years (commonly 3–10 years). Deferred-payment loans require repayment when you sell, refinance, or pay off the first mortgage. Each type has trade-offs, and your loan officer can explain which structure fits your plans.",
+    answer: "It depends on the program. Grants are outright gifts - no repayment required. Forgivable loans are structured as a second mortgage that is cancelled after you live in the home for a set number of years (commonly 3–10 years). Deferred-payment loans require repayment when you sell, refinance, or pay off the first mortgage. Each type has trade-offs, and your loan officer can explain which structure fits your plans.",
   },
   {
     question: "Are there income limits?",
-    answer: "Most programs have income limits tied to the area median income (AMI) for your county — typically 80% to 120% of AMI. In high-cost areas like New York City and Long Island, those limits are often higher than buyers expect. Some programs have no income cap at all. Your Cliffco loan officer can check your household income against the specific programs available in your area.",
+    answer: "Most programs have income limits tied to the area median income (AMI) for your county - typically 80% to 120% of AMI. In high-cost areas like New York City and Long Island, those limits are often higher than buyers expect. Some programs have no income cap at all. Your Cliffco loan officer can check your household income against the specific programs available in your area.",
   },
   {
     question: "Can DPA be combined with an FHA, VA, or conventional loan?",
-    answer: "Yes — most DPA programs are designed to layer on top of a first mortgage. FHA is the most commonly paired loan type because of its flexible credit guidelines. Some programs work with conventional loans as well. VA loans can sometimes be paired with closing cost assistance even though they require no down payment.",
+    answer: "Yes - most DPA programs are designed to layer on top of a first mortgage. FHA is the most commonly paired loan type because of its flexible credit guidelines. Some programs work with conventional loans as well. VA loans can sometimes be paired with closing cost assistance even though they require no down payment.",
   },
   {
     question: "How do I find out what programs are available where I'm buying?",
-    answer: "DPA programs vary by state, county, city, and lender — and they change frequently. The most reliable way is to speak with a Cliffco loan officer who actively originates in your area. They know which programs are currently funded, accepting applications, and compatible with your credit and income profile.",
+    answer: "DPA programs vary by state, county, city, and lender - and they change frequently. The most reliable way is to speak with a Cliffco loan officer who actively originates in your area. They know which programs are currently funded, accepting applications, and compatible with your credit and income profile.",
   },
 ];
 
@@ -50,12 +50,12 @@ const assistanceTypes = [
   {
     name: "Grants",
     icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />`,
-    blurb: "Outright gift — no repayment required under any circumstances. Typically the most limited programs with the strictest income and purchase price requirements.",
+    blurb: "Outright gift - no repayment required under any circumstances. Typically the most limited programs with the strictest income and purchase price requirements.",
   },
   {
     name: "Forgivable loans",
     icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />`,
-    blurb: "A second mortgage that is cancelled — forgiven — after you live in the home for a set period, commonly 3 to 10 years. If you sell or move before then, you repay a prorated amount.",
+    blurb: "A second mortgage that is cancelled - forgiven - after you live in the home for a set period, commonly 3 to 10 years. If you sell or move before then, you repay a prorated amount.",
   },
   {
     name: "Deferred-payment loans",
@@ -65,7 +65,7 @@ const assistanceTypes = [
   {
     name: "Matched savings",
     icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />`,
-    blurb: "Some programs match your savings dollar-for-dollar up to a cap — if you save $3,000 the program contributes $3,000. Less common but available through certain nonprofits and state agencies.",
+    blurb: "Some programs match your savings dollar-for-dollar up to a cap - if you save $3,000 the program contributes $3,000. Less common but available through certain nonprofits and state agencies.",
   },
 ];
 import ContactForm from "../../components/forms/ContactForm.astro";
@@ -73,7 +73,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
 
 <Layout
   title="Down Payment Assistance Programs | Cliffco Mortgage Bankers"
-  description="Down payment assistance programs can cover your down payment, closing costs, or both — and you don't always have to be a first-time buyer. Cliffco works with DPA programs across NY, NJ, FL, AZ, MN, and beyond."
+  description="Down payment assistance programs can cover your down payment, closing costs, or both - and you don't always have to be a first-time buyer. Cliffco works with DPA programs across NY, NJ, FL, AZ, MN, and beyond."
   schema={schema}
 >
   <Breadcrumbs trail={[
@@ -91,7 +91,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
         <span class="text-[var(--color-ice-blue)]">Assistance Programs.</span>
       </h1>
       <p class="lead mt-6 text-white/90 max-w-2xl">
-        Not having 20% saved doesn't mean you're not ready to buy. Down payment assistance programs can cover your down payment, closing costs, or both — and many don't require you to be a first-time buyer.
+        Not having 20% saved doesn't mean you're not ready to buy. Down payment assistance programs can cover your down payment, closing costs, or both - and many don't require you to be a first-time buyer.
       </p>
       <div class="mt-8 flex flex-wrap gap-4 items-center">
         <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Find My Options</a>
@@ -107,9 +107,9 @@ import ContactForm from "../../components/forms/ContactForm.astro";
     <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
       <div>
         <p class="eyebrow">What is down payment assistance?</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Money toward your down payment or closing costs — from a source other than you.</h2>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Money toward your down payment or closing costs - from a source other than you.</h2>
         <p class="mt-5 text-[var(--color-text)] leading-relaxed">
-          Down payment assistance (DPA) programs provide funds to help buyers cover their down payment, closing costs, or both. They're offered by state housing finance agencies, city and county programs, nonprofit organizations, and lenders — and they're more widely available than most buyers realize.
+          Down payment assistance (DPA) programs provide funds to help buyers cover their down payment, closing costs, or both. They're offered by state housing finance agencies, city and county programs, nonprofit organizations, and lenders - and they're more widely available than most buyers realize.
         </p>
         <p class="mt-4 text-[var(--color-text)] leading-relaxed">
           The programs change constantly. Funding gets exhausted, income limits shift, new programs launch. The most reliable way to know what you qualify for is to work with a loan officer who actively originates in your area and keeps up with which programs are currently open.
@@ -162,7 +162,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
           },
           {
             label: "First-time buyer",
-            body: "Many programs require that you haven't owned a home in the past three years. Many others have no such restriction. If you've owned before, programs still exist — just fewer of them.",
+            body: "Many programs require that you haven't owned a home in the past three years. Many others have no such restriction. If you've owned before, programs still exist - just fewer of them.",
           },
           {
             label: "Primary residence",
@@ -189,7 +189,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
         <p class="eyebrow">Where we work</p>
         <h2 class="mt-3" style="font-size: var(--text-h2);">DPA programs across the states we serve.</h2>
         <p class="mt-4 text-[var(--color-text)] leading-relaxed">
-          Cliffco actively originates in 32 states and works with DPA programs in every market where we have a presence. Programs vary significantly by state — what's available in New York is very different from Florida or Arizona.
+          Cliffco actively originates in 32 states and works with DPA programs in every market where we have a presence. Programs vary significantly by state - what's available in New York is very different from Florida or Arizona.
         </p>
         <div class="mt-6 grid grid-cols-2 gap-3">
           {[
@@ -221,7 +221,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
         </div>
         <div class="card">
           <p class="font-semibold text-[var(--color-ink)]">Already working with a Cliffco loan officer?</p>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">Ask them directly — they have access to current program availability for your county and can run a side-by-side comparison of DPA options against a standard low-down-payment loan.</p>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">Ask them directly - they have access to current program availability for your county and can run a side-by-side comparison of DPA options against a standard low-down-payment loan.</p>
           <a href="/loan-officers/" class="mt-4 inline-block text-sm font-semibold text-[var(--color-accent)] no-underline hover:underline">Find a loan officer →</a>
         </div>
       </div>

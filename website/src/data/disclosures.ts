@@ -1,10 +1,10 @@
-/**
+﻿/**
  * Reusable compliance disclosure blocks.
  * Source: /compliance/disclosures.md.
  *
  * FOOTER_MAIN_DISCLOSURE and FOOTER_TEXAS_DISCLOSURE are the verbatim
  * compliance-approved strings for the site footer. Do not auto-generate
- * these — update them only when Cliffco's compliance team provides new text.
+ * these - update them only when Cliffco's compliance team provides new text.
  *
  * The dynamic helpers below are still used for LO bio pages.
  */
@@ -18,18 +18,18 @@ export const FOOTER_MAIN_DISCLOSURE =
 export const FOOTER_TEXAS_DISCLOSURE =
   "CONSUMERS WISHING TO FILE A COMPLAINT AGAINST A COMPANY OR A RESIDENTIAL MORTGAGE LOAN ORIGINATOR SHOULD COMPLETE AND SEND A COMPLAINT FORM TO THE TEXAS DEPARTMENT OF SAVINGS AND MORTGAGE LENDING, 2601 NORTH LAMAR, SUITE 201, AUSTIN, TEXAS 78705. COMPLAINT FORMS AND INSTRUCTIONS MAY BE OBTAINED FROM THE DEPARTMENT'S WEBSITE AT WWW.SML.TEXAS.GOV. A TOLL-FREE CONSUMER HOTLINE IS AVAILABLE AT 1-877-276-5550. THE DEPARTMENT MAINTAINS A RECOVERY FUND TO MAKE PAYMENTS OF CERTAIN ACTUAL OUT OF POCKET DAMAGES SUSTAINED BY BORROWERS CAUSED BY ACTS OF LICENSED RESIDENTIAL MORTGAGE LOAN ORIGINATORS. A WRITTEN APPLICATION FOR REIMBURSEMENT FROM THE RECOVERY FUND MUST BE FILED WITH AND INVESTIGATED BY THE DEPARTMENT PRIOR TO THE PAYMENT OF A CLAIM. FOR MORE INFORMATION ABOUT THE RECOVERY FUND, PLEASE CONSULT THE DEPARTMENT'S WEBSITE AT WWW.SML.TEXAS.GOV";
 
-/** Block 1 — corporate / FHA / Equal Housing. Always include. */
+/** Block 1 - corporate / FHA / Equal Housing. Always include. */
 export const corporateDisclosure = (): string =>
   `${COMPANY.legalName} is not affiliated with or acting on behalf of the FHA or any government entity. ` +
   `Equal Housing Lender. ${COMPANY.legalName} Corporate NMLS #${COMPANY.nmls} ` +
   `(www.nmlsconsumeraccess.org) ${COMPANY.hq.street}, ${COMPANY.hq.city}, ` +
   `${COMPANY.hq.region} ${COMPANY.hq.postalCode} · ${COMPANY.hq.phone}.`;
 
-/** Block 2 — Florida DBA. Include on any FL-targeted material. */
+/** Block 2 - Florida DBA. Include on any FL-targeted material. */
 export const floridaDbaDisclosure = (): string =>
   COMPANY.floridaDba.disclosure;
 
-/** Block 3 — standard restrictions language. Always include after license list. */
+/** Block 3 - standard restrictions language. Always include after license list. */
 export const restrictionsDisclosure = (): string =>
   "This is not a commitment to lend or extend credit. Restrictions may apply. " +
   "All loans are subject to credit and underwriting approval. Not all loan products " +
@@ -59,7 +59,7 @@ export const stateLicenseCitations = (
 };
 
 /**
- * Full disclosure block as one string — the standard footer disclosure.
+ * Full disclosure block as one string - the standard footer disclosure.
  * Pass an LO's licensed states to get an LO-specific subset, or omit
  * for the corporate-wide disclosure.
  */

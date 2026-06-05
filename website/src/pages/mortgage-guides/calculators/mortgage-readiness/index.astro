@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
@@ -98,16 +98,16 @@ import { COMPANY } from "../../../../data/company";
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Readiness Score</p>
-                <p id="mr-score" class="result-num primary">—</p>
+                <p id="mr-score" class="result-num primary">-</p>
                 <p id="mr-label" class="text-sm font-semibold mt-1"></p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Back-End DTI</p>
-                <p id="mr-dti" class="result-num">—</p>
+                <p id="mr-dti" class="result-num">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Months of Reserves</p>
-                <p id="mr-reserves" class="result-num">—</p>
+                <p id="mr-reserves" class="result-num">-</p>
               </div>
             </div>
             <p id="mr-verdict" class="mt-4 text-sm text-[var(--color-text-muted)]"></p>
@@ -198,10 +198,10 @@ import { COMPANY } from "../../../../data/company";
     const verdictEl = document.getElementById("mr-verdict");
 
     if (!price || !income) {
-      if (scoreEl) { scoreEl.textContent = "—"; scoreEl.className = "result-num primary"; }
+      if (scoreEl) { scoreEl.textContent = "-"; scoreEl.className = "result-num primary"; }
       if (labelEl) { labelEl.textContent = ""; labelEl.className = "text-sm font-semibold mt-1"; }
-      if (dtiEl) dtiEl.textContent = "—";
-      if (reservesEl) reservesEl.textContent = "—";
+      if (dtiEl) dtiEl.textContent = "-";
+      if (reservesEl) reservesEl.textContent = "-";
       if (verdictEl) verdictEl.textContent = "";
       return;
     }
@@ -250,7 +250,7 @@ import { COMPANY } from "../../../../data/company";
       labelEl.className = `text-sm font-semibold mt-1 ${colorClass}`;
     }
 
-    if (dtiEl) dtiEl.textContent = backDTI < 999 ? backDTI.toFixed(1) + "%" : "—";
+    if (dtiEl) dtiEl.textContent = backDTI < 999 ? backDTI.toFixed(1) + "%" : "-";
     if (reservesEl) reservesEl.textContent = reserveMonths.toFixed(1) + " mo";
 
     // Verdict: explain the biggest limiting factor

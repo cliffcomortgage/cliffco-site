@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
@@ -96,15 +96,15 @@ import { COMPANY } from "../../../../data/company";
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Break-even Month</p>
-                <p id="rc-breakeven" class="result-num primary">—</p>
+                <p id="rc-breakeven" class="result-num primary">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Monthly Savings</p>
-                <p id="rc-savings" class="result-num">—</p>
+                <p id="rc-savings" class="result-num">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Net Benefit at 5 Years</p>
-                <p id="rc-net5" class="result-num">—</p>
+                <p id="rc-net5" class="result-num">-</p>
               </div>
             </div>
             <p id="rc-verdict" class="mt-4 text-sm text-[var(--color-text-muted)]"></p>
@@ -199,9 +199,9 @@ import { COMPANY } from "../../../../data/company";
     if (!breakevenEl || !savingsEl || !net5El || !verdictEl) return;
 
     if (balance === 0 && currentPI === 0) {
-      breakevenEl.textContent = "—";
-      savingsEl.textContent = "—";
-      net5El.textContent = "—";
+      breakevenEl.textContent = "-";
+      savingsEl.textContent = "-";
+      net5El.textContent = "-";
       verdictEl.textContent = "";
       return;
     }

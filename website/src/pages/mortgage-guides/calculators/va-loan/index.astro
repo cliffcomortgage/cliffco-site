@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
@@ -108,15 +108,15 @@ import { COMPANY } from "../../../../data/company";
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">VA Monthly Payment</p>
-                <p id="va-monthly" class="result-num primary">—</p>
+                <p id="va-monthly" class="result-num primary">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Conventional Monthly</p>
-                <p id="va-conv" class="result-num">—</p>
+                <p id="va-conv" class="result-num">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Monthly Savings (VA vs Conv)</p>
-                <p id="va-savings" class="result-num">—</p>
+                <p id="va-savings" class="result-num">-</p>
               </div>
             </div>
             <p id="va-verdict" class="mt-4 text-sm text-[var(--color-text-muted)]"></p>
@@ -234,14 +234,14 @@ import { COMPANY } from "../../../../data/company";
     const savingsEl = document.getElementById("va-savings");
     const verdictEl = document.getElementById("va-verdict");
 
-    if (monthlyEl) monthlyEl.textContent = hasData ? fmt(vaTotal) : "—";
-    if (convEl) convEl.textContent = hasData ? fmt(convTotal) : "—";
+    if (monthlyEl) monthlyEl.textContent = hasData ? fmt(vaTotal) : "-";
+    if (convEl) convEl.textContent = hasData ? fmt(convTotal) : "-";
 
     if (savingsEl && hasData) {
       savingsEl.textContent = fmt(Math.abs(monthlySavings));
       savingsEl.className = monthlySavings >= 0 ? "result-num text-green-600" : "result-num text-red-600";
     } else if (savingsEl) {
-      savingsEl.textContent = "—";
+      savingsEl.textContent = "-";
       savingsEl.className = "result-num";
     }
 

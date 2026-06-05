@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Locations / metros that get a dedicated landing page. Pulls together
  * the priority territories from the SEO/AEO research with the actual
  * branch presence per /compliance/branches.md.
@@ -61,7 +61,7 @@ export const LOCATIONS: readonly Location[] = [
     state: "NJ",
     blurb:
       "Our Branchburg branch covers Central Jersey, the Shore, and the North Jersey commuter " +
-      "belt — markets where self-employed borrowers, real estate investors, and buyers with " +
+      "belt - markets where self-employed borrowers, real estate investors, and buyers with " +
       "complex financials often hit walls at conventional lenders. Our team includes bilingual " +
       "English/Spanish loan officers.",
     branchSlugs: ["branchburg-nj"],
@@ -124,7 +124,7 @@ export const LOCATIONS: readonly Location[] = [
     blurb:
       "Cliffco's Ft. Lauderdale office serves Broward, Miami-Dade, and Palm Beach counties. " +
       "South Florida's investor-dense market is a strong fit for DSCR, foreign national, ITIN, " +
-      "non-warrantable condo, and jumbo financing — loan types conventional lenders routinely " +
+      "non-warrantable condo, and jumbo financing - loan types conventional lenders routinely " +
       "decline. Operating as Swish Capital, Inc.",
     branchSlugs: ["fort-lauderdale-fl"],
     featuredProducts: ["dscr", "non-qm-self-employed", "business-bank-statement", "reverse-mortgage"],

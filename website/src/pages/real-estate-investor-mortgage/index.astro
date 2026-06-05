@@ -21,7 +21,7 @@ const faq = [
   },
   {
     question: "Is there a limit on how many properties I can finance?",
-    answer: "Unlike conventional investment loans, which cap out at 10 financed properties, DSCR programs have no standard portfolio limit. Cliffco works with investors at all stages, from a first rental purchase to multi-property portfolios.",
+    answer: "Cliffco will purchase a maximum of 10 loans per borrower with an aggregate loan amount up to $7.5M. For investment and second home properties, the borrower may have up to 20 total financed residential properties, including their primary residence. There is no maximum for owner-occupied properties. Cliffco works with investors at all stages, from a first rental purchase to multi-property portfolios.",
   },
   {
     question: "What property types qualify for DSCR loans?",
@@ -49,7 +49,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
 
 <Layout
   title="Real Estate Investor Mortgage: DSCR Loans | Cliffco"
-  description="Qualify for investment property financing using your property's rental income. DSCR loans from Cliffco require no personal income verification, no tax returns, and no portfolio limits."
+  description="Qualify for investment property financing using your property's rental income. DSCR loans from Cliffco require no personal income verification and no tax returns."
   schema={schema}
 >
   <Breadcrumbs trail={[
@@ -59,7 +59,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
 
   <!-- HERO -->
   <section class="accent-gradient relative overflow-hidden">
-    <img src="/images/content%20images/Investor%20Hero.png" alt="" aria-hidden="true" class="absolute bottom-0 right-0 hidden lg:block w-auto object-contain object-bottom pointer-events-none select-none" style="height:750px;right:4%;" loading="eager" />
+    <img src="/images/content%20images/Investor%20Hero.png" alt="" aria-hidden="true" class="absolute bottom-0 right-0 hidden lg:block w-auto object-contain object-bottom pointer-events-none select-none" style="height:600px;right:12%;" loading="eager" />
     <div class="container-wide py-20 lg:py-28 relative z-10">
       <p class="eyebrow !text-[var(--color-ice-blue)]">DSCR Lending · Portfolio Financing</p>
       <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
@@ -164,7 +164,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
           </div>
           <div class="flex justify-between pb-3">
             <dt class="text-[var(--color-text-muted)]">Portfolio limit</dt>
-            <dd class="font-medium text-[var(--color-ink)]">None</dd>
+            <dd class="font-medium text-[var(--color-ink)] text-right max-w-xs">Max 10 loans per borrower, up to $7.5M aggregate. Max 20 financed properties for investment/second home. No limit for owner-occupied.</dd>
           </div>
         </dl>
         <div class="hidden lg:block">
@@ -192,7 +192,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
           <dl class="mt-4 space-y-2 text-sm">
             <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Income verification</dt><dd>Rental income only, no personal income required</dd></div>
             <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Tax returns</dt><dd>Not required</dd></div>
-            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Portfolio limit</dt><dd>None</dd></div>
+            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Portfolio limit</dt><dd>Max 10 loans / $7.5M aggregate; max 20 financed properties (investment/2nd home)</dd></div>
             <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Entity borrowing</dt><dd>Yes</dd></div>
             <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-44 shrink-0">Qualification basis</dt><dd>Property cash flow (DSCR ratio)</dd></div>
           </dl>

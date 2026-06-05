@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
@@ -101,15 +101,15 @@ import { COMPANY } from "../../../../data/company";
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Total Monthly Payment</p>
-                <p id="pe-total" class="result-num primary">—</p>
+                <p id="pe-total" class="result-num primary">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Principal &amp; Interest</p>
-                <p id="pe-pi" class="result-num">—</p>
+                <p id="pe-pi" class="result-num">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Taxes &amp; Insurance (monthly)</p>
-                <p id="pe-ti" class="result-num">—</p>
+                <p id="pe-ti" class="result-num">-</p>
               </div>
             </div>
             <p id="pe-note" class="mt-4 text-sm text-[var(--color-text-muted)]"></p>
@@ -207,9 +207,9 @@ import { COMPANY } from "../../../../data/company";
     const tiEl = document.getElementById("pe-ti");
     const noteEl = document.getElementById("pe-note");
 
-    if (totalEl) totalEl.textContent = price > 0 ? fmt(total) : "—";
-    if (piEl) piEl.textContent = price > 0 ? fmt(pi) : "—";
-    if (tiEl) tiEl.textContent = price > 0 ? fmt(ti) : "—";
+    if (totalEl) totalEl.textContent = price > 0 ? fmt(total) : "-";
+    if (piEl) piEl.textContent = price > 0 ? fmt(pi) : "-";
+    if (tiEl) tiEl.textContent = price > 0 ? fmt(ti) : "-";
     if (noteEl && price > 0) {
       noteEl.textContent = `Loan amount: ${fmt(loanAmount)} | Down payment: ${fmt(downDollars)}`;
     } else if (noteEl) {

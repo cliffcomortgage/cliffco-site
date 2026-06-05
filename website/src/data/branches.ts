@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cliffco branch offices.
  * Source of truth: /compliance/branches.md + NMLS Consumer Access branch lookup.
  * Last verified: 2026-05-20.
@@ -27,7 +27,7 @@ export type Branch = {
   /** Override city label for UI bubbles (e.g., "Queens" instead of postal city "Jamaica") */
   displayCity?: string;
   isHeadquarters?: true;
-  /** True for FL branches — must show Swish Capital DBA */
+  /** True for FL branches - must show Swish Capital DBA */
   isFloridaDba?: true;
   /** Slugs of LOs primarily working out of this branch */
   loanOfficerSlugs: string[];

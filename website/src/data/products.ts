@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cliffco's loan products. Drives /loans/* navigation, schema, and content.
  */
 
@@ -14,7 +14,7 @@ export type Product = {
   loanType: string;
   /** Whether this is one of the 4 priority products that get full pillars */
   isPriority: boolean;
-  /** Product category — drives card grouping */
+  /** Product category - drives card grouping */
   category: "Non-QM" | "Reverse" | "Investor" | "Conventional / Government";
 };
 
@@ -52,10 +52,10 @@ export const PRODUCTS: readonly Product[] = [
     slug: "dscr",
     name: "DSCR Loans",
     shortName: "DSCR",
-    oneLiner: "Investor mortgages qualified on rental income — no personal income docs.",
+    oneLiner: "Investor mortgages qualified on rental income - no personal income docs.",
     directAnswer:
       "A DSCR (Debt-Service Coverage Ratio) loan qualifies real estate investors based on the " +
-      "rental income of the subject property — not personal income. Cliffco's DSCR programs cover " +
+      "rental income of the subject property - not personal income. Cliffco's DSCR programs cover " +
       "long-term rentals and short-term rentals (Airbnb / Vrbo), allow LLC vesting, fund out-of-state " +
       "borrowers, and accept ratios from 0.75 (with strong reserves) up to 1.25+ for best pricing.",
     loanType: "DSCR",
@@ -66,11 +66,11 @@ export const PRODUCTS: readonly Product[] = [
     slug: "business-bank-statement",
     name: "Business Bank Statement Loans",
     shortName: "Business Bank Statement",
-    oneLiner: "Business owners qualify using 12–24 months of business bank statements — no tax returns required.",
+    oneLiner: "Business owners qualify using 12–24 months of business bank statements - no tax returns required.",
     directAnswer:
       "Business bank statement loans qualify self-employed business owners using 12 or 24 months of " +
       "business bank statements instead of tax returns or W-2s. Cliffco applies a business expense ratio " +
-      "(typically 50%) to gross deposits to calculate qualifying income — making this the right fit for " +
+      "(typically 50%) to gross deposits to calculate qualifying income - making this the right fit for " +
       "profitable businesses whose tax returns understate actual cash flow. Ideal for LLCs, S-Corps, " +
       "sole proprietors, and any owner whose books are cleaner than their 1040.",
     loanType: "Non-QM Business Bank Statement",
@@ -78,7 +78,7 @@ export const PRODUCTS: readonly Product[] = [
     category: "Non-QM",
   },
   // Supporting products
-  { slug: "conventional", name: "Conventional Loans", shortName: "Conventional", oneLiner: "Fannie Mae / Freddie Mac conforming and high-balance loans.", directAnswer: "Conventional mortgages following Fannie Mae and Freddie Mac guidelines — fixed and adjustable terms, conforming and high-balance limits, with as little as 3% down for first-time buyers.", loanType: "Conventional", isPriority: false, category: "Conventional / Government" },
+  { slug: "conventional", name: "Conventional Loans", shortName: "Conventional", oneLiner: "Fannie Mae / Freddie Mac conforming and high-balance loans.", directAnswer: "Conventional mortgages following Fannie Mae and Freddie Mac guidelines - fixed and adjustable terms, conforming and high-balance limits, with as little as 3% down for first-time buyers.", loanType: "Conventional", isPriority: false, category: "Conventional / Government" },
   { slug: "fha", name: "FHA Loans", shortName: "FHA", oneLiner: "Government-insured loans with low down-payment requirements.", directAnswer: "FHA-insured mortgages allow as little as 3.5% down, accept credit scores starting in the 580s, and are designed for first-time and credit-challenged buyers. Cliffco is not affiliated with or acting on behalf of the FHA or any government entity.", loanType: "FHA", isPriority: false, category: "Conventional / Government" },
   { slug: "va", name: "VA Loans", shortName: "VA", oneLiner: "Zero-down financing for eligible veterans, service members, and surviving spouses.", directAnswer: "VA-guaranteed mortgages offer 0% down, no monthly mortgage insurance, and competitive rates for eligible service members, veterans, and surviving spouses.", loanType: "VA", isPriority: false, category: "Conventional / Government" },
   { slug: "usda", name: "USDA Loans", shortName: "USDA", oneLiner: "Zero-down financing for eligible rural and suburban properties.", directAnswer: "USDA Rural Development loans offer 0% down for properties in eligible rural and many suburban areas, subject to income limits.", loanType: "USDA", isPriority: false, category: "Conventional / Government" },

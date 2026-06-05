@@ -1,5 +1,5 @@
-/**
- * Cliffco corporate facts — single source of truth.
+﻿/**
+ * Cliffco corporate facts - single source of truth.
  * Derived from /compliance/state-licenses.md + /compliance/branches.md.
  * Update when the source compliance docs change.
  */

@@ -1,4 +1,4 @@
----
+﻿---
 import "../styles/global.css";
 import Meta from "../components/seo/Meta.astro";
 import JsonLd from "../components/seo/JsonLd.astro";
@@ -7,7 +7,7 @@ import Footer from "../components/layout/Footer.astro";
 import { organizationSchema, websiteSchema, articleSchema } from "../lib/schema";
 import { LOAN_OFFICERS } from "../data/loan-officers";
 
-// Compact LO map passed to client — only what the attribution bar needs
+// Compact LO map passed to client - only what the attribution bar needs
 const loMap = Object.fromEntries(
   LOAN_OFFICERS.map(lo => [lo.slug, {
     name: lo.displayName,
@@ -100,13 +100,13 @@ const allSchema = schema
     </main>
     <Footer />
 
-    <!-- Custom cursor dot — positioned and colored by JS below -->
+    <!-- Custom cursor dot - positioned and colored by JS below -->
     <div id="cf-cursor" aria-hidden="true"></div>
 
     <script>
     (() => {
       // ═══════════════════════════════════════════════
-      // SECTION 1 — CUSTOM CURSOR
+      // SECTION 1 - CUSTOM CURSOR
       // Skip on touch / pointer-coarse devices.
       // ═══════════════════════════════════════════════
       const dot = document.getElementById('cf-cursor');
@@ -184,7 +184,7 @@ const allSchema = schema
       }
 
       // ═══════════════════════════════════════════════
-      // SECTION 2 — HEADER GLASSMORPHISM ON SCROLL
+      // SECTION 2 - HEADER GLASSMORPHISM ON SCROLL
       // ═══════════════════════════════════════════════
       const header = document.querySelector('header');
       if (header) {
@@ -196,7 +196,7 @@ const allSchema = schema
       }
 
       // ═══════════════════════════════════════════════
-      // SECTION 3 — SCROLL-REVEAL (IntersectionObserver)
+      // SECTION 3 - SCROLL-REVEAL (IntersectionObserver)
       // ═══════════════════════════════════════════════
       if (!prefersReduced) {
         const SELECTORS = [
@@ -233,7 +233,7 @@ const allSchema = schema
       }
 
       // ═══════════════════════════════════════════════
-      // SECTION 4 — HERO STAGGER ON PAGE LOAD
+      // SECTION 4 - HERO STAGGER ON PAGE LOAD
       // ═══════════════════════════════════════════════
       if (!prefersReduced) {
         const hero = document.querySelector<HTMLElement>('main section:first-of-type');
@@ -272,7 +272,7 @@ const allSchema = schema
       const loMatch = path.match(/^\/loan-officers\/([^\/]+)\/?$/);
       const pageSlug = loMatch ? loMatch[1] : null;
 
-      // On any LO page: set/refresh the cookie, then stop — bar never shows here
+      // On any LO page: set/refresh the cookie, then stop - bar never shows here
       if (pageSlug && loMap[pageSlug]) {
         setCookie(COOKIE, pageSlug, 30);
         return;

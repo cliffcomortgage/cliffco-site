@@ -1,7 +1,7 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 /*
- * Cliffco design tokens (Tailwind CSS v4 — CSS-first config).
+ * Cliffco design tokens (Tailwind CSS v4 - CSS-first config).
  * Source of truth: brand/brand-guide.pdf (Colors + Typography + Voice).
  *
  * Typography: Graphik is the brand primary; until the licensed Commercial Type
@@ -12,11 +12,11 @@
 
 @theme {
   /* ---------- Brand colors (from brand guide) ---------- */
-  --color-rich-black: #0d0d0d;       /* primary — headers, design elements */
-  --color-bright-plum: #6633cc;      /* accent — gradients, emphasis */
-  --color-ice-blue: #bde8f1;         /* accent — backgrounds, overlays */
-  --color-soft-gray: #b3b2b4;        /* neutral — backgrounds */
-  --color-mist-gray: #f0eef1;        /* neutral — surfaces */
+  --color-rich-black: #0d0d0d;       /* primary - headers, design elements */
+  --color-bright-plum: #6633cc;      /* accent - gradients, emphasis */
+  --color-ice-blue: #bde8f1;         /* accent - backgrounds, overlays */
+  --color-soft-gray: #b3b2b4;        /* neutral - backgrounds */
+  --color-mist-gray: #f0eef1;        /* neutral - surfaces */
   --color-body: #3d4040;             /* body copy */
 
   /* Semantic aliases */
@@ -35,7 +35,7 @@
   --font-logo: "Montserrat", "Graphik", ui-sans-serif, system-ui, sans-serif;
   --font-accent: "Righten", "Graphik", ui-sans-serif, system-ui, sans-serif;
 
-  /* Tracking — per brand guide:
+  /* Tracking - per brand guide:
      headers/subheaders: 75-100 InDesign units ≈ 0.075em-0.1em
      body: 0-75 InDesign units ≈ 0-0.075em */
   --tracking-tight: 0;
@@ -60,7 +60,7 @@
   --spacing-section: 5rem;
 }
 
-/* ---------- Graphik (trial OTFs — local dev only, gitignored) ---------- */
+/* ---------- Graphik (trial OTFs - local dev only, gitignored) ---------- */
 @font-face {
   font-family: "Graphik";
   font-style: normal;
@@ -98,7 +98,7 @@
 }
 
 /* ---------- Open Sans web fallback (until Graphik kit is licensed) ---------- */
-/* Self-hosted via Google Fonts proxy — replace with a self-hosted woff2
+/* Self-hosted via Google Fonts proxy - replace with a self-hosted woff2
    subset for production-grade CWV. */
 @font-face {
   font-family: "Open Sans";
@@ -150,7 +150,7 @@
     color: white;
   }
 
-  /* Focus ring (WCAG 2.2 — Focus Appearance Enhanced) */
+  /* Focus ring (WCAG 2.2 - Focus Appearance Enhanced) */
   :focus-visible {
     outline: 3px solid var(--color-accent);
     outline-offset: 3px;
@@ -213,7 +213,7 @@
     letter-spacing: -0.005em;
   }
 
-  /* "Direct answer" callout — the inverted-pyramid intro block per AEO doc */
+  /* "Direct answer" callout - the inverted-pyramid intro block per AEO doc */
   .direct-answer {
     background: var(--color-surface-soft);
     border-left: 4px solid var(--color-accent);
@@ -353,7 +353,7 @@
   }
   .skip-link:focus { left: 0; }
 
-  /* Category filter pills — used on Mortgage Guides and FAQ pages */
+  /* Category filter pills - used on Mortgage Guides and FAQ pages */
   .filter-pill {
     border-radius: 999px;
     padding: 0.375rem 1.125rem;
@@ -403,7 +403,7 @@
 }
 
 /* ---------- Custom cursor ---------- */
-/* Only hides native cursor on mouse devices — keyboard and touch users keep default cursor */
+/* Only hides native cursor on mouse devices - keyboard and touch users keep default cursor */
 @media (pointer: fine) and (hover: hover) {
   html, html * { cursor: none !important; }
 }
@@ -429,7 +429,7 @@
   #cf-cursor { display: none !important; }
 }
 
-/* Restore native cursor inside modal dialogs — dialogs render in the browser
+/* Restore native cursor inside modal dialogs - dialogs render in the browser
    top layer above z-index stacking, so the custom dot can't appear over them.
    Restoring auto cursor lets users see where to click on form fields. */
 @media (pointer: fine) and (hover: hover) {

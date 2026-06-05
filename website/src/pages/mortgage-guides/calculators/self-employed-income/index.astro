@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
@@ -102,15 +102,15 @@ import { COMPANY } from "../../../../data/company";
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Best Qualifying Income / Month</p>
-                <p id="se-better" class="result-num primary">—</p>
+                <p id="se-better" class="result-num primary">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Tax Return / Month</p>
-                <p id="se-taxreturn" class="result-num">—</p>
+                <p id="se-taxreturn" class="result-num">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Bank Statement / Month</p>
-                <p id="se-bankstmt" class="result-num">—</p>
+                <p id="se-bankstmt" class="result-num">-</p>
               </div>
             </div>
             <p id="se-winner" class="mt-4 text-sm font-semibold"></p>
@@ -208,9 +208,9 @@ import { COMPANY } from "../../../../data/company";
     const winnerEl = document.getElementById("se-winner");
     const verdictEl = document.getElementById("se-verdict");
 
-    if (betterEl) betterEl.textContent = hasData ? fmt(betterMonthly) + "/mo" : "—";
-    if (taxEl) taxEl.textContent = hasData ? fmt(taxReturnMonthly) + "/mo" : "—";
-    if (bankEl) bankEl.textContent = hasData ? fmt(bankStmtMonthly) + "/mo" : "—";
+    if (betterEl) betterEl.textContent = hasData ? fmt(betterMonthly) + "/mo" : "-";
+    if (taxEl) taxEl.textContent = hasData ? fmt(taxReturnMonthly) + "/mo" : "-";
+    if (bankEl) bankEl.textContent = hasData ? fmt(bankStmtMonthly) + "/mo" : "-";
 
     if (winnerEl && hasData) {
       winnerEl.textContent = winner + " wins";

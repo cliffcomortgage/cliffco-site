@@ -1,6 +1,6 @@
----
+﻿---
 /**
- * Loan-officer headshot — AVIF → WebP → JPEG fallback, square crop.
+ * Loan-officer headshot - AVIF → WebP → JPEG fallback, square crop.
  * Use `priority` for an LCP-eligible photo (hero / above-fold);
  * defaults to lazy loading otherwise.
  *
@@ -12,7 +12,7 @@ interface Props {
   name: string;
   /** "rounded" (default) or "square" */
   shape?: "rounded" | "square" | "circle";
-  /** Pixel size — defaults to 320px display. Ignored when fluid=true. */
+  /** Pixel size - defaults to 320px display. Ignored when fluid=true. */
   size?: number;
   priority?: boolean;
   /** When true, fills 100% of parent width (use inside an aspect-square wrapper) */
@@ -32,7 +32,7 @@ const sizeStyle = fluid ? "aspect-ratio: 1 / 1; width: 100%;" : `aspect-ratio: 1
   <source srcset={`/team/${slug}.webp`} type="image/webp" />
   <img
     src={`/team/${slug}.jpg`}
-    alt={`${name} — Cliffco Mortgage Bankers`}
+    alt={`${name} - Cliffco Mortgage Bankers`}
     width={size}
     height={size}
     loading={loading}

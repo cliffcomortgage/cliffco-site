@@ -1,4 +1,4 @@
-import type { APIRoute } from 'astro';
+﻿import type { APIRoute } from 'astro';
 
 // Static for GitHub Pages preview (no server), server-rendered for Vercel production
 export const prerender = process.env.DEPLOY_TARGET === 'pages';
@@ -59,7 +59,7 @@ export const POST: APIRoute = async ({ request }) => {
     const sgMail = (await import('@sendgrid/mail')).default;
     sgMail.setApiKey(apiKey);
 
-    const subject = `New Lead from cliffcomortgage.com — ${firstName} ${lastName}`;
+    const subject = `New Lead from cliffcomortgage.com - ${firstName} ${lastName}`;
 
     const html = `
       <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;">

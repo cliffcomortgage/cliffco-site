@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
@@ -103,15 +103,15 @@ import { COMPANY } from "../../../../data/company";
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Break-Even Year</p>
-                <p id="rvb-breakeven" class="result-num primary">—</p>
+                <p id="rvb-breakeven" class="result-num primary">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Equity at Year 5</p>
-                <p id="rvb-equity5" class="result-num">—</p>
+                <p id="rvb-equity5" class="result-num">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Net Buy Cost vs. Rent (Year 5)</p>
-                <p id="rvb-netbuy5" class="result-num">—</p>
+                <p id="rvb-netbuy5" class="result-num">-</p>
               </div>
             </div>
             <p id="rvb-verdict" class="mt-4 text-sm text-[var(--color-text-muted)]"></p>
@@ -197,9 +197,9 @@ import { COMPANY } from "../../../../data/company";
     const verdictEl = document.getElementById("rvb-verdict");
 
     if (!price || !monthlyRent) {
-      if (breakevenEl) { breakevenEl.textContent = "—"; breakevenEl.style.color = ""; }
-      if (equity5El) equity5El.textContent = "—";
-      if (netbuy5El) netbuy5El.textContent = "—";
+      if (breakevenEl) { breakevenEl.textContent = "-"; breakevenEl.style.color = ""; }
+      if (equity5El) equity5El.textContent = "-";
+      if (netbuy5El) netbuy5El.textContent = "-";
       if (verdictEl) verdictEl.textContent = "";
       return;
     }

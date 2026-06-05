@@ -1,10 +1,10 @@
-/**
- * JSON-LD generators — one helper per schema.org type Cliffco uses.
+﻿/**
+ * JSON-LD generators - one helper per schema.org type Cliffco uses.
  *
  * Spec basis: schema.org primary docs + the strategy in
  * /seo-aeo-research/01-technical-seo.md §5.
  *
- * Every generator returns a plain object — wrap in <JsonLd data={...}/>.
+ * Every generator returns a plain object - wrap in <JsonLd data={...}/>.
  */
 
 import { COMPANY, SITE_URL } from "../data/company";
@@ -59,7 +59,7 @@ export const localBusinessSchema = (branch: Branch) => ({
   "@context": "https://schema.org",
   "@type": "MortgageContractor",
   "@id": `${SITE_URL}/locations/${branch.slug}#localbusiness`,
-  name: `${COMPANY.brandName} — ${branch.name}`,
+  name: `${COMPANY.brandName} - ${branch.name}`,
   parentOrganization: { "@id": orgId },
   telephone: branch.phone ?? COMPANY.hq.phone,
   address: {

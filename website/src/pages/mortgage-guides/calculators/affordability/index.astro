@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
@@ -92,15 +92,15 @@ import { COMPANY } from "../../../../data/company";
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Max Home Price</p>
-                <p id="af-maxprice" class="result-num primary">—</p>
+                <p id="af-maxprice" class="result-num primary">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Est. Down Payment</p>
-                <p id="af-downscen" class="result-num">—</p>
+                <p id="af-downscen" class="result-num">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Est. Monthly Payment</p>
-                <p id="af-payment" class="result-num">—</p>
+                <p id="af-payment" class="result-num">-</p>
               </div>
             </div>
             <p id="af-verdict" class="mt-4 text-sm font-medium"></p>
@@ -175,9 +175,9 @@ import { COMPANY } from "../../../../data/company";
     const verdictEl = document.getElementById("af-verdict");
 
     if (income <= 0) {
-      if (maxPriceEl) maxPriceEl.textContent = "—";
-      if (downScenEl) downScenEl.textContent = "—";
-      if (paymentEl) paymentEl.textContent = "—";
+      if (maxPriceEl) maxPriceEl.textContent = "-";
+      if (downScenEl) downScenEl.textContent = "-";
+      if (paymentEl) paymentEl.textContent = "-";
       if (verdictEl) verdictEl.textContent = "";
       return;
     }

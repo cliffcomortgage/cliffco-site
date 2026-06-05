@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
@@ -83,15 +83,15 @@ import { COMPANY } from "../../../../data/company";
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Estimated Available Equity</p>
-                <p id="rm-net" class="result-num primary">—</p>
+                <p id="rm-net" class="result-num primary">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Gross Principal Limit</p>
-                <p id="rm-gross" class="result-num">—</p>
+                <p id="rm-gross" class="result-num">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Existing Mortgage Payoff</p>
-                <p id="rm-payoff" class="result-num">—</p>
+                <p id="rm-payoff" class="result-num">-</p>
               </div>
             </div>
             <p id="rm-verdict" class="mt-4 text-sm text-[var(--color-text-muted)]"></p>
@@ -174,9 +174,9 @@ import { COMPANY } from "../../../../data/company";
     if (!netEl || !grossEl || !payoffEl || !verdictEl) return;
 
     if (homeValue === 0 || age < 62) {
-      netEl.textContent = "—";
-      grossEl.textContent = "—";
-      payoffEl.textContent = "—";
+      netEl.textContent = "-";
+      grossEl.textContent = "-";
+      payoffEl.textContent = "-";
       verdictEl.textContent = age > 0 && age < 62 ? "Borrower must be at least age 62 to qualify for a HECM reverse mortgage." : "";
       verdictEl.className = "mt-4 text-sm text-red-600";
       return;

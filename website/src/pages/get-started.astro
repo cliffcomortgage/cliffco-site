@@ -1,14 +1,14 @@
----
+﻿---
 import Layout from "../layouts/Layout.astro";
 import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../data/company";
 
 const situations = [
-  { id: "self-employed", label: "I'm Self-Employed", description: "Business owner, 1099 contractor, or freelancer — your income doesn't show up well on tax returns." },
+  { id: "self-employed", label: "I'm Self-Employed", description: "Business owner, 1099 contractor, or freelancer - your income doesn't show up well on tax returns." },
   { id: "investor", label: "I'm a Real Estate Investor", description: "Qualify based on rental income, not personal income. DSCR loans built for your portfolio." },
   { id: "62plus", label: "I'm 62 or Older", description: "Access your home equity without monthly payments. Stay in your home on your terms." },
   { id: "denied", label: "I Was Denied Elsewhere", description: "A conventional lender said no. Non-QM programs exist for exactly your situation." },
-  { id: "buying", label: "I'm Buying a Home", description: "First-time buyer or move-up — conventional, FHA, VA, USDA, or renovation." },
+  { id: "buying", label: "I'm Buying a Home", description: "First-time buyer or move-up - conventional, FHA, VA, USDA, or renovation." },
   { id: "refinancing", label: "I'm Refinancing", description: "Lower your rate, change your term, or access equity. Let's look at your options." },
 ];
 
@@ -44,7 +44,7 @@ const purposes = [
         <!-- Progress indicator -->
         <div class="mb-8">
           <div class="flex justify-between items-center mb-2">
-            <p id="step-label" class="text-sm font-semibold text-[var(--color-ink)]">Step 1 of 4 — Your Situation</p>
+            <p id="step-label" class="text-sm font-semibold text-[var(--color-ink)]">Step 1 of 4 - Your Situation</p>
             <p class="text-xs text-[var(--color-text-muted)]">No credit pull. No commitment.</p>
           </div>
           <div class="h-1.5 bg-white rounded-full overflow-hidden">
@@ -222,7 +222,7 @@ const purposes = [
 
             <div class="flex flex-col sm:flex-row gap-3">
               <button type="button" class="btn btn-secondary back-btn shrink-0">← Back</button>
-              <button type="submit" class="btn btn-primary flex-1">Submit — a Cliffco LO will follow up</button>
+              <button type="submit" class="btn btn-primary flex-1">Submit - a Cliffco LO will follow up</button>
             </div>
 
             <div class="text-center pt-2">
@@ -266,10 +266,10 @@ const purposes = [
   };
 
   const stepLabels = [
-    "Step 1 of 4 — Your Situation",
-    "Step 2 of 4 — Your Income",
-    "Step 3 of 4 — Quick Numbers",
-    "Step 4 of 4 — Contact Info",
+    "Step 1 of 4 - Your Situation",
+    "Step 2 of 4 - Your Income",
+    "Step 3 of 4 - Quick Numbers",
+    "Step 4 of 4 - Contact Info",
   ];
 
   function goToStep(n: number) {

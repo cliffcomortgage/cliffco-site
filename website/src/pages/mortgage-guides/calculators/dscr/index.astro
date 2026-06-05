@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
@@ -100,15 +100,15 @@ import { COMPANY } from "../../../../data/company";
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">DSCR Ratio</p>
-                <p id="dc-dscr" class="result-num primary">—</p>
+                <p id="dc-dscr" class="result-num primary">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Total Monthly PITIA</p>
-                <p id="dc-obligation" class="result-num">—</p>
+                <p id="dc-obligation" class="result-num">-</p>
               </div>
               <div>
                 <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Monthly Cash Flow</p>
-                <p id="dc-cashflow" class="result-num">—</p>
+                <p id="dc-cashflow" class="result-num">-</p>
               </div>
             </div>
             <p id="dc-verdict" class="mt-4 text-sm font-medium"></p>
@@ -185,9 +185,9 @@ import { COMPANY } from "../../../../data/company";
     const verdictEl = document.getElementById("dc-verdict");
 
     if (price <= 0 || rate <= 0) {
-      if (dscrEl) { dscrEl.textContent = "—"; dscrEl.className = "result-num primary"; }
-      if (obligationEl) obligationEl.textContent = "—";
-      if (cashflowEl) { cashflowEl.textContent = "—"; cashflowEl.className = "result-num"; }
+      if (dscrEl) { dscrEl.textContent = "-"; dscrEl.className = "result-num primary"; }
+      if (obligationEl) obligationEl.textContent = "-";
+      if (cashflowEl) { cashflowEl.textContent = "-"; cashflowEl.className = "result-num"; }
       if (verdictEl) verdictEl.textContent = "";
       return;
     }
@@ -206,7 +206,7 @@ import { COMPANY } from "../../../../data/company";
     else if (dscr >= 1.0) dscrColor = "text-yellow-600";
 
     if (dscrEl) {
-      dscrEl.textContent = dscr > 0 ? dscr.toFixed(2) : "—";
+      dscrEl.textContent = dscr > 0 ? dscr.toFixed(2) : "-";
       dscrEl.className = `result-num primary ${dscrColor}`;
     }
 

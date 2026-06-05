@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
@@ -21,7 +21,7 @@ const writeReviewPlatforms = REVIEW_PLATFORMS.filter((p) => p.writeUrl);
 
 <Layout
   title="Reviews | Cliffco Mortgage Bankers"
-  description={`Cliffco Mortgage Bankers has over ${totalReviews.toLocaleString()} reviews across Experience.com, WalletHub, Zillow, Google, and more — with an average rating of ${avgRating.toFixed(1)} out of 5.`}
+  description={`Cliffco Mortgage Bankers has over ${totalReviews.toLocaleString()} reviews across Experience.com, WalletHub, Zillow, Google, and more - with an average rating of ${avgRating.toFixed(1)} out of 5.`}
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
