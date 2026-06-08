@@ -179,7 +179,8 @@
   },
   "/mortgage-guides/blog/1099-loan-vs-bank-statement-loan-freelancer/": {
     "url": "/images/content%20images/Freelancers%204.jpeg",
-    "alt": "Freelancer choosing between a 1099 loan and bank statement loan"
+    "alt": "Freelancer choosing between a 1099 loan and bank statement loan",
+    "objectPosition": "center 30%"
   },
   "/mortgage-guides/blog/what-is-an-itin-loan/": {
     "url": "https://images.pexels.com/photos/19278018/pexels-photo-19278018.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
