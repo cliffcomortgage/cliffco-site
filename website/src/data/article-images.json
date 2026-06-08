@@ -256,31 +256,19 @@
     "pexelsUrl": "https://www.pexels.com/photo/wooden-house-moder-keys-and-contract-on-table-12955837/"
   },
   "/mortgage-guides/blog/cash-out-refinance-vs-heloc/": {
-    "url": "https://images.pexels.com/photos/29899813/pexels-photo-29899813.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    "alt": "Keys with a house model, Euro bills, and charts suggesting real estate and financial themes.",
-    "photographer": "Jakub Zerdzicki",
-    "photographerUrl": "https://www.pexels.com/@jakubzerdzicki",
-    "pexelsUrl": "https://www.pexels.com/photo/real-estate-concepts-with-house-model-and-euro-bills-29899813/"
+    "url": "/images/content%20images/Refi%201.jpeg",
+    "alt": "Homeowner comparing cash-out refinance vs HELOC to access home equity"
   },
   "/mortgage-guides/blog/what-to-expect-refinance-process-application-to-closing/": {
-    "url": "https://images.pexels.com/photos/7414218/pexels-photo-7414218.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    "alt": "Financial analysis and planning tools with graphs and calculator on a table.",
-    "photographer": "RDNE Stock project",
-    "photographerUrl": "https://www.pexels.com/@rdne",
-    "pexelsUrl": "https://www.pexels.com/photo/marketing-exit-desk-notebook-7414218/"
+    "url": "/images/content%20images/Refi%202.jpeg",
+    "alt": "Homeowner going through the refinance process from application to closing"
   },
   "/mortgage-guides/blog/va-fha-streamline-refinance/": {
-    "url": "https://images.pexels.com/photos/34023965/pexels-photo-34023965.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    "alt": "Euro currency, keys, and miniature houses symbolize real estate and finance concepts.",
-    "photographer": "Jakub Zerdzicki",
-    "photographerUrl": "https://www.pexels.com/@jakubzerdzicki",
-    "pexelsUrl": "https://www.pexels.com/photo/euro-banknotes-and-keys-with-miniature-houses-34023965/"
+    "url": "/images/content%20images/Refi%203.jpeg",
+    "alt": "Veteran or FHA borrower using a streamline refinance to get a lower rate"
   },
   "/mortgage-guides/blog/how-to-refinance-after-financial-situation-changed/": {
-    "url": "https://images.pexels.com/photos/3831828/pexels-photo-3831828.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    "alt": "Elderly man in business attire holding a small house model, symbolizing real estate investment.",
-    "photographer": "Andrea Piacquadio",
-    "photographerUrl": "https://www.pexels.com/@olly",
-    "pexelsUrl": "https://www.pexels.com/photo/man-in-black-suit-holding-miniature-house-3831828/"
+    "url": "/images/content%20images/Refi%204.jpeg",
+    "alt": "Homeowner refinancing after a change in financial situation"
   }
 }
