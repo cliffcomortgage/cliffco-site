@@ -1,5 +1,6 @@
 ﻿---
 import Layout from "../../../layouts/Layout.astro";
+import ArticleImage from "../../../components/ui/ArticleImage.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { faqPageSchema } from "../../../lib/schema";
 
@@ -28,9 +29,7 @@ const faq = faqPageSchema([
 
     <h1 style="font-size: var(--text-display-lg);">Non-QM Loans: The Complete Guide</h1>
 
-    <div class="mt-8 bg-[var(--color-mist-gray)] rounded-xl aspect-video flex items-center justify-center text-[var(--color-text-muted)] text-sm">
-      [Article image]
-    </div>
+    <ArticleImage />
 
     <p class="mt-8">In today's diverse financial landscape, not every borrower fits into the conventional mortgage box. At Cliffco Mortgage Bankers, we understand that traditional qualification methods don't always reflect the true financial strength of many worthy borrowers. That's why we're passionate about providing solutions through Non-QM loans (non-qualified mortgage loans).</p>
     <p class="mt-4">These specialized mortgage loans serve a vital segment of the market that mainstream lenders often overlook. Whether you're self-employed, have unique income streams, or have experienced past credit challenges, Non-QM loans might be the key to achieving your homeownership dreams.</p>

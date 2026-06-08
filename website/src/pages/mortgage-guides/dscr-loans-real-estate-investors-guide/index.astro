@@ -1,5 +1,6 @@
 ﻿---
 import Layout from "../../../layouts/Layout.astro";
+import ArticleImage from "../../../components/ui/ArticleImage.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { faqPageSchema } from "../../../lib/schema";
 
@@ -28,9 +29,7 @@ const faq = faqPageSchema([
 
     <h1 style="font-size: var(--text-display-lg);">DSCR Loans Explained: A Guide for Real Estate Investors</h1>
 
-    <div class="mt-8 bg-[var(--color-mist-gray)] rounded-xl aspect-video flex items-center justify-center text-[var(--color-text-muted)] text-sm">
-      [Article image]
-    </div>
+    <ArticleImage />
 
     <p class="mt-8"><strong>Investing in real estate?</strong></p>
     <p class="mt-4">Traditional mortgages can be a roadblock when your personal income doesn't reflect the strength of your investments. That's where a DSCR loan comes in. Instead of focusing on tax returns, pay stubs, or W-2 income, a DSCR loan looks at your property's ability to generate income. This makes it one of the most powerful tools for real estate investors today.</p>

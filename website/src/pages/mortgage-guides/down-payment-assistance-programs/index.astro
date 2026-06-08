@@ -1,5 +1,6 @@
 ﻿---
 import Layout from "../../../layouts/Layout.astro";
+import ArticleImage from "../../../components/ui/ArticleImage.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { faqPageSchema } from "../../../lib/schema";
 
@@ -28,9 +29,7 @@ const faq = faqPageSchema([
 
     <h1 style="font-size: var(--text-display-lg);">Down Payment Assistance 101: Your Complete Guide</h1>
 
-    <div class="mt-8 bg-[var(--color-mist-gray)] rounded-xl aspect-video flex items-center justify-center text-[var(--color-text-muted)] text-sm">
-      [Article image]
-    </div>
+    <ArticleImage />
 
     <p class="mt-8">Buying a home?</p>
     <p class="mt-4">You're not alone if the down payment feels like the biggest obstacle. With higher home prices and mortgage rates still above historic lows, saving tens of thousands of dollars for a down payment can delay the dream of homeownership for years.</p>
