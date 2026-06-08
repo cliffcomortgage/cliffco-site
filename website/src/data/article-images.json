@@ -183,11 +183,8 @@
     "objectPosition": "center 30%"
   },
   "/mortgage-guides/blog/what-is-an-itin-loan/": {
-    "url": "https://images.pexels.com/photos/19278018/pexels-photo-19278018.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    "alt": "A suburban house in Dixon, IL covered with fresh winter snow and sunlight shining through trees.",
-    "photographer": "Quang Vuong",
-    "photographerUrl": "https://www.pexels.com/@quang-vuong-724225078",
-    "pexelsUrl": "https://www.pexels.com/photo/a-family-house-in-the-suburbs-in-winter-19278018/"
+    "url": "/images/content%20images/Non%201.jpeg",
+    "alt": "Non-citizen homebuyer learning about ITIN loans"
   },
   "/mortgage-guides/blog/how-itin-holders-qualify-mortgage/": {
     "url": "https://images.pexels.com/photos/5275419/pexels-photo-5275419.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
