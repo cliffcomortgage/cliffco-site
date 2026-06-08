@@ -159,7 +159,8 @@
   },
   "/mortgage-guides/blog/why-freelancers-struggle-to-buy-home/": {
     "url": "/images/content%20images/Freelancers%201.jpeg",
-    "alt": "Freelancer working from home struggling to qualify for a mortgage"
+    "alt": "Freelancer working from home struggling to qualify for a mortgage",
+    "objectPosition": "center top"
   },
   "/mortgage-guides/blog/mortgage-qualify-multiple-income-sources-freelancer/": {
     "url": "https://images.pexels.com/photos/4458323/pexels-photo-4458323.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
