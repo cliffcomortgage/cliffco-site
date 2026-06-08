@@ -1,6 +1,5 @@
 ---
 import Layout from "./Layout.astro";
-import articleImages from "../data/article-images.json";
 
 interface Props {
   title: string;
@@ -10,28 +9,8 @@ interface Props {
 }
 
 const { title, description, type = "article" as const, schema } = Astro.props;
-
-// Strip base path so the key matches keys in article-images.json
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-let pathname = Astro.url.pathname;
-if (base && pathname.startsWith(base)) pathname = pathname.slice(base.length);
-if (!pathname.endsWith("/")) pathname += "/";
-
-const images = articleImages as Record<string, { url: string; alt: string; photographer: string }>;
-const image = images[pathname];
 ---
 
 <Layout title={title} description={description ?? ""} type={type} schema={schema}>
-  {image && (
-    <div class="w-full overflow-hidden bg-[var(--color-mist-gray)]" style="height: 420px;">
-      <img
-        src={image.url}
-        alt={image.alt}
-        class="w-full h-full object-cover"
-        loading="eager"
-        fetchpriority="high"
-      />
-    </div>
-  )}
   <slot />
 </Layout>

@@ -1,0 +1,23 @@
+---
+import articleImages from "../../data/article-images.json";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+let pathname = Astro.url.pathname;
+if (base && pathname.startsWith(base)) pathname = pathname.slice(base.length);
+if (!pathname.endsWith("/")) pathname += "/";
+
+const images = articleImages as Record<string, { url: string; alt: string }>;
+const image = images[pathname];
+---
+
+{image && (
+  <div class="mt-8 mb-2 rounded-2xl overflow-hidden" style="height: 420px;">
+    <img
+      src={image.url}
+      alt={image.alt}
+      class="w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+)}
