@@ -4,7 +4,7 @@ import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { BLOG_ARTICLES } from "../../../data/blog-articles";
 import articleImagesRaw from "../../../data/article-images.json";
 
-const articleImages = articleImagesRaw as Record<string, { url: string; alt: string }>;
+const articleImages = articleImagesRaw as Record<string, { url: string; alt: string; objectPosition?: string }>;
 const articles = BLOG_ARTICLES;
 const categories = ["All", "Investors", "First-Time Buyers", "Reverse Mortgage", "Self-Employed", "Freelancers", "Non-Citizens", "Veterans", "Move-Up Buyers", "Refinancing"];
 ---
@@ -53,7 +53,7 @@ const categories = ["All", "Investors", "First-Time Buyers", "Reverse Mortgage",
             >
               {img && (
                 <div class="-mx-6 -mt-6 mb-4 h-48 overflow-hidden rounded-t-xl">
-                  <img src={img.url} alt={img.alt} class="w-full h-full object-cover" loading="lazy" />
+                  <img src={img.url} alt={img.alt} class="w-full h-full object-cover" style={img.objectPosition ? `object-position: ${img.objectPosition}` : undefined} loading="lazy" />
                 </div>
               )}
               <p class="eyebrow text-sm">{article.category}</p>

@@ -6,7 +6,7 @@ let pathname = Astro.url.pathname;
 if (base && pathname.startsWith(base)) pathname = pathname.slice(base.length);
 if (!pathname.endsWith("/")) pathname += "/";
 
-const images = articleImages as Record<string, { url: string; alt: string }>;
+const images = articleImages as Record<string, { url: string; alt: string; objectPosition?: string }>;
 const image = images[pathname];
 ---
 
@@ -16,6 +16,7 @@ const image = images[pathname];
       src={image.url}
       alt={image.alt}
       class="w-full h-full object-cover"
+      style={image.objectPosition ? `object-position: ${image.objectPosition}` : undefined}
       loading="eager"
       fetchpriority="high"
     />
