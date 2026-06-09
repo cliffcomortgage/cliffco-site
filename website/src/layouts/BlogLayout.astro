@@ -1,5 +1,8 @@
 ---
 import Layout from "./Layout.astro";
+import articleImagesRaw from "../data/article-images.json";
+import { BLOG_PUBLISH_DATES } from "../data/blog-publish-dates";
+import { SITE_URL } from "../data/company";
 
 interface Props {
   title: string;
@@ -9,8 +12,38 @@ interface Props {
 }
 
 const { title, description, type = "article" as const, schema } = Astro.props;
+
+// Resolve the slug from the current URL path
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+let pathname = Astro.url.pathname;
+if (base && pathname.startsWith(base)) pathname = pathname.slice(base.length);
+if (!pathname.endsWith("/")) pathname += "/";
+
+// e.g. /mortgage-guides/blog/bank-statement-loan-freelancers/  → bank-statement-loan-freelancers
+const slugMatch = pathname.match(/\/mortgage-guides\/blog\/([^/]+)\//);
+const slug = slugMatch ? slugMatch[1] : null;
+
+// og:image — use the article's hero image if one is mapped
+const articleImages = articleImagesRaw as Record<string, { url: string; alt: string }>;
+const heroEntry = articleImages[pathname];
+let ogImage: string | undefined;
+if (heroEntry) {
+  const raw = heroEntry.url;
+  // Pexels and other absolute URLs pass through; local paths get SITE_URL prefix
+  ogImage = raw.startsWith("http") ? raw : `${SITE_URL}${decodeURIComponent(raw)}`;
+}
+
+// datePublished — look up from the canonical publish-date map
+const datePublished = slug ? (BLOG_PUBLISH_DATES[slug] ?? undefined) : undefined;
 ---
 
-<Layout title={title} description={description ?? ""} type={type} schema={schema}>
+<Layout
+  title={title}
+  description={description ?? ""}
+  type={type}
+  schema={schema}
+  image={ogImage}
+  datePublished={datePublished}
+>
   <slot />
 </Layout>

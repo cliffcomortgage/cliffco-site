@@ -28,6 +28,7 @@ interface Props {
   alternateLocales?: { hreflang: string; href: string }[];
   noindex?: boolean;
   type?: "website" | "article";
+  datePublished?: string;
   /** Additional JSON-LD blocks specific to this page */
   schema?: object | object[];
 }
@@ -41,17 +42,20 @@ const {
   alternateLocales,
   noindex,
   type,
+  datePublished,
   schema,
 } = Astro.props;
 
+const resolvedDate = datePublished ?? "2026-05-22";
 const autoArticleSchema =
   type === "article"
     ? articleSchema({
         headline: title,
         description,
         url: Astro.url.pathname,
-        datePublished: "2026-05-22",
-        dateModified: "2026-05-22",
+        image,
+        datePublished: resolvedDate,
+        dateModified: resolvedDate,
       })
     : null;
 
