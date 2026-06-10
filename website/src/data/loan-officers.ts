@@ -1046,23 +1046,6 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "leah-silvestri",
-    firstName: "Leah",
-    lastName: "Silvestri",
-    displayName: "Leah Silvestri",
-    nmls: "420488",
-    title: "Loan Officer",
-    states: ["NY"],
-    branchSlug: "uniondale-headquarters",
-    links: {
-      email: "leah.silvestri@cliffcomortgage.com",
-      directPhone: "516-874-6387",
-      applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=lsilvestri&workFlowId=33774",
-    },
-    bio: "As a mother of two beautiful young girls and a wife, I understand the importance of balancing personal and professional life. I'm passionate about making work-life harmony achievable, not only for myself but for my clients as well. With 19 years of experience as a mortgage consultant, I specialize in a wide range of mortgage services, including Conventional, FHA, Renovation, and Non-QM Loans. At Cliffco Mortgage Bankers, I leverage my deep understanding of loan structuring, coupled with my commitment to exceptional customer service, to meet the diverse needs of homeowners. My approach is hands-on and solution-oriented, ensuring smooth communication and a seamless process for both clients and referral sources.",
-    hasPhoto: true,
-  },
-  {
     slug: "lee-horen",
     firstName: "Lee",
     lastName: "Horen",
