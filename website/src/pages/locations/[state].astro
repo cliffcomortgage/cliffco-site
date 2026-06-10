@@ -184,8 +184,8 @@ const schema = [
   {licensedOnlyLOs.length > 0 && (
     <section class="section bg-white">
       <div class="container-wide">
-        <p class="eyebrow">Also licensed in {loc.name}</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Other {loc.name}-licensed loan officers.</h2>
+        <p class="eyebrow">{loc.state === "AZ" ? "Licensed in Arizona" : `Also licensed in ${loc.name}`}</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">{loc.state === "AZ" ? "Arizona-licensed loan officers." : `Other ${loc.name}-licensed loan officers.`}</h2>
         <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
           These loan officers are based at other Cliffco offices but are fully licensed to originate loans in {loc.name}.
         </p>
