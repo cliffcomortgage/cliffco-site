@@ -1,0 +1,191 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../data/company";
+import { product } from "../../../data/products";
+import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
+import ContactForm from "../../../components/forms/ContactForm.astro";
+
+const p = product("1099-mortgage")!;
+const today = new Date().toISOString().slice(0, 10);
+
+const faq = [
+  {
+    question: "What is a 1099 mortgage?",
+    answer: "A 1099 mortgage qualifies independent contractors, freelancers, and gig workers using their 1099 forms rather than W-2s or personal tax returns. Cliffco applies an expense factor to gross 1099 income to calculate qualifying income. If you earn $120K in 1099s and your tax return shows $40K after deductions, this program qualifies you on a number much closer to what you actually earn.",
+  },
+  {
+    question: "What documentation do I need?",
+    answer: "Typically 12 or 24 months of 1099 forms showing the gross income paid to you. Your income is calculated from the 1099 totals rather than the net income on your tax return. Some programs also require your most recent year or two of tax returns for identity and filing verification, but they are not used to calculate qualifying income.",
+  },
+  {
+    question: "How is qualifying income calculated?",
+    answer: "Cliffco takes your gross 1099 income over 12 or 24 months, applies a standard expense factor (often 25%–50% depending on your industry and documentation), and uses the result as qualifying monthly income. For example: $130,000 in 1099s over 12 months, less a 25% expense factor = $97,500 annually, or $8,125/month qualifying income.",
+  },
+  {
+    question: "What if I work for multiple clients?",
+    answer: "Multiple clients are fine and common. Cliffco combines all 1099 income from all sources when calculating qualifying income. If you receive 1099s from five different clients, all five count toward your total.",
+  },
+  {
+    question: "Do I need 2 years of 1099 history?",
+    answer: "Most programs require 12–24 months of 1099 history in the same field. If you recently transitioned from W-2 employment to contractor work in the same industry, some programs allow as little as 12 months of 1099 history.",
+  },
+  {
+    question: "How is this different from a bank statement loan?",
+    answer: "A bank statement loan uses deposits into a business or personal account to verify income — best for self-employed business owners. A 1099 loan uses the 1099 forms issued to you by clients — better for contractors paid directly by companies that issue 1099-NEC forms. Both bypass the tax return; which fits depends on how your income is structured.",
+  },
+  {
+    question: "Can I qualify if I also have W-2 income?",
+    answer: "Yes. If you have a mix of 1099 and W-2 income, Cliffco can combine both sources. The 1099 income is calculated using the expense factor; the W-2 income is taken at face value. Combined, they often produce a stronger qualifying income than either source alone.",
+  },
+];
+
+const schema = [
+  mortgageLoanSchema(p, { rateRange: { min: 6.75, max: 9.0 } }),
+  faqPageSchema(faq),
+  articleSchema({
+    headline: p.name,
+    description: p.directAnswer,
+    url: `/loans/${p.slug}/`,
+    datePublished: "2026-06-11",
+    dateModified: today,
+    authorSlug: "christopher-clifford",
+  }),
+];
+---
+
+<Layout title={`${p.name} | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Loans", href: "/loans/" },
+    { name: p.shortName, href: `/loans/${p.slug}/` },
+  ]} />
+
+  <section class="container-wide pt-12 pb-5">
+    <p class="eyebrow">{p.category}</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
+    <p class="lead mt-6">{p.oneLiner}</p>
+  </section>
+
+  <section class="bg-white pb-12">
+    <div class="container-wide">
+      <p class="lead">{p.directAnswer}</p>
+    </div>
+  </section>
+
+  <!-- WHO QUALIFIES -->
+  <section class="bg-[var(--color-mist-gray)] section">
+    <div class="container-wide grid gap-10 lg:grid-cols-[1fr_2fr]">
+      <div>
+        <p class="eyebrow">Who qualifies</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Your 1099s tell the real story.</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="card">
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">Independent contractors</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Consultants, IT contractors, tradespeople, and anyone paid for work via 1099-NEC or 1099-MISC, with no employer tax withholding.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">Gig workers and platform earners</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Drivers, delivery workers, content creators, and others whose income is distributed through platforms that issue 1099s rather than W-2s.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">Freelancers with high deductions</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Freelancers who legitimately reduce taxable income through business deductions and whose tax return significantly understates actual earnings.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">Contractors transitioning from W-2</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Recently self-employed borrowers who moved from a W-2 position to contracting in the same field, with 12+ months of 1099 history to document income.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT'S CALCULATED -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">How we calculate it</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">A worked 1099 income example.</h2>
+      <p class="mt-6 max-w-2xl">
+        Suppose you're a freelance consultant who earned $130,000 in 1099 income last year.
+        Your tax return shows $55,000 of net income after business deductions.
+        Here's how Cliffco calculates qualifying income on the 1099 program:
+      </p>
+      <ul class="mt-4 max-w-2xl">
+        <li><strong>$130,000</strong> (gross 1099 income, 12 months)</li>
+        <li><strong>× 75%</strong> (standard factor: 25% expense deduction for contractors)</li>
+        <li>= <strong>$97,500 / year, or $8,125 / month qualifying income</strong></li>
+      </ul>
+      <p class="mt-4 max-w-2xl">
+        That $8,125/month qualifies you for significantly more home than the $55K net income
+        on your tax return would support, without requiring you to change how you run your business.
+      </p>
+      <p class="text-sm text-[var(--color-text-muted)] mt-4 max-w-2xl">
+        <em>Illustrative only. Expense factors vary by program, documentation, and file strength. Cliffco's underwriters determine the applicable factor based on your documentation.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- THE NUMBERS -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide grid gap-10 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">The numbers</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">What to expect (illustrative).</h2>
+        <p class="mt-4 text-[var(--color-text-muted)]">Final terms depend on FICO, LTV, documentation period, and property type.</p>
+      </div>
+      <dl class="space-y-3">
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Rate range</dt><dd class="text-[var(--color-text-muted)]">6.75%–9.00%</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>1099 history required</dt><dd class="text-[var(--color-text-muted)]">12–24 months</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Expense factor</dt><dd class="text-[var(--color-text-muted)]">typically 25%–50%</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Max LTV</dt><dd class="text-[var(--color-text-muted)]">up to 90%</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min FICO</dt><dd class="text-[var(--color-text-muted)]">620 (best pricing 700+)</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Loan amounts</dt><dd class="text-[var(--color-text-muted)]">$150K–$3M+</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Property types</dt><dd class="text-[var(--color-text-muted)]">SFR, 2–4 unit, condo, co-op</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">1099 mortgage questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Have 12 months of 1099s? Let's run the numbers.</h2>
+      <p class="lead mt-4 text-white/85">A Cliffco loan officer responds within one business day. No credit pull to start.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Start a pre-qual</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-2xl">
+      <p class="eyebrow">Get in touch</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Ready to talk to a loan officer?</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">No credit pull. No commitment. Fill out the form and a loan officer will reach out within one business day.</p>
+      <div class="mt-8">
+        <ContactForm
+          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
+          formSource="loan-1099"
+        />
+      </div>
+    </div>
+  </section>
+</Layout>

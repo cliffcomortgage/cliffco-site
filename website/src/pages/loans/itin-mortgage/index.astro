@@ -1,0 +1,179 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../data/company";
+import { product } from "../../../data/products";
+import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
+import ContactForm from "../../../components/forms/ContactForm.astro";
+
+const p = product("itin-mortgage")!;
+const today = new Date().toISOString().slice(0, 10);
+
+const faq = [
+  {
+    question: "What is an ITIN?",
+    answer: "An Individual Taxpayer Identification Number (ITIN) is a tax processing number issued by the IRS to people who are required to have a US taxpayer identification number but are not eligible for a Social Security number. ITINs are issued regardless of immigration status.",
+  },
+  {
+    question: "Can I get a mortgage with an ITIN instead of a Social Security number?",
+    answer: "Yes. Cliffco's ITIN mortgage program is specifically designed for borrowers who have an ITIN but no SSN. Income is documented using bank statements or 1099s — the same non-QM documentation available to self-employed US borrowers — with the ITIN substituting for the SSN throughout the application.",
+  },
+  {
+    question: "Do I need to be a US citizen or permanent resident?",
+    answer: "No. Cliffco's ITIN mortgage does not require US citizenship, a green card, or any specific visa status. ITIN loans are available to non-resident and resident foreign nationals, as well as individuals who file US taxes with an ITIN and have no Social Security number.",
+  },
+  {
+    question: "What property types are eligible?",
+    answer: "ITIN borrowers can purchase primary residences, second homes, and investment properties. Single-family homes, 2–4 unit properties, condos, and co-ops are all eligible property types.",
+  },
+  {
+    question: "What down payment do I need?",
+    answer: "Most ITIN programs require 15%–25% down depending on property type, FICO equivalent, and documentation strength. Primary residence purchases can qualify at 15% down with strong documentation; investment properties typically require 20%–25%.",
+  },
+  {
+    question: "What if I have no US credit history?",
+    answer: "Cliffco can build an alternative credit profile using 12 months of documented on-time payments for rent, utilities, and other recurring obligations. A non-traditional credit report (NTCR) can substitute for a standard FICO-based credit report in many cases.",
+  },
+  {
+    question: "What's the difference between an ITIN mortgage and a foreign national loan?",
+    answer: "ITIN mortgages are for borrowers who live in or have a financial presence in the US, file US taxes, and have an IRS-issued ITIN. Foreign national loans are for buyers who reside entirely outside the US, have no US financial footprint, and are purchasing investment or vacation property. If you live in the US and work here, ITIN is likely the right program.",
+  },
+];
+
+const schema = [
+  mortgageLoanSchema(p, { rateRange: { min: 7.5, max: 9.5 } }),
+  faqPageSchema(faq),
+  articleSchema({
+    headline: p.name,
+    description: p.directAnswer,
+    url: `/loans/${p.slug}/`,
+    datePublished: "2026-06-11",
+    dateModified: today,
+    authorSlug: "christopher-clifford",
+  }),
+];
+---
+
+<Layout title={`${p.name} | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Loans", href: "/loans/" },
+    { name: p.shortName, href: `/loans/${p.slug}/` },
+  ]} />
+
+  <section class="container-wide pt-12 pb-5">
+    <p class="eyebrow">{p.category}</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
+    <p class="lead mt-6">{p.oneLiner}</p>
+  </section>
+
+  <section class="bg-white pb-12">
+    <div class="container-wide">
+      <p class="lead">{p.directAnswer}</p>
+    </div>
+  </section>
+
+  <!-- WHO QUALIFIES -->
+  <section class="bg-[var(--color-mist-gray)] section">
+    <div class="container-wide grid gap-10 lg:grid-cols-[1fr_2fr]">
+      <div>
+        <p class="eyebrow">Who qualifies</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">No SSN? You still have options.</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="card">
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">Immigrants and non-residents</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Foreign-born borrowers living in the US who file taxes with an ITIN and have no Social Security number, regardless of immigration status.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">Self-employed ITIN holders</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Business owners and self-employed individuals who earn income in the US, file with an ITIN, and can document income through bank statements or 1099s.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">First-time homebuyers</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Buyers purchasing a primary residence for the first time, regardless of immigration status. ITIN loans are available for primary homes, second homes, and investment properties.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">Real estate investors</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Borrowers looking to purchase investment or rental properties using ITIN documentation. Multi-unit properties and condos are eligible.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE NUMBERS -->
+  <section class="section bg-white">
+    <div class="container-wide grid gap-10 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">The numbers</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">What to expect (illustrative).</h2>
+        <p class="mt-4 text-[var(--color-text-muted)]">Final terms depend on documentation type, property use, FICO equivalent, and LTV.</p>
+      </div>
+      <dl class="space-y-3">
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Rate range</dt><dd class="text-[var(--color-text-muted)]">7.50%–9.50%</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min down payment</dt><dd class="text-[var(--color-text-muted)]">15% (primary) / 20–25% (investment)</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Credit requirement</dt><dd class="text-[var(--color-text-muted)]">620+ FICO or alternative credit</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Income documentation</dt><dd class="text-[var(--color-text-muted)]">12–24 months bank statements or 1099s</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Loan amounts</dt><dd class="text-[var(--color-text-muted)]">$150K–$2M+</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Property types</dt><dd class="text-[var(--color-text-muted)]">SFR, 2–4 unit, condo, co-op</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Occupancy</dt><dd class="text-[var(--color-text-muted)]">Primary, second home, investment</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">ITIN mortgage questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">Related programs</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Not sure which non-QM program fits?</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] max-w-2xl">ITIN mortgages are one of several non-QM programs Cliffco originates. If you reside entirely outside the US and have no US financial presence, the foreign national program may be a better fit.</p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="/loans/non-qm-self-employed/" class="btn btn-secondary">Non-QM overview →</a>
+        <a href="/loans/foreign-national-mortgage/" class="btn btn-secondary">Foreign national mortgage →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Have an ITIN? Let's see what you qualify for.</h2>
+      <p class="lead mt-4 text-white/85">A Cliffco loan officer responds within one business day. No credit pull to start.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Start a pre-qual</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-2xl">
+      <p class="eyebrow">Get in touch</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Ready to talk to a loan officer?</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">No credit pull. No commitment. Fill out the form and a loan officer will reach out within one business day.</p>
+      <div class="mt-8">
+        <ContactForm
+          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
+          formSource="loan-itin"
+        />
+      </div>
+    </div>
+  </section>
+</Layout>

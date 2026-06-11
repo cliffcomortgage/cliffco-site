@@ -1,0 +1,190 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../data/company";
+import { product } from "../../../data/products";
+import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
+import ContactForm from "../../../components/forms/ContactForm.astro";
+
+const p = product("foreign-national-mortgage")!;
+const today = new Date().toISOString().slice(0, 10);
+
+const faq = [
+  {
+    question: "What is a foreign national mortgage?",
+    answer: "A foreign national mortgage is a Non-QM home loan for buyers who reside outside the United States. Unlike ITIN mortgages (for US-resident borrowers without an SSN), foreign national loans are designed for buyers with no US financial footprint: no US credit history, no US tax returns, and no Social Security number or ITIN. Income is documented using foreign income records, and assets are verified through foreign or international bank accounts.",
+  },
+  {
+    question: "Do I need to visit the United States to close?",
+    answer: "In most cases, yes. Remote closings for foreign national transactions are possible in certain states but depend on the title company and state law. Your Cliffco loan officer will outline the closing options available for the state where the property is located.",
+  },
+  {
+    question: "Can foreign nationals buy investment properties?",
+    answer: "Yes. Most foreign national programs are designed for investment properties and second homes. Primary residence purchases are less common under these programs because the borrower by definition does not reside in the US.",
+  },
+  {
+    question: "Is a US bank account required?",
+    answer: "Not necessarily to qualify, but you will need a US bank account to close the loan and fund the down payment through a domestic wire. Most buyers open a US account during the process. Reserves may be held in a foreign bank account that Cliffco can verify.",
+  },
+  {
+    question: "What is the difference between a foreign national loan and an ITIN mortgage?",
+    answer: "ITIN mortgages are for borrowers who live in the US and have an IRS-issued ITIN but no Social Security number. Foreign national loans are for buyers who reside entirely outside the US, have no US credit history, and typically purchase investment or vacation properties rather than a primary residence. If you live in the US and file US taxes, ITIN is likely the right program.",
+  },
+  {
+    question: "Which countries are eligible?",
+    answer: "Most countries are eligible. Cliffco may require additional documentation or decline applications from borrowers in OFAC-sanctioned countries or high-risk jurisdictions. Your loan officer can confirm eligibility for your specific country of residence.",
+  },
+  {
+    question: "What documentation do I need?",
+    answer: "Typically: a valid passport, visa documentation, 12–24 months of foreign bank statements or equivalent income documentation, a credit report from your home country if available, a letter of reference from your foreign bank, and documentation sourcing your down payment funds. Self-employed borrowers also need business ownership verification and income documentation from their home country.",
+  },
+];
+
+const schema = [
+  mortgageLoanSchema(p, { rateRange: { min: 7.75, max: 9.75 } }),
+  faqPageSchema(faq),
+  articleSchema({
+    headline: p.name,
+    description: p.directAnswer,
+    url: `/loans/${p.slug}/`,
+    datePublished: "2026-06-11",
+    dateModified: today,
+    authorSlug: "christopher-clifford",
+  }),
+];
+---
+
+<Layout title={`${p.name} | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Loans", href: "/loans/" },
+    { name: p.shortName, href: `/loans/${p.slug}/` },
+  ]} />
+
+  <section class="container-wide pt-12 pb-5">
+    <p class="eyebrow">{p.category}</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
+    <p class="lead mt-6">{p.oneLiner}</p>
+  </section>
+
+  <section class="bg-white pb-12">
+    <div class="container-wide">
+      <p class="lead">{p.directAnswer}</p>
+    </div>
+  </section>
+
+  <!-- WHO QUALIFIES -->
+  <section class="bg-[var(--color-mist-gray)] section">
+    <div class="container-wide grid gap-10 lg:grid-cols-[1fr_2fr]">
+      <div>
+        <p class="eyebrow">Who qualifies</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">You don't have to live here to own here.</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="card">
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">International investors</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Foreign buyers purchasing US real estate as an investment or rental property. No US income, US credit history, or US residency required.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">Vacation home buyers</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Non-resident buyers purchasing a second home in the US. Common in South Florida, New York, and Arizona — all markets where Cliffco is active.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">Buyers from countries without credit bureaus</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Cliffco can work with borrowers from countries that lack formal credit reporting systems, using alternative documentation of financial responsibility in place of a traditional credit report.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">Self-employed foreign nationals</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Business owners outside the US can qualify using foreign tax documents, business bank statements, or income letters from their home country, with no US business registration required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE NUMBERS -->
+  <section class="section bg-white">
+    <div class="container-wide grid gap-10 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">The numbers</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">What to expect (illustrative).</h2>
+        <p class="mt-4 text-[var(--color-text-muted)]">Final terms depend on country of origin, documentation, LTV, and property type.</p>
+      </div>
+      <dl class="space-y-3">
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Rate range</dt><dd class="text-[var(--color-text-muted)]">7.75%–9.75%</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min down payment</dt><dd class="text-[var(--color-text-muted)]">25%–40%</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>US credit required</dt><dd class="text-[var(--color-text-muted)]">No</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>US tax returns required</dt><dd class="text-[var(--color-text-muted)]">No</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Reserves required</dt><dd class="text-[var(--color-text-muted)]">12+ months PITIA</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Loan amounts</dt><dd class="text-[var(--color-text-muted)]">$150K–$3M+</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Occupancy</dt><dd class="text-[var(--color-text-muted)]">Investment, second home</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- BLOG CROSS-LINK -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide grid gap-8 lg:grid-cols-[2fr_1fr] items-center">
+      <div>
+        <p class="eyebrow">Learn more</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">How foreign national loans actually work.</h2>
+        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+          Our guide walks through the full process, from documentation to closing, including down payment sourcing, credit alternatives, reserve requirements, and what to expect at each stage if you've never bought US property before.
+        </p>
+        <a href="/mortgage-guides/blog/foreign-national-loan-buy-property-us/" class="btn btn-secondary mt-6">Read the complete guide →</a>
+      </div>
+      <div class="card">
+        <p class="eyebrow">In the guide</p>
+        <ul class="mt-3 space-y-2 text-sm text-[var(--color-text-muted)]">
+          <li>How foreign national loans are structured</li>
+          <li>What documentation is required</li>
+          <li>How income and credit are verified</li>
+          <li>Down payment sourcing and reserve rules</li>
+          <li>What to do, step by step</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">Frequently asked</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Foreign national mortgage questions, answered.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Ready to start the conversation?</h2>
+      <p class="lead mt-4 text-white/85">A Cliffco loan officer responds within one business day. No US credit pull required to get started.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Start a pre-qual</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-2xl">
+      <p class="eyebrow">Get in touch</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Ready to talk to a loan officer?</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">No credit pull. No commitment. Fill out the form and a loan officer will reach out within one business day.</p>
+      <div class="mt-8">
+        <ContactForm
+          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
+          formSource="loan-foreign-national"
+        />
+      </div>
+    </div>
+  </section>
+</Layout>
