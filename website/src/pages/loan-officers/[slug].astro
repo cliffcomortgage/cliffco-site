@@ -25,6 +25,8 @@ const isFloridaLicensed = lo.states.includes("FL");
 const disclosure = fullDisclosureBlock(lo.states);
 const verifyUrl = nmlsConsumerAccessUrl(lo.nmls);
 
+const extraLanguages = (lo.languages ?? []).filter((l) => l !== "English");
+
 const schema = [
   personSchema(lo),
   breadcrumbSchema([
@@ -83,12 +85,12 @@ const schema = [
           <dt class="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">States licensed in</dt>
           <dd class="mt-1 text-[var(--color-ink)]">{lo.states.join(" · ")}</dd>
         </div>
-        {(() => { const extra = (lo.languages ?? []).filter((l: string) => l !== "English"); return extra.length > 0 && (
+        {extraLanguages.length > 0 && (
           <div>
             <dt class="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">Additional Languages</dt>
-            <dd class="mt-1 text-[var(--color-ink)]">{extra.join(", ")}</dd>
+            <dd class="mt-1 text-[var(--color-ink)]">{extraLanguages.join(", ")}</dd>
           </div>
-        ); })()}
+        )}
         {(lo.featuredSpecialties || lo.specialties) && (
           <div class="col-span-2 space-y-3">
             <dt class="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">Specialties</dt>
