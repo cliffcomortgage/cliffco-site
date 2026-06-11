@@ -132,6 +132,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     title: "Senior Vice President of Sales",
     states: ["AZ", "CT", "FL", "GA", "MD", "NC", "NJ", "NY", "OR", "PA", "SC", "TX", "VA"],
     branchSlug: "uniondale-headquarters",
+    languages: ["English", "Mandarin", "Cantonese", "Taiwanese"],
     links: {
       email: "jchen@cliffcomortgage.com",
       directPhone: "516-874-6572",
@@ -273,6 +274,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     title: "Branch Manager",
     states: ["FL", "NC", "NJ", "NY", "PA"],
     branchSlug: "branchburg-nj",
+    languages: ["English", "Spanish"],
     links: {
       email: "emorais@cliffcomortgage.com",
       directPhone: "908-370-1575",
@@ -649,6 +651,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     title: "Loan Officer",
     states: ["NY", "CT", "NJ", "FL"],
     branchSlug: "uniondale-headquarters",
+    languages: ["English", "Greek"],
     links: {
       email: "azervas@cliffcomortgage.com",
       directPhone: "347-248-8019",
@@ -861,6 +864,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     title: "Sales Manager",
     states: ["CT", "FL", "KY", "NJ", "NY", "PA", "SC", "VA"],
     branchSlug: "uniondale-headquarters",
+    languages: ["English", "Greek"],
     links: {
       email: "george@cliffcomortgage.com",
       directPhone: "516-874-6394",
@@ -913,6 +917,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     title: "Loan Officer",
     states: ["NY", "FL", "NJ", "PA"],
     branchSlug: "uniondale-headquarters",
+    languages: ["English", "Spanish"],
     links: {
       email: "jamaya@cliffcomortgage.com",
       directPhone: "516-508-6258",
@@ -948,6 +953,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     title: "Loan Officer",
     states: ["NY"],
     branchSlug: "uniondale-headquarters",
+    languages: ["English", "Spanish"],
     links: {
       email: "jborrero@cliffcomortgage.com",
       directPhone: "516-408-7300",
