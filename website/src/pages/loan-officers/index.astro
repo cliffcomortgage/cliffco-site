@@ -99,9 +99,9 @@ const stateNames: Record<string, string> = {
                 <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
                 <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>
                 <p class="text-xs text-[var(--color-text-muted)] mt-0.5">Licensed in {lo.states.join(", ")}</p>
-                {lo.languages && lo.languages.length > 1 && (
-                  <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
-                )}
+                {(() => { const extra = (lo.languages ?? []).filter((l: string) => l !== "English"); return extra.length > 0 && (
+                  <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{extra.join(" · ")}</p>
+                ); })()}
                 <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
               </a>
             ))}
@@ -153,7 +153,7 @@ const stateNames: Record<string, string> = {
         <h3 style="margin:0 0 0.25rem;font-size:1rem;font-weight:600;">${lo.displayName}</h3>
         <p style="font-size:0.75rem;color:var(--color-text-muted);margin:0 0 0.125rem;">NMLS #${lo.nmls}</p>
         <p style="font-size:0.75rem;color:var(--color-text-muted);margin:0;">${lo.states.join(", ")}</p>
-        ${lo.languages.length > 1 ? `<p style="font-size:0.75rem;color:var(--color-accent);font-weight:500;margin:0.5rem 0 0;">${lo.languages.join(" · ")}</p>` : ""}
+        ${(() => { const extra = lo.languages.filter(l => l !== "English"); return extra.length > 0 ? `<p style="font-size:0.75rem;color:var(--color-accent);font-weight:500;margin:0.5rem 0 0;">${extra.join(" · ")}</p>` : ""; })()}
         <span style="margin-top:1rem;font-size:0.875rem;font-weight:600;color:var(--color-accent);">View bio →</span>
       </a>
     `;

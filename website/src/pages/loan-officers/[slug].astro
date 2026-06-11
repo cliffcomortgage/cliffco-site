@@ -83,12 +83,12 @@ const schema = [
           <dt class="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">States licensed in</dt>
           <dd class="mt-1 text-[var(--color-ink)]">{lo.states.join(" · ")}</dd>
         </div>
-        {lo.languages && lo.languages.length > 0 && (
+        {(() => { const extra = (lo.languages ?? []).filter((l: string) => l !== "English"); return extra.length > 0 && (
           <div>
-            <dt class="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">Languages</dt>
-            <dd class="mt-1 text-[var(--color-ink)]">{lo.languages.join(", ")}</dd>
+            <dt class="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">Additional Languages</dt>
+            <dd class="mt-1 text-[var(--color-ink)]">{extra.join(", ")}</dd>
           </div>
-        )}
+        ); })()}
         {(lo.featuredSpecialties || lo.specialties) && (
           <div class="col-span-2 space-y-3">
             <dt class="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">Specialties</dt>
