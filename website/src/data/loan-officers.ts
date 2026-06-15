@@ -403,25 +403,6 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   // ============================================================
   // SCOTTSDALE (AZ) CLUSTER
   // ============================================================
-  {
-    slug: "katherine-chiang",
-    firstName: "Katherine",
-    lastName: "Chiang",
-    displayName: "Katherine Chiang",
-    nmls: "1600568",
-    title: "Senior Loan Officer",
-    states: ["CO", "TX"],
-    branchSlug: "scottsdale-az",
-    languages: ["English", "Mandarin"],
-    links: {
-      email: "kchiang@cliffcomortgage.com",
-      directPhone: "480-770-6417",
-      applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=kchiang&workFlowId=33774",
-    },
-    team: { name: "Team Wei", slug: "team-wei", logoUrl: "/images/team%20logos/Team%20Wei_White@4x.png" },
-    bio: "I am fluent in both Chinese and English. I conduct Mortgage Lending in the state of Texas and Colorado. Because of my unique background in Banking and Loan Operation, I specialize in small business owners and first time home buyers. I am on a mission to become the one-stop shop for all of your mortgage needs from traditional to non-traditional loans. My team and I believe that everyone will eventually be able to become a homeowner as long as they are willing to let us coach them when it comes to creative financing.",
-    hasPhoto: true,
-  },
 
   // ============================================================
   // EXCELSIOR (MN)
