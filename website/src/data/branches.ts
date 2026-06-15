@@ -183,7 +183,6 @@ export const BRANCHES: readonly Branch[] = [
       "nadia-geyer-castro-2498365",
       "samantha-roach-1956150",
       "wenceslao-hernandez-romero-1842661",
-      "yaisha-romero-1559680",
     ],
   },
   {

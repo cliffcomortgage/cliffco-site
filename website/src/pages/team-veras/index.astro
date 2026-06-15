@@ -8,7 +8,7 @@ import { faqPageSchema, articleSchema } from "../../lib/schema";
 
 const today = new Date().toISOString().slice(0, 10);
 
-const teamSlugs = ["francisco-veras", "keyla-cruz", "nadia-geyer", "wenceslao-romero", "yaisha-romero"];
+const teamSlugs = ["francisco-veras", "keyla-cruz", "nadia-geyer", "wenceslao-romero"];
 const teamMembers = teamSlugs.map(s => LOAN_OFFICERS.find(lo => lo.slug === s)!).filter(Boolean);
 const francisco = loanOfficer("francisco-veras")!;
 

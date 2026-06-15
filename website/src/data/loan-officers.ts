@@ -399,25 +399,6 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     bio: "I have been a loan officer with Cliffco Mortgage since August 2023. I live in Orlando, Florida and I arrived to this city with my wife and daughter in September 2016. I graduated as an Electronic Engineer from the Simon Bolivar University in 1992. In 2016, my wife and I became 100% dedicated to the real estate business. My goals are to give support to my family to provide them with education, security, and happiness. I want to be known for helping people on their own homeowner's journey. My hobbies include growing plants, reading about the cosmos, physics, and science!",
     hasPhoto: true,
   },
-  {
-    slug: "yaisha-romero",
-    firstName: "Yaisha",
-    lastName: "Romero",
-    displayName: "Yaisha Romero",
-    nmls: "1559680",
-    title: "Loan Officer",
-    states: ["FL"],
-    branchSlug: "orlando-fl",
-    languages: ["English", "Spanish"],
-    links: {
-      email: "yromero@cliffcomortgage.com",
-      directPhone: "516-930-1031",
-      applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=yromero&workFlowId=33774",
-    },
-    team: { name: "Team Veras", slug: "team-veras", logoUrl: "/images/team%20logos/Team%20Veras_White@4x.png" },
-    bio: "With a passion for financial empowerment and a commitment to exceptional service, I am proud to serve as a trusted loan officer. My extensive knowledge of the lending industry, combined with a genuine care for my clients, has earned me a reputation as a reliable and honest professional. I approach each client's unique financial situation with dedication and a willingness to go the extra mile, ensuring their needs are met. Over the years, I have built lasting relationships based on trust and integrity. My mission is not only to facilitate loans but to make a positive impact on people's lives, helping them achieve their dreams and financial goals.",
-    hasPhoto: true,
-  },
 
   // ============================================================
   // SCOTTSDALE (AZ) CLUSTER
