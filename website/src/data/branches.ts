@@ -211,8 +211,7 @@ export const BRANCHES: readonly Branch[] = [
     phone: null,
     nmls: "2476150",
     metro: "Phoenix metro",
-    branchManagerSlug: "steve-wei-1231095",
-    loanOfficerSlugs: ["steve-wei-1231095", "katherine-chiang-1600568", "derek-liu-2578555", "mayra-hernandez-625376"],
+    loanOfficerSlugs: ["katherine-chiang-1600568"],
   },
   {
     slug: "excelsior-mn",
