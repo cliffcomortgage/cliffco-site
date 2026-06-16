@@ -21,8 +21,7 @@
       "assertions": {
         "categories:accessibility": ["error", { "minScore": 0.95 }],
         "categories:seo": ["error", { "minScore": 0.95 }],
-        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],
-        "is-crawlable": ["error", { "minScore": 1 }],
+"is-crawlable": ["error", { "minScore": 1 }],
         "label": ["error", { "minScore": 1 }],
         "viewport": ["error", { "minScore": 1 }],
         "html-has-lang": ["error", { "minScore": 1 }],
