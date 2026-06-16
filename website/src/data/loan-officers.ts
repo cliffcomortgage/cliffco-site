@@ -31,7 +31,10 @@ export type LoanOfficer = {
   links?: {
     linkedin?: string;
     email?: string;
+    /** Office / direct-dial line */
     directPhone?: string;
+    /** Personal cell number */
+    cellPhone?: string;
     applyNow?: string;
     calendar?: string;
   };
@@ -101,6 +104,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "rriddle@cliffcomortgage.com",
       directPhone: "516-350-5377",
+      cellPhone: "516-661-6658",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=ryanr&workFlowId=33774",
     },
     bio: "Vice President at Cliffco Inc. In the span of little more than five years, he went from an individual with a background in catering to a distinguished partner at one of Long Island's premier mortgage institutions. Over this brief timeframe, he has personally facilitated transactions exceeding $500 million in residential and commercial loans, overseen originations exceeding $1 billion, and successfully maintained the coveted position of holding the #1 market share in the fiercely competitive Long Island market. Beyond his notable achievements in the mortgage realm, Riddle has diversified his portfolio to include Insurance Brokerage, specializing in safeguarding real estate assets. Furthermore, Ryan diversified his portfolio further when he co-founded Tilre Media, a New York media company specializing in marketing, branding, and amplifying personal and business brands, particularly in the real estate sector. The company aims to establish clients' omnipresence and unparalleled influence through innovative strategies. In addition to his entrepreneurial ventures, Riddle is the founder of an Entrepreneurship Conference, a platform that disseminates knowledge and fosters personal growth by uniting thousands under the guidance of distinguished luminaries, including the likes of real estate magnate Grant Cardone. For Ryan, success transcends individual accomplishments; it revolves around forging enduring relationships, nurturing trust, and championing a business ethos that champions mutual prosperity.",
@@ -118,6 +122,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "abroder@cliffcomortgage.com",
       directPhone: "516-874-6426",
+      cellPhone: "516-426-8931",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=adam&workFlowId=33774",
     },
     bio: "Adam Broder is a seasoned professional with over two decades of experience in the mortgage industry. Originally from East Meadow, New York, Adam has been hardworking from a young age. When he was only twenty-two, he was able to purchase his first residential construction property and at twenty-four, he acquired his first building. From then on, Adam knew his true calling. Adam has worked closely with Christopher since 2010 and assisted with the development of Clout Capital and the expansion of Cliffco, Inc as Vice President. Adam has since broken-down barriers by growing, nurturing, and expanding Cliffco and Clout Capital to the Mortgage Banking and Real Estate industries. He is also the owner of a Title Insurance company, Island Estates Abstract. As a Real Estate Investor, Adam has successfully renovated 160 homes, demonstrating a keen eye for real estate opportunities. His experience in Residential Real Estate has allowed him to transition into the Commercial world. In 2018, Adam purchased a 93,000 sqft. building located in Uniondale, New York. This building was vacant at purchase and within 5 years, he was able to fully renovate the property. The building has reached 100% occupancy, including but not limited to medical offices, a State-of-the-Art Conference room, Media Center, Fitness Room, and Cafeteria. With his experience in Ground Up construction and home renovations, Adam has the knowledge and ability to help investors with their projects.",
@@ -136,6 +141,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "jchen@cliffcomortgage.com",
       directPhone: "516-874-6572",
+      cellPhone: "917-515-8189",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=jchen&workFlowId=33774",
     },
     team: { name: "Team Chen", slug: "team-chen", logoUrl: "/images/team%20logos/Team%20Chen_Stacked_White.png" },
@@ -154,6 +160,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "dfallarino@cliffcomortgage.com",
       directPhone: "516-350-5345",
+      cellPhone: "516-557-4689",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=dfallarino&workFlowId=33774",
     },
     team: { name: "The Fallarino Group", slug: "the-fallarino-group", logoUrl: "/images/team%20logos/The%20Fallarino%20Group_Stacked_White.png" },
@@ -204,6 +211,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "dmizrahi@cliffcomortgage.com",
       directPhone: "516-350-5326",
+      cellPhone: "917-597-0870",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=dmizrahi&workFlowId=33774",
     },
     bio: "David began his career in 2001 and has mastered the art of outstanding customer service to both realtors and clients. He is not deterred by challenges - in fact, he embraces them - and refuses to be sidetracked from his ultimate goal: getting a client approved and to their closing as fast as possible. David proudly recalls the time that he assembled the necessary parties, realtors, appraiser, lawyers, etc., and successfully closed a loan, from beginning to end, during a weeklong blizzard. A master of social media, he is one of the most innovative and creative hashtag creators in our company. David has successfully developed relationships with many real estate firms who view him as a treasured resource and a reputable professional with an exemplary work ethic. He is a featured speaker at home-buying seminars and events and is famous for his focused attention to detail and his commitment to providing the ultimate customer experience.",
@@ -260,6 +268,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "dfeliciano@cliffcomortgage.com",
       directPhone: "516-930-1059",
+      cellPhone: "917-853-5250",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=dfeliciano&workFlowId=33774",
     },
     bio: "With over 20 years of sales and operational experience in mortgage lending, I've dedicated my career to guiding borrowers through home financing with clarity and trust. Licensed in NJ, FL, and PA, I specialize in helping self-employed borrowers, first-time homebuyers, and families overcome credit challenges to achieve the dream of homeownership. As a bilingual Loan Officer (English/Spanish), I've proudly served communities that are often underserved, providing not only mortgage solutions but also education to help clients make confident decisions. My background in Non-QM, DSCR, private, and commercial lending allows me to provide flexible options, even in complex scenarios, whether it's a bank statement loan for entrepreneurs or financing for investors expanding their real estate portfolio. My approach is simple: your goal is my goal.",
@@ -314,6 +323,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "jgiaquinto@cliffcomortgage.com",
       directPhone: "516-654-9679",
+      cellPhone: "516-884-6696",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=jgiaqui&workFlowId=33774",
     },
     team: { name: "Team Giaquinto", slug: "team-giaquinto", logoUrl: "/images/team%20logos/Team%20Giaquinto_Stacked_White.png" },
@@ -373,7 +383,8 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     languages: ["English", "Spanish"],
     links: {
       email: "ngeyer@cliffcomortgage.com",
-      directPhone: "321-347-6638",
+      directPhone: "516-930-1050",
+      cellPhone: "321-347-6638",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=ngeyer&workFlowId=33774",
     },
     team: { name: "Team Veras", slug: "team-veras", logoUrl: "/images/team%20logos/Team%20Veras_White@4x.png" },
@@ -419,6 +430,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "mpatterson@cliffcomortgage.com",
       directPhone: "516-202-3307",
+      cellPhone: "952-454-6635",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=mpatterson&workFlowId=33774",
     },
     bio: "At Cliffco Mortgage Bankers, I help people find their dream homes with mortgage options they can actually understand. Many of my clients are surprised to discover home financing solutions they never knew existed! What makes working with me different: I explain everything clearly - no confusing terms or surprises. I create loan options that fit your personal situation and goals. I'm here for you long-term, not just until your loan closes. I work with many lenders to find you the best possible rates and terms. Whether you're buying your very first home or starting a new chapter in life, I'll guide you through each step of the process.",
@@ -457,7 +469,8 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     languages: ["English", "Spanish"],
     links: {
       email: "csoto@cliffcomortgage.com",
-      directPhone: "718-290-3436",
+      directPhone: "516-930-1039",
+      cellPhone: "718-290-3436",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=csoto&workFlowId=33774",
     },
     bio: "With over 7 years as a Mortgage Loan Officer and over 5 years in retail banking - three of those as a supervisor - I help clients navigate the home financing process with expertise and ease. From first-time buyers to seasoned investors, I deliver personalized lending solutions backed by deep industry knowledge and a commitment to exceptional service.",
@@ -517,6 +530,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "shasib@cliffcomortgage.com",
       directPhone: "516-654-9679",
+      cellPhone: "516-444-1956",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=shasib&workFlowId=33774",
     },
     team: { name: "Team Giaquinto", slug: "team-giaquinto", logoUrl: "/images/team%20logos/Team%20Giaquinto_Stacked_White.png" },
@@ -535,6 +549,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "slazo@cliffcomortgage.com",
       directPhone: "516-350-5352",
+      cellPhone: "516-240-0120",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=slazo&workFlowId=33774",
     },
     team: { name: "Team Giaquinto", slug: "team-giaquinto", logoUrl: "/images/team%20logos/Team%20Giaquinto_Stacked_White.png" },
@@ -575,6 +590,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "laurenz@cliffcomortgage.com",
       directPhone: "516-350-5311",
+      cellPhone: "631-438-9352",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=laurenz&workFlowId=33774",
     },
     team: { name: "Team Zambelli", slug: "team-zambelli", logoUrl: "/images/team%20logos/Team%20Zambelli_White.png", bannerLogoHeight: "h-16" },
@@ -594,6 +610,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "lzambelli@cliffcomortgage.com",
       directPhone: "516-874-6381",
+      cellPhone: "631-871-9857",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=lisaz&workFlowId=33774",
     },
     team: { name: "Team Zambelli", slug: "team-zambelli", logoUrl: "/images/team%20logos/Team%20Zambelli_White.png", bannerLogoHeight: "h-16" },
@@ -671,6 +688,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "cnguyen@cliffcomortgage.com",
       directPhone: "516-350-5380",
+      cellPhone: "201-978-3355",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=cnguyen&workFlowId=33774",
     },
     team: { name: "Team Chen", slug: "team-chen", logoUrl: "/images/team%20logos/Team%20Chen_Stacked_White.png" },
@@ -706,6 +724,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "dillouz@cliffcomortgage.com",
       directPhone: "516-874-6414",
+      cellPhone: "646-379-3501",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=dillouz&workFlowId=33774",
     },
     bio: "Since 2016, I have built a successful career as a residential mortgage loan officer, helping hundreds of clients achieve their dream of homeownership. With a deep understanding of loan products, market trends, and the intricacies of the mortgage process, I pride myself on delivering personalized, transparent guidance from application to closing. My commitment to clear communication, integrity, and exceptional service has earned me a strong reputation and long-standing relationships with both clients and industry partners. Whether working with first-time homebuyers, seasoned investors, or those refinancing, I focus on making the lending experience as smooth and stress-free as possible.",
@@ -758,6 +777,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "eestinvil@cliffcomortgage.com",
       directPhone: "516-350-5367",
+      cellPhone: "516-603-8955",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=emmanuel&workFlowId=33774",
     },
     hasPhoto: true,
@@ -774,6 +794,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "emueller@cliffcomortgage.com",
       directPhone: "516-874-6441",
+      cellPhone: "516-945-4498",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=emueller&workFlowId=33774",
     },
     bio: "I am a dedicated mortgage professional with extensive experience in mortgage processing and loan origination. Throughout my career, I have developed a strong understanding of the lending process from application through closing, ensuring accuracy, compliance, and a smooth transaction for every client. I specialize in Non-QM, Conventional, FHA, and VA loans, and I am experienced in navigating a wide range of borrower scenarios. I pride myself on my excellent communication skills and my ability to work effectively with borrowers, underwriters, lenders, and industry partners. My goal is always to provide a seamless, efficient, and positive experience while guiding clients confidently through one of the most important financial decisions of their lives.",
@@ -812,6 +833,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "glai@cliffcomortgage.com",
       directPhone: "516-874-6497",
+      cellPhone: "917-675-0745",
       applyNow: "https://fastapp.cliffcomortgage.com/#/milestones?referrerId=glai%40cliffcomortgage.com&loanType=MORTGAGE",
     },
     bio: "Gary Lai is a seasoned mortgage loan officer with Cliffco Mortgage Bankers, bringing over 20 years of lending experience to clients across New York City and Northern New Jersey. Starting his career in 2003 as a loan assistant, Gary steadily grew into a top-producing role, known for providing personalized mortgage solutions that meet the needs of today's diverse borrowers. He works with a wide range of clients, from first-time homebuyers to experienced real estate investors, offering financing tailored to conventional, jumbo, condo, and co-op properties. Gary is especially skilled at guiding self-employed borrowers through flexible programs such as bank statement, P&L, and alternative documentation loans. In addition to serving his clients, Gary has built strong partnerships with leading real estate teams throughout NYC and Northern NJ. He has also served as the AREAA National Mortgage Chair and AREAA National Secretary, reflecting his ongoing commitment to expanding access to homeownership in the community.",
@@ -830,6 +852,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "george@cliffcomortgage.com",
       directPhone: "516-874-6394",
+      cellPhone: "516-860-9978",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=george&workFlowId=33774",
     },
     bio: "Hello everyone! My name is George and I am a Senior Loan Officer at Cliffco Mortgage Bankers. My goal is to show my expertise in customer service through every transaction I am involved in. I treat every client as if they are family. In life, the gift of giving is one of the most gratifying things anyone can do. My line of work allows me to extend the opportunity to not only help a client own a home but help plan their future by making smart financial decisions from the moment their trust is put in my hands. Being thoroughly qualified from the beginning is my advice as it makes us aware of how smooth our transaction will be, and we only strive for the best! I look forward to working with you if you are a first time home buyer, if you are self-employed and/or need alternative financing in any form. We have many options between purchase and refinance transactions. I will work on anything you throw at me and find the right product for every scenario. I love working at Cliffco Mortgage because I feel like I'm part of the family and that's how I run my business. Whether you are an actual family member of mine, friend or a new client, you will get the experience of being part of my family here.",
@@ -847,6 +870,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "jperrone@cliffcomortgage.com",
       directPhone: "516-350-5334",
+      cellPhone: "516-967-3593",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=jim&workFlowId=33774",
     },
     bio: "With over 30 years of mortgage experience, James Perrone serves borrowers throughout Westchester, New York City, and Long Island. He specializes in helping those who may not fit the traditional lending mold, including self-employed buyers, small business owners, and clients with credit challenges. James is known for finding flexible loan programs that match real-world financial situations. James frequently works with clients seeking FHA loans for affordable homeownership and reverse mortgages for homeowners 62+ who want to access their home equity in retirement. Whether you are purchasing your first home, refinancing, or exploring retirement solutions, James provides practical guidance with a proven track record of success.",
@@ -953,6 +977,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "jhu@cliffcomortgage.com",
       directPhone: "516-874-6507",
+      cellPhone: "516-800-2870",
       applyNow: "https://fastapp.cliffcomortgage.com/#/milestones?referrerId=jhu%40cliffcomortgage.com&loanType=MORTGAGE",
     },
     hasPhoto: true,
@@ -969,6 +994,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "kadler@cliffcomortgage.com",
       directPhone: "516-930-1062",
+      cellPhone: "631-804-9044",
       applyNow: "https://fastapp.cliffcomortgage.com/#/milestones?referrerId=kadler%40cliffcomortgage.com&loanType=MORTGAGE",
     },
     team: { name: "Team Giaquinto", slug: "team-giaquinto", logoUrl: "/images/team%20logos/Team%20Giaquinto_Stacked_White.png" },
@@ -1025,6 +1051,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "lhoren@cliffcomortgage.com",
       directPhone: "516-930-1042",
+      cellPhone: "917-880-2102",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=lhoren&workFlowId=33774",
     },
     team: { name: "The Fallarino Group", slug: "the-fallarino-group", logoUrl: "/images/team%20logos/The%20Fallarino%20Group_Stacked_White.png" },
@@ -1079,6 +1106,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "margenzio@cliffcomortgage.com",
       directPhone: "516-350-5358",
+      cellPhone: "917-716-4127",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=mario&workFlowId=33774",
     },
     bio: "I have been a seasoned professional in the mortgage industry for over 20 years. I bring knowledge, experience and innovative products with superior service to Cliffco Mortgage Bankers. I am a native New Yorker born and raised in Queens NY and a graduate of St John's University. I am married for over 15 years and I am raising two beautiful teenage daughters with my wife in Whitestone NY. I am a diligent worker and I am determined to make your dreams come true by getting you the mortgage that is right for you.",
@@ -1129,7 +1157,8 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     branchSlug: "uniondale-headquarters",
     links: {
       email: "paul@cliffcomortgage.com",
-      directPhone: "516-859-7747",
+      directPhone: "516-350-5375",
+      cellPhone: "516-859-7747",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=paul&workFlowId=33774",
     },
     bio: "With over 23 years of mortgage lending experience, I've guided hundreds of clients across Nassau and Suffolk Counties and beyond in reaching their homeownership and investment goals. Whether you're a first-time homebuyer, a real estate investor, or looking to refinance, I take pride in making the mortgage process clear, stress-free, and tailored to your financial needs. As a dedicated Mortgage Loan Officer, I provide personalized support from pre-approval through closing. My focus is on educating clients about their options so they can make confident decisions that align with both short- and long-term goals. I understand that every borrower's situation is unique, and I specialize in helping clients overcome down payment hurdles, credit challenges, and complex financial scenarios. No matter your background, income type, or credit profile, I am committed to helping you find the right financing solution and delivering a fast closing so you can move forward with confidence.",
@@ -1148,6 +1177,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "qduong@cliffcomortgage.com",
       directPhone: "516-874-6561",
+      cellPhone: "917-284-0865",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=qduong&workFlowId=33774",
     },
     bio: "Queeny has always dedicated herself to providing exceptional service and building relationships, whether working in hospitality management, or helping people secure the best mortgage for their needs. A seasoned veteran of the mortgage industry since 2006, and a Senior Loan Officer at Cliffco, she has earned a stellar reputation as well as prominent awards for her excellence. Most recently these include being recognized as a Presidents Club recipient for three consecutive years (2020, 2021, 2022) at her previous firm, Citizens Bank. In her current role at Cliffco, Queeny is responsible for originating mortgage loans for residential properties, condos, co-ops, one-to-four-family homes, as well as mixed-use properties up to 12 units. She is extremely detail oriented, creative and communicative, and performs a thorough review of each client's financials, to determine their qualification and assure placement with a favorable product and rate. Originally from Brooklyn, NY, Queeny received a Bachelor degree in Finance and Investment from Baruch College. Queeny speaks English and Cantonese fluently and is a member of the Asian Real Estate Association (AREAA), Brooklyn chapter.",
@@ -1200,6 +1230,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     links: {
       email: "rappo@cliffcomortgage.com",
       directPhone: "516-350-5349",
+      cellPhone: "516-395-5945",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=rappo&workFlowId=33774",
     },
     bio: "I am a dedicated mortgage loan officer who puts client needs at the center of every decision. Whether someone is buying their first home, upgrading to their dream property, or refinancing to build long-term stability, I take the time to understand their goals and guide them toward the loan program that fits their unique situation. Helping people achieve homeownership is my passion. I look forward to assisting you on your journey to owning a home.",
@@ -1233,7 +1264,8 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     branchSlug: "uniondale-headquarters",
     links: {
       email: "twilliamson@cliffcomortgage.com",
-      directPhone: "718-490-7549",
+      directPhone: "516-350-5328",
+      cellPhone: "718-490-7549",
       applyNow: "https://fastapp.cliffcomortgage.com/#/milestones?referrerId=twilliamson%40cliffcomortgage.com&loanType=MORTGAGE",
     },
     bio: "As a committed mortgage loan officer, I take pride in guiding clients through one of the most important financial decisions of their lives. My approach is rooted in dedication and a patient client-first mindset. I believe that every borrower deserves clarity, confidence, and a smooth experience, whether they're purchasing their first home, refinancing, or exploring new investment opportunities. I will take the time to understand each client's goals, explain every step of the process, and provide thoughtful solutions tailored to their unique needs. My mission is to make home financing feel approachable and stress free, ensuring that every client feels supported from application to closing.",
