@@ -43,7 +43,7 @@ const totalStateLOs = LOAN_OFFICERS.filter((lo) => lo.states.includes(loc.state)
 const faq = loc.isFlorida
   ? [
       { question: "Is Cliffco licensed to lend in Florida?", answer: "Yes. Cliffco, Inc. doing business in Florida as Swish Capital, Inc., is a New York corporation authorized to transact business in the State of Florida. Corporate NMLS #65328." },
-      { question: "What products is Cliffco strongest at in Florida?", answer: "DSCR for short-term-rental investors (Disney area, Tampa, Naples), business bank statement loans for self-employed Florida small-business owners and ITIN borrowers, non-QM for a wide range of scenarios, and reverse mortgages in retiree-heavy Central and SW Florida." },
+      { question: "What products is Cliffco strongest at in Florida?", answer: "DSCR for short-term-rental investors (Disney area, Tampa, Naples), business bank statement loans for self-employed Florida small-business owners and ITIN borrowers, Non-QM for a wide range of scenarios, and reverse mortgages in retiree-heavy Central and SW Florida." },
       { question: "How does Florida's insurance market affect my mortgage?", answer: "Florida homeowners insurance averages roughly 3× the national average (~$7,100/yr for $300K coverage as of 2025/2026). That cost is included in your debt-to-income calculation, which materially affects how much home you can afford. Cliffco's Florida LOs walk through realistic insurance + tax estimates before you write an offer." },
     ]
   : loc.state === "MN"
@@ -54,11 +54,11 @@ const faq = loc.isFlorida
   : loc.state === "AZ"
   ? [
       { question: "Is Cliffco licensed in Arizona?", answer: "Yes - Cliffco holds Arizona Mortgage Banker License 1045708 (corporate NMLS #65328). Our Scottsdale branch serves the Phoenix metro and statewide." },
-      { question: "What products are strongest in Arizona?", answer: "Reverse mortgages in retiree-heavy areas (Sun City, Sun Lakes), DSCR for the state's investor-friendly SFR market, non-QM bank statement loans, and business bank statement loans for self-employed borrowers." },
+      { question: "What products are strongest in Arizona?", answer: "Reverse mortgages in retiree-heavy areas (Sun City, Sun Lakes), DSCR for the state's investor-friendly SFR market, Non-QM bank statement loans, and business bank statement loans for self-employed borrowers." },
     ]
   : [
       { question: `Is Cliffco licensed in ${loc.name}?`, answer: `Yes. ${COMPANY.legalName} (NMLS #${COMPANY.nmls}) is licensed to originate residential mortgages in ${loc.name}. See the licensing page for the regulator and license number specific to ${loc.name}.` },
-      { question: `What products does Cliffco offer in ${loc.name}?`, answer: `Cliffco offers all four of our specialty products in ${loc.name}: non-QM and self-employed loans, reverse mortgages, DSCR for investors, and business bank statement loans, plus conventional, FHA, VA, USDA, and renovation loans.` },
+      { question: `What products does Cliffco offer in ${loc.name}?`, answer: `Cliffco offers all four of our specialty products in ${loc.name}: Non-QM and self-employed loans, reverse mortgages, DSCR for investors, and business bank statement loans, plus conventional, FHA, VA, USDA, and renovation loans.` },
     ];
 
 const schema = [

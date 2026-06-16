@@ -27,7 +27,7 @@ export const LOCATIONS: readonly Location[] = [
     blurb:
       "Cliffco was founded on Long Island in 1989 and is still headquartered here. " +
       "Three offices (Uniondale HQ, Wantagh, and Bay Shore) and decades of hands-on " +
-      "experience with the jumbo, non-QM, and reverse mortgage scenarios that Long Island " +
+      "experience with the jumbo, Non-QM, and reverse mortgage scenarios that Long Island " +
       "borrowers actually face.",
     branchSlugs: ["uniondale-headquarters", "wantagh-ny", "bay-shore-ny"],
     featuredProducts: ["non-qm-self-employed", "reverse-mortgage", "dscr", "business-bank-statement"],
@@ -39,7 +39,7 @@ export const LOCATIONS: readonly Location[] = [
     blurb:
       "Cliffco has been headquartered on Long Island since 1989, with four New York offices " +
       "across Uniondale, Wantagh, Bay Shore, and Queens. From jumbo loans and CEMA " +
-      "refinances to non-QM, reverse mortgages, and DSCR financing, we handle the loan types " +
+      "refinances to Non-QM, reverse mortgages, and DSCR financing, we handle the loan types " +
       "New York borrowers actually need.",
     branchSlugs: ["uniondale-headquarters", "wantagh-ny", "bay-shore-ny", "jamaica-ny"],
     featuredProducts: ["non-qm-self-employed", "reverse-mortgage", "dscr", "business-bank-statement"],
@@ -50,7 +50,7 @@ export const LOCATIONS: readonly Location[] = [
     state: "NY",
     blurb:
       "Cliffco's Queens office is located in Jamaica and serves buyers and investors across all " +
-      "five boroughs. From co-op and condo financing to non-QM and DSCR loans, our Queens team " +
+      "five boroughs. From co-op and condo financing to Non-QM and DSCR loans, our Queens team " +
       "handles the loan types New York City borrowers actually need.",
     branchSlugs: ["jamaica-ny"],
     featuredProducts: ["non-qm-self-employed", "dscr", "business-bank-statement", "reverse-mortgage"],
@@ -74,7 +74,7 @@ export const LOCATIONS: readonly Location[] = [
     blurb:
       "Our Scottsdale branch serves Phoenix metro homebuyers and investors, Tucson, and " +
       "Arizona's retirement communities. Strong fit for reverse mortgages in Sun Belt " +
-      "retirement areas, DSCR loans for the state's active investor market, and non-QM " +
+      "retirement areas, DSCR loans for the state's active investor market, and Non-QM " +
       "bank statement loans for the self-employed.",
     branchSlugs: ["scottsdale-az"],
     featuredProducts: ["reverse-mortgage", "dscr", "non-qm-self-employed", "business-bank-statement"],
@@ -111,7 +111,7 @@ export const LOCATIONS: readonly Location[] = [
     blurb:
       "Orlando is one of the country's top short-term-rental markets. Our bilingual team " +
       "here specializes in DSCR loans for investors near Disney, Universal, and the I-Drive " +
-      "corridor, plus non-QM and bank statement loans for self-employed Florida small-business " +
+      "corridor, plus Non-QM and bank statement loans for self-employed Florida small-business " +
       "owners and ITIN borrowers.",
     branchSlugs: ["orlando-fl"],
     featuredProducts: ["dscr", "business-bank-statement", "non-qm-self-employed", "renovation"],

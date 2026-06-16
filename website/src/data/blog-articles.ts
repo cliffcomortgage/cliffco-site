@@ -21,7 +21,7 @@ export const BLOG_ARTICLES: readonly BlogArticle[] = [
   {
     category: "Self-Employed",
     title: "Non-QM Loans: The Complete Guide",
-    description: "What non-QM mortgages are, who they're for, and how to get one. Plain-English breakdown of bank statement, DSCR, P&L, and more.",
+    description: "What Non-QM mortgages are, who they're for, and how to get one. Plain-English breakdown of bank statement, DSCR, P&L, and more.",
     href: "/mortgage-guides/non-qm-loans-guide/",
   },
   {
@@ -45,7 +45,7 @@ export const BLOG_ARTICLES: readonly BlogArticle[] = [
   {
     category: "Self-Employed",
     title: "7 Smart Tips to Get a Non-QM Mortgage When You're Self-Employed",
-    description: "Practical advice for self-employed borrowers navigating the non-QM mortgage process with bank statements, 1099s, and P&L docs.",
+    description: "Practical advice for self-employed borrowers navigating the Non-QM mortgage process with bank statements, 1099s, and P&L docs.",
     href: "/mortgage-guides/non-qm-mortgage-self-employed/",
   },
   {

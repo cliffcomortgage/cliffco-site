@@ -13,11 +13,11 @@ const rateFactors = [
   },
   {
     factor: "Credit score",
-    impact: "The lower the credit score, the higher the rate adjustment. In non-QM programs, the range spans from 500 to 800+, and pricing steps are more granular than in conventional lending.",
+    impact: "The lower the credit score, the higher the rate adjustment. In Non-QM programs, the range spans from 500 to 800+, and pricing steps are more granular than in conventional lending.",
   },
   {
     factor: "Loan-to-value (LTV)",
-    impact: "A larger down payment reduces your LTV and typically lowers your rate. Most non-QM programs have defined LTV tiers (65%, 70%, 75%, 80%) with different pricing at each level.",
+    impact: "A larger down payment reduces your LTV and typically lowers your rate. Most Non-QM programs have defined LTV tiers (65%, 70%, 75%, 80%) with different pricing at each level.",
   },
   {
     factor: "Property type",
@@ -29,21 +29,21 @@ const rateFactors = [
   },
   {
     factor: "Loan amount",
-    impact: "Jumbo loan amounts (above conventional conforming limits) carry their own pricing. Very high loan amounts on non-QM programs can add additional adjustments.",
+    impact: "Jumbo loan amounts (above conventional conforming limits) carry their own pricing. Very high loan amounts on Non-QM programs can add additional adjustments.",
   },
 ];
 
 const faq = [
   {
     question: "Why don't you post your current rates on this page?",
-    answer: "Non-QM rates are scenario-specific. Unlike conventional rates, which are set against a narrow range of borrower profiles, non-QM rates adjust for 6 to 10 factors simultaneously: credit score, LTV, documentation type, property type, loan amount, and more. A rate quoted without knowing your scenario is meaningless at best and misleading at worst. Call us or start a conversation and you'll have a real number in one business day.",
+    answer: "Non-QM rates are scenario-specific. Unlike conventional rates, which are set against a narrow range of borrower profiles, Non-QM rates adjust for 6 to 10 factors simultaneously: credit score, LTV, documentation type, property type, loan amount, and more. A rate quoted without knowing your scenario is meaningless at best and misleading at worst. Call us or start a conversation and you'll have a real number in one business day.",
   },
   {
-    question: "How much higher are non-QM rates than conventional rates?",
+    question: "How much higher are Non-QM rates than conventional rates?",
     answer: "Typically 0.5% to 2% higher, depending on the program and scenario. Bank statement loans usually run 0.75% to 1.5% above conventional. DSCR loans vary based on the property's cash flow ratio and LTV. Non-QM rates for borrowers with strong credit and significant equity can be competitive. The gap narrows the stronger the overall profile.",
   },
   {
-    question: "Can I refinance out of a non-QM loan into a conventional loan later?",
+    question: "Can I refinance out of a Non-QM loan into a conventional loan later?",
     answer: "Yes, and many borrowers plan to do exactly that. If a borrower's situation changes - for example, a self-employed borrower files two years of stronger tax returns, or a recent credit event clears the conventional waiting period - refinancing into a conventional loan at a lower rate is a straightforward path. Your Cliffco loan officer will help you understand what that transition looks like from day one.",
   },
   {
@@ -51,8 +51,8 @@ const faq = [
     answer: "A rate lock guarantees your interest rate for a set period, typically 30, 45, or 60 days. This protects you from rate increases while your loan is in underwriting. Locks typically require a property address and accepted contract. Extended locks are available for new construction or longer timelines but usually carry a cost.",
   },
   {
-    question: "Are non-QM rates fixed or adjustable?",
-    answer: "Both options exist. Most non-QM loans are offered as 30-year fixed rates, which are the most common choice. ARM options (5/1, 7/1) are available and can offer lower initial rates for borrowers who plan to sell or refinance within the initial fixed period. Your loan officer will explain the trade-offs for your specific timeline.",
+    question: "Are Non-QM rates fixed or adjustable?",
+    answer: "Both options exist. Most Non-QM loans are offered as 30-year fixed rates, which are the most common choice. ARM options (5/1, 7/1) are available and can offer lower initial rates for borrowers who plan to sell or refinance within the initial fixed period. Your loan officer will explain the trade-offs for your specific timeline.",
   },
 ];
 
@@ -60,7 +60,7 @@ const schema = [
   faqPageSchema(faq),
   articleSchema({
     headline: "Non-QM and Conventional Mortgage Rates: What Affects Your Rate",
-    description: "Mortgage rates are scenario-specific. Learn what factors affect your non-QM, bank statement, or DSCR mortgage rate - and how to get a real number for your situation.",
+    description: "Mortgage rates are scenario-specific. Learn what factors affect your Non-QM, bank statement, or DSCR mortgage rate - and how to get a real number for your situation.",
     url: "/mortgage-rates/",
     datePublished: "2026-04-15",
     dateModified: today,
@@ -143,7 +143,7 @@ const schema = [
   <section class="section bg-[var(--color-mist-gray)]">
     <div class="container-wide">
       <p class="eyebrow">What affects your rate</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Six factors that move your non-QM rate.</h2>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Six factors that move your Non-QM rate.</h2>
       <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {rateFactors.map((item) => (
           <div class="card">
