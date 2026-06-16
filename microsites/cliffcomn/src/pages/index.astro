@@ -7,8 +7,8 @@ import "../styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Minnesota Home Loans | Cliffco Mortgage Bankers</title>
-    <meta name="description" content="Cliffco Mortgage Bankers is now serving Minnesota homebuyers. Connect with Mitchell Patterson, your dedicated Minnesota loan officer. Get started in 5 minutes — no credit pull, no commitment." />
+    <title>Minnesota Mortgage Lender | Fast Home Loan Approval | Cliffco</title>
+    <meta name="description" content="Cliffco Mortgage Bankers offers fast mortgage approval for Minnesota homebuyers. Work directly with Mitchell Patterson, your local MN loan officer. No credit pull. No commitment. Get started in 5 minutes." />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -39,12 +39,12 @@ import "../styles/global.css";
 
             <!-- Left: headline + CTA -->
             <div>
-              <p class="eyebrow !text-[var(--color-ice-blue)]">Cliffco Mortgage Bankers · Minnesota</p>
+              <p class="eyebrow !text-[var(--color-ice-blue)]">Minnesota Mortgage Lender · Cliffco</p>
               <h1 class="mt-4 text-white max-w-xl" style="font-size: var(--text-display-xl); line-height: 1.08; font-weight: 700;">
-                Your Minnesota loan officer is ready.
+                Fast Mortgage Approval for Minnesota Homebuyers.
               </h1>
               <p class="lead mt-5 text-white/85 max-w-lg">
-                Cliffco has been getting families home since 1989. Now we're bringing that same commitment to Minnesota — with a streamlined digital process that fits around your life.
+                Cliffco has been getting families into homes since 1989. Now we're serving Minnesota — with a fully digital intake process that takes minutes, not weeks, and a real loan officer who answers the phone.
               </p>
               <div class="mt-8">
                 <a
@@ -112,6 +112,95 @@ import "../styles/global.css";
                 <span class="text-sm text-[var(--color-text-muted)]">{item.label}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT MITCH -->
+      <section class="bg-white py-20">
+        <div class="container-wide">
+          <div class="grid lg:grid-cols-[320px_1fr] gap-12 items-start">
+
+            <!-- Photo + contact card -->
+            <div class="text-center">
+              <img
+                src="/mitchell-patterson.webp"
+                alt="Mitchell Patterson, Cliffco Mortgage Loan Officer"
+                class="w-48 h-48 rounded-2xl object-cover mx-auto shadow-lg"
+                loading="lazy"
+              />
+              <h2 class="mt-5 text-2xl font-bold text-[var(--color-ink)]">Mitchell Patterson</h2>
+              <p class="text-[var(--color-accent)] font-semibold text-sm mt-1">Loan Officer</p>
+              <div class="mt-4 space-y-2 text-sm text-[var(--color-text-muted)]">
+                <p>
+                  <strong class="text-[var(--color-ink)]">NMLS</strong> #2560483 &middot;
+                  <a
+                    href="https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2560483"
+                    class="text-[var(--color-accent)] no-underline hover:underline"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Verify ↗
+                  </a>
+                </p>
+                <p><strong class="text-[var(--color-ink)]">Licensed in</strong> Minnesota &amp; Texas</p>
+                <p><strong class="text-[var(--color-ink)]">Branch</strong> Excelsior, MN</p>
+              </div>
+              <div class="mt-6 flex flex-col gap-3">
+                <a
+                  href="https://cliffco-portal-prod.vercel.app/"
+                  class="btn btn-primary w-full"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Get Approved
+                </a>
+                <a href="tel:5162023307" class="btn btn-secondary w-full">
+                  (516) 202-3307
+                </a>
+                <a
+                  href="mailto:mpatterson@cliffcomortgage.com"
+                  class="text-sm text-[var(--color-accent)] no-underline hover:underline"
+                >
+                  mpatterson@cliffcomortgage.com
+                </a>
+              </div>
+            </div>
+
+            <!-- Bio -->
+            <div>
+              <p class="eyebrow">Your Minnesota Loan Officer</p>
+              <h3 class="mt-3" style="font-size: var(--text-h2);">
+                Mortgage options you can actually understand.
+              </h3>
+              <div class="mt-5 space-y-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
+                <p>
+                  At Cliffco Mortgage Bankers, Mitchell Patterson helps Minnesota homebuyers find their path to homeownership — even when that path looks complicated. Many of his clients are surprised to discover financing solutions they never knew existed.
+                </p>
+                <p>
+                  What sets Mitchell apart: he explains everything clearly, with no confusing terms and no surprises. He builds loan options around your specific situation and goals — not around a quota. And he's in it for the long term, not just until your loan closes.
+                </p>
+                <p>
+                  Whether you're buying your very first home, moving up, or starting a new chapter, Mitchell will guide you through every step of the process.
+                </p>
+              </div>
+
+              <!-- Key differentiators -->
+              <div class="mt-8 grid sm:grid-cols-2 gap-4">
+                {[
+                  { heading: "Clear communication", body: "No jargon, no surprises. You'll know exactly where you stand at every step." },
+                  { heading: "Built around you", body: "Loan options tailored to your personal situation and goals — not a one-size-fits-all product." },
+                  { heading: "Long-term relationship", body: "Mitchell is here after closing too. Your success is the point, not just the transaction." },
+                  { heading: "Access to more options", body: "Cliffco works with multiple lenders to find you the best possible rates and terms for your situation." },
+                ].map((item) => (
+                  <div class="card">
+                    <h4 class="font-semibold text-[var(--color-ink)]">{item.heading}</h4>
+                    <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">{item.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
