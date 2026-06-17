@@ -16,19 +16,19 @@ const faq = [
   },
   {
     question: "What documentation do I need?",
-    answer: "Typically 12 or 24 months of 1099 forms showing the gross income paid to you. Your income is calculated from the 1099 totals rather than the net income on your tax return. Some programs also require your most recent year or two of tax returns for identity and filing verification, but they are not used to calculate qualifying income.",
+    answer: "Typically 12 or 24 months of 1099 forms showing the gross income paid to you. Your income is calculated from the 1099 totals rather than the net income on your tax return. Some programs also require your most recent year or two of tax returns for identity and filing verification, but they are not used to calculate qualifying income. Proof of YTD supporting qualifying income required.",
   },
   {
     question: "How is qualifying income calculated?",
-    answer: "Cliffco takes your gross 1099 income over 12 or 24 months, applies a standard expense factor (often 25%–50% depending on your industry and documentation), and uses the result as qualifying monthly income. For example: $130,000 in 1099s over 12 months, less a 25% expense factor = $97,500 annually, or $8,125/month qualifying income.",
+    answer: "Cliffco takes your gross 1099 income over 12 or 24 months, applies a standard expense factor of 10%, and uses the result as qualifying monthly income. For example: $130,000 in 1099s over 12 months, less a 10% expense factor = $117,000 annually, or $9,750/month qualifying income.",
   },
   {
     question: "What if I work for multiple clients?",
-    answer: "Multiple clients are fine and common. Cliffco combines all 1099 income from all sources when calculating qualifying income. If you receive 1099s from five different clients, all five count toward your total.",
+    answer: "Multiple clients are fine and common. Cliffco combines all 1099 income from all sources when calculating qualifying income. If you receive 1099s from five different clients, all five count toward your total. Proof of YTD supporting qualifying income required.",
   },
   {
     question: "Do I need 2 years of 1099 history?",
-    answer: "Most programs require 12–24 months of 1099 history in the same field. If you recently transitioned from W-2 employment to contractor work in the same industry, some programs allow as little as 12 months of 1099 history.",
+    answer: "Most programs require 2 full years of 1099 history. If you recently transitioned from W-2 employment to contracting in the same field, some programs may accept 12 months — confirm with your loan officer. The longer your 1099 track record, the stronger your file.",
   },
   {
     question: "How is this different from a bank statement loan?",
@@ -97,6 +97,10 @@ const schema = [
           <h3 class="text-base font-semibold text-[var(--color-ink)]">Contractors transitioning from W-2</h3>
           <p class="mt-2 text-sm text-[var(--color-text-muted)]">Recently self-employed borrowers who moved from a W-2 position to contracting in the same field, with 12+ months of 1099 history to document income.</p>
         </div>
+        <div class="card">
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">Physicians and medical professionals</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">MDs, doctors, and other medical professionals who work on a contract or locum tenens basis and receive 1099 income rather than a traditional W-2 salary.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -113,11 +117,11 @@ const schema = [
       </p>
       <ul class="mt-4 max-w-2xl">
         <li><strong>$130,000</strong> (gross 1099 income, 12 months)</li>
-        <li><strong>× 75%</strong> (standard factor: 25% expense deduction for contractors)</li>
-        <li>= <strong>$97,500 / year, or $8,125 / month qualifying income</strong></li>
+        <li><strong>× 90%</strong> (standard factor: 10% expense deduction)</li>
+        <li>= <strong>$117,000 / year, or $9,750 / month qualifying income</strong></li>
       </ul>
       <p class="mt-4 max-w-2xl">
-        That $8,125/month qualifies you for significantly more home than the $55K net income
+        That $9,750/month qualifies you for significantly more home than the $55K net income
         on your tax return would support, without requiring you to change how you run your business.
       </p>
       <p class="text-sm text-[var(--color-text-muted)] mt-4 max-w-2xl">
@@ -137,12 +141,11 @@ const schema = [
       <dl class="space-y-3">
         <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Rate range</dt><dd class="text-[var(--color-text-muted)]">6.75%–9.00%</dd></div>
         <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>1099 history required</dt><dd class="text-[var(--color-text-muted)]">12–24 months</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Expense factor</dt><dd class="text-[var(--color-text-muted)]">typically 25%–50%</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Max LTV</dt><dd class="text-[var(--color-text-muted)]">up to 90%</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min FICO</dt><dd class="text-[var(--color-text-muted)]">620 (best pricing 700+)</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Max LTV</dt><dd class="text-[var(--color-text-muted)]">up to 85%</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min FICO</dt><dd class="text-[var(--color-text-muted)]">660 (best pricing 720+)</dd></div>
         <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Loan amounts</dt><dd class="text-[var(--color-text-muted)]">$150K–$3M+</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Property types</dt><dd class="text-[var(--color-text-muted)]">SFR, 2–4 unit, condo, co-op</dd></div>
-        <p class="text-xs text-[var(--color-text-muted)] mt-4 leading-relaxed">The chart above is for illustrative purposes only. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.</p>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Property types</dt><dd class="text-[var(--color-text-muted)]">SFR, 2–4 unit, condo</dd></div>
+        <p class="text-xs text-[var(--color-text-muted)] mt-4 leading-relaxed">The chart above is for illustrative purposes only. Proof of YTD supporting qualifying income required. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.</p>
       </dl>
     </div>
   </section>

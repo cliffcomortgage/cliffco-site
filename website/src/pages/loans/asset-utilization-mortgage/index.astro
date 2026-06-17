@@ -12,15 +12,15 @@ const today = new Date().toISOString().slice(0, 10);
 const faq = [
   {
     question: "What is an asset utilization mortgage?",
-    answer: "An asset utilization mortgage (also called asset depletion) creates qualifying income from verified liquid assets rather than from a paycheck or business revenue. Cliffco divides total verified eligible assets by a program-defined number of months to arrive at a monthly qualifying income figure. This lets retirees, pre-retirees, and high-net-worth individuals qualify for a mortgage based on what they have, not what they earn.",
+    answer: "An asset utilization mortgage (also called asset depletion) creates qualifying income from verified liquid assets rather than from a paycheck or business revenue. Cliffco divides total verified eligible assets by a program-defined number of months to arrive at a monthly qualifying income figure. Asset-derived income can stand alone or be combined with any other documented income, letting borrowers qualify — or qualify for more — based on what they have saved and invested, not only what they earn on paper.",
   },
   {
     question: "What assets count?",
-    answer: "Cliffco accepts checking accounts, savings accounts, money market accounts, brokerage and investment accounts, and retirement accounts (IRA, 401(k), pension). Retirement accounts are typically reduced by 30%–40% to account for early withdrawal taxes and penalties; the remaining balance is then included. Business accounts and real estate equity generally do not count.",
+    answer: "Cliffco accepts the following asset types: checking accounts, savings accounts, money market accounts, cash value of life insurance, stocks, bonds, mutual funds, and retirement accounts (IRA, 401(k), pension). Retirement accounts are reduced by 30% to account for early withdrawal taxes and penalties. Cryptocurrency may also count if it meets seasoning requirements and has been liquidated into a checking or savings account. Net proceeds from the sale of real estate may be eligible if the property was owned for at least 6 months and the funds have been deposited — the type of account they are deposited into determines how they are treated for qualifying. Business accounts do not count.",
   },
   {
     question: "How is qualifying income calculated?",
-    answer: "Cliffco takes total verified eligible assets, applies any applicable retirement account reduction, subtracts the required post-closing reserves, and divides the remaining balance by the program term (typically 60–120 months). For example: $1,500,000 in verified assets, less $300,000 reserves, divided by 84 months = $14,286/month qualifying income.",
+    answer: "Cliffco takes total verified eligible assets, applies any applicable retirement account reduction, subtracts the required post-closing reserves, and divides the remaining balance by the program term (60–84 months). For example: $1,500,000 in verified assets, less $300,000 reserves, divided by 84 months = $14,286/month qualifying income.",
   },
   {
     question: "Do I need any other income?",
@@ -36,7 +36,7 @@ const faq = [
   },
   {
     question: "What if my assets are in a joint account?",
-    answer: "Joint accounts are eligible if all account holders are co-borrowers on the loan. If the joint account holder is not on the mortgage, typically only 50% of that account's balance may be counted. Your loan officer can confirm the exact treatment based on your documentation.",
+    answer: "Joint accounts with a non-borrowing spouse or domestic partner are eligible with the right documentation. If the joint holder is not contributing income or deposits to the account, a borrower affidavit is required to validate the balance. If the joint holder is contributing income or deposits, the source must be clearly identified (such as direct deposit, SSI, or trust income) and those amounts will be subtracted from the qualifying analysis. In all cases, a relationship letter must be present in the file.",
   },
 ];
 
@@ -97,6 +97,10 @@ const schema = [
           <h3 class="text-base font-semibold text-[var(--color-ink)]">Real estate investors</h3>
           <p class="mt-2 text-sm text-[var(--color-text-muted)]">Investors with substantial liquid assets who want to add a primary residence or second home without relying on complex rental income documentation.</p>
         </div>
+        <div class="card">
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">Borrowers supplementing income</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Anyone who has savings, investments, or retirement accounts and needs extra qualifying power. Asset-derived income can be layered on top of W-2, rental, Social Security, or any other documented income to close a qualifying gap.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -109,16 +113,16 @@ const schema = [
       <p class="mt-6 max-w-2xl">Suppose you're retired with the following verified assets:</p>
       <ul class="mt-4 max-w-2xl">
         <li><strong>$600,000</strong> brokerage account (100% eligible)</li>
-        <li><strong>$800,000</strong> IRA (reduced 35% for taxes/penalties = <strong>$520,000</strong> eligible)</li>
+        <li><strong>$800,000</strong> IRA (reduced 30% for taxes/penalties = <strong>$560,000</strong> eligible)</li>
         <li><strong>$100,000</strong> checking/savings (100% eligible)</li>
-        <li>= <strong>$1,220,000 total eligible assets</strong></li>
+        <li>= <strong>$1,260,000 total eligible assets</strong></li>
       </ul>
       <p class="mt-4 max-w-2xl">After subtracting $200,000 for required post-closing reserves:</p>
       <ul class="mt-4 max-w-2xl">
-        <li><strong>$1,020,000</strong> ÷ <strong>84 months</strong> = <strong>$12,143 / month qualifying income</strong></li>
+        <li><strong>$1,060,000</strong> ÷ <strong>84 months</strong> = <strong>$12,619 / month qualifying income</strong></li>
       </ul>
       <p class="mt-4 max-w-2xl">
-        That $12,143/month supports a mortgage qualification without any W-2, Social Security, or pension income required — and without any obligation to actually liquidate your portfolio.
+        That $12,619/month supports a mortgage qualification without any W-2, Social Security, or pension income required — and without any obligation to actually liquidate your portfolio.
       </p>
       <p class="text-sm text-[var(--color-text-muted)] mt-4 max-w-2xl">
         <em>Illustrative only. Retirement account reductions, program terms, and reserve requirements vary by program. Cliffco's underwriters determine final qualifying income based on documentation submitted.</em>
@@ -136,13 +140,13 @@ const schema = [
       </div>
       <dl class="space-y-3">
         <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Rate range</dt><dd class="text-[var(--color-text-muted)]">6.50%–8.75%</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min eligible assets (illustrative)</dt><dd class="text-[var(--color-text-muted)]">$500K+</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Retirement account reduction</dt><dd class="text-[var(--color-text-muted)]">typically 30%–40%</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Program term (divisor)</dt><dd class="text-[var(--color-text-muted)]">60–120 months</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Max LTV</dt><dd class="text-[var(--color-text-muted)]">up to 80%</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min eligible assets (illustrative)</dt><dd class="text-[var(--color-text-muted)]">$1M+</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Retirement account reduction</dt><dd class="text-[var(--color-text-muted)]">30%</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Program term (divisor)</dt><dd class="text-[var(--color-text-muted)]">60–84 months</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Max LTV</dt><dd class="text-[var(--color-text-muted)]">up to 85% (primary) / up to 80% (investment)</dd></div>
         <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min FICO</dt><dd class="text-[var(--color-text-muted)]">660 (best pricing 720+)</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Loan amounts</dt><dd class="text-[var(--color-text-muted)]">$200K–$5M+</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Property types</dt><dd class="text-[var(--color-text-muted)]">SFR, condo, 2–4 unit, second home</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Loan amounts</dt><dd class="text-[var(--color-text-muted)]">$200K–$3M+</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Property types</dt><dd class="text-[var(--color-text-muted)]">SFR, condo, co-op, 2–4 unit</dd></div>
         <p class="text-xs text-[var(--color-text-muted)] mt-4 leading-relaxed">The chart above is for illustrative purposes only. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.</p>
       </dl>
     </div>
@@ -167,7 +171,7 @@ const schema = [
   <!-- CTA -->
   <section class="accent-gradient">
     <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Retired or between paychecks? Your assets may qualify you.</h2>
+      <h2 class="text-white" style="font-size: var(--text-h2);">Have savings or investments? They may count toward qualifying income.</h2>
       <p class="lead mt-4 text-white/85">A Cliffco loan officer will run the numbers for your specific asset profile. No credit pull to start.</p>
       <div class="mt-8 flex justify-center gap-3 flex-wrap">
         <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Start a pre-qual</a>

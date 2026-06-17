@@ -19,7 +19,7 @@ const faq = [
   {
     question: "Can I get a mortgage if I'm self-employed for less than 2 years?",
     answer:
-      "Yes. Cliffco offers Non-QM programs that accept borrowers who have been self-employed for as little as 12 months, evidenced by 12 months of business or personal bank statements (or a CPA-prepared P&L). Conventional Fannie Mae / Freddie Mac loans typically require two years of self-employment history; Non-QM bank statement loans do not.",
+      "Most Non-QM bank statement programs require 2 years of self-employment history. If you recently transitioned from W-2 employment to self-employment in the same field, some programs may accept as little as 12 months of documented history. Conventional Fannie Mae / Freddie Mac loans also require two years; Non-QM gives you more flexibility, but a full history strengthens your file.",
   },
   {
     question: "Is a Non-QM loan the same as a stated-income loan?",
@@ -34,7 +34,7 @@ const faq = [
   {
     question: "How much down payment do I need for a Non-QM loan?",
     answer:
-      "Most Cliffco Non-QM programs require 10%-25% down. Bank statement loans for purchases commonly start at 10% down with 680+ FICO; investor-purpose programs and lower FICO files require 20%-25%. Cash-out refinances typically allow up to 80%-85% LTV.",
+      "Most Cliffco Non-QM programs require 10%-25% down. Bank statement loans for purchases commonly start at 10% down with 680+ FICO; investor-purpose programs and lower FICO files require 20%-25%. Cash-out refinances typically allow up to 75%-80% LTV, depending on FICO and loan amount.",
   },
   {
     question: "Can I qualify for a Non-QM loan with an ITIN instead of an SSN?",
@@ -104,8 +104,8 @@ const schema = [
           <p class="mt-2 text-sm text-[var(--color-text-muted)]">P&L only programs let business owners qualify based on a CPA-prepared profit-and-loss statement, ideal when tax returns reflect heavy reinvestment or depreciation.</p>
         </div>
         <div class="card">
-          <h3 class="text-base font-semibold text-[var(--color-ink)]">High-net-worth borrowers</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Asset utilization and asset depletion programs qualify borrowers using verified liquid assets, useful for retirees, investors with low W-2 income, or borrowers between businesses.</p>
+          <h3 class="text-base font-semibold text-[var(--color-ink)]">Borrowers with assets</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Asset utilization programs qualify borrowers using verified liquid assets — checking, savings, brokerage, IRA. Works as sole income or to supplement existing earnings. You don't need to be retired or wealthy to use it: if you have documented assets, they can count.</p>
         </div>
         <div class="card">
           <h3 class="text-base font-semibold text-[var(--color-ink)]">ITIN borrowers</h3>
@@ -141,7 +141,7 @@ const schema = [
         </a>
         <a href="/loans/asset-utilization-mortgage/" class="card no-underline text-[var(--color-ink)] flex flex-col">
           <h3 class="text-lg font-semibold">Asset utilization / asset depletion</h3>
-          <p class="mt-3 text-sm flex-1">Qualifying income is derived from verified liquid assets (checking, savings, brokerage, IRA) divided over a program period. Strong fit for retirees and pre-retirees with substantial savings but low recurring W-2 income.</p>
+          <p class="mt-3 text-sm flex-1">Qualifying income is derived from verified liquid assets (checking, savings, brokerage, IRA) divided over a program period. Can stand alone as sole income or be layered on top of any other documented income — useful for retirees, borrowers with income gaps, and anyone whose assets can strengthen their qualifying file.</p>
           <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">Learn more →</span>
         </a>
         <a href="/loans/itin-mortgage/" class="card no-underline text-[var(--color-ink)] flex flex-col">
@@ -173,7 +173,7 @@ const schema = [
       </p>
       <ul class="mt-4">
         <li><strong>$42,000</strong> (average monthly deposits)</li>
-        <li><strong>× 50%</strong> (standard expense factor, varies 30%-60% by industry; CPA letter can override)</li>
+        <li><strong>× 50%</strong> (standard expense factor; varies by business type and employee count; CPA letter can override)</li>
         <li>= <strong>$21,000 / month qualifying income</strong></li>
       </ul>
       <p class="mt-4">
