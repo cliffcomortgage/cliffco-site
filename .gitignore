@@ -20,6 +20,7 @@ build/
 .env
 .env.local
 .env.*.local
+credentials.json
 
 # Auto-imported headshots (regenerate via scripts/import-headshots.mjs)
 # Kept in repo so the deployed site has photos without needing OneDrive access at build time.

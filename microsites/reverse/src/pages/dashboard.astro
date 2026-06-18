@@ -1,0 +1,549 @@
+---
+import "../styles/global.css";
+import { COMPANY } from "../data/company";
+
+const DEV_TOKEN     = import.meta.env.GOOGLE_ADS_DEVELOPER_TOKEN;
+const CLIENT_ID     = import.meta.env.GOOGLE_ADS_CLIENT_ID;
+const CLIENT_SECRET = import.meta.env.GOOGLE_ADS_CLIENT_SECRET;
+const REFRESH_TOKEN = import.meta.env.GOOGLE_ADS_REFRESH_TOKEN;
+const LOGIN_CID     = import.meta.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID;
+const CID           = import.meta.env.GOOGLE_ADS_CUSTOMER_ID;
+
+const LEAD_VALUE  = 16452;
+const TARGET_ROAS = 3.0;
+
+interface Campaign {
+  id: string; name: string; status: string; spend: number;
+  conversionsValue: number; conversions: number; roas: number;
+  budgetLostIS: number; rankLostIS: number; impressionShare: number;
+  clicks: number; ctr: number; avgCpc: number;
+}
+interface Rec {
+  type: string; title: string; description: string; action: string;
+  campaign: string; dollarsRecoverable: number; metrics: Record<string, string>;
+}
+interface RecView {
+  rank: number; borderColor: string; typeLabel: string; typeColor: string;
+  typeBg: string; title: string; description: string;
+  metrics: Array<{ k: string; v: string }>;
+  dollarsFormatted: string; promptEncoded: string;
+}
+interface CampView {
+  name: string; status: string; roasBg: string; roasFg: string;
+  roasLabel: string; spend: string; conversions: string; avgCpc: string; impShare: string;
+}
+
+let rawCampaigns: Campaign[] = [];
+let rawRecs: Rec[] = [];
+let fetchError: string | null = null;
+const hasCredentials = !!(DEV_TOKEN && CLIENT_ID && CLIENT_SECRET && REFRESH_TOKEN);
+
+if (hasCredentials) {
+  try {
+    const tokenResp = await fetch("https://oauth2.googleapis.com/token", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        client_id: CLIENT_ID, client_secret: CLIENT_SECRET,
+        refresh_token: REFRESH_TOKEN, grant_type: "refresh_token",
+      }),
+    });
+    const { access_token } = await tokenResp.json() as { access_token: string };
+
+    const gh: Record<string, string> = {
+      Authorization: "Bearer " + access_token,
+      "developer-token": DEV_TOKEN,
+      "login-customer-id": LOGIN_CID,
+      "Content-Type": "application/json",
+    };
+
+    const resp = await fetch(
+      "https://googleads.googleapis.com/v21/customers/" + CID + "/googleAds:search",
+      {
+        method: "POST",
+        headers: gh,
+        body: JSON.stringify({
+          query: `
+            SELECT
+              campaign.id, campaign.name, campaign.status,
+              metrics.cost_micros, metrics.conversions_value, metrics.conversions,
+              metrics.impressions, metrics.clicks, metrics.ctr, metrics.average_cpc,
+              metrics.search_budget_lost_impression_share,
+              metrics.search_rank_lost_impression_share,
+              metrics.search_impression_share
+            FROM campaign
+            WHERE segments.date DURING LAST_30_DAYS
+              AND campaign.status != 'REMOVED'
+              AND campaign.id != 23889620047
+            ORDER BY metrics.cost_micros DESC
+          `,
+        }),
+      }
+    );
+    const data = await resp.json() as any;
+    if (data.error) throw new Error(data.error.message ?? JSON.stringify(data.error));
+
+    rawCampaigns = (data.results ?? []).map((r: any): Campaign => {
+      const c = r.campaign;
+      const m = r.metrics;
+      const spend = (m.costMicros ?? 0) / 1e6;
+      const convValue = m.conversionsValue ?? 0;
+      const conversions = m.conversions ?? 0;
+      const clicks = m.clicks ?? 0;
+      return {
+        id: c.id, name: c.name, status: c.status, spend,
+        conversionsValue: convValue, conversions,
+        roas: spend > 0 ? convValue / spend : 0,
+        budgetLostIS: m.searchBudgetLostImpressionShare ?? 0,
+        rankLostIS: m.searchRankLostImpressionShare ?? 0,
+        impressionShare: m.searchImpressionShare ?? 0,
+        clicks, ctr: m.ctr ?? 0, avgCpc: (m.averageCpc ?? 0) / 1e6,
+      };
+    });
+
+    for (const c of rawCampaigns) {
+      const cvr = c.clicks > 0 ? c.conversions / c.clicks : 0;
+
+      if (c.budgetLostIS > 0.05 && cvr > 0) {
+        const missed = c.clicks * (c.budgetLostIS / Math.max(1 - c.budgetLostIS, 0.001));
+        const dr = missed * cvr * LEAD_VALUE;
+        if (dr > 100) rawRecs.push({
+          type: "budget",
+          title: "Lift budget cap — " + c.name,
+          description: "Budget throttled " + (c.budgetLostIS * 100).toFixed(0) + "% of eligible impressions. ~" + Math.round(missed) + " clicks and " + (missed * cvr).toFixed(1) + " conversions missed each month.",
+          action: "Increase the daily budget. This campaign returns " + c.roas.toFixed(1) + "x ROAS — every additional dollar generates " + c.roas.toFixed(1) + "x in lead value.",
+          campaign: c.name, dollarsRecoverable: dr,
+          metrics: {
+            "Budget lost IS": (c.budgetLostIS * 100).toFixed(1) + "%",
+            "30-day spend": "$" + c.spend.toLocaleString("en-US", { maximumFractionDigits: 0 }),
+            "Conv. rate": (cvr * 100).toFixed(2) + "%",
+            "ROAS": c.roas.toFixed(2) + "x",
+          },
+        });
+      }
+
+      if (c.roas > 0 && c.roas < TARGET_ROAS && c.spend > 300) {
+        const dr = (TARGET_ROAS - c.roas) * c.spend;
+        rawRecs.push({
+          type: "roas",
+          title: "Close ROAS gap to " + TARGET_ROAS + "x — " + c.name,
+          description: "Currently returning " + c.roas.toFixed(2) + "x vs. " + TARGET_ROAS + "x target. Bid optimization or keyword pruning can close the gap.",
+          action: "Review keyword-level bids and pause low-intent terms. Consider switching to Target ROAS bidding at " + (TARGET_ROAS * 100) + "%.",
+          campaign: c.name, dollarsRecoverable: dr,
+          metrics: {
+            "Actual ROAS": c.roas.toFixed(2) + "x",
+            "Target ROAS": TARGET_ROAS + "x",
+            "30-day spend": "$" + c.spend.toLocaleString("en-US", { maximumFractionDigits: 0 }),
+            "Conversions": c.conversions.toFixed(1),
+          },
+        });
+      }
+
+      if (c.rankLostIS > 0.15 && cvr > 0) {
+        const missed = c.clicks * (c.rankLostIS / Math.max(1 - c.rankLostIS, 0.001));
+        const dr = missed * cvr * LEAD_VALUE;
+        if (dr > 100) rawRecs.push({
+          type: "quality",
+          title: "Recover Ad Rank — " + c.name,
+          description: (c.rankLostIS * 100).toFixed(0) + "% of impressions lost to low Ad Rank. Better ad relevance or landing page quality can win back these auctions.",
+          action: "Audit keyword-to-ad copy alignment. Tighten ad group themes. Match landing page to search intent.",
+          campaign: c.name, dollarsRecoverable: dr,
+          metrics: {
+            "Rank lost IS": (c.rankLostIS * 100).toFixed(1) + "%",
+            "Impression share": (c.impressionShare * 100).toFixed(1) + "%",
+            "Conv. rate": (cvr * 100).toFixed(2) + "%",
+            "Avg CPC": "$" + c.avgCpc.toFixed(2),
+          },
+        });
+      }
+
+      if (c.conversions === 0 && c.spend > 200) {
+        rawRecs.push({
+          type: "tracking",
+          title: "Investigate zero conversions — " + c.name,
+          description: "$" + c.spend.toLocaleString("en-US", { maximumFractionDigits: 0 }) + " spent in 30 days with no recorded conversions. Possible tracking gap or funnel break.",
+          action: "Verify the Google tag fires on HubSpot form submission. Run Tag Assistant on the landing page. Check search terms for irrelevant queries.",
+          campaign: c.name, dollarsRecoverable: c.spend,
+          metrics: {
+            "30-day spend": "$" + c.spend.toLocaleString("en-US", { maximumFractionDigits: 0 }),
+            "Clicks": String(c.clicks),
+            "Conversions": "0",
+            "CTR": (c.ctr * 100).toFixed(2) + "%",
+          },
+        });
+      }
+    }
+    rawRecs.sort((a, b) => b.dollarsRecoverable - a.dollarsRecoverable);
+
+  } catch (e: any) {
+    fetchError = String(e.message ?? e);
+  }
+}
+
+function fmtUSD(n: number): string {
+  return "$" + Math.round(n).toLocaleString("en-US");
+}
+function roasBg(r: number): string {
+  return r >= TARGET_ROAS ? "#dcfce7" : r >= 1 ? "#fef9c3" : "#fee2e2";
+}
+function roasFg(r: number): string {
+  return r >= TARGET_ROAS ? "#166534" : r >= 1 ? "#854d0e" : "#991b1b";
+}
+
+const TYPE_STYLE: Record<string, { label: string; color: string; bg: string }> = {
+  budget:   { label: "Budget",   color: "#9b5cf6", bg: "#f3f0ff" },
+  roas:     { label: "ROAS",     color: "#b45309", bg: "#fef3c7" },
+  quality:  { label: "Ad Rank",  color: "#2563eb", bg: "#eff6ff" },
+  tracking: { label: "Tracking", color: "#dc2626", bg: "#fef2f2" },
+};
+
+const campViews: CampView[] = rawCampaigns.map(c => ({
+  name: c.name, status: c.status,
+  roasBg: roasBg(c.roas), roasFg: roasFg(c.roas),
+  roasLabel: c.roas > 0 ? c.roas.toFixed(2) + "x" : "—",
+  spend: fmtUSD(c.spend),
+  conversions: c.conversions.toFixed(1),
+  avgCpc: "$" + c.avgCpc.toFixed(2),
+  impShare: c.impressionShare > 0 ? (c.impressionShare * 100).toFixed(0) + "%" : "—",
+}));
+
+const recViews: RecView[] = rawRecs.map((rec, i) => {
+  const ts = TYPE_STYLE[rec.type] ?? TYPE_STYLE.tracking;
+  const lines = [
+    "## Google Ads Recommendation: " + rec.title,
+    "",
+    "**Campaign:** " + rec.campaign,
+    "**Dollars recoverable:** " + fmtUSD(rec.dollarsRecoverable),
+    "",
+    "**What's happening:**",
+    rec.description,
+    "",
+    "**Key metrics:**",
+    ...Object.entries(rec.metrics).map(([k, v]) => "- " + k + ": " + v),
+    "",
+    "**Recommended action:**",
+    rec.action,
+    "",
+    "---",
+    "Please help me implement this. Can you write the Google Ads API script? Customer ID: customers/" + CID,
+  ];
+  return {
+    rank: i + 1,
+    borderColor: ts.color, typeLabel: ts.label, typeColor: ts.color, typeBg: ts.bg,
+    title: rec.title, description: rec.description,
+    metrics: Object.entries(rec.metrics).map(([k, v]) => ({ k, v })),
+    dollarsFormatted: fmtUSD(rec.dollarsRecoverable),
+    promptEncoded: encodeURIComponent(lines.join("\n")),
+  };
+});
+
+const totalSpend     = rawCampaigns.reduce((s, c) => s + c.spend, 0);
+const totalConv      = rawCampaigns.reduce((s, c) => s + c.conversions, 0);
+const totalConvValue = rawCampaigns.reduce((s, c) => s + c.conversionsValue, 0);
+const avgRoas        = totalSpend > 0 ? totalConvValue / totalSpend : 0;
+const totalRecover   = rawRecs.reduce((s, r) => s + r.dollarsRecoverable, 0);
+
+const updatedAt = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+const currentYear = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Google Ads Dashboard | Cliffco Reverse</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=optional"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=optional" />
+  </noscript>
+</head>
+
+<body class="min-h-screen flex flex-col" style="background:#f0eef1;">
+
+  <!-- Header -->
+  <header style="background:var(--color-rich-black);border-bottom:1px solid rgba(255,255,255,0.07);">
+    <div class="container-wide flex items-center justify-between gap-6 py-4">
+      <a href="/long-island/" aria-label="Cliffco Mortgage Bankers home">
+        <img src="/logo-black.png" alt="Cliffco Mortgage Bankers" width="160" height="32"
+          style="height:32px;width:auto;filter:invert(1) brightness(2);" />
+      </a>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <span style="font-size:0.75rem;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.1em;">Internal</span>
+        <span style="color:rgba(255,255,255,0.2);">|</span>
+        <span style="font-size:0.75rem;color:rgba(255,255,255,0.5);">Last 30 days · {updatedAt}</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page title bar -->
+  <div style="background:var(--color-rich-black);padding-bottom:2rem;">
+    <div class="container-wide">
+      <p style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-ice-blue);margin:0 0 0.3rem;">Google Ads</p>
+      <h1 style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;color:#fff;margin:0;line-height:1.15;">Performance Dashboard</h1>
+    </div>
+  </div>
+
+  <main id="main" style="flex:1;padding:2rem 0 4rem;">
+    <div class="container-wide">
+
+      <!-- No credentials -->
+      {!hasCredentials && (
+        <div style="background:#fff;border-radius:12px;padding:2rem;margin-bottom:2rem;border:1px solid #e5e7eb;">
+          <strong style="font-size:1rem;color:var(--color-rich-black);">Google Ads credentials not found</strong>
+          <p style="margin:0.5rem 0 0;font-size:0.875rem;color:var(--color-text-muted);">
+            Add the six GOOGLE_ADS_* environment variables to your Vercel project settings to see live data.
+          </p>
+        </div>
+      )}
+
+      <!-- API error -->
+      {fetchError && (
+        <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:12px;padding:1.25rem;margin-bottom:2rem;">
+          <strong style="color:#b91c1c;font-size:0.875rem;">API error</strong>
+          <code style="display:block;margin-top:0.5rem;font-size:0.78rem;color:#7f1d1d;background:#fee2e2;padding:0.75rem;border-radius:6px;overflow-x:auto;">{fetchError}</code>
+        </div>
+      )}
+
+      <!-- Summary bar -->
+      {campViews.length > 0 && (
+        <div class="summary-bar">
+          <div class="stat-box">
+            <span class="stat-label">30-day Spend</span>
+            <span class="stat-value">{fmtUSD(totalSpend)}</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Avg. ROAS</span>
+            <span class="stat-value" style={"color:" + roasFg(avgRoas)}>
+              {avgRoas > 0 ? avgRoas.toFixed(2) + "x" : "—"}
+            </span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Conversions</span>
+            <span class="stat-value">{totalConv.toFixed(0)}</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Recoverable</span>
+            <span class="stat-value" style="color:var(--color-accent)">{fmtUSD(totalRecover)}</span>
+          </div>
+        </div>
+      )}
+
+      <!-- ROAS by Campaign -->
+      {campViews.length > 0 && (
+        <section style="margin-bottom:3rem;">
+          <h2 class="section-title">ROAS by Campaign</h2>
+          <div class="campaign-grid">
+            {campViews.map(c => (
+              <div class="card" style="padding:1.125rem;">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;margin-bottom:0.75rem;">
+                  <span style="font-size:0.8rem;font-weight:600;color:var(--color-ink);line-height:1.35;">{c.name}</span>
+                  <span style={"width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px;background:" + (c.status === "ENABLED" ? "#22c55e" : "#94a3b8")} title={c.status} />
+                </div>
+                <div style={"font-size:2rem;font-weight:800;border-radius:8px;padding:0.4rem 0.75rem;margin-bottom:0.75rem;text-align:center;line-height:1;background:" + c.roasBg + ";color:" + c.roasFg}>{c.roasLabel}</div>
+                <div class="camp-metrics">
+                  <div><span>Spend</span><strong>{c.spend}</strong></div>
+                  <div><span>Conv.</span><strong>{c.conversions}</strong></div>
+                  <div><span>Avg CPC</span><strong>{c.avgCpc}</strong></div>
+                  <div><span>Imp. share</span><strong>{c.impShare}</strong></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Empty state -->
+      {hasCredentials && !fetchError && campViews.length === 0 && (
+        <div style="text-align:center;padding:4rem 2rem;color:var(--color-text-muted);">
+          No active campaign data for the last 30 days.
+        </div>
+      )}
+
+      <!-- Recommendations -->
+      {recViews.length > 0 && (
+        <section>
+          <div style="margin-bottom:1.25rem;">
+            <h2 class="section-title" style="margin-bottom:0.3rem;">Top Opportunities</h2>
+            <p style="font-size:0.875rem;color:var(--color-text-muted);margin:0;">
+              Ranked by dollars recoverable · Lead value $16,452 · {recViews.length} {recViews.length === 1 ? "recommendation" : "recommendations"}
+            </p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0.875rem;">
+            {recViews.map(rv => (
+              <div class="card rec-card" style={"border-left:4px solid " + rv.borderColor + ";padding:1.25rem 1.5rem;"}>
+                <div class="rec-rank">{"#" + rv.rank}</div>
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;align-items:center;gap:0.625rem;margin-bottom:0.5rem;flex-wrap:wrap;">
+                    <span style={"font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:0.2rem 0.5rem;border-radius:4px;white-space:nowrap;color:" + rv.typeColor + ";background:" + rv.typeBg}>{rv.typeLabel}</span>
+                    <h3 style="font-size:0.975rem;font-weight:700;color:var(--color-ink);margin:0;line-height:1.3;">{rv.title}</h3>
+                  </div>
+                  <p style="font-size:0.875rem;color:var(--color-body);margin:0 0 0.875rem;line-height:1.55;">{rv.description}</p>
+                  <div class="rec-metrics">
+                    {rv.metrics.map(m => (
+                      <div style="display:flex;flex-direction:column;gap:1px;">
+                        <span style="font-size:0.65rem;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.06em;font-weight:600;">{m.k}</span>
+                        <span style="font-size:0.9rem;font-weight:700;color:var(--color-ink);">{m.v}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+                    <div style="display:flex;align-items:baseline;gap:0.4rem;">
+                      <span style="font-size:0.7rem;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.07em;font-weight:600;">Recoverable</span>
+                      <span style="font-size:1.375rem;font-weight:800;color:var(--color-accent);">{rv.dollarsFormatted}</span>
+                    </div>
+                    <button class="send-btn" data-prompt={rv.promptEncoded}>
+                      Send to Claude →
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background:var(--color-rich-black);color:rgba(255,255,255,0.5);padding:1.5rem 0;">
+    <div class="container-wide" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:0.75rem;">
+      <span>© {currentYear} {COMPANY.legalName} · NMLS {COMPANY.nmls}</span>
+      <nav style="display:flex;gap:1.25rem;">
+        <a href="/long-island/" style="color:rgba(255,255,255,0.45);">Long Island LP</a>
+        <a href="/meet-julian/" style="color:rgba(255,255,255,0.45);">Meet Julian</a>
+        <a href="/how-hecm-works/" style="color:rgba(255,255,255,0.45);">How It Works</a>
+        <a href="/client-reviews/" style="color:rgba(255,255,255,0.45);">Reviews</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast">Prompt copied · Paste in Claude</div>
+
+  <!-- Custom cursor dot -->
+  <div id="cf-cursor" aria-hidden="true"></div>
+
+  <script>
+    (() => {
+      const dot = document.getElementById('cf-cursor');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isTouch = window.matchMedia('(pointer: coarse)').matches;
+      if (!dot || prefersReduced || isTouch) return;
+
+      const dotEl = dot as HTMLElement;
+      let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+      let cx = mx, cy = my, scale = 1, targetScale = 1;
+      const LERP_POS = 0.65, LERP_SCALE = 0.35;
+      const COLORS = {
+        default: '#6633cc', link: '#9966ee', button: '#4a1fa0',
+        card: '#bde8f1', dark: '#ffffff',
+      };
+      let targetColor = COLORS.default, lastColor = COLORS.default;
+
+      document.querySelectorAll('section, footer').forEach(el => {
+        const bg = getComputedStyle(el).backgroundColor;
+        if (bg === 'rgb(13, 13, 13)' || bg === 'rgb(26, 0, 64)')
+          (el as HTMLElement).dataset.cursorDark = '';
+      });
+
+      function getContext(el: Element | null): keyof typeof COLORS {
+        if (!el) return 'default';
+        if (el.closest('[data-cursor-dark]')) return 'dark';
+        if (el.closest('.btn, button, [role="button"]')) return 'button';
+        if (el.closest('a')) return 'link';
+        if (el.closest('.card, article')) return 'card';
+        return 'default';
+      }
+
+      const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+      document.addEventListener('mousemove', (e) => {
+        mx = e.clientX; my = e.clientY;
+        const hit = document.elementFromPoint(mx, my);
+        const ctx = getContext(hit);
+        targetColor = COLORS[ctx];
+        targetScale = ctx === 'default' ? 1 : 1.6;
+      });
+      document.addEventListener('mouseleave', () => { dotEl.style.opacity = '0'; });
+      document.addEventListener('mouseenter', () => { dotEl.style.opacity = '1'; });
+
+      function tick() {
+        cx = lerp(cx, mx, LERP_POS);
+        cy = lerp(cy, my, LERP_POS);
+        scale = lerp(scale, targetScale, LERP_SCALE);
+        dotEl.style.transform = `translate(${cx}px, ${cy}px) scale(${scale})`;
+        if (lastColor !== targetColor) { dotEl.style.background = targetColor; lastColor = targetColor; }
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+  </script>
+
+  <script>
+    document.querySelectorAll(".send-btn").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        var encoded = btn.dataset.prompt || "";
+        var prompt = decodeURIComponent(encoded);
+        navigator.clipboard.writeText(prompt).then(function() {
+          var t = document.getElementById("toast");
+          if (t) {
+            t.classList.add("show");
+            setTimeout(function() { t.classList.remove("show"); }, 2500);
+          }
+        });
+        window.open("https://claude.ai/chat", "_blank", "noopener");
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+<style>
+  .summary-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 2.5rem; overflow: hidden;
+  }
+  .stat-box { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; padding: 1.25rem 1rem; border-right: 1px solid #e5e7eb; }
+  .stat-box:last-child { border-right: none; }
+  .stat-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
+  .stat-value { font-size: 1.875rem; font-weight: 800; color: var(--color-rich-black); line-height: 1.1; }
+
+  .section-title { font-size: 1.125rem; font-weight: 700; color: var(--color-rich-black); margin: 0 0 1rem; padding-bottom: 0.625rem; border-bottom: 2px solid #e5e7eb; }
+
+  .campaign-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+  .camp-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1rem; }
+  .camp-metrics div { display: flex; flex-direction: column; gap: 1px; }
+  .camp-metrics span { font-size: 0.65rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .camp-metrics strong { font-size: 0.875rem; font-weight: 700; color: var(--color-ink); }
+
+  .rec-card { display: flex; gap: 1.25rem; align-items: flex-start; }
+  .rec-rank { font-size: 1.125rem; font-weight: 800; color: #d1d5db; min-width: 2rem; padding-top: 2px; flex-shrink: 0; }
+  .rec-metrics { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; padding: 0.75rem 1rem; background: var(--color-mist-gray); border-radius: 8px; margin-bottom: 1rem; }
+
+  .send-btn { display: inline-flex; align-items: center; padding: 0.5rem 1.25rem; background: var(--color-rich-black); color: #fff; font-size: 0.875rem; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; transition: background 0.15s; white-space: nowrap; font-family: inherit; }
+  .send-btn:hover { background: var(--color-accent); }
+
+  #toast { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--color-rich-black); color: #fff; padding: 0.75rem 1.25rem; border-radius: 10px; font-size: 0.875rem; font-weight: 600; box-shadow: 0 4px 20px rgba(0,0,0,0.25); opacity: 0; transform: translateY(6px); pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 9999; }
+  #toast.show { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 1024px) { .campaign-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) {
+    .campaign-grid { grid-template-columns: 1fr; }
+    .summary-bar { grid-template-columns: repeat(2, 1fr); }
+    .stat-box { border-right: none; border-bottom: 1px solid #e5e7eb; }
+    .stat-box:nth-child(odd) { border-right: 1px solid #e5e7eb; }
+  }
+</style>
