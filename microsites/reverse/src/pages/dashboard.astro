@@ -81,7 +81,7 @@ if (hasCredentials) {
       }
     );
     const data = await resp.json() as any;
-    if (data.error) throw new Error(data.error.message ?? JSON.stringify(data.error));
+    if (data.error) throw new Error(JSON.stringify(data.error, null, 2));
 
     rawCampaigns = (data.results ?? []).map((r: any): Campaign => {
       const c = r.campaign;
@@ -309,7 +309,16 @@ const currentYear = new Date().getFullYear();
       {fetchError && (
         <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:12px;padding:1.25rem;margin-bottom:2rem;">
           <strong style="color:#b91c1c;font-size:0.875rem;">API error</strong>
-          <code style="display:block;margin-top:0.5rem;font-size:0.78rem;color:#7f1d1d;background:#fee2e2;padding:0.75rem;border-radius:6px;overflow-x:auto;">{fetchError}</code>
+          <code style="display:block;margin-top:0.5rem;font-size:0.78rem;color:#7f1d1d;background:#fee2e2;padding:0.75rem;border-radius:6px;overflow-x:auto;white-space:pre-wrap;">{fetchError}</code>
+          <p style="margin-top:0.75rem;font-size:0.75rem;color:#6b7280;">
+            Env vars present at build time:
+            DEV_TOKEN={DEV_TOKEN ? "✓" : "✗"} |
+            CLIENT_ID={CLIENT_ID ? "✓" : "✗"} |
+            CLIENT_SECRET={CLIENT_SECRET ? "✓" : "✗"} |
+            REFRESH_TOKEN={REFRESH_TOKEN ? "✓" : "✗"} |
+            LOGIN_CID={LOGIN_CID ? "✓" : "✗"} |
+            CID={CID ? "✓" : "✗"}
+          </p>
         </div>
       )}
 
