@@ -400,33 +400,43 @@ const yearsServing = currentYear - founded;
 
   <script>
     // ── 1. UTM + gclid capture ──────────────────────────────────────────
-    // Persist URL params to sessionStorage on first load so they survive
-    // scroll + fragment navigation (#lp-form wipes the search string).
+    // Maps URL param names → HubSpot hidden field names.
+    // gclid uses HubSpot's native hs_google_click_id property.
+    // Persists to sessionStorage so values survive #anchor navigation.
+    // Uses MutationObserver to wait for the async HubSpot form render.
     (function () {
-      const KEYS = ['gclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
-      const params = new URLSearchParams(window.location.search);
+      const PARAM_MAP: Record<string, string> = {
+        gclid:        'hs_google_click_id',
+        utm_source:   'utm_source',
+        utm_medium:   'utm_medium',
+        utm_campaign: 'utm_campaign',
+        utm_content:  'utm_content',
+        utm_term:     'utm_term',
+      };
 
-      // Persist any params present in the URL
-      KEYS.forEach(key => {
+      const params = new URLSearchParams(window.location.search);
+      Object.keys(PARAM_MAP).forEach(key => {
         const val = params.get(key);
         if (val) sessionStorage.setItem('cliffco_lp_' + key, val);
       });
 
-      function fillHiddenFields() {
-        const form = document.getElementById('lp-form') as HTMLFormElement | null;
-        if (!form) return;
-        KEYS.forEach(key => {
-          const val = sessionStorage.getItem('cliffco_lp_' + key) ?? '';
-          const el  = form.querySelector(`[name="${key}"]`) as HTMLInputElement | null;
-          if (el) el.value = val;
+      function fillForm(formEl: Element) {
+        Object.entries(PARAM_MAP).forEach(([urlParam, fieldName]) => {
+          const val = sessionStorage.getItem('cliffco_lp_' + urlParam);
+          if (!val) return;
+          const input = formEl.querySelector(`[name="${fieldName}"]`) as HTMLInputElement | null;
+          if (input) input.value = val;
         });
       }
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', fillHiddenFields);
-      } else {
-        fillHiddenFields();
-      }
+      // HubSpot renders the form async inside .hs-form-frame — wait for it.
+      const frame = document.querySelector('.hs-form-frame');
+      if (!frame) return;
+      const observer = new MutationObserver(() => {
+        const formEl = frame.querySelector('form');
+        if (formEl) { observer.disconnect(); fillForm(formEl); }
+      });
+      observer.observe(frame, { childList: true, subtree: true });
     })();
 
     // ── 2. Mobile sticky call bar ───────────────────────────────────────
