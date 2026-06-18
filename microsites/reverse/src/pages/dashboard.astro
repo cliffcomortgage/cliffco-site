@@ -74,7 +74,7 @@ if (hasCredentials) {
             FROM campaign
             WHERE segments.date DURING LAST_30_DAYS
               AND campaign.status != 'REMOVED'
-              AND campaign.id != 23889620047
+              AND campaign.id NOT IN (23889620047)
             ORDER BY metrics.cost_micros DESC
           `,
         }),
