@@ -8,6 +8,7 @@ const CLIENT_SECRET = import.meta.env.GOOGLE_ADS_CLIENT_SECRET;
 const REFRESH_TOKEN = import.meta.env.GOOGLE_ADS_REFRESH_TOKEN;
 const LOGIN_CID     = import.meta.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID;
 const CID           = import.meta.env.GOOGLE_ADS_CUSTOMER_ID;
+const HUBSPOT_TOKEN = import.meta.env.HUBSPOT_TOKEN;
 
 const LEAD_VALUE  = 16452;
 const TARGET_ROAS = 3.0;
@@ -32,10 +33,26 @@ interface CampView {
   name: string; status: string; roasBg: string; roasFg: string;
   roasLabel: string; spend: string; conversions: string; avgCpc: string; impShare: string;
 }
+interface KwRow {
+  text: string; clicks: number; spend: number; impressions: number;
+  conversions: number; ctr: number; avgCpc: number;
+  leads: number; cpl: number;
+}
+interface HsLead {
+  id: string; name: string; email: string; createdAt: string;
+  utmTerm: string; utmCampaign: string; hasGclid: boolean; status: string;
+}
+interface HsDeal {
+  id: string; name: string; stage: string; pipeline: string; amount: number;
+}
 
 let rawCampaigns: Campaign[] = [];
 let rawRecs: Rec[] = [];
+let kwRows: KwRow[] = [];
+let hsLeads: HsLead[] = [];
+let hsDeals: HsDeal[] = [];
 let fetchError: string | null = null;
+let hsError: string | null = null;
 const hasCredentials = !!(DEV_TOKEN && CLIENT_ID && CLIENT_SECRET && REFRESH_TOKEN);
 
 if (hasCredentials) {
@@ -175,8 +192,123 @@ if (hasCredentials) {
     }
     rawRecs.sort((a, b) => b.dollarsRecoverable - a.dollarsRecoverable);
 
+    // Keyword-level performance
+    const kwResp = await fetch(
+      "https://googleads.googleapis.com/v21/customers/" + CID + "/googleAds:search",
+      {
+        method: "POST", headers: gh,
+        body: JSON.stringify({
+          query: `
+            SELECT
+              ad_group_criterion.keyword.text,
+              metrics.cost_micros, metrics.clicks, metrics.impressions,
+              metrics.conversions, metrics.ctr, metrics.average_cpc
+            FROM keyword_view
+            WHERE segments.date DURING LAST_30_DAYS
+              AND campaign.id = 23946171105
+              AND ad_group_criterion.status != 'REMOVED'
+              AND metrics.impressions > 0
+            ORDER BY metrics.cost_micros DESC
+            LIMIT 50
+          `,
+        }),
+      }
+    );
+    const kwData = await kwResp.json() as any;
+    if (!kwData.error) {
+      kwRows = (kwData.results ?? []).map((r: any): KwRow => {
+        const m = r.metrics;
+        const spend = (m.costMicros ?? 0) / 1e6;
+        return {
+          text: r.adGroupCriterion?.keyword?.text ?? "—",
+          clicks: Number(m.clicks ?? 0),
+          spend,
+          impressions: Number(m.impressions ?? 0),
+          conversions: m.conversions ?? 0,
+          ctr: m.ctr ?? 0,
+          avgCpc: (m.averageCpc ?? 0) / 1e6,
+          leads: 0, cpl: 0,
+        };
+      });
+    }
+
   } catch (e: any) {
     fetchError = String(e.message ?? e);
+  }
+}
+
+// HubSpot: leads + deals
+if (HUBSPOT_TOKEN) {
+  try {
+    const hh: Record<string, string> = {
+      Authorization: "Bearer " + HUBSPOT_TOKEN,
+      "Content-Type": "application/json",
+    };
+
+    // Contacts that came from Google Ads (have utm_source=google OR gclid)
+    const leadsResp = await fetch("https://api.hubapi.com/crm/v3/objects/contacts/search", {
+      method: "POST", headers: hh,
+      body: JSON.stringify({
+        filterGroups: [
+          { filters: [{ propertyName: "utm_source", operator: "EQ", value: "google" }] },
+          { filters: [{ propertyName: "hs_google_click_id", operator: "HAS_PROPERTY" }] },
+        ],
+        properties: ["firstname", "lastname", "email", "createdate", "utm_term", "utm_campaign", "hs_google_click_id", "hs_lead_status"],
+        sorts: [{ propertyName: "createdate", direction: "DESCENDING" }],
+        limit: 50,
+      }),
+    });
+    const leadsData = await leadsResp.json() as any;
+    hsLeads = (leadsData.results ?? []).map((c: any): HsLead => {
+      const p = c.properties;
+      const name = ((p.firstname ?? "") + " " + (p.lastname ?? "")).trim() || p.email || "Unknown";
+      return {
+        id: c.id, name, email: p.email ?? "",
+        createdAt: p.createdate ?? "",
+        utmTerm: p.utm_term ?? "",
+        utmCampaign: p.utm_campaign ?? "",
+        hasGclid: !!(p.hs_google_click_id),
+        status: p.hs_lead_status ?? "",
+      };
+    });
+
+    // Deals (both pipelines)
+    const STAGE_LABELS: Record<string, string> = {
+      "1016563586": "Prospect", "1016579967": "Pre-Approved",
+      "1016579968": "Processing", "1016579972": "Closed Won", "1016579973": "Closed Lost",
+      "1242729248": "Prospect", "1242729249": "Pre-Approved",
+      "1242729250": "Processing", "1242729254": "Closed Won", "1242866278": "Closed Lost",
+    };
+    const dealsResp = await fetch(
+      "https://api.hubapi.com/crm/v3/objects/deals?limit=100&properties=dealname,dealstage,pipeline,amount,closedate&sorts=-createdate",
+      { headers: hh }
+    );
+    const dealsData = await dealsResp.json() as any;
+    hsDeals = (dealsData.results ?? []).map((d: any): HsDeal => {
+      const p = d.properties;
+      return {
+        id: d.id, name: p.dealname ?? "Unnamed",
+        stage: STAGE_LABELS[p.dealstage] ?? p.dealstage ?? "Unknown",
+        pipeline: p.pipeline === "695188531" ? "Pylon" : "Encompass",
+        amount: parseFloat(p.amount ?? "0") || 0,
+      };
+    });
+
+    // Enrich keyword rows with HubSpot lead counts
+    const leadsByTerm = new Map<string, number>();
+    hsLeads.forEach(l => {
+      if (l.utmTerm) {
+        const k = l.utmTerm.toLowerCase();
+        leadsByTerm.set(k, (leadsByTerm.get(k) ?? 0) + 1);
+      }
+    });
+    kwRows = kwRows.map(kw => {
+      const leads = leadsByTerm.get(kw.text.toLowerCase()) ?? 0;
+      return { ...kw, leads, cpl: leads > 0 && kw.spend > 0 ? kw.spend / leads : 0 };
+    });
+
+  } catch (e: any) {
+    hsError = String(e.message ?? e);
   }
 }
 
@@ -242,6 +374,18 @@ const totalConv      = rawCampaigns.reduce((s, c) => s + c.conversions, 0);
 const totalConvValue = rawCampaigns.reduce((s, c) => s + c.conversionsValue, 0);
 const avgRoas        = totalSpend > 0 ? totalConvValue / totalSpend : 0;
 const totalRecover   = rawRecs.reduce((s, r) => s + r.dollarsRecoverable, 0);
+
+// Pipeline funnel (Pylon only — the active reverse mortgage pipeline)
+const FUNNEL_STAGES = ["Prospect", "Pre-Approved", "Processing", "Closed Won"];
+const pylonDeals = hsDeals.filter(d => d.pipeline === "Pylon");
+const funnelRows = FUNNEL_STAGES.map(label => ({
+  label,
+  count: pylonDeals.filter(d => d.stage === label).length,
+  value: pylonDeals.filter(d => d.stage === label).reduce((s, d) => s + d.amount, 0),
+  isWon: label === "Closed Won",
+}));
+const closedWonRevenue = pylonDeals.filter(d => d.stage === "Closed Won").reduce((s, d) => s + d.amount, 0);
+const kwWithActivity = kwRows.filter(k => k.clicks > 0 || k.leads > 0);
 
 const updatedAt = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 const currentYear = new Date().getFullYear();
@@ -318,6 +462,10 @@ const currentYear = new Date().getFullYear();
             REFRESH_TOKEN={REFRESH_TOKEN ? "✓" : "✗"} |
             LOGIN_CID={LOGIN_CID ? "✓" : "✗"} |
             CID={CID ? "✓" : "✗"}
+          </p>
+          <p style="margin-top:0.25rem;font-size:0.75rem;color:#6b7280;">
+            LOGIN_CID first 4 chars: <code>{LOGIN_CID ? LOGIN_CID.slice(0, 4) : "none"}</code> |
+            CID first 4 chars: <code>{CID ? CID.slice(0, 4) : "none"}</code>
           </p>
         </div>
       )}
@@ -417,6 +565,131 @@ const currentYear = new Date().getFullYear();
               </div>
             ))}
           </div>
+        </section>
+      )}
+
+      <!-- HubSpot error -->
+      {hsError && (
+        <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:12px;padding:1.25rem;margin-bottom:2rem;">
+          <strong style="color:#b91c1c;font-size:0.875rem;">HubSpot error</strong>
+          <code style="display:block;margin-top:0.5rem;font-size:0.78rem;color:#7f1d1d;background:#fee2e2;padding:0.75rem;border-radius:6px;">{hsError}</code>
+        </div>
+      )}
+
+      <!-- ── ATTRIBUTION DIVIDER ── -->
+      {HUBSPOT_TOKEN && (
+        <div style="display:flex;align-items:center;gap:1rem;margin:3rem 0 2rem;">
+          <div style="flex:1;height:1px;background:#e5e7eb;"></div>
+          <span style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-text-muted);white-space:nowrap;">HubSpot Attribution</span>
+          <div style="flex:1;height:1px;background:#e5e7eb;"></div>
+        </div>
+      )}
+
+      <!-- Pipeline Funnel -->
+      {pylonDeals.length > 0 && (
+        <section style="margin-bottom:3rem;">
+          <h2 class="section-title">Deal Pipeline · Pylon</h2>
+          <div class="funnel-grid">
+            {funnelRows.map(row => (
+              <div class="card" style={"padding:1.25rem;text-align:center;" + (row.isWon ? "border-top:3px solid #22c55e;" : "border-top:3px solid #e5e7eb;")}>
+                <div style={"font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;margin-bottom:0.5rem;color:" + (row.isWon ? "#166534" : "var(--color-text-muted)")}>{row.label}</div>
+                <div style={"font-size:2.25rem;font-weight:800;line-height:1;color:" + (row.isWon ? "#166534" : "var(--color-ink)")}>{row.count}</div>
+                {row.value > 0 && (
+                  <div style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.35rem;">{fmtUSD(row.value)}</div>
+                )}
+              </div>
+            ))}
+          </div>
+          {closedWonRevenue > 0 && (
+            <p style="text-align:right;font-size:0.8rem;color:var(--color-text-muted);margin-top:0.75rem;">
+              Total closed revenue: <strong style="color:#166534;">{fmtUSD(closedWonRevenue)}</strong>
+            </p>
+          )}
+        </section>
+      )}
+
+      <!-- Keyword Attribution Table -->
+      {kwWithActivity.length > 0 && (
+        <section style="margin-bottom:3rem;">
+          <h2 class="section-title">Keyword Attribution</h2>
+          <div style="overflow-x:auto;">
+            <table class="attr-table">
+              <thead>
+                <tr>
+                  <th>Keyword</th>
+                  <th>Clicks</th>
+                  <th>Spend</th>
+                  <th>Avg CPC</th>
+                  <th>Leads</th>
+                  <th>CPL</th>
+                </tr>
+              </thead>
+              <tbody>
+                {kwWithActivity.map(kw => (
+                  <tr>
+                    <td style="font-weight:600;color:var(--color-ink);">{kw.text}</td>
+                    <td>{kw.clicks.toLocaleString()}</td>
+                    <td>{kw.spend > 0 ? fmtUSD(kw.spend) : "—"}</td>
+                    <td>{kw.avgCpc > 0 ? "$" + kw.avgCpc.toFixed(2) : "—"}</td>
+                    <td>
+                      <span style={"font-weight:700;color:" + (kw.leads > 0 ? "#166534" : "var(--color-text-muted)")}>{kw.leads > 0 ? kw.leads : "—"}</span>
+                    </td>
+                    <td>{kw.cpl > 0 ? fmtUSD(kw.cpl) : "—"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {hsLeads.length === 0 && (
+            <p style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.75rem;">Lead counts will populate as contacts come in from Google Ads.</p>
+          )}
+        </section>
+      )}
+
+      <!-- Recent Leads from Google Ads -->
+      {HUBSPOT_TOKEN && (
+        <section style="margin-bottom:3rem;">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:1rem;">
+            <h2 class="section-title" style="margin-bottom:0;">Leads from Google Ads</h2>
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">{hsLeads.length} total</span>
+          </div>
+          {hsLeads.length === 0 ? (
+            <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:2.5rem;text-align:center;color:var(--color-text-muted);">
+              <p style="font-size:0.975rem;font-weight:600;margin:0 0 0.4rem;">No Google Ads leads yet</p>
+              <p style="font-size:0.85rem;margin:0;">Leads will appear here once contacts submit the form after clicking an ad. UTM data is captured automatically.</p>
+            </div>
+          ) : (
+            <div style="overflow-x:auto;">
+              <table class="attr-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Keyword</th>
+                    <th>Campaign</th>
+                    <th>GCLID</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {hsLeads.map(lead => (
+                    <tr>
+                      <td style="font-weight:600;color:var(--color-ink);">{lead.name}</td>
+                      <td style="white-space:nowrap;">{lead.createdAt ? new Date(lead.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "—"}</td>
+                      <td>{lead.utmTerm || <span style="color:#d1d5db;">—</span>}</td>
+                      <td>{lead.utmCampaign || <span style="color:#d1d5db;">—</span>}</td>
+                      <td>{lead.hasGclid ? <span style="color:#166534;font-weight:700;">✓</span> : <span style="color:#d1d5db;">—</span>}</td>
+                      <td>
+                        {lead.status ? (
+                          <span style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:0.15rem 0.45rem;border-radius:4px;background:#f3f4f6;color:var(--color-text-muted);">{lead.status}</span>
+                        ) : "—"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </section>
       )}
 
@@ -548,7 +821,16 @@ const currentYear = new Date().getFullYear();
   #toast { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--color-rich-black); color: #fff; padding: 0.75rem 1.25rem; border-radius: 10px; font-size: 0.875rem; font-weight: 600; box-shadow: 0 4px 20px rgba(0,0,0,0.25); opacity: 0; transform: translateY(6px); pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 9999; }
   #toast.show { opacity: 1; transform: translateY(0); }
 
-  @media (max-width: 1024px) { .campaign-grid { grid-template-columns: repeat(2, 1fr); } }
+  .funnel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+
+  .attr-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #e5e7eb; font-size: 0.875rem; }
+  .attr-table thead { background: #f9fafb; }
+  .attr-table th { padding: 0.75rem 1rem; text-align: left; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); border-bottom: 1px solid #e5e7eb; white-space: nowrap; }
+  .attr-table td { padding: 0.75rem 1rem; border-bottom: 1px solid #f3f4f6; color: var(--color-body); vertical-align: middle; }
+  .attr-table tbody tr:last-child td { border-bottom: none; }
+  .attr-table tbody tr:hover { background: #fafafa; }
+
+  @media (max-width: 1024px) { .campaign-grid { grid-template-columns: repeat(2, 1fr); } .funnel-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 640px) {
     .campaign-grid { grid-template-columns: 1fr; }
     .summary-bar { grid-template-columns: repeat(2, 1fr); }
