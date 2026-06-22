@@ -14,22 +14,22 @@ const currentYear = new Date().getFullYear();
 
 const REVIEWS = [
   {
-    name: "Barbara M.",
-    location: "Massapequa, NY",
+    name: "Christina G.",
+    location: "",
     stars: 5,
-    text: "Julian was incredibly patient and thorough throughout the entire process. He explained everything in plain English and never made me feel rushed. I walked away with a reverse mortgage that eliminated my monthly payment and gave me real financial breathing room.",
+    text: "Thank you Advisor's for helping my 92 year old grandma stay in her home without worry. You were all wonderful from beginning to end. Such a great team that no matter who I spoke to I knew we were in great hands.",
   },
   {
-    name: "Robert & Carol T.",
-    location: "Wantagh, NY",
+    name: "Kris B.",
+    location: "",
     stars: 5,
-    text: "We were skeptical at first — we'd heard so many mixed things about reverse mortgages. Julian took the time to walk us through every detail, answered every question, and made sure we fully understood before we signed anything. Best decision we made.",
+    text: "I have worked with Julian for many years, and his team has always gone the extra mile to service clients on their reverse mortgages. Julian is extremely responsive and always a pleasure to work with!",
   },
   {
-    name: "Dorothy F.",
-    location: "Garden City, NY",
+    name: "Helene R.",
+    location: "",
     stars: 5,
-    text: "I've been in my home for 40 years and wasn't going anywhere. The reverse mortgage allowed me to access the equity I'd built without selling or taking on a new monthly obligation. Julian made the process simple and stress-free.",
+    text: "It was nice meeting with my agent, Julian. He explained all the benefits in my reverse mortgage. In this day and age I really needed to fix up my house. Without the reverse mortgage I found it difficult. My credit card debt was high. I'm very happy now. This was a great experience for me to know all my options. Thank you so much for helping me…",
   },
   {
     name: "Frank & Helen S.",
@@ -137,10 +137,10 @@ const REVIEWS = [
 
             <!-- Featured quote -->
             <blockquote class="mt-6 bg-white/10 rounded-2xl p-5">
-              <p class="text-sm text-white/85 italic leading-relaxed">"Julian was incredibly patient and thorough throughout the entire process. He explained everything in plain English and never made me feel rushed. I walked away with real financial breathing room."</p>
+              <p class="text-sm text-white/85 italic leading-relaxed">"Thank you for helping my 92 year old grandma stay in her home without worry. Such a great team — no matter who I spoke to, I knew we were in great hands."</p>
               <cite class="mt-3 flex items-center gap-2 not-italic">
                 <span class="w-5 h-px bg-white/30"></span>
-                <span class="text-xs text-white/50">Barbara M., Massapequa, NY</span>
+                <span class="text-xs text-white/50">Christina G.</span>
               </cite>
             </blockquote>
 
@@ -201,7 +201,7 @@ const REVIEWS = [
               <!-- Attribution -->
               <div>
                 <p class="font-semibold text-sm text-[var(--color-ink)]">{name}</p>
-                <p class="text-xs text-[var(--color-text-muted)]">{location}</p>
+                {location && <p class="text-xs text-[var(--color-text-muted)]">{location}</p>}
               </div>
             </article>
           ))}
