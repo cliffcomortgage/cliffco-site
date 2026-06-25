@@ -9,12 +9,6 @@ export type LeaderRole = {
 
 export const LEADERSHIP_TEAM: readonly LeaderRole[] = [
   {
-    slug: "jason-levy",
-    name: "Jason Levy",
-    title: "Chief Sales Officer",
-    hasPhoto: true,
-  },
-  {
     slug: "dan-humphrey",
     name: "Dan Humphrey",
     title: "Chief Financial Officer",
