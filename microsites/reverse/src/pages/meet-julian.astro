@@ -7,6 +7,7 @@
 
 import "../styles/global.css";
 import { COMPANY } from "../data/company";
+import PostHog from "../components/posthog.astro";
 
 const phone     = "(516) 884-6696";
 const phoneE164 = "+15168846696";
@@ -23,6 +24,7 @@ const yearsServing = currentYear - COMPANY.founded;
   <title>Meet Julian Giaquinto — Long Island Reverse Mortgage Specialist | Cliffco</title>
   <meta name="description" content="Julian Giaquinto is a licensed Long Island reverse mortgage specialist with 20+ years of experience. Branch Manager at Cliffco Mortgage Bankers. NMLS #56473." />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  <PostHog />
   <script src="https://js.hsforms.net/forms/embed/21616430.js" defer></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18193082925"></script>

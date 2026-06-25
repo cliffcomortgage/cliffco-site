@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
+import PostHog from "../components/posthog.astro";
 ---
 
 <!doctype html>
@@ -12,6 +13,7 @@ import SpeedInsights from "@vercel/speed-insights/astro";
     <title>Minnesota Mortgage Lender | Fast Home Loan Approval | Cliffco</title>
     <meta name="description" content="Cliffco Mortgage Bankers offers fast mortgage approval for Minnesota homebuyers. Work directly with Mitchell Patterson, your local MN loan officer. No credit pull. No commitment. Get started in 5 minutes." />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <PostHog />
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/21616430.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -293,5 +295,48 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 
     <Analytics />
     <SpeedInsights />
+
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Track "Get Approved" CTA clicks
+        document.querySelectorAll('a[href*="cliffco-portal-prod.vercel.app"]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            var section = el.closest('section, header') || document.body;
+            var sectionLabel = section.querySelector('h1, h2, h3')
+              ? section.querySelector('h1, h2, h3').textContent.trim().slice(0, 60)
+              : 'unknown';
+            window.posthog?.capture('get_approved_clicked', { section: sectionLabel });
+          });
+        });
+
+        // Track phone clicks
+        document.querySelectorAll('a[href^="tel:"]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            window.posthog?.capture('phone_clicked', { phone_number: el.getAttribute('href').replace('tel:', '') });
+          });
+        });
+
+        // Track email clicks
+        document.querySelectorAll('a[href^="mailto:"]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            window.posthog?.capture('email_clicked', { email: el.getAttribute('href').replace('mailto:', '') });
+          });
+        });
+
+        // Track NMLS verify clicks
+        document.querySelectorAll('a[href*="nmlsconsumeraccess.org/EntityDetails"]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            window.posthog?.capture('nmls_verify_clicked');
+          });
+        });
+
+        // Track "Visit Full Site" footer link
+        document.querySelectorAll('a[href="https://cliffcomortgage.com/"]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            window.posthog?.capture('full_site_visited');
+          });
+        });
+      });
+    </script>
   </body>
 </html>

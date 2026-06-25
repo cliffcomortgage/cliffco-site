@@ -37,3 +37,4 @@ brand/fonts/
 # Claude Code local settings (personal permissions, not shared)
 .claude/
 Guidelines/SG Capital/Flex Connect Tutorial.mp4
+.vercel

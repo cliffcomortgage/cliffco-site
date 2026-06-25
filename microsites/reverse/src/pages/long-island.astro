@@ -9,6 +9,7 @@
 
 import "../styles/global.css";
 import { COMPANY } from "../data/company";
+import PostHog from "../components/posthog.astro";
 
 const phone     = "(516) 884-6696";
 const phoneE164 = "+15168846696";
@@ -27,6 +28,7 @@ const yearsServing = currentYear - founded;
   <title>Reverse Mortgage Long Island | Cliffco Mortgage Bankers</title>
   <meta name="description" content="Reverse mortgage specialist serving Nassau and Suffolk County, Long Island. HUD-approved HECM lender. No monthly payments. Free consultation — no obligation." />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  <PostHog />
   <script src="https://js.hsforms.net/forms/embed/21616430.js" defer></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18193082925"></script>

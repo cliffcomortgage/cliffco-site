@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Meta from "../components/seo/Meta.astro";
 import JsonLd from "../components/seo/JsonLd.astro";
+import PostHog from "../components/posthog.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 import { organizationSchema, websiteSchema, articleSchema } from "../lib/schema";
@@ -89,6 +90,7 @@ const allSchema = schema
     />
 
     <JsonLd data={allSchema} />
+    <PostHog />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -17,6 +17,8 @@
     "@sendgrid/mail": "^8.1.6",
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^6.1.9",
+    "posthog-js": "^1.393.5",
+    "posthog-node": "^5.38.5",
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {

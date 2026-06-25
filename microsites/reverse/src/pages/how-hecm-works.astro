@@ -7,6 +7,7 @@
 
 import "../styles/global.css";
 import { COMPANY } from "../data/company";
+import PostHog from "../components/posthog.astro";
 
 const phone     = "(516) 884-6696";
 const phoneE164 = "+15168846696";
@@ -22,6 +23,7 @@ const currentYear = new Date().getFullYear();
   <title>How a Reverse Mortgage Works | Cliffco Mortgage Bankers</title>
   <meta name="description" content="Plain-English guide to how a HECM reverse mortgage works — eligibility, disbursement options, and what to expect. Long Island specialist Julian Giaquinto." />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  <PostHog />
   <script src="https://js.hsforms.net/forms/embed/21616430.js" defer></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18193082925"></script>
