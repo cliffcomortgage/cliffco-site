@@ -170,6 +170,13 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
     blog: [
       {
+        title: "Complex Income Mortgage Solutions: How Entrepreneurs, Investors, and High-Earning Borrowers Can Get Approved",
+        slug: "complex-income-mortgage-solutions",
+        description: "Not every qualified borrower has a simple paycheck. Here's how Cliffco and The Fallarino Group help complex income borrowers find the right mortgage structure.",
+        image: "/images/DFallarino%20Blog/Complex%20Income%20Blog.jpg",
+        section: "500:1 Blog",
+      },
+      {
         title: "Alt-A vs. A-Paper Loans: Which One Fits the Way You Earn?",
         slug: "alt-a-vs-conventional-mortgage",
         description: "The core distinction between these loan types hinges on income documentation. Here's how to choose the right structure based on the way you actually earn.",
