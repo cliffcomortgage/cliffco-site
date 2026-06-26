@@ -446,9 +446,11 @@ const avgRoas        = totalSpend > 0 ? totalConvValue / totalSpend : 0;
 const totalRecover   = rawRecs.reduce((s, r) => s + r.dollarsRecoverable, 0);
 const totalLeads     = hsLeads.length + fbLeads.length + igLeads.length;
 
-// Pipeline funnel (Pylon only — the active reverse mortgage pipeline)
+// Pipeline funnels (campaign contacts only)
 const FUNNEL_STAGES = ["Prospect", "Pre-Approved", "Processing", "Closed Won"];
-const pylonDeals = hsDeals.filter(d => d.pipeline === "Pylon" && (campaignDealIds.size === 0 || campaignDealIds.has(d.id)));
+const campaignFilter = (d: HsDeal) => campaignDealIds.size === 0 || campaignDealIds.has(d.id);
+
+const pylonDeals = hsDeals.filter(d => d.pipeline === "Pylon" && campaignFilter(d));
 const funnelRows = FUNNEL_STAGES.map(label => ({
   label,
   count: pylonDeals.filter(d => d.stage === label).length,
@@ -456,6 +458,15 @@ const funnelRows = FUNNEL_STAGES.map(label => ({
   isWon: label === "Closed Won",
 }));
 const closedWonRevenue = pylonDeals.filter(d => d.stage === "Closed Won").reduce((s, d) => s + d.amount, 0);
+
+const encompassDeals = hsDeals.filter(d => d.pipeline === "Encompass" && campaignFilter(d));
+const encompassFunnelRows = FUNNEL_STAGES.map(label => ({
+  label,
+  count: encompassDeals.filter(d => d.stage === label).length,
+  value: encompassDeals.filter(d => d.stage === label).reduce((s, d) => s + d.amount, 0),
+  isWon: label === "Closed Won",
+}));
+const closedWonRevenueEncompass = encompassDeals.filter(d => d.stage === "Closed Won").reduce((s, d) => s + d.amount, 0);
 const kwWithActivity = kwRows.filter(k => k.clicks > 0 || k.leads > 0);
 
 const updatedAt = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
@@ -678,6 +689,29 @@ const currentYear = new Date().getFullYear();
           {closedWonRevenue > 0 && (
             <p style="text-align:right;font-size:0.8rem;color:var(--color-text-muted);margin-top:0.75rem;">
               Total closed revenue: <strong style="color:#166534;">{fmtUSD(closedWonRevenue)}</strong>
+            </p>
+          )}
+        </section>
+      )}
+
+      <!-- Pipeline Funnel · Encompass -->
+      {encompassDeals.length > 0 && (
+        <section style="margin-bottom:3rem;">
+          <h2 class="section-title">Deal Pipeline · Encompass</h2>
+          <div class="funnel-grid">
+            {encompassFunnelRows.map(row => (
+              <div class="card" style={"padding:1.25rem;text-align:center;" + (row.isWon ? "border-top:3px solid #22c55e;" : "border-top:3px solid #e5e7eb;")}>
+                <div style={"font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;margin-bottom:0.5rem;color:" + (row.isWon ? "#166534" : "var(--color-text-muted)")}>{row.label}</div>
+                <div style={"font-size:2.25rem;font-weight:800;line-height:1;color:" + (row.isWon ? "#166534" : "var(--color-ink)")}>{row.count}</div>
+                {row.value > 0 && (
+                  <div style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.35rem;">{fmtUSD(row.value)}</div>
+                )}
+              </div>
+            ))}
+          </div>
+          {closedWonRevenueEncompass > 0 && (
+            <p style="text-align:right;font-size:0.8rem;color:var(--color-text-muted);margin-top:0.75rem;">
+              Total closed revenue: <strong style="color:#166534;">{fmtUSD(closedWonRevenueEncompass)}</strong>
             </p>
           )}
         </section>
