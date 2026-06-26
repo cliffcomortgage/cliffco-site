@@ -1,0 +1,536 @@
+---
+/**
+ * /long-island-v2/
+ *
+ * A/B test variant B — shorter HubSpot form (form ID: 0ae209ae-6705-4808-b1ec-f35c970bd5af)
+ * Identical to /long-island/ except for the form. Used in Google Ads Campaign Experiment.
+ * Minimal header/footer (no nav exit points). noindex.
+ */
+
+import "../styles/global.css";
+import { COMPANY } from "../data/company";
+import PostHog from "../components/posthog.astro";
+
+const phone     = "(516) 884-6696";
+const phoneE164 = "+15168846696";
+const FORM_DEST = "websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com";
+const founded   = COMPANY.founded;
+const currentYear = new Date().getFullYear();
+const yearsServing = currentYear - founded;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Reverse Mortgage Long Island | Cliffco Mortgage Bankers</title>
+  <meta name="description" content="Reverse mortgage specialist serving Nassau and Suffolk County, Long Island. HUD-approved HECM lender. No monthly payments. Free consultation — no obligation." />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <PostHog />
+  <script src="https://js.hsforms.net/forms/embed/21616430.js" defer></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18193082925"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18193082925');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=optional"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=optional" />
+  </noscript>
+</head>
+
+<body class="min-h-screen flex flex-col bg-white" style="padding-bottom: env(safe-area-inset-bottom, 0px);">
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- ── HEADER: logo + call only, no nav ─────────────────────────────── -->
+  <header class="border-b border-[var(--color-mist-gray)] bg-white sticky top-0 z-40 shadow-sm">
+    <div class="container-wide flex items-center justify-between gap-6 py-4">
+      <a href="/long-island/" aria-label="Cliffco Mortgage Bankers home">
+        <img
+          src="/logo-black.png"
+          alt="Cliffco Mortgage Bankers"
+          class="h-[32px] w-auto"
+          loading="eager"
+        />
+      </a>
+      <a
+        href={`tel:${phoneE164}`}
+        class="btn btn-primary flex items-center gap-2 text-sm"
+        aria-label={`Call Cliffco at ${phone}`}
+      >
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+        </svg>
+        {phone}
+      </a>
+    </div>
+  </header>
+
+  <main id="main" class="flex-1">
+
+    <!-- ── HERO ─────────────────────────────────────────────────────────── -->
+    <section class="accent-gradient relative overflow-hidden">
+      <div class="container-wide py-14 lg:py-20 relative z-10 grid lg:grid-cols-[1fr_420px] gap-12 items-center">
+
+        <!-- Left: copy -->
+        <div>
+          <p class="eyebrow !text-[var(--color-ice-blue)]">Nassau & Suffolk County · HECM Specialist</p>
+          <h1
+            class="mt-4 text-white"
+            style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);"
+          >
+            Reverse Mortgage<br />
+            <span class="text-[var(--color-ice-blue)]">Long Island.</span>
+          </h1>
+          <p class="lead mt-5 text-white/90 max-w-xl">
+            Stay in the home you love. Eliminate your monthly mortgage payment. Access the equity you've built — without selling.
+          </p>
+
+          <!-- Trust badges -->
+          <div class="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
+            {[
+              "No Monthly Payments",
+              "Keep Your Home Title",
+              "HUD-Approved Lender",
+              "FHA-Insured Program",
+              `Serving LI Since ${founded}`,
+            ].map((badge) => (
+              <span class="inline-flex items-center gap-2 text-sm text-white/90 bg-white/10 rounded-full px-3 py-1.5">
+                <span class="w-4 h-4 rounded-full bg-[var(--color-ice-blue)] flex items-center justify-center text-[var(--color-rich-black)] font-bold shrink-0" style="font-size:9px;">✓</span>
+                {badge}
+              </span>
+            ))}
+          </div>
+
+          <p class="mt-6 text-white/60 text-sm">No pressure. No credit pull. Just honest answers.</p>
+        </div>
+
+        <!-- Right: form card floating in hero -->
+        <div
+          class="bg-white rounded-2xl shadow-2xl p-7 lg:p-8"
+          style="box-shadow: 0 24px 64px rgba(0,0,0,0.35);"
+        >
+          <p class="eyebrow">Free consultation · No obligation</p>
+          <h2 class="mt-2 font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">
+            See if you qualify
+          </h2>
+          <p class="mt-1 text-xs text-[var(--color-text-muted)]">A specialist will call within one business day.</p>
+
+          <div class="mt-5">
+            <div
+              class="hs-form-frame"
+              data-region="na1"
+              data-form-id="0ae209ae-6705-4808-b1ec-f35c970bd5af"
+              data-portal-id="21616430"
+            ></div>
+          </div>
+
+          <div class="mt-4 text-center">
+            <a
+              href={`tel:${phoneE164}`}
+              class="text-sm font-semibold text-[var(--color-accent)] no-underline hover:underline"
+            >
+              Or call {phone}
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── TRUST STRIP ─────────────────────────────────────────────────── -->
+    <section class="bg-white border-b border-[var(--color-mist-gray)]">
+      <div class="container-wide py-10 grid sm:grid-cols-4 gap-8 text-center">
+        {[
+          { stat: `${yearsServing}+`, label: "Years Serving New York" },
+          { stat: "HECM",            label: "HUD-Approved Program" },
+          { stat: "FHA",             label: "Federally Insured Loans" },
+          { stat: "LI",              label: "Based on Long Island" },
+        ].map((item) => (
+          <div>
+            <p class="text-2xl font-bold text-[var(--color-accent)]" style="font-family: var(--font-logo);">{item.stat}</p>
+            <p class="mt-1 text-xs text-[var(--color-text-muted)]">{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ── BENEFITS ────────────────────────────────────────────────────── -->
+    <section class="section bg-[var(--color-mist-gray)]">
+      <div class="container-wide">
+        <p class="eyebrow">For homeowners 62 and older</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">What a reverse mortgage can do for you.</h2>
+        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            {
+              icon: "💰",
+              title: "No monthly mortgage payments",
+              body: "You never make a monthly payment as long as the home is your primary residence. The balance settles when you sell or permanently leave.",
+            },
+            {
+              icon: "🏠",
+              title: "Keep full ownership",
+              body: "You remain on title. Cliffco holds a lien — not the deed. Your home stays in your name, just like a traditional mortgage.",
+            },
+            {
+              icon: "💵",
+              title: "Access equity, tax-free",
+              body: "Proceeds from a reverse mortgage are loan funds, not income. They generally aren't subject to income tax.",
+            },
+            {
+              icon: "📋",
+              title: "Flexible disbursement",
+              body: "Choose a lump sum, a line of credit, monthly income payments, or any combination. You decide how to receive your equity.",
+            },
+            {
+              icon: "🛡️",
+              title: "FHA insurance protection",
+              body: "HECM loans are federally insured by the FHA. Heirs will never owe more than the home's appraised value.",
+            },
+            {
+              icon: "📞",
+              title: "Local Long Island specialists",
+              body: "Cliffco has been based in Uniondale, NY since 1989. Speak with someone who knows Nassau and Suffolk County.",
+            },
+          ].map((item) => (
+            <div class="card">
+              <span class="text-2xl" role="img" aria-hidden="true">{item.icon}</span>
+              <h3 class="mt-3 font-semibold text-[var(--color-ink)]" style="font-size: 1rem;">{item.title}</h3>
+              <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HOW IT WORKS ────────────────────────────────────────────────── -->
+    <section class="section bg-white">
+      <div class="container-wide">
+        <p class="eyebrow">Simple process</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">How it works in 3 steps.</h2>
+        <div class="mt-8 grid sm:grid-cols-3 gap-8">
+          {[
+            {
+              n: "1",
+              title: "Free consultation",
+              body: "Talk to a Cliffco HECM specialist at no cost. We explain every option, answer every question — no pressure, no sales pitch.",
+            },
+            {
+              n: "2",
+              title: "HECM counseling",
+              body: "Federal law requires a short session with a HUD-approved independent counselor. Most Long Island borrowers find it reassuring.",
+            },
+            {
+              n: "3",
+              title: "Close and access your funds",
+              body: "Choose your disbursement type. Stop making monthly mortgage payments and access the equity you've spent decades building.",
+            },
+          ].map((step) => (
+            <div class="relative card">
+              <div
+                class="w-10 h-10 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center font-bold text-lg mb-4"
+                aria-hidden="true"
+              >
+                {step.n}
+              </div>
+              <h3 class="font-semibold text-[var(--color-ink)]" style="font-size: var(--text-h3);">{step.title}</h3>
+              <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{step.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ ────────────────────────────────────────────────────────── -->
+    <section class="section bg-[var(--color-mist-gray)]">
+      <div class="container-wide max-w-3xl">
+        <p class="eyebrow">Quick answers</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Reverse mortgage questions answered.</h2>
+        <div class="mt-8 space-y-5">
+          {[
+            {
+              q: "Who qualifies for a reverse mortgage on Long Island?",
+              a: "Homeowners 62 or older who own their home outright or carry significant equity, live in it as their primary residence, and can maintain property taxes, insurance, and upkeep. Nassau and Suffolk County homeowners often qualify given Long Island's high home values.",
+            },
+            {
+              q: "Will I lose my home?",
+              a: "No. You remain the legal owner of your home. As long as it's your primary residence and you keep up with taxes, insurance, and maintenance, the lender cannot foreclose. This is one of the most common misunderstandings about reverse mortgages.",
+            },
+            {
+              q: "Do my heirs inherit any debt?",
+              a: "HECM loans are non-recourse. Your heirs will never owe more than the home's appraised value. FHA insurance covers any shortfall. They can sell the home, pay off the balance and keep it, or deed it to the lender — whichever they choose.",
+            },
+            {
+              q: "Can I get one if I still have a regular mortgage?",
+              a: "Yes. If you have sufficient equity, the reverse mortgage proceeds pay off your existing mortgage first. Eliminating that monthly payment is one of the most common reasons Long Island homeowners 62+ choose this program.",
+            },
+            {
+              q: "How much can I get?",
+              a: "The amount depends on your age, your home's appraised value, and current interest rates. Given Long Island's high property values, many borrowers access substantial equity. A Cliffco specialist can run a no-obligation estimate for your specific situation.",
+            },
+          ].map((item) => (
+            <details class="border-b border-[var(--color-border)] pb-5">
+              <summary
+                class="font-semibold text-[var(--color-ink)] cursor-pointer list-none flex items-center justify-between gap-4"
+                style="font-size: 1.0625rem;"
+              >
+                <span>{item.q}</span>
+                <span class="shrink-0 text-[var(--color-accent)] text-lg font-bold select-none" aria-hidden="true">+</span>
+              </summary>
+              <p class="mt-3 text-[var(--color-text)] leading-relaxed" style="font-size: 1rem;">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BOTTOM CTA ─────────────────────────────────────────────────── -->
+    <section class="accent-gradient">
+      <div class="container-wide py-14 text-center">
+        <h2 class="text-white" style="font-size: var(--text-h2);">
+          Serving Nassau & Suffolk County for {yearsServing}+ years.
+        </h2>
+        <p class="lead mt-4 text-white/85 max-w-2xl mx-auto">
+          No pressure. No commitment. Just honest answers from a licensed Long Island HECM specialist.
+        </p>
+        <div class="mt-8 flex justify-center gap-3 flex-wrap">
+          <a
+            href="#lp-form"
+            class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]"
+          >
+            Get a Free Quote
+          </a>
+          <a
+            href={`tel:${phoneE164}`}
+            class="btn btn-secondary !border-white !text-white"
+          >
+            {phone}
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── MINIMAL FOOTER ─────────────────────────────────────────────── -->
+  <footer style="background:var(--color-rich-black);" class="pt-8 pb-6">
+    <div class="container-wide max-w-6xl mx-auto px-6">
+
+      <!-- Logo -->
+      <div class="mb-6">
+        <img
+          src="/logo-black.png"
+          alt="Cliffco Mortgage Bankers"
+          class="h-[36px] w-auto brightness-0 invert"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Links left · copyright right -->
+      <div class="flex flex-wrap items-center justify-between gap-y-2 gap-x-6 mb-5">
+        <nav aria-label="Footer links" class="flex flex-wrap gap-x-5 gap-y-1">
+          <a href="/meet-julian/" class="text-xs text-white/60 hover:text-white underline transition-colors">Meet Julian</a>
+          <a href="/how-hecm-works/" class="text-xs text-white/60 hover:text-white underline transition-colors">How It Works</a>
+          <a href="/client-reviews/" class="text-xs text-white/60 hover:text-white underline transition-colors">Client Reviews</a>
+          <a href="https://cliffcomortgage.com/" class="text-xs text-white/60 hover:text-white underline transition-colors">Visit Full Site</a>
+          <a href="https://www.nmlsconsumeraccess.org/EntityDetails.aspx/COMPANY/65328" target="_blank" rel="noopener" class="text-xs text-white/60 hover:text-white underline transition-colors">NMLS Consumer Access</a>
+          <a href="https://cliffcomortgage.com/privacy-policy/" class="text-xs text-white/60 hover:text-white underline transition-colors">Privacy Policy</a>
+          <a href="https://cliffcomortgage.com/licensing/" class="text-xs text-white/60 hover:text-white underline transition-colors">Licensing</a>
+        </nav>
+        <p class="text-xs text-white/60">&copy; 2026 Cliffco, Inc. &middot; NMLS #65328 &middot; Equal Housing Lender</p>
+      </div>
+
+      <hr class="border-white/10 mb-5" />
+
+      <!-- Disclaimer paragraph 1 -->
+      <p class="text-[11px] leading-relaxed text-white/35 mb-4">
+        Cliffco, Inc. is not affiliated with or acting on behalf of the FHA or any government entity. Equal Housing Lender.
+        Cliffco, Inc. Corporate NMLS#65328 (www.nmlsconsumeraccess.org) 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553 (516) 408-7300.
+        AZ Mortgage Banker License 0949291; CA DFPI Financing Law License 60DBO-181882; CT Department of Banking MCL-65328;
+        Cliffco, Inc. doing business in Florida as Swish Capital, Inc., is a New York corporation authorized to transact business in the State of Florida;
+        Licensed Mortgage Banker by the NYS Department of Financial Services LMBC109800; PA Department of Banking &amp; Securities 45275;
+        SC State Board of Financial Institutions MLS-65328; TX Department of Savings &amp; Mortgage Lending; VA Bureau of Financial Institutions MC-7742.
+        This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval.
+        Not all loan products are available in all states. Rates may not be available at time of application.
+        Information and/or data are subject to change without notice.
+      </p>
+
+      <!-- Disclaimer paragraph 2 -->
+      <p class="text-[11px] leading-relaxed text-white/35">
+        Minimum borrower age is 62 years old and must occupy property. You retain title to the subject property until you sell or transfer the property,
+        and you are responsible for paying taxes, insurance, and maintenance of the property. Failing to pay these amounts may cause the reverse mortgage
+        loan to become due immediately and may subject the property to a tax lien. Reverse mortgage borrowers are required to obtain an eligibility
+        certificate by receiving counseling sessions with a HUD-approved agency. This is not an offer to enter into an agreement. Not all customers will
+        qualify. Information, rates, and programs are subject to change without notice. All products are subject to credit and property approval.
+        Other restrictions may apply. Cliffco, Inc. does not provide financial planning or tax advice.
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- Spacer so footer scrolls above sticky call bar on mobile -->
+  <div style="height: 90px; background:var(--color-rich-black);" aria-hidden="true"></div>
+
+  <!-- ── MOBILE STICKY CALL BAR (hides while hero is in view) ───────── -->
+  <div
+    id="lp-call-bar"
+    class="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-[var(--color-rich-black)] border-t border-[var(--color-accent)]/40 px-4 py-3"
+    aria-label="Call Cliffco"
+    style="display:none;"
+  >
+    <a
+      href={`tel:${phoneE164}`}
+      class="btn btn-primary w-full flex items-center justify-center gap-3 !bg-[var(--color-accent)]"
+    >
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+      </svg>
+      Call {phone}
+    </a>
+  </div>
+
+  <script>
+    // ── 1. UTM + gclid capture ──────────────────────────────────────────
+    // Maps URL param names → HubSpot hidden field names.
+    // gclid uses HubSpot's native hs_google_click_id property.
+    // Persists to sessionStorage so values survive #anchor navigation.
+    // Uses MutationObserver to wait for the async HubSpot form render.
+    (function () {
+      const PARAM_MAP: Record<string, string> = {
+        gclid:        'hs_google_click_id',
+        utm_source:   'utm_source',
+        utm_medium:   'utm_medium',
+        utm_campaign: 'utm_campaign',
+        utm_content:  'utm_content',
+        utm_term:     'utm_term',
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      Object.keys(PARAM_MAP).forEach(key => {
+        const val = params.get(key);
+        if (val) sessionStorage.setItem('cliffco_lp_' + key, val);
+      });
+
+      function fillForm(formEl: Element) {
+        Object.entries(PARAM_MAP).forEach(([urlParam, fieldName]) => {
+          const val = sessionStorage.getItem('cliffco_lp_' + urlParam);
+          if (!val) return;
+          const input = formEl.querySelector(`[name="${fieldName}"]`) as HTMLInputElement | null;
+          if (input) input.value = val;
+        });
+      }
+
+      // HubSpot renders the form async inside .hs-form-frame — wait for it.
+      const frame = document.querySelector('.hs-form-frame');
+      if (!frame) return;
+      const observer = new MutationObserver(() => {
+        const formEl = frame.querySelector('form');
+        if (formEl) { observer.disconnect(); fillForm(formEl); }
+      });
+      observer.observe(frame, { childList: true, subtree: true });
+    })();
+
+    // ── 2. Mobile sticky call bar ───────────────────────────────────────
+    // Shows once the hero form scrolls out of view; hides when back in view.
+    (function () {
+      const bar  = document.getElementById('lp-call-bar') as HTMLElement | null;
+      const hero = document.querySelector<HTMLElement>('main section:first-of-type');
+      if (!bar || !hero) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          bar.style.display = entry.isIntersecting ? 'none' : 'block';
+        },
+        { threshold: 0.05 }
+      );
+      observer.observe(hero);
+    })();
+
+  </script>
+
+  <!-- Custom cursor dot (matches Layout.astro behaviour) -->
+  <div id="cf-cursor" aria-hidden="true"></div>
+
+  <script>
+    (() => {
+      const dot = document.getElementById('cf-cursor');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isTouch = window.matchMedia('(pointer: coarse)').matches;
+      if (!dot || prefersReduced || isTouch) return;
+
+      const dotEl = dot as HTMLElement;
+      let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+      let cx = mx, cy = my, scale = 1, targetScale = 1;
+      const LERP_POS = 0.65, LERP_SCALE = 0.35;
+      const COLORS = {
+        default: '#6633cc', link: '#9966ee', button: '#4a1fa0',
+        card: '#bde8f1', dark: '#ffffff',
+      };
+      let targetColor = COLORS.default, lastColor = COLORS.default;
+
+      document.querySelectorAll('section, footer').forEach(el => {
+        const bg = getComputedStyle(el).backgroundColor;
+        if (bg === 'rgb(13, 13, 13)' || bg === 'rgb(26, 0, 64)')
+          (el as HTMLElement).dataset.cursorDark = '';
+      });
+      document.querySelectorAll('.accent-gradient').forEach(el => {
+        (el as HTMLElement).dataset.cursorDark = '';
+      });
+
+      function getContext(el: Element | null): keyof typeof COLORS {
+        if (!el) return 'default';
+        if (el.closest('[data-cursor-dark]')) return 'dark';
+        if (el.closest('.btn, button, [role="button"], input[type="submit"]')) return 'button';
+        if (el.closest('a')) return 'link';
+        if (el.closest('.card, article, figure, picture')) return 'card';
+        return 'default';
+      }
+
+      const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+      document.addEventListener('mousemove', (e) => {
+        mx = e.clientX; my = e.clientY;
+        const hit = document.elementFromPoint(mx, my);
+        const ctx = getContext(hit);
+        targetColor = COLORS[ctx];
+        targetScale = ctx === 'default' ? 1 : 1.6;
+      });
+      document.addEventListener('mouseleave', () => { dotEl.style.opacity = '0'; });
+      document.addEventListener('mouseenter', () => { dotEl.style.opacity = '1'; });
+
+      function tick() {
+        cx = lerp(cx, mx, LERP_POS);
+        cy = lerp(cy, my, LERP_POS);
+        scale = lerp(scale, targetScale, LERP_SCALE);
+        dotEl.style.transform = `translate(${cx}px, ${cy}px) scale(${scale})`;
+        if (lastColor !== targetColor) { dotEl.style.background = targetColor; lastColor = targetColor; }
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+  </script>
+
+  <script>
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmitted') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18193082925/MuoBCMT2yMEcEK3UkeND',
+          'value': 16452.0,
+          'currency': 'USD'
+        });
+      }
+    });
+  </script>
+</body>
+</html>
