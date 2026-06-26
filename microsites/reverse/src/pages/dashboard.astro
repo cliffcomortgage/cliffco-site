@@ -50,6 +50,8 @@ let rawCampaigns: Campaign[] = [];
 let rawRecs: Rec[] = [];
 let kwRows: KwRow[] = [];
 let hsLeads: HsLead[] = [];
+let fbLeads: HsLead[] = [];
+let igLeads: HsLead[] = [];
 let hsDeals: HsDeal[] = [];
 let fetchError: string | null = null;
 let hsError: string | null = null;
@@ -268,6 +270,58 @@ if (HUBSPOT_TOKEN) {
         utmTerm: p.utm_term ?? "",
         utmCampaign: p.utm_campaign ?? "",
         hasGclid: !!(p.hs_google_click_id),
+        status: p.hs_lead_status ?? "",
+      };
+    });
+
+    // Facebook leads
+    const fbLeadsResp = await fetch("https://api.hubapi.com/crm/v3/objects/contacts/search", {
+      method: "POST", headers: hh,
+      body: JSON.stringify({
+        filterGroups: [
+          { filters: [{ propertyName: "utm_source", operator: "EQ", value: "facebook" }] },
+        ],
+        properties: ["firstname", "lastname", "email", "createdate", "utm_campaign", "utm_medium", "hs_lead_status"],
+        sorts: [{ propertyName: "createdate", direction: "DESCENDING" }],
+        limit: 50,
+      }),
+    });
+    const fbLeadsData = await fbLeadsResp.json() as any;
+    fbLeads = (fbLeadsData.results ?? []).map((c: any): HsLead => {
+      const p = c.properties;
+      const name = ((p.firstname ?? "") + " " + (p.lastname ?? "")).trim() || p.email || "Unknown";
+      return {
+        id: c.id, name, email: p.email ?? "",
+        createdAt: p.createdate ?? "",
+        utmTerm: p.utm_medium ?? "",
+        utmCampaign: p.utm_campaign ?? "",
+        hasGclid: false,
+        status: p.hs_lead_status ?? "",
+      };
+    });
+
+    // Instagram leads
+    const igLeadsResp = await fetch("https://api.hubapi.com/crm/v3/objects/contacts/search", {
+      method: "POST", headers: hh,
+      body: JSON.stringify({
+        filterGroups: [
+          { filters: [{ propertyName: "utm_source", operator: "EQ", value: "instagram" }] },
+        ],
+        properties: ["firstname", "lastname", "email", "createdate", "utm_campaign", "utm_medium", "hs_lead_status"],
+        sorts: [{ propertyName: "createdate", direction: "DESCENDING" }],
+        limit: 50,
+      }),
+    });
+    const igLeadsData = await igLeadsResp.json() as any;
+    igLeads = (igLeadsData.results ?? []).map((c: any): HsLead => {
+      const p = c.properties;
+      const name = ((p.firstname ?? "") + " " + (p.lastname ?? "")).trim() || p.email || "Unknown";
+      return {
+        id: c.id, name, email: p.email ?? "",
+        createdAt: p.createdate ?? "",
+        utmTerm: p.utm_medium ?? "",
+        utmCampaign: p.utm_campaign ?? "",
+        hasGclid: false,
         status: p.hs_lead_status ?? "",
       };
     });
@@ -679,6 +733,96 @@ const currentYear = new Date().getFullYear();
                       <td>{lead.utmTerm || <span style="color:#d1d5db;">—</span>}</td>
                       <td>{lead.utmCampaign || <span style="color:#d1d5db;">—</span>}</td>
                       <td>{lead.hasGclid ? <span style="color:#166534;font-weight:700;">✓</span> : <span style="color:#d1d5db;">—</span>}</td>
+                      <td>
+                        {lead.status ? (
+                          <span style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:0.15rem 0.45rem;border-radius:4px;background:#f3f4f6;color:var(--color-text-muted);">{lead.status}</span>
+                        ) : "—"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
+      )}
+
+      <!-- Recent Leads from Facebook -->
+      {HUBSPOT_TOKEN && (
+        <section style="margin-bottom:3rem;">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:1rem;">
+            <h2 class="section-title" style="margin-bottom:0;">Leads from Facebook</h2>
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">{fbLeads.length} total</span>
+          </div>
+          {fbLeads.length === 0 ? (
+            <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:2.5rem;text-align:center;color:var(--color-text-muted);">
+              <p style="font-size:0.975rem;font-weight:600;margin:0 0 0.4rem;">No Facebook leads yet</p>
+              <p style="font-size:0.85rem;margin:0;">Leads will appear here once contacts submit the form with utm_source=facebook.</p>
+            </div>
+          ) : (
+            <div style="overflow-x:auto;">
+              <table class="attr-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Medium</th>
+                    <th>Campaign</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {fbLeads.map(lead => (
+                    <tr>
+                      <td style="font-weight:600;color:var(--color-ink);">{lead.name}</td>
+                      <td style="white-space:nowrap;">{lead.createdAt ? new Date(lead.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "—"}</td>
+                      <td>{lead.utmTerm || <span style="color:#d1d5db;">—</span>}</td>
+                      <td>{lead.utmCampaign || <span style="color:#d1d5db;">—</span>}</td>
+                      <td>
+                        {lead.status ? (
+                          <span style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:0.15rem 0.45rem;border-radius:4px;background:#f3f4f6;color:var(--color-text-muted);">{lead.status}</span>
+                        ) : "—"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
+      )}
+
+      <!-- Recent Leads from Instagram -->
+      {HUBSPOT_TOKEN && (
+        <section style="margin-bottom:3rem;">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:1rem;">
+            <h2 class="section-title" style="margin-bottom:0;">Leads from Instagram</h2>
+            <span style="font-size:0.8rem;color:var(--color-text-muted);">{igLeads.length} total</span>
+          </div>
+          {igLeads.length === 0 ? (
+            <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:2.5rem;text-align:center;color:var(--color-text-muted);">
+              <p style="font-size:0.975rem;font-weight:600;margin:0 0 0.4rem;">No Instagram leads yet</p>
+              <p style="font-size:0.85rem;margin:0;">Leads will appear here once contacts submit the form with utm_source=instagram.</p>
+            </div>
+          ) : (
+            <div style="overflow-x:auto;">
+              <table class="attr-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Medium</th>
+                    <th>Campaign</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {igLeads.map(lead => (
+                    <tr>
+                      <td style="font-weight:600;color:var(--color-ink);">{lead.name}</td>
+                      <td style="white-space:nowrap;">{lead.createdAt ? new Date(lead.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "—"}</td>
+                      <td>{lead.utmTerm || <span style="color:#d1d5db;">—</span>}</td>
+                      <td>{lead.utmCampaign || <span style="color:#d1d5db;">—</span>}</td>
                       <td>
                         {lead.status ? (
                           <span style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:0.15rem 0.45rem;border-radius:4px;background:#f3f4f6;color:var(--color-text-muted);">{lead.status}</span>
