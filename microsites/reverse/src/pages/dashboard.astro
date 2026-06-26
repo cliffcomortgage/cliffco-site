@@ -53,6 +53,7 @@ let hsLeads: HsLead[] = [];
 let fbLeads: HsLead[] = [];
 let igLeads: HsLead[] = [];
 let hsDeals: HsDeal[] = [];
+let campaignDealIds = new Set<string>();
 let fetchError: string | null = null;
 let hsError: string | null = null;
 const hasCredentials = !!(DEV_TOKEN && CLIENT_ID && CLIENT_SECRET && REFRESH_TOKEN);
@@ -348,6 +349,21 @@ if (HUBSPOT_TOKEN) {
       };
     });
 
+    // Find deals associated with campaign contacts (Google + Facebook + Instagram)
+    const allContactIds = [...hsLeads, ...fbLeads, ...igLeads].map(l => l.id);
+    if (allContactIds.length > 0) {
+      const assocResp = await fetch("https://api.hubapi.com/crm/v4/associations/contacts/deals/batch/read", {
+        method: "POST", headers: hh,
+        body: JSON.stringify({ inputs: allContactIds.map(id => ({ id })) }),
+      });
+      const assocData = await assocResp.json() as any;
+      for (const result of (assocData.results ?? [])) {
+        for (const assoc of (result.to ?? [])) {
+          campaignDealIds.add(String(assoc.toObjectId));
+        }
+      }
+    }
+
     // Enrich keyword rows with HubSpot lead counts
     const leadsByTerm = new Map<string, number>();
     hsLeads.forEach(l => {
@@ -432,7 +448,7 @@ const totalLeads     = hsLeads.length + fbLeads.length + igLeads.length;
 
 // Pipeline funnel (Pylon only — the active reverse mortgage pipeline)
 const FUNNEL_STAGES = ["Prospect", "Pre-Approved", "Processing", "Closed Won"];
-const pylonDeals = hsDeals.filter(d => d.pipeline === "Pylon");
+const pylonDeals = hsDeals.filter(d => d.pipeline === "Pylon" && (campaignDealIds.size === 0 || campaignDealIds.has(d.id)));
 const funnelRows = FUNNEL_STAGES.map(label => ({
   label,
   count: pylonDeals.filter(d => d.stage === label).length,
