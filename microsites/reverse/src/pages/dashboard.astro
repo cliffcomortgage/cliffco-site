@@ -672,7 +672,7 @@ const currentYear = new Date().getFullYear();
       )}
 
       <!-- Pipeline Funnel -->
-      {pylonDeals.length > 0 && (
+      {HUBSPOT_TOKEN && (
         <section style="margin-bottom:3rem;">
           <h2 class="section-title">Deal Pipeline · Pylon</h2>
           <div class="funnel-grid">
@@ -695,7 +695,7 @@ const currentYear = new Date().getFullYear();
       )}
 
       <!-- Pipeline Funnel · Encompass -->
-      {encompassDeals.length > 0 && (
+      {HUBSPOT_TOKEN && (
         <section style="margin-bottom:3rem;">
           <h2 class="section-title">Deal Pipeline · Encompass</h2>
           <div class="funnel-grid">
