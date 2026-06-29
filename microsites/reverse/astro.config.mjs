@@ -3,7 +3,6 @@ import tailwindcss from '@tailwindcss/vite';
 import vercel from '@astrojs/vercel';
 
 export default defineConfig({
-  output: 'hybrid',
   adapter: vercel(),
   site: 'https://cliffco-reverse-microsite.vercel.app',
   trailingSlash: 'always',
