@@ -170,6 +170,7 @@ document.querySelectorAll<HTMLFormElement>('.cf-contact-form').forEach((form) =>
     const btn    = form.querySelector('button[type="submit"]') as HTMLButtonElement;
     const errEl  = form.querySelector('.cf-error') as HTMLParagraphElement;
     const okEl   = form.querySelector('.cf-success') as HTMLParagraphElement;
+    const origLabel = btn.textContent ?? 'Send Message';
 
     errEl.classList.add('hidden');
     errEl.textContent = '';
@@ -189,16 +190,16 @@ document.querySelectorAll<HTMLFormElement>('.cf-contact-form').forEach((form) =>
         okEl.classList.remove('hidden');
         btn.textContent = 'Sent ✓';
       } else {
-        errEl.textContent = json.error ?? 'Something went wrong. Please try again.';
+        errEl.textContent = json.error ?? 'Something went wrong. Please try again or call us at (800) 834-4040.';
         errEl.classList.remove('hidden');
         btn.disabled = false;
-        btn.textContent = 'Send Message';
+        btn.textContent = origLabel;
       }
     } catch {
-      errEl.textContent = 'Network error. Please try again.';
+      errEl.textContent = 'Network error — check your connection and try again, or call us at (800) 834-4040.';
       errEl.classList.remove('hidden');
       btn.disabled = false;
-      btn.textContent = 'Send Message';
+      btn.textContent = origLabel;
     }
   });
 });

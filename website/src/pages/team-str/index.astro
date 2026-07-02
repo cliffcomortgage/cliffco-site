@@ -203,7 +203,7 @@ const schema = [faqPageSchema(faq)];
       </div>
 
       <div>
-        <form action="/api/lead" method="POST" class="space-y-4">
+        <form id="str-form" action="/api/lead" method="POST" class="space-y-4">
           <input type="hidden" name="form_source" value="team-str" />
           <input type="hidden" name="form_to" value="margenzio@cliffcomortgage.com,websiteleads@cliffcomortgage.com" />
           <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
@@ -265,6 +265,10 @@ const schema = [faqPageSchema(faq)];
           </p>
 
           <button type="submit" class="btn btn-primary w-full">Apply Now</button>
+          <p id="str-error" class="hidden text-sm text-red-600 font-medium pt-1"></p>
+          <p id="str-success" class="hidden text-sm text-green-700 font-medium pt-1">
+            Thank you! A loan officer will reach out within one business day.
+          </p>
         </form>
       </div>
     </div>
@@ -300,7 +304,40 @@ const schema = [faqPageSchema(faq)];
   </section>
 
 <script>
-  const el = document.getElementById('str-loaded') as HTMLInputElement | null;
-  if (el) el.value = String(Date.now());
+  const loadedEl = document.getElementById('str-loaded') as HTMLInputElement | null;
+  if (loadedEl) loadedEl.value = String(Date.now());
+
+  const strForm    = document.getElementById('str-form') as HTMLFormElement | null;
+  const strError   = document.getElementById('str-error') as HTMLParagraphElement | null;
+  const strSuccess = document.getElementById('str-success') as HTMLParagraphElement | null;
+
+  strForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = strForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const origLabel = btn.textContent ?? 'Apply Now';
+
+    if (strError)   { strError.textContent = ''; strError.classList.add('hidden'); }
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      const res  = await fetch('/api/lead', { method: 'POST', body: new FormData(strForm) });
+      const json = await res.json();
+
+      if (res.ok && json.success) {
+        strForm.reset();
+        strForm.classList.add('hidden');
+        strSuccess?.classList.remove('hidden');
+      } else {
+        if (strError) { strError.textContent = json.error ?? 'Something went wrong. Please try again or call us at (800) 834-4040.'; strError.classList.remove('hidden'); }
+        btn.disabled = false;
+        btn.textContent = origLabel;
+      }
+    } catch {
+      if (strError) { strError.textContent = 'Network error — please try again or call us at (800) 834-4040.'; strError.classList.remove('hidden'); }
+      btn.disabled = false;
+      btn.textContent = origLabel;
+    }
+  });
 </script>
 </Layout>

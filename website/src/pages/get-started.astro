@@ -158,7 +158,7 @@ const purposes = [
           <h1 class="mt-0" style="font-size: var(--text-display-lg);">Almost there.</h1>
           <p class="lead mt-2 text-[var(--color-text-muted)]">Where should a Cliffco loan officer reach you?</p>
 
-          <form action="/api/lead" method="post" class="mt-6 space-y-5">
+          <form id="gs-form" action="/api/lead" method="post" class="mt-6 space-y-5">
 
             <!-- Hidden: routing + quiz answers -->
             <input type="hidden" name="form_source" value="get-started" />
@@ -225,6 +225,8 @@ const purposes = [
                 </span>
               </label>
             </div>
+
+            <p id="gs-error" class="hidden text-sm text-red-600 font-medium"></p>
 
             <div class="flex flex-col sm:flex-row gap-3">
               <button type="button" class="btn btn-secondary back-btn shrink-0">← Back</button>
@@ -364,4 +366,42 @@ const purposes = [
 
   // Initialize progress
   updateProgress();
+
+  // Fetch-based form submission
+  const gsForm = document.getElementById('gs-form') as HTMLFormElement | null;
+  const gsErrorEl = document.getElementById('gs-error') as HTMLParagraphElement | null;
+
+  gsForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const btn = gsForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const origLabel = btn.textContent ?? 'Submit';
+
+    if (gsErrorEl) { gsErrorEl.classList.add('hidden'); gsErrorEl.textContent = ''; }
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      const res  = await fetch('/api/lead', { method: 'POST', body: new FormData(gsForm) });
+      const json = await res.json();
+
+      if (res.ok && json.success) {
+        gsForm.innerHTML = '<p class="text-green-700 font-medium py-8 text-center">Thank you! A Cliffco loan officer will follow up within 1 business day.</p>';
+      } else {
+        if (gsErrorEl) {
+          gsErrorEl.textContent = json.error ?? 'Something went wrong. Please try again or call us at (800) 834-4040.';
+          gsErrorEl.classList.remove('hidden');
+        }
+        btn.disabled = false;
+        btn.textContent = origLabel;
+      }
+    } catch {
+      if (gsErrorEl) {
+        gsErrorEl.textContent = 'Network error — check your connection and try again, or call us at (800) 834-4040.';
+        gsErrorEl.classList.remove('hidden');
+      }
+      btn.disabled = false;
+      btn.textContent = origLabel;
+    }
+  });
 </script>

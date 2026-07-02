@@ -64,7 +64,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (!apiKey) {
       console.error('SENDGRID_API_KEY not set');
       return new Response(
-        JSON.stringify({ error: 'Email service not configured.' }),
+        JSON.stringify({ error: 'Our contact form isn\'t fully configured yet. Please call us at (800) 834-4040.' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -146,10 +146,11 @@ export const POST: APIRoute = async ({ request }) => {
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
 
-  } catch (err) {
-    console.error('Contact form error:', err);
+  } catch (err: any) {
+    const detail = err?.response?.body ? JSON.stringify(err.response.body) : String(err);
+    console.error('Contact form error:', detail);
     return new Response(
-      JSON.stringify({ error: 'Something went wrong. Please try again or call us directly.' }),
+      JSON.stringify({ error: 'We couldn\'t send your message right now. Please try again or call us at (800) 834-4040 — Mon–Fri 9am–6pm ET.' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
