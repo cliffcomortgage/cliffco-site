@@ -160,7 +160,7 @@ const schema = [
       <button id="contact-close" class="text-[var(--color-text-muted)] hover:text-[var(--color-ink)] text-2xl leading-none" aria-label="Close">&times;</button>
     </div>
     <ContactForm
-      formTo={lo.links?.email ?? 'websiteleads@cliffcomortgage.com'}
+      formTo={lo.links?.email ? `${lo.links.email},websiteleads@cliffcomortgage.com` : 'websiteleads@cliffcomortgage.com'}
       formSource={`lo-${lo.slug}`}
       ctaLabel={`Send message to ${lo.firstName.split(' ')[0]}`}
     />
