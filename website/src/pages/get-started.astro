@@ -160,7 +160,9 @@ const purposes = [
 
           <form action="/api/lead" method="post" class="mt-6 space-y-5">
 
-            <!-- Hidden: quiz answers -->
+            <!-- Hidden: routing + quiz answers -->
+            <input type="hidden" name="form_source" value="get-started" />
+            <input type="hidden" name="form_to" value="cliffcorpteam@cliffcomortgage.com,websiteleads@cliffcomortgage.com" />
             <input type="hidden" id="h-situation" name="situation" />
             <input type="hidden" id="h-income" name="income_type" />
             <input type="hidden" id="h-purpose" name="purpose" />
