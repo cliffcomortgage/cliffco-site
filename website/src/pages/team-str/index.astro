@@ -209,6 +209,7 @@ const schema = [faqPageSchema(faq)];
           <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
             <input name="website" type="text" tabindex="-1" autocomplete="off" />
           </div>
+          <input id="str-loaded" name="_loaded" type="hidden" value="" />
 
           <div class="grid sm:grid-cols-2 gap-4">
             <div>
@@ -297,4 +298,9 @@ const schema = [faqPageSchema(faq)];
       </div>
     </div>
   </section>
+
+<script>
+  const el = document.getElementById('str-loaded') as HTMLInputElement | null;
+  if (el) el.value = String(Date.now());
+</script>
 </Layout>

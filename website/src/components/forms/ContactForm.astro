@@ -55,6 +55,9 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
     <input id={`${id}-website`} name="website" type="text" tabindex="-1" autocomplete="off" />
   </div>
 
+  <!-- Timing: JS sets this at page load; server rejects if elapsed < 3s -->
+  <input name="_loaded" type="hidden" value="" />
+
   <!-- Name row -->
   <div class="grid sm:grid-cols-2 gap-4">
     <div>
@@ -158,6 +161,9 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
 
 <script>
 document.querySelectorAll<HTMLFormElement>('.cf-contact-form').forEach((form) => {
+  const loadedField = form.querySelector<HTMLInputElement>('[name="_loaded"]');
+  if (loadedField) loadedField.value = String(Date.now());
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 

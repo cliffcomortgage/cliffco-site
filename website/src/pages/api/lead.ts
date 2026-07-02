@@ -32,6 +32,13 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(JSON.stringify({ success: true }), { status: 200, headers: { 'Content-Type': 'application/json' } });
     }
 
+    // Reject submissions faster than a human can fill the form (bots submit in ms)
+    const loadedStr = (data.get('_loaded') as string | null)?.trim() ?? '';
+    const elapsed   = loadedStr ? Date.now() - parseInt(loadedStr, 10) : 0;
+    if (!loadedStr || elapsed < 3000) {
+      return new Response(JSON.stringify({ success: true }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+    }
+
     // Optional fields
     const state       = (data.get('state')        as string | null)?.trim() ?? '';
     const program     = (data.get('program')      as string | null)?.trim() ?? '';
