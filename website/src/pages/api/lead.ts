@@ -109,6 +109,36 @@ export const POST: APIRoute = async ({ request }) => {
       html,
     });
 
+    // Confirmation to the borrower
+    const confirmHtml = `
+      <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;">
+        <div style="border-top:4px solid #6633cc;padding-top:20px;">
+          <h2 style="color:#0d0d0d;margin-top:0;">We received your message.</h2>
+          <p style="color:#444;line-height:1.6;">
+            Hi ${name}, thanks for reaching out to Cliffco. A loan officer will review your
+            inquiry and follow up within <strong>1 business day</strong>.
+          </p>
+          <p style="color:#444;line-height:1.6;">
+            If you'd like to speak with someone sooner, call us at
+            <a href="tel:+18008344040" style="color:#6633cc;font-weight:600;">(800) 834-4040</a>
+            Mon–Fri 9am–6pm ET.
+          </p>
+          <hr style="border:none;border-top:1px solid #eee;margin:24px 0;" />
+          <p style="font-size:12px;color:#aaa;margin:0;">
+            Cliffco Mortgage Bankers · NMLS #1434752 ·
+            <a href="https://cliffcomortgage.com" style="color:#aaa;">cliffcomortgage.com</a>
+          </p>
+        </div>
+      </div>
+    `;
+
+    await sgMail.send({
+      to: email,
+      from: { email: fromEmail, name: 'Cliffco Mortgage' },
+      subject: 'We received your message — a Cliffco loan officer will be in touch',
+      html: confirmHtml,
+    });
+
     return new Response(
       JSON.stringify({ success: true }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
