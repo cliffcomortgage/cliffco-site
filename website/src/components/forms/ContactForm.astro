@@ -49,6 +49,12 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
   data-form-source={formSource}
   novalidate
 >
+  <!-- Honeypot: hidden from real users, filled by bots -->
+  <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+    <label for={`${id}-website`}>Website</label>
+    <input id={`${id}-website`} name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
   <!-- Name row -->
   <div class="grid sm:grid-cols-2 gap-4">
     <div>

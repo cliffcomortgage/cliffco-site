@@ -27,6 +27,12 @@ export const POST: APIRoute = async ({ request }) => {
     const formTo      = (data.get('form_to')      as string | null)?.trim() ?? '';
     const tcpa        = (data.get('tcpa_consent') as string | null)?.trim() ?? '';
     const formSource  = (data.get('form_source')  as string | null)?.trim() ?? 'website';
+    const honeypot    = (data.get('website')      as string | null)?.trim() ?? '';
+
+    // Silently discard bot submissions
+    if (honeypot) {
+      return new Response(JSON.stringify({ success: true }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+    }
 
     // Validate required fields
     if (!firstName || !lastName || !email || !phone || !purpose || !state || !tcpa) {
