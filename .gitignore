@@ -38,3 +38,4 @@ brand/fonts/
 .claude/
 Guidelines/SG Capital/Flex Connect Tutorial.mp4
 .vercel
+.env*
