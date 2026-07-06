@@ -119,6 +119,8 @@ const allSchema = schema
         onScroll();
       }
 
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
       // ═══════════════════════════════════════════════
       // SECTION 3 - SCROLL-REVEAL (IntersectionObserver)
       // ═══════════════════════════════════════════════
