@@ -105,92 +105,10 @@ const allSchema = schema
     </main>
     <Footer />
 
-    <!-- Custom cursor dot - positioned and colored by JS below -->
-    <div id="cf-cursor" aria-hidden="true"></div>
-
     <script>
     (() => {
       // ═══════════════════════════════════════════════
-      // SECTION 1 - CUSTOM CURSOR
-      // Skip on touch / pointer-coarse devices.
-      // ═══════════════════════════════════════════════
-      const dot = document.getElementById('cf-cursor');
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const isTouch = window.matchMedia('(pointer: coarse)').matches;
-
-      if (dot && !prefersReduced && !isTouch) {
-        const dotEl = dot as HTMLElement;
-        let mx = window.innerWidth / 2;
-        let my = window.innerHeight / 2;
-        let cx = mx, cy = my;
-        let scale = 1, targetScale = 1;
-
-        const LERP_POS   = 0.65;
-        const LERP_SCALE = 0.35;
-
-        const COLORS = {
-          default : '#6633cc',  // bright plum
-          link    : '#9966ee',  // lighter plum
-          button  : '#4a1fa0',  // deeper plum
-          card    : '#bde8f1',  // ice blue (brand color)
-          dark    : '#ffffff',  // white on dark backgrounds
-        };
-
-        let targetColor = COLORS.default;
-
-        const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-
-        // Mark dark-background sections once DOM is ready
-        document.querySelectorAll('section, footer').forEach(el => {
-          const bg = getComputedStyle(el).backgroundColor;
-          if (bg === 'rgb(13, 13, 13)' || bg === 'rgb(26, 0, 64)') {
-            (el as HTMLElement).dataset.cursorDark = '';
-          }
-        });
-
-        // Also mark accent-gradient sections (computed style may not reflect CSS gradient bg)
-        document.querySelectorAll('.accent-gradient').forEach(el => {
-          (el as HTMLElement).dataset.cursorDark = '';
-        });
-
-        function getContext(el: Element | null): keyof typeof COLORS {
-          if (!el) return 'default';
-          if (el.closest('[data-cursor-dark]')) return 'dark';
-          if (el.closest('.btn, button, [role="button"], input[type="submit"]')) return 'button';
-          if (el.closest('a')) return 'link';
-          if (el.closest('.card, article, figure, picture')) return 'card';
-          return 'default';
-        }
-
-        document.addEventListener('mousemove', (e) => {
-          mx = e.clientX;
-          my = e.clientY;
-          const hit = document.elementFromPoint(mx, my);
-          const ctx = getContext(hit);
-          targetColor = COLORS[ctx];
-          targetScale = ctx === 'default' ? 1 : 1.6;
-        });
-
-        document.addEventListener('mouseleave', () => { dotEl.style.opacity = '0'; });
-        document.addEventListener('mouseenter', () => { dotEl.style.opacity = '1'; });
-
-        let lastColor = COLORS.default;
-        function tick() {
-          cx = lerp(cx, mx, LERP_POS);
-          cy = lerp(cy, my, LERP_POS);
-          scale = lerp(scale, targetScale, LERP_SCALE);
-          dotEl.style.transform = `translate(${cx}px, ${cy}px) scale(${scale})`;
-          if (lastColor !== targetColor) {
-            dotEl.style.background = targetColor;
-            lastColor = targetColor;
-          }
-          requestAnimationFrame(tick);
-        }
-        tick();
-      }
-
-      // ═══════════════════════════════════════════════
-      // SECTION 2 - HEADER GLASSMORPHISM ON SCROLL
+      // SECTION 1 - HEADER GLASSMORPHISM ON SCROLL
       // ═══════════════════════════════════════════════
       const header = document.querySelector('header');
       if (header) {

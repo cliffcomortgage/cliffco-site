@@ -392,40 +392,6 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ---------- Custom cursor ---------- */
-/* Only hides native cursor on mouse devices - keyboard and touch users keep default cursor */
-@media (pointer: fine) and (hover: hover) {
-  html, html * { cursor: none !important; }
-}
-
-#cf-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  pointer-events: none;
-  z-index: 10000;
-  /* Offset so the center of the dot sits on the pointer position */
-  margin: -6px 0 0 -6px;
-  transition: background-color 0.15s ease, opacity 0.2s ease;
-  will-change: transform;
-}
-
-/* Hide cursor dot on touch/coarse-pointer devices (mobile/tablet) */
-@media (pointer: coarse) {
-  #cf-cursor { display: none !important; }
-}
-
-/* Restore native cursor inside modal dialogs - dialogs render in the browser
-   top layer above z-index stacking, so the custom dot can't appear over them.
-   Restoring auto cursor lets users see where to click on form fields. */
-@media (pointer: fine) and (hover: hover) {
-  dialog:modal,
-  dialog:modal * { cursor: auto !important; }
-}
 
 /* ---------- Scroll-reveal classes (applied by JS) ---------- */
 .cf-reveal {
@@ -547,6 +513,5 @@ footer {
   picture img, figure img { transition: none !important; }
   a:hover picture img, .card:hover picture img { transform: none !important; }
   header { transition: none !important; }
-  #cf-cursor { display: none; }
   html, html * { cursor: auto !important; }
 }
