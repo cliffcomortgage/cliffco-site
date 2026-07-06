@@ -4,13 +4,26 @@ import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { loanOfficer } from "../../data/loan-officers";
 import Headshot from "../../components/ui/Headshot.astro";
 import ContactForm from "../../components/forms/ContactForm.astro";
+import { faqPageSchema } from "../../lib/schema";
 
 const david = loanOfficer("david-fallarino")!;
+
+const faq = faqPageSchema([
+  { question: "What is complex income in mortgage lending?", answer: "Complex income refers to income that is not simple W-2 salary. It may include self-employment income, business income, K-1 income, rental income, commissions, bonuses, capital gains, investment income, or multiple income streams." },
+  { question: "Can I get a mortgage if I am self-employed?", answer: "Yes. Many self-employed borrowers qualify for mortgages, but the right loan structure matters. Depending on your situation, you may qualify through tax returns, bank statements, profit and loss statements, assets, or alternative loan programs." },
+  { question: "Why do lenders say my income is too complicated?", answer: "Some lenders rely on strict underwriting systems built for predictable income. If your income fluctuates, comes through a business, or is reduced by tax deductions, they may not know how to properly evaluate your full financial picture." },
+  { question: "Do I need two years of tax returns to qualify?", answer: "Not always. Some programs require tax returns, but others may allow alternative documentation such as bank statements, P&Ls, asset-based qualification, or property cash flow for investment loans." },
+  { question: "Can business write-offs hurt my mortgage approval?", answer: "They can impact conventional mortgage qualification by reducing the income shown on your tax returns. However, some loan programs allow a more flexible review of cash flow, add-backs, or alternative documentation." },
+  { question: "Are complex income loans the same as Non-QM loans?", answer: "Not always. Non-QM is one category of flexible lending, but complex income borrowers may also qualify through conventional, jumbo, Alt-A, DSCR, bank statement, or asset-based programs. The right option depends on the borrower's full profile." },
+  { question: "Can I qualify with K-1 income?", answer: "Yes, many borrowers qualify using K-1 income, but the details matter. Lenders may review ownership percentage, distributions, business cash flow, liquidity, and whether the income is likely to continue." },
+  { question: "What should I prepare before applying?", answer: "Helpful documents may include personal and business tax returns, bank statements, profit and loss statements, K-1s, business ownership documents, asset statements, rental leases, and any documentation that explains your income streams." },
+]);
 ---
 
 <Layout
   title="Complex Income Mortgage Solutions: How Entrepreneurs, Investors, and High-Earning Borrowers Can Get Approved | 500:1 Blog"
   description="Not every qualified borrower has a simple paycheck. Here's how Cliffco and The Fallarino Group help entrepreneurs, investors, and complex income borrowers find the right mortgage structure."
+  schema={faq}
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
@@ -115,22 +128,40 @@ const david = loanOfficer("david-fallarino")!;
       <p>The earlier you work with a mortgage team that understands complex income, the smoother the process can be.</p>
 
       <h2>FAQs About Complex Income Mortgages</h2>
-
-      <p><strong>What is complex income in mortgage lending?</strong><br/>Complex income refers to income that is not simple W-2 salary. It may include self-employment income, business income, K-1 income, rental income, commissions, bonuses, capital gains, investment income, or multiple income streams.</p>
-
-      <p><strong>Can I get a mortgage if I am self-employed?</strong><br/>Yes. Many self-employed borrowers qualify for mortgages, but the right loan structure matters. Depending on your situation, you may qualify through tax returns, bank statements, profit and loss statements, assets, or alternative loan programs.</p>
-
-      <p><strong>Why do lenders say my income is too complicated?</strong><br/>Some lenders rely on strict underwriting systems built for predictable income. If your income fluctuates, comes through a business, or is reduced by tax deductions, they may not know how to properly evaluate your full financial picture.</p>
-
-      <p><strong>Do I need two years of tax returns to qualify?</strong><br/>Not always. Some programs require tax returns, but others may allow alternative documentation such as bank statements, P&Ls, asset-based qualification, or property cash flow for investment loans.</p>
-
-      <p><strong>Can business write-offs hurt my mortgage approval?</strong><br/>They can impact conventional mortgage qualification by reducing the income shown on your tax returns. However, some loan programs allow a more flexible review of cash flow, add-backs, or alternative documentation.</p>
-
-      <p><strong>Are complex income loans the same as Non-QM loans?</strong><br/>Not always. Non-QM is one category of flexible lending, but complex income borrowers may also qualify through conventional, jumbo, Alt-A, DSCR, bank statement, or asset-based programs. The right option depends on the borrower's full profile.</p>
-
-      <p><strong>Can I qualify with K-1 income?</strong><br/>Yes, many borrowers qualify using K-1 income, but the details matter. Lenders may review ownership percentage, distributions, business cash flow, liquidity, and whether the income is likely to continue.</p>
-
-      <p><strong>What should I prepare before applying?</strong><br/>Helpful documents may include personal and business tax returns, bank statements, profit and loss statements, K-1s, business ownership documents, asset statements, rental leases, and any documentation that explains your income streams.</p>
+      <div class="mt-6 space-y-4">
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">What is complex income in mortgage lending?</summary>
+          <p class="mt-3">Complex income refers to income that is not simple W-2 salary. It may include self-employment income, business income, K-1 income, rental income, commissions, bonuses, capital gains, investment income, or multiple income streams.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Can I get a mortgage if I am self-employed?</summary>
+          <p class="mt-3">Yes. Many self-employed borrowers qualify for mortgages, but the right loan structure matters. Depending on your situation, you may qualify through tax returns, bank statements, profit and loss statements, assets, or alternative loan programs.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Why do lenders say my income is too complicated?</summary>
+          <p class="mt-3">Some lenders rely on strict underwriting systems built for predictable income. If your income fluctuates, comes through a business, or is reduced by tax deductions, they may not know how to properly evaluate your full financial picture.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Do I need two years of tax returns to qualify?</summary>
+          <p class="mt-3">Not always. Some programs require tax returns, but others may allow alternative documentation such as bank statements, P&Ls, asset-based qualification, or property cash flow for investment loans.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Can business write-offs hurt my mortgage approval?</summary>
+          <p class="mt-3">They can impact conventional mortgage qualification by reducing the income shown on your tax returns. However, some loan programs allow a more flexible review of cash flow, add-backs, or alternative documentation.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Are complex income loans the same as Non-QM loans?</summary>
+          <p class="mt-3">Not always. Non-QM is one category of flexible lending, but complex income borrowers may also qualify through conventional, jumbo, Alt-A, DSCR, bank statement, or asset-based programs. The right option depends on the borrower's full profile.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Can I qualify with K-1 income?</summary>
+          <p class="mt-3">Yes, many borrowers qualify using K-1 income, but the details matter. Lenders may review ownership percentage, distributions, business cash flow, liquidity, and whether the income is likely to continue.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">What should I prepare before applying?</summary>
+          <p class="mt-3">Helpful documents may include personal and business tax returns, bank statements, profit and loss statements, K-1s, business ownership documents, asset statements, rental leases, and any documentation that explains your income streams.</p>
+        </details>
+      </div>
 
       <h2>The Bottom Line</h2>
       <p>Complex income should not automatically keep you from buying, refinancing, or investing in real estate.</p>

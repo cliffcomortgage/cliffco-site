@@ -3,14 +3,23 @@ import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { loanOfficer } from "../../data/loan-officers";
 import Headshot from "../../components/ui/Headshot.astro";
+import ContactForm from "../../components/forms/ContactForm.astro";
+import { faqPageSchema } from "../../lib/schema";
 
 const david = loanOfficer("david-fallarino")!;
-import ContactForm from "../../components/forms/ContactForm.astro";
+
+const faq = faqPageSchema([
+  { question: "What is a good DSCR ratio for a loan?", answer: "Most lenders require at least 1.0 to 1.25. A higher ratio shows stronger property cash flow and makes approval easier." },
+  { question: "Can first-time investors qualify for DSCR loans?", answer: "Yes. DSCR loans are often a smart entry point because they don't require traditional income documentation." },
+  { question: "Do DSCR loans work for Airbnb or short-term rentals?", answer: "Yes, many programs allow short-term rentals to qualify using projected or historical rental income." },
+  { question: "How are DSCR loans different from conventional mortgages?", answer: "Conventional mortgages focus on your personal income and tax returns. DSCR loans focus on property performance, making them more flexible for investors." },
+]);
 ---
 
 <Layout
   title="DSCR Loans Demystified: How Real Estate Investors Can Use Rental Income to Qualify & Scale Their Portfolio | 500:1 Blog"
   description="Traditional mortgages rely on your personal income and tax returns. DSCR loans flip the script-qualifying you based on rental property cash flow."
+  schema={faq}
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
@@ -38,7 +47,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
       <h2>What Is a DSCR Loan?</h2>
       <p>DSCR stands for Debt Service Coverage Ratio-a measure of whether a property's rental income covers its debt obligations.</p>
       <p>Here's the formula:</p>
-      <p><strong>DSCR = Net Operating Income ÷ Debt Payments</strong></p>
+      <p><strong>DSCR = Gross Monthly Rent ÷ Monthly PITIA (Principal + Interest + Taxes + Insurance + HOA)</strong></p>
       <ul>
         <li>DSCR of 1.0 → the property breaks even (income covers expenses).</li>
         <li>Above 1.0 → rental income is greater than expenses (positive cash flow).</li>
@@ -72,15 +81,29 @@ import ContactForm from "../../components/forms/ContactForm.astro";
       <p>Plenty of lenders dabble in DSCR loans. At Cliffco, we specialize in them. That expertise makes the difference between stalled growth and a thriving portfolio.</p>
       <ul>
         <li><strong>Investor-focused expertise.</strong> We understand both first-time buyers and seasoned portfolio managers.</li>
-        <li><strong>Tailored structures.</strong> From calculating rental projections to pairing you with the right DSCR program, we build solutions around your goals.</li>
+        <li><strong>Right program for your deal.</strong> From calculating rental projections to pairing you with the right DSCR program, we build around what your property and goals actually require.</li>
         <li><strong>Speed + clarity.</strong> Investors don't have time to wait. Our streamlined process gets you approved quickly with no surprises.</li>
       </ul>
 
       <h2>FAQs About DSCR Loans</h2>
-      <p><strong>What is a good DSCR ratio for a loan?</strong><br/>Most lenders require at least 1.0–1.25. A higher ratio shows stronger property cash flow and makes approval easier.</p>
-      <p><strong>Can first-time investors qualify for DSCR loans?</strong><br/>Yes. DSCR loans are often a smart entry point because they don't require traditional income documentation.</p>
-      <p><strong>Do DSCR loans work for Airbnb or short-term rentals?</strong><br/>Yes, many programs allow short-term rentals to qualify using projected or historical rental income.</p>
-      <p><strong>How are DSCR loans different from conventional mortgages?</strong><br/>Conventional mortgages focus on your personal income and tax returns. DSCR loans focus on property performance, making them more flexible for investors.</p>
+      <div class="mt-6 space-y-4">
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">What is a good DSCR ratio for a loan?</summary>
+          <p class="mt-3">Most lenders require at least 1.0 to 1.25. A higher ratio shows stronger property cash flow and makes approval easier.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Can first-time investors qualify for DSCR loans?</summary>
+          <p class="mt-3">Yes. DSCR loans are often a smart entry point because they don't require traditional income documentation.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Do DSCR loans work for Airbnb or short-term rentals?</summary>
+          <p class="mt-3">Yes, many programs allow short-term rentals to qualify using projected or historical rental income.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">How are DSCR loans different from conventional mortgages?</summary>
+          <p class="mt-3">Conventional mortgages focus on your personal income and tax returns. DSCR loans focus on property performance, making them more flexible for investors.</p>
+        </details>
+      </div>
 
       <h2>The Bottom Line</h2>
       <p>DSCR loans let a property qualify on its own cash flow. If the rent covers the mortgage, the investment works — regardless of how the owner's income looks on a tax return.</p>

@@ -3,14 +3,23 @@ import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { loanOfficer } from "../../data/loan-officers";
 import Headshot from "../../components/ui/Headshot.astro";
+import ContactForm from "../../components/forms/ContactForm.astro";
+import { faqPageSchema } from "../../lib/schema";
 
 const david = loanOfficer("david-fallarino")!;
-import ContactForm from "../../components/forms/ContactForm.astro";
+
+const faq = faqPageSchema([
+  { question: "Do Alt-A loans have higher rates?", answer: "Sometimes, but the trade-off is access. Most Alt-A rates are still competitive, especially for prime-credit borrowers." },
+  { question: "Can Alt-A loans be used for investment properties?", answer: "Yes. Many investors use Alt-A jumbo programs to acquire or refinance high-value rentals." },
+  { question: "Is Alt-A riskier than A-Paper?", answer: "Not in today's market. Modern Alt-A loans are fully documented and carefully underwritten — they simply use different qualifying methods." },
+  { question: "Can I switch from Alt-A to A-Paper later?", answer: "Yes. Many borrowers refinance into A-Paper loans once they've restructured income or met seasoning requirements." },
+]);
 ---
 
 <Layout
   title="Alt-A vs. A-Paper Loans: Which One Fits the Way You Earn? | 500:1 Blog"
   description="Both loans serve qualified borrowers-but one rewards predictability, the other rewards entrepreneurship. Here's how to tell which one actually works for you."
+  schema={faq}
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
@@ -98,10 +107,24 @@ import ContactForm from "../../components/forms/ContactForm.astro";
       <p>That's the Cliffco/Fallarino Group difference: we translate entrepreneurship into approvals.</p>
 
       <h2>FAQs: Alt-A vs. A-Paper</h2>
-      <p><strong>Do Alt-A loans have higher rates?</strong><br/>Sometimes-but the trade-off is access. Most Alt-A rates are still competitive, especially for prime-credit borrowers.</p>
-      <p><strong>Can Alt-A loans be used for investment properties?</strong><br/>Yes. Many investors use Alt-A jumbo programs to acquire or refinance high-value rentals.</p>
-      <p><strong>Is Alt-A riskier than A-Paper?</strong><br/>Not in today's market. Modern Alt-A loans are fully documented and carefully underwritten-they simply use different qualifying methods.</p>
-      <p><strong>Can I switch from Alt-A to A-Paper later?</strong><br/>Absolutely. Many borrowers refinance into A-Paper loans once they've restructured income or met seasoning requirements.</p>
+      <div class="mt-6 space-y-4">
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Do Alt-A loans have higher rates?</summary>
+          <p class="mt-3">Sometimes, but the trade-off is access. Most Alt-A rates are still competitive, especially for prime-credit borrowers.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Can Alt-A loans be used for investment properties?</summary>
+          <p class="mt-3">Yes. Many investors use Alt-A jumbo programs to acquire or refinance high-value rentals.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Is Alt-A riskier than A-Paper?</summary>
+          <p class="mt-3">Not in today's market. Modern Alt-A loans are fully documented and carefully underwritten — they simply use different qualifying methods.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Can I switch from Alt-A to A-Paper later?</summary>
+          <p class="mt-3">Yes. Many borrowers refinance into A-Paper loans once they've restructured income or met seasoning requirements.</p>
+        </details>
+      </div>
 
       <h2>The Bottom Line</h2>
       <p>If your income is predictable, A-Paper offers the simplest, lowest-cost path to homeownership.</p>
