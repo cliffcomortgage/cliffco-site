@@ -86,7 +86,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
     <img src="/images/content%20images/Down%20Payment%20Assistance%20Hero.png" alt="" aria-hidden="true" class="absolute bottom-0 right-0 hidden lg:block w-auto object-contain object-bottom pointer-events-none select-none" style="height:750px;right:4%;bottom:-140px;" loading="eager" />
     <div class="container-wide py-16 lg:py-24 relative z-10">
       <p class="eyebrow !text-[var(--color-ice-blue)]">For buyers with limited savings</p>
-      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.1; font-weight: 300; font-family: var(--font-sans);">
         Down Payment<br/>
         <span class="text-[var(--color-ice-blue)]">Assistance Programs.</span>
       </h1>
@@ -200,7 +200,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
             { state: "Minnesota", note: "MHFA and Twin Cities area programs" },
             { state: "Other states", note: "National programs available in most states we're licensed" },
           ].map((item) => (
-            <div class="p-4 rounded-xl border border-[var(--color-mist-gray)]">
+            <div class="p-4 rounded-lg border border-[var(--color-mist-gray)]">
               <p class="font-semibold text-sm text-[var(--color-ink)]">{item.state}</p>
               <p class="text-xs text-[var(--color-text-muted)] mt-1 leading-relaxed">{item.note}</p>
             </div>
@@ -211,7 +211,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
         </p>
       </div>
       <div class="space-y-5">
-        <div class="bg-[var(--color-rich-black)] rounded-2xl p-8 text-white">
+        <div class="bg-[var(--color-rich-black)] rounded-lg p-8 text-white">
           <p class="eyebrow !text-[var(--color-ice-blue)]">The honest answer</p>
           <h3 class="mt-3 text-white text-xl font-semibold leading-snug">DPA programs change too fast to publish a list. Talk to a real person instead.</h3>
           <p class="mt-4 text-white/75 text-sm leading-relaxed">
@@ -261,7 +261,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
   <section class="section bg-[var(--color-mist-gray)]">
     <div class="container-wide max-w-2xl">
       <h2 class="mt-3" style="font-size: var(--text-h2);">Want to see which down payment programs you qualify for?</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">No credit pull. We'll check which assistance programs are currently funded and match you to the right one.</p>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">We'll check which assistance programs are currently funded and match you to the right one.</p>
       <div class="mt-8">
         <ContactForm
           formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"

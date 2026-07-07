@@ -21,7 +21,7 @@ interface Props {
   class?: string;
 }
 const { slug, name, shape = "rounded", size = 320, priority = false, fluid = false, class: className = "" } = Astro.props;
-const radius = shape === "circle" ? "rounded-full" : shape === "rounded" ? "rounded-2xl" : "";
+const radius = shape === "circle" ? "rounded-full" : shape === "rounded" ? "rounded-lg" : "";
 const loading = priority ? "eager" : "lazy";
 const fetchpriority = priority ? "high" : "auto";
 const sizeStyle = fluid ? "aspect-ratio: 1 / 1; width: 100%;" : `aspect-ratio: 1 / 1; width: ${size}px;`;

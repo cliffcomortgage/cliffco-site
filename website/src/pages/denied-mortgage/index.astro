@@ -11,7 +11,7 @@ const denialReasons = [
     id: "credit",
     label: "Credit Score Below 640",
     solution: {
-      heading: "Your credit score isn't the end of the story.",
+      heading: "A low score narrows your options. It doesn't eliminate them.",
       body: "Non-QM programs work with credit scores as low as 500. The lower the score, the larger the down payment typically required, but there is no hard floor that makes your situation automatic. With compensating factors such as strong cash reserves, low debt, or a larger down payment, scores in the 500s can qualify. Your Cliffco loan officer will review your full profile, not just the number.",
     },
   },
@@ -100,7 +100,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
 
 <Layout
   title="Denied for a Mortgage? Non-QM Lending Was Built for This | Cliffco"
-  description="A mortgage denial from a conventional lender isn't the final word. Non-QM programs exist for exactly your situation. Cliffco specializes in getting loans done that others turn down."
+  description="Denied by a bank or conventional lender? Non-QM programs exist for exactly your situation. Cliffco specializes in getting loans done that others turn down."
   schema={schema}
 >
   <Breadcrumbs trail={[
@@ -113,7 +113,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
     <img src="/images/content%20images/Denied%20Hero.png" alt="" aria-hidden="true" class="absolute bottom-0 right-0 hidden lg:block w-auto object-contain object-bottom pointer-events-none select-none" style="height:600px;right:14%;" loading="eager" />
     <div class="container-wide py-20 lg:py-28 relative z-10">
       <p class="eyebrow !text-[var(--color-ice-blue)]">Non-QM Lending · Denial Recovery</p>
-      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.1; font-weight: 300; font-family: var(--font-sans);">
         You Were Told No.<br/>
         <span class="text-[var(--color-ice-blue)]">We Hear That a Lot.</span>
       </h1>
@@ -139,7 +139,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
           <button
             type="button"
             data-denial-tile={r.id}
-            class="denial-tile border border-[var(--color-mist-gray)] rounded-xl px-4 py-3 text-left text-sm font-medium text-[var(--color-ink)] bg-white hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors cursor-pointer"
+            class="denial-tile border border-[var(--color-mist-gray)] rounded-lg px-4 py-3 text-left text-sm font-medium text-[var(--color-ink)] bg-white hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors cursor-pointer"
           >
             {r.label}
           </button>
@@ -165,7 +165,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
     <div class="container-wide">
       <!-- Row 1: Image + What Non-QM means -->
       <div class="grid lg:grid-cols-2 gap-12 items-start">
-        <div class="rounded-2xl overflow-hidden aspect-[4/3] bg-[var(--color-mist-gray)]">
+        <div class="rounded-lg overflow-hidden aspect-[4/3] bg-[var(--color-mist-gray)]">
           <img src="/images/content%20images/Denied%20Mortgage.jpg" alt="Homebuyer reviewing mortgage options after being denied by a bank, working with a Cliffco loan officer on a second-chance approval" class="w-full h-full object-cover" loading="lazy" />
         </div>
         <div>
@@ -187,7 +187,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
             "Some programs have no waiting period after bankruptcy or foreclosure",
             "Your denial was based on a formula, not a judgment of your ability to pay",
           ].map((item) => (
-            <li class="flex gap-3 items-start bg-white rounded-xl p-4 border border-[var(--color-mist-gray)]">
+            <li class="flex gap-3 items-start bg-white rounded-lg p-4 border border-[var(--color-mist-gray)]">
               <span class="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center font-bold">✓</span>
               <span class="text-[var(--color-text)] text-sm">{item}</span>
             </li>
@@ -228,7 +228,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
   <section class="section bg-[var(--color-mist-gray)]">
     <div class="container-wide max-w-2xl">
       <h2 class="mt-3" style="font-size: var(--text-h2);">Got turned down elsewhere? Tell us what happened.</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">No credit pull. We've helped a lot of borrowers other lenders gave up on.</p>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">We've helped a lot of borrowers other lenders gave up on.</p>
       <div class="mt-8">
         <ContactForm
           formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
