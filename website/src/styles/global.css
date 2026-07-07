@@ -284,30 +284,23 @@
   /* Cards */
   .card {
     background: #fff;
-    border: 1px solid rgba(102, 51, 204, 0.1);
+    border: 1px solid rgba(13, 13, 13, 0.08);
     border-radius: 16px;
     padding: 1.5rem;
-    box-shadow: 0 1px 2px rgba(13, 13, 13, 0.04), 0 4px 16px rgba(102, 51, 204, 0.06);
+    box-shadow: 0 1px 2px rgba(13, 13, 13, 0.04), 0 4px 16px rgba(13, 13, 13, 0.06);
     transition: transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1),
                 box-shadow 280ms ease,
                 border-color 200ms ease;
   }
   .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 2px 4px rgba(13, 13, 13, 0.06), 0 20px 48px rgba(102, 51, 204, 0.16);
+    box-shadow: 0 2px 4px rgba(13, 13, 13, 0.06), 0 20px 48px rgba(13, 13, 13, 0.12);
     border-color: rgba(102, 51, 204, 0.22);
   }
 
-  /* Subtle gradient background reused across hero / accent panels */
+  /* Dark background for hero / accent panels — grain texture added via ::before */
   .accent-gradient {
-    background: linear-gradient(
-      135deg,
-      var(--color-rich-black) 0%,
-      var(--color-bright-plum) 50%,
-      var(--color-rich-black) 100%
-    );
-    background-size: 280% 280%;
-    animation: cf-gradient-drift 22s ease infinite;
+    background: var(--color-rich-black);
     color: #fff;
     position: relative;
     isolation: isolate;
@@ -373,12 +366,6 @@
    All animations gated on prefers-reduced-motion.
    ═══════════════════════════════════════════════════════════ */
 
-/* ---------- Gradient drift keyframes ---------- */
-@keyframes cf-gradient-drift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
 
 /* ---------- Scroll reveal keyframes ---------- */
 @keyframes cf-fade-up {
@@ -426,20 +413,20 @@ a:hover figure img {
 /* ---------- Header: glassmorphism on scroll (class toggled by JS) ---------- */
 header {
   transition: background-color 300ms ease, box-shadow 300ms ease, backdrop-filter 300ms ease;
-  box-shadow: 0 1px 0 rgba(102, 51, 204, 0.07);
+  box-shadow: 0 1px 0 rgba(13, 13, 13, 0.07);
 }
 header.scrolled {
   background-color: rgba(255, 255, 255, 0.88) !important;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  box-shadow: 0 1px 0 rgba(102, 51, 204, 0.1), 0 4px 24px rgba(13, 13, 13, 0.08);
+  box-shadow: 0 1px 0 rgba(13, 13, 13, 0.08), 0 4px 24px rgba(13, 13, 13, 0.08);
 }
 
 /* ---------- Nav dropdown polish (targets the dropdown panel by structure) ---------- */
 header nav ul + div div,
 header li > div > div {
-  box-shadow: 0 8px 40px rgba(13, 13, 13, 0.12), 0 2px 8px rgba(102, 51, 204, 0.08);
-  border-color: rgba(102, 51, 204, 0.12);
+  box-shadow: 0 8px 40px rgba(13, 13, 13, 0.12), 0 2px 8px rgba(13, 13, 13, 0.06);
+  border-color: rgba(13, 13, 13, 0.08);
   border-radius: 14px;
 }
 
@@ -456,23 +443,6 @@ a:not(.btn):not(.card):not(.no-underline) {
   box-shadow: 0 0 0 4px rgba(102, 51, 204, 0.15);
 }
 
-/* ---------- Dot grid: mist-gray card sections ---------- */
-section[class*="mist-gray"] {
-  background-image: radial-gradient(rgba(102,51,204,0.18) 1.5px, transparent 1.5px);
-  background-size: 26px 26px;
-}
-
-/* ---------- Dot grid: rich-black sections ---------- */
-section[class*="rich-black"] {
-  background-image: radial-gradient(rgba(189,232,241,0.14) 1.5px, transparent 1.5px);
-  background-size: 30px 30px;
-}
-
-/* ---------- Dot grid: footer ---------- */
-footer {
-  background-image: radial-gradient(rgba(189,232,241,0.1) 1px, transparent 1px);
-  background-size: 28px 28px;
-}
 
 /* ---------- Decorative opening quote on testimonial blockquotes ---------- */
 .card blockquote { position: relative; }
@@ -494,10 +464,6 @@ footer {
 
 /* ---------- Reduced motion: disable all enhancements ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .accent-gradient {
-    animation: none !important;
-    background-size: 100% 100% !important;
-  }
   .cf-reveal {
     opacity: 1 !important;
     transform: none !important;
