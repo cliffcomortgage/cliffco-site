@@ -27,7 +27,7 @@ export const organizationSchema = () => ({
   legalName: COMPANY.legalName,
   alternateName: ["Cliffco", "Cliffco Mortgage"],
   url: SITE_URL,
-  logo: `${SITE_URL}/brand/full-logo.svg`,
+  logo: `${SITE_URL}/logo-black.png`,
   foundingDate: String(COMPANY.founded),
   telephone: COMPANY.hq.phoneE164,
   address: {
@@ -177,7 +177,7 @@ export const articleSchema = (opts: {
     headline: opts.headline,
     description: opts.description,
     mainEntityOfPage,
-    image: opts.image ?? `${SITE_URL}/brand/og-default.png`,
+    image: opts.image ?? `${SITE_URL}/images/content%20images/what-we-do.jpg`,
     datePublished: opts.datePublished,
     dateModified: opts.dateModified,
     publisher: { "@id": orgId },
