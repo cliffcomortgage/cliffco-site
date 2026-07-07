@@ -180,7 +180,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
           },
         ].map((s) => (
           <div class="flex flex-col gap-3">
-            <span class="text-4xl font-bold text-[var(--color-accent)] opacity-40">{s.step}</span>
+            <span class="text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-accent)]">Step {s.step}</span>
             <h3 class="text-lg font-semibold text-[var(--color-ink)]">{s.heading}</h3>
             <p class="text-[var(--color-text)] leading-relaxed">{s.body}</p>
           </div>
