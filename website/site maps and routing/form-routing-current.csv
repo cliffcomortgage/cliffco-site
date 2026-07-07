@@ -1,0 +1,49 @@
+Page,Form Source,Lead Recipients,Notes
+/contact/,contact-page,"websiteleads@, cliffcorpteam@",
+/denied-mortgage/,denied-mortgage,"websiteleads@, cliffcorpteam@",
+/down-payment-assistance/,down-payment-assistance,"websiteleads@, cliffcorpteam@",
+/first-time-homebuyer/,first-time-homebuyer,"websiteleads@, cliffcorpteam@",
+/purchasing-refinancing/,purchasing-refinancing,"websiteleads@, cliffcorpteam@",
+/real-estate-investor-mortgage/,investor,"websiteleads@, cliffcorpteam@",
+/reverse-mortgage/,reverse-mortgage,"websiteleads@, cliffcorpteam@",
+/self-employed-mortgage/,self-employed,"websiteleads@, cliffcorpteam@",
+/loans/1099-mortgage/,loan-1099,"websiteleads@, cliffcorpteam@",
+/loans/asset-utilization-mortgage/,loan-asset-utilization,"websiteleads@, cliffcorpteam@",
+/loans/business-bank-statement/,loan-bank-statement,"websiteleads@, cliffcorpteam@",
+/loans/condos-co-ops-condotels/,loan-condos,"websiteleads@, cliffcorpteam@",
+/loans/conventional/,loan-conventional,"websiteleads@, cliffcorpteam@",
+/loans/conventional-government/,loan-conventional-govt,"websiteleads@, cliffcorpteam@",
+/loans/dscr/,loan-dscr,"websiteleads@, cliffcorpteam@",
+/loans/fha/,loan-fha,"websiteleads@, cliffcorpteam@",
+/loans/foreign-national-mortgage/,loan-foreign-national,"websiteleads@, cliffcorpteam@",
+/loans/itin-mortgage/,loan-itin,"websiteleads@, cliffcorpteam@",
+/loans/non-qm-self-employed/,loan-non-qm,"websiteleads@, cliffcorpteam@",
+/loans/refinancing/,loan-refinancing,"websiteleads@, cliffcorpteam@",
+/loans/renovation/,loan-renovation,"websiteleads@, cliffcorpteam@",
+/loans/reverse-mortgage/,loan-reverse,"websiteleads@, cliffcorpteam@",
+/loans/usda/,loan-usda,"websiteleads@, cliffcorpteam@",
+/loans/va/,loan-va,"websiteleads@, cliffcorpteam@",
+/loan-officers/{every LO page},lo-{slug},"LO's own email + websiteleads@ (automatic from roster; falls back to websiteleads@ only if no email on file)",DYNAMIC - covers all 80+ LO pages
+/locations/{state} (NJ AZ MN FL),location-{state},"websiteleads@, cliffcorpteam@",DYNAMIC
+/locations/new-york/,location-new-york,"websiteleads@, cliffcorpteam@",
+/locations/new-york/long-island/,location-long-island,"websiteleads@, cliffcorpteam@",
+/locations/florida/,location-florida,"websiteleads@, cliffcorpteam@",
+/locations/florida/orlando/,location-orlando,"fveras@, websiteleads@",
+/locations/florida/fort-lauderdale/,location-ftlauderdale,"karabian@, websiteleads@",FLAG: karabian not found on LO roster - verify
+/bay-shore-ny/,branch-bayshore,"zambelliL@, websiteleads@",FLAG: team-zambelli page uses lzambelli@ - which is correct? (roster has 3 Zambellis)
+/branchburg-nj/,branch-branchburg,"gjohansen@, emorais@, dfeliciano@, websiteleads@",
+/excelsior-mn/,branch-excelsior,"mpatternson@, websiteleads@",FLAG: roster says Mitchell Patterson - likely typo for mpatterson@
+/scottsdale-az/,branch-scottsdale,"swei@, websiteleads@",Steve Wei - VP of Sales per roster
+/uniondale/,branch-uniondale,"websiteleads@, cliffcorpteam@",
+/wantagh-ny/,branch-wantagh,"jgiaquinto@, websiteleads@",
+/team-chen/,team-chen,"jchen@, websiteleads@",
+/team-cordeira/,team-cordeira,"jcordeira@, websiteleads@",
+/team-giaquinto/,team-giaquinto,"jgiaquinto@, websiteleads@",
+/team-veras/,team-veras,"fveras@, websiteleads@",
+/team-zambelli/,team-zambelli,"lzambelli@, websiteleads@",FLAG: bay-shore-ny page uses zambelliL@ - which is correct?
+/the-fallarino-group/,team-fallarino,"dfallarino@, websiteleads@",
+/alt-a-vs-conventional-mortgage/,blog-alt-a,"dfallarino@, websiteleads@",Fallarino content
+/complex-income-mortgage-solutions/,blog-complex-income,"dfallarino@, websiteleads@",Fallarino content
+/dscr-loans-real-estate-investors/,blog-dscr,"dfallarino@, websiteleads@",Fallarino content
+/jumbo-alt-a-loans-entrepreneurs-david-fallarino/,blog-jumbo-alt-a,"dfallarino@, websiteleads@",Fallarino content
+/mortgages-for-freelancers-entrepreneurs-investors/,blog-freelancers,"dfallarino@, websiteleads@",Fallarino content
