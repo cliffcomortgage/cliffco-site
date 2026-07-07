@@ -12,13 +12,6 @@ const products = priorityProducts();
 const officeLocations = LOCATIONS.filter((l) => !l.path.includes("/"));
 const president = loanOfficer("christopher-clifford")!;
 const yearsInBiz = COMPANY.yearsInBusiness();
-
-const productIcons: Record<string, string> = {
-  "non-qm-self-employed": `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>`,
-  "reverse-mortgage": `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>`,
-  "dscr": `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>`,
-  "business-bank-statement": `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" /></svg>`,
-};
 ---
 
 <Layout
@@ -135,41 +128,29 @@ const productIcons: Record<string, string> = {
         <h2 class="mt-3" style="font-size: var(--text-h2);">If You Don't Fit the Mold, You Fit Here.</h2>
       </div>
 
-      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <a href="/self-employed-mortgage/" class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
-          <div class="w-11 h-11 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center mb-4 text-[var(--color-accent)]">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" /></svg>
-          </div>
+      <div class="mt-10 grid md:grid-cols-2 gap-x-16">
+        <a href="/self-employed-mortgage/" class="no-underline text-[var(--color-ink)] border-t border-[var(--color-ink)]/15 py-8 flex flex-col gap-3">
           <h3 style="font-size: var(--text-h3);">Self-Employed and Business Owners</h3>
-          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">Can't show W-2 income? We work from your bank statements: 12 months, personal or business.</p>
-          <span class="mt-5 text-sm font-semibold text-[var(--color-accent)]">See my options →</span>
+          <p class="text-[var(--color-text-muted)] leading-relaxed flex-1">Can't show W-2 income? We work from your bank statements: 12 months, personal or business.</p>
+          <span class="text-sm font-semibold text-[var(--color-accent)]">See my options →</span>
         </a>
 
-        <a href="/real-estate-investor-mortgage/" class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
-          <div class="w-11 h-11 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center mb-4 text-[var(--color-accent)]">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" /></svg>
-          </div>
+        <a href="/real-estate-investor-mortgage/" class="no-underline text-[var(--color-ink)] border-t border-[var(--color-ink)]/15 py-8 flex flex-col gap-3">
           <h3 style="font-size: var(--text-h3);">Real Estate Investors</h3>
-          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">Income from properties, not paystubs. DSCR loans built for your portfolio. No personal income required.</p>
-          <span class="mt-5 text-sm font-semibold text-[var(--color-accent)]">See my options →</span>
+          <p class="text-[var(--color-text-muted)] leading-relaxed flex-1">Income from properties, not paystubs. DSCR loans built for your portfolio. No personal income required.</p>
+          <span class="text-sm font-semibold text-[var(--color-accent)]">See my options →</span>
         </a>
 
-        <a href="/loans/reverse-mortgage/" class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
-          <div class="w-11 h-11 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center mb-4 text-[var(--color-accent)]">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
-          </div>
+        <a href="/loans/reverse-mortgage/" class="no-underline text-[var(--color-ink)] border-t border-[var(--color-ink)]/15 py-8 flex flex-col gap-3">
           <h3 style="font-size: var(--text-h3);">Homeowners 62 and Older</h3>
-          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">Tap your home's equity. Stay in your home on your terms.</p>
-          <span class="mt-5 text-sm font-semibold text-[var(--color-accent)]">Learn more →</span>
+          <p class="text-[var(--color-text-muted)] leading-relaxed flex-1">Tap your home's equity. Stay in your home on your terms.</p>
+          <span class="text-sm font-semibold text-[var(--color-accent)]">Learn more →</span>
         </a>
 
-        <a href="/denied-mortgage/" class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
-          <div class="w-11 h-11 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center mb-4 text-[var(--color-accent)]">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>
-          </div>
+        <a href="/denied-mortgage/" class="no-underline text-[var(--color-ink)] border-t border-[var(--color-ink)]/15 py-8 flex flex-col gap-3">
           <h3 style="font-size: var(--text-h3);">Denied Before?</h3>
-          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">Tell us why you were denied. We find paths other lenders miss.</p>
-          <span class="mt-5 text-sm font-semibold text-[var(--color-accent)]">Get a second opinion →</span>
+          <p class="text-[var(--color-text-muted)] leading-relaxed flex-1">Tell us why you were denied. We find paths other lenders miss.</p>
+          <span class="text-sm font-semibold text-[var(--color-accent)]">Get a second opinion →</span>
         </a>
       </div>
     </div>
@@ -187,13 +168,12 @@ const productIcons: Record<string, string> = {
         </p>
       </div>
 
-      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      <div class="mt-10 grid md:grid-cols-2 gap-x-16">
         {products.map((p) => (
-          <a href={`/loans/${p.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
-            <div class="w-11 h-11 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center mb-4 text-[var(--color-accent)]" set:html={productIcons[p.slug] ?? ""}></div>
+          <a href={`/loans/${p.slug}/`} class="no-underline text-[var(--color-ink)] border-t border-[var(--color-ink)]/15 py-8 flex flex-col gap-3">
             <h3 style="font-size: var(--text-h3);">{p.shortName}</h3>
-            <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{p.oneLiner}</p>
-            <span class="mt-5 text-sm font-semibold text-[var(--color-accent)]">Learn more →</span>
+            <p class="text-[var(--color-text-muted)] leading-relaxed flex-1">{p.oneLiner}</p>
+            <span class="text-sm font-semibold text-[var(--color-accent)]">Learn more →</span>
           </a>
         ))}
       </div>
@@ -286,21 +266,21 @@ const productIcons: Record<string, string> = {
         </p>
       </div>
 
-      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-x-12">
         {officeLocations.map((l) => {
           const branches = BRANCHES.filter((b) => l.branchSlugs?.includes(b.slug));
           return (
-            <a href={`/locations/${l.path}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
+            <a href={`/locations/${l.path}/`} class="no-underline text-[var(--color-ink)] border-t border-[var(--color-ink)]/15 py-8 flex flex-col gap-3">
               <h3 style="font-size: var(--text-h3);">{l.name}</h3>
               {branches.length > 0 && (
-                <div class="mt-4 flex flex-wrap gap-2">
+                <div class="flex flex-wrap gap-2">
                   {branches.map((b) => (
                     <span class="text-xs font-medium px-3 py-1 rounded-full bg-[var(--color-mist-gray)] text-[var(--color-text-muted)]">{b.displayCity ?? b.city}</span>
                   ))}
                 </div>
               )}
-              <p class="mt-4 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{l.blurb.split(".")[0]}.</p>
-              <span class="mt-5 text-sm font-semibold text-[var(--color-accent)]">Visit market →</span>
+              <p class="text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{l.blurb.split(".")[0]}.</p>
+              <span class="text-sm font-semibold text-[var(--color-accent)]">Visit market →</span>
             </a>
           );
         })}
