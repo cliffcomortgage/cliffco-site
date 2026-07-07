@@ -1,4 +1,4 @@
-﻿import type { APIRoute } from 'astro';
+import type { APIRoute } from 'astro';
 
 // Static for GitHub Pages preview (no server), server-rendered for Vercel production
 export const prerender = process.env.DEPLOY_TARGET === 'pages';
@@ -6,11 +6,118 @@ export const prerender = process.env.DEPLOY_TARGET === 'pages';
 // All recipients must be @cliffcomortgage.com for security
 const ALLOWED_DOMAIN = 'cliffcomortgage.com';
 
+// HubSpot is the primary lead destination; SendGrid is the fallback if the
+// HubSpot submission fails (and the only path that emails the borrower a
+// confirmation until a follow-up email is configured on the HubSpot form).
+const HUBSPOT_PORTAL_ID = import.meta.env.HUBSPOT_PORTAL_ID ?? '21616430';
+const HUBSPOT_FORM_GUID = import.meta.env.HUBSPOT_FORM_GUID ?? '3cf23f62-cce8-4c0f-acd4-fb27d09cc627';
+
 function validateRecipients(raw: string): string[] {
   return raw
     .split(',')
     .map((e) => e.trim().toLowerCase())
     .filter((e) => e.endsWith(`@${ALLOWED_DOMAIN}`));
+}
+
+async function submitToHubSpot(lead: {
+  firstName: string; lastName: string; email: string; phone: string;
+  purpose: string; state: string; notes: string; tcpa: string;
+  formSource: string; recipients: string[];
+  hutk: string; pageUri: string; pageName: string;
+}): Promise<void> {
+  const message = [
+    lead.notes,
+    lead.state ? `State: ${lead.state}` : '',
+    lead.purpose ? `Looking to: ${lead.purpose}` : '',
+  ].filter(Boolean).join('\n');
+
+  const payload = {
+    fields: [
+      { name: 'email', value: lead.email },
+      { name: 'firstname', value: lead.firstName },
+      { name: 'lastname', value: lead.lastName },
+      { name: 'phone', value: lead.phone },
+      { name: 'message', value: message },
+      { name: 'sms_consent', value: lead.tcpa ? 'true' : 'false' },
+      { name: 'product_interest', value: lead.purpose || 'General Inquiry' },
+      { name: 'form_source', value: `Website 2.0 - ${lead.formSource}` },
+      { name: 'website_page', value: lead.pageUri ? new URL(lead.pageUri).pathname : '' },
+      { name: 'corporate_initiatives_name', value: 'corporate_lead_front_deskwebsite' },
+      { name: 'notification_route', value: lead.recipients.join(',') },
+    ],
+    context: {
+      pageUri: lead.pageUri || undefined,
+      pageName: lead.pageName || undefined,
+      hutk: lead.hutk || undefined,
+    },
+  };
+
+  const res = await fetch(
+    `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }
+  );
+  if (!res.ok) {
+    const text = await res.text().catch(() => '');
+    throw new Error(`HubSpot submission failed: ${res.status} ${text}`);
+  }
+}
+
+async function sendViaSendGrid(lead: {
+  firstName: string; lastName: string; email: string; phone: string;
+  purpose: string; state: string; notes: string;
+  formSource: string; recipients: string[];
+}, isFallback: boolean): Promise<void> {
+  const apiKey   = import.meta.env.SENDGRID_API_KEY;
+  const fromEmail = import.meta.env.SENDGRID_FROM_EMAIL ?? 'website@cliffcomortgage.com';
+  if (!apiKey) throw new Error('SENDGRID_API_KEY not set');
+
+  const sgMail = (await import('@sendgrid/mail')).default;
+  sgMail.setApiKey(apiKey);
+
+  const subject = `New Lead from cliffcomortgage.com - ${lead.firstName} ${lead.lastName}`;
+
+  const html = `
+    <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;">
+      <h2 style="color:#0d0d0d;border-bottom:2px solid #6633cc;padding-bottom:12px;">
+        New Mortgage Inquiry
+      </h2>
+      <table style="width:100%;border-collapse:collapse;margin-top:16px;">
+        <tr><td style="padding:8px 0;color:#5a5d5d;font-size:13px;width:160px;">Name</td>
+            <td style="padding:8px 0;font-weight:600;">${lead.firstName} ${lead.lastName}</td></tr>
+        <tr style="background:#f9f8fa;"><td style="padding:8px 4px;color:#5a5d5d;font-size:13px;">Email</td>
+            <td style="padding:8px 4px;"><a href="mailto:${lead.email}">${lead.email}</a></td></tr>
+        <tr><td style="padding:8px 0;color:#5a5d5d;font-size:13px;">Phone</td>
+            <td style="padding:8px 0;"><a href="tel:${lead.phone.replace(/\D/g,'')}">${lead.phone}</a></td></tr>
+        <tr style="background:#f9f8fa;"><td style="padding:8px 4px;color:#5a5d5d;font-size:13px;">Looking to</td>
+            <td style="padding:8px 4px;">${lead.purpose}</td></tr>
+        <tr><td style="padding:8px 0;color:#5a5d5d;font-size:13px;">State</td>
+            <td style="padding:8px 0;">${lead.state}</td></tr>
+        ${lead.notes ? `<tr style="background:#f9f8fa;"><td style="padding:8px 4px;color:#5a5d5d;font-size:13px;vertical-align:top;">Notes</td>
+            <td style="padding:8px 4px;">${lead.notes}</td></tr>` : ''}
+        <tr><td style="padding:8px 0;color:#5a5d5d;font-size:13px;">Form source</td>
+            <td style="padding:8px 0;font-size:12px;color:#888;">${lead.formSource}</td></tr>
+        <tr style="background:#f9f8fa;"><td style="padding:8px 4px;color:#5a5d5d;font-size:13px;">TCPA consent</td>
+            <td style="padding:8px 4px;color:#22c55e;font-weight:600;">✓ Agreed</td></tr>
+        ${isFallback ? `<tr><td style="padding:8px 0;color:#c00;font-size:12px;" colspan="2">
+            The HubSpot submission failed for this lead — this email is the only record. Check HubSpot before assuming it was recorded.</td></tr>` : ''}
+      </table>
+      <p style="margin-top:24px;font-size:11px;color:#aaa;">
+        Sent from cliffcomortgage.com · ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })} ET
+      </p>
+    </div>
+  `;
+
+  await sgMail.send({
+    to: lead.recipients,
+    from: { email: fromEmail, name: 'Cliffco Website' },
+    replyTo: lead.email,
+    subject,
+    html,
+  });
 }
 
 export const POST: APIRoute = async ({ request }) => {
@@ -28,6 +135,9 @@ export const POST: APIRoute = async ({ request }) => {
     const tcpa        = (data.get('tcpa_consent') as string | null)?.trim() ?? '';
     const formSource  = (data.get('form_source')  as string | null)?.trim() ?? 'website';
     const honeypot    = (data.get('website')      as string | null)?.trim() ?? '';
+    const hutk        = (data.get('hutk')         as string | null)?.trim() ?? '';
+    const pageUri     = (data.get('page_uri')     as string | null)?.trim() ?? '';
+    const pageName    = (data.get('page_name')    as string | null)?.trim() ?? '';
 
     // Silently discard bot submissions
     if (honeypot) {
@@ -58,88 +168,38 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const apiKey   = import.meta.env.SENDGRID_API_KEY;
-    const fromEmail = import.meta.env.SENDGRID_FROM_EMAIL ?? 'website@cliffcomortgage.com';
+    const lead = {
+      firstName, lastName, email, phone, purpose, state, notes, tcpa,
+      formSource, recipients, hutk, pageUri, pageName,
+    };
 
-    if (!apiKey) {
-      console.error('SENDGRID_API_KEY not set');
+    // Dual delivery:
+    //  - HubSpot: CRM record + corporate catch-all notification (form settings)
+    //  - SendGrid: routed notification email directly to the page's recipients
+    //    (the LO/team in formTo), plus fallback record if HubSpot fails.
+    // Success requires at least one channel to deliver.
+    let hubspotOk = false;
+    try {
+      await submitToHubSpot(lead);
+      hubspotOk = true;
+    } catch (hsErr) {
+      console.error('HubSpot submission failed:', String(hsErr));
+    }
+
+    let sendgridOk = false;
+    try {
+      await sendViaSendGrid(lead, !hubspotOk);
+      sendgridOk = true;
+    } catch (sgErr) {
+      console.error('SendGrid send failed:', String(sgErr));
+    }
+
+    if (!hubspotOk && !sendgridOk) {
       return new Response(
-        JSON.stringify({ error: 'Our contact form isn\'t fully configured yet. Please call us at (800) 834-4040.' }),
+        JSON.stringify({ error: 'We couldn\'t send your message right now. Please try again or call us at (800) 834-4040 — Mon–Fri 9am–6pm ET.' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
-
-    const sgMail = (await import('@sendgrid/mail')).default;
-    sgMail.setApiKey(apiKey);
-
-    const subject = `New Lead from cliffcomortgage.com - ${firstName} ${lastName}`;
-
-    const html = `
-      <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;">
-        <h2 style="color:#0d0d0d;border-bottom:2px solid #6633cc;padding-bottom:12px;">
-          New Mortgage Inquiry
-        </h2>
-        <table style="width:100%;border-collapse:collapse;margin-top:16px;">
-          <tr><td style="padding:8px 0;color:#5a5d5d;font-size:13px;width:160px;">Name</td>
-              <td style="padding:8px 0;font-weight:600;">${firstName} ${lastName}</td></tr>
-          <tr style="background:#f9f8fa;"><td style="padding:8px 4px;color:#5a5d5d;font-size:13px;">Email</td>
-              <td style="padding:8px 4px;"><a href="mailto:${email}">${email}</a></td></tr>
-          <tr><td style="padding:8px 0;color:#5a5d5d;font-size:13px;">Phone</td>
-              <td style="padding:8px 0;"><a href="tel:${phone.replace(/\D/g,'')}">${phone}</a></td></tr>
-          <tr style="background:#f9f8fa;"><td style="padding:8px 4px;color:#5a5d5d;font-size:13px;">Looking to</td>
-              <td style="padding:8px 4px;">${purpose}</td></tr>
-          <tr><td style="padding:8px 0;color:#5a5d5d;font-size:13px;">State</td>
-              <td style="padding:8px 0;">${state}</td></tr>
-          ${notes ? `<tr style="background:#f9f8fa;"><td style="padding:8px 4px;color:#5a5d5d;font-size:13px;vertical-align:top;">Notes</td>
-              <td style="padding:8px 4px;">${notes}</td></tr>` : ''}
-          <tr><td style="padding:8px 0;color:#5a5d5d;font-size:13px;">Form source</td>
-              <td style="padding:8px 0;font-size:12px;color:#888;">${formSource}</td></tr>
-          <tr style="background:#f9f8fa;"><td style="padding:8px 4px;color:#5a5d5d;font-size:13px;">TCPA consent</td>
-              <td style="padding:8px 4px;color:#22c55e;font-weight:600;">✓ Agreed</td></tr>
-        </table>
-        <p style="margin-top:24px;font-size:11px;color:#aaa;">
-          Sent from cliffcomortgage.com · ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })} ET
-        </p>
-      </div>
-    `;
-
-    await sgMail.send({
-      to: recipients,
-      from: { email: fromEmail, name: 'Cliffco Website' },
-      replyTo: email,
-      subject,
-      html,
-    });
-
-    // Confirmation to the borrower
-    const confirmHtml = `
-      <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;">
-        <div style="border-top:4px solid #6633cc;padding-top:20px;">
-          <h2 style="color:#0d0d0d;margin-top:0;">We received your message.</h2>
-          <p style="color:#444;line-height:1.6;">
-            Hi ${firstName}, thanks for reaching out to Cliffco. A loan officer will review your
-            inquiry and follow up within <strong>1 business day</strong>.
-          </p>
-          <p style="color:#444;line-height:1.6;">
-            If you'd like to speak with someone sooner, call us at
-            <a href="tel:+18008344040" style="color:#6633cc;font-weight:600;">(800) 834-4040</a>
-            Mon–Fri 9am–6pm ET.
-          </p>
-          <hr style="border:none;border-top:1px solid #eee;margin:24px 0;" />
-          <p style="font-size:12px;color:#aaa;margin:0;">
-            Cliffco Mortgage Bankers · NMLS #1434752 ·
-            <a href="https://cliffcomortgage.com" style="color:#aaa;">cliffcomortgage.com</a>
-          </p>
-        </div>
-      </div>
-    `;
-
-    await sgMail.send({
-      to: email,
-      from: { email: fromEmail, name: 'Cliffco Mortgage' },
-      subject: 'We received your message — a Cliffco loan officer will be in touch',
-      html: confirmHtml,
-    });
 
     return new Response(
       JSON.stringify({ success: true }),

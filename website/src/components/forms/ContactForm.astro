@@ -180,6 +180,12 @@ document.querySelectorAll<HTMLFormElement>('.cf-contact-form').forEach((form) =>
     const fd = new FormData(form);
     fd.set('form_to', form.dataset.formTo ?? '');
     fd.set('form_source', form.dataset.formSource ?? 'website');
+    fd.set('page_uri', window.location.href);
+    fd.set('page_name', document.title);
+    // HubSpot visitor cookie, if the tracking script has set it - ties the
+    // lead to their browsing history and traffic source in HubSpot
+    const hutkMatch = document.cookie.match(/(?:^|; )hubspotutk=([^;]*)/);
+    if (hutkMatch) fd.set('hutk', hutkMatch[1]);
 
     try {
       const res  = await fetch('/api/contact', { method: 'POST', body: fd });
