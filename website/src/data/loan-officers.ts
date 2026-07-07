@@ -31,6 +31,8 @@ export type LoanOfficer = {
   links?: {
     linkedin?: string;
     email?: string;
+    /** Overrides email as the lead-routing recipient (email stays the displayed contact) */
+    leadTo?: string;
     /** Office / direct-dial line */
     directPhone?: string;
     /** Personal cell number */
@@ -89,6 +91,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       "business bank statement - with the same hands-on approach Cliffco was founded on.",
     links: {
       email: "cclifford@cliffcomortgage.com",
+      leadTo: "cliffcorpteam@cliffcomortgage.com",
     },
     hasPhoto: true,
   },

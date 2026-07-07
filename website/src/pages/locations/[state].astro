@@ -252,7 +252,10 @@ const schema = [
       <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us your situation and a {loc.name}-licensed loan officer will be in touch within one business day.</p>
       <div class="mt-8">
         <ContactForm
-          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
+          formTo={{
+            NJ: "gjohansen@cliffcomortgage.com,emorais@cliffcomortgage.com,dfeliciano@cliffcomortgage.com,websiteleads@cliffcomortgage.com",
+            MN: "mpatterson@cliffcomortgage.com,websiteleads@cliffcomortgage.com",
+          }[loc.state] ?? "websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"}
           formSource={`location-${loc.state.toLowerCase()}`}
         />
       </div>
