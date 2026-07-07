@@ -1,0 +1,273 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../data/company";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+
+const today = new Date().toISOString().slice(0, 10);
+
+const faq = [
+  {
+    question: "Who qualifies for a reverse mortgage?",
+    answer: "Homeowners aged 62 or older who own their home outright or have significant equity, occupy the property as their primary residence, and can demonstrate the ability to maintain property taxes, insurance, and basic upkeep.",
+  },
+  {
+    question: "Will I lose my home?",
+    answer: "No, as long as you continue to live in the home as your primary residence, pay property taxes and insurance, and maintain the property in good condition. The lender does not own your home. You remain the owner.",
+  },
+  {
+    question: "Do my heirs have to pay back the loan?",
+    answer: "When you permanently leave the home, the loan becomes due. Your heirs have three options: sell the home and use the proceeds to repay the loan, pay off the loan and keep the home, or deed the property to the lender if the balance exceeds the home's value. The loan is non-recourse, meaning heirs are never personally liable for more than the home's appraised value.",
+  },
+  {
+    question: "What is HECM counseling?",
+    answer: "Before receiving a HECM (the government-insured reverse mortgage), borrowers are required by law to complete a session with an independent HUD-approved counselor. This counselor is not affiliated with any lender. Their job is to make sure you fully understand the program and that it is appropriate for your situation. This requirement is a consumer protection, not a hurdle.",
+  },
+  {
+    question: "What does a reverse mortgage cost?",
+    answer: "Costs include an origination fee, standard closing costs, an upfront mortgage insurance premium (2% of the home's appraised value), and an ongoing annual premium (0.5%). Most costs can be rolled into the loan so no out-of-pocket payment is required at closing.",
+  },
+  {
+    question: "Can I get a reverse mortgage if I still have a regular mortgage?",
+    answer: "Yes, as long as your home has sufficient equity. The reverse mortgage proceeds pay off the existing mortgage first. Any remaining equity is yours to access as needed. This is one of the most common ways borrowers use reverse mortgages.",
+  },
+];
+
+const familyFaq = [
+  {
+    question: "Is a reverse mortgage a scam?",
+    answer: "No. HECM reverse mortgages are insured by the Federal Housing Administration and regulated by HUD. They have been available since 1988 and helped millions of seniors access home equity while remaining in their homes. The required HUD counseling is specifically designed to prevent unsuitable use.",
+  },
+  {
+    question: "Can the bank take my parents' home?",
+    answer: "Only if both borrowers permanently leave the home without repaying the loan and do not make arrangements. As long as at least one borrower lives in the home as a primary residence and meets maintenance obligations, the lender cannot foreclose.",
+  },
+  {
+    question: "What if my parents need care and have to move to a facility?",
+    answer: "If both borrowers permanently move to a care facility for 12 consecutive months or longer, the loan becomes due. This is one of the most important planning considerations. Your Cliffco loan officer can walk through the specific scenarios for your family's situation.",
+  },
+  {
+    question: "Will the loan amount ever exceed the value of the home?",
+    answer: "HECM loans are non-recourse, meaning the lender can never collect more than the home is worth at the time of sale. FHA insurance covers any shortfall. Your family will never owe more than the home's appraised value.",
+  },
+];
+
+const schema = [
+  faqPageSchema([...faq, ...familyFaq]),
+  articleSchema({
+    headline: "Reverse Mortgage for Homeowners 62 and Older",
+    description: "Learn how a reverse mortgage can eliminate monthly mortgage payments and give you access to the equity you've spent decades building. HECM and proprietary programs available.",
+    url: "/reverse-mortgage/",
+    datePublished: "2026-04-15",
+    dateModified: today,
+    authorSlug: "christopher-clifford",
+  }),
+];
+import ContactForm from "../../components/forms/ContactForm.astro";
+---
+
+<Layout
+  title="Reverse Mortgage for Homeowners 62+ | HECM Loans | Cliffco"
+  description="Access your home equity without selling. A reverse mortgage lets you stay in your home, eliminate monthly payments, and access the equity you've built over decades. Talk to a Cliffco specialist."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Reverse Mortgage", href: "/reverse-mortgage/" },
+  ]} />
+
+  <!-- HERO -->
+  <section class="accent-gradient relative overflow-hidden">
+    <img
+      src="/images/content%20images/Reverse%20Hero.png"
+      alt=""
+      aria-hidden="true"
+      class="absolute bottom-0 right-0 hidden lg:block h-full w-auto object-contain object-bottom pointer-events-none select-none"
+      style="max-height:110%;right:10%;"
+      loading="eager"
+    />
+    <div class="container-wide py-20 lg:py-28 relative z-10">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">For Homeowners 62 and Older · HECM and Proprietary Programs</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.1; font-weight: 400; font-family: var(--font-sans);">
+        Decades of Equity<br/>
+        <span class="text-[var(--color-ice-blue)]">Can Now Work in Your Favor.</span>
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-2xl">
+        Stay in your home, access your equity, and make zero monthly mortgage payments.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Talk to a Specialist</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+      <p class="mt-4 text-white/70 text-sm">No pressure. No commitment. Just honest information about your options.</p>
+    </div>
+  </section>
+
+  <!-- IS THIS RIGHT FOR YOU -->
+  <section class="section bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow">Eligibility</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Is a reverse mortgage right for you?</h2>
+        <p class="lead mt-4 text-[var(--color-text-muted)]">
+          A reverse mortgage is not for everyone. It is for homeowners who want to stay in their home and access the equity they've built, without making monthly mortgage payments.
+        </p>
+      </div>
+      <div>
+        <p class="font-semibold text-[var(--color-ink)] mb-4">You may be a good candidate if you:</p>
+        <ul class="space-y-3">
+          {[
+            "Are 62 years of age or older",
+            "Own your home outright or have significant equity",
+            "Live in the home as your primary residence",
+            "Can continue to pay property taxes, insurance, and maintenance",
+            "Want to eliminate or reduce monthly mortgage payments",
+            "Want access to home equity without selling",
+          ].map((item) => (
+            <li class="flex gap-3 items-start" style="font-size: 1.0625rem;">
+              <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center font-bold">✓</span>
+              <span class="text-[var(--color-text)]">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <p class="eyebrow">How it works</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">It's simpler than you think.</h2>
+      <div class="mt-8 max-w-3xl space-y-5" style="font-size: 1.0625rem; line-height: 1.7;">
+        <p class="text-[var(--color-text)]">
+          A reverse mortgage lets you access the equity in your home without selling it and without making monthly mortgage payments. The loan balance grows over time as interest accrues. You remain the homeowner. The loan becomes due when you permanently leave the home, sell, or pass away.
+        </p>
+        <p class="text-[var(--color-text)]">
+          You can receive the funds as a lump sum, a line of credit, monthly payments, or a combination. Many borrowers use the proceeds to pay off an existing mortgage, cover living expenses, fund home improvements, or supplement retirement income.
+        </p>
+        <p class="text-[var(--color-text)]">
+          There are two main types. The HECM (Home Equity Conversion Mortgage) is government-insured through the FHA and available to borrowers 62 and older. Proprietary reverse mortgages are available for high-value homes that exceed HECM loan limits. Your Cliffco loan officer can explain which program fits your home and goals.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT PEOPLE GET WRONG -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">Setting the record straight</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">What people get wrong about reverse mortgages.</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        {[
+          {
+            myth: "The bank will own my home.",
+            fact: "False. You remain the legal owner of your home throughout the life of the loan. The lender holds a lien, just as with a traditional mortgage.",
+          },
+          {
+            myth: "My heirs will be stuck with the debt.",
+            fact: "False. HECM loans are non-recourse. Heirs are never personally liable for more than the home's appraised value. FHA insurance covers any shortfall.",
+          },
+          {
+            myth: "I'll be forced out if the balance exceeds the home value.",
+            fact: "False. You can remain in your home as long as it is your primary residence and you meet maintenance and tax obligations, regardless of the loan balance.",
+          },
+          {
+            myth: "Reverse mortgages are only for people in financial trouble.",
+            fact: "False. Many financially secure retirees use reverse mortgages strategically as part of retirement income planning to preserve investment portfolios.",
+          },
+          {
+            myth: "I can't get one if I still have a regular mortgage.",
+            fact: "Partially false. You can, as long as sufficient equity exists. The reverse mortgage proceeds pay off the existing balance first.",
+          },
+          {
+            myth: "My children will object.",
+            fact: "Once adult children understand how non-recourse protection works, most concerns are resolved. We have a full family FAQ below.",
+          },
+        ].map((item) => (
+          <div class="card">
+            <p class="text-sm font-semibold text-[var(--color-text-muted)] line-through">"{item.myth}"</p>
+            <p class="mt-2 text-[var(--color-text)]" style="font-size: 1.0625rem;">{item.fact}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HECM COUNSELING -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-3xl">
+      <p class="eyebrow">Required by law</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">HECM counseling: a consumer protection, not a hurdle.</h2>
+      <div class="mt-6 space-y-4" style="font-size: 1.0625rem; line-height: 1.7;">
+        <p class="text-[var(--color-text)]">
+          Before completing a HECM, federal law requires you to meet with an independent HUD-approved housing counselor. This counselor is not affiliated with Cliffco, any lender, or any real estate company. Their only job is to make sure you fully understand the program.
+        </p>
+        <p class="text-[var(--color-text)]">
+          The session covers how the loan works, what it costs, what your obligations are, and what alternatives exist. It typically takes one to two hours and can often be done by phone. Cliffco will provide you with a list of HUD-approved counselors in your area.
+        </p>
+        <p class="text-[var(--color-text)]">
+          Think of this as a second opinion that costs nothing. Most borrowers find it valuable.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAMILY FAQ -->
+  <section class="section bg-white">
+    <div class="container-wide">
+      <p class="eyebrow">For your family</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Questions your children may ask.</h2>
+      <p class="lead mt-4 text-[var(--color-text-muted)] max-w-2xl">Adult children often have the most concerns about reverse mortgages. These are the questions we hear most often, and the honest answers.</p>
+      <div class="mt-8 space-y-6">
+        {familyFaq.map((q) => (
+          <details class="border-b border-[var(--color-border)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer list-none" style="font-size: 1.0625rem;">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]" style="font-size: 1.0625rem;">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN FAQ -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <h2 class="mt-3" style="font-size: var(--text-h2);">What borrowers ask about reverse mortgages.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-border)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer list-none" style="font-size: 1.0625rem;">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]" style="font-size: 1.0625rem;">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">No pressure or commitment. Just honest answers.</h2>
+      <p class="lead mt-4 text-white/85">A Cliffco reverse mortgage specialist will walk you through the program, answer every question, and let you decide if it's right for you.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Schedule a Free Conversation</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-2xl">
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Talk to a loan officer who specializes in reverse mortgages.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Fill out the form and a loan officer will reach out within one business day.</p>
+      <div class="mt-8">
+        <ContactForm
+          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
+          formSource="reverse-mortgage"
+        />
+      </div>
+    </div>
+  </section>
+</Layout>
