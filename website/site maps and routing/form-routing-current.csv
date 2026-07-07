@@ -23,16 +23,18 @@ Page,Form Source,Lead Recipients,Notes
 /loans/reverse-mortgage/,loan-reverse,"websiteleads@, cliffcorpteam@",
 /loans/usda/,loan-usda,"websiteleads@, cliffcorpteam@",
 /loans/va/,loan-va,"websiteleads@, cliffcorpteam@",
-/loan-officers/{every LO page},lo-{slug},"LO's own email + websiteleads@ (automatic from roster; falls back to websiteleads@ only if no email on file)",DYNAMIC - covers all 80+ LO pages
-/locations/{state} (NJ AZ MN FL),location-{state},"websiteleads@, cliffcorpteam@",DYNAMIC
+/loan-officers/{every LO page},lo-{slug},"LO's own email + websiteleads@ (automatic from roster; falls back to websiteleads@ only if no email on file)",DYNAMIC - covers all 80+ LO pages. Exception: Christopher Clifford routes to cliffcorpteam@
+/locations/new-jersey/,location-nj,"gjohansen@, emorais@, dfeliciano@, websiteleads@",Branchburg team per inventory
+/locations/minnesota/,location-mn,"mpatterson@, websiteleads@",Mitchell Patterson (correct spelling; inventory's mpatternson@ is a typo)
+/locations/arizona/,location-az,"websiteleads@, cliffcorpteam@",
 /locations/new-york/,location-new-york,"websiteleads@, cliffcorpteam@",
 /locations/new-york/long-island/,location-long-island,"websiteleads@, cliffcorpteam@",
 /locations/florida/,location-florida,"websiteleads@, cliffcorpteam@",
 /locations/florida/orlando/,location-orlando,"fveras@, websiteleads@",
-/locations/florida/fort-lauderdale/,location-ftlauderdale,"karabian@, websiteleads@",FLAG: karabian not found on LO roster - verify
-/bay-shore-ny/,branch-bayshore,"zambelliL@, websiteleads@",FLAG: team-zambelli page uses lzambelli@ - which is correct? (roster has 3 Zambellis)
+/locations/florida/fort-lauderdale/,location-ftlauderdale,"karabian@, websiteleads@",Kyle Arabian (confirmed via inventory)
+/bay-shore-ny/,branch-bayshore,"zambelliL@, websiteleads@",Larisa Zambelli (confirmed - 3 different Zambellis on roster)
 /branchburg-nj/,branch-branchburg,"gjohansen@, emorais@, dfeliciano@, websiteleads@",
-/excelsior-mn/,branch-excelsior,"mpatternson@, websiteleads@",FLAG: roster says Mitchell Patterson - likely typo for mpatterson@
+/excelsior-mn/,branch-excelsior,"mpatterson@, websiteleads@",Mitchell Patterson (confirmed correct spelling)
 /scottsdale-az/,branch-scottsdale,"swei@, websiteleads@",Steve Wei - VP of Sales per roster
 /uniondale/,branch-uniondale,"websiteleads@, cliffcorpteam@",
 /wantagh-ny/,branch-wantagh,"jgiaquinto@, websiteleads@",
@@ -40,10 +42,12 @@ Page,Form Source,Lead Recipients,Notes
 /team-cordeira/,team-cordeira,"jcordeira@, websiteleads@",
 /team-giaquinto/,team-giaquinto,"jgiaquinto@, websiteleads@",
 /team-veras/,team-veras,"fveras@, websiteleads@",
-/team-zambelli/,team-zambelli,"lzambelli@, websiteleads@",FLAG: bay-shore-ny page uses zambelliL@ - which is correct?
+/team-zambelli/,team-zambelli,"lzambelli@, websiteleads@",Lisa Zambelli-Martorana (confirmed)
 /the-fallarino-group/,team-fallarino,"dfallarino@, websiteleads@",
 /alt-a-vs-conventional-mortgage/,blog-alt-a,"dfallarino@, websiteleads@",Fallarino content
 /complex-income-mortgage-solutions/,blog-complex-income,"dfallarino@, websiteleads@",Fallarino content
 /dscr-loans-real-estate-investors/,blog-dscr,"dfallarino@, websiteleads@",Fallarino content
 /jumbo-alt-a-loans-entrepreneurs-david-fallarino/,blog-jumbo-alt-a,"dfallarino@, websiteleads@",Fallarino content
 /mortgages-for-freelancers-entrepreneurs-investors/,blog-freelancers,"dfallarino@, websiteleads@",Fallarino content
+/get-started/,(get-started pre-qual),"cliffcorpteam@, websiteleads@",Uses /api/lead endpoint
+/team-str/,(team-str form),"margenzio@, websiteleads@",Uses /api/lead endpoint
