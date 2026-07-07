@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { COMPANY } from "../data/company";
+---
+
+<Layout
+  title="Page Not Found | Cliffco Mortgage Bankers"
+  description="That page doesn't exist or has moved. Find loan programs, loan officers, and contact information for Cliffco Mortgage Bankers."
+  noindex={true}
+>
+  <section class="accent-gradient">
+    <div class="container-wide py-24 lg:py-32 text-center">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">404</p>
+      <h1 class="mt-4 text-white" style="font-size: var(--text-display-xl); line-height: 1.1; font-weight: 400; font-family: var(--font-sans);">
+        We can't find that page.
+      </h1>
+      <p class="lead mt-6 text-white/90 max-w-xl mx-auto">
+        The link may be old, or the page may have moved when we rebuilt the site. Either way, everything you're looking for is still here.
+      </p>
+      <div class="mt-10 flex justify-center gap-3 flex-wrap">
+        <a href="/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Go to the homepage</a>
+        <a href="/loans/" class="btn btn-secondary !border-white !text-white">Browse loan programs</a>
+      </div>
+      <p class="mt-8 text-white/70 text-sm">
+        Looking for a loan officer? <a href="/loan-officers/" class="text-white underline">Find them here</a>.
+        Or call us at <a href={`tel:${COMPANY.tollFreeE164}`} class="text-white underline">{COMPANY.tollFree}</a>.
+      </p>
+    </div>
+  </section>
+</Layout>

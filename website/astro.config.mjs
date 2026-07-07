@@ -136,6 +136,16 @@ export default defineConfig({
     '/buydown-calculator/': '/mortgage-guides/calculators/buydown/',
     '/closing-costs/': '/mortgage-guides/calculators/closing-costs/',
     '/jmarrero/': '/loan-officers/',
+    // Old audience landing pages with no direct equivalent - nearest match
+    '/service-members/': '/loans/va/',
+    '/rural-residents/': '/loans/usda/',
+    '/freelance/': '/mortgages-for-freelancers-entrepreneurs-investors/',
+    '/non-us-citizens/': '/loans/itin-mortgage/',
+    '/tech/': '/complex-income-mortgage-solutions/',
+    '/salon/': '/self-employed-mortgage/',
+    '/trade-workers/': '/self-employed-mortgage/',
+    '/real-estate-agents/': '/self-employed-mortgage/',
+    '/healthcare-professionals/': '/purchasing-refinancing/',
   },
 
   vite: {
