@@ -54,7 +54,7 @@ import PostHog from "../components/posthog.astro";
             <!-- Left: headline + CTA -->
             <div>
               <p class="eyebrow !text-[var(--color-ice-blue)]">Minnesota Mortgage Lender · Cliffco</p>
-              <h1 class="mt-4 text-white max-w-xl" style="font-size: var(--text-display-xl); line-height: 1.08; font-weight: 700;">
+              <h1 class="mt-4 text-white max-w-xl" style="font-size: var(--text-display-xl); line-height: 1.08; font-weight: 400;">
                 Fast Mortgage Approval for Minnesota Homebuyers.
               </h1>
               <p class="lead mt-5 text-white/85 max-w-lg">
@@ -141,7 +141,7 @@ import PostHog from "../components/posthog.astro";
               <img
                 src="/mitchell-patterson.webp"
                 alt="Mitchell Patterson, Cliffco Mortgage Loan Officer"
-                class="w-48 h-48 rounded-2xl object-cover mx-auto shadow-lg"
+                class="w-48 h-48 rounded-lg object-cover mx-auto shadow-lg"
                 loading="lazy"
               />
               <h2 class="mt-5 text-2xl font-bold text-[var(--color-ink)]">Mitch Patterson</h2>
@@ -185,8 +185,8 @@ import PostHog from "../components/posthog.astro";
             <!-- Bio -->
             <div>
               <p class="eyebrow">Your Minnesota Loan Officer</p>
-              <h3 class="mt-3" style="font-size: var(--text-h2);">
-                Mortgage options you can actually understand.
+              <h3 class="mt-3" style="font-size: var(--text-h2); font-weight: 300;">
+                Mortgage options that make sense.
               </h3>
               <div class="mt-5 space-y-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
                 <p>
@@ -196,7 +196,7 @@ import PostHog from "../components/posthog.astro";
                   What sets Mitch apart: he explains everything clearly, with no confusing terms and no surprises. He builds loan options around your specific situation and goals, not around a quota. And he's in it for the long term, not just until your loan closes.
                 </p>
                 <p>
-                  Whether you're buying your very first home, moving up, or starting a new chapter, Mitch will guide you through every step of the process.
+                  First home, next home, or a whole new chapter: Mitch will guide you through every step of the process.
                 </p>
               </div>
 
@@ -204,7 +204,7 @@ import PostHog from "../components/posthog.astro";
               <div class="mt-8 grid sm:grid-cols-2 gap-4">
                 {[
                   { heading: "Clear communication", body: "No jargon, no surprises. You'll know exactly where you stand at every step." },
-                  { heading: "Built around you", body: "Loan options tailored to your personal situation and goals, not a one-size-fits-all product." },
+                  { heading: "Built around you", body: "Loan options that fit your personal situation and goals, not a one-size-fits-all product." },
                   { heading: "Long-term relationship", body: "Mitchell is here after closing too. Your success is the point, not just the transaction." },
                   { heading: "Access to more options", body: "Cliffco works with multiple lenders to find you the best possible rates and terms for your situation." },
                 ].map((item) => (
@@ -273,7 +273,7 @@ import PostHog from "../components/posthog.astro";
 
         <!-- Branch info -->
         <div class="mt-6 pb-6 border-b border-white/10 text-sm text-white/60">
-          <p class="font-semibold text-white/80">Cliffco Mortgage Bankers &mdash; Excelsior, MN</p>
+          <p class="font-semibold text-white/80">Cliffco Mortgage Bankers &middot; Excelsior, MN</p>
           <p class="mt-1">276 Water Street, Excelsior, MN 55331</p>
           <p class="mt-0.5">Branch NMLS #2763960 &middot; <a href="tel:5162023307" class="hover:text-white no-underline">Office: 516-202-3307</a></p>
         </div>

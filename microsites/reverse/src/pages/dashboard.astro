@@ -130,9 +130,9 @@ if (hasCredentials) {
         const dr = missed * cvr * LEAD_VALUE;
         if (dr > 100) rawRecs.push({
           type: "budget",
-          title: "Lift budget cap — " + c.name,
+          title: "Lift budget cap: " + c.name,
           description: "Budget throttled " + (c.budgetLostIS * 100).toFixed(0) + "% of eligible impressions. ~" + Math.round(missed) + " clicks and " + (missed * cvr).toFixed(1) + " conversions missed each month.",
-          action: "Increase the daily budget. This campaign returns " + c.roas.toFixed(1) + "x ROAS — every additional dollar generates " + c.roas.toFixed(1) + "x in lead value.",
+          action: "Increase the daily budget. This campaign returns " + c.roas.toFixed(1) + "x ROAS. Every additional dollar generates " + c.roas.toFixed(1) + "x in lead value.",
           campaign: c.name, dollarsRecoverable: dr,
           metrics: {
             "Budget lost IS": (c.budgetLostIS * 100).toFixed(1) + "%",
@@ -147,7 +147,7 @@ if (hasCredentials) {
         const dr = (TARGET_ROAS - c.roas) * c.spend;
         rawRecs.push({
           type: "roas",
-          title: "Close ROAS gap to " + TARGET_ROAS + "x — " + c.name,
+          title: "Close ROAS gap to " + TARGET_ROAS + "x: " + c.name,
           description: "Currently returning " + c.roas.toFixed(2) + "x vs. " + TARGET_ROAS + "x target. Bid optimization or keyword pruning can close the gap.",
           action: "Review keyword-level bids and pause low-intent terms. Consider switching to Target ROAS bidding at " + (TARGET_ROAS * 100) + "%.",
           campaign: c.name, dollarsRecoverable: dr,
@@ -165,7 +165,7 @@ if (hasCredentials) {
         const dr = missed * cvr * LEAD_VALUE;
         if (dr > 100) rawRecs.push({
           type: "quality",
-          title: "Recover Ad Rank — " + c.name,
+          title: "Recover Ad Rank: " + c.name,
           description: (c.rankLostIS * 100).toFixed(0) + "% of impressions lost to low Ad Rank. Better ad relevance or landing page quality can win back these auctions.",
           action: "Audit keyword-to-ad copy alignment. Tighten ad group themes. Match landing page to search intent.",
           campaign: c.name, dollarsRecoverable: dr,
@@ -181,7 +181,7 @@ if (hasCredentials) {
       if (c.conversions === 0 && c.spend > 200) {
         rawRecs.push({
           type: "tracking",
-          title: "Investigate zero conversions — " + c.name,
+          title: "Investigate zero conversions: " + c.name,
           description: "$" + c.spend.toLocaleString("en-US", { maximumFractionDigits: 0 }) + " spent in 30 days with no recorded conversions. Possible tracking gap or funnel break.",
           action: "Verify the Google tag fires on HubSpot form submission. Run Tag Assistant on the landing page. Check search terms for irrelevant queries.",
           campaign: c.name, dollarsRecoverable: c.spend,
@@ -515,7 +515,7 @@ const currentYear = new Date().getFullYear();
   <div style="background:var(--color-rich-black);padding-bottom:2rem;">
     <div class="container-wide">
       <p style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-ice-blue);margin:0 0 0.3rem;">Google Ads</p>
-      <h1 style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;color:#fff;margin:0;line-height:1.15;">Performance Dashboard</h1>
+      <h1 style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#fff;margin:0;line-height:1.15;">Performance Dashboard</h1>
     </div>
   </div>
 

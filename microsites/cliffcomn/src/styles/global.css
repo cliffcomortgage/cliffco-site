@@ -60,8 +60,8 @@
     letter-spacing: -0.02em;
   }
 
-  h1 { font-size: var(--text-h1); font-weight: 700; letter-spacing: -0.03em; }
-  h2 { font-size: var(--text-h2); font-weight: 600; letter-spacing: -0.025em; }
+  h1 { font-size: var(--text-h1); font-weight: 400; letter-spacing: -0.03em; }
+  h2 { font-size: var(--text-h2); font-weight: 300; letter-spacing: -0.025em; }
   h3 { font-size: var(--text-h3); letter-spacing: -0.015em; }
 
   a {
@@ -118,14 +118,13 @@
     justify-content: center;
     gap: 0.5rem;
     padding: 0.875rem 1.75rem;
-    border-radius: 999px;
+    border-radius: 8px;
     font-weight: 600;
     font-size: var(--text-body);
     letter-spacing: 0.01em;
     line-height: 1;
     text-decoration: none;
-    transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 200ms ease,
+    transition: box-shadow 200ms ease,
                 background-color 180ms ease,
                 color 180ms ease;
     min-height: 44px;
@@ -144,8 +143,6 @@
     pointer-events: none;
   }
   .btn:hover::after { opacity: 1; }
-  .btn:hover { transform: scale(1.03) translateY(-1px); }
-  .btn:active { transform: scale(0.97); transition-duration: 80ms; }
 
   .btn-primary {
     background: var(--color-rich-black);
@@ -170,23 +167,15 @@
   .card {
     background: #fff;
     border: 1px solid rgba(102, 51, 204, 0.1);
-    border-radius: 16px;
+    border-radius: 8px;
     padding: 1.5rem;
     box-shadow: 0 1px 2px rgba(13, 13, 13, 0.04), 0 4px 16px rgba(102, 51, 204, 0.06);
-    transition: transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 280ms ease,
+    transition: box-shadow 280ms ease,
                 border-color 200ms ease;
   }
 
   .accent-gradient {
-    background: linear-gradient(
-      135deg,
-      var(--color-rich-black) 0%,
-      var(--color-bright-plum) 50%,
-      var(--color-rich-black) 100%
-    );
-    background-size: 280% 280%;
-    animation: cf-gradient-drift 22s ease infinite;
+    background: linear-gradient(135deg, #0d0d0d 0%, #1c1a20 100%);
     color: #fff;
     position: relative;
     isolation: isolate;
@@ -202,10 +191,4 @@
     z-index: 0;
   }
   .accent-gradient > * { position: relative; z-index: 1; }
-}
-
-@keyframes cf-gradient-drift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }

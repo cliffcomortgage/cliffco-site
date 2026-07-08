@@ -67,7 +67,7 @@ function loginPage(error: boolean): string {
       <label for="pw">Password</label>
       <input id="pw" name="password" type="password" autofocus autocomplete="current-password" placeholder="••••••••" />
       <button type="submit">Access Dashboard →</button>
-      ${error ? '<p class="error">Incorrect password — please try again.</p>' : ''}
+      ${error ? '<p class="error">Incorrect password. Please try again.</p>' : ''}
     </form>
   </div>
 </body>
