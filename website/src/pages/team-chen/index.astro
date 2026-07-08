@@ -64,8 +64,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
   ]} />
 
   <!-- ═══ HERO ═════════════════════════════════════════════════ -->
-  <section class="bg-[var(--color-rich-black)] relative overflow-hidden">
-    <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(rgba(189,232,241,0.06) 1px,transparent 1px);background-size:32px 32px;" aria-hidden="true"></div>
+  <section class="accent-gradient relative overflow-hidden">
     <div class="container-wide pt-20 pb-16 lg:pt-28 lg:pb-20 relative z-10">
       <div class="text-center">
         <img
@@ -76,7 +75,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
           loading="eager"
         />
         <p class="text-[var(--color-ice-blue)] text-xs tracking-[0.3em] uppercase font-light mb-5">Cliffco Mortgage Bankers · Uniondale, New York</p>
-        <h1 class="text-white" style="font-size:clamp(2.25rem,5vw,4rem);font-weight:200;letter-spacing:-0.04em;line-height:1.08;">
+        <h1 class="text-white" style="font-size:clamp(2.25rem,5vw,4rem);font-weight:400;letter-spacing:-0.04em;line-height:1.08;">
           Non-QM, DSCR, and Foreign National<br/>
           <em style="font-style:italic;font-weight:300;color:rgba(189,232,241,0.9);">specialists since 2003.</em>
         </h1>
@@ -85,12 +84,12 @@ import ContactForm from "../../components/forms/ContactForm.astro";
         </p>
         <div class="mt-14 flex justify-center gap-4 flex-wrap">
           <a href={james.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener"
-            style="background:#fff;color:#0d0d0d;text-decoration:none;padding:0.875rem 2.25rem;border-radius:999px;font-weight:600;font-size:0.9375rem;letter-spacing:0.02em;">
+            style="background:#fff;color:#0d0d0d;text-decoration:none;padding:0.875rem 2.25rem;border-radius:8px;font-weight:600;font-size:0.9375rem;letter-spacing:0.02em;">
             Work With The Team
           </a>
           {james.links?.directPhone && (
             <a href={`tel:${james.links.directPhone.replace(/[^+\d]/g, "")}`}
-              style="background:transparent;color:rgba(255,255,255,0.8);text-decoration:none;padding:0.875rem 2.25rem;border-radius:999px;font-weight:400;font-size:0.9375rem;border:1px solid rgba(255,255,255,0.25);">
+              style="background:transparent;color:rgba(255,255,255,0.8);text-decoration:none;padding:0.875rem 2.25rem;border-radius:8px;font-weight:400;font-size:0.9375rem;border:1px solid rgba(255,255,255,0.25);">
               {james.links.directPhone}
             </a>
           )}
@@ -105,7 +104,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
           { stat: "2", label: "Languages", sub: "English · Chinese (Mandarin)" },
         ].map(d => (
           <div class="sm:px-16 first:pl-0 last:pr-0 text-center sm:text-left">
-            <p style="font-size:clamp(1.75rem,4vw,2.75rem);font-weight:200;letter-spacing:-0.04em;color:#fff;line-height:1;">{d.stat}</p>
+            <p style="font-size:clamp(1.75rem,4vw,2.75rem);font-weight:300;letter-spacing:-0.02em;color:#fff;line-height:1;">{d.stat}</p>
             <p class="text-white/65 font-light text-sm mt-3">{d.label}</p>
             <p class="text-white/40 text-xs mt-1.5 tracking-wide">{d.sub}</p>
           </div>
@@ -115,7 +114,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
   </section>
 
   <!-- ═══ THE TEAM ══════════════════════════════════════════════ -->
-  <section style="padding-block:6rem;" class="bg-white">
+  <section style="padding-block:var(--spacing-section);" class="bg-white">
     <div class="container-wide">
       <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">The team</p>
       <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Meet Team Chen.</h2>
@@ -127,7 +126,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
           <a href={`/loan-officers/${lo.slug}/`} class="group no-underline text-[var(--color-ink)] flex flex-col">
             {lo.hasPhoto && (
               <div class="rounded-lg overflow-hidden aspect-square bg-[var(--color-mist-gray)] mb-4">
-                <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="group-hover:scale-105 transition-transform duration-500" />
+                <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="transition-transform duration-500" />
               </div>
             )}
             <div class="border-t border-[var(--color-mist-gray)] pt-3">
@@ -143,7 +142,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
   </section>
 
   <!-- ═══ SPECIALTIES ═══════════════════════════════════════════ -->
-  <section style="padding-block:6rem;" class="bg-[var(--color-mist-gray)]">
+  <section style="padding-block:var(--spacing-section);" class="bg-[var(--color-mist-gray)]">
     <div class="container-wide">
       <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">What we do best</p>
       <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Four programs.<br/>One team that knows them inside out.</h2>
@@ -180,7 +179,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
               <span class="text-xs font-semibold text-[var(--color-accent)] bg-[var(--color-accent)]/8 px-2.5 py-1 rounded-full shrink-0 mt-0.5">{spec.range}</span>
             </div>
             <p class="text-sm text-[var(--color-text-muted)] font-light leading-relaxed flex-1">{spec.body}</p>
-            <span class="text-xs font-medium text-[var(--color-accent)] mt-auto group-hover:translate-x-1 inline-block transition-transform">Learn more →</span>
+            <span class="text-xs font-medium text-[var(--color-accent)] mt-auto inline-block transition-transform">Learn more →</span>
           </a>
         ))}
       </div>
@@ -188,7 +187,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
   </section>
 
   <!-- ═══ FOREIGN NATIONAL SPOTLIGHT ═══════════════════════════ -->
-  <section style="padding-block:6rem;" class="bg-white">
+  <section style="padding-block:var(--spacing-section);" class="bg-white">
     <div class="container-wide grid lg:grid-cols-2 gap-16 items-start">
       <div>
         <p class="text-xs tracking-[0.25em] uppercase text-[var(--color-text-muted)] font-light mb-4">A unique specialty</p>
@@ -220,7 +219,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
   </section>
 
   <!-- ═══ FAQ ═══════════════════════════════════════════════════ -->
-  <section style="padding-block:6rem;" class="bg-[var(--color-mist-gray)]">
+  <section style="padding-block:var(--spacing-section);" class="bg-[var(--color-mist-gray)]">
     <div class="container-wide max-w-3xl">
       <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.03em;color:var(--color-ink);">Questions we answer every day.</h2>
       <div class="mt-10 space-y-2">
@@ -238,13 +237,12 @@ import ContactForm from "../../components/forms/ContactForm.astro";
   </section>
 
   <!-- ═══ CTA ═══════════════════════════════════════════════════ -->
-  <section class="bg-[var(--color-rich-black)] relative overflow-hidden">
-    <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(rgba(189,232,241,0.06) 1px,transparent 1px);background-size:32px 32px;" aria-hidden="true"></div>
+  <section class="accent-gradient relative overflow-hidden">
     <div class="container-wide py-20 lg:py-28 relative z-10">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
         <div>
           <p class="text-[var(--color-ice-blue)] text-xs tracking-[0.3em] uppercase font-light mb-5">Ready to get started?</p>
-          <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:200;letter-spacing:-0.04em;color:#fff;line-height:1.1;">
+          <h2 style="font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:300;letter-spacing:-0.02em;color:#fff;line-height:1.1;">
             Complex file.<br/>
             <span style="font-weight:300;color:rgba(255,255,255,0.6);">Simple process.</span>
           </h2>
@@ -262,7 +260,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
               loading="lazy"
             />
             <a href={james.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener"
-              style="display:block;width:100%;text-align:center;background:#fff;color:#0d0d0d;text-decoration:none;padding:0.875rem 1.5rem;border-radius:999px;font-weight:600;font-size:0.9375rem;letter-spacing:0.01em;">
+              style="display:block;width:100%;text-align:center;background:#fff;color:#0d0d0d;text-decoration:none;padding:0.875rem 1.5rem;border-radius:8px;font-weight:600;font-size:0.9375rem;letter-spacing:0.01em;">
               Start Your Application
             </a>
           </div>
