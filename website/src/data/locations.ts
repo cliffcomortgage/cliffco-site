@@ -85,7 +85,7 @@ export const LOCATIONS: readonly Location[] = [
     state: "MN",
     blurb:
       "Our Excelsior office sits on Lake Minnetonka in the Twin Cities metro and serves " +
-      "borrowers across Minnesota. Whether you're self-employed, investing in rental property, " +
+      "borrowers across Minnesota. Self-employed, investing in rental property, " +
       "or approaching retirement, we have the full product lineup available.",
     branchSlugs: ["excelsior-mn"],
     featuredProducts: ["conventional", "non-qm-self-employed", "dscr", "reverse-mortgage"],

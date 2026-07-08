@@ -187,7 +187,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
         section: "500:1 Blog",
       },
       {
-        title: "Alt-A Loans Make a Comeback: How Entrepreneurs Can Leverage Jumbo Alt-A Programs When Big Banks Can't Lend",
+        title: "Alt-A Loans Make a Comeback: How Entrepreneurs Use Jumbo Alt-A Programs When Big Banks Can't Lend",
         slug: "jumbo-alt-a-loans-entrepreneurs-david-fallarino",
         description: "Modern Alt-A mortgages are re-emerging as structured products for entrepreneurs and high-income professionals who need flexible jumbo financing.",
         image: "/images/DFallarino%20Blog/Jumbo%20Blog.jpg",
