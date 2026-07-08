@@ -1,0 +1,183 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { loanOfficer } from "../../data/loan-officers";
+import Headshot from "../../components/ui/Headshot.astro";
+import ContactForm from "../../components/forms/ContactForm.astro";
+import { faqPageSchema } from "../../lib/schema";
+
+const david = loanOfficer("david-fallarino")!;
+
+const faq = faqPageSchema([
+  { question: "Do business tax write-offs lower the income lenders use for mortgage approval?", answer: "They can. Conventional lenders calculate income after business expenses are deducted, so your qualifying income can come out far lower than your gross revenue." },
+  { question: "Can depreciation be added back to my qualifying income?", answer: "In many cases, yes. Depreciation is a noncash expense, and underwriters can often add it back depending on your tax returns and the program guidelines." },
+  { question: "Can I qualify for a mortgage without tax returns?", answer: "Possibly. Bank statement programs, P&L programs, and asset-based qualification all exist specifically for borrowers whose tax returns understate their income." },
+  { question: "How many months of bank statements do lenders need?", answer: "Most programs review 12 or 24 months of personal or business statements. Requirements vary by program." },
+  { question: "Will a lender use my gross revenue?", answer: "Not without accounting for expenses. Bank statement programs apply an expense factor to deposits, and conventional loans calculate from tax returns." },
+  { question: "Should I amend my tax returns to qualify?", answer: "Not without talking to a qualified tax professional first. In most cases a different loan program is the better answer, not a different tax return." },
+  { question: "Can I use business funds for my down payment?", answer: "Some programs allow it if the withdrawal won't harm business operations. Expect additional documentation, such as a CPA letter." },
+  { question: "What if my business income increased recently?", answer: "A current P&L and recent bank statements can document the growth, and some programs will qualify you on that trajectory." },
+  { question: "Are alternative mortgage programs only for borrowers with bad credit?", answer: "No. Many of these borrowers have excellent credit. The programs exist for income structure, not credit weakness." },
+]);
+---
+
+<Layout
+  title="Business Tax Write-Offs Hurt My Mortgage Approval. Now What? | 500:1 Blog"
+  description="Smart tax strategy can make a profitable business look small on a mortgage application. Six ways business owners qualify when the tax return understates the income."
+  schema={faq}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "500:1 Blog", href: `/loan-officers/${david.slug}/` },
+    { name: "Tax Write-Offs and Mortgage Approval", href: "/business-tax-write-offs-mortgage-approval/" },
+  ]} />
+
+  <article class="section bg-white relative overflow-hidden">
+    <div class="absolute inset-x-0 top-0 h-[300px] bg-[var(--color-rich-black)]" aria-hidden="true"></div>
+    <div class="container-prose relative z-10">
+      <div class="rounded-lg overflow-hidden mb-10 aspect-video bg-[var(--color-mist-gray)] shadow-2xl">
+        <img src="/images/DFallarino%20Blog/Tax%20Write%20Offs%20Blog.webp" alt="Business owner reviewing tax returns and bank statements with a Cliffco loan officer to document qualifying income" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+
+      <p class="eyebrow mb-4">500:1 Blog · David Fallarino</p>
+      <h1 style="font-size: var(--text-display-lg); letter-spacing: -0.03em; line-height: 1.1;">Business Tax Write-Offs Hurt My Mortgage Approval. Now What?</h1>
+      <p class="lead mt-4">Your accountant did exactly what you pay them for. Then a lender looked at the result and said you don't earn enough. Both things can be true, and there are loan programs built for the gap between them.</p>
+
+      <h2>Why Tax Write-Offs Affect Mortgage Approval</h2>
+      <p>Traditional lenders calculate self-employed income from your personal and business tax returns, and they use the net income after deductions, not your gross revenue.</p>
+      <p>Every legitimate deduction pulls that number down: equipment purchases, advertising, office expenses, travel, vehicle costs, employee wages, contractor payments, insurance, software, professional services, depreciation, and money you reinvest in the business.</p>
+      <p>So your company may bring in $500,000 in annual revenue, but after payroll, expenses, deductions, depreciation, and reinvestment, your tax return might show $120,000 in net income. A conventional underwriter starts from the $120,000. Sometimes lower.</p>
+
+      <h2>A Profitable Business Can Still Look Weak on Paper</h2>
+      <p>The habits that make a business owner good at running a company are the same ones that shrink the tax return: reinvesting profits, timing equipment purchases strategically, operating multiple entities, claiming depreciation, carrying losses forward, and riding out seasonal revenue swings.</p>
+      <p>None of that is a red flag. It's sound financial management. It just doesn't line up with an underwriting model that was built around W-2 paychecks.</p>
+
+      <h2>Do All Deductions Reduce Qualifying Income?</h2>
+      <p>No, and this is where an experienced loan officer earns their keep. Underwriters can add back certain expenses: depreciation, depletion, amortization, documented one-time expenses, and other noncash items. Those add-backs can move your qualifying income meaningfully.</p>
+      <p>Ordinary recurring operating expenses, though, stay deducted. If the add-backs don't get you where you need to be, the answer is a different program, not a different accountant.</p>
+
+      <h2>Six Ways to Qualify When the Tax Return Shows Too Little</h2>
+      <p><strong>1. Business bank statement loans.</strong> Income is calculated from 12 to 24 months of business deposits with an expense factor applied. Your actual cash flow does the talking.</p>
+      <p><strong>2. Personal bank statement loans.</strong> If your business earnings transfer to your personal account regularly, those deposits can qualify you instead.</p>
+      <p><strong>3. P&amp;L statement programs.</strong> A current profit and loss statement prepared by your tax professional can stand in for tax returns on some programs.</p>
+      <p><strong>4. Alt-A programs.</strong> For borrowers with strong credit, Alt-A underwriting takes a deeper look at real cash flow, often adding significant expenses back into the income calculation.</p>
+      <p><strong>5. Asset-based qualification.</strong> Liquid assets convert into a calculated monthly income. No employment verification required.</p>
+      <p><strong>6. DSCR financing for investment properties.</strong> The property's rental income qualifies the loan, and your business tax returns stay out of it entirely.</p>
+
+      <h2>A Real-World Scenario</h2>
+      <p>A marketing agency owner generating $800,000 a year came to us with a tax return that made a conventional lender wince. We reviewed the full picture: tax returns with add-backs, business bank statements, a current P&amp;L, proof of ownership, and liquidity.</p>
+      <p>The deposits and the add-backs told the real story, and the loan closed. Nothing about the borrower changed. The documentation strategy did.</p>
+
+      <h2>Should You Stop Taking Deductions Before Buying a Home?</h2>
+      <p>Not automatically. Giving up legitimate deductions just to qualify for a mortgage can mean a significantly larger tax bill, and it may not serve your long-term financial picture at all.</p>
+      <p>The better move is coordination: your tax professional and your mortgage team working from the same plan, so you keep the deductions and use a loan program that reads your income correctly.</p>
+
+      <h2>When Should a Business Owner Start Mortgage Planning?</h2>
+      <p>Before you make an offer, ideally months before. An early review gives your loan officer time to run the income analysis, compare programs, and tell you exactly what to document. Business owners who plan ahead walk into negotiations with a real approval; the ones who wait end up scrambling under a contract deadline.</p>
+
+      <h2>Documents Worth Gathering</h2>
+      <ul>
+        <li>Personal and business tax returns, plus K-1s if you have partnership income</li>
+        <li>Year-to-date P&amp;L and business balance sheet</li>
+        <li>Personal and business bank statements (12 to 24 months)</li>
+        <li>Business license and proof of ownership</li>
+        <li>CPA letter, if available</li>
+        <li>Asset statements and documentation of salary or distributions</li>
+        <li>Explanations for any unusual deposits</li>
+      </ul>
+
+      <h2>Common Mistakes to Avoid</h2>
+      <ul>
+        <li>Waiting until you're under contract to talk to a lender</li>
+        <li>Assuming gross revenue is your qualifying income</li>
+        <li>Only applying with the bank that holds your business accounts</li>
+        <li>Moving money between accounts without documentation</li>
+        <li>Taking on new debt in the middle of the application</li>
+        <li>Comparing programs on interest rate alone</li>
+      </ul>
+
+      <h2>FAQs: Tax Write-Offs and Mortgage Approval</h2>
+      <div class="mt-6 space-y-4">
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Do business tax write-offs lower the income lenders use?</summary>
+          <p class="mt-3">They can. Conventional lenders calculate income after business expenses are deducted, so your qualifying income can come out far lower than your gross revenue.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Can depreciation be added back?</summary>
+          <p class="mt-3">In many cases, yes. Depreciation is a noncash expense, and underwriters can often add it back depending on your tax returns and the program guidelines.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Can I qualify without tax returns?</summary>
+          <p class="mt-3">Possibly. Bank statement programs, P&amp;L programs, and asset-based qualification all exist specifically for borrowers whose tax returns understate their income.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">How many months of bank statements will I need?</summary>
+          <p class="mt-3">Most programs review 12 or 24 months of personal or business statements. Requirements vary by program.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Will a lender use my gross revenue?</summary>
+          <p class="mt-3">Not without accounting for expenses. Bank statement programs apply an expense factor to deposits, and conventional loans calculate from tax returns.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Should I amend my returns to qualify?</summary>
+          <p class="mt-3">Not without talking to a qualified tax professional first. In most cases a different loan program is the better answer, not a different tax return.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Can I use business funds for the down payment?</summary>
+          <p class="mt-3">Some programs allow it if the withdrawal won't harm business operations. Expect additional documentation, such as a CPA letter.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">What if my business income increased recently?</summary>
+          <p class="mt-3">A current P&amp;L and recent bank statements can document the growth, and some programs will qualify you on that trajectory.</p>
+        </details>
+        <details class="border-b border-[var(--color-mist-gray)] pb-4">
+          <summary class="font-semibold cursor-pointer text-lg list-none">Are these programs only for borrowers with bad credit?</summary>
+          <p class="mt-3">No. Many of these borrowers have excellent credit. The programs exist for income structure, not credit weakness.</p>
+        </details>
+      </div>
+
+      <h2>The Bottom Line</h2>
+      <p>A low number on line 31 of your Schedule C is not the end of your homebuying plans. It's the starting point of a documentation strategy.</p>
+      <p>An experienced mortgage team looks at cash flow, tax-return add-backs, deposits, assets, and business history, then matches you to the program that reads your income the way it deserves to be read. Your tax strategy and your homeownership goals don't have to fight each other.</p>
+      <p>If your business is strong but your tax return says otherwise, send us the real numbers. We'll show you what they qualify for.</p>
+    </div>
+  </article>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <div class="max-w-2xl mx-auto card flex flex-col sm:flex-row gap-6 items-start">
+        {david.hasPhoto && (
+          <div class="w-20 h-20 shrink-0 rounded-full overflow-hidden">
+            <Headshot slug={david.slug} name={david.displayName} size={80} shape="circle" />
+          </div>
+        )}
+        <div>
+          <p class="eyebrow text-xs mb-1">Written by</p>
+          <h3 class="font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">{david.displayName}</h3>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">{david.title} · NMLS #{david.nmls}</p>
+          <p class="text-sm text-[var(--color-text)] mt-3 leading-relaxed">Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors.</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href={`/loan-officers/${david.slug}/`} class="btn btn-primary text-sm">View David's profile</a>
+            {david.links?.email && (
+              <a href={`mailto:${david.links.email}`} class="btn btn-secondary text-sm">Email David</a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-2xl">
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Strong business, small tax return? Show us the real numbers.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us how your income works and David will identify which documentation strategy fits your file.</p>
+      <div class="mt-8">
+        <ContactForm
+          formTo="dfallarino@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
+          formSource="blog-tax-write-offs"
+        />
+      </div>
+    </div>
+  </section>
+</Layout>

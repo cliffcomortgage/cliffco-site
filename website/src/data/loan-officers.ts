@@ -173,16 +173,23 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
     blog: [
       {
+        title: "Business Tax Write-Offs Hurt My Mortgage Approval. Now What?",
+        slug: "business-tax-write-offs-mortgage-approval",
+        description: "Smart tax strategy can make a profitable business look small on a mortgage application. Six ways business owners qualify when the tax return understates the income.",
+        image: "/images/DFallarino%20Blog/Tax%20Write%20Offs%20Blog.webp",
+        section: "500:1 Blog",
+      },
+      {
         title: "Complex Income Mortgage Solutions: How Entrepreneurs, Investors, and High-Earning Borrowers Can Get Approved",
         slug: "complex-income-mortgage-solutions",
-        description: "Not every qualified borrower has a simple paycheck. Here's how Cliffco and The Fallarino Group help complex income borrowers find the right mortgage structure.",
+        description: "Not every qualified borrower has a simple paycheck. How Cliffco and The Fallarino Group help complex income borrowers find the right mortgage structure.",
         image: "/images/DFallarino%20Blog/Complex%20Income%20Blog.jpg",
         section: "500:1 Blog",
       },
       {
         title: "Alt-A vs. A-Paper Loans: Which One Fits the Way You Earn?",
         slug: "alt-a-vs-conventional-mortgage",
-        description: "The core distinction between these loan types hinges on income documentation. Here's how to choose the right structure based on the way you actually earn.",
+        description: "The core distinction between these loan types hinges on income documentation. How to choose the right structure based on the way you earn.",
         image: "/images/DFallarino%20Blog/Alt%20A%20Blog.jpg",
         section: "500:1 Blog",
       },
