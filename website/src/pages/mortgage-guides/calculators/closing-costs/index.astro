@@ -18,7 +18,7 @@ import { COMPANY } from "../../../../data/company";
     <p class="eyebrow">For all buyers</p>
     <h1 class="mt-3" style="font-size: var(--text-display-lg);">Closing Costs Calculator</h1>
     <p class="lead mt-5 max-w-2xl">
-      Get an itemized estimate of closing costs before you make an offer. Know exactly what to expect at the table - not a surprise on closing day.
+      Get an itemized estimate of closing costs before you make an offer. Know exactly what to expect at the table, not a surprise on closing day.
     </p>
   </section>
 
@@ -94,7 +94,7 @@ import { COMPANY } from "../../../../data/company";
 
           <div class="rounded-lg border border-[var(--color-mist-gray)] p-5">
             <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-              This is an estimate. Actual closing costs vary by lender, property, and negotiated terms. A Cliffco loan officer will provide a Loan Estimate within 3 business days of your application - that document itemizes every cost to the cent.
+              This is an estimate. Actual closing costs vary by lender, property, and negotiated terms. A Cliffco loan officer will provide a Loan Estimate within 3 business days of your application. That document itemizes every cost to the cent.
             </p>
           </div>
         </div>
@@ -291,8 +291,8 @@ import { COMPANY } from "../../../../data/company";
     let thirdPartyRows =
       row("Appraisal", appraisalLo, appraisalHi) +
       row("Home inspection", inspectionLo, inspectionHi) +
-      row("Title insurance - lender's policy", titleLenderLo, titleLenderHi) +
-      row("Title insurance - owner's policy", titleOwnerLo, titleOwnerHi, "~0.3–0.5% of purchase price") +
+      row("Title insurance (lender's policy)", titleLenderLo, titleLenderHi) +
+      row("Title insurance (owner's policy)", titleOwnerLo, titleOwnerHi, "~0.3–0.5% of purchase price") +
       row("Attorney / settlement fees", attyLo, attyHi, isCoop ? "Co-ops typically require additional board application review" : (isNY || isNJ) ? "Required in NY and NJ" : "Optional but recommended");
 
     if (isNY) {
@@ -318,7 +318,7 @@ import { COMPANY } from "../../../../data/company";
       // NYS mortgage recording tax (varies by county)
       const mrtLo = loanAmt * 0.0075;
       const mrtHi = loanAmt * 0.018;
-      govRows += row("NYS mortgage recording tax", mrtLo, mrtHi, "0.75% (Nassau/Suffolk) to 1.8% (NYC) of loan amount - the largest NY-specific closing cost");
+      govRows += row("NYS mortgage recording tax", mrtLo, mrtHi, "0.75% (Nassau/Suffolk) to 1.8% (NYC) of loan amount, the largest NY-specific closing cost");
       govLo += mrtLo; govHi += mrtHi;
 
       // Mansion tax
@@ -363,7 +363,7 @@ import { COMPANY } from "../../../../data/company";
 
     setRows("cc-prepaid-rows",
       row("Prepaid interest (10–30 days)", prepaidInterestLo, prepaidInterestHi, `${fmt(Math.round(dailyInterest))}/day at ${rate}%`) +
-      row("Property tax escrow (2–3 months)", taxEscrowLo, taxEscrowHi, "Based on estimated 1.2% annual rate - verify your actual tax bill") +
+      row("Property tax escrow (2–3 months)", taxEscrowLo, taxEscrowHi, "Based on estimated 1.2% annual rate. Verify your actual tax bill") +
       row("Homeowner's insurance premium", insurancePremLo, insurancePremHi, "First year paid at closing") +
       row("Insurance escrow (2–3 months)", insEscrowLo, insEscrowHi)
     );
@@ -386,8 +386,8 @@ import { COMPANY } from "../../../../data/company";
     if (noteEl) {
       const notes: Record<string, string> = {
         NY: "New York note: The mortgage recording tax is the largest NY-specific closing cost - 0.75% in Nassau and Suffolk counties, up to 1.8% in NYC. Co-op purchases avoid this tax entirely but require additional board application fees. Always confirm the exact MRT rate with your attorney.",
-        NJ: "New Jersey note: The realty transfer fee is split between buyer and seller - confirm your allocation in the contract. NJ also requires an attorney at closing.",
-        FL: "Florida note: FL doc stamps and intangible tax apply to the mortgage note. Florida's high homeowner's insurance market means first-year premiums can be significantly higher than the national average - get a quote early.",
+        NJ: "New Jersey note: The realty transfer fee is split between buyer and seller. Confirm your allocation in the contract. NJ also requires an attorney at closing.",
+        FL: "Florida note: FL doc stamps and intangible tax apply to the mortgage note. Florida's high homeowner's insurance market means first-year premiums can be significantly higher than the national average. Get a quote early.",
         AZ: "Arizona note: Arizona has relatively low closing costs compared to NY and NJ - no mortgage recording tax, moderate transfer fees, and title insurance rates are competitive.",
         MN: "Minnesota note: Minnesota requires a mortgage registration tax of 0.23% of the mortgage amount on purchase transactions. Attorney involvement is optional but common.",
         other: "Note: Government taxes and fees vary significantly by state and county. This estimate uses national averages for your state. A Cliffco loan officer can give you a state-specific breakdown.",

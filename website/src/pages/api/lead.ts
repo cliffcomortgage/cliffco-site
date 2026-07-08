@@ -88,7 +88,7 @@ async function sendViaSendGrid(lead: Lead, isFallback: boolean): Promise<void> {
   const sgMail = (await import('@sendgrid/mail')).default;
   sgMail.setApiKey(apiKey);
 
-  const subject = `New Lead from cliffcomortgage.com — ${lead.name}`;
+  const subject = `New Lead from cliffcomortgage.com: ${lead.name}`;
 
   const rows = [
     row('Name',        lead.name),
@@ -105,7 +105,7 @@ async function sendViaSendGrid(lead: Lead, isFallback: boolean): Promise<void> {
     row('Form source',   lead.formSource),
     row('TCPA consent',  lead.tcpa    ? '✓ Agreed' : '—',    true),
     row('SMS consent',   lead.smsConsent ? '✓ Agreed' : '—'      ),
-    ...(isFallback ? [row('⚠ HubSpot', 'Submission failed — this email is the only record of this lead.', true)] : []),
+    ...(isFallback ? [row('⚠ HubSpot', 'Submission failed. This email is the only record of this lead.', true)] : []),
   ].join('');
 
   const html = `
@@ -156,7 +156,7 @@ async function sendViaSendGrid(lead: Lead, isFallback: boolean): Promise<void> {
   await sgMail.send({
     to: lead.email,
     from: { email: fromEmail, name: 'Cliffco Mortgage' },
-    subject: 'We received your message — a Cliffco loan officer will be in touch',
+    subject: 'We received your message: a Cliffco loan officer will be in touch',
     html: confirmHtml,
   });
 }
@@ -240,7 +240,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (!hubspotOk && !sendgridOk) {
       return new Response(
-        JSON.stringify({ error: 'We couldn\'t send your message right now. Please try again or call us at (800) 834-4040 — Mon–Fri 9am–6pm ET.' }),
+        JSON.stringify({ error: 'We couldn\'t send your message right now. Please try again or call us at (800) 834-4040, Mon–Fri 9am–6pm ET.' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -254,7 +254,7 @@ export const POST: APIRoute = async ({ request }) => {
     const detail = err?.response?.body ? JSON.stringify(err.response.body) : String(err);
     console.error('Lead form error:', detail);
     return new Response(
-      JSON.stringify({ error: 'We couldn\'t send your message right now. Please try again or call us at (800) 834-4040 — Mon–Fri 9am–6pm ET.' }),
+      JSON.stringify({ error: 'We couldn\'t send your message right now. Please try again or call us at (800) 834-4040, Mon–Fri 9am–6pm ET.' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }

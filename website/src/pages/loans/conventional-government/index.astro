@@ -9,7 +9,7 @@ const today = new Date().toISOString().slice(0, 10);
 const faq = [
   {
     question: "What is the difference between conventional, FHA, VA, and USDA loans?",
-    answer: "Conventional loans meet Fannie Mae or Freddie Mac guidelines and are not government-insured - they typically require stronger credit and larger down payments but carry no government-mandated mortgage insurance at 20% down. FHA loans are insured by the Federal Housing Administration and allow lower credit scores and smaller down payments, but require mortgage insurance for the life of the loan. VA loans are guaranteed by the Department of Veterans Affairs for eligible service members and veterans, offering 0% down and no PMI. USDA loans are backed by the Department of Agriculture for eligible rural and suburban properties, also offering 0% down with income restrictions.",
+    answer: "Conventional loans meet Fannie Mae or Freddie Mac guidelines and are not government-insured. They typically require stronger credit and larger down payments but carry no government-mandated mortgage insurance at 20% down. FHA loans are insured by the Federal Housing Administration and allow lower credit scores and smaller down payments, but require mortgage insurance for the life of the loan. VA loans are guaranteed by the Department of Veterans Affairs for eligible service members and veterans, offering 0% down and no PMI. USDA loans are backed by the Department of Agriculture for eligible rural and suburban properties, also offering 0% down with income restrictions.",
   },
   {
     question: "Which loan program is right for me?",
@@ -76,7 +76,7 @@ const programs = [
     name: "VA",
     tag: "Department of Veterans Affairs",
     href: "/loans/va/",
-    blurb: "Zero-down financing for eligible veterans, active-duty service members, and surviving spouses. No PMI, no loan limit with full entitlement - one of the best mortgage programs available.",
+    blurb: "Zero-down financing for eligible veterans, active-duty service members, and surviving spouses. No PMI, no loan limit with full entitlement. One of the best mortgage programs available.",
     specs: [
       { label: "Down payment", value: "0% with full entitlement" },
       { label: "Mortgage insurance", value: "None (funding fee applies; waived for 10%+ disability)" },
@@ -89,7 +89,7 @@ const programs = [
     name: "USDA",
     tag: "U.S. Department of Agriculture",
     href: "/loans/usda/",
-    blurb: "Zero-down loans for eligible rural and suburban properties. Not just for farms - many areas outside major cities qualify. Income limits apply.",
+    blurb: "Zero-down loans for eligible rural and suburban properties. Not just for farms: many areas outside major cities qualify. Income limits apply.",
     specs: [
       { label: "Down payment", value: "0%" },
       { label: "Guarantee fee", value: "1% upfront + 0.35% annual" },
@@ -104,7 +104,7 @@ import ContactForm from "../../../components/forms/ContactForm.astro";
 
 <Layout
   title="Conventional, FHA, VA & USDA Loans | Cliffco Mortgage Bankers"
-  description="Compare conventional, FHA, VA, and USDA loan programs side by side. Down payments, credit requirements, mortgage insurance, and which program fits your situation - explained by Cliffco."
+  description="Compare conventional, FHA, VA, and USDA loan programs side by side. Down payments, credit requirements, mortgage insurance, and which program fits your situation."
   schema={schema}
 >
   <Breadcrumbs trail={[

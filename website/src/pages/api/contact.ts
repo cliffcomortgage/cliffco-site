@@ -78,7 +78,7 @@ async function sendViaSendGrid(lead: {
   const sgMail = (await import('@sendgrid/mail')).default;
   sgMail.setApiKey(apiKey);
 
-  const subject = `New Lead from cliffcomortgage.com - ${lead.firstName} ${lead.lastName}`;
+  const subject = `New Lead from cliffcomortgage.com: ${lead.firstName} ${lead.lastName}`;
 
   const html = `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;">
@@ -103,7 +103,7 @@ async function sendViaSendGrid(lead: {
         <tr style="background:#f9f8fa;"><td style="padding:8px 4px;color:#5a5d5d;font-size:13px;">TCPA consent</td>
             <td style="padding:8px 4px;color:#22c55e;font-weight:600;">✓ Agreed</td></tr>
         ${isFallback ? `<tr><td style="padding:8px 0;color:#c00;font-size:12px;" colspan="2">
-            The HubSpot submission failed for this lead — this email is the only record. Check HubSpot before assuming it was recorded.</td></tr>` : ''}
+            The HubSpot submission failed for this lead. This email is the only record. Check HubSpot before assuming it was recorded.</td></tr>` : ''}
       </table>
       <p style="margin-top:24px;font-size:11px;color:#aaa;">
         Sent from cliffcomortgage.com · ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })} ET
@@ -196,7 +196,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (!hubspotOk && !sendgridOk) {
       return new Response(
-        JSON.stringify({ error: 'We couldn\'t send your message right now. Please try again or call us at (800) 834-4040 — Mon–Fri 9am–6pm ET.' }),
+        JSON.stringify({ error: 'We couldn\'t send your message right now. Please try again or call us at (800) 834-4040, Mon–Fri 9am–6pm ET.' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -210,7 +210,7 @@ export const POST: APIRoute = async ({ request }) => {
     const detail = err?.response?.body ? JSON.stringify(err.response.body) : String(err);
     console.error('Contact form error:', detail);
     return new Response(
-      JSON.stringify({ error: 'We couldn\'t send your message right now. Please try again or call us at (800) 834-4040 — Mon–Fri 9am–6pm ET.' }),
+      JSON.stringify({ error: 'We couldn\'t send your message right now. Please try again or call us at (800) 834-4040, Mon–Fri 9am–6pm ET.' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
