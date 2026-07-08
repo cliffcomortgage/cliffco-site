@@ -207,33 +207,93 @@ const yearsInBiz = COMPANY.yearsInBusiness();
   </section>
 
   <!-- HOW IT WORKS -->
-  <section class="section bg-white">
-    <div class="container-wide">
-      <div class="max-w-3xl">
-        <p class="eyebrow">How it works</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">A simple process, no matter how complex your situation.</h2>
-      </div>
+  <section class="bg-white">
+    <!-- Static layout: mobile, reduced-motion, and no-JS default -->
+    <div id="hiw-static" class="section">
+      <div class="container-wide">
+        <div class="max-w-3xl">
+          <p class="eyebrow">How it works</p>
+          <h2 class="mt-3" style="font-size: var(--text-h2);">A simple process, no matter how complex your situation.</h2>
+        </div>
 
-      <div class="mt-10 grid gap-10 md:grid-cols-3">
-        <div>
-          <p class="text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-accent)]">Step 01</p>
-          <h3 class="mt-4" style="font-size: var(--text-h3);">Tell us your situation</h3>
-          <p class="mt-2 text-[var(--color-text-muted)]">No credit pull. No commitment. Just a conversation about where you are and where you want to go.</p>
+        <div class="mt-10 grid gap-10 md:grid-cols-3">
+          <div>
+            <p class="text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-accent)]">Step 01</p>
+            <h3 class="mt-4" style="font-size: var(--text-h3);">Tell us your situation</h3>
+            <p class="mt-2 text-[var(--color-text-muted)]">No credit pull. No commitment. Just a conversation about where you are and where you want to go.</p>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-accent)]">Step 02</p>
+            <h3 class="mt-4" style="font-size: var(--text-h3);">We find your path</h3>
+            <p class="mt-2 text-[var(--color-text-muted)]">A real mortgage specialist reviews your file within 24 hours and identifies the right program, not a bot.</p>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-accent)]">Step 03</p>
+            <h3 class="mt-4" style="font-size: var(--text-h3);">Close with confidence</h3>
+            <p class="mt-2 text-[var(--color-text-muted)]">We manage every step from application to keys. You focus on what's next.</p>
+          </div>
         </div>
-        <div>
-          <p class="text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-accent)]">Step 02</p>
-          <h3 class="mt-4" style="font-size: var(--text-h3);">We find your path</h3>
-          <p class="mt-2 text-[var(--color-text-muted)]">A real mortgage specialist reviews your file within 24 hours and identifies the right program, not a bot.</p>
-        </div>
-        <div>
-          <p class="text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-accent)]">Step 03</p>
-          <h3 class="mt-4" style="font-size: var(--text-h3);">Close with confidence</h3>
-          <p class="mt-2 text-[var(--color-text-muted)]">We manage every step from application to keys. You focus on what's next.</p>
+
+        <div class="mt-10">
+          <a href="/get-started/" class="btn btn-primary">Tell us your situation</a>
         </div>
       </div>
+    </div>
 
-      <div class="mt-10">
-        <a href="/get-started/" class="btn btn-primary">Tell us your situation</a>
+    <!-- Pinned scroll stepper: desktop only, enabled by JS -->
+    <div id="hiw-scroller" class="hidden">
+      <div class="hiw-track" style="height: 260vh;">
+        <div class="sticky top-0 h-screen flex items-center">
+          <div class="container-wide w-full">
+            <div class="max-w-3xl">
+              <p class="eyebrow">How it works</p>
+              <h2 class="mt-3" style="font-size: var(--text-h2);">A simple process, no matter how complex your situation.</h2>
+            </div>
+
+            <div class="mt-14 grid grid-cols-[260px_1fr] gap-16 items-start">
+              <!-- Step labels + progress rail -->
+              <div class="relative pl-6">
+                <div class="absolute left-0 top-1 bottom-1 w-px bg-[var(--color-ink)]/10" aria-hidden="true">
+                  <div class="hiw-rail-fill w-px bg-[var(--color-accent)]" style="height: 0%;"></div>
+                </div>
+                <ol class="space-y-8 list-none m-0 p-0">
+                  <li class="hiw-label" data-step="0">
+                    <p class="text-xs uppercase tracking-[0.2em] font-semibold hiw-label-num">Step 01</p>
+                    <p class="mt-1 font-medium hiw-label-title">Tell us your situation</p>
+                  </li>
+                  <li class="hiw-label" data-step="1">
+                    <p class="text-xs uppercase tracking-[0.2em] font-semibold hiw-label-num">Step 02</p>
+                    <p class="mt-1 font-medium hiw-label-title">We find your path</p>
+                  </li>
+                  <li class="hiw-label" data-step="2">
+                    <p class="text-xs uppercase tracking-[0.2em] font-semibold hiw-label-num">Step 03</p>
+                    <p class="mt-1 font-medium hiw-label-title">Close with confidence</p>
+                  </li>
+                </ol>
+              </div>
+
+              <!-- Active step stage -->
+              <div class="relative min-h-[260px]">
+                <div class="hiw-step absolute inset-0" data-step="0">
+                  <h3 style="font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.2;">Tell us your situation</h3>
+                  <p class="lead mt-5 text-[var(--color-text-muted)] max-w-xl">No credit pull. No commitment. Just a conversation about where you are and where you want to go.</p>
+                </div>
+                <div class="hiw-step absolute inset-0" data-step="1">
+                  <h3 style="font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.2;">We find your path</h3>
+                  <p class="lead mt-5 text-[var(--color-text-muted)] max-w-xl">A real mortgage specialist reviews your file within 24 hours and identifies the right program, not a bot.</p>
+                </div>
+                <div class="hiw-step absolute inset-0" data-step="2">
+                  <h3 style="font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.2;">Close with confidence</h3>
+                  <p class="lead mt-5 text-[var(--color-text-muted)] max-w-xl">We manage every step from application to keys. You focus on what's next.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-14">
+              <a href="/get-started/" class="btn btn-primary">Tell us your situation</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -365,4 +425,61 @@ const yearsInBiz = COMPANY.yearsInBusiness();
     </div>
   </section>
 
+<style>
+  /* How-it-works pinned stepper */
+  .hiw-step {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 450ms ease, transform 450ms ease;
+    pointer-events: none;
+  }
+  .hiw-step.hiw-active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .hiw-label-num { color: var(--color-text-muted); transition: color 300ms ease; }
+  .hiw-label-title { color: var(--color-text-muted); transition: color 300ms ease; }
+  .hiw-label.hiw-active .hiw-label-num { color: var(--color-accent); }
+  .hiw-label.hiw-active .hiw-label-title { color: var(--color-ink); }
+  .hiw-rail-fill { transition: height 150ms linear; }
+</style>
+
+<script>
+// How-it-works pinned scroll stepper. Desktop only; the static layout
+// remains for mobile, reduced-motion, and no-JS visitors.
+(() => {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const desktop = window.matchMedia('(min-width: 1024px)').matches;
+  const scroller = document.getElementById('hiw-scroller');
+  const staticEl = document.getElementById('hiw-static');
+  if (!scroller || !staticEl || reduced || !desktop) return;
+
+  staticEl.classList.add('hidden');
+  scroller.classList.remove('hidden');
+
+  const track  = scroller.querySelector<HTMLElement>('.hiw-track')!;
+  const steps  = Array.from(scroller.querySelectorAll<HTMLElement>('.hiw-step'));
+  const labels = Array.from(scroller.querySelectorAll<HTMLElement>('.hiw-label'));
+  const fill   = scroller.querySelector<HTMLElement>('.hiw-rail-fill')!;
+
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const rect = track.getBoundingClientRect();
+    const total = rect.height - window.innerHeight;
+    const progress = Math.min(1, Math.max(0, -rect.top / total));
+    const idx = Math.min(steps.length - 1, Math.floor(progress * steps.length));
+    steps.forEach((s, i) => s.classList.toggle('hiw-active', i === idx));
+    labels.forEach((l, i) => l.classList.toggle('hiw-active', i === idx));
+    fill.style.height = `${progress * 100}%`;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+})();
+</script>
 </Layout>
