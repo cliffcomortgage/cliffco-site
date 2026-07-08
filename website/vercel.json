@@ -3,31 +3,1300 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(self), payment=()" },
-        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" }
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(self), payment=()"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        }
       ]
     },
     {
       "source": "/_astro/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/images/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     },
     {
       "source": "/team/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/loans/fix-and-flip",
+      "destination": "/loans/business-bank-statement/",
+      "permanent": true
+    },
+    {
+      "source": "/loans/fix-and-flip/",
+      "destination": "/loans/business-bank-statement/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/richard-alvarez",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/richard-alvarez/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/ralvarez",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/ralvarez/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/jose-cruz",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/jose-cruz/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/jcruz",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/jcruz/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/julia-jorge",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/julia-jorge/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/jjorge",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/jjorge/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/julia-jorge-delcarmen",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/julia-jorge-delcarmen/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/adam-turkewitz",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/adam-turkewitz/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/aturkewitz",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/aturkewitz/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/samantha-roach",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/samantha-roach/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/sroach",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/sroach/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/abroder",
+      "destination": "/loan-officers/adam-broder/",
+      "permanent": true
+    },
+    {
+      "source": "/abroder/",
+      "destination": "/loan-officers/adam-broder/",
+      "permanent": true
+    },
+    {
+      "source": "/acarver",
+      "destination": "/loan-officers/andrea-carver/",
+      "permanent": true
+    },
+    {
+      "source": "/acarver/",
+      "destination": "/loan-officers/andrea-carver/",
+      "permanent": true
+    },
+    {
+      "source": "/accessibility-statement",
+      "destination": "/legal/accessibility/",
+      "permanent": true
+    },
+    {
+      "source": "/accessibility-statement/",
+      "destination": "/legal/accessibility/",
+      "permanent": true
+    },
+    {
+      "source": "/affordability-calculator",
+      "destination": "/mortgage-guides/calculators/affordability/",
+      "permanent": true
+    },
+    {
+      "source": "/affordability-calculator/",
+      "destination": "/mortgage-guides/calculators/affordability/",
+      "permanent": true
+    },
+    {
+      "source": "/all-open-positions",
+      "destination": "/careers/",
+      "permanent": true
+    },
+    {
+      "source": "/all-open-positions/",
+      "destination": "/careers/",
+      "permanent": true
+    },
+    {
+      "source": "/astreet",
+      "destination": "/loan-officers/angelique-street/",
+      "permanent": true
+    },
+    {
+      "source": "/astreet/",
+      "destination": "/loan-officers/angelique-street/",
+      "permanent": true
+    },
+    {
+      "source": "/azervas",
+      "destination": "/loan-officers/anastasios-zervas/",
+      "permanent": true
+    },
+    {
+      "source": "/azervas/",
+      "destination": "/loan-officers/anastasios-zervas/",
+      "permanent": true
+    },
+    {
+      "source": "/bkenney",
+      "destination": "/loan-officers/brandon-kenney/",
+      "permanent": true
+    },
+    {
+      "source": "/bkenney/",
+      "destination": "/loan-officers/brandon-kenney/",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/mortgage-guides/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/",
+      "destination": "/mortgage-guides/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/bmcclarnon",
+      "destination": "/loan-officers/brendan-mcclarnon/",
+      "permanent": true
+    },
+    {
+      "source": "/bmcclarnon/",
+      "destination": "/loan-officers/brendan-mcclarnon/",
+      "permanent": true
+    },
+    {
+      "source": "/ccpa",
+      "destination": "/legal/ccpa/",
+      "permanent": true
+    },
+    {
+      "source": "/ccpa/",
+      "destination": "/legal/ccpa/",
+      "permanent": true
+    },
+    {
+      "source": "/cnguyen",
+      "destination": "/loan-officers/christian-nguyen/",
+      "permanent": true
+    },
+    {
+      "source": "/cnguyen/",
+      "destination": "/loan-officers/christian-nguyen/",
+      "permanent": true
+    },
+    {
+      "source": "/condos-co-ops-condotels",
+      "destination": "/loans/condos-co-ops-condotels/",
+      "permanent": true
+    },
+    {
+      "source": "/condos-co-ops-condotels/",
+      "destination": "/loans/condos-co-ops-condotels/",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/conventional-loans",
+      "destination": "/loans/conventional/",
+      "permanent": true
+    },
+    {
+      "source": "/conventional-loans/",
+      "destination": "/loans/conventional/",
+      "permanent": true
+    },
+    {
+      "source": "/csoto",
+      "destination": "/loan-officers/christian-soto/",
+      "permanent": true
+    },
+    {
+      "source": "/csoto/",
+      "destination": "/loan-officers/christian-soto/",
+      "permanent": true
+    },
+    {
+      "source": "/debbecke",
+      "destination": "/loan-officers/daniel-ebbecke/",
+      "permanent": true
+    },
+    {
+      "source": "/debbecke/",
+      "destination": "/loan-officers/daniel-ebbecke/",
+      "permanent": true
+    },
+    {
+      "source": "/dfallarino",
+      "destination": "/loan-officers/david-fallarino/",
+      "permanent": true
+    },
+    {
+      "source": "/dfallarino/",
+      "destination": "/loan-officers/david-fallarino/",
+      "permanent": true
+    },
+    {
+      "source": "/dfeliciano",
+      "destination": "/loan-officers/daphne-feliciano/",
+      "permanent": true
+    },
+    {
+      "source": "/dfeliciano/",
+      "destination": "/loan-officers/daphne-feliciano/",
+      "permanent": true
+    },
+    {
+      "source": "/dhemberger",
+      "destination": "/loan-officers/donna-hemberger/",
+      "permanent": true
+    },
+    {
+      "source": "/dhemberger/",
+      "destination": "/loan-officers/donna-hemberger/",
+      "permanent": true
+    },
+    {
+      "source": "/dillouz",
+      "destination": "/loan-officers/david-illouz/",
+      "permanent": true
+    },
+    {
+      "source": "/dillouz/",
+      "destination": "/loan-officers/david-illouz/",
+      "permanent": true
+    },
+    {
+      "source": "/dmizrahi",
+      "destination": "/loan-officers/david-mizrahi/",
+      "permanent": true
+    },
+    {
+      "source": "/dmizrahi/",
+      "destination": "/loan-officers/david-mizrahi/",
+      "permanent": true
+    },
+    {
+      "source": "/down-payment-assistance-programs",
+      "destination": "/mortgage-guides/down-payment-assistance-programs/",
+      "permanent": true
+    },
+    {
+      "source": "/down-payment-assistance-programs/",
+      "destination": "/mortgage-guides/down-payment-assistance-programs/",
+      "permanent": true
+    },
+    {
+      "source": "/dscr-loans-real-estate-investors-guide",
+      "destination": "/mortgage-guides/dscr-loans-real-estate-investors-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/dscr-loans-real-estate-investors-guide/",
+      "destination": "/mortgage-guides/dscr-loans-real-estate-investors-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/ecordeira",
+      "destination": "/loan-officers/emily-cordeira/",
+      "permanent": true
+    },
+    {
+      "source": "/ecordeira/",
+      "destination": "/loan-officers/emily-cordeira/",
+      "permanent": true
+    },
+    {
+      "source": "/eestinvil",
+      "destination": "/loan-officers/emmanuel-estinvil/",
+      "permanent": true
+    },
+    {
+      "source": "/eestinvil/",
+      "destination": "/loan-officers/emmanuel-estinvil/",
+      "permanent": true
+    },
+    {
+      "source": "/emorais",
+      "destination": "/loan-officers/edward-morais/",
+      "permanent": true
+    },
+    {
+      "source": "/emorais/",
+      "destination": "/loan-officers/edward-morais/",
+      "permanent": true
+    },
+    {
+      "source": "/emueller",
+      "destination": "/loan-officers/eric-mueller/",
+      "permanent": true
+    },
+    {
+      "source": "/emueller/",
+      "destination": "/loan-officers/eric-mueller/",
+      "permanent": true
+    },
+    {
+      "source": "/falosa",
+      "destination": "/loan-officers/fabrizio-alosa/",
+      "permanent": true
+    },
+    {
+      "source": "/falosa/",
+      "destination": "/loan-officers/fabrizio-alosa/",
+      "permanent": true
+    },
+    {
+      "source": "/faqs",
+      "destination": "/mortgage-rates/",
+      "permanent": true
+    },
+    {
+      "source": "/faqs/",
+      "destination": "/mortgage-rates/",
+      "permanent": true
+    },
+    {
+      "source": "/fha-loans",
+      "destination": "/loans/fha/",
+      "permanent": true
+    },
+    {
+      "source": "/fha-loans/",
+      "destination": "/loans/fha/",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-branch",
+      "destination": "/locations/",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-branch/",
+      "destination": "/locations/",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-loan-officer",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-loan-officer/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/first-time-homebuyers",
+      "destination": "/first-time-homebuyer/",
+      "permanent": true
+    },
+    {
+      "source": "/first-time-homebuyers/",
+      "destination": "/first-time-homebuyer/",
+      "permanent": true
+    },
+    {
+      "source": "/fort-lauderdale-fl",
+      "destination": "/locations/florida/fort-lauderdale/",
+      "permanent": true
+    },
+    {
+      "source": "/fort-lauderdale-fl/",
+      "destination": "/locations/florida/fort-lauderdale/",
+      "permanent": true
+    },
+    {
+      "source": "/fveras",
+      "destination": "/loan-officers/francisco-veras/",
+      "permanent": true
+    },
+    {
+      "source": "/fveras/",
+      "destination": "/loan-officers/francisco-veras/",
+      "permanent": true
+    },
+    {
+      "source": "/gdiamantakis",
+      "destination": "/loan-officers/george-diamantakis/",
+      "permanent": true
+    },
+    {
+      "source": "/gdiamantakis/",
+      "destination": "/loan-officers/george-diamantakis/",
+      "permanent": true
+    },
+    {
+      "source": "/gjohansen",
+      "destination": "/loan-officers/gary-johansen/",
+      "permanent": true
+    },
+    {
+      "source": "/gjohansen/",
+      "destination": "/loan-officers/gary-johansen/",
+      "permanent": true
+    },
+    {
+      "source": "/glai",
+      "destination": "/loan-officers/gary-lai/",
+      "permanent": true
+    },
+    {
+      "source": "/glai/",
+      "destination": "/loan-officers/gary-lai/",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/investors",
+      "destination": "/real-estate-investor-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/investors/",
+      "destination": "/real-estate-investor-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/jamaica-ny",
+      "destination": "/locations/new-york/queens/",
+      "permanent": true
+    },
+    {
+      "source": "/jamaica-ny/",
+      "destination": "/locations/new-york/queens/",
+      "permanent": true
+    },
+    {
+      "source": "/jamaya",
+      "destination": "/loan-officers/johana-amaya/",
+      "permanent": true
+    },
+    {
+      "source": "/jamaya/",
+      "destination": "/loan-officers/johana-amaya/",
+      "permanent": true
+    },
+    {
+      "source": "/jborrero",
+      "destination": "/loan-officers/joshua-borrero/",
+      "permanent": true
+    },
+    {
+      "source": "/jborrero/",
+      "destination": "/loan-officers/joshua-borrero/",
+      "permanent": true
+    },
+    {
+      "source": "/jbrenner",
+      "destination": "/loan-officers/joshua-brenner/",
+      "permanent": true
+    },
+    {
+      "source": "/jbrenner/",
+      "destination": "/loan-officers/joshua-brenner/",
+      "permanent": true
+    },
+    {
+      "source": "/jchen",
+      "destination": "/loan-officers/james-chen/",
+      "permanent": true
+    },
+    {
+      "source": "/jchen/",
+      "destination": "/loan-officers/james-chen/",
+      "permanent": true
+    },
+    {
+      "source": "/jcordeira",
+      "destination": "/loan-officers/joseph-cordeira/",
+      "permanent": true
+    },
+    {
+      "source": "/jcordeira/",
+      "destination": "/loan-officers/joseph-cordeira/",
+      "permanent": true
+    },
+    {
+      "source": "/jgiaquinto",
+      "destination": "/loan-officers/julian-giaquinto/",
+      "permanent": true
+    },
+    {
+      "source": "/jgiaquinto/",
+      "destination": "/loan-officers/julian-giaquinto/",
+      "permanent": true
+    },
+    {
+      "source": "/jhu",
+      "destination": "/loan-officers/justin-hu/",
+      "permanent": true
+    },
+    {
+      "source": "/jhu/",
+      "destination": "/loan-officers/justin-hu/",
+      "permanent": true
+    },
+    {
+      "source": "/jperrone",
+      "destination": "/loan-officers/james-perrone/",
+      "permanent": true
+    },
+    {
+      "source": "/jperrone/",
+      "destination": "/loan-officers/james-perrone/",
+      "permanent": true
+    },
+    {
+      "source": "/jzucker",
+      "destination": "/loan-officers/jeannette-zucker/",
+      "permanent": true
+    },
+    {
+      "source": "/jzucker/",
+      "destination": "/loan-officers/jeannette-zucker/",
+      "permanent": true
+    },
+    {
+      "source": "/kadler",
+      "destination": "/loan-officers/kathie-adler/",
+      "permanent": true
+    },
+    {
+      "source": "/kadler/",
+      "destination": "/loan-officers/kathie-adler/",
+      "permanent": true
+    },
+    {
+      "source": "/karabian",
+      "destination": "/loan-officers/kyle-arabian/",
+      "permanent": true
+    },
+    {
+      "source": "/karabian/",
+      "destination": "/loan-officers/kyle-arabian/",
+      "permanent": true
+    },
+    {
+      "source": "/kcruz",
+      "destination": "/loan-officers/keyla-cruz/",
+      "permanent": true
+    },
+    {
+      "source": "/kcruz/",
+      "destination": "/loan-officers/keyla-cruz/",
+      "permanent": true
+    },
+    {
+      "source": "/kdaniel",
+      "destination": "/loan-officers/kendra-daniel/",
+      "permanent": true
+    },
+    {
+      "source": "/kdaniel/",
+      "destination": "/loan-officers/kendra-daniel/",
+      "permanent": true
+    },
+    {
+      "source": "/kscott",
+      "destination": "/loan-officers/kevan-scott/",
+      "permanent": true
+    },
+    {
+      "source": "/kscott/",
+      "destination": "/loan-officers/kevan-scott/",
+      "permanent": true
+    },
+    {
+      "source": "/larisa-zambelli",
+      "destination": "/loan-officers/larisa-zambelli/",
+      "permanent": true
+    },
+    {
+      "source": "/larisa-zambelli/",
+      "destination": "/loan-officers/larisa-zambelli/",
+      "permanent": true
+    },
+    {
+      "source": "/lauren-zambelli",
+      "destination": "/loan-officers/lauren-zambelli/",
+      "permanent": true
+    },
+    {
+      "source": "/lauren-zambelli/",
+      "destination": "/loan-officers/lauren-zambelli/",
+      "permanent": true
+    },
+    {
+      "source": "/lhartman",
+      "destination": "/loan-officers/lisa-hartman/",
+      "permanent": true
+    },
+    {
+      "source": "/lhartman/",
+      "destination": "/loan-officers/lisa-hartman/",
+      "permanent": true
+    },
+    {
+      "source": "/lhoren",
+      "destination": "/loan-officers/lee-horen/",
+      "permanent": true
+    },
+    {
+      "source": "/lhoren/",
+      "destination": "/loan-officers/lee-horen/",
+      "permanent": true
+    },
+    {
+      "source": "/lisa-zambelli",
+      "destination": "/loan-officers/lisa-zambelli/",
+      "permanent": true
+    },
+    {
+      "source": "/lisa-zambelli/",
+      "destination": "/loan-officers/lisa-zambelli/",
+      "permanent": true
+    },
+    {
+      "source": "/llevy",
+      "destination": "/loan-officers/logan-levy/",
+      "permanent": true
+    },
+    {
+      "source": "/llevy/",
+      "destination": "/loan-officers/logan-levy/",
+      "permanent": true
+    },
+    {
+      "source": "/margenzio",
+      "destination": "/loan-officers/mario-argenzio/",
+      "permanent": true
+    },
+    {
+      "source": "/margenzio/",
+      "destination": "/loan-officers/mario-argenzio/",
+      "permanent": true
+    },
+    {
+      "source": "/maziz",
+      "destination": "/loan-officers/michael-aziz/",
+      "permanent": true
+    },
+    {
+      "source": "/maziz/",
+      "destination": "/loan-officers/michael-aziz/",
+      "permanent": true
+    },
+    {
+      "source": "/mbisbee",
+      "destination": "/loan-officers/michael-bisbee/",
+      "permanent": true
+    },
+    {
+      "source": "/mbisbee/",
+      "destination": "/loan-officers/michael-bisbee/",
+      "permanent": true
+    },
+    {
+      "source": "/mortgage-glossary",
+      "destination": "/mortgage-guides/glossary/",
+      "permanent": true
+    },
+    {
+      "source": "/mortgage-glossary/",
+      "destination": "/mortgage-guides/glossary/",
+      "permanent": true
+    },
+    {
+      "source": "/mpatterson",
+      "destination": "/loan-officers/mitchell-patterson/",
+      "permanent": true
+    },
+    {
+      "source": "/mpatterson/",
+      "destination": "/loan-officers/mitchell-patterson/",
+      "permanent": true
+    },
+    {
+      "source": "/myoussef",
+      "destination": "/loan-officers/moses-youssef/",
+      "permanent": true
+    },
+    {
+      "source": "/myoussef/",
+      "destination": "/loan-officers/moses-youssef/",
+      "permanent": true
+    },
+    {
+      "source": "/ngeyer",
+      "destination": "/loan-officers/nadia-geyer/",
+      "permanent": true
+    },
+    {
+      "source": "/ngeyer/",
+      "destination": "/loan-officers/nadia-geyer/",
+      "permanent": true
+    },
+    {
+      "source": "/non-qm-loans",
+      "destination": "/loans/non-qm-self-employed/",
+      "permanent": true
+    },
+    {
+      "source": "/non-qm-loans/",
+      "destination": "/loans/non-qm-self-employed/",
+      "permanent": true
+    },
+    {
+      "source": "/non-qm-loans-guide",
+      "destination": "/mortgage-guides/non-qm-loans-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/non-qm-loans-guide/",
+      "destination": "/mortgage-guides/non-qm-loans-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/non-qm-mortgage-self-employed",
+      "destination": "/mortgage-guides/non-qm-mortgage-self-employed/",
+      "permanent": true
+    },
+    {
+      "source": "/non-qm-mortgage-self-employed/",
+      "destination": "/mortgage-guides/non-qm-mortgage-self-employed/",
+      "permanent": true
+    },
+    {
+      "source": "/orlando-fl",
+      "destination": "/locations/florida/orlando/",
+      "permanent": true
+    },
+    {
+      "source": "/orlando-fl/",
+      "destination": "/locations/florida/orlando/",
+      "permanent": true
+    },
+    {
+      "source": "/pmontesano",
+      "destination": "/loan-officers/paul-montesano/",
+      "permanent": true
+    },
+    {
+      "source": "/pmontesano/",
+      "destination": "/loan-officers/paul-montesano/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/legal/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy/",
+      "destination": "/legal/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/products",
+      "destination": "/loans/",
+      "permanent": true
+    },
+    {
+      "source": "/products/",
+      "destination": "/loans/",
+      "permanent": true
+    },
+    {
+      "source": "/purchase-clients",
+      "destination": "/purchasing-refinancing/",
+      "permanent": true
+    },
+    {
+      "source": "/purchase-clients/",
+      "destination": "/purchasing-refinancing/",
+      "permanent": true
+    },
+    {
+      "source": "/qduong",
+      "destination": "/loan-officers/queeny-duong/",
+      "permanent": true
+    },
+    {
+      "source": "/qduong/",
+      "destination": "/loan-officers/queeny-duong/",
+      "permanent": true
+    },
+    {
+      "source": "/rappo",
+      "destination": "/loan-officers/renald-appo/",
+      "permanent": true
+    },
+    {
+      "source": "/rappo/",
+      "destination": "/loan-officers/renald-appo/",
+      "permanent": true
+    },
+    {
+      "source": "/refinancing",
+      "destination": "/loans/refinancing/",
+      "permanent": true
+    },
+    {
+      "source": "/refinancing/",
+      "destination": "/loans/refinancing/",
+      "permanent": true
+    },
+    {
+      "source": "/renovation-loan",
+      "destination": "/loans/renovation/",
+      "permanent": true
+    },
+    {
+      "source": "/renovation-loan/",
+      "destination": "/loans/renovation/",
+      "permanent": true
+    },
+    {
+      "source": "/reverse-mortgage-guide",
+      "destination": "/mortgage-guides/reverse-mortgage-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/reverse-mortgage-guide/",
+      "destination": "/mortgage-guides/reverse-mortgage-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/reverse-mortgages",
+      "destination": "/reverse-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/reverse-mortgages/",
+      "destination": "/reverse-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/rgarcia",
+      "destination": "/loan-officers/raymond-garcia/",
+      "permanent": true
+    },
+    {
+      "source": "/rgarcia/",
+      "destination": "/loan-officers/raymond-garcia/",
+      "permanent": true
+    },
+    {
+      "source": "/rriddle",
+      "destination": "/loan-officers/ryan-riddle/",
+      "permanent": true
+    },
+    {
+      "source": "/rriddle/",
+      "destination": "/loan-officers/ryan-riddle/",
+      "permanent": true
+    },
+    {
+      "source": "/rrojas",
+      "destination": "/loan-officers/rafael-rojas/",
+      "permanent": true
+    },
+    {
+      "source": "/rrojas/",
+      "destination": "/loan-officers/rafael-rojas/",
+      "permanent": true
+    },
+    {
+      "source": "/self-employed",
+      "destination": "/self-employed-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/self-employed/",
+      "destination": "/self-employed-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/seniors",
+      "destination": "/reverse-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/seniors/",
+      "destination": "/reverse-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/shasib",
+      "destination": "/loan-officers/syed-hasib/",
+      "permanent": true
+    },
+    {
+      "source": "/shasib/",
+      "destination": "/loan-officers/syed-hasib/",
+      "permanent": true
+    },
+    {
+      "source": "/skhan",
+      "destination": "/loan-officers/shahraj-khan/",
+      "permanent": true
+    },
+    {
+      "source": "/skhan/",
+      "destination": "/loan-officers/shahraj-khan/",
+      "permanent": true
+    },
+    {
+      "source": "/slazo",
+      "destination": "/loan-officers/steve-lazo/",
+      "permanent": true
+    },
+    {
+      "source": "/slazo/",
+      "destination": "/loan-officers/steve-lazo/",
+      "permanent": true
+    },
+    {
+      "source": "/small-business",
+      "destination": "/self-employed-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/small-business/",
+      "destination": "/self-employed-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/srivera",
+      "destination": "/loan-officers/steven-rivera/",
+      "permanent": true
+    },
+    {
+      "source": "/srivera/",
+      "destination": "/loan-officers/steven-rivera/",
+      "permanent": true
+    },
+    {
+      "source": "/twhalen",
+      "destination": "/loan-officers/thomas-whalen/",
+      "permanent": true
+    },
+    {
+      "source": "/twhalen/",
+      "destination": "/loan-officers/thomas-whalen/",
+      "permanent": true
+    },
+    {
+      "source": "/twilliamson",
+      "destination": "/loan-officers/tamara-williamson/",
+      "permanent": true
+    },
+    {
+      "source": "/twilliamson/",
+      "destination": "/loan-officers/tamara-williamson/",
+      "permanent": true
+    },
+    {
+      "source": "/usda-loans",
+      "destination": "/loans/usda/",
+      "permanent": true
+    },
+    {
+      "source": "/usda-loans/",
+      "destination": "/loans/usda/",
+      "permanent": true
+    },
+    {
+      "source": "/va-loans",
+      "destination": "/loans/va/",
+      "permanent": true
+    },
+    {
+      "source": "/va-loans/",
+      "destination": "/loans/va/",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-an-investment-mortgage",
+      "destination": "/mortgage-guides/what-is-an-investment-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-an-investment-mortgage/",
+      "destination": "/mortgage-guides/what-is-an-investment-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/wromero",
+      "destination": "/loan-officers/wenceslao-romero/",
+      "permanent": true
+    },
+    {
+      "source": "/wromero/",
+      "destination": "/loan-officers/wenceslao-romero/",
+      "permanent": true
+    },
+    {
+      "source": "/buydown-calculator",
+      "destination": "/mortgage-guides/calculators/buydown/",
+      "permanent": true
+    },
+    {
+      "source": "/buydown-calculator/",
+      "destination": "/mortgage-guides/calculators/buydown/",
+      "permanent": true
+    },
+    {
+      "source": "/closing-costs",
+      "destination": "/mortgage-guides/calculators/closing-costs/",
+      "permanent": true
+    },
+    {
+      "source": "/closing-costs/",
+      "destination": "/mortgage-guides/calculators/closing-costs/",
+      "permanent": true
+    },
+    {
+      "source": "/jmarrero",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/jmarrero/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/service-members",
+      "destination": "/loans/va/",
+      "permanent": true
+    },
+    {
+      "source": "/service-members/",
+      "destination": "/loans/va/",
+      "permanent": true
+    },
+    {
+      "source": "/rural-residents",
+      "destination": "/loans/usda/",
+      "permanent": true
+    },
+    {
+      "source": "/rural-residents/",
+      "destination": "/loans/usda/",
+      "permanent": true
+    },
+    {
+      "source": "/freelance",
+      "destination": "/mortgages-for-freelancers-entrepreneurs-investors/",
+      "permanent": true
+    },
+    {
+      "source": "/freelance/",
+      "destination": "/mortgages-for-freelancers-entrepreneurs-investors/",
+      "permanent": true
+    },
+    {
+      "source": "/non-us-citizens",
+      "destination": "/loans/itin-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/non-us-citizens/",
+      "destination": "/loans/itin-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/tech",
+      "destination": "/complex-income-mortgage-solutions/",
+      "permanent": true
+    },
+    {
+      "source": "/tech/",
+      "destination": "/complex-income-mortgage-solutions/",
+      "permanent": true
+    },
+    {
+      "source": "/salon",
+      "destination": "/self-employed-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/salon/",
+      "destination": "/self-employed-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/trade-workers",
+      "destination": "/self-employed-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/trade-workers/",
+      "destination": "/self-employed-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/real-estate-agents",
+      "destination": "/self-employed-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/real-estate-agents/",
+      "destination": "/self-employed-mortgage/",
+      "permanent": true
+    },
+    {
+      "source": "/healthcare-professionals",
+      "destination": "/purchasing-refinancing/",
+      "permanent": true
+    },
+    {
+      "source": "/healthcare-professionals/",
+      "destination": "/purchasing-refinancing/",
+      "permanent": true
     }
   ]
 }
