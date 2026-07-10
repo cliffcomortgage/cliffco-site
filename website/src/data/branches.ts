@@ -175,13 +175,7 @@ export const BRANCHES: readonly Branch[] = [
     nmls: "2526419",
     metro: "Orlando",
     isFloridaDba: true,
-    branchManagerSlug: "francisco-veras-170512",
-    loanOfficerSlugs: [
-      "francisco-veras-170512",
-      "keyla-cruz-486181",
-      "nadia-geyer-castro-2498365",
-      "wenceslao-hernandez-romero-1842661",
-    ],
+    loanOfficerSlugs: [],
   },
   {
     slug: "fort-lauderdale-fl",

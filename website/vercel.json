@@ -540,12 +540,22 @@
     },
     {
       "source": "/fveras",
-      "destination": "/loan-officers/francisco-veras/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/fveras/",
-      "destination": "/loan-officers/francisco-veras/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/francisco-veras",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/francisco-veras/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
@@ -720,12 +730,22 @@
     },
     {
       "source": "/kcruz",
-      "destination": "/loan-officers/keyla-cruz/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/kcruz/",
-      "destination": "/loan-officers/keyla-cruz/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/keyla-cruz",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/keyla-cruz/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
@@ -870,12 +890,22 @@
     },
     {
       "source": "/ngeyer",
-      "destination": "/loan-officers/nadia-geyer/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/ngeyer/",
-      "destination": "/loan-officers/nadia-geyer/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/nadia-geyer",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/nadia-geyer/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
@@ -1170,12 +1200,32 @@
     },
     {
       "source": "/wromero",
-      "destination": "/loan-officers/wenceslao-romero/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/wromero/",
-      "destination": "/loan-officers/wenceslao-romero/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/wenceslao-romero",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/wenceslao-romero/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/team-veras",
+      "destination": "/locations/florida/orlando/",
+      "permanent": true
+    },
+    {
+      "source": "/team-veras/",
+      "destination": "/locations/florida/orlando/",
       "permanent": true
     },
     {

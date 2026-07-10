@@ -13,17 +13,15 @@ import ContactForm from "../../../../components/forms/ContactForm.astro";
 const loc = location("florida/orlando")!;
 const orlandoBranch = BRANCHES.find((b) => b.slug === "orlando-fl")!;
 const EXCLUDE = new Set(["christopher-clifford"]);
-const branchLOs = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "orlando-fl" && !EXCLUDE.has(lo.slug));
-const licensedOnlyLOs = LOAN_OFFICERS.filter(
-  (lo) => lo.states.includes("FL") && lo.branchSlug !== "orlando-fl" && lo.branchSlug !== "fort-lauderdale-fl" && !EXCLUDE.has(lo.slug),
+const flLicensedLOs = LOAN_OFFICERS.filter(
+  (lo) => lo.states.includes("FL") && !EXCLUDE.has(lo.slug),
 );
 const totalFLLOs = LOAN_OFFICERS.filter((lo) => lo.states.includes("FL")).length;
 
 const faq = [
-  { question: "Where is Cliffco's Orlando office?", answer: "Cliffco's Orlando branch operates under our Florida DBA, Swish Capital, Inc. The branch serves the Orlando metro and Central Florida; ask any Orlando-area LO listed below for the office address and direct line, or call our headquarters at (516) 408-7300." },
+  { question: "Where is Cliffco's Orlando office?", answer: "Cliffco's Orlando branch operates under our Florida DBA, Swish Capital, Inc. The branch serves the Orlando metro and Central Florida; call our headquarters at (516) 408-7300 for the office address and direct line." },
   { question: "Is Cliffco licensed to lend in Florida?", answer: "Yes. Cliffco, Inc. doing business in Florida as Swish Capital, Inc., is a New York corporation authorized to transact business in the State of Florida. Corporate NMLS #65328." },
   { question: "Can Cliffco finance a Disney-area short-term rental?", answer: "Yes. Cliffco's DSCR program qualifies short-term-rental properties in markets where STR is permitted, including parts of Polk County (Reunion, ChampionsGate, Davenport) and parts of Osceola County. We use AirDNA-supported projections for new STR purchases and trailing 12-month statements for existing operators. Note that most of Orange County does NOT permit STR; we'll help you confirm eligibility before you write the offer." },
-  { question: "Are Cliffco's Orlando loan officers bilingual?", answer: "Yes. Several Orlando LOs work in English and Spanish (Keyla Cruz, Nadia Geyer Castro, Wenceslao Hernandez Romero, Julia Jorge-Delcarmen). Branch Manager Francisco Veras is also bilingual." },
   { question: "What products are most popular in the Orlando market?", answer: "DSCR loans for STR investors (the Disney-area angle), business bank statement loans for self-employed Florida small-business owners and ITIN borrowers, Non-QM for a wide range of scenarios, and reverse mortgages in retiree-heavy Central Florida communities." },
   { question: "Can I buy an Orlando rental from out of state?", answer: "Yes. Out-of-state investors are a large share of Cliffco's Orlando DSCR business, particularly New Yorkers and New Jerseyans buying Florida investment property. Cliffco is licensed in 32 states; we can lend on the property in Florida regardless of where the borrower lives." },
 ];
@@ -111,48 +109,17 @@ const schema = [
     </div>
   </section>
 
-  <!-- LOs physically at the Orlando branch -->
-  {branchLOs.length > 0 && (
-    <section class="section bg-[var(--color-mist-gray)]">
-      <div class="container-wide">
-        <p class="eyebrow">Located at our Orlando office</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Bilingual team. Local underwriting. Real names.</h2>
-        <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
-          These loan officers are physically based at Cliffco's Orlando branch (operating as Swish Capital, Inc.).
-        </p>
-        <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {branchLOs.map((lo) => (
-            <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
-              {lo.hasPhoto && (
-                <div class="mb-4 -mx-6 -mt-6">
-                  <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="rounded-t-xl" />
-                </div>
-              )}
-              <p class="eyebrow">{lo.title}</p>
-              <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
-              <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>
-              {lo.languages && lo.languages.length > 1 && (
-                <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
-              )}
-              <span class="mt-3 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- LOs licensed in FL but based elsewhere -->
-  {licensedOnlyLOs.length > 0 && (
+  <!-- Florida-licensed LOs -->
+  {flLicensedLOs.length > 0 && (
     <section class="section bg-white">
       <div class="container-wide">
-        <p class="eyebrow">Also licensed in Florida</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Other Florida-licensed loan officers.</h2>
+        <p class="eyebrow">Licensed in Florida</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Florida licensed loan officers.</h2>
         <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
-          These loan officers are based at other Cliffco offices but are fully licensed to originate loans in Florida.
+          These loan officers are fully licensed to originate loans in Florida.
         </p>
         <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3 lo-shuffle-grid">
-          {licensedOnlyLOs.slice(0, 6).map((lo) => (
+          {flLicensedLOs.slice(0, 6).map((lo) => (
             <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
               {lo.hasPhoto && (
                 <div class="mb-4 -mx-6 -mt-6">
@@ -192,7 +159,7 @@ const schema = [
   <section class="accent-gradient">
     <div class="container-wide py-16 text-center">
       <h2 class="text-white" style="font-size: var(--text-h2);">Got an Orlando deal? Talk to our Florida team.</h2>
-      <p class="lead mt-4 text-white/85">Bilingual loan officers. Out-of-state investor friendly. Real underwriting in 24 hours.</p>
+      <p class="lead mt-4 text-white/85">Out-of-state investor friendly. Real underwriting in 24 hours.</p>
       <div class="mt-8 flex justify-center gap-3 flex-wrap">
         <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get a pre-qual</a>
         <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
@@ -210,10 +177,10 @@ const schema = [
   <section class="section bg-[var(--color-mist-gray)]">
     <div class="container-wide max-w-2xl">
       <h2 class="mt-3" style="font-size: var(--text-h2);">Have an Orlando deal or question? Talk to our team.</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us the property and your situation and we'll match you with an Orlando loan officer who knows this market.</p>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us the property and your situation and we'll match you with a Florida-licensed loan officer who knows this market.</p>
       <div class="mt-8">
         <ContactForm
-          formTo="fveras@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
+          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
           formSource="location-orlando"
         />
       </div>

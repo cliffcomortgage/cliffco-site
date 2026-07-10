@@ -30,7 +30,7 @@ Page,Form Source,Lead Recipients,Notes
 /locations/new-york/,location-new-york,"websiteleads@, cliffcorpteam@",
 /locations/new-york/long-island/,location-long-island,"websiteleads@, cliffcorpteam@",
 /locations/florida/,location-florida,"websiteleads@, cliffcorpteam@",
-/locations/florida/orlando/,location-orlando,"fveras@, websiteleads@",
+/locations/florida/orlando/,location-orlando,"websiteleads@, cliffcorpteam@",Veras team offboarded 2026-07-09; 
 /locations/florida/fort-lauderdale/,location-ftlauderdale,"karabian@, websiteleads@",Kyle Arabian (confirmed via inventory)
 /bay-shore-ny/,branch-bayshore,"zambelliL@, websiteleads@",Larisa Zambelli (confirmed - 3 different Zambellis on roster)
 /branchburg-nj/,branch-branchburg,"gjohansen@, emorais@, dfeliciano@, websiteleads@",
@@ -41,7 +41,7 @@ Page,Form Source,Lead Recipients,Notes
 /team-chen/,team-chen,"jchen@, websiteleads@",
 /team-cordeira/,team-cordeira,"jcordeira@, websiteleads@",
 /team-giaquinto/,team-giaquinto,"jgiaquinto@, websiteleads@",
-/team-veras/,team-veras,"fveras@, websiteleads@",
+/team-veras/,(removed),(page deleted; redirects to /locations/florida/orlando/),Team Veras offboarded 2026-07-09
 /team-zambelli/,team-zambelli,"lzambelli@, websiteleads@",Lisa Zambelli-Martorana (confirmed)
 /the-fallarino-group/,team-fallarino,"dfallarino@, websiteleads@",
 /alt-a-vs-conventional-mortgage/,blog-alt-a,"dfallarino@, websiteleads@",Fallarino content
