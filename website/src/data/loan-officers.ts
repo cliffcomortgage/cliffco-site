@@ -1130,7 +1130,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     displayName: "Rafael Rojas",
     nmls: "2082989",
     title: "Loan Officer",
-    states: ["CT", "NJ", "NY", "PA", "TX"],
+    states: ["CO", "CT", "NJ", "NY", "PA", "TX"],
     branchSlug: "uniondale-headquarters",
     links: {
       email: "rrojas@cliffcomortgage.com",
