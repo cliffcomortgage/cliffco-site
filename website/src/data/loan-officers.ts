@@ -485,7 +485,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     nmls: "2636320",
     title: "Loan Officer",
     states: ["NY"],
-    branchSlug: "wantagh-ny",
+    branchSlug: "uniondale-headquarters",
     links: {
       email: "slazo@cliffcomortgage.com",
       directPhone: "516-350-5352",
