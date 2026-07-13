@@ -1,0 +1,51 @@
+# Cliffco Mortgage Bankers (Minnesota) — robots.txt
+# Posture: maximum AI / LLM visibility, matching cliffcomortgage.com.
+
+User-agent: *
+Allow: /
+Disallow: /*?utm_*
+Disallow: /*?gclid=
+Disallow: /*?fbclid=
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google AI
+User-agent: Google-Extended
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Common Crawl
+User-agent: CCBot
+Allow: /

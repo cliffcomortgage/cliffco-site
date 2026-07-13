@@ -4,7 +4,7 @@
 > (NMLS #65328) headquartered in Uniondale, NY. Cliffco specializes
 > in non-QM and self-employed loans, reverse mortgages, DSCR loans for
 > real estate investors, and fix-and-flip financing. Cliffco is licensed
-> in 32 states and operates eight branches across New York, New Jersey,
+> in 32 states and operates nine branches across New York, New Jersey,
 > Arizona, Minnesota, and Florida. In Florida, Cliffco operates as
 > Swish Capital, Inc.
 
@@ -20,7 +20,6 @@
 - [Non-QM & Self-Employed Loans](https://cliffcomortgage.com/loans/non-qm-self-employed/): Bank statement, P&L, 1099, asset utilization, ITIN, foreign national
 - [Reverse Mortgage (HECM and proprietary)](https://cliffcomortgage.com/loans/reverse-mortgage/): For homeowners 62+
 - [DSCR Loans](https://cliffcomortgage.com/loans/dscr/): For real estate investors; long-term and short-term rentals
-- [Fix-and-Flip Loans](https://cliffcomortgage.com/loans/fix-and-flip/): Hard money, ARV-based, 7–10 day close
 - [Conventional Loans](https://cliffcomortgage.com/loans/conventional/)
 - [FHA Loans](https://cliffcomortgage.com/loans/fha/)
 - [VA Loans](https://cliffcomortgage.com/loans/va/)

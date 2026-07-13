@@ -1,0 +1,78 @@
+# Cliffco Reverse Mortgage (Julian Giaquinto) — robots.txt
+# Posture: maximum AI / LLM visibility for public pages.
+# Internal dashboard and unrouted draft variants excluded.
+
+User-agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /long-island-v2/
+Disallow: /*?utm_*
+Disallow: /*?gclid=
+Disallow: /*?fbclid=
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+Disallow: /dashboard/
+Disallow: /long-island-v2/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /dashboard/
+Disallow: /long-island-v2/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /dashboard/
+Disallow: /long-island-v2/
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+Disallow: /dashboard/
+Disallow: /long-island-v2/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /dashboard/
+Disallow: /long-island-v2/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /dashboard/
+Disallow: /long-island-v2/
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+Disallow: /dashboard/
+Disallow: /long-island-v2/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /dashboard/
+Disallow: /long-island-v2/
+
+# Google AI
+User-agent: Google-Extended
+Allow: /
+Disallow: /dashboard/
+Disallow: /long-island-v2/
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /dashboard/
+Disallow: /long-island-v2/
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /dashboard/
+Disallow: /long-island-v2/
+
+# Common Crawl
+User-agent: CCBot
+Allow: /
+Disallow: /dashboard/
+Disallow: /long-island-v2/

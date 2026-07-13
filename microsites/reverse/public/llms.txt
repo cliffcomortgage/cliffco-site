@@ -1,0 +1,22 @@
+# Cliffco Reverse Mortgage — Julian Giaquinto
+
+> Reverse mortgage (HECM) lending for homeowners 62 and older on Long Island
+> and throughout New York, from Cliffco Mortgage Bankers (corporate NMLS
+> #65328), a 36-year independent mortgage banker headquartered in Uniondale,
+> NY. Loan officer Julian Giaquinto (NMLS #56473) specializes in reverse
+> mortgages: HECM and proprietary programs, lump sum, monthly payments, or
+> line of credit. Borrowers retain title to their home.
+
+## Pages
+
+- [Reverse Mortgages on Long Island](https://cliffco-reverse-microsite.vercel.app/long-island/): Main overview, benefits, process, FAQ
+- [How a HECM Works](https://cliffco-reverse-microsite.vercel.app/how-hecm-works/): Eligibility, payout options, borrower obligations
+- [Meet Julian Giaquinto](https://cliffco-reverse-microsite.vercel.app/meet-julian/): Loan officer background and credentials
+- [Client Reviews](https://cliffco-reverse-microsite.vercel.app/client-reviews/): Verified borrower testimonials
+
+## Key facts
+
+- Loan officer: Julian Giaquinto, NMLS #56473
+- Corporate NMLS: 65328 (verify at https://nmlsconsumeraccess.org/EntityDetails.aspx/COMPANY/65328)
+- Minimum borrower age: 62; borrower retains title; HUD-approved counseling required
+- Main corporate site: https://cliffcomortgage.com/
