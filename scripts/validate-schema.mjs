@@ -73,6 +73,10 @@ const scanFile = async (file) => {
 await walk(root);
 
 console.log(`Scanned ${scanned} HTML file(s); ${blocks} JSON-LD block(s) total.`);
+if (scanned === 0) {
+  console.error("No HTML files found — wrong directory? Refusing to pass an empty scan.");
+  process.exit(1);
+}
 if (errors.length) {
   console.error(`\n${errors.length} schema validation error(s):`);
   for (const e of errors) console.error("  - " + e);
