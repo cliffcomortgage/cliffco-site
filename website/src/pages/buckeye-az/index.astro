@@ -7,8 +7,8 @@ import { LOAN_OFFICERS } from "../../data/loan-officers";
 import Headshot from "../../components/ui/Headshot.astro";
 import { localBusinessSchema, breadcrumbSchema } from "../../lib/schema";
 
-const branch = BRANCHES.find((b) => b.slug === "scottsdale-az")!;
-const los = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "scottsdale-az");
+const branch = BRANCHES.find((b) => b.slug === "buckeye-az")!;
+const los = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "buckeye-az");
 
 const schema = [
   localBusinessSchema(branch),
@@ -16,32 +16,32 @@ const schema = [
     { name: "Home", url: "/" },
     { name: "Locations", url: "/locations/" },
     { name: "Arizona", url: "/locations/arizona/" },
-    { name: "Scottsdale", url: "/scottsdale-az/" },
+    { name: "Buckeye", url: "/buckeye-az/" },
   ]),
 ];
 import ContactForm from "../../components/forms/ContactForm.astro";
 ---
 
 <Layout
-  title="Scottsdale, AZ Mortgage Office | Cliffco Mortgage Bankers"
-  description="Cliffco Mortgage Bankers Scottsdale office - 15955 Dial Boulevard, Suite 5, Scottsdale, AZ 85260. Branch NMLS #2476150. Serving the Phoenix metro and greater Arizona."
+  title="Buckeye, AZ Mortgage Office | Cliffco Mortgage Bankers"
+  description="Cliffco Mortgage Bankers Buckeye office - 21610 W Hillcrest Road, Buckeye, AZ 85396. Branch NMLS #2476150. Serving the Phoenix metro and greater Arizona."
   schema={schema}
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
     { name: "Locations", href: "/locations/" },
     { name: "Arizona", href: "/locations/arizona/" },
-    { name: "Scottsdale", href: "/scottsdale-az/" },
+    { name: "Buckeye", href: "/buckeye-az/" },
   ]} />
 
   <section class="accent-gradient">
     <div class="container-wide py-16 lg:py-24">
-      <p class="eyebrow !text-[var(--color-ice-blue)]">Scottsdale, AZ · Phoenix Metro</p>
+      <p class="eyebrow !text-[var(--color-ice-blue)]">Buckeye, AZ · Phoenix Metro</p>
       <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.1; font-weight: 400; font-family: var(--font-sans);">
-        Scottsdale Mortgage Office
+        Buckeye Mortgage Office
       </h1>
       <p class="lead mt-6 text-white/90 max-w-2xl">
-        Cliffco's Scottsdale branch serves the greater Phoenix metro and statewide Arizona. Multilingual team specializing in DSCR for investors, Non-QM, and bank statement loans.
+        Cliffco's Buckeye branch serves the greater Phoenix metro and statewide Arizona. Multilingual team specializing in DSCR for investors, Non-QM, and bank statement loans.
       </p>
       <div class="mt-8 flex flex-wrap gap-4 items-center">
         <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Get Pre-Qualified</a>
@@ -56,7 +56,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
     <div class="container-wide grid lg:grid-cols-2 gap-10 items-start">
       <div>
         <p class="eyebrow">Branch information</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Find us in Scottsdale.</h2>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Find us in Buckeye.</h2>
         <address class="not-italic mt-6 space-y-2 text-[var(--color-text)]">
           <p class="font-semibold text-[var(--color-ink)]">{branch.name}</p>
           <p>{branch.street}</p>
@@ -72,7 +72,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
       <div class="card">
         <p class="eyebrow">About this office</p>
         <p class="mt-3 text-[var(--color-text)] leading-relaxed">
-          Our Scottsdale team is multilingual (fluent in English, Mandarin, and Spanish) and specializes in serving self-employed borrowers, real estate investors, and buyers with non-traditional income documentation across Arizona, California, and Texas.
+          Our Buckeye team is multilingual (fluent in English, Mandarin, and Spanish) and specializes in serving self-employed borrowers, real estate investors, and buyers with non-traditional income documentation across Arizona, California, and Texas.
         </p>
         <a href="/locations/arizona/" class="mt-4 inline-block text-sm font-semibold text-[var(--color-accent)] no-underline hover:underline">← All Arizona offices</a>
       </div>
@@ -83,7 +83,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
     <section class="section bg-[var(--color-mist-gray)]">
       <div class="container-wide">
         <p class="eyebrow">Loan officers at this office</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Your Scottsdale team.</h2>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Your Buckeye team.</h2>
         <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {los.map((lo) => (
             <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
@@ -121,11 +121,11 @@ import ContactForm from "../../components/forms/ContactForm.astro";
   <section class="section bg-[var(--color-mist-gray)]">
     <div class="container-wide max-w-2xl">
       <h2 class="mt-3" style="font-size: var(--text-h2);">Buying or investing in the Phoenix metro?</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us your situation and the Scottsdale team will be in touch within one business day.</p>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us your situation and the Buckeye team will be in touch within one business day.</p>
       <div class="mt-8">
         <ContactForm
           formTo="swei@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
-          formSource="branch-scottsdale"
+          formSource="branch-buckeye"
         />
       </div>
     </div>

@@ -89,6 +89,7 @@ export default defineConfig({
     '/loan-officers/julian-giaquinto/': '/loan-officers/',
     '/team-giaquinto/': '/loan-officers/',
     '/wantagh-ny/': '/locations/new-york/long-island/',
+    '/scottsdale-az/': '/buckeye-az/',
     '/locations/new-york/queens/': '/locations/new-york/',
     '/locations/florida/orlando/': '/locations/florida/',
     '/jhu/': '/loan-officers/justin-hu/',

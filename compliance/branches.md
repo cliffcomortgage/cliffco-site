@@ -13,7 +13,7 @@ Six physical branch offices (Jamaica NY, Wantagh NY, and Orlando FL closed July 
 | 5 | **Bay Shore, NY** | 50 Park Avenue, 2nd Floor, Suite 1 | Bay Shore | NY | 11706-7309 | 2733073 | 3 | Suffolk County — Long Island |
 | ~~6~~ | ~~**Orlando, FL** (closed 2026-07)~~ | 3801 Avalon Park East Blvd, 2nd Floor, Office 229 | Orlando | FL | 32828 | 2526419 | 7 | Swish Capital DBA · bilingual team |
 | 7 | **Ft. Lauderdale, FL** | 300 SE 2nd Street, Suite 600, Office 50 | Fort Lauderdale | FL | 33301-1950 | 2829876 | TBD | Swish Capital DBA · South Florida |
-| 8 | **Scottsdale, AZ** | 15955 Dial Boulevard, Suite 5 | Scottsdale | AZ | 85260 | 2476150 | 2 | Phoenix metro |
+| 8 | **Buckeye, AZ** | 21610 W Hillcrest Road | Buckeye | AZ | 85396 | 2476150 | 2 | Phoenix metro (relocated from Scottsdale, 2026-07) |
 | 9 | **Excelsior, MN** | 276 Water Street | Excelsior | MN | 55331-1874 | 2763960 | 1 | Twin Cities |
 
 ## Corporate NMLS
@@ -31,7 +31,7 @@ Cliffco, Inc. corporate NMLS: **#65328**. All branch NMLS IDs above are in addit
   - `/locations/new-york/long-island/bay-shore/`
   - `/locations/florida/orlando/`
   - `/locations/florida/fort-lauderdale/`
-  - `/locations/arizona/scottsdale/`
+  - `/locations/arizona/buckeye/`
   - `/locations/minnesota/excelsior/`
 - Each branch landing page = LocalBusiness JSON-LD (mortgage subtype) + branch NMLS + branch manager bio + LO list + photos + map.
 
@@ -45,5 +45,5 @@ Cliffco, Inc. corporate NMLS: **#65328**. All branch NMLS IDs above are in addit
 
 - **Branchburg, NJ**: Christian Soto, Daphne Feliciano — bilingual (English/Spanish)
 - **Orlando, FL**: Keyla Cruz, Nadia Geyer Castro, Wenceslao Hernandez Romero, Yaisha Romero, Julia Jorge-Delcarmen — strong bilingual cluster
-- **Scottsdale, AZ**: Mayra Hernandez — bilingual
+- **Buckeye, AZ**: Mayra Hernandez — bilingual
 - **Uniondale, NY**: Several bilingual LOs (confirm with roster)

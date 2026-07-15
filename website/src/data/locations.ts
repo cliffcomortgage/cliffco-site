@@ -61,11 +61,11 @@ export const LOCATIONS: readonly Location[] = [
     name: "Arizona",
     state: "AZ",
     blurb:
-      "Our Scottsdale branch serves Phoenix metro homebuyers and investors, Tucson, and " +
+      "Our Buckeye branch serves Phoenix metro homebuyers and investors, Tucson, and " +
       "Arizona's retirement communities. Strong fit for reverse mortgages in Sun Belt " +
       "retirement areas, DSCR loans for the state's active investor market, and Non-QM " +
       "bank statement loans for the self-employed.",
-    branchSlugs: ["scottsdale-az"],
+    branchSlugs: ["buckeye-az"],
     featuredProducts: ["reverse-mortgage", "dscr", "non-qm-self-employed", "business-bank-statement"],
   },
   {

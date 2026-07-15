@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 const { loc } = Astro.props;
 const stateBranches = BRANCHES.filter((b) => loc.branchSlugs?.includes(b.slug));
 const branchLandingPages: Record<string, string> = {
-  'scottsdale-az': '/scottsdale-az/',
+  'buckeye-az': '/buckeye-az/',
   'excelsior-mn': '/excelsior-mn/',
   'branchburg-nj': '/branchburg-nj/',
 };
@@ -53,7 +53,7 @@ const faq = loc.isFlorida
     ]
   : loc.state === "AZ"
   ? [
-      { question: "Is Cliffco licensed in Arizona?", answer: "Yes. Cliffco holds Arizona Mortgage Banker License 1045708 (corporate NMLS #65328). Our Scottsdale branch serves the Phoenix metro and statewide." },
+      { question: "Is Cliffco licensed in Arizona?", answer: "Yes. Cliffco holds Arizona Mortgage Banker License 1045708 (corporate NMLS #65328). Our Buckeye branch serves the Phoenix metro and statewide." },
       { question: "What products are strongest in Arizona?", answer: "Reverse mortgages in retiree-heavy areas (Sun City, Sun Lakes), DSCR for the state's investor-friendly SFR market, Non-QM bank statement loans, and business bank statement loans for self-employed borrowers." },
     ]
   : [

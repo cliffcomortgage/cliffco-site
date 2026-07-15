@@ -739,6 +739,16 @@
       "permanent": true
     },
     {
+      "source": "/scottsdale-az/",
+      "destination": "/buckeye-az/",
+      "permanent": true
+    },
+    {
+      "source": "/scottsdale-az",
+      "destination": "/buckeye-az/",
+      "permanent": true
+    },
+    {
       "source": "/locations/new-york/queens/",
       "destination": "/locations/new-york/",
       "permanent": true
