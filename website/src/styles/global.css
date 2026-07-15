@@ -349,11 +349,6 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ---------- Hero stagger keyframe ---------- */
-@keyframes cf-hero-reveal {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
 
 
 /* ---------- Scroll-reveal classes (applied by JS) ---------- */

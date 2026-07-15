@@ -98,8 +98,31 @@ const allSchema = schema
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Montserrat:wght@600&display=optional" /></noscript>
 
     <!-- HubSpot tracking: sets the hubspotutk visitor cookie so form leads
-         carry attribution. If IT later adds this via GTM, remove one copy. -->
-    <script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/21616430.js"></script>
+         carry attribution. Deferred until idle/first interaction because its
+         analytics bundle costs ~2s of main-thread time (and it injects the
+         FB/LinkedIn pixels configured in the portal). The cookie still sets
+         long before any visitor can finish a form.
+         If IT later adds this via GTM, remove one copy. -->
+    <script is:inline>
+      (function () {
+        var loaded = false;
+        function loadHs() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.id = 'hs-script-loader';
+          s.async = true;
+          s.defer = true;
+          s.src = 'https://js.hs-scripts.com/21616430.js';
+          document.head.appendChild(s);
+        }
+        if ('requestIdleCallback' in window) requestIdleCallback(loadHs, { timeout: 3500 });
+        else setTimeout(loadHs, 3500);
+        ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (e) {
+          addEventListener(e, loadHs, { once: true, passive: true });
+        });
+      })();
+    </script>
   </head>
   <body class="min-h-screen flex flex-col">
     <a href="#main" class="skip-link">Skip to main content</a>
@@ -162,18 +185,8 @@ const allSchema = schema
         });
       }
 
-      // ═══════════════════════════════════════════════
-      // SECTION 4 - HERO STAGGER ON PAGE LOAD
-      // ═══════════════════════════════════════════════
-      if (!prefersReduced) {
-        const hero = document.querySelector<HTMLElement>('main section:first-of-type');
-        if (hero) {
-          const children = hero.querySelectorAll<HTMLElement>(':scope > .container-wide > *');
-          children.forEach((el, i) => {
-            el.style.animation = `cf-hero-reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${i * 120}ms both`;
-          });
-        }
-      }
+      // Hero entrance stagger removed: re-hiding the hero to fade it in
+      // pushed measured LCP out by several seconds on every page.
     })();
     </script>
 
