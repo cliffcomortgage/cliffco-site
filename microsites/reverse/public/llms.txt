@@ -11,8 +11,6 @@
 
 - [Reverse Mortgages on Long Island](https://cliffco-reverse-microsite.vercel.app/long-island/): Main overview, benefits, process, FAQ
 - [How a HECM Works](https://cliffco-reverse-microsite.vercel.app/how-hecm-works/): Eligibility, payout options, borrower obligations
-- [Meet Julian Giaquinto](https://cliffco-reverse-microsite.vercel.app/meet-julian/): Loan officer background and credentials
-- [Client Reviews](https://cliffco-reverse-microsite.vercel.app/client-reviews/): Verified borrower testimonials
 
 ## Key facts
 

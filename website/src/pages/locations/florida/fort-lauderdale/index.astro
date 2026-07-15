@@ -14,7 +14,7 @@ const ftlBranch = BRANCHES.find((b) => b.slug === "fort-lauderdale-fl")!;
 const EXCLUDE = new Set(["christopher-clifford"]);
 const branchLOs = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "fort-lauderdale-fl" && !EXCLUDE.has(lo.slug));
 const licensedOnlyLOs = LOAN_OFFICERS.filter(
-  (lo) => lo.states.includes("FL") && lo.branchSlug !== "fort-lauderdale-fl" && lo.branchSlug !== "orlando-fl" && !EXCLUDE.has(lo.slug),
+  (lo) => lo.states.includes("FL") && lo.branchSlug !== "fort-lauderdale-fl" && !EXCLUDE.has(lo.slug),
 );
 const totalFLLOs = LOAN_OFFICERS.filter((lo) => lo.states.includes("FL")).length;
 

@@ -263,7 +263,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     nmls: "1146282",
     title: "Branch Manager / Loan Officer",
     states: ["NY"],
-    branchSlug: "jamaica-ny",
+    branchSlug: "uniondale-headquarters",
     links: {
       email: "astreet@cliffcomortgage.com",
       directPhone: "315-484-6080",
@@ -307,26 +307,6 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=emorais&workFlowId=33774",
     },
     bio: "With 23 years of experience in the mortgage industry, I've had the privilege of leading top sales teams at some of the nation's largest banks. Specializing in all aspects of home lending, whether it's helping first-time buyers, guiding seasoned investors in building their portfolios, or navigating commercial real estate, I am passionate about making homeownership accessible to all. As the son of immigrants who faced challenges in achieving homeownership, I'm deeply committed to ensuring everyone has the opportunity to build wealth through ownership.",
-    hasPhoto: true,
-  },
-  {
-    slug: "julian-giaquinto",
-    firstName: "Julian",
-    lastName: "Giaquinto",
-    displayName: "Julian Giaquinto",
-    nmls: "56473",
-    title: "Branch Manager",
-    states: ["AZ", "CA", "CT", "FL", "NC", "NJ", "NY", "PA", "SC", "TX", "VA"],
-    branchSlug: "wantagh-ny",
-    links: {
-      email: "jgiaquinto@cliffcomortgage.com",
-      directPhone: "516-654-9679",
-      cellPhone: "516-884-6696",
-      applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=jgiaqui&workFlowId=33774",
-    },
-    team: { name: "Team Giaquinto", slug: "team-giaquinto", logoUrl: "/images/team%20logos/Team%20Giaquinto_Stacked_White.png" },
-    specialties: ["Reverse Mortgage"],
-    bio: "With over 20 years in the mortgage financing industry, Julian Giaquinto has built a reputation as a dedicated and trusted mortgage banker in New York. As part of Cliffco Mortgage Bankers, Julian offers a wide range of residential loan solutions designed to meet the needs of diverse borrowers, from first-time homebuyers to seasoned real estate investors. His deep knowledge of FHA, conventional, jumbo, and investor loans allows him to tailor mortgage strategies that fit each client's financial goals. Since 2008, Julian has developed a strong specialty in reverse mortgages, guiding seniors and retirees through one of the most important financial decisions of their lives. He believes that when it comes to reverse mortgages, education and personalized guidance are key. In addition to reverse mortgages, Julian also provides innovative financing for clients who may face unique challenges, including self-employed borrowers, no-income check loans, and clients turned down by other banks.",
     hasPhoto: true,
   },
   {
@@ -435,7 +415,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   },
 
   // ============================================================
-  // JAMAICA (NY)
+  // FORMERLY JAMAICA (NY) - moved to Uniondale HQ when the branch closed (2026-07)
   // ============================================================
   {
     slug: "shahraj-khan",
@@ -445,7 +425,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     nmls: "1209249",
     title: "Loan Officer",
     states: ["NY"],
-    branchSlug: "jamaica-ny",
+    branchSlug: "uniondale-headquarters",
     links: {
       email: "skhan@cliffcomortgage.com",
       directPhone: "516-408-7300",
@@ -456,7 +436,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   },
 
   // ============================================================
-  // WANTAGH (NY)
+  // FORMERLY WANTAGH (NY) - moved to Uniondale HQ when the branch closed (2026-07)
   // ============================================================
   {
     slug: "syed-hasib",
@@ -466,14 +446,13 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     nmls: "1594778",
     title: "Loan Officer",
     states: ["NY"],
-    branchSlug: "wantagh-ny",
+    branchSlug: "uniondale-headquarters",
     links: {
       email: "shasib@cliffcomortgage.com",
       directPhone: "516-654-9679",
       cellPhone: "516-444-1956",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=shasib&workFlowId=33774",
     },
-    team: { name: "Team Giaquinto", slug: "team-giaquinto", logoUrl: "/images/team%20logos/Team%20Giaquinto_Stacked_White.png" },
     bio: "Syed Hasib is a Mortgage Loan Originator serving clients across New York City and Long Island, dedicated to helping individuals and families achieve homeownership with confidence. He specializes in FHA, conventional, and Non-QM loans, with a strong focus on self-employed buyers and first-time homebuyers who need flexible and transparent mortgage solutions. Known for his speed, honesty, and availability, Syed simplifies the mortgage process through clear communication and a commitment to client satisfaction. Whether helping a business owner secure a Non-QM loan, guiding a first-time buyer through FHA programs, or supporting a homeowner looking to refinance, Syed provides a smooth, personalized lending experience.",
     hasPhoto: true,
   },
@@ -492,7 +471,6 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       cellPhone: "516-240-0120",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=slazo&workFlowId=33774",
     },
-    team: { name: "Team Giaquinto", slug: "team-giaquinto", logoUrl: "/images/team%20logos/Team%20Giaquinto_Stacked_White.png" },
     bio: "With a strong background in New York real estate and a passion for helping clients achieve homeownership, Steve Lazo brings a unique perspective to the mortgage process. His experience as a licensed real estate agent allows him to guide borrowers through every step of purchasing a home with clear communication, quick pre-approvals, and tailored solutions that address real-life challenges. Specializing in first-time homebuyers, Steve helps clients in Uniondale, Hempstead, Long Island, and across New York navigate programs like FHA, Conventional, and DSCR loans. He works closely with borrowers to overcome common hurdles such as credit challenges and down payment concerns, ensuring they have the resources and guidance needed to move forward with confidence.",
     hasPhoto: true,
   },
@@ -937,7 +915,6 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       cellPhone: "631-804-9044",
       applyNow: "https://fastapp.cliffcomortgage.com/#/milestones?referrerId=kadler%40cliffcomortgage.com&loanType=MORTGAGE",
     },
-    team: { name: "Team Giaquinto", slug: "team-giaquinto", logoUrl: "/images/team%20logos/Team%20Giaquinto_Stacked_White.png" },
     specialties: ["Reverse Mortgage"],
     bio: "An industry professional for over 20 years (starting in 2003), Kathie offers experience, expertise, and unparalleled customer service. During the buying process, you need a trusted resource with the ability to walk a homebuyer through the process with ease. And with Reverse Mortgages, you need an expert who can teach as well as assist a senior client with their mortgage. Kathie's expertise includes various mortgage products such as: FHA, VA, Conventional, Commercial, Non-QM (bank statement loans), and Reverse Mortgages to name a few. Kathie always puts her borrowers at ease especially when complicated situations arise. Respect and understanding are essential when doing a mortgage. And that's what you'll get with Kathie Adler.",
     hasPhoto: true,

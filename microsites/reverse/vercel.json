@@ -38,5 +38,27 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/meet-julian/",
+      "destination": "/long-island/",
+      "permanent": true
+    },
+    {
+      "source": "/meet-julian",
+      "destination": "/long-island/",
+      "permanent": true
+    },
+    {
+      "source": "/client-reviews/",
+      "destination": "/long-island/",
+      "permanent": true
+    },
+    {
+      "source": "/client-reviews",
+      "destination": "/long-island/",
+      "permanent": true
+    }
   ]
 }

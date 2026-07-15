@@ -26,10 +26,10 @@ export const LOCATIONS: readonly Location[] = [
     state: "NY",
     blurb:
       "Cliffco was founded on Long Island in 1989 and is still headquartered here. " +
-      "Three offices (Uniondale HQ, Wantagh, and Bay Shore) and decades of hands-on " +
+      "Two offices (Uniondale HQ and Bay Shore) and decades of hands-on " +
       "experience with the jumbo, Non-QM, and reverse mortgage scenarios that Long Island " +
       "borrowers actually face.",
-    branchSlugs: ["uniondale-headquarters", "wantagh-ny", "bay-shore-ny"],
+    branchSlugs: ["uniondale-headquarters", "bay-shore-ny"],
     featuredProducts: ["non-qm-self-employed", "reverse-mortgage", "dscr", "business-bank-statement"],
   },
   {
@@ -37,23 +37,12 @@ export const LOCATIONS: readonly Location[] = [
     name: "New York",
     state: "NY",
     blurb:
-      "Cliffco has been headquartered on Long Island since 1989, with four New York offices " +
-      "across Uniondale, Wantagh, Bay Shore, and Queens. From jumbo loans and CEMA " +
+      "Cliffco has been headquartered on Long Island since 1989, with offices in " +
+      "Uniondale and Bay Shore. From jumbo loans and CEMA " +
       "refinances to Non-QM, reverse mortgages, and DSCR financing, we handle the loan types " +
       "New York borrowers actually need.",
-    branchSlugs: ["uniondale-headquarters", "wantagh-ny", "bay-shore-ny", "jamaica-ny"],
+    branchSlugs: ["uniondale-headquarters", "bay-shore-ny"],
     featuredProducts: ["non-qm-self-employed", "reverse-mortgage", "dscr", "business-bank-statement"],
-  },
-  {
-    path: "new-york/queens",
-    name: "Queens, NY",
-    state: "NY",
-    blurb:
-      "Cliffco's Queens office is located in Jamaica and serves buyers and investors across all " +
-      "five boroughs. From co-op and condo financing to Non-QM and DSCR loans, our Queens team " +
-      "handles the loan types New York City borrowers actually need.",
-    branchSlugs: ["jamaica-ny"],
-    featuredProducts: ["non-qm-self-employed", "dscr", "business-bank-statement", "reverse-mortgage"],
   },
   {
     path: "new-jersey",
@@ -96,25 +85,11 @@ export const LOCATIONS: readonly Location[] = [
     state: "FL",
     isFlorida: true,
     blurb:
-      "Two Florida offices cover the state: Orlando anchors a bilingual team working with " +
-      "Disney-area short-term-rental investors, Central Florida buyers, and out-of-state " +
-      "investors purchasing Florida property. Ft. Lauderdale serves South Florida and the " +
-      "greater Miami area.",
-    branchSlugs: ["orlando-fl", "fort-lauderdale-fl"],
+      "Our Ft. Lauderdale office anchors Cliffco's Florida presence, serving South Florida, " +
+      "the greater Miami area, and borrowers statewide: Disney-area short-term-rental " +
+      "investors, self-employed buyers, and out-of-state investors purchasing Florida property.",
+    branchSlugs: ["fort-lauderdale-fl"],
     featuredProducts: ["dscr", "reverse-mortgage", "non-qm-self-employed", "business-bank-statement"],
-  },
-  {
-    path: "florida/orlando",
-    name: "Orlando, FL",
-    state: "FL",
-    isFlorida: true,
-    blurb:
-      "Orlando is one of the country's top short-term-rental markets. Our bilingual team " +
-      "here specializes in DSCR loans for investors near Disney, Universal, and the I-Drive " +
-      "corridor, plus Non-QM and bank statement loans for self-employed Florida small-business " +
-      "owners and ITIN borrowers.",
-    branchSlugs: ["orlando-fl"],
-    featuredProducts: ["dscr", "business-bank-statement", "non-qm-self-employed", "renovation"],
   },
   {
     path: "florida/fort-lauderdale",

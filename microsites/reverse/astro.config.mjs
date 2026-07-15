@@ -8,6 +8,9 @@ export default defineConfig({
   trailingSlash: 'always',
   redirects: {
     '/': '/long-island/',
+    // Pages removed when Julian Giaquinto was offboarded (2026-07)
+    '/meet-julian/': '/long-island/',
+    '/client-reviews/': '/long-island/',
   },
   vite: {
     plugins: [tailwindcss()],

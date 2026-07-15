@@ -35,7 +35,7 @@ Critical facts that must show up in the right places:
 
 1. **Florida DBA: "Swish Capital, Inc."** — every FL-targeted page, FL LO bio, Orlando GBP, and FL marketing piece must include this DBA disclosure.
 2. **32 licensed states** (not the 27 the current public footer shows). Full list + NMLS numbers in `compliance/state-licenses.md`. **MN is fully licensed** — treat it as a normal priority territory, not gated.
-3. **9 physical branches:** Uniondale NY (HQ), Jamaica NY, Wantagh NY, Bay Shore NY, Branchburg NJ, Orlando FL, Ft. Lauderdale FL, Scottsdale AZ, Excelsior MN. Branch street addresses (other than HQ) need to be collected before any branch landing page or GBP claim ships.
+3. **6 physical branches** (as of 2026-07-15): Uniondale NY (HQ), Bay Shore NY, Branchburg NJ, Ft. Lauderdale FL, Scottsdale AZ, Excelsior MN. The Jamaica NY, Wantagh NY, and Orlando FL branches closed in July 2026 — do not reference them as current offices.
 4. **80+ active LOs.** Each gets a bio page at `/loan-officers/{name-nmlsid}/` with Person schema + sameAs to NMLS Consumer Access. Roster: `compliance/loan-officers.md`.
 5. **Bilingual LO clusters** (basis for the Spanish-language site): Orlando, Scottsdale, Branchburg, Uniondale. Detail in `compliance/loan-officers.md`.
 6. **AZ license discrepancy** — most disclosures show AZ #1045708; Julian Giaquinto's shows AZ #0949291. Verify with Rafe before publishing AZ-licensed-state lists.

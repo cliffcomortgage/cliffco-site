@@ -13,7 +13,6 @@ const loc = location("new-york/long-island")!;
 const liBranches = BRANCHES.filter((b) => b.metro === "Long Island");
 const branchLandingPages: Record<string, string> = {
   'uniondale-headquarters': '/uniondale/',
-  'wantagh-ny': '/wantagh-ny/',
   'bay-shore-ny': '/bay-shore-ny/',
 };
 
@@ -21,17 +20,15 @@ const EXCLUDE = new Set(["christopher-clifford"]);
 const uniondaleLOs = LOAN_OFFICERS.filter(
   (lo) => lo.branchSlug === "uniondale-headquarters" && !EXCLUDE.has(lo.slug),
 );
-const wantaghLOs  = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "wantagh-ny");
 const bayShore    = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "bay-shore-ny");
 
 const branchLOCount: Record<string, number> = {
   "uniondale-headquarters": LOAN_OFFICERS.filter((lo) => lo.branchSlug === "uniondale-headquarters" && !EXCLUDE.has(lo.slug)).length,
-  "wantagh-ny":             wantaghLOs.length,
   "bay-shore-ny":           bayShore.length,
 };
 
 const faq = [
-  { question: "Where is Cliffco's Long Island office?", answer: "Cliffco's headquarters is at 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553, phone (516) 408-7300. We also have Long Island branches in Wantagh (Nassau) and Bay Shore (Suffolk)." },
+  { question: "Where is Cliffco's Long Island office?", answer: "Cliffco's headquarters is at 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553, phone (516) 408-7300. We also have a Long Island branch in Bay Shore (Suffolk)." },
   { question: "Is Cliffco licensed in New York?", answer: "Yes. Cliffco, Inc. is a Licensed Mortgage Banker by the New York State Department of Financial Services (LMBC109800), NMLS #65328. Cliffco has been originating mortgages on Long Island since 1989." },
   { question: "What loan products are most relevant on Long Island?", answer: "Long Island's median single-family price is high (Nassau ~$849K, Suffolk ~$700K as of early 2026), which means jumbo loans matter. Long Island also has a heavy self-employed trades workforce, a strong fit for Cliffco's bank-statement Non-QM. North Shore aging-in-place homeowners drive a steady reverse-mortgage practice. Hamptons buyers tap super-jumbo and asset-utilization programs." },
   { question: "Does Cliffco do non-warrantable Long Island co-ops or condos?", answer: "Yes. Cliffco's Non-QM and portfolio programs handle scenarios that conventional Fannie/Freddie cannot, including non-warrantable condos and co-op buildings outside standard agency guidelines. Speak with a Long Island LO for specifics on a building." },
@@ -164,37 +161,6 @@ import ContactForm from "../../../../components/forms/ContactForm.astro";
         </p>
         <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {uniondaleLOs.map((lo) => (
-            <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
-              {lo.hasPhoto && (
-                <div class="mb-4 -mx-6 -mt-6">
-                  <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="rounded-t-xl" />
-                </div>
-              )}
-              <p class="eyebrow">{lo.title}</p>
-              <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
-              <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>
-              {lo.languages && lo.languages.length > 1 && (
-                <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
-              )}
-              <span class="mt-3 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- Wantagh -->
-  {wantaghLOs.length > 0 && (
-    <section class="section bg-[var(--color-mist-gray)]">
-      <div class="container-wide">
-        <p class="eyebrow">Wantagh, NY</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Loan officers at our Wantagh office.</h2>
-        <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
-          3265 Merrick Road, Wantagh, NY 11793
-        </p>
-        <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {wantaghLOs.map((lo) => (
             <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
               {lo.hasPhoto && (
                 <div class="mb-4 -mx-6 -mt-6">
