@@ -116,8 +116,8 @@ const allSchema = schema
           s.src = 'https://js.hs-scripts.com/21616430.js';
           document.head.appendChild(s);
         }
-        if ('requestIdleCallback' in window) requestIdleCallback(loadHs, { timeout: 3500 });
-        else setTimeout(loadHs, 3500);
+        if ('requestIdleCallback' in window) requestIdleCallback(loadHs, { timeout: 8000 });
+        else setTimeout(loadHs, 8000);
         ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (e) {
           addEventListener(e, loadHs, { once: true, passive: true });
         });

@@ -304,11 +304,31 @@ const yearsInBiz = COMPANY.yearsInBusiness();
     <div class="container-wide">
       <p class="eyebrow">From our borrowers</p>
 
-      <div class="mt-6">
-        <!-- Elfsight Google Reviews widget -->
-        <script src="https://elfsightcdn.com/platform.js" async></script>
+      <div class="mt-6" id="reviews-widget-slot">
+        <!-- Elfsight Google Reviews widget: script injected only when this
+             section approaches the viewport, so it never competes with
+             above-the-fold work -->
         <div class="elfsight-app-48e4bead-fc89-45e0-9839-000043509c1d" data-elfsight-app-lazy></div>
       </div>
+      <script>
+        (() => {
+          const slot = document.getElementById('reviews-widget-slot');
+          if (!slot) return;
+          let injected = false;
+          const inject = () => {
+            if (injected) return;
+            injected = true;
+            const s = document.createElement('script');
+            s.src = 'https://elfsightcdn.com/platform.js';
+            s.async = true;
+            document.head.appendChild(s);
+          };
+          const io = new IntersectionObserver((entries) => {
+            if (entries.some((e) => e.isIntersecting)) { inject(); io.disconnect(); }
+          }, { rootMargin: '600px 0px' });
+          io.observe(slot);
+        })();
+      </script>
 
       <div class="mt-8 text-center">
         <a href="/reviews/" class="text-sm font-medium">Read all reviews →</a>
