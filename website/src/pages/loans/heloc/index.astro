@@ -1,0 +1,128 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
+import { COMPANY } from "../../../data/company";
+import { product } from "../../../data/products";
+import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
+
+const p = product("heloc")!;
+
+const faq = [
+  { question: "What is a HELOC?", answer: "A home equity line of credit (HELOC) is a loan secured by the equity in your home. It sits behind your existing mortgage as a second lien, which means your first mortgage, and its rate, stays exactly as it is. You draw funds from the line and repay them over the loan term." },
+  { question: "How can a HELOC be approved in five minutes?", answer: "The application uses automated income, credit, and property verification instead of a manual underwriting queue. Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report." },
+  { question: "Does a HELOC replace my current mortgage?", answer: "No. A HELOC is a second lien, so your existing first mortgage and its rate are untouched. That makes a HELOC especially useful if you locked a low first-mortgage rate and don't want to give it up with a cash-out refinance." },
+  { question: "Is the rate fixed or variable?", answer: "Cliffco's HELOC program uses fixed rates, so your payment on drawn funds doesn't move with the market the way traditional variable-rate HELOCs do. Your rate depends on your credit profile, the line amount, and your combined loan-to-value ratio." },
+  { question: "How much can I borrow with a HELOC?", answer: "Lines are available up to $750,000. Your maximum depends on how much equity you have, your credit profile, and the combined loan-to-value ratio of your first mortgage plus the new line." },
+  { question: "What can I use HELOC funds for?", answer: "Common uses are home renovations, consolidating higher-interest debt, education costs, and major purchases. Because the line is secured by your home, the rate is typically far lower than credit cards or personal loans." },
+  { question: "How fast can I receive the funds?", answer: "Funding can happen in as few as five business days after approval, assuming the loan closes with our remote online notary. Funding timelines may be longer for properties in counties that do not permit recording of e-signatures or that otherwise require an in-person closing." },
+];
+
+const schema = [
+  mortgageLoanSchema(p),
+  faqPageSchema(faq),
+  articleSchema({
+    headline: p.name,
+    description: p.directAnswer,
+    url: `/loans/${p.slug}/`,
+    datePublished: "2026-07-15",
+    dateModified: "2026-07-15",
+  }),
+];
+import ContactForm from "../../../components/forms/ContactForm.astro";
+---
+
+<Layout title={`HELOC | Home Equity Line of Credit | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Loans", href: "/loans/" },
+    { name: p.shortName, href: `/loans/${p.slug}/` },
+  ]} />
+
+  <section class="container-wide pt-12 pb-5">
+    <p class="eyebrow">{p.category}</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
+    <p class="lead mt-6">{p.oneLiner}</p>
+  </section>
+
+  <section class="bg-white pb-12">
+    <div class="container-wide">
+      <p class="lead">{p.directAnswer}</p>
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-mist-gray)] section">
+    <div class="container-wide grid gap-10 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">HELOC at a glance</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Your equity, without touching your first mortgage.</h2>
+      </div>
+      <dl class="space-y-3">
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Approval decision</dt><dd class="text-[var(--color-text-muted)]">In as little as 5 minutes*</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Funding</dt><dd class="text-[var(--color-text-muted)]">In as few as 5 business days*</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Line amounts</dt><dd class="text-[var(--color-text-muted)]">Up to $750,000</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Rate structure</dt><dd class="text-[var(--color-text-muted)]">Fixed</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>First mortgage</dt><dd class="text-[var(--color-text-muted)]">Unchanged; the line is a second lien</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Process</dt><dd class="text-[var(--color-text-muted)]">Fully online, remote notary closing</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Common HELOC questions.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-wide">
+      <div class="rounded-lg border border-[var(--color-mist-gray)] p-6 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
+        <div>
+          <p class="font-semibold text-[var(--color-ink)]">Comparing a HELOC to a cash-out refinance?</p>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">If your first mortgage rate is low, a HELOC usually wins. If you'd benefit from restructuring the whole loan, cash-out may make more sense. We compare both for you.</p>
+        </div>
+        <a href="/mortgage-guides/blog/cash-out-refinance-vs-heloc/" class="btn btn-secondary text-sm shrink-0">Read the comparison →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Tap your equity. Keep your rate.</h2>
+      <p class="lead mt-4 text-white/85">Apply online and get an approval decision in minutes.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Pre-Qualified</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-8">
+    <div class="container-wide">
+      <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+        *Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report. Five business day funding timeline assumes closing the loan with our remote online notary. Funding timelines may be longer for loans secured by properties located in counties that do not permit recording of e-signatures or that otherwise require an in-person closing.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-2xl">
+      <h2 class="mt-3" style="font-size: var(--text-h2);">See what your equity could do.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us your home's approximate value and your current mortgage balance and we'll show you what a line could look like.</p>
+      <div class="mt-8">
+        <ContactForm
+          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
+          formSource="loan-heloc"
+        />
+      </div>
+    </div>
+  </section>
+</Layout>
