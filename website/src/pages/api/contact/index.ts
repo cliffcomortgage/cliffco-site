@@ -1,7 +1,9 @@
 import type { APIRoute } from 'astro';
 
-// Static for GitHub Pages preview (no server), server-rendered for Vercel production
-export const prerender = process.env.DEPLOY_TARGET === 'pages';
+// Prerender behavior is set per-target in astro.config.mjs (astro:route:setup hook):
+// server-rendered on Vercel, prerendered stub on the GitHub Pages preview. A
+// `prerender` export here would need to be a literal boolean — Astro can't
+// statically analyze an env-var expression and silently falls back to static.
 
 // All recipients must be @cliffcomortgage.com for security
 const ALLOWED_DOMAIN = 'cliffcomortgage.com';

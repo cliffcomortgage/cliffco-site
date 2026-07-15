@@ -203,7 +203,7 @@ const schema = [faqPageSchema(faq)];
       </div>
 
       <div>
-        <form id="str-form" action="/api/lead" method="POST" class="space-y-4">
+        <form id="str-form" action="/api/lead/" method="POST" class="space-y-4">
           <input type="hidden" name="form_source" value="team-str" />
           <input type="hidden" name="form_to" value="margenzio@cliffcomortgage.com,websiteleads@cliffcomortgage.com" />
           <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
@@ -321,7 +321,7 @@ const schema = [faqPageSchema(faq)];
     btn.textContent = 'Sending…';
 
     try {
-      const res  = await fetch('/api/lead', { method: 'POST', body: new FormData(strForm) });
+      const res  = await fetch('/api/lead/', { method: 'POST', body: new FormData(strForm) });
       const json = await res.json();
 
       if (res.ok && json.success) {

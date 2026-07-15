@@ -165,7 +165,24 @@ export default defineConfig({
     },
   },
 
-  integrations: [sitemap({ filter: (page) => !page.includes('/thank-you/') })],
+  integrations: [
+    sitemap({ filter: (page) => !page.includes('/thank-you/') }),
+    // API routes must be serverless functions on Vercel (POST handlers) but
+    // prerendered stubs on the static GitHub Pages preview. This is set here,
+    // not via a `prerender` export in the route files, because Astro can only
+    // statically analyze literal booleans — an env-var expression silently
+    // falls back to prerender=true and the deployed endpoints 405 every POST.
+    {
+      name: 'api-prerender-per-target',
+      hooks: {
+        'astro:route:setup': ({ route }) => {
+          if (route.component.replace(/\\/g, '/').includes('/pages/api/')) {
+            route.prerender = isPages;
+          }
+        },
+      },
+    },
+  ],
 
   build: {
     inlineStylesheets: 'auto',

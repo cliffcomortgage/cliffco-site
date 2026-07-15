@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-export const prerender = process.env.DEPLOY_TARGET === 'pages';
+// Prerender behavior is set per-target in astro.config.mjs (astro:route:setup hook).
 
 const ALLOWED_DOMAIN = 'cliffcomortgage.com';
 

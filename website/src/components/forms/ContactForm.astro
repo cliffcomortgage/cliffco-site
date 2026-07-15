@@ -188,7 +188,7 @@ document.querySelectorAll<HTMLFormElement>('.cf-contact-form').forEach((form) =>
     if (hutkMatch) fd.set('hutk', hutkMatch[1]);
 
     try {
-      const res  = await fetch('/api/contact', { method: 'POST', body: fd });
+      const res  = await fetch('/api/contact/', { method: 'POST', body: fd });
       const json = await res.json();
 
       if (res.ok && json.success) {
