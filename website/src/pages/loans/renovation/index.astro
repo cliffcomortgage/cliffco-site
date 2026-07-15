@@ -6,7 +6,6 @@ import { product } from "../../../data/products";
 import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
 
 const p = product("renovation")!;
-const today = new Date().toISOString().slice(0, 10);
 
 const faq = [
   { question: "What is a renovation loan?", answer: "A renovation mortgage rolls the cost of buying (or refinancing) a home and the cost of renovations into a single loan, based on the home's after-renovation value. The two main programs are FHA 203(k) (government-insured, for primary residences) and Fannie Mae HomeStyle (conventional, also allows investment properties and luxury upgrades)." },
@@ -25,7 +24,7 @@ const schema = [
     description: p.directAnswer,
     url: `/loans/${p.slug}/`,
     datePublished: "2026-04-15",
-    dateModified: today,
+    dateModified: "2026-07-15",
     authorSlug: "christopher-clifford",
   }),
 ];

@@ -209,7 +209,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       },
       {
         title: "DSCR Loans Demystified: How Real Estate Investors Can Use Rental Income to Qualify & Scale Their Portfolio",
-        slug: "dscr-loans-real-estate-investors",
+        slug: "dscr-loans-demystified",
         description: "DSCR loans flip the script on traditional mortgage underwriting, qualifying you based on rental property cash flow, not your W-2.",
         image: "/images/DFallarino%20Blog/DSCR%20Blog.jpg",
         section: "500:1 Blog",

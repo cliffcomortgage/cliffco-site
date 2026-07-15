@@ -8,7 +8,6 @@ import { REVIEW_PLATFORMS } from "../../data/reviews";
 const numericRatings = REVIEW_PLATFORMS.filter(p => p.rating !== null).map(p => p.rating as number);
 const avgRating = (numericRatings.reduce((a, b) => a + b, 0) / numericRatings.length).toFixed(1);
 
-const today = new Date().toISOString().slice(0, 10);
 const yearsInBiz = new Date().getFullYear() - COMPANY.founded;
 
 const schema = [
@@ -17,7 +16,7 @@ const schema = [
     description: "36 years of mortgage lending, 32 states, 9 branches, and a specialty in loans conventional lenders won't touch. What makes Cliffco different.",
     url: "/why-cliffco/",
     datePublished: "2026-04-15",
-    dateModified: today,
+    dateModified: "2026-07-15",
     authorSlug: "christopher-clifford",
   }),
 ];

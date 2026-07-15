@@ -5,7 +5,7 @@
  * JSON-LD structured data.
  */
 export const BLOG_PUBLISH_DATES: Record<string, string> = {
-  "dscr-loans-real-estate-investors":                              "2026-05-15",
+  "how-dscr-loans-work":                              "2026-05-15",
   "house-hacking-fha-loan-multi-family-property":                  "2026-05-02",
   "cash-reserves-investment-property-loan":                        "2026-04-15",
   "investment-property-loan-self-employed":                        "2026-04-02",

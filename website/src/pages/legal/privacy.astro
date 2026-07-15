@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
-const today = new Date().toISOString().slice(0, 10);
+const lastUpdated = "2026-06-01";
 ---
 
 <Layout title="Privacy Policy | Cliffco Mortgage Bankers" description={`Privacy Policy for ${COMPANY.brandName} (NMLS #${COMPANY.nmls}). Learn how we collect, use, and protect your personal information.`} noindex={false}>
@@ -14,7 +14,7 @@ const today = new Date().toISOString().slice(0, 10);
 
   <section class="container-prose pt-12 pb-16">
     <h1 style="font-size: var(--text-display-lg);">Privacy Policy</h1>
-    <p class="text-sm text-[var(--color-text-muted)] mt-2">Last updated: {today}</p>
+    <p class="text-sm text-[var(--color-text-muted)] mt-2">Last updated: {lastUpdated}</p>
 
     <p class="mt-6">
       Welcome to cliffcomortgage.com. This site is owned and operated by {COMPANY.legalName}

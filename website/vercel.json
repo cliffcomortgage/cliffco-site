@@ -420,12 +420,42 @@
     },
     {
       "source": "/dscr-loans-real-estate-investors-guide",
-      "destination": "/mortgage-guides/dscr-loans-real-estate-investors-guide/",
+      "destination": "/mortgage-guides/dscr-loan-guide/",
       "permanent": true
     },
     {
       "source": "/dscr-loans-real-estate-investors-guide/",
-      "destination": "/mortgage-guides/dscr-loans-real-estate-investors-guide/",
+      "destination": "/mortgage-guides/dscr-loan-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/dscr-loans-real-estate-investors",
+      "destination": "/dscr-loans-demystified/",
+      "permanent": true
+    },
+    {
+      "source": "/dscr-loans-real-estate-investors/",
+      "destination": "/dscr-loans-demystified/",
+      "permanent": true
+    },
+    {
+      "source": "/mortgage-guides/blog/dscr-loans-real-estate-investors",
+      "destination": "/mortgage-guides/blog/how-dscr-loans-work/",
+      "permanent": true
+    },
+    {
+      "source": "/mortgage-guides/blog/dscr-loans-real-estate-investors/",
+      "destination": "/mortgage-guides/blog/how-dscr-loans-work/",
+      "permanent": true
+    },
+    {
+      "source": "/mortgage-guides/dscr-loans-real-estate-investors-guide",
+      "destination": "/mortgage-guides/dscr-loan-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/mortgage-guides/dscr-loans-real-estate-investors-guide/",
+      "destination": "/mortgage-guides/dscr-loan-guide/",
       "permanent": true
     },
     {

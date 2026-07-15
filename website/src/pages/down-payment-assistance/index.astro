@@ -4,7 +4,6 @@ import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
 import { faqPageSchema, articleSchema } from "../../lib/schema";
 
-const today = new Date().toISOString().slice(0, 10);
 const yearsInBiz = COMPANY.yearsInBusiness();
 
 const faq = [
@@ -41,7 +40,7 @@ const schema = [
     description: "Down payment assistance programs can cover your down payment, closing costs, or both. Learn how DPA works, who qualifies, and how to find out what's available where you're buying.",
     url: "/down-payment-assistance/",
     datePublished: "2026-04-15",
-    dateModified: today,
+    dateModified: "2026-07-15",
     authorSlug: "christopher-clifford",
   }),
 ];

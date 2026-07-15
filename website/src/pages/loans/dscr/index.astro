@@ -7,7 +7,6 @@ import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/s
 import ContactForm from "../../../components/forms/ContactForm.astro";
 
 const p = product("dscr")!;
-const today = new Date().toISOString().slice(0, 10);
 
 const faq = [
   { question: "What is a DSCR loan?", answer: "A DSCR (Debt-Service Coverage Ratio) loan is a mortgage for real estate investors that qualifies the borrower based on the rental income of the subject property, not the borrower's personal income. The qualifying ratio is monthly rent divided by monthly principal-and-interest, taxes, insurance, and HOA (PITIA). Most DSCR programs accept ratios from 0.75 (with strong reserves) up to 1.25+ for best pricing." },
@@ -26,7 +25,7 @@ const schema = [
     description: p.directAnswer,
     url: `/loans/${p.slug}/`,
     datePublished: "2026-04-15",
-    dateModified: today,
+    dateModified: "2026-07-15",
     authorSlug: "christopher-clifford",
   }),
 ];

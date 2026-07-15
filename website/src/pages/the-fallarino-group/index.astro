@@ -6,7 +6,6 @@ import { LOAN_OFFICERS, loanOfficer } from "../../data/loan-officers";
 import Headshot from "../../components/ui/Headshot.astro";
 import { faqPageSchema, articleSchema } from "../../lib/schema";
 
-const today = new Date().toISOString().slice(0, 10);
 
 const teamSlugs = ["david-fallarino", "lee-horen", "fabrizio-alosa", "brandon-kenney", "kevan-scott"];
 const teamMembers = teamSlugs.map(s => LOAN_OFFICERS.find(lo => lo.slug === s)!).filter(Boolean);
@@ -46,7 +45,7 @@ const schema = [
     description: "The Fallarino Group at Cliffco Mortgage Bankers specializes in jumbo, Alt-A, DSCR, and Non-QM financing for high-growth entrepreneurs, investors, and high-net-worth professionals.",
     url: "/the-fallarino-group/",
     datePublished: "2026-04-15",
-    dateModified: today,
+    dateModified: "2026-07-15",
     authorSlug: "david-fallarino",
   }),
 ];

@@ -7,7 +7,6 @@ import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/s
 import ContactForm from "../../../components/forms/ContactForm.astro";
 
 const p = product("business-bank-statement")!;
-const today = new Date().toISOString().slice(0, 10);
 
 const faq = [
   { question: "What is a business bank statement loan?", answer: "A business bank statement loan qualifies self-employed business owners using 12 or 24 months of business bank statements instead of tax returns or W-2s. The lender applies an expense ratio (typically 50%) to gross deposits to calculate qualifying income, making this ideal for profitable businesses whose tax returns understate actual cash flow." },
@@ -26,7 +25,7 @@ const schema = [
     description: p.directAnswer,
     url: `/loans/${p.slug}/`,
     datePublished: "2026-04-15",
-    dateModified: today,
+    dateModified: "2026-07-15",
     authorSlug: "christopher-clifford",
   }),
 ];

@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
-const today = new Date().toISOString().slice(0, 10);
+const lastUpdated = "2026-05-21";
 ---
 
 <Layout title="CCPA / California Privacy Rights | Cliffco" description={`${COMPANY.brandName} California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA) notice.`}>
@@ -14,7 +14,7 @@ const today = new Date().toISOString().slice(0, 10);
 
   <section class="container-prose pt-12 pb-16">
     <h1 style="font-size: var(--text-display-lg);">California Consumer Privacy Act (CCPA) Disclosure</h1>
-    <p class="text-sm text-[var(--color-text-muted)] mt-2">Last updated: {today}</p>
+    <p class="text-sm text-[var(--color-text-muted)] mt-2">Last updated: {lastUpdated}</p>
 
     <p class="mt-6">
       This notice supplements our <a href="/legal/privacy/">Privacy Policy</a> and applies to

@@ -6,7 +6,6 @@ import { LOAN_OFFICERS, loanOfficer } from "../../data/loan-officers";
 import Headshot from "../../components/ui/Headshot.astro";
 import { faqPageSchema, articleSchema } from "../../lib/schema";
 
-const today = new Date().toISOString().slice(0, 10);
 
 const teamSlugs = ["lisa-zambelli", "lauren-zambelli", "larisa-zambelli"];
 const teamMembers = teamSlugs.map(s => LOAN_OFFICERS.find(lo => lo.slug === s)!).filter(Boolean);
@@ -46,7 +45,7 @@ const schema = [
     description: "Team Zambelli at Cliffco Mortgage Bankers. SONYMA specialists, down payment assistance experts, and trusted guides for first-time homebuyers on Long Island for over 20 years.",
     url: "/team-zambelli/",
     datePublished: "2026-04-15",
-    dateModified: today,
+    dateModified: "2026-07-15",
     authorSlug: "lisa-zambelli",
   }),
 ];

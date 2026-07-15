@@ -7,7 +7,6 @@ import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/s
 import ContactForm from "../../../components/forms/ContactForm.astro";
 
 const p = product("reverse-mortgage")!;
-const today = new Date().toISOString().slice(0, 10);
 const HECM_LIMIT_2026 = "$1,249,125";
 
 const faq = [
@@ -27,7 +26,7 @@ const schema = [
     description: p.directAnswer,
     url: `/loans/${p.slug}/`,
     datePublished: "2026-04-15",
-    dateModified: today,
+    dateModified: "2026-07-15",
     authorSlug: "christopher-clifford",
   }),
 ];
@@ -78,7 +77,7 @@ const schema = [
       </div>
       <div class="space-y-4">
         <div class="card"><h3 class="text-base font-semibold">Lump sum</h3><p class="mt-2 text-sm text-[var(--color-text-muted)]">A single one-time disbursement at closing. Often used to pay off an existing mortgage or make a major purchase.</p></div>
-        <div class="card"><h3 class="text-base font-semibold">Line of credit (with growth feature)</h3><p class="mt-2 text-sm text-[var(--color-text-muted)]">Draw as needed. The unused portion of the line grows over time at the same rate the loan would accrue "" a unique HECM feature financial planners often pair with retirement strategies.</p></div>
+        <div class="card"><h3 class="text-base font-semibold">Line of credit (with growth feature)</h3><p class="mt-2 text-sm text-[var(--color-text-muted)]">Draw as needed. The unused portion of the line grows over time at the same rate the loan would accrue, a unique HECM feature financial planners often pair with retirement strategies.</p></div>
         <div class="card"><h3 class="text-base font-semibold">Tenure or term payments</h3><p class="mt-2 text-sm text-[var(--color-text-muted)]">Monthly disbursements for life (tenure) or for a fixed period (term). Useful for supplementing fixed income.</p></div>
       </div>
     </div>

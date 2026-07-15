@@ -6,7 +6,6 @@ import { LOAN_OFFICERS, loanOfficer } from "../../data/loan-officers";
 import Headshot from "../../components/ui/Headshot.astro";
 import { faqPageSchema, articleSchema } from "../../lib/schema";
 
-const today = new Date().toISOString().slice(0, 10);
 
 const teamSlugs = ["joseph-cordeira", "emily-cordeira"];
 const teamMembers = teamSlugs.map(s => LOAN_OFFICERS.find(lo => lo.slug === s)!).filter(Boolean);
@@ -46,7 +45,7 @@ const schema = [
     description: "Team Cordeira at Cliffco Mortgage Bankers. A husband and wife Non-QM specialist team helping self-employed borrowers, investors, and clients turned down elsewhere on Long Island.",
     url: "/team-cordeira/",
     datePublished: "2026-04-15",
-    dateModified: today,
+    dateModified: "2026-07-15",
     authorSlug: "joseph-cordeira",
   }),
 ];

@@ -10,7 +10,7 @@ export const BLOG_ARTICLES: readonly BlogArticle[] = [
     category: "Investors",
     title: "DSCR Loans Explained: A Guide for Real Estate Investors",
     description: "How DSCR loans work, who qualifies, and why investors use them to grow portfolios without tying up personal income documents.",
-    href: "/mortgage-guides/dscr-loans-real-estate-investors-guide/",
+    href: "/mortgage-guides/dscr-loan-guide/",
   },
   {
     category: "First-Time Buyers",
@@ -128,9 +128,9 @@ export const BLOG_ARTICLES: readonly BlogArticle[] = [
   },
   {
     category: "Investors",
-    title: "DSCR Loans for Real Estate Investors: How the Property Qualifies So You Don't Have To",
+    title: "How DSCR Loans Work: The Property Qualifies So You Don't Have To",
     description: "DSCR loans for real estate investors let the property qualify the deal, not your tax return. The math behind the ratio and what to do before you apply.",
-    href: "/mortgage-guides/blog/dscr-loans-real-estate-investors/",
+    href: "/mortgage-guides/blog/how-dscr-loans-work/",
   },
   {
     category: "First-Time Buyers",

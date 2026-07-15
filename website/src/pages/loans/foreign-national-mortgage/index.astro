@@ -7,7 +7,6 @@ import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/s
 import ContactForm from "../../../components/forms/ContactForm.astro";
 
 const p = product("foreign-national-mortgage")!;
-const today = new Date().toISOString().slice(0, 10);
 
 const faq = [
   {
@@ -48,7 +47,7 @@ const schema = [
     description: p.directAnswer,
     url: `/loans/${p.slug}/`,
     datePublished: "2026-06-11",
-    dateModified: today,
+    dateModified: "2026-07-15",
     authorSlug: "christopher-clifford",
   }),
 ];

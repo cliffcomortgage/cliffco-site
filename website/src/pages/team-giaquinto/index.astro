@@ -6,7 +6,6 @@ import { LOAN_OFFICERS, loanOfficer } from "../../data/loan-officers";
 import Headshot from "../../components/ui/Headshot.astro";
 import { faqPageSchema, articleSchema } from "../../lib/schema";
 
-const today = new Date().toISOString().slice(0, 10);
 
 const teamSlugs = ["julian-giaquinto", "syed-hasib", "steve-lazo", "kathie-adler"];
 const teamMembers = teamSlugs.map(s => LOAN_OFFICERS.find(lo => lo.slug === s)!).filter(Boolean);
@@ -46,7 +45,7 @@ const schema = [
     description: "Team Giaquinto at Cliffco Mortgage Bankers. Reverse mortgage specialists since 2008, HELOC programs, and Non-QM solutions for Long Island and New York homeowners.",
     url: "/team-giaquinto/",
     datePublished: "2026-04-15",
-    dateModified: today,
+    dateModified: "2026-07-15",
     authorSlug: "julian-giaquinto",
   }),
 ];

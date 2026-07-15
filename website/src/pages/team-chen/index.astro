@@ -6,7 +6,6 @@ import { LOAN_OFFICERS, loanOfficer } from "../../data/loan-officers";
 import Headshot from "../../components/ui/Headshot.astro";
 import { faqPageSchema, articleSchema } from "../../lib/schema";
 
-const today = new Date().toISOString().slice(0, 10);
 
 const teamSlugs = ["james-chen", "christian-nguyen", "jeannette-zucker"];
 const teamMembers = teamSlugs.map(s => LOAN_OFFICERS.find(lo => lo.slug === s)!).filter(Boolean);
@@ -46,7 +45,7 @@ const schema = [
     description: "Team Chen at Cliffco Mortgage Bankers. Non-QM, DSCR, Business Bank Statement, and Foreign National loan specialists. Bilingual English and Chinese. AREAA recognized.",
     url: "/team-chen/",
     datePublished: "2026-04-15",
-    dateModified: today,
+    dateModified: "2026-07-15",
     authorSlug: "james-chen",
   }),
 ];
