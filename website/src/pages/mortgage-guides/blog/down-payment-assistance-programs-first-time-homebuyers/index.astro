@@ -71,20 +71,20 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
       <div class="p-6">
         <div class="grid gap-4 sm:grid-cols-2">
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual gross income ($)</label>
+            <label for="art-af-income" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual gross income ($)</label>
             <input id="art-af-income" type="number" value="90000" min="0" step="1000" class="art-calc-input" />
           </div>
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly debt payments ($)</label>
+            <label for="art-af-debt" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Monthly debt payments ($)</label>
             <input id="art-af-debt" type="number" value="400" min="0" step="50" class="art-calc-input" />
             <p class="text-xs text-[var(--color-text-muted)] mt-1">Car, student loans, credit cards, etc.</p>
           </div>
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Liquid savings ($)</label>
+            <label for="art-af-savings" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Liquid savings ($)</label>
             <input id="art-af-savings" type="number" value="30000" min="0" step="1000" class="art-calc-input" />
           </div>
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Expected interest rate (%)</label>
+            <label for="art-af-rate" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Expected interest rate (%)</label>
             <input id="art-af-rate" type="number" value="7.0" min="1" max="15" step="0.125" class="art-calc-input" />
           </div>
         </div>

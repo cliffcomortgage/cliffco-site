@@ -67,19 +67,19 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
       <div class="p-6">
         <div class="grid gap-4 sm:grid-cols-2">
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Remaining loan balance ($)</label>
+            <label for="art-rc-bal" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Remaining loan balance ($)</label>
             <input id="art-rc-bal" type="number" value="350000" min="0" step="5000" class="art-calc-input" />
           </div>
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Current interest rate (%)</label>
+            <label for="art-rc-cur" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Current interest rate (%)</label>
             <input id="art-rc-cur" type="number" value="7.5" min="1" max="15" step="0.125" class="art-calc-input" />
           </div>
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">New rate you've been quoted (%)</label>
+            <label for="art-rc-new" class="block text-sm font-medium text-[var(--color-ink)] mb-1">New rate you've been quoted (%)</label>
             <input id="art-rc-new" type="number" value="6.5" min="1" max="15" step="0.125" class="art-calc-input" />
           </div>
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Estimated closing costs ($)</label>
+            <label for="art-rc-costs" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Estimated closing costs ($)</label>
             <input id="art-rc-costs" type="number" value="5000" min="0" step="500" class="art-calc-input" />
           </div>
         </div>

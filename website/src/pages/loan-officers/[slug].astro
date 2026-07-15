@@ -106,7 +106,7 @@ const schema = [
                 {lo.specialties
                   .filter((s) => !lo.featuredSpecialties?.includes(s))
                   .map((s) => (
-                    <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-[var(--color-accent)]/8 text-[var(--color-accent)]/80 border border-[var(--color-accent)]/15">{s}</span>
+                    <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-[var(--color-accent)]/8 text-[var(--color-accent)] border border-[var(--color-accent)]/15">{s}</span>
                   ))}
               </dd>
             )}

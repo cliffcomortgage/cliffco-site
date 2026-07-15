@@ -67,15 +67,15 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
       <div class="p-6">
         <div class="grid gap-4 sm:grid-cols-3">
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Borrower age</label>
+            <label for="art-rm-age" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Borrower age</label>
             <input id="art-rm-age" type="number" value="70" min="62" max="99" step="1" class="art-calc-input" />
           </div>
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Estimated home value ($)</label>
+            <label for="art-rm-value" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Estimated home value ($)</label>
             <input id="art-rm-value" type="number" value="500000" min="0" step="10000" class="art-calc-input" />
           </div>
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Current mortgage balance ($)</label>
+            <label for="art-rm-bal" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Current mortgage balance ($)</label>
             <input id="art-rm-bal" type="number" value="0" min="0" step="5000" class="art-calc-input" />
           </div>
         </div>

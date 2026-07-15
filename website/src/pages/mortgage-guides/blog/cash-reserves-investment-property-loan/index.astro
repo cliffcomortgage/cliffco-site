@@ -79,15 +79,15 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
       <div class="p-6">
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Home price ($)</label>
+            <label for="art-pe-price" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Home price ($)</label>
             <input id="art-pe-price" type="number" value="500000" min="50000" step="5000" class="art-calc-input" />
           </div>
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Down payment (%)</label>
+            <label for="art-pe-down" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Down payment (%)</label>
             <input id="art-pe-down" type="number" value="20" min="3" max="50" step="1" class="art-calc-input" />
           </div>
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Interest rate (%)</label>
+            <label for="art-pe-rate" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Interest rate (%)</label>
             <input id="art-pe-rate" type="number" value="7.0" min="1" max="15" step="0.125" class="art-calc-input" />
           </div>
           <div>
@@ -99,11 +99,11 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
             </select>
           </div>
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual taxes ($)</label>
+            <label for="art-pe-taxes" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual taxes ($)</label>
             <input id="art-pe-taxes" type="number" value="6000" min="0" step="100" class="art-calc-input" />
           </div>
           <div>
-            <label class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual insurance ($)</label>
+            <label for="art-pe-ins" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Annual insurance ($)</label>
             <input id="art-pe-ins" type="number" value="2400" min="0" step="100" class="art-calc-input" />
           </div>
         </div>
