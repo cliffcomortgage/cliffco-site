@@ -311,6 +311,15 @@ const schema = [faqPageSchema(faq)];
   const strError   = document.getElementById('str-error') as HTMLParagraphElement | null;
   const strSuccess = document.getElementById('str-success') as HTMLParagraphElement | null;
 
+  const track = (event: string, props: Record<string, unknown> = {}) =>
+    (window as any).posthog?.capture?.(event, { form_source: 'team-str', ...props });
+  if (strForm) {
+    new IntersectionObserver((entries, obs) => {
+      if (entries.some((en) => en.isIntersecting)) { track('lead_form_viewed'); obs.disconnect(); }
+    }, { threshold: 0.5 }).observe(strForm);
+    strForm.addEventListener('input', () => track('lead_form_started'), { once: true });
+  }
+
   strForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = strForm.querySelector('button[type="submit"]') as HTMLButtonElement;
@@ -325,15 +334,18 @@ const schema = [faqPageSchema(faq)];
       const json = await res.json();
 
       if (res.ok && json.success) {
+        track('lead_form_submitted');
         strForm.reset();
         strForm.classList.add('hidden');
         strSuccess?.classList.remove('hidden');
       } else {
+        track('lead_form_failed', { reason: 'server' });
         if (strError) { strError.textContent = json.error ?? 'Something went wrong. Please try again or call us at (800) 834-4040.'; strError.classList.remove('hidden'); }
         btn.disabled = false;
         btn.textContent = origLabel;
       }
     } catch {
+      track('lead_form_failed', { reason: 'network' });
       if (strError) { strError.textContent = 'Network error. Please try again or call us at (800) 834-4040.'; strError.classList.remove('hidden'); }
       btn.disabled = false;
       btn.textContent = origLabel;

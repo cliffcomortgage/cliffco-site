@@ -9,6 +9,8 @@
  *   ctaLabel    - button label (default: "Send Message")
  *   dark        - true to render for dark backgrounds
  */
+import { STATE_LICENSES } from '../../data/state-licenses';
+
 interface Props {
   formTo: string;
   formSource?: string;
@@ -30,6 +32,10 @@ const {
   notesRequired = false,
   notesLabel = 'Anything else we should know?',
 } = Astro.props;
+
+// Licensed states only - derived from the compliance source of truth so the
+// dropdown can never drift from the footer/licensing page list.
+const licensedStates = [...STATE_LICENSES].map((s) => s.name).sort();
 
 const inputClass = dark
   ? 'w-full rounded-lg border border-white/20 bg-white/10 text-white placeholder-white/40 px-4 py-2.5 text-sm focus:outline-none focus:border-white/60'
@@ -112,7 +118,7 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
         ? 'w-full rounded-lg border border-white/20 bg-white/10 text-white px-4 py-2.5 text-sm focus:outline-none focus:border-white/60'
         : 'w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]'}>
       <option value="">Select a state…</option>
-      {["Alabama","Alaska","Arizona","California","Colorado","Connecticut","Delaware","District of Columbia","Florida","Georgia","Idaho","Illinois","Indiana","Kansas","Kentucky","Louisiana","Maryland","Michigan","Minnesota","New Jersey","New Mexico","New York","North Carolina","Ohio","Oregon","Pennsylvania","South Carolina","Tennessee","Texas","Vermont","Virginia","Washington"].map(s => (
+      {licensedStates.map(s => (
         <option value={s}>{s}</option>
       ))}
     </select>
@@ -164,6 +170,15 @@ document.querySelectorAll<HTMLFormElement>('.cf-contact-form').forEach((form) =>
   const loadedField = form.querySelector<HTMLInputElement>('[name="_loaded"]');
   if (loadedField) loadedField.value = String(Date.now());
 
+  // Funnel events. PostHog loads on first interaction / idle, so `viewed`
+  // can miss quick bounces - an accepted trade-off of the deferred tracker.
+  const track = (event: string, props: Record<string, unknown> = {}) =>
+    (window as any).posthog?.capture?.(event, { form_source: form.dataset.formSource ?? 'website', ...props });
+  new IntersectionObserver((entries, obs) => {
+    if (entries.some((en) => en.isIntersecting)) { track('lead_form_viewed'); obs.disconnect(); }
+  }, { threshold: 0.5 }).observe(form);
+  form.addEventListener('input', () => track('lead_form_started'), { once: true });
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -195,13 +210,16 @@ document.querySelectorAll<HTMLFormElement>('.cf-contact-form').forEach((form) =>
         form.reset();
         okEl.classList.remove('hidden');
         btn.textContent = 'Sent ✓';
+        track('lead_form_submitted');
       } else {
         errEl.textContent = json.error ?? 'Something went wrong. Please try again or call us at (800) 834-4040.';
         errEl.classList.remove('hidden');
         btn.disabled = false;
         btn.textContent = origLabel;
+        track('lead_form_failed', { reason: 'server' });
       }
     } catch {
+      track('lead_form_failed', { reason: 'network' });
       errEl.textContent = 'Network error. Check your connection and try again, or call us at (800) 834-4040.';
       errEl.classList.remove('hidden');
       btn.disabled = false;

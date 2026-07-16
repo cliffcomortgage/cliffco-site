@@ -371,6 +371,15 @@ const purposes = [
   const gsForm = document.getElementById('gs-form') as HTMLFormElement | null;
   const gsErrorEl = document.getElementById('gs-error') as HTMLParagraphElement | null;
 
+  const track = (event: string, props: Record<string, unknown> = {}) =>
+    (window as any).posthog?.capture?.(event, { form_source: 'get-started', ...props });
+  if (gsForm) {
+    new IntersectionObserver((entries, obs) => {
+      if (entries.some((en) => en.isIntersecting)) { track('lead_form_viewed'); obs.disconnect(); }
+    }, { threshold: 0.5 }).observe(gsForm);
+    gsForm.addEventListener('input', () => track('lead_form_started'), { once: true });
+  }
+
   gsForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -386,8 +395,10 @@ const purposes = [
       const json = await res.json();
 
       if (res.ok && json.success) {
+        track('lead_form_submitted');
         gsForm.innerHTML = '<p class="text-green-700 font-medium py-8 text-center">Thank you! A Cliffco loan officer will follow up within 1 business day.</p>';
       } else {
+        track('lead_form_failed', { reason: 'server' });
         if (gsErrorEl) {
           gsErrorEl.textContent = json.error ?? 'Something went wrong. Please try again or call us at (800) 834-4040.';
           gsErrorEl.classList.remove('hidden');
@@ -396,6 +407,7 @@ const purposes = [
         btn.textContent = origLabel;
       }
     } catch {
+      track('lead_form_failed', { reason: 'network' });
       if (gsErrorEl) {
         gsErrorEl.textContent = 'Network error. Check your connection and try again, or call us at (800) 834-4040.';
         gsErrorEl.classList.remove('hidden');

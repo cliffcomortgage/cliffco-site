@@ -238,6 +238,19 @@ export const POST: APIRoute = async ({ request }) => {
       console.error('SendGrid send failed:', String(sgErr));
     }
 
+    // Independent ledger of every attempted delivery (searchable in Vercel
+    // function logs) - HubSpot has returned 200 and silently discarded
+    // submissions before, so success responses alone can't be trusted.
+    console.log(JSON.stringify({
+      evt: 'lead_submission',
+      endpoint: 'lead',
+      formSource,
+      email,
+      recipients,
+      hubspotOk,
+      sendgridOk,
+    }));
+
     if (!hubspotOk && !sendgridOk) {
       return new Response(
         JSON.stringify({ error: 'We couldn\'t send your message right now. Please try again or call us at (800) 834-4040, Mon–Fri 9am–6pm ET.' }),
