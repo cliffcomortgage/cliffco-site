@@ -4,10 +4,11 @@
  * Cliffco design tokens (Tailwind CSS v4 - CSS-first config).
  * Source of truth: brand/brand-guide.pdf (Colors + Typography + Voice).
  *
- * Typography: Graphik is the brand primary; until the licensed Commercial Type
- * web kit is procured we ship Open Sans (the published web fallback per the
- * brand guide). Swap by replacing the @font-face declarations + the
- * --font-sans token below.
+ * Typography: Open Sans is the production typeface (decision 2026-07-16 -
+ * the brand guide's Graphik trial OTFs are not licensed for web use, so the
+ * published web fallback ships instead). If a licensed Graphik web kit is
+ * ever purchased from Commercial Type, add its WOFF2 @font-face declarations
+ * and update the --font-sans token below.
  */
 
 @theme {
@@ -59,44 +60,6 @@
   /* ---------- Spacing additions (Tailwind defaults are fine; these add room) ---------- */
   --spacing-section: clamp(5rem, 8vw, 7rem);
 }
-
-/* ---------- Graphik (trial OTFs - local dev only, gitignored) ---------- */
-@font-face {
-  font-family: "Graphik";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("../../../brand/fonts/Graphik/Graphik-Bold-Desktop.otf") format("opentype");
-}
-@font-face {
-  font-family: "Graphik";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("../../../brand/fonts/Graphik/Graphik-Medium-Desktop.otf") format("opentype");
-}
-@font-face {
-  font-family: "Graphik";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../../../brand/fonts/Graphik/Graphik-Regular-Desktop.otf") format("opentype");
-}
-@font-face {
-  font-family: "Graphik";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../../../brand/fonts/Graphik/Graphik-Regular Italic-Desktop.otf") format("opentype");
-}
-@font-face {
-  font-family: "Graphik";
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url("../../../brand/fonts/Graphik/Graphik-Light-Desktop.otf") format("opentype");
-}
-
 
 /* ---------- Base typography ---------- */
 @layer base {

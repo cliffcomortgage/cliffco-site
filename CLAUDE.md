@@ -49,13 +49,12 @@ The NMLS roster and `Leadership Bios.docx` are point-in-time snapshots. These co
 
 Always confirm leadership titles with Rafe before publishing.
 
-## Fonts (Graphik)
+## Fonts
 
-Primary typeface is **Graphik** (Regular + Medium minimum). The trial OTFs from the brand guide sit at `brand/fonts/` locally but are **gitignored** — they're not licensed for web redistribution.
+**The website ships Open Sans** — decided by Rafe on 2026-07-16. The brand guide's primary typeface is Graphik, but the trial OTFs at `brand/fonts/` (gitignored) are not licensed for web use, so the site uses the brand guide's published web fallback instead. Do not reference the trial OTFs from any web code.
 
-- Never re-add `brand/fonts/*.otf` to git.
-- Before the website ships, source a licensed web font kit from [Commercial Type](https://commercialtype.com/catalog/graphik). Production code must use the licensed WOFF2 kit.
-- For local dev/prototyping, the trial OTFs can be referenced via `@font-face` from a path outside the repo.
+- Never re-add `brand/fonts/*.otf` to git, and never reference them via `@font-face` in `website/` (Vite bundles them into build output).
+- If a licensed Graphik web kit is ever purchased from [Commercial Type](https://commercialtype.com/catalog/graphik), add the WOFF2 kit and update `--font-sans` in `website/src/styles/global.css` — the swap point is documented there.
 
 ## Where things live
 
