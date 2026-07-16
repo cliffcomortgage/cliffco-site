@@ -1,0 +1,135 @@
+---
+/**
+ * Shared layout for the Cliffco, Inc. Alaska site (cliffcoinc.com).
+ *
+ * BRANDING RULE: this site must never display "Cliffco Mortgage Bankers" -
+ * Alaska licensing requires the Cliffco, Inc. name only. Program and loan
+ * officer detail links point to cliffcomortgage.com by design.
+ */
+import "../styles/global.css";
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import PostHog from "../components/posthog.astro";
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, "https://cliffcoinc.com").toString();
+
+const nav = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about/" },
+  { label: "Loan Programs", href: "/loan-programs/" },
+  { label: "Loan Officers", href: "https://cliffcomortgage.com/loan-officers/", external: true },
+  { label: "Contact", href: "/contact/" },
+];
+
+// Verbatim from the previous cliffcoinc.com site - do not edit without compliance approval.
+const disclaimer = "Cliffco, Inc. is not affiliated with or acting on behalf of the FHA or any government entity. Equal Housing Lender. Cliffco, Inc. Corporate NMLS#65328 (www.nmlsconsumeraccess.org) 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553 (516) 408-7300. Licensed Mortgage Lender by AK Division of Banking and Securities AK65328, AK65328-1. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice. This site is not authorized by the New York State Department of Financial Services. No mortgage solicitation activity or loan applications for properties located in the State of New York can be facilitated through this site. This website is only for property of persons located in the state of Alaska.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Cliffco, Inc." />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <PostHog />
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/21616430.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Montserrat:wght@600&display=optional" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Montserrat:wght@600&display=optional" /></noscript>
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+
+    <!-- HEADER -->
+    <header class="bg-white border-b border-[var(--color-mist-gray)] sticky top-0 z-40">
+      <div class="container-wide flex items-center justify-between gap-4 py-4">
+        <a href="/" class="no-underline shrink-0" aria-label="Cliffco, Inc. home">
+          <span class="block leading-none">
+            <span style="font-family: var(--font-logo); font-weight: 600; letter-spacing: 0.2em; font-size: 1.25rem; color: var(--color-ink);">CLIFFCO</span>
+            <span class="block" style="font-family: var(--font-logo); font-weight: 600; letter-spacing: 0.42em; font-size: 0.55rem; color: var(--color-text-muted); margin-top: 2px;">INCORPORATED</span>
+          </span>
+        </a>
+        <nav aria-label="Main" class="hidden md:flex items-center gap-6">
+          {nav.map((item) => (
+            <a href={item.href} class="text-sm font-medium text-[var(--color-ink)] no-underline hover:text-[var(--color-accent)]">
+              {item.label}{item.external && <span aria-hidden="true"> ↗</span>}
+            </a>
+          ))}
+        </nav>
+        <a href="tel:+15164087300" class="btn btn-primary text-sm !py-2 !px-5 shrink-0">(516) 408-7300</a>
+      </div>
+      <!-- Mobile nav -->
+      <nav aria-label="Main mobile" class="md:hidden border-t border-[var(--color-mist-gray)] overflow-x-auto">
+        <div class="container-wide flex gap-5 py-2.5 whitespace-nowrap">
+          {nav.map((item) => (
+            <a href={item.href} class="text-sm font-medium text-[var(--color-ink)] no-underline">
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </nav>
+    </header>
+
+    <main class="flex-1 flex flex-col">
+      <slot />
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[var(--color-rich-black)] text-white">
+      <div class="container-wide py-12">
+        <div class="grid gap-10 md:grid-cols-3">
+          <div>
+            <span style="font-family: var(--font-logo); font-weight: 600; letter-spacing: 0.2em; font-size: 1.1rem; color: #fff;">CLIFFCO, INC.</span>
+            <p class="mt-3 text-sm text-white/60">Getting families home since 1989.<br />NMLS #65328</p>
+            <p class="mt-3 text-sm text-white/60">
+              70 Charles Lindbergh Blvd, Suite 200<br />
+              Uniondale, NY 11553
+            </p>
+            <p class="mt-2 text-sm"><a href="tel:+15164087300" class="text-white/80 no-underline hover:underline">(516) 408-7300</a></p>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">Explore</p>
+            <ul class="mt-3 space-y-2 text-sm list-none p-0">
+              <li><a href="/about/" class="text-white/70 no-underline hover:text-white">About Cliffco, Inc.</a></li>
+              <li><a href="/loan-programs/" class="text-white/70 no-underline hover:text-white">Loan Programs</a></li>
+              <li><a href="https://cliffcomortgage.com/loan-officers/" class="text-white/70 no-underline hover:text-white">Loan Officers ↗</a></li>
+              <li><a href="/contact/" class="text-white/70 no-underline hover:text-white">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">Legal</p>
+            <ul class="mt-3 space-y-2 text-sm list-none p-0">
+              <li><a href="https://www.nmlsconsumeraccess.org/" target="_blank" rel="noopener noreferrer" class="text-white/70 no-underline hover:text-white">NMLS Consumer Access ↗</a></li>
+              <li><a href="https://cliffcomortgage.com/legal/privacy/" class="text-white/70 no-underline hover:text-white">Privacy Policy ↗</a></li>
+              <li><a href="https://cliffcomortgage.com/legal/sms-consent/" class="text-white/70 no-underline hover:text-white">SMS Consent ↗</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-10 pt-8 border-t border-white/10 flex items-start gap-4">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-label="Equal Housing Lender" role="img" class="shrink-0 mt-1 opacity-60"><path d="M12 3 2 10h2v11h16V10h2L12 3Zm0 2.4L17.5 9h-11L12 5.4ZM8 11h8v2H8v-2Zm0 4h8v2H8v-2Z" fill="#fff"/></svg>
+          <p class="text-[11px] leading-relaxed text-white/35">{disclaimer}</p>
+        </div>
+
+        <p class="mt-6 text-[11px] text-white/35">© 2026 Cliffco, Inc. Licensed Mortgage Lender. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <Analytics />
+    <SpeedInsights />
+  </body>
+</html>

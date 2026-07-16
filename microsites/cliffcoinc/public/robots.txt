@@ -1,0 +1,30 @@
+# Cliffco, Inc. (cliffcoinc.com) — Alaska
+# AI / LLM crawlers welcome.
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Google AI
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://cliffcoinc.com/sitemap-index.xml

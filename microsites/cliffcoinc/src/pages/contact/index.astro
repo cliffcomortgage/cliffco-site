@@ -1,0 +1,171 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Contact | Cliffco, Inc. | Alaska Mortgage Lender"
+  description="Talk to a licensed Cliffco, Inc. loan officer about buying, refinancing, or investing in Alaska. Call (516) 408-7300 or send your situation and we'll respond within one business day."
+>
+  <section class="accent-gradient">
+    <div class="container-wide py-16 lg:py-20">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">Contact · Cliffco, Inc.</p>
+      <h1 class="mt-4 text-white max-w-2xl" style="font-size: var(--text-display-lg); line-height: 1.1; font-weight: 400;">
+        Tell us your situation.
+      </h1>
+      <p class="lead mt-5 text-white/85 max-w-xl">
+        A licensed loan officer reads every message and responds within one business day.
+        Prefer to talk? Call us at <a href="tel:+15164087300" class="text-white underline">(516) 408-7300</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-mist-gray)] flex-1" style="padding-block: var(--spacing-section);">
+    <div class="container-wide grid gap-12 lg:grid-cols-[1fr_360px] items-start">
+
+      <!-- FORM -->
+      <form id="ak-form" class="card !p-8 space-y-4 max-w-2xl" novalidate>
+        <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+          <label for="ak-website">Website</label>
+          <input id="ak-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <input name="_loaded" type="hidden" value="" />
+        <input type="hidden" name="state" value="Alaska" />
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="ak-fname" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">First name <span class="text-red-400">*</span></label>
+            <input id="ak-fname" name="first_name" type="text" required autocomplete="given-name" placeholder="Jane"
+              class="w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]" />
+          </div>
+          <div>
+            <label for="ak-lname" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Last name <span class="text-red-400">*</span></label>
+            <input id="ak-lname" name="last_name" type="text" required autocomplete="family-name" placeholder="Smith"
+              class="w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]" />
+          </div>
+        </div>
+
+        <div>
+          <label for="ak-email" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Email <span class="text-red-400">*</span></label>
+          <input id="ak-email" name="email" type="email" required autocomplete="email" placeholder="jane@example.com"
+            class="w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]" />
+        </div>
+
+        <div>
+          <label for="ak-phone" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Phone <span class="text-red-400">*</span></label>
+          <input id="ak-phone" name="phone" type="tel" required autocomplete="tel" placeholder="(555) 000-0000"
+            class="w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]" />
+        </div>
+
+        <div>
+          <label for="ak-purpose" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">I'm looking to <span class="text-red-400">*</span></label>
+          <select id="ak-purpose" name="purpose" required
+            class="w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]">
+            <option value="">Select one…</option>
+            <option value="Purchase">Purchase a home</option>
+            <option value="Refinance">Refinance</option>
+            <option value="Cash-Out Refinance">Cash-out refinance</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="ak-notes" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Anything else we should know? <span class="text-[var(--color-text-muted)]">(optional)</span></label>
+          <textarea id="ak-notes" name="notes" rows="3" placeholder="Tell us about your situation…"
+            class="w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)] resize-none"></textarea>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <input type="checkbox" id="ak-tcpa" name="tcpa_consent" value="yes" required
+            class="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 accent-[var(--color-accent)]" />
+          <label for="ak-tcpa" class="text-xs leading-relaxed text-[var(--color-text-muted)]">
+            By submitting this form I consent to be contacted by Cliffco, Inc. (NMLS #65328) regarding my inquiry via calls, texts, and emails, including via automated technology. Consent is not required to obtain credit. Reply STOP to opt out of texts.
+          </label>
+        </div>
+
+        <p id="ak-error" class="hidden text-sm text-red-500 font-medium"></p>
+        <p id="ak-success" class="hidden text-sm text-green-600 font-medium">Thank you! A loan officer will reach out within one business day.</p>
+
+        <button type="submit" class="btn btn-primary w-full disabled:opacity-60">Send Message</button>
+      </form>
+
+      <!-- SIDEBAR -->
+      <aside class="space-y-4">
+        <div class="card">
+          <h2 class="text-base font-semibold">Call us</h2>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Monday to Friday, 9:00am to 5:30pm ET</p>
+          <p class="mt-2"><a href="tel:+15164087300" class="font-semibold">(516) 408-7300</a></p>
+        </div>
+        <div class="card">
+          <h2 class="text-base font-semibold">Corporate office</h2>
+          <address class="not-italic mt-2 text-sm text-[var(--color-text-muted)]">
+            Cliffco, Inc.<br />
+            70 Charles Lindbergh Blvd, Suite 200<br />
+            Uniondale, NY 11553
+          </address>
+          <p class="mt-2 text-xs text-[var(--color-text-muted)]">Lending in Alaska is handled fully remotely, by phone and online.</p>
+        </div>
+        <div class="card">
+          <h2 class="text-base font-semibold">Verify our license</h2>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Cliffco, Inc. NMLS #65328 · AK65328</p>
+          <a href="https://www.nmlsconsumeraccess.org/" target="_blank" rel="noopener noreferrer" class="mt-2 inline-block text-sm font-semibold">NMLS Consumer Access ↗</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('ak-form') as HTMLFormElement | null;
+  const errEl = document.getElementById('ak-error') as HTMLParagraphElement | null;
+  const okEl = document.getElementById('ak-success') as HTMLParagraphElement | null;
+
+  if (form) {
+    const loadedField = form.querySelector<HTMLInputElement>('[name="_loaded"]');
+    if (loadedField) loadedField.value = String(Date.now());
+
+    const track = (event: string, props: Record<string, unknown> = {}) =>
+      (window as any).posthog?.capture?.(event, { form_source: 'cliffcoinc-alaska', ...props });
+    new IntersectionObserver((entries, obs) => {
+      if (entries.some((en) => en.isIntersecting)) { track('lead_form_viewed'); obs.disconnect(); }
+    }, { threshold: 0.5 }).observe(form);
+    form.addEventListener('input', () => track('lead_form_started'), { once: true });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const origLabel = btn.textContent ?? 'Send Message';
+      if (errEl) { errEl.classList.add('hidden'); errEl.textContent = ''; }
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      const fd = new FormData(form);
+      fd.set('form_to', 'websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com');
+      fd.set('form_source', 'cliffcoinc-alaska');
+      fd.set('page_uri', window.location.href);
+      fd.set('page_name', document.title);
+      const hutkMatch = document.cookie.match(/(?:^|; )hubspotutk=([^;]*)/);
+      if (hutkMatch) fd.set('hutk', hutkMatch[1]);
+
+      try {
+        const res = await fetch('/api/contact/', { method: 'POST', body: fd });
+        const json = await res.json();
+        if (res.ok && json.success) {
+          form.reset();
+          okEl?.classList.remove('hidden');
+          btn.textContent = 'Sent ✓';
+          track('lead_form_submitted');
+        } else {
+          if (errEl) { errEl.textContent = json.error ?? 'Something went wrong. Please try again or call us at (516) 408-7300.'; errEl.classList.remove('hidden'); }
+          btn.disabled = false;
+          btn.textContent = origLabel;
+          track('lead_form_failed', { reason: 'server' });
+        }
+      } catch {
+        track('lead_form_failed', { reason: 'network' });
+        if (errEl) { errEl.textContent = 'Network error. Check your connection and try again, or call us at (516) 408-7300.'; errEl.classList.remove('hidden'); }
+        btn.disabled = false;
+        btn.textContent = origLabel;
+      }
+    });
+  }
+</script>

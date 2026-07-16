@@ -1,0 +1,25 @@
+{
+  "name": "cliffcoinc",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/vercel": "^10.0.8",
+    "@sendgrid/mail": "^8.1.6",
+    "@tailwindcss/vite": "4.2.4",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
+    "astro": "^6.1.9",
+    "posthog-js": "^1.393.5",
+    "tailwindcss": "4.2.4",
+    "vite": "7.3.2"
+  }
+}

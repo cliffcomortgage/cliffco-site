@@ -1,0 +1,65 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+// Program details live on cliffcomortgage.com - this page is the Alaska-facing
+// index. Links are external by design.
+const programs = [
+  { name: "VA Loans", href: "https://cliffcomortgage.com/loans/va/", blurb: "Zero down, no monthly mortgage insurance, and competitive rates for eligible service members, veterans, and surviving spouses." },
+  { name: "Non-QM & Self-Employed", href: "https://cliffcomortgage.com/loans/non-qm-self-employed/", blurb: "Qualify with bank statements, 1099s, P&L statements, or assets instead of tax returns. Built for fishermen, guides, contractors, and business owners." },
+  { name: "Bank Statement Loans", href: "https://cliffcomortgage.com/loans/business-bank-statement/", blurb: "12 to 24 months of business bank statements stand in for tax returns. Right for owners whose books are healthier than their 1040 suggests." },
+  { name: "Conventional Loans", href: "https://cliffcomortgage.com/loans/conventional/", blurb: "Fannie Mae and Freddie Mac programs with as little as 3% down for first-time buyers, in fixed and adjustable terms." },
+  { name: "FHA Loans", href: "https://cliffcomortgage.com/loans/fha/", blurb: "3.5% down with credit scores starting in the 580s. A practical path for first-time and credit-rebuilding buyers." },
+  { name: "DSCR Investor Loans", href: "https://cliffcomortgage.com/loans/dscr/", blurb: "Rental and short-term-rental financing qualified on the property's income. LLC vesting and out-of-state investors welcome." },
+  { name: "Reverse Mortgages", href: "https://cliffcomortgage.com/loans/reverse-mortgage/", blurb: "HECM programs for homeowners 62 and older who want to stay in their home and put their equity to work." },
+  { name: "Renovation Loans", href: "https://cliffcomortgage.com/loans/renovation/", blurb: "Purchase or refinance plus renovation costs in one loan, based on the home's after-improvement value." },
+  { name: "Refinancing", href: "https://cliffcomortgage.com/loans/refinancing/", blurb: "Rate-and-term, cash-out, and Non-QM refinances across every program we offer." },
+];
+---
+
+<Layout
+  title="Loan Programs | Cliffco, Inc. | Alaska Mortgage Lender"
+  description="Every loan program Cliffco, Inc. offers Alaska borrowers: VA, conventional, FHA, Non-QM for the self-employed, bank statement, DSCR investor loans, reverse mortgages, renovation, and refinancing."
+>
+  <section class="accent-gradient">
+    <div class="container-wide py-16 lg:py-24">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">Loan Programs · Alaska</p>
+      <h1 class="mt-4 text-white max-w-2xl" style="font-size: var(--text-display-lg); line-height: 1.1; font-weight: 400;">
+        A full shelf of programs. One loan officer to walk you through it.
+      </h1>
+      <p class="lead mt-5 text-white/85 max-w-xl">
+        From zero-down VA loans to bank-statement programs for self-employed Alaskans, every
+        option below is available statewide. Program pages open on cliffcomortgage.com, where
+        the full details live.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-mist-gray)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide">
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {programs.map((p) => (
+          <a href={p.href} class="card no-underline text-[var(--color-ink)] flex flex-col hover:border-[var(--color-accent)]">
+            <h2 class="text-lg font-semibold" style="letter-spacing:-0.01em;">{p.name}</h2>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] flex-1">{p.blurb}</p>
+            <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">Program details ↗</span>
+          </a>
+        ))}
+      </div>
+      <p class="mt-8 text-sm text-[var(--color-text-muted)]">
+        Not sure which fits? That's normal, and it's exactly what the first conversation is for.
+        <a href="/contact/">Tell us your situation</a> and a licensed loan officer will map your options.
+      </p>
+    </div>
+  </section>
+
+  <section class="accent-gradient">
+    <div class="container-wide py-16 text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2);">Denied somewhere else? Bring us the file.</h2>
+      <p class="lead mt-4 text-white/85">Second-chance lending has been our specialty since 1989.</p>
+      <div class="mt-8 flex justify-center gap-3 flex-wrap">
+        <a href="/contact/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Started</a>
+        <a href="tel:+15164087300" class="btn btn-secondary !border-white !text-white">(516) 408-7300</a>
+      </div>
+    </div>
+  </section>
+</Layout>
