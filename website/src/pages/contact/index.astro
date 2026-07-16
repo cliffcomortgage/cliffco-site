@@ -140,7 +140,7 @@ const allBranches = BRANCHES;
               </address>
             )}
             {b.phone && (
-              <a href={`tel:${b.phone.replace(/\D/g, "")}`} class="block mt-2 text-sm font-medium text-[var(--color-ink)] no-underline hover:text-[var(--color-accent)]">{b.phone}</a>
+              <a href={`tel:+1${b.phone.replace(/\D/g, "")}`} class="block mt-2 text-sm font-medium text-[var(--color-ink)] no-underline hover:text-[var(--color-accent)]">{b.phone}</a>
             )}
             {b.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{b.nmls}</p>}
           </div>

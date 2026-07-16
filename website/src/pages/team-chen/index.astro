@@ -87,7 +87,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
             Work With The Team
           </a>
           {james.links?.directPhone && (
-            <a href={`tel:${james.links.directPhone.replace(/[^+\d]/g, "")}`}
+            <a href={`tel:+1${james.links.directPhone.replace(/\D/g, "")}`}
               style="background:transparent;color:rgba(255,255,255,0.8);text-decoration:none;padding:0.875rem 2.25rem;border-radius:8px;font-weight:400;font-size:0.9375rem;border:1px solid rgba(255,255,255,0.25);">
               {james.links.directPhone}
             </a>
@@ -272,7 +272,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
               </a>
             )}
             {james.links?.directPhone && (
-              <a href={`tel:${james.links.directPhone.replace(/[^+\d]/g, "")}`}
+              <a href={`tel:+1${james.links.directPhone.replace(/\D/g, "")}`}
                 style="color:rgba(255,255,255,0.4);font-size:0.8125rem;font-weight:300;text-decoration:none;"
                 class="hover:text-white transition-colors">
                 {james.links.directPhone}
