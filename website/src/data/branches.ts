@@ -97,7 +97,6 @@ export const BRANCHES: readonly Branch[] = [
       "kevan-scott-1959714",
       "christian-nguyen-958635",
       "jeannette-zucker-2572449",
-      "syed-hasib-1594778",
       "angelique-street-1146282",
       "shahraj-kabir-khan-1209249",
     ],

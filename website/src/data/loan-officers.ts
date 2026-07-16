@@ -435,27 +435,6 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
 
-  // ============================================================
-  // FORMERLY WANTAGH (NY) - moved to Uniondale HQ when the branch closed (2026-07)
-  // ============================================================
-  {
-    slug: "syed-hasib",
-    firstName: "Syed",
-    lastName: "Hasib",
-    displayName: "Syed Hasib",
-    nmls: "1594778",
-    title: "Loan Officer",
-    states: ["NY"],
-    branchSlug: "uniondale-headquarters",
-    links: {
-      email: "shasib@cliffcomortgage.com",
-      directPhone: "516-654-9679",
-      cellPhone: "516-444-1956",
-      applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=shasib&workFlowId=33774",
-    },
-    bio: "Syed Hasib is a Mortgage Loan Originator serving clients across New York City and Long Island, dedicated to helping individuals and families achieve homeownership with confidence. He specializes in FHA, conventional, and Non-QM loans, with a strong focus on self-employed buyers and first-time homebuyers who need flexible and transparent mortgage solutions. Known for his speed, honesty, and availability, Syed simplifies the mortgage process through clear communication and a commitment to client satisfaction. Whether helping a business owner secure a Non-QM loan, guiding a first-time buyer through FHA programs, or supporting a homeowner looking to refinance, Syed provides a smooth, personalized lending experience.",
-    hasPhoto: true,
-  },
   {
     slug: "steve-lazo",
     firstName: "Steve",

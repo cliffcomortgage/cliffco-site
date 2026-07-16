@@ -1190,12 +1190,22 @@
     },
     {
       "source": "/shasib/",
-      "destination": "/loan-officers/syed-hasib/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/shasib",
-      "destination": "/loan-officers/syed-hasib/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/syed-hasib/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/syed-hasib",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
