@@ -6,7 +6,7 @@ import type { APIRoute } from 'astro';
 const CATCH_ALL_RECIPIENTS = new Set(['websiteleads@cliffcomortgage.com', 'cliffcorpteam@cliffcomortgage.com']);
 const ALLOWED_DOMAIN = 'cliffcomortgage.com';
 
-// HubSpot is the primary lead destination; SendGrid is the routed
+// HubSpot is the primary lead destination; SMTP2GO is the routed
 // notification channel (and the fallback record if HubSpot fails).
 const HUBSPOT_PORTAL_ID = import.meta.env.HUBSPOT_PORTAL_ID ?? '21616430';
 const HUBSPOT_FORM_GUID = import.meta.env.HUBSPOT_FORM_GUID ?? '3cf23f62-cce8-4c0f-acd4-fb27d09cc627';
@@ -86,13 +86,33 @@ async function submitToHubSpot(lead: Lead): Promise<void> {
   }
 }
 
-async function sendViaSendGrid(lead: Lead, isFallback: boolean): Promise<void> {
-  const apiKey    = import.meta.env.SENDGRID_API_KEY;
-  const fromEmail = import.meta.env.SENDGRID_FROM_EMAIL ?? 'website@cliffcomortgage.com';
-  if (!apiKey) throw new Error('SENDGRID_API_KEY not set');
+// SMTP2GO delivery. One HTTP call, no SDK. Throws unless the API confirms
+// every recipient was accepted, so callers can treat success as delivered-to-relay.
+async function smtp2goSend(msg: {
+  to: string[]; from: string; fromName: string;
+  replyTo?: string; subject: string; html: string;
+}): Promise<void> {
+  const apiKey = import.meta.env.SMTP2GO_API_KEY;
+  if (!apiKey) throw new Error('SMTP2GO_API_KEY not set');
+  const res = await fetch('https://api.smtp2go.com/v3/email/send', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Smtp2go-Api-Key': apiKey },
+    body: JSON.stringify({
+      sender: `${msg.fromName} <${msg.from}>`,
+      to: msg.to,
+      subject: msg.subject,
+      html_body: msg.html,
+      ...(msg.replyTo ? { custom_headers: [{ header: 'Reply-To', value: msg.replyTo }] } : {}),
+    }),
+  });
+  const body = await res.json().catch(() => null);
+  if (!res.ok || (body?.data?.failed ?? 0) > 0 || (body?.data?.succeeded ?? 0) < 1) {
+    throw new Error(`SMTP2GO send failed: ${res.status} ${JSON.stringify(body?.data ?? body)}`);
+  }
+}
 
-  const sgMail = (await import('@sendgrid/mail')).default;
-  sgMail.setApiKey(apiKey);
+async function sendViaEmail(lead: Lead, isFallback: boolean): Promise<void> {
+  const fromEmail = import.meta.env.EMAIL_FROM ?? 'website@cliffcomortgage.com';
 
   const subject = `New Lead from cliffcomortgage.com: ${lead.name}`;
 
@@ -128,9 +148,10 @@ async function sendViaSendGrid(lead: Lead, isFallback: boolean): Promise<void> {
     </div>
   `;
 
-  await sgMail.send({
+  await smtp2goSend({
     to: lead.recipients,
-    from: { email: fromEmail, name: 'Cliffco Website' },
+    from: fromEmail,
+    fromName: 'Cliffco Website',
     replyTo: lead.email,
     subject,
     html,
@@ -159,9 +180,10 @@ async function sendViaSendGrid(lead: Lead, isFallback: boolean): Promise<void> {
     </div>
   `;
 
-  await sgMail.send({
-    to: lead.email,
-    from: { email: fromEmail, name: 'Cliffco Mortgage' },
+  await smtp2goSend({
+    to: [lead.email],
+    from: fromEmail,
+    fromName: 'Cliffco Mortgage',
     subject: 'We received your message: a Cliffco loan officer will be in touch',
     html: confirmHtml,
   });
@@ -226,7 +248,7 @@ export const POST: APIRoute = async ({ request }) => {
     };
 
     // Dual delivery: HubSpot for the CRM record + corporate notification,
-    // SendGrid for the routed recipients + borrower confirmation.
+    // SMTP2GO for the routed recipients + borrower confirmation.
     // Success requires at least one channel to deliver.
     let hubspotOk = false;
     try {
@@ -236,12 +258,12 @@ export const POST: APIRoute = async ({ request }) => {
       console.error('HubSpot submission failed:', String(hsErr));
     }
 
-    let sendgridOk = false;
+    let emailOk = false;
     try {
-      await sendViaSendGrid(lead, !hubspotOk);
-      sendgridOk = true;
+      await sendViaEmail(lead, !hubspotOk);
+      emailOk = true;
     } catch (sgErr) {
-      console.error('SendGrid send failed:', String(sgErr));
+      console.error('Email send failed:', String(sgErr));
     }
 
     // Independent ledger of every attempted delivery (searchable in Vercel
@@ -254,10 +276,10 @@ export const POST: APIRoute = async ({ request }) => {
       email,
       recipients,
       hubspotOk,
-      sendgridOk,
+      emailOk,
     }));
 
-    if (!hubspotOk && !sendgridOk) {
+    if (!hubspotOk && !emailOk) {
       return new Response(
         JSON.stringify({ error: 'We couldn\'t send your message right now. Please try again or call us at (800) 834-4040, Mon–Fri 9am–6pm ET.' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
