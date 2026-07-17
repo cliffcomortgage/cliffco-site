@@ -6,6 +6,8 @@ import type { APIRoute } from 'astro';
 // statically analyze an env-var expression and silently falls back to static.
 
 // All recipients must be @cliffcomortgage.com for security
+// Catch-all inboxes that already receive the form's built-in notification.
+const CATCH_ALL_RECIPIENTS = new Set(['websiteleads@cliffcomortgage.com', 'cliffcorpteam@cliffcomortgage.com']);
 const ALLOWED_DOMAIN = 'cliffcomortgage.com';
 
 // HubSpot is the primary lead destination; SendGrid is the fallback if the
@@ -46,6 +48,10 @@ async function submitToHubSpot(lead: {
       { name: 'website_page', value: lead.pageUri ? new URL(lead.pageUri).pathname : '' },
       { name: 'corporate_initiatives_name', value: 'corporate_lead_front_deskwebsite' },
       { name: 'notification_route', value: lead.recipients.join(',') },
+      // Primary routed recipient (LO/team) for the HubSpot notification
+      // workflow - empty when only the catch-all inboxes are on the form,
+      // so the workflow can skip leads websiteleads@ already covers.
+      { name: 'lead_notification_email', value: lead.recipients.find((r) => !CATCH_ALL_RECIPIENTS.has(r)) ?? '' },
     ],
     context: {
       pageUri: lead.pageUri || undefined,

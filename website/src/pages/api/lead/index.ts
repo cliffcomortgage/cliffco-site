@@ -2,6 +2,8 @@ import type { APIRoute } from 'astro';
 
 // Prerender behavior is set per-target in astro.config.mjs (astro:route:setup hook).
 
+// Catch-all inboxes that already receive the form's built-in notification.
+const CATCH_ALL_RECIPIENTS = new Set(['websiteleads@cliffcomortgage.com', 'cliffcorpteam@cliffcomortgage.com']);
 const ALLOWED_DOMAIN = 'cliffcomortgage.com';
 
 // HubSpot is the primary lead destination; SendGrid is the routed
@@ -60,6 +62,10 @@ async function submitToHubSpot(lead: Lead): Promise<void> {
       { name: 'website_page', value: lead.pageUri ? new URL(lead.pageUri).pathname : '' },
       { name: 'corporate_initiatives_name', value: 'corporate_lead_front_deskwebsite' },
       { name: 'notification_route', value: lead.recipients.join(',') },
+      // Primary routed recipient (LO/team) for the HubSpot notification
+      // workflow - empty when only the catch-all inboxes are on the form,
+      // so the workflow can skip leads websiteleads@ already covers.
+      { name: 'lead_notification_email', value: lead.recipients.find((r) => !CATCH_ALL_RECIPIENTS.has(r)) ?? '' },
     ],
     context: {
       pageUri: lead.pageUri || undefined,
@@ -146,7 +152,7 @@ async function sendViaSendGrid(lead: Lead, isFallback: boolean): Promise<void> {
         </p>
         <hr style="border:none;border-top:1px solid #eee;margin:24px 0;" />
         <p style="font-size:12px;color:#aaa;margin:0;">
-          Cliffco Mortgage Bankers · NMLS #1434752 ·
+          Cliffco Mortgage Bankers · NMLS #65328 ·
           <a href="https://cliffcomortgage.com" style="color:#aaa;">cliffcomortgage.com</a>
         </p>
       </div>
