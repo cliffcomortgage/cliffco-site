@@ -1,0 +1,33 @@
+{
+  "_comment": "Template for create_campaign.mjs. Copy this file, fill it in with output from /generate-ads, and run: node Code/create_campaign.mjs your-config.json",
+  "campaignName": "DSCR Investor — Arizona",
+  "budgetMicrosPerDay": "30000000",
+  "geoTargets": ["Arizona"],
+  "language": "English",
+  "adSchedule": null,
+  "adGroupName": "dscr loan arizona",
+  "keywords": [
+    { "text": "dscr loan arizona", "matchType": "PHRASE" }
+  ],
+  "negativeKeywords": ["jobs", "career", "training", "certification", "scam", "owner occupied"],
+  "finalUrl": "https://cliffcomortgage.com/loans/dscr/",
+  "path1": "dscr",
+  "path2": "arizona",
+  "rsas": [
+    {
+      "headlines": [
+        { "text": "DSCR Loans Arizona", "pinnedField": "HEADLINE_1" },
+        { "text": "Arizona Investor Loans", "pinnedField": "HEADLINE_1" },
+        { "text": "No Income Docs Needed" },
+        { "text": "Qualify On Rental Income" },
+        { "text": "Licensed Arizona Lender" },
+        { "text": "Free Rate Quote Today" }
+      ],
+      "descriptions": [
+        "Qualify using the property's rental income, not your personal income. LLC vesting welcome.",
+        "Cliffco is a licensed Arizona mortgage lender. Speak with a loan officer directly.",
+        "Get a free DSCR loan quote in minutes. No obligation, no pressure."
+      ]
+    }
+  ]
+}

@@ -34,8 +34,10 @@ yarn-error.log*
 # Trial fonts — kept locally for design work, not redistributed
 brand/fonts/
 
-# Claude Code local settings (personal permissions, not shared)
-.claude/
+# Claude Code local settings (personal permissions, not shared) —
+# but DO share project skills so the whole team gets them.
+.claude/*
+!.claude/skills/
 Guidelines/SG Capital/Flex Connect Tutorial.mp4
 .vercel
 .env*

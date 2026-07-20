@@ -1,0 +1,28 @@
+{
+  "_comment": "Template for update_ads_and_assets.mjs. Use campaignId/adGroupId if known (fastest), or campaignName/adGroupName to look them up by name. Fill in with output from /generate-ads and run: node Code/update_ads_and_assets.mjs your-config.json",
+  "campaignName": "DSCR Investor — Arizona",
+  "adGroupName": "dscr loan arizona",
+  "finalUrl": "https://cliffcomortgage.com/loans/dscr/",
+  "path1": "dscr",
+  "path2": "arizona",
+  "rsas": [
+    {
+      "headlines": [
+        { "text": "DSCR Loans Arizona", "pinnedField": "HEADLINE_1" },
+        { "text": "No Income Docs Needed" },
+        { "text": "Qualify On Rental Income" }
+      ],
+      "descriptions": [
+        "Qualify using the property's rental income, not your personal income.",
+        "Cliffco is a licensed Arizona mortgage lender. Speak with a loan officer directly."
+      ]
+    }
+  ],
+  "sitelinks": [
+    { "linkText": "Free Quote", "d1": "Takes under 2 minutes", "d2": "No obligation", "url": "https://cliffcomortgage.com/get-started/" }
+  ],
+  "callouts": ["Licensed Lender", "No Income Docs", "Free Quote"],
+  "structuredSnippets": [
+    { "header": "Types", "values": ["DSCR", "Bank Statement", "Non-QM"] }
+  ]
+}

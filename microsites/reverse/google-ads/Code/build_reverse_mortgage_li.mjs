@@ -1,8 +1,12 @@
 /**
  * build_reverse_mortgage_li.mjs
- * Creates a PAUSED Search SKAG for "Reverse Mortgage — Long Island"
+ * HISTORICAL — this is the script that originally created the live
+ * "Reverse Mortgage — Long Island" campaign. Kept as a record only.
  *
- * Run: node Code/build_reverse_mortgage_li.mjs
+ * DO NOT RUN OR REUSE: it hardcodes Julian Giaquinto (offboarded July 2026)
+ * in ad copy, and its final URL points at a domain that no longer exists
+ * (reverse.cliffcomortgage.com/en-us/reverse-mortgage-specialist-julian-giaquinto).
+ * For any new campaign, use Code/create_campaign.mjs instead.
  */
 
 import { readFileSync } from "fs";

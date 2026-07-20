@@ -1,11 +1,11 @@
 /**
  * add_rsa_and_assets.mjs
+ * HISTORICAL — this is the script that last refreshed the live
+ * "Reverse Mortgage — Long Island" campaign's ads and assets. Kept as a record only.
  *
- * Replaces existing RSAs on the Reverse Mortgage — Long Island campaign
- * with 3 improved RSAs (per anatomy-of-a-good-ad.md spec), then adds
- * sitelinks, callouts, and structured snippets (per ad-assets-best-practices.md).
- *
- * Run: node Code/add_rsa_and_assets.mjs
+ * DO NOT RUN OR REUSE: it hardcodes one ad group ID, a stale final URL, and
+ * ad copy naming Julian Giaquinto (offboarded July 2026). For refreshing any
+ * campaign's ads/assets going forward, use Code/update_ads_and_assets.mjs instead.
  */
 
 import { readFileSync } from "fs";
