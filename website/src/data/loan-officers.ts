@@ -743,7 +743,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     displayName: "George Diamantakis",
     nmls: "1367963",
     title: "Sales Manager",
-    states: ["CT", "FL", "KY", "NJ", "NY", "PA", "SC", "VA"],
+    states: ["CT", "FL", "IN", "KY", "NJ", "NY", "PA", "SC", "VA"],
     branchSlug: "uniondale-headquarters",
     languages: ["English", "Greek"],
     links: {
@@ -1086,7 +1086,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     displayName: "Rafael Rojas",
     nmls: "2082989",
     title: "Loan Officer",
-    states: ["CO", "CT", "NJ", "NY", "PA", "TX"],
+    states: ["CO", "CT", "FL", "NJ", "NY", "PA", "TN", "TX"],
     branchSlug: "uniondale-headquarters",
     links: {
       email: "rrojas@cliffcomortgage.com",
