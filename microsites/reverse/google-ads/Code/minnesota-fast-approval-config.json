@@ -1,0 +1,97 @@
+{
+  "campaignName": "Minnesota — Fast Mortgage Approval",
+  "budgetMicrosPerDay": "50000000",
+  "geoTargets": ["Minnesota"],
+  "language": "English",
+  "adSchedule": null,
+  "adGroupName": "minnesota mortgage lender",
+  "keywords": [
+    { "text": "minnesota mortgage lender", "matchType": "PHRASE" }
+  ],
+  "negativeKeywords": [
+    "jobs", "job openings", "career", "careers", "salary", "hiring",
+    "training", "certification", "license exam", "how to become", "school", "classes", "course",
+    "scam", "fraud", "lawsuit", "class action", "predatory", "complaints",
+    "commercial mortgage", "business loan", "auto loan", "personal loan", "apartment for rent", "mortgage calculator"
+  ],
+  "finalUrl": "https://cliffcomn.com/",
+  "path1": "minnesota",
+  "path2": "mortgage",
+  "rsas": [
+    {
+      "headlines": [
+        { "text": "Minnesota Mortgage Lender", "pinnedField": "HEADLINE_1" },
+        { "text": "Fast Mortgage Approval MN", "pinnedField": "HEADLINE_1" },
+        { "text": "Minnesota Home Loan Approval", "pinnedField": "HEADLINE_1" },
+        { "text": "5 Minutes To Get Started" },
+        { "text": "No Credit Pull Required" },
+        { "text": "No Commitment Required" },
+        { "text": "Free Rate Quote Today" },
+        { "text": "Apply Online In Minutes" },
+        { "text": "Quick Mortgage Pre-Approval" },
+        { "text": "Simple Online Application" },
+        { "text": "See Your Options Today" },
+        { "text": "Licensed Minnesota Lender" },
+        { "text": "Straightforward Process" },
+        { "text": "Get Started Today" },
+        { "text": "Cliffco Mortgage Bankers" }
+      ],
+      "descriptions": [
+        "Get pre-approved in minutes. No credit pull, no commitment, no pressure.",
+        "Cliffco Mortgage Bankers, a licensed Minnesota lender since 1989.",
+        "We find financing options other lenders miss. Straightforward, no jargon.",
+        "See your mortgage options today. Free, no-obligation quote in 5 minutes."
+      ]
+    },
+    {
+      "headlines": [
+        { "text": "Minnesota Mortgage Lender", "pinnedField": "HEADLINE_1" },
+        { "text": "Fast Mortgage Approval MN", "pinnedField": "HEADLINE_1" },
+        { "text": "Minnesota Home Loan Approval", "pinnedField": "HEADLINE_1" },
+        { "text": "Speak With Mitch Directly" },
+        { "text": "Your Minnesota Loan Officer" },
+        { "text": "Licensed MN Loan Officer" },
+        { "text": "Local Minnesota Expertise" },
+        { "text": "No Confusing Loan Terms" },
+        { "text": "Guidance Past Closing Day" },
+        { "text": "Built Around Your Goals" },
+        { "text": "Cliffco Mortgage Bankers" },
+        { "text": "Free Consultation Today" },
+        { "text": "Call Mitch Today" },
+        { "text": "Financing Solutions For You" },
+        { "text": "Trusted MN Homebuying Guide" }
+      ],
+      "descriptions": [
+        "Talk directly with Mitch Patterson, your Minnesota loan officer. NMLS #2560483.",
+        "Mitch explains every option clearly: no confusing terms, no surprises, ever.",
+        "Cliffco Mortgage Bankers has helped Minnesota families since 1989.",
+        "Get a free consultation with Mitch. No obligation, no pressure, no rush."
+      ]
+    },
+    {
+      "headlines": [
+        { "text": "Minnesota Mortgage Lender", "pinnedField": "HEADLINE_1" },
+        { "text": "Fast Mortgage Approval MN", "pinnedField": "HEADLINE_1" },
+        { "text": "Minnesota Home Loan Approval", "pinnedField": "HEADLINE_1" },
+        { "text": "Cliffco Mortgage Bankers" },
+        { "text": "Flexible Financing Options" },
+        { "text": "Complex Situations Welcome" },
+        { "text": "Denied Elsewhere? Ask Us" },
+        { "text": "Self-Employed? We Can Help" },
+        { "text": "Licensed Minnesota Lender" },
+        { "text": "Family-Run Since 1989" },
+        { "text": "No Cookie-Cutter Loans" },
+        { "text": "A Person, Not A Call Center" },
+        { "text": "Free Quote In Minutes" },
+        { "text": "See What You Qualify For" },
+        { "text": "Get Started Today" }
+      ],
+      "descriptions": [
+        "Cliffco Mortgage Bankers helps Minnesota borrowers other lenders turn away.",
+        "Self-employed, complex income, denied elsewhere? We build loans around you.",
+        "A licensed Minnesota lender since 1989. Real loan officers, not a call center.",
+        "See what you qualify for. Free quote, no obligation, takes just minutes."
+      ]
+    }
+  ]
+}
