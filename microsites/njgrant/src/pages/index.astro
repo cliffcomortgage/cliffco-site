@@ -1,0 +1,404 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const TIER_22K = ["Bergen", "Essex", "Hudson", "Hunterdon", "Mercer", "Middlesex", "Monmouth", "Morris", "Ocean", "Passaic", "Somerset", "Union"];
+const TIER_17K = ["Atlantic", "Burlington", "Camden", "Cape May", "Cumberland", "Gloucester", "Salem", "Sussex", "Warren"];
+
+const benefits = [
+  { name: "Up to $22,000", blurb: "Toward your down payment, closing costs, or both. Your exact amount depends on which NJ county you're buying in." },
+  { name: "No monthly payments", blurb: "The assistance is a 0% interest loan with no monthly bill, on top of your regular mortgage payment." },
+  { name: "Forgiven after 5 years", blurb: "Stay in the home as your primary residence for 5 years without refinancing, and the assistance loan is forgiven." },
+  { name: "Every NJ county qualifies", blurb: "All 21 counties are covered. Some qualify for $22,000, others for $17,000, and your loan officer confirms which applies to you." },
+];
+
+const howItWorks = [
+  { step: "1", title: "See if you qualify", body: "A first-generation homebuyer is a first-time buyer whose parents don't currently own a home, or someone who was in foster care or experienced youth homelessness. Takes 2 minutes to check." },
+  { step: "2", title: "Talk to a real loan officer", body: "Eddie or Gary, both licensed in New Jersey, walk you through exactly what you qualify for. No cost, no obligation." },
+  { step: "3", title: "One combined application", body: "Your mortgage, the Down Payment Assistance loan, and the First Generation grant are all part of the same NJHMFA application, not three separate processes." },
+  { step: "4", title: "Close and move in", body: "Occupy the home as your primary residence within 60 days of closing, and the 5-year forgiveness clock starts." },
+];
+
+const objections = [
+  {
+    q: "My parents used to own a home. Doesn't that disqualify me?",
+    a: "Not necessarily. The rule is about present ownership, not history. If your parents don't currently own any residential real estate, anywhere, you can still qualify even if they owned a home in the past and sold it. A Cliffco loan officer can confirm your specific situation.",
+  },
+  {
+    q: "Is this actually free money?",
+    a: "It's a forgivable loan, not a grant: $0 interest, no monthly payment, and forgiven if you live in the home as your primary residence for 5 years without refinancing. If you sell, move out, or refinance before then, the assistance becomes repayable.",
+  },
+  {
+    q: "What if my county isn't one of the ones offering $22,000?",
+    a: "Every county in New Jersey qualifies for this program. Twelve counties (including Bergen, Essex, Middlesex, and Union) offer the full $22,000. The remaining nine offer $17,000. Either way, you're getting real assistance toward your purchase.",
+  },
+  {
+    q: "Do I need excellent credit to qualify?",
+    a: "You'll need to meet NJHMFA's credit score and debt-to-income guidelines, which are more flexible than many buyers assume. Checking your eligibility costs nothing and doesn't affect your credit.",
+  },
+  {
+    q: "Will I have to deal with multiple lenders or agencies?",
+    a: "No. Your Cliffco loan officer originates the NJHMFA first mortgage and handles the Down Payment Assistance and First Generation Homebuyer paperwork as one combined application.",
+  },
+];
+
+const faq = [
+  {
+    q: "What exactly is the NJHMFA First Generation Homebuyer Program?",
+    a: "It's a New Jersey state program that provides $7,000 toward a down payment or closing costs, on top of NJHMFA's Smart Start Down Payment Assistance Program. Combined, qualified buyers can receive up to $22,000, depending on the county. It must be paired with an NJHMFA first mortgage.",
+  },
+  {
+    q: "Is it a loan or a grant?",
+    a: "It's structured as a forgivable loan: 0% interest, no monthly payments, and forgiven in full after 5 years of owner-occupancy without refinancing or otherwise conveying the first mortgage.",
+  },
+  {
+    q: "Who counts as a first-generation homebuyer?",
+    a: "A first-time homebuyer whose parents or legal guardians have no present ownership interest in any residential property anywhere, and whose spouse or domestic partner hasn't owned a primary residence in the past 3 years. It also includes anyone who was ever in foster care in New Jersey, was an emancipated youth, or was a homeless or unaccompanied youth under the McKinney-Vento Act.",
+  },
+  {
+    q: "How much assistance is available in my county?",
+    a: `Twelve counties qualify for $22,000 total: ${TIER_22K.join(", ")}. The remaining nine counties qualify for $17,000 total: ${TIER_17K.join(", ")}.`,
+  },
+  {
+    q: "How do I apply?",
+    a: "Talk to a licensed Cliffco loan officer serving New Jersey. Eddie Morais and Gary Johansen both originate NJHMFA loans and can confirm your eligibility and county amount at no cost.",
+  },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [...objections, ...faq].map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  },
+];
+---
+
+<Layout
+  title="Up to $22,000 for First-Gen NJ Homebuyers | Cliffco"
+  description="NJHMFA's First Generation Homebuyer Program offers up to $22,000 toward your down payment or closing costs. No monthly payments, forgiven after 5 years."
+>
+  <Fragment slot="head">
+    {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  </Fragment>
+
+  <!-- HERO -->
+  <section class="accent-gradient">
+    <div class="container-wide py-16 lg:py-24">
+      <p class="eyebrow !text-[var(--color-ice-blue)]">New Jersey &middot; First-Generation &amp; First-Time Buyers</p>
+      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.08; font-weight: 400;">
+        Up to $22,000 to buy your first home in New Jersey.
+      </h1>
+      <p class="lead mt-5 text-white/85 max-w-2xl">
+        NJHMFA's First Generation Homebuyer Program combines with New Jersey's Down Payment Assistance
+        to put up to $22,000 toward your down payment or closing costs, forgiven after 5 years in the home.
+        No monthly payments on the assistance itself.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
+        <a href="#apply" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Check My Eligibility</a>
+        <a href="tel:+19083701575" class="btn btn-secondary !border-white !text-white">Call (908) 370-1575</a>
+      </div>
+      <p class="mt-5 text-sm text-white/60">No cost to check. No impact to your credit. Licensed New Jersey loan officers.</p>
+    </div>
+  </section>
+
+  <!-- TRUST STATS -->
+  <section class="bg-white border-b border-[var(--color-mist-gray)]">
+    <div class="container-wide py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div>
+        <p class="text-2xl font-semibold text-[var(--color-ink)]">$22,000</p>
+        <p class="mt-1 text-sm text-[var(--color-text-muted)]">Maximum combined assistance</p>
+      </div>
+      <div>
+        <p class="text-2xl font-semibold text-[var(--color-ink)]">1989</p>
+        <p class="mt-1 text-sm text-[var(--color-text-muted)]">Cliffco has been lending since</p>
+      </div>
+      <div>
+        <p class="text-2xl font-semibold text-[var(--color-ink)]">21 / 21</p>
+        <p class="mt-1 text-sm text-[var(--color-text-muted)]">NJ counties covered</p>
+      </div>
+      <div>
+        <p class="text-2xl font-semibold text-[var(--color-ink)]">5 years</p>
+        <p class="mt-1 text-sm text-[var(--color-text-muted)]">Until the loan is fully forgiven</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAIN POINTS -->
+  <section class="bg-white" style="padding-block: var(--spacing-section);">
+    <div class="container-wide max-w-3xl">
+      <p class="eyebrow">If none of this feels familiar, that's the point</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Saving a down payment is harder when nobody handed you a head start.</h2>
+      <p class="mt-5 text-[var(--color-text)] leading-relaxed">
+        If you're the first person in your family to buy a home, you're doing it without the things
+        that make it easier for other buyers: no family down payment gift, no one who's been through
+        the process to ask, and often the assumption that assistance programs are for someone else.
+      </p>
+      <p class="mt-4 text-[var(--color-text)] leading-relaxed">
+        New Jersey built a program specifically for this. Not a general assistance fund you might not
+        qualify for, one designed around exactly your situation.
+      </p>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="bg-[var(--color-mist-gray)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="eyebrow">How the program works</p>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Two NJHMFA programs, combined into one.</h2>
+        <p class="mt-5 text-[var(--color-text)] leading-relaxed">
+          The First Generation Homebuyer Program provides $7,000 on its own. Paired with NJHMFA's
+          Smart Start Down Payment Assistance Program (up to $15,000, depending on county) and an
+          NJHMFA first mortgage, qualified buyers get up to $22,000 total toward their down payment
+          or closing costs.
+        </p>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed">
+          Both assistance pieces are structured as 0% interest loans with no monthly payment, forgiven
+          after 5 years of living in the home as your primary residence. Cliffco originates the first
+          mortgage and helps you apply for both assistance programs as one process, not three separate
+          applications.
+        </p>
+      </div>
+      <div class="card !p-0 overflow-hidden">
+        <div class="p-6 border-b border-[var(--color-mist-gray)]">
+          <p class="text-sm font-semibold text-[var(--color-ink)]">$22,000 counties</p>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{TIER_22K.join(", ")}</p>
+        </div>
+        <div class="p-6">
+          <p class="text-sm font-semibold text-[var(--color-ink)]">$17,000 counties</p>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{TIER_17K.join(", ")}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="bg-white" style="padding-block: var(--spacing-section);">
+    <div class="container-wide">
+      <p class="eyebrow">What you actually get</p>
+      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2);">Real assistance, with terms you can plan around.</h2>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {benefits.map((b) => (
+          <div class="card">
+            <h3 class="text-base font-semibold text-[var(--color-accent)]">{b.name}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{b.blurb}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="bg-[var(--color-mist-gray)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide">
+      <p class="eyebrow">The process</p>
+      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2);">Four steps, one application.</h2>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {howItWorks.map((s) => (
+          <div class="card">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-accent)] text-white text-sm font-semibold">{s.step}</span>
+            <h3 class="mt-4 text-base font-semibold text-[var(--color-ink)]">{s.title}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJECTION HANDLING -->
+  <section class="bg-white" style="padding-block: var(--spacing-section);">
+    <div class="container-wide max-w-3xl">
+      <p class="eyebrow">Before you ask</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">The questions we hear most, answered directly.</h2>
+      <div class="mt-8 space-y-6">
+        {objections.map((o) => (
+          <div class="border-b border-[var(--color-mist-gray)] pb-5">
+            <h3 class="font-semibold text-[var(--color-ink)]">{o.q}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text)] leading-relaxed">{o.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="bg-[var(--color-mist-gray)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide">
+      <p class="eyebrow">Who you'll talk to</p>
+      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2);">Two licensed New Jersey loan officers, not a call center.</h2>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 max-w-2xl">
+        <div class="card flex flex-col">
+          <img src="/team/edward-morais.webp" alt="Eddie Morais" class="w-20 h-20 rounded-full object-cover" loading="lazy" />
+          <h3 class="mt-4 text-base font-semibold text-[var(--color-ink)]">Eddie Morais</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Branch Manager &middot; NMLS #243926</p>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">23 years in mortgage lending. English and Spanish.</p>
+          <a href="tel:+19083701575" class="mt-4 text-sm font-semibold text-[var(--color-accent)] no-underline hover:underline">(908) 370-1575</a>
+        </div>
+        <div class="card flex flex-col">
+          <img src="/team/gary-johansen.webp" alt="Gary Johansen" class="w-20 h-20 rounded-full object-cover" loading="lazy" />
+          <h3 class="mt-4 text-base font-semibold text-[var(--color-ink)]">Gary Johansen</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Regional Sales Director &middot; NMLS #339278</p>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">Over 30 years in mortgage lending, more than $15 billion closed.</p>
+          <a href="tel:+15857038862" class="mt-4 text-sm font-semibold text-[var(--color-accent)] no-underline hover:underline">(585) 703-8862</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-white" style="padding-block: var(--spacing-section);">
+    <div class="container-wide max-w-3xl">
+      <p class="eyebrow">Common questions</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">First Generation Homebuyer Program FAQ.</h2>
+      <div class="mt-8 space-y-6">
+        {faq.map((q) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.q}</summary>
+            <p class="mt-3 text-[var(--color-text)] leading-relaxed">{q.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA + FORM -->
+  <section id="apply" class="accent-gradient flex-1" style="padding-block: var(--spacing-section);">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <h2 class="text-white" style="font-size: var(--text-h2);">See what you qualify for. Takes 2 minutes.</h2>
+        <p class="lead mt-4 text-white/85">
+          Tell us a little about your situation and a licensed New Jersey loan officer will confirm
+          your eligibility and county amount, no cost, no obligation.
+        </p>
+        <ul class="mt-6 space-y-2 text-sm text-white/75 list-none p-0">
+          <li>&#10003; No cost to check eligibility</li>
+          <li>&#10003; No impact to your credit</li>
+          <li>&#10003; A real, licensed loan officer responds within 1 business day</li>
+        </ul>
+      </div>
+
+      <form id="nj-form" class="card !p-8 space-y-4" novalidate>
+        <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+          <label for="nj-website">Website</label>
+          <input id="nj-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <input name="_loaded" type="hidden" value="" />
+        <input type="hidden" name="state" value="New Jersey" />
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="nj-fname" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">First name <span class="text-red-400">*</span></label>
+            <input id="nj-fname" name="first_name" type="text" required autocomplete="given-name" placeholder="Jane"
+              class="w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]" />
+          </div>
+          <div>
+            <label for="nj-lname" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Last name <span class="text-red-400">*</span></label>
+            <input id="nj-lname" name="last_name" type="text" required autocomplete="family-name" placeholder="Smith"
+              class="w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]" />
+          </div>
+        </div>
+
+        <div>
+          <label for="nj-email" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Email <span class="text-red-400">*</span></label>
+          <input id="nj-email" name="email" type="email" required autocomplete="email" placeholder="jane@example.com"
+            class="w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]" />
+        </div>
+
+        <div>
+          <label for="nj-phone" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Phone <span class="text-red-400">*</span></label>
+          <input id="nj-phone" name="phone" type="tel" required autocomplete="tel" placeholder="(555) 000-0000"
+            class="w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]" />
+        </div>
+
+        <div>
+          <label for="nj-purpose" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">I'm looking to <span class="text-red-400">*</span></label>
+          <select id="nj-purpose" name="purpose" required
+            class="w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]">
+            <option value="">Select one&hellip;</option>
+            <option value="Purchase">Buy a home</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="nj-notes" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Which NJ county? <span class="text-[var(--color-text-muted)]">(optional)</span></label>
+          <input id="nj-notes" name="notes" type="text" placeholder="e.g. Union County"
+            class="w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]" />
+        </div>
+
+        <div class="flex items-start gap-3">
+          <input type="checkbox" id="nj-tcpa" name="tcpa_consent" value="yes" required
+            class="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 accent-[var(--color-accent)]" />
+          <label for="nj-tcpa" class="text-xs leading-relaxed text-[var(--color-text-muted)]">
+            By submitting this form I consent to be contacted by Cliffco, Inc. (NMLS #65328) regarding my inquiry via calls, texts, and emails, including via automated technology. Consent is not required to obtain credit. Reply STOP to opt out of texts.
+          </label>
+        </div>
+
+        <p id="nj-error" class="hidden text-sm text-red-500 font-medium"></p>
+        <p id="nj-success" class="hidden text-sm text-green-600 font-medium">Thank you! A loan officer will reach out within one business day.</p>
+
+        <button type="submit" class="btn btn-primary w-full disabled:opacity-60">Check My Eligibility</button>
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('nj-form') as HTMLFormElement | null;
+  const errEl = document.getElementById('nj-error') as HTMLParagraphElement | null;
+  const okEl = document.getElementById('nj-success') as HTMLParagraphElement | null;
+
+  if (form) {
+    const loadedField = form.querySelector<HTMLInputElement>('[name="_loaded"]');
+    if (loadedField) loadedField.value = String(Date.now());
+
+    const track = (event: string, props: Record<string, unknown> = {}) =>
+      (window as any).posthog?.capture?.(event, { form_source: 'nj-first-gen-grant', ...props });
+    new IntersectionObserver((entries, obs) => {
+      if (entries.some((en) => en.isIntersecting)) { track('lead_form_viewed'); obs.disconnect(); }
+    }, { threshold: 0.5 }).observe(form);
+    form.addEventListener('input', () => track('lead_form_started'), { once: true });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const origLabel = btn.textContent ?? 'Check My Eligibility';
+      if (errEl) { errEl.classList.add('hidden'); errEl.textContent = ''; }
+      btn.disabled = true;
+      btn.textContent = 'Sending&hellip;';
+
+      const fd = new FormData(form);
+      fd.set('form_to', 'emorais@cliffcomortgage.com,gjohansen@cliffcomortgage.com,websiteleads@cliffcomortgage.com');
+      fd.set('form_source', 'nj-first-gen-grant');
+      fd.set('page_uri', window.location.href);
+      fd.set('page_name', document.title);
+      const hutkMatch = document.cookie.match(/(?:^|; )hubspotutk=([^;]*)/);
+      if (hutkMatch) fd.set('hutk', hutkMatch[1]);
+
+      try {
+        const res = await fetch('/api/contact/', { method: 'POST', body: fd });
+        const json = await res.json();
+        if (res.ok && json.success) {
+          form.reset();
+          okEl?.classList.remove('hidden');
+          btn.textContent = 'Sent ✓';
+          track('lead_form_submitted');
+        } else {
+          if (errEl) { errEl.textContent = json.error ?? 'Something went wrong. Please try again or call us at (908) 370-1575.'; errEl.classList.remove('hidden'); }
+          btn.disabled = false;
+          btn.textContent = origLabel;
+          track('lead_form_failed', { reason: 'server' });
+        }
+      } catch {
+        track('lead_form_failed', { reason: 'network' });
+        if (errEl) { errEl.textContent = 'Network error. Check your connection and try again, or call us at (908) 370-1575.'; errEl.classList.remove('hidden'); }
+        btn.disabled = false;
+        btn.textContent = origLabel;
+      }
+    });
+  }
+</script>
