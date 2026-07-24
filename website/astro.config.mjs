@@ -173,7 +173,9 @@ export default defineConfig({
   },
 
   integrations: [
-    sitemap({ filter: (page) => !page.includes('/thank-you/') }),
+    // nj-22k-grant is an ads-only landing page, deliberately excluded here
+    // and noindexed - reached only via paid ads, never linked from the site.
+    sitemap({ filter: (page) => !page.includes('/thank-you/') && !page.includes('/nj-22k-grant/') }),
     // API routes must be serverless functions on Vercel (POST handlers) but
     // prerendered stubs on the static GitHub Pages preview. This is set here,
     // not via a `prerender` export in the route files, because Astro can only

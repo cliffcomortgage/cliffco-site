@@ -1,0 +1,71 @@
+---
+/**
+ * Minimal, distraction-free layout for ads-only landing pages: logo + phone
+ * CTA header, no site nav, no footer link list. Unlisted by design - reached
+ * only via paid ads, never linked from the main site. Always noindexed.
+ */
+import "../styles/global.css";
+import Meta from "../components/seo/Meta.astro";
+import JsonLd from "../components/seo/JsonLd.astro";
+import PostHog from "../components/posthog.astro";
+import { COMPANY } from "../data/company";
+
+interface Props {
+  title: string;
+  description: string;
+  schema?: object | object[];
+  phone: string;
+  phoneE164: string;
+}
+
+const { title, description, schema, phone, phoneE164 } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <Meta title={title} description={description} noindex={true} />
+    {schema && <JsonLd data={schema} />}
+    <PostHog />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Montserrat:wght@600&display=optional" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Montserrat:wght@600&display=optional" /></noscript>
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+
+    <header class="bg-white border-b border-[var(--color-mist-gray)] sticky top-0 z-40">
+      <div class="container-wide flex items-center justify-between gap-4 py-4">
+        <span class="no-underline shrink-0" aria-label={COMPANY.brandName} style="font-family: var(--font-logo); font-weight: 600; letter-spacing: 0.15em; font-size: 0.95rem; color: var(--color-rich-black);">{COMPANY.brandName.toUpperCase()}</span>
+        <a href={`tel:${phoneE164}`} class="btn btn-primary text-sm !py-2 !px-5 shrink-0 hidden sm:inline-flex">Call {phone}</a>
+        <a href={`tel:${phoneE164}`} class="btn btn-primary text-sm !py-2.5 !px-3 shrink-0 sm:hidden" aria-label={`Call ${phone}`}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" /></svg>
+        </a>
+      </div>
+    </header>
+
+    <main class="flex-1 flex flex-col">
+      <slot />
+    </main>
+
+    <footer class="bg-[var(--color-rich-black)] text-white">
+      <div class="container-wide py-8">
+        <div class="flex items-start gap-4">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-label="Equal Housing Lender" role="img" class="shrink-0 mt-1 opacity-60"><path d="M12 3 2 10h2v11h16V10h2L12 3Zm0 2.4L17.5 9h-11L12 5.4ZM8 11h8v2H8v-2Zm0 4h8v2H8v-2Z" fill="#fff"/></svg>
+          <p class="text-[11px] leading-relaxed text-white/35">
+            {COMPANY.brandName}. Equal Housing Lender. {COMPANY.legalName} Corporate NMLS #{COMPANY.nmls} (www.nmlsconsumeraccess.org) {COMPANY.hq.street}, {COMPANY.hq.city}, {COMPANY.hq.region} {COMPANY.hq.postalCode} {COMPANY.hq.phone}.
+            This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.
+          </p>
+        </div>
+        <p class="mt-4 text-[11px] text-white/35">&copy; {new Date().getFullYear()} {COMPANY.legalName}. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
