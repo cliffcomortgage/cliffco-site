@@ -208,23 +208,19 @@ export const POST: APIRoute = async ({ request }) => {
     //    (the LO/team in formTo), plus fallback record if HubSpot fails.
     // Success requires at least one channel to deliver.
     let hubspotOk = false;
-    let hsErrText = '';
     try {
       await submitToHubSpot(lead);
       hubspotOk = true;
     } catch (hsErr) {
-      hsErrText = String(hsErr);
-      console.error('HubSpot submission failed:', hsErrText);
+      console.error('HubSpot submission failed:', String(hsErr));
     }
 
     let emailOk = false;
-    let emailErrText = '';
     try {
       await sendViaEmail(lead, !hubspotOk);
       emailOk = true;
     } catch (sgErr) {
-      emailErrText = String(sgErr);
-      console.error('Email send failed:', emailErrText);
+      console.error('Email send failed:', String(sgErr));
     }
 
     // Independent ledger of every attempted delivery (searchable in Vercel
@@ -239,17 +235,6 @@ export const POST: APIRoute = async ({ request }) => {
       hubspotOk,
       emailOk,
     }));
-
-    // TEMP DIAGNOSTIC (2026-07-23): echoes the delivery ledger back in the
-    // response when the caller knows the token, since we don't have direct
-    // access to Vercel's runtime logs. Remove once confirmed working.
-    const debugToken = (data.get('_debug') as string | null)?.trim() ?? '';
-    if (debugToken === 'njgrant-diag-2026') {
-      return new Response(
-        JSON.stringify({ success: hubspotOk || emailOk, hubspotOk, emailOk, hsErrText, emailErrText }),
-        { status: 200, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
 
     if (!hubspotOk && !emailOk) {
       return new Response(
