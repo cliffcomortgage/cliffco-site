@@ -81,22 +81,23 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
   phoneE164="+19083701575"
 >
   <!-- HERO -->
-  <section class="accent-gradient">
-    <div class="container-wide py-16 lg:py-24">
-      <p class="eyebrow !text-[var(--color-ice-blue)]">New Jersey &middot; First-Generation &amp; First-Time Buyers</p>
-      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.08; font-weight: 400;">
+  <section class="relative overflow-hidden" style="background: linear-gradient(135deg, #bde8f1 0%, #e5f5f9 30%, #ffffff 68%);">
+    <img src="/images/content%20images/First%20Time%20Homebuyer%20Hero.webp" alt="" aria-hidden="true" class="absolute bottom-0 right-0 hidden lg:block w-auto object-contain object-bottom pointer-events-none select-none" style="height:520px;right:4%;" loading="eager" />
+    <div class="container-wide py-16 lg:py-24 relative z-10">
+      <p class="eyebrow">New Jersey &middot; First-Generation &amp; First-Time Buyers</p>
+      <h1 class="mt-4 max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.08; font-weight: 700; color: var(--color-ink);">
         Up to $22,000 to buy your first home in New Jersey.
       </h1>
-      <p class="lead mt-5 text-white/85 max-w-2xl">
+      <p class="lead mt-5 text-[var(--color-text)] max-w-2xl">
         NJHMFA's First Generation Homebuyer Program combines with New Jersey's Down Payment Assistance
         to put up to $22,000 toward your down payment or closing costs, forgiven after 5 years in the home.
         No monthly payments on the assistance itself.
       </p>
       <div class="mt-8 flex flex-wrap gap-4 items-center">
-        <a href="#apply" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Check My Eligibility</a>
-        <a href="tel:+19083701575" class="btn btn-secondary !border-white !text-white">Call (908) 370-1575</a>
+        <a href="#apply" class="btn btn-primary">Check My Eligibility</a>
+        <a href="tel:+19083701575" class="btn btn-secondary">Call (908) 370-1575</a>
       </div>
-      <p class="mt-5 text-sm text-white/60">No cost to check. No impact to your credit. Licensed New Jersey loan officers.</p>
+      <p class="mt-5 text-sm text-[var(--color-text-muted)]">No cost to check. No impact to your credit. Licensed New Jersey loan officers.</p>
     </div>
   </section>
 
@@ -126,7 +127,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
   <section class="bg-white" style="padding-block: var(--spacing-section);">
     <div class="container-wide max-w-3xl">
       <p class="eyebrow">If none of this feels familiar, that's the point</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Saving a down payment is harder when nobody handed you a head start.</h2>
+      <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 600;">Saving a down payment is harder when nobody handed you a head start.</h2>
       <p class="mt-5 text-[var(--color-text)] leading-relaxed">
         If you're the first person in your family to buy a home, you're doing it without the things
         that make it easier for other buyers: no family down payment gift, no one who's been through
@@ -144,7 +145,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
     <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
       <div>
         <p class="eyebrow">How the program works</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Two NJHMFA programs, combined into one.</h2>
+        <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 600;">Two NJHMFA programs, combined into one.</h2>
         <p class="mt-5 text-[var(--color-text)] leading-relaxed">
           The First Generation Homebuyer Program provides $7,000 on its own. Paired with NJHMFA's
           Smart Start Down Payment Assistance Program (up to $15,000, depending on county) and an
@@ -175,7 +176,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
   <section class="bg-white" style="padding-block: var(--spacing-section);">
     <div class="container-wide">
       <p class="eyebrow">What you actually get</p>
-      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2);">Real assistance, with terms you can plan around.</h2>
+      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2); font-weight: 600;">Real assistance, with terms you can plan around.</h2>
       <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {benefits.map((b) => (
           <div class="card">
@@ -191,7 +192,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
   <section class="bg-[var(--color-mist-gray)]" style="padding-block: var(--spacing-section);">
     <div class="container-wide">
       <p class="eyebrow">The process</p>
-      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2);">Four steps, one application.</h2>
+      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2); font-weight: 600;">Four steps, one application.</h2>
       <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {howItWorks.map((s) => (
           <div class="card">
@@ -208,7 +209,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
   <section class="bg-white" style="padding-block: var(--spacing-section);">
     <div class="container-wide max-w-3xl">
       <p class="eyebrow">Before you ask</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">The questions we hear most, answered directly.</h2>
+      <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 600;">The questions we hear most, answered directly.</h2>
       <div class="mt-8 space-y-6">
         {objections.map((o) => (
           <div class="border-b border-[var(--color-mist-gray)] pb-5">
@@ -224,7 +225,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
   <section class="bg-[var(--color-mist-gray)]" style="padding-block: var(--spacing-section);">
     <div class="container-wide">
       <p class="eyebrow">Who you'll talk to</p>
-      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2);">Two licensed New Jersey loan officers, not a call center.</h2>
+      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2); font-weight: 600;">Two licensed New Jersey loan officers, not a call center.</h2>
       <div class="mt-8 grid gap-6 sm:grid-cols-2 max-w-2xl">
         <div class="card flex flex-col">
           <img src="/team/edward-morais.webp" alt="Eddie Morais" class="w-20 h-20 rounded-full object-cover" loading="lazy" />
@@ -248,7 +249,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
   <section class="bg-white" style="padding-block: var(--spacing-section);">
     <div class="container-wide max-w-3xl">
       <p class="eyebrow">Common questions</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">First Generation Homebuyer Program FAQ.</h2>
+      <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 600;">First Generation Homebuyer Program FAQ.</h2>
       <div class="mt-8 space-y-6">
         {faq.map((q) => (
           <details class="border-b border-[var(--color-mist-gray)] pb-4">
@@ -264,7 +265,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
   <section id="apply" class="accent-gradient flex-1" style="padding-block: var(--spacing-section);">
     <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
       <div>
-        <h2 class="text-white" style="font-size: var(--text-h2);">See what you qualify for. Takes 2 minutes.</h2>
+        <h2 class="text-white" style="font-size: var(--text-h2); font-weight: 600;">See what you qualify for. Takes 2 minutes.</h2>
         <p class="lead mt-4 text-white/85">
           Tell us a little about your situation and a licensed New Jersey loan officer will confirm
           your eligibility and county amount, no cost, no obligation.
