@@ -83,8 +83,12 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
   <!-- HERO -->
   <section class="relative overflow-hidden" style="background: linear-gradient(135deg, #bde8f1 0%, #e5f5f9 30%, #ffffff 68%);">
     <!-- Image bleeds to the right viewport edge so it can be large enough to
-         show the whole house without stealing width from the headline column. -->
-    <img src="/images/content%20images/nj-grant-hero.png" alt="Smiling couple holding house keys in front of their new home" class="hidden lg:block absolute right-0 bottom-0 w-[56%] h-auto object-contain object-right-bottom pointer-events-none select-none" loading="eager" />
+         show the whole house without stealing width from the headline column.
+         Boxed to the full hero height with object-contain so the image never
+         grows taller than the hero (which would clip the top of the heads). -->
+    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-[56%] pointer-events-none">
+      <img src="/images/content%20images/nj-grant-hero.png" alt="Smiling couple holding house keys in front of their new home" class="w-full h-full object-contain object-right-bottom select-none" loading="eager" />
+    </div>
     <div class="container-wide py-16 lg:py-20 relative z-10">
       <div class="lg:max-w-[46%]">
         <p class="eyebrow">New Jersey &middot; First-Generation &amp; First-Time Buyers</p>
