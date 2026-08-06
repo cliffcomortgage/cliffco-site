@@ -14,12 +14,12 @@ const benefits = [
   { name: "Up to $22,000", blurb: "Toward your down payment, closing costs, or both. Your exact amount depends on which NJ county you're buying in." },
   { name: "No monthly payments", blurb: "The assistance is a 0% interest loan with no monthly bill, on top of your regular mortgage payment." },
   { name: "Forgiven after 5 years", blurb: "Stay in the home as your primary residence for 5 years without refinancing, and the assistance loan is forgiven." },
-  { name: "Every NJ county qualifies", blurb: "All 21 counties are covered. Some qualify for $22,000, others for $17,000, and your loan officer confirms which applies to you." },
+  { name: "Every NJ county is eligible", blurb: "All 21 counties are covered. Some qualify for $22,000, others for $17,000. Income limits will apply and all loans are subject to NJHMFA underwriting guidelines." },
 ];
 
 const howItWorks = [
   { step: "1", title: "See if you qualify", body: "A first-generation homebuyer is a first-time buyer whose parents don't currently own a home, or someone who was in foster care or experienced youth homelessness. Takes 2 minutes to check." },
-  { step: "2", title: "Talk to a real loan officer", body: "Eddie or Gary, both licensed in New Jersey, walk you through exactly what you qualify for. No cost, no obligation." },
+  { step: "2", title: "Talk to a real loan officer", body: "Eddie Morais, NMLS 243926, and Gary Johansen, NMLS 339278, are both licensed in NJ and will walk you through exactly what you qualify for. No cost, no obligation." },
   { step: "3", title: "One combined application", body: "Your mortgage, the Down Payment Assistance loan, and the First Generation grant are all part of the same NJHMFA application, not three separate processes." },
   { step: "4", title: "Close and move in", body: "Occupy the home as your primary residence within 60 days of closing, and the 5-year forgiveness clock starts." },
 ];
@@ -95,7 +95,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
         <h1 class="mt-4" style="font-size: var(--text-display-xl); line-height: 1.08; font-weight: 700; color: var(--color-ink);">
           Up to $22,000 to buy your first home in New Jersey.
         </h1>
-        <p class="lead mt-5 text-[var(--color-text)]">
+        <p class="mt-5 text-[15px] leading-relaxed text-[var(--color-text)]">
           The New Jersey Housing and Mortgage Finance Agency (NJHMFA) First Generation Homebuyer Program
           provides qualified borrowers with $7,000 towards down payment and/or closing costs when paired with
           NJHMFA First Mortgage Loan and Down Payment Assistance program. Depending on the county, total
@@ -156,7 +156,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
     <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
       <div>
         <p class="eyebrow">How the program works</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 600;">Two NJHMFA programs, combined into one.</h2>
+        <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 600;">Three NJHMFA programs, combined into one.</h2>
         <p class="mt-5 text-[var(--color-text)] leading-relaxed">
           The First Generation Homebuyer Program provides $7,000 on its own. Paired with NJHMFA's
           Smart Start Down Payment Assistance Program (up to $15,000, depending on county) and an
