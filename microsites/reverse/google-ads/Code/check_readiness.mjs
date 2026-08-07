@@ -22,7 +22,7 @@ const h = { Authorization: "Bearer " + access_token, "developer-token": DEV, "lo
 const CAMP = "23946171105";
 
 async function q(query) {
-  const r = await fetch(`https://googleads.googleapis.com/v21/customers/${CUID}/googleAds:search`, { method: "POST", headers: h, body: JSON.stringify({ query }) });
+  const r = await fetch(`https://googleads.googleapis.com/v24/customers/${CUID}/googleAds:search`, { method: "POST", headers: h, body: JSON.stringify({ query }) });
   const d = await r.json();
   if (d.error) throw new Error(d.error.message);
   return d.results ?? [];

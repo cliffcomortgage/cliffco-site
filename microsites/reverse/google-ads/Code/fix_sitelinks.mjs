@@ -33,7 +33,7 @@ const { access_token } = await tr.json();
 const h = { Authorization: "Bearer " + access_token, "developer-token": DEV, "login-customer-id": LCID, "Content-Type": "application/json" };
 
 async function gads(path, body) {
-  const r = await fetch(`https://googleads.googleapis.com/v21/customers/${CUID}/${path}`, { method: "POST", headers: h, body: JSON.stringify(body) });
+  const r = await fetch(`https://googleads.googleapis.com/v24/customers/${CUID}/${path}`, { method: "POST", headers: h, body: JSON.stringify(body) });
   const d = await r.json();
   if (d.error) throw new Error(path + ": " + (d.error.message ?? JSON.stringify(d.error)));
   return d;

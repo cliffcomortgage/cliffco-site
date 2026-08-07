@@ -107,7 +107,7 @@ async function getToken() {
 }
 
 async function gads(token, path, body) {
-  const r = await fetch(`https://googleads.googleapis.com/v21/customers/${CID}/${path}`, {
+  const r = await fetch(`https://googleads.googleapis.com/v24/customers/${CID}/${path}`, {
     method: "POST",
     headers: {
       Authorization: "Bearer " + token,

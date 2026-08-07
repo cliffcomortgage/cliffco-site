@@ -38,7 +38,7 @@ const headers = {
 const query = `SELECT campaign.id, campaign.name, ad_group.id, ad_group.name, ad_group.status
                FROM ad_group WHERE campaign.name = 'Reverse Mortgage — Long Island'`;
 
-const r = await fetch(`https://googleads.googleapis.com/v21/customers/${CID}/googleAds:search`, {
+const r = await fetch(`https://googleads.googleapis.com/v24/customers/${CID}/googleAds:search`, {
   method: "POST", headers,
   body: JSON.stringify({ query }),
 });

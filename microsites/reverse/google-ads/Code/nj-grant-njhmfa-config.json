@@ -1,0 +1,110 @@
+{
+  "_comment": "NJHMFA First Generation Homebuyer / NJ down payment assistance. Company voice. Run: node Code/create_campaign.mjs Code/nj-grant-njhmfa-config.json",
+  "campaignName": "NJ Down Payment Assistance — First Gen",
+  "budgetMicrosPerDay": "50000000",
+  "biddingStrategy": "MAXIMIZE_CLICKS",
+  "geoTargets": ["New Jersey"],
+  "language": "English",
+  "adSchedule": null,
+  "adGroupName": "nj down payment assistance / first-gen",
+  "keywords": [
+    { "text": "nj down payment assistance", "matchType": "PHRASE" },
+    { "text": "new jersey down payment assistance", "matchType": "PHRASE" },
+    { "text": "down payment assistance new jersey", "matchType": "PHRASE" },
+    { "text": "nj first time home buyer grant", "matchType": "PHRASE" },
+    { "text": "first time home buyer grant nj", "matchType": "PHRASE" },
+    { "text": "njhmfa first generation homebuyer", "matchType": "PHRASE" }
+  ],
+  "negativeKeywords": [
+    "jobs", "job", "hiring", "career", "careers", "salary", "resume", "work from home",
+    "diy", "how to", "how to get", "tutorial", "course", "courses", "training",
+    "certification", "certificate", "school", "college", "what is", "definition",
+    "wikipedia", "reddit", "forum", "complaint", "refund", "cancel", "login", "scam",
+    "calculator", "refinance", "heloc", "reverse mortgage", "investment property",
+    "rental property", "second home", "rental", "section 8", "housing authority",
+    "new york", "pennsylvania", "california", "texas", "florida"
+  ],
+  "finalUrl": "https://cliffcodirect.cliffcomortgage.com/nj-grant-program",
+  "path1": "Down-Payment",
+  "path2": "Assistance",
+  "rsas": [
+    {
+      "_angle": "Financial benefit / the offer",
+      "headlines": [
+        { "text": "NJ Down Payment Assistance", "pinnedField": "HEADLINE_1" },
+        { "text": "NJ First-Time Buyer Grant", "pinnedField": "HEADLINE_1" },
+        { "text": "First-Gen NJ Homebuyers", "pinnedField": "HEADLINE_1" },
+        { "text": "Up to $22,000 Toward a Home" },
+        { "text": "Help With Your Down Payment" },
+        { "text": "Cover Down Payment & Costs" },
+        { "text": "0% Interest, No Monthly Bill" },
+        { "text": "Forgiven After 5 Years" },
+        { "text": "Up to $22K in NJ Assistance" },
+        { "text": "Down Payment & Closing Help" },
+        { "text": "No Monthly Payment on Aid" },
+        { "text": "Keep More Cash at Closing" },
+        { "text": "See What You Qualify For" },
+        { "text": "No-Cost Eligibility Check" },
+        { "text": "Cliffco Mortgage Bankers" }
+      ],
+      "descriptions": [
+        "Get up to $22,000 toward your down payment or closing costs on your first NJ home.",
+        "The assistance is a 0% interest loan with no monthly payment, forgiven after 5 years.",
+        "Paired with an NJHMFA first mortgage through Cliffco, a participating NJ lender.",
+        "See what you qualify for in about 2 minutes. No cost, no obligation."
+      ]
+    },
+    {
+      "_angle": "Eligibility / first-gen & first-time",
+      "headlines": [
+        { "text": "NJ Down Payment Assistance", "pinnedField": "HEADLINE_1" },
+        { "text": "NJ First-Time Buyer Grant", "pinnedField": "HEADLINE_1" },
+        { "text": "First-Gen NJ Homebuyers", "pinnedField": "HEADLINE_1" },
+        { "text": "First Home in New Jersey?" },
+        { "text": "You May Be Eligible" },
+        { "text": "Parents Don't Own a Home?" },
+        { "text": "First-Time Buyers Welcome" },
+        { "text": "See If You Qualify in 2 Min" },
+        { "text": "For First-Gen Homebuyers" },
+        { "text": "New Jersey Buyers Only" },
+        { "text": "Buy Your First NJ Home" },
+        { "text": "Made for First-Time Buyers" },
+        { "text": "Check Eligibility Online" },
+        { "text": "All 21 NJ Counties" },
+        { "text": "Cliffco · Lending Since 1989" }
+      ],
+      "descriptions": [
+        "First home in New Jersey? First-generation and first-time buyers may qualify.",
+        "If your parents don't currently own a home, you may be eligible to apply.",
+        "Available in all 21 NJ counties. Total assistance ranges from $17,000 to $22,000.",
+        "Check your eligibility online in minutes. No cost, no impact to your credit."
+      ]
+    },
+    {
+      "_angle": "Trust / guidance",
+      "headlines": [
+        { "text": "NJ Down Payment Assistance", "pinnedField": "HEADLINE_1" },
+        { "text": "NJ First-Time Buyer Grant", "pinnedField": "HEADLINE_1" },
+        { "text": "First-Gen NJ Homebuyers", "pinnedField": "HEADLINE_1" },
+        { "text": "Talk to a Real Loan Officer" },
+        { "text": "Licensed NJ Loan Officers" },
+        { "text": "Not a Call Center" },
+        { "text": "Lending in NJ Since 1989" },
+        { "text": "No Cost, No Obligation" },
+        { "text": "Guidance Every Step" },
+        { "text": "NJHMFA Participating Lender" },
+        { "text": "Speak With an Expert Today" },
+        { "text": "Guidance You Can Trust" },
+        { "text": "Check Your Eligibility" },
+        { "text": "Serving All of New Jersey" },
+        { "text": "Cliffco Mortgage Bankers" }
+      ],
+      "descriptions": [
+        "Work directly with a licensed New Jersey loan officer, not a call center.",
+        "Cliffco has helped New Jersey families get home since 1989. NMLS #65328.",
+        "Your NJHMFA mortgage and assistance are handled as one simple application.",
+        "Talk to Eddie or Gary about the First Generation Homebuyer Program today."
+      ]
+    }
+  ]
+}

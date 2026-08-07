@@ -52,7 +52,7 @@ console.log("── Step 5: Creating warm-pixel remarketing audience ───�
 
 // Check if audience already exists
 const checkResp = await fetch(
-  `https://googleads.googleapis.com/v21/customers/${CID}/googleAds:search`,
+  `https://googleads.googleapis.com/v24/customers/${CID}/googleAds:search`,
   { method: "POST", headers,
     body: JSON.stringify({ query: `SELECT user_list.id, user_list.name, user_list.resource_name FROM user_list WHERE user_list.name = '${USER_LIST_NAME}'` }) }
 );
@@ -96,7 +96,7 @@ if (checkData.results?.length) {
   };
 
   const createResp = await fetch(
-    `https://googleads.googleapis.com/v21/customers/${CID}/userLists:mutate`,
+    `https://googleads.googleapis.com/v24/customers/${CID}/userLists:mutate`,
     { method: "POST", headers, body: JSON.stringify(createBody) }
   );
   const createData = await createResp.json();
@@ -115,7 +115,7 @@ console.log("\n── Step 7: Attaching RLSA to ad group ───────�
 
 // Check if criterion already exists on this ad group for this user list
 const criterionCheckResp = await fetch(
-  `https://googleads.googleapis.com/v21/customers/${CID}/googleAds:search`,
+  `https://googleads.googleapis.com/v24/customers/${CID}/googleAds:search`,
   { method: "POST", headers,
     body: JSON.stringify({ query: `SELECT ad_group_criterion.criterion_id, ad_group_criterion.user_list.user_list, ad_group_criterion.bid_modifier FROM ad_group_criterion WHERE ad_group_criterion.ad_group = 'customers/${CID}/adGroups/${AD_GROUP_ID}' AND ad_group_criterion.type = 'USER_LIST'` }) }
 );
@@ -145,7 +145,7 @@ if (existingCriterion) {
   };
 
   const rlsaResp = await fetch(
-    `https://googleads.googleapis.com/v21/customers/${CID}/adGroupCriteria:mutate`,
+    `https://googleads.googleapis.com/v24/customers/${CID}/adGroupCriteria:mutate`,
     { method: "POST", headers, body: JSON.stringify(rlsaBody) }
   );
   const rlsaData = await rlsaResp.json();

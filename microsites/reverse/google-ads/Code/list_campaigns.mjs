@@ -17,7 +17,7 @@ const tr = await fetch("https://oauth2.googleapis.com/token", {
   body: new URLSearchParams({ client_id: CID, client_secret: CS, refresh_token: RT, grant_type: "refresh_token" }),
 });
 const { access_token } = await tr.json();
-const r = await fetch("https://googleads.googleapis.com/v21/customers/" + CUID + "/googleAds:search", {
+const r = await fetch("https://googleads.googleapis.com/v24/customers/" + CUID + "/googleAds:search", {
   method: "POST",
   headers: { Authorization: "Bearer " + access_token, "developer-token": DEV, "login-customer-id": LCID, "Content-Type": "application/json" },
   body: JSON.stringify({ query: "SELECT campaign.id, campaign.name, campaign.status FROM campaign ORDER BY campaign.name ASC" }),

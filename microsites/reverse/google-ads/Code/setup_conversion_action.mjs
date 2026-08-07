@@ -47,7 +47,7 @@ const headers = {
 
 // ── Check for existing conversion action with the same name ──────────────────
 const checkResp = await fetch(
-  `https://googleads.googleapis.com/v21/customers/${CID}/googleAds:search`,
+  `https://googleads.googleapis.com/v24/customers/${CID}/googleAds:search`,
   { method: "POST", headers,
     body: JSON.stringify({ query: `SELECT conversion_action.id, conversion_action.name FROM conversion_action WHERE conversion_action.name = '${CONVERSION_NAME}'` }) }
 );
@@ -60,7 +60,7 @@ if (checkData.results?.length) {
   console.log("   Re-fetching tag snippets...");
 
   const snippetResp = await fetch(
-    `https://googleads.googleapis.com/v21/customers/${CID}/googleAds:search`,
+    `https://googleads.googleapis.com/v24/customers/${CID}/googleAds:search`,
     { method: "POST", headers,
       body: JSON.stringify({ query: `SELECT conversion_action.id, conversion_action.tag_snippets FROM conversion_action WHERE conversion_action.id = ${existing.id}` }) }
   );
@@ -100,7 +100,7 @@ const body = {
 };
 
 const createResp = await fetch(
-  `https://googleads.googleapis.com/v21/customers/${CID}/conversionActions:mutate`,
+  `https://googleads.googleapis.com/v24/customers/${CID}/conversionActions:mutate`,
   { method: "POST", headers, body: JSON.stringify(body) }
 );
 const createData = await createResp.json();
@@ -112,7 +112,7 @@ console.log(`✓ Conversion action created: ${resourceName}`);
 
 // ── Fetch tag snippets ───────────────────────────────────────────────────────
 const snippetResp = await fetch(
-  `https://googleads.googleapis.com/v21/customers/${CID}/googleAds:search`,
+  `https://googleads.googleapis.com/v24/customers/${CID}/googleAds:search`,
   { method: "POST", headers,
     body: JSON.stringify({ query: `SELECT conversion_action.id, conversion_action.tag_snippets FROM conversion_action WHERE conversion_action.id = ${conversionId}` }) }
 );

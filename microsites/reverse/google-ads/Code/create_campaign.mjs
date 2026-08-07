@@ -37,7 +37,7 @@ const { GOOGLE_ADS_DEVELOPER_TOKEN: DEV_TOKEN, GOOGLE_ADS_CLIENT_ID: CLIENT_ID,
         GOOGLE_ADS_CLIENT_SECRET: CLIENT_SECRET, GOOGLE_ADS_REFRESH_TOKEN: REFRESH_TOKEN,
         GOOGLE_ADS_LOGIN_CUSTOMER_ID: LOGIN_CID, GOOGLE_ADS_CUSTOMER_ID: CID } = vars;
 
-const BASE = `https://googleads.googleapis.com/v21/customers/${CID}`;
+const BASE = `https://googleads.googleapis.com/v24/customers/${CID}`;
 const USA_COUNTRY_ID = 2840;
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -124,12 +124,22 @@ async function main() {
   const {
     campaignName, budgetMicrosPerDay, geoTargets = [], language = "English",
     adSchedule = null, adGroupName, keywords, negativeKeywords = [],
-    finalUrl, path1, path2, rsas,
+    finalUrl, path1, path2, rsas, biddingStrategy = "MAXIMIZE_CONVERSIONS",
   } = config;
 
   for (const required of ["campaignName", "budgetMicrosPerDay", "adGroupName", "keywords", "finalUrl", "rsas"]) {
     if (!config[required]) throw new Error(`Config is missing required field: ${required}`);
   }
+
+  // Map the requested bidding strategy to the campaign field. Default preserves
+  // the original behavior (Maximize Conversions). Maximize Clicks (targetSpend)
+  // is the right pick for a brand-new campaign with no conversion history.
+  const strategy = String(biddingStrategy).toUpperCase();
+  const biddingField =
+    strategy === "MAXIMIZE_CLICKS" ? { targetSpend: {} } :
+    strategy === "MAXIMIZE_CONVERSIONS" ? { maximizeConversions: {} } :
+    null;
+  if (!biddingField) throw new Error(`Unsupported biddingStrategy: ${biddingStrategy} (use MAXIMIZE_CLICKS or MAXIMIZE_CONVERSIONS)`);
 
   console.log(`\nBuilding: ${campaignName}\n`);
   const token = await getToken();
@@ -152,13 +162,13 @@ async function main() {
       campaignBudget: budgetRN,
       networkSettings: { targetGoogleSearch: true, targetSearchNetwork: false,
                          targetContentNetwork: false, targetPartnerSearchNetwork: false },
-      maximizeConversions: {},
+      ...biddingField,
       geoTargetTypeSetting: { positiveGeoTargetType: "PRESENCE", negativeGeoTargetType: "PRESENCE" },
       containsEuPoliticalAdvertising: "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING",
     }
   }]);
   const campaignRN = campaignRes.results[0].resourceName;
-  console.log(`  ✓ ${campaignRN}`);
+  console.log(`  ✓ ${campaignRN} (bidding: ${strategy})`);
 
   // 3. Geo targeting
   if (geoTargets.length) {

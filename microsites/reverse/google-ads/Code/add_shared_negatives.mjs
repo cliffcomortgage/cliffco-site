@@ -28,7 +28,7 @@ const { GOOGLE_ADS_DEVELOPER_TOKEN: DEV_TOKEN, GOOGLE_ADS_CLIENT_ID: CLIENT_ID,
         GOOGLE_ADS_CLIENT_SECRET: CLIENT_SECRET, GOOGLE_ADS_REFRESH_TOKEN: REFRESH_TOKEN,
         GOOGLE_ADS_LOGIN_CUSTOMER_ID: LOGIN_CID, GOOGLE_ADS_CUSTOMER_ID: CID } = vars;
 
-const BASE        = `https://googleads.googleapis.com/v21/customers/${CID}`;
+const BASE        = `https://googleads.googleapis.com/v24/customers/${CID}`;
 const CAMPAIGN_RN = `customers/${CID}/campaigns/23946171105`;
 const LIST_NAME   = "Universal Service Business Negatives v1";
 
