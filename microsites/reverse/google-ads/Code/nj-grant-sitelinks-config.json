@@ -1,0 +1,30 @@
+{
+  "_comment": "Sitelinks for the NJ grant campaign, deep-linked to sections of the HubSpot landing page. Run: node Code/add_sitelinks.mjs Code/nj-grant-sitelinks-config.json",
+  "campaignId": "24114720869",
+  "sitelinks": [
+    {
+      "linkText": "Check Your Eligibility",
+      "url": "https://cliffcodirect.cliffcomortgage.com/nj-grant-program#apply",
+      "d1": "See what you qualify for",
+      "d2": "No cost, no obligation"
+    },
+    {
+      "linkText": "How It Works",
+      "url": "https://cliffcodirect.cliffcomortgage.com/nj-grant-program#how-it-works",
+      "d1": "$7,000 base, up to $22,000",
+      "d2": "Forgiven after 5 years"
+    },
+    {
+      "linkText": "Who Qualifies",
+      "url": "https://cliffcodirect.cliffcomortgage.com/nj-grant-program#who-qualifies",
+      "d1": "First-gen & first-time buyers",
+      "d2": "All 21 NJ counties"
+    },
+    {
+      "linkText": "Program FAQ",
+      "url": "https://cliffcodirect.cliffcomortgage.com/nj-grant-program#faq",
+      "d1": "Loan or grant? Credit? More",
+      "d2": "Common questions, answered"
+    }
+  ]
+}
