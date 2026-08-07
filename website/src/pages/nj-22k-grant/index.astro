@@ -1,8 +1,8 @@
 ---
 /**
  * NJHMFA First Generation Homebuyer Program - ads-only landing page.
- * Unlisted intentionally: no nav link, noindexed (see LandingLayout), and
- * excluded from the sitemap. Reached only via paid ads.
+ * Source of truth for the HubSpot export (nj-22k-grant-hubspot.html):
+ * edit here, rebuild, then regenerate the self-contained file.
  */
 import LandingLayout from "../../layouts/LandingLayout.astro";
 import { faqPageSchema } from "../../lib/schema";
@@ -70,6 +70,13 @@ const faq = [
   },
 ];
 
+// Real Cliffco client reviews (from src/data/reviews.ts — company-wide, not NJ-specific).
+const reviews = [
+  { quote: "Josh was absolutely amazing throughout my entire mortgage process. From start to finish, he made everything easy to understand and was always there to answer my questions. Buying a home can be stressful, but Josh stayed on top of everything.", author: "Christian J.", platform: "Experience.com" },
+  { quote: "Christian was both competent and incredibly affable. He made the complicated journey through loan approval both fun and seamless. He is the perfect representative!", author: "Emanuel E.", platform: "Experience.com" },
+  { quote: "Adam and Leah were highly responsive and helpful through the process, answering every question and keeping us informed at every step.", author: "Samuel P.", platform: "Experience.com" },
+];
+
 const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer: o.a })), ...faq])];
 ---
 
@@ -80,34 +87,41 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
   phone="(908) 370-1575"
   phoneE164="+19083701575"
 >
-  <!-- HERO -->
+  <!-- HERO: copy + form (left), image (right / below form on mobile) -->
   <section class="relative overflow-hidden" style="background: linear-gradient(135deg, #bde8f1 0%, #e5f5f9 30%, #ffffff 68%);">
-    <!-- Image bleeds to the right viewport edge so it can be large enough to
-         show the whole house without stealing width from the headline column.
-         Boxed to the full hero height with object-contain so the image never
-         grows taller than the hero (which would clip the top of the heads). -->
-    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-[56%] pointer-events-none">
-      <img src="/images/content%20images/nj-grant-hero.png" alt="Smiling couple holding house keys in front of their new home" class="w-full h-full object-contain object-right-bottom select-none" loading="eager" />
-    </div>
-    <div class="container-wide py-16 lg:py-20 relative z-10">
-      <div class="lg:max-w-[46%]">
+    <div class="container-wide py-12 lg:py-16 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+      <div>
         <p class="eyebrow">You may be eligible for</p>
-        <h1 class="mt-4" style="font-size: var(--text-display-xl); line-height: 1.08; font-weight: 700; color: var(--color-ink);">
+        <h1 class="mt-3" style="font-size: var(--text-display-xl); line-height: 1.08; font-weight: 700; color: var(--color-ink);">
           Up to $22,000 to buy your first home in New Jersey.
         </h1>
-        <p class="mt-5 text-[15px] leading-relaxed text-[var(--color-text)]">
-          The New Jersey Housing and Mortgage Finance Agency (NJHMFA) First Generation Homebuyer Program
-          provides qualified borrowers with $7,000 towards down payment and/or closing costs when paired with
-          NJHMFA First Mortgage Loan and Down Payment Assistance program. Depending on the county, total
-          assistance can vary from $17,000 to $22,000. The best part is that the assistance has no monthly
-          payment and is forgiven if you live in the property for 5 years and the loan has not been refinanced
-          in that time.
+        <p class="mt-4 max-w-xl text-[15px] leading-relaxed text-[var(--color-text)]">
+          Down payment assistance for New Jersey first-time and first-generation buyers: a 0% interest,
+          forgivable loan of up to $22,000 toward your down payment or closing costs, paired with an
+          NJHMFA mortgage through Cliffco.
         </p>
-        <div class="mt-8 flex flex-wrap gap-4 items-center">
-          <a href="#apply" class="btn btn-primary">Check My Eligibility</a>
-          <a href="tel:+19083701575" class="btn btn-secondary">Call (908) 370-1575</a>
+        <div class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[var(--color-text-muted)]">
+          <span class="font-semibold text-[var(--color-ink)]">4.9<span class="text-[var(--color-accent)]">★</span></span>
+          <span>3,617 verified reviews on Experience.com</span>
+          <span class="hidden sm:inline" aria-hidden="true">·</span>
+          <span>Lending since 1989 · NMLS #65328</span>
         </div>
-        <p class="mt-5 text-sm text-[var(--color-text-muted)]">No cost to check. No impact to your credit. Cliffco, Inc. NMLS 65328 is a participating lender with the NJHMFA and Loan Officers are licensed by the NJ Department of Banking and Insurance.</p>
+
+        <!-- Primary conversion: form in the hero -->
+        <div id="apply" class="card !p-6 mt-6 scroll-mt-24">
+          <p class="text-base font-semibold text-[var(--color-ink)]">See if you qualify — takes 2 minutes.</p>
+          <ul class="mt-3 mb-4 space-y-1 text-sm text-[var(--color-text-muted)] list-none p-0">
+            <li>&#10003; No cost to check, and no impact to your credit</li>
+            <li>&#10003; A licensed NJ loan officer replies within 1 business day</li>
+          </ul>
+          <div class="hs-form-frame" data-region="na1" data-form-id="d614cef1-1fd7-4a16-bce3-a3832c5be61c" data-portal-id="21616430"></div>
+          <p class="mt-3 text-xs text-[var(--color-text-muted)]">Prefer to talk? <a href="tel:+19083701575" class="font-semibold text-[var(--color-accent)] no-underline hover:underline">Call (908) 370-1575</a></p>
+        </div>
+        <p class="mt-4 max-w-xl text-xs text-[var(--color-text-muted)]">Cliffco, Inc. NMLS 65328 is a participating lender with the NJHMFA. Loan Officers are licensed by the NJ Department of Banking and Insurance. Income limits and NJHMFA underwriting guidelines apply.</p>
+      </div>
+
+      <div class="lg:pl-4">
+        <img src="/images/content%20images/nj-grant-hero.png" alt="Smiling couple holding house keys in front of their new home" class="w-full h-auto object-contain" loading="eager" />
       </div>
     </div>
   </section>
@@ -134,106 +148,8 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
     </div>
   </section>
 
-  <!-- PAIN POINTS -->
+  <!-- TEAM (moved up: real, licensed, local proof) -->
   <section class="bg-white" style="padding-block: var(--spacing-section);">
-    <div class="container-wide max-w-3xl">
-      <p class="eyebrow">If none of this feels familiar, that's the point</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 600;">Saving a down payment is harder when nobody handed you a head start.</h2>
-      <p class="mt-5 text-[var(--color-text)] leading-relaxed">
-        If you're the first person in your family to buy a home, you're doing it without the things
-        that make it easier for other buyers: no family down payment gift, no one who's been through
-        the process to ask, and often the assumption that assistance programs are for someone else.
-      </p>
-      <p class="mt-4 text-[var(--color-text)] leading-relaxed">
-        New Jersey built a program specifically for this. Not a general assistance fund you might not
-        qualify for, one designed around exactly your situation.
-      </p>
-    </div>
-  </section>
-
-  <!-- SOLUTION -->
-  <section class="bg-[var(--color-mist-gray)]" style="padding-block: var(--spacing-section);">
-    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
-      <div>
-        <p class="eyebrow">How the program works</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 600;">Three NJHMFA programs, combined into one.</h2>
-        <p class="mt-5 text-[var(--color-text)] leading-relaxed">
-          The First Generation Homebuyer Program provides $7,000 on its own. Paired with NJHMFA's
-          Smart Start Down Payment Assistance Program (up to $15,000, depending on county) and an
-          NJHMFA first mortgage, qualified buyers get up to $22,000 total toward their down payment
-          or closing costs.
-        </p>
-        <p class="mt-4 text-[var(--color-text)] leading-relaxed">
-          Both assistance pieces are structured as 0% interest loans with no monthly payment, forgiven
-          after 5 years of living in the home as your primary residence. Cliffco originates the first
-          mortgage and helps you apply for both assistance programs as one process, not three separate
-          applications.
-        </p>
-      </div>
-      <div class="card !p-0 overflow-hidden">
-        <div class="p-6 border-b border-[var(--color-mist-gray)]">
-          <p class="text-sm font-semibold text-[var(--color-ink)]">$22,000 counties</p>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{TIER_22K.join(", ")}</p>
-        </div>
-        <div class="p-6">
-          <p class="text-sm font-semibold text-[var(--color-ink)]">$17,000 counties</p>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{TIER_17K.join(", ")}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BENEFITS -->
-  <section class="bg-white" style="padding-block: var(--spacing-section);">
-    <div class="container-wide">
-      <p class="eyebrow">What you actually get</p>
-      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2); font-weight: 600;">Real assistance, with terms you can plan around.</h2>
-      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {benefits.map((b) => (
-          <div class="card">
-            <h3 class="text-base font-semibold text-[var(--color-accent)]">{b.name}</h3>
-            <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{b.blurb}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="bg-[var(--color-mist-gray)]" style="padding-block: var(--spacing-section);">
-    <div class="container-wide">
-      <p class="eyebrow">The process</p>
-      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2); font-weight: 600;">Four steps, one application.</h2>
-      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {howItWorks.map((s) => (
-          <div class="card">
-            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-accent)] text-white text-sm font-semibold">{s.step}</span>
-            <h3 class="mt-4 text-base font-semibold text-[var(--color-ink)]">{s.title}</h3>
-            <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{s.body}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- OBJECTION HANDLING -->
-  <section class="bg-white" style="padding-block: var(--spacing-section);">
-    <div class="container-wide max-w-3xl">
-      <p class="eyebrow">Before you ask</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 600;">The questions we hear most, answered directly.</h2>
-      <div class="mt-8 space-y-6">
-        {objections.map((o) => (
-          <div class="border-b border-[var(--color-mist-gray)] pb-5">
-            <h3 class="font-semibold text-[var(--color-ink)]">{o.q}</h3>
-            <p class="mt-2 text-sm text-[var(--color-text)] leading-relaxed">{o.a}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM -->
-  <section class="bg-[var(--color-mist-gray)]" style="padding-block: var(--spacing-section);">
     <div class="container-wide">
       <p class="eyebrow">Who you'll talk to</p>
       <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2); font-weight: 600;">Two licensed New Jersey loan officers, not a call center.</h2>
@@ -256,8 +172,133 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- BENEFITS -->
+  <section class="bg-[var(--color-mist-gray)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide">
+      <p class="eyebrow">What you actually get</p>
+      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2); font-weight: 600;">Real assistance, with terms you can plan around.</h2>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {benefits.map((b) => (
+          <div class="card">
+            <h3 class="text-base font-semibold text-[var(--color-accent)]">{b.name}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{b.blurb}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-10 text-center">
+        <a href="#apply" class="btn btn-primary">Check My Eligibility</a>
+        <p class="mt-2 text-sm text-[var(--color-text-muted)]">Takes 2 minutes &middot; no cost &middot; no credit impact</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS: 3-program stack + county pills -->
+  <section id="how-it-works" class="bg-white scroll-mt-24" style="padding-block: var(--spacing-section);">
+    <div class="container-wide">
+      <p class="eyebrow">How the program works</p>
+      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2); font-weight: 600;">Three NJHMFA programs, combined into one.</h2>
+      <p class="mt-4 max-w-2xl text-[var(--color-text)] leading-relaxed">
+        The First Generation Homebuyer Program adds $7,000 on top of NJHMFA's Smart Start Down Payment
+        Assistance and an NJHMFA first mortgage. Together, qualified buyers get up to $22,000 toward their
+        down payment or closing costs, as a 0% interest, forgivable loan with no monthly payment, applied
+        for as one process.
+      </p>
+
+      <div class="mt-8 grid gap-3 sm:grid-cols-[1fr_auto_1fr_auto_1.15fr] items-center max-w-4xl">
+        <div class="card text-center !p-4">
+          <p class="text-xs uppercase tracking-wide text-[var(--color-text-muted)]">First Generation</p>
+          <p class="mt-1 text-xl font-bold text-[var(--color-ink)]">$7,000</p>
+        </div>
+        <div class="text-center text-2xl font-bold text-[var(--color-text-muted)]">+</div>
+        <div class="card text-center !p-4">
+          <p class="text-xs uppercase tracking-wide text-[var(--color-text-muted)]">Smart Start DPA</p>
+          <p class="mt-1 text-xl font-bold text-[var(--color-ink)]">up to $15,000</p>
+        </div>
+        <div class="text-center text-2xl font-bold text-[var(--color-text-muted)]">=</div>
+        <div class="rounded-lg text-center p-4" style="background: var(--color-accent); color: #fff;">
+          <p class="text-xs uppercase tracking-wide text-white/80">Total assistance</p>
+          <p class="mt-1 text-xl font-bold">up to $22,000</p>
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-6 lg:grid-cols-2 max-w-4xl">
+        <div>
+          <p class="text-sm font-semibold text-[var(--color-ink)]">$22,000 counties <span class="text-[var(--color-text-muted)] font-normal">(12)</span></p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            {TIER_22K.map((c) => (
+              <span class="inline-block rounded-full px-3 py-1 text-xs font-medium text-[var(--color-ink)]" style="background:#efe9fb;border:1px solid #d6c7f2;">{c}</span>
+            ))}
+          </div>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-[var(--color-ink)]">$17,000 counties <span class="text-[var(--color-text-muted)] font-normal">(9)</span></p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            {TIER_17K.map((c) => (
+              <span class="inline-block rounded-full bg-white border border-[var(--color-soft-gray)] px-3 py-1 text-xs text-[var(--color-text)]">{c}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="bg-[var(--color-mist-gray)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide">
+      <p class="eyebrow">The process</p>
+      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2); font-weight: 600;">Four steps, one application.</h2>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {howItWorks.map((s) => (
+          <div class="card">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-accent)] text-white text-sm font-semibold">{s.step}</span>
+            <h3 class="mt-4 text-base font-semibold text-[var(--color-ink)]">{s.title}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
   <section class="bg-white" style="padding-block: var(--spacing-section);">
+    <div class="container-wide">
+      <p class="eyebrow">What Cliffco clients say</p>
+      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2); font-weight: 600;">Real reviews from real borrowers.</h2>
+      <p class="mt-2 text-sm text-[var(--color-text-muted)]">Rated 4.9/5 on Experience.com from 3,617 verified reviews &middot; 5.0/5 on Zillow &middot; A+ with the BBB.</p>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {reviews.map((r) => (
+          <figure class="card flex flex-col">
+            <div class="text-[var(--color-accent)] tracking-widest" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote class="mt-3 text-sm text-[var(--color-text)] leading-relaxed">{`“${r.quote}”`}</blockquote>
+            <figcaption class="mt-4 text-sm font-semibold text-[var(--color-ink)]">{r.author} <span class="font-normal text-[var(--color-text-muted)]">&middot; {r.platform}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJECTIONS -->
+  <section id="who-qualifies" class="bg-[var(--color-mist-gray)] scroll-mt-24" style="padding-block: var(--spacing-section);">
+    <div class="container-wide max-w-3xl">
+      <p class="eyebrow">Before you ask</p>
+      <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 600;">The questions we hear most, answered directly.</h2>
+      <div class="mt-8 space-y-6">
+        {objections.map((o) => (
+          <div class="border-b border-[var(--color-soft-gray)] pb-5">
+            <h3 class="font-semibold text-[var(--color-ink)]">{o.q}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text)] leading-relaxed">{o.a}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-10 text-center">
+        <a href="#apply" class="btn btn-primary">Check My Eligibility</a>
+        <p class="mt-2 text-sm text-[var(--color-text-muted)]">Takes 2 minutes &middot; no cost &middot; no credit impact</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-white scroll-mt-24" style="padding-block: var(--spacing-section);">
     <div class="container-wide max-w-3xl">
       <p class="eyebrow">Common questions</p>
       <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 600;">First Generation Homebuyer Program FAQ.</h2>
@@ -272,27 +313,21 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
     </div>
   </section>
 
-  <!-- FINAL CTA + FORM -->
-  <section id="apply" class="accent-gradient flex-1" style="padding-block: var(--spacing-section);">
-    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
-      <div>
-        <h2 class="text-white" style="font-size: var(--text-h2); font-weight: 600;">See what you qualify for. Takes 2 minutes.</h2>
-        <p class="lead mt-4 text-white/85">
-          Tell us a little about your situation and a licensed New Jersey loan officer will confirm
-          your eligibility and county amount, no cost, no obligation.
-        </p>
-        <ul class="mt-6 space-y-2 text-sm text-white/75 list-none p-0">
-          <li>&#10003; No cost to check eligibility</li>
-          <li>&#10003; No impact to your credit</li>
-          <li>&#10003; A real, licensed loan officer responds within 1 business day</li>
-        </ul>
-      </div>
-
-      <div class="card !p-8">
-        <div class="hs-form-frame" data-region="na1" data-form-id="d614cef1-1fd7-4a16-bce3-a3832c5be61c" data-portal-id="21616430"></div>
+  <!-- FINAL CTA -->
+  <section class="accent-gradient" style="padding-block: var(--spacing-section);">
+    <div class="container-wide text-center">
+      <h2 class="text-white" style="font-size: var(--text-h2); font-weight: 600;">See what you qualify for. Takes 2 minutes.</h2>
+      <p class="lead mt-4 text-white/85 max-w-2xl mx-auto">A licensed New Jersey loan officer will confirm your eligibility and county amount, no cost, no obligation.</p>
+      <div class="mt-8 flex flex-wrap gap-4 justify-center">
+        <a href="#apply" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Check My Eligibility</a>
+        <a href="tel:+19083701575" class="btn btn-secondary !border-white !text-white">Call (908) 370-1575</a>
       </div>
     </div>
   </section>
+
+  <!-- Mobile sticky conversion bar -->
+  <a href="#apply" class="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-[var(--color-accent)] text-white text-center font-semibold py-4 no-underline" style="box-shadow: 0 -2px 16px rgba(0,0,0,0.18);">Check My Eligibility &middot; 2 Minutes</a>
 </LandingLayout>
 
+<style is:inline>@media (max-width: 1023px){ body { padding-bottom: 64px; } }</style>
 <script is:inline src="https://js.hsforms.net/forms/embed/21616430.js" defer></script>
