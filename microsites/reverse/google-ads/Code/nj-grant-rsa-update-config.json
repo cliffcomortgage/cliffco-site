@@ -1,5 +1,5 @@
 {
-  "_comment": "Adds callouts + structured snippets to the NJ grant campaign. Re-adds the same 3 RSAs (update_ads_and_assets clears+re-adds RSAs). Run: node Code/update_ads_and_assets.mjs Code/nj-grant-assets-update-config.json",
+  "_comment": "RSA refresh only for the NJ grant campaign (adds LP-matching headline). No callouts/snippets here so re-running does NOT duplicate the assets already linked. Run: node Code/update_ads_and_assets.mjs Code/nj-grant-rsa-update-config.json",
   "campaignId": "24114720869",
   "adGroupId": "202774378727",
   "finalUrl": "https://cliffcodirect.cliffcomortgage.com/nj-grant-program",
@@ -181,39 +181,6 @@
         "Cliffco has helped New Jersey families get home since 1989. NMLS #65328.",
         "Your NJHMFA mortgage and assistance are handled as one simple application.",
         "Talk to Eddie or Gary about the First Generation Homebuyer Program today."
-      ]
-    }
-  ],
-  "callouts": [
-    "Up to $22,000",
-    "No Monthly Payment",
-    "Forgiven After 5 Years",
-    "0% Interest Assistance",
-    "No Cost to Check",
-    "Licensed NJ Loan Officers",
-    "Lending Since 1989",
-    "All 21 NJ Counties",
-    "First-Time Buyers Welcome",
-    "No Impact to Credit"
-  ],
-  "structuredSnippets": [
-    {
-      "header": "Service catalog",
-      "values": [
-        "Down Payment Assistance",
-        "Closing Cost Help",
-        "NJHMFA First Mortgage",
-        "Eligibility Check",
-        "First-Gen Program"
-      ]
-    },
-    {
-      "header": "Types",
-      "values": [
-        "First-Time Buyers",
-        "First-Generation Buyers",
-        "New Jersey Buyers",
-        "Foster & Youth Eligible"
       ]
     }
   ]
