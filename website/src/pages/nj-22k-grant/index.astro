@@ -70,11 +70,11 @@ const faq = [
   },
 ];
 
-// Real Cliffco client reviews (from src/data/reviews.ts — company-wide, not NJ-specific).
+// Real Cliffco client reviews (company-wide, not NJ-specific).
 const reviews = [
-  { quote: "Josh was absolutely amazing throughout my entire mortgage process. From start to finish, he made everything easy to understand and was always there to answer my questions. Buying a home can be stressful, but Josh stayed on top of everything.", author: "Christian J.", platform: "Experience.com" },
-  { quote: "Christian was both competent and incredibly affable. He made the complicated journey through loan approval both fun and seamless. He is the perfect representative!", author: "Emanuel E.", platform: "Experience.com" },
-  { quote: "Adam and Leah were highly responsive and helpful through the process, answering every question and keeping us informed at every step.", author: "Samuel P.", platform: "Experience.com" },
+  { quote: "It was a smooth, straight and less stressful process. I see it as a miracle. Everything was moving as planned. The agent with me gave me all the necessary info to make the process easy and I moved by her advice and it paid off. My first time buying a home was a great experience! Cliffco Mortgage is the ideal. I will use them again and again.", author: "Obiegbu R.", platform: "Google" },
+  { quote: "Seamless process. No surprises. And minimum fees for closing.", author: "Mel D.", platform: "Google" },
+  { quote: "I had a great experience with Cliffco. From the very beginning, the team was responsive, supportive, and thorough, walking me through the process and answering all of my questions with care.", author: "Andres A.", platform: "Google" },
 ];
 
 const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer: o.a })), ...faq])];
@@ -87,9 +87,9 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
   phone="(908) 370-1575"
   phoneE164="+19083701575"
 >
-  <!-- HERO: copy + form (left), image (right / below form on mobile) -->
+  <!-- HERO: copy (left) + form (right) -->
   <section class="relative overflow-hidden" style="background: linear-gradient(135deg, #bde8f1 0%, #e5f5f9 30%, #ffffff 68%);">
-    <div class="container-wide py-12 lg:py-16 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+    <div class="container-wide py-12 lg:py-16 grid lg:grid-cols-2 gap-10 lg:gap-12 items-start">
       <div>
         <p class="eyebrow">You may be eligible for</p>
         <h1 class="mt-3" style="font-size: var(--text-display-xl); line-height: 1.08; font-weight: 700; color: var(--color-ink);">
@@ -106,22 +106,19 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
           <span class="hidden sm:inline" aria-hidden="true">·</span>
           <span>Lending since 1989 · NMLS #65328</span>
         </div>
-
-        <!-- Primary conversion: form in the hero -->
-        <div id="apply" class="card !p-6 mt-6 scroll-mt-24">
-          <p class="text-base font-semibold text-[var(--color-ink)]">See if you qualify — takes 2 minutes.</p>
-          <ul class="mt-3 mb-4 space-y-1 text-sm text-[var(--color-text-muted)] list-none p-0">
-            <li>&#10003; No cost to check, and no impact to your credit</li>
-            <li>&#10003; A licensed NJ loan officer replies within 1 business day</li>
-          </ul>
-          <div class="hs-form-frame" data-region="na1" data-form-id="d614cef1-1fd7-4a16-bce3-a3832c5be61c" data-portal-id="21616430"></div>
-          <p class="mt-3 text-xs text-[var(--color-text-muted)]">Prefer to talk? <a href="tel:+19083701575" class="font-semibold text-[var(--color-accent)] no-underline hover:underline">Call (908) 370-1575</a></p>
-        </div>
-        <p class="mt-4 max-w-xl text-xs text-[var(--color-text-muted)]">Cliffco, Inc. NMLS 65328 is a participating lender with the NJHMFA. Loan Officers are licensed by the NJ Department of Banking and Insurance. Income limits and NJHMFA underwriting guidelines apply.</p>
+        <ul class="mt-6 space-y-2 text-sm text-[var(--color-text)] list-none p-0">
+          <li>&#10003; No cost to check, and no impact to your credit</li>
+          <li>&#10003; A licensed NJ loan officer replies within 1 business day</li>
+          <li>&#10003; Real, local loan officers, not a call center</li>
+        </ul>
       </div>
 
-      <div class="lg:pl-4">
-        <img src="/images/content%20images/nj-grant-hero.png" alt="Smiling couple holding house keys in front of their new home" class="w-full h-auto object-contain" loading="eager" />
+      <!-- Primary conversion: form in the hero -->
+      <div id="apply" class="card !p-6 scroll-mt-24">
+        <p class="text-base font-semibold text-[var(--color-ink)]">See if you qualify — takes 2 minutes.</p>
+        <div class="mt-4 hs-form-frame" data-region="na1" data-form-id="d614cef1-1fd7-4a16-bce3-a3832c5be61c" data-portal-id="21616430"></div>
+        <p class="mt-3 text-xs text-[var(--color-text-muted)]">Prefer to talk? <a href="tel:+19083701575" class="font-semibold text-[var(--color-accent)] no-underline hover:underline">Call (908) 370-1575</a></p>
+        <p class="mt-4 text-xs text-[var(--color-text-muted)]">Cliffco, Inc. NMLS 65328 is a participating lender with the NJHMFA. Loan Officers are licensed by the NJ Department of Banking and Insurance. Income limits and NJHMFA underwriting guidelines apply.</p>
       </div>
     </div>
   </section>
