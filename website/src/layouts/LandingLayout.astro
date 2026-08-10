@@ -58,15 +58,36 @@ const { title, description, schema, phone, phoneE164 } = Astro.props;
     </main>
 
     <footer class="bg-[var(--color-rich-black)] text-white">
-      <div class="container-wide py-8">
-        <div class="flex items-start gap-4">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-label="Equal Housing Lender" role="img" class="shrink-0 mt-1 opacity-60"><path d="M12 3 2 10h2v11h16V10h2L12 3Zm0 2.4L17.5 9h-11L12 5.4ZM8 11h8v2H8v-2Zm0 4h8v2H8v-2Z" fill="#fff"/></svg>
-          <p class="text-[11px] leading-relaxed text-white/35">
-            {COMPANY.brandName}. Equal Housing Lender. {COMPANY.legalName} Corporate NMLS #{COMPANY.nmls} (www.nmlsconsumeraccess.org) {COMPANY.hq.street}, {COMPANY.hq.city}, {COMPANY.hq.region} {COMPANY.hq.postalCode} {COMPANY.hq.phone}.
-            This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.
+      <div class="container-wide py-10">
+
+        <!-- Top row: logo + links -->
+        <div class="flex flex-wrap gap-4 justify-between items-center pb-6 border-b border-white/10">
+          <img src="/images/content%20images/Cliffco%20Only@4x.png" alt="Cliffco Mortgage Bankers" class="h-6 w-auto" style="filter: brightness(0) invert(1);" loading="lazy" />
+          <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+            <a href="https://cliffcomortgage.com/" class="text-white/60 hover:text-white no-underline" target="_blank" rel="noopener">Full Site</a>
+            <a href="https://cliffcomortgage.com/licensing/" class="text-white/60 hover:text-white no-underline" target="_blank" rel="noopener">Licensing</a>
+            <a href="https://cliffcomortgage.com/privacy-policy/" class="text-white/60 hover:text-white no-underline" target="_blank" rel="noopener">Privacy Policy</a>
+            <a href="https://www.nmlsconsumeraccess.org/" class="text-white/60 hover:text-white no-underline" target="_blank" rel="noopener">NMLS Consumer Access</a>
+          </div>
+        </div>
+
+        <!-- Branch info -->
+        <div class="mt-6 pb-6 border-b border-white/10 text-sm text-white/60">
+          <p class="font-semibold text-white/80">Cliffco Mortgage Bankers &middot; Branchburg, NJ</p>
+          <p class="mt-1">3121 Route 22 East, 3rd Floor, Office 313</p>
+          <p class="mt-0.5">Branchburg, NJ 08876 &middot; NMLS #2671359</p>
+          <p class="mt-0.5"><a href="tel:5164087300" class="hover:text-white no-underline">Office: 516-408-7300</a></p>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="mt-6 text-xs text-white/40 leading-relaxed">
+          <p>
+            Cliffco, Inc. is not affiliated with or acting on behalf of the FHA or any government entity. Equal Housing Lender. Cliffco, Inc. Corporate NMLS#65328 (<a href="https://www.nmlsconsumeraccess.org/" class="text-white/50 hover:text-white underline" target="_blank" rel="noopener">www.nmlsconsumeraccess.org</a>) 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553 (516) 408-7300. FL Office of Financial Regulation MLD1245; NJ Department of Banking &amp; Insurance; NC Commissioner of Banks L-211081; PA Department of Banking &amp; Securities 45275. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.
           </p>
         </div>
-        <p class="mt-4 text-[11px] text-white/35">&copy; {new Date().getFullYear()} {COMPANY.legalName}. All rights reserved.</p>
+
+        <p class="mt-6 text-xs text-white/30">&copy; 2026 Cliffco, Inc. &middot; NMLS #65328 &middot; Equal Housing Lender</p>
+
       </div>
     </footer>
   </body>
