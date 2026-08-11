@@ -180,8 +180,10 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(JSON.stringify({ success: true }), { status: 200, headers: { 'Content-Type': 'application/json' } });
     }
 
-    // Validate required fields
-    if (!firstName || !lastName || !email || !phone || !purpose || !state || !tcpa) {
+    // Validate required fields. purpose/state are optional here because the
+    // shared ContactForm can hide them per page (showPurpose/showState) - the
+    // form enforces `required` in the browser wherever they're actually shown.
+    if (!firstName || !lastName || !email || !phone || !tcpa) {
       return new Response(
         JSON.stringify({ error: 'Please fill in all required fields.' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
