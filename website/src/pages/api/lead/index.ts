@@ -112,7 +112,7 @@ async function smtp2goSend(msg: {
 }
 
 async function sendViaEmail(lead: Lead, isFallback: boolean): Promise<void> {
-  const fromEmail = import.meta.env.EMAIL_FROM ?? 'website@cliffcomortgage.com';
+  const fromEmail = import.meta.env.EMAIL_FROM ?? 'websiteleads@cliffcomortgage.com';
 
   const subject = `New Lead from cliffcomortgage.com: ${lead.name}`;
 

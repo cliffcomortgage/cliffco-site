@@ -104,7 +104,7 @@ async function sendViaEmail(lead: {
   purpose: string; state: string; notes: string;
   formSource: string; recipients: string[];
 }, isFallback: boolean): Promise<void> {
-  const fromEmail = import.meta.env.EMAIL_FROM ?? 'website@cliffcomortgage.com';
+  const fromEmail = import.meta.env.EMAIL_FROM ?? 'websiteleads@cliffcomortgage.com';
 
   const subject = `New Lead from cliffcomortgage.com: ${lead.firstName} ${lead.lastName}`;
 
