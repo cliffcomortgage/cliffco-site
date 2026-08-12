@@ -1,17 +1,20 @@
-﻿---
+---
 import Layout from "../layouts/Layout.astro";
-import Headshot from "../components/ui/Headshot.astro";
 import { COMPANY } from "../data/company";
-import { priorityProducts } from "../data/products";
-import { loanOfficer } from "../data/loan-officers";
 import { LOCATIONS } from "../data/locations";
 import { BRANCHES } from "../data/branches";
-import { FEATURED_REVIEWS } from "../data/reviews";
 
-const products = priorityProducts();
 const officeLocations = LOCATIONS.filter((l) => !l.path.includes("/"));
-const president = loanOfficer("christopher-clifford")!;
 const yearsInBiz = COMPANY.yearsInBusiness();
+
+// Hero path tiles + primary CTA
+const heroTiles = [
+  { label: "Buy a Home", href: "/purchasing-refinancing/" },
+  { label: "Refinance My Mortgage", href: "/loans/refinancing/" },
+  { label: "Get Cash from My Home", href: "/loans/heloc/" },
+  { label: "I'm Self-Employed", href: "/self-employed-mortgage/" },
+  { label: "I'm an Investor", href: "/real-estate-investor-mortgage/" },
+];
 ---
 
 <Layout
@@ -20,35 +23,37 @@ const yearsInBiz = COMPANY.yearsInBusiness();
 >
 
   <!-- HERO -->
-  <section class="accent-gradient relative overflow-hidden">
-    <img
-      src="/images/content%20images/Purchasing%20Refinance%20Hero.webp"
-      alt=""
-      aria-hidden="true"
-      class="absolute bottom-0 right-0 hidden lg:block w-auto object-contain object-bottom pointer-events-none select-none"
-      style="height:820px;right:3%;bottom:-120px;"
-      loading="eager"
-    />
-    <div class="container-wide py-20 lg:py-28 relative z-10">
+  <section
+    class="accent-gradient relative overflow-hidden"
+    style="background:
+      radial-gradient(1000px 520px at 50% -8%, rgba(102,51,204,0.55), transparent 60%),
+      radial-gradient(900px 520px at 15% 115%, rgba(189,232,241,0.18), transparent 55%),
+      radial-gradient(760px 460px at 90% 108%, rgba(102,51,204,0.26), transparent 58%),
+      linear-gradient(160deg, #0d0d0d 0%, #1c1a20 100%);"
+  >
+    <div class="container-wide py-24 lg:py-32 text-center flex flex-col items-center">
       <p class="eyebrow !text-[var(--color-ice-blue)]">Family-built since 1989 · NMLS #{COMPANY.nmls}</p>
-      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.1; font-weight: 400; font-family: var(--font-sans);">
-        When Big Banks Say No,<br/>
-        <span class="text-[var(--color-ice-blue)]">We Say Let's Talk.</span>
+
+      <h1 class="mt-5 text-white max-w-4xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
+        <span class="whitespace-nowrap">When Big Banks Say No,</span><br/>
+        <span class="text-[var(--color-ice-blue)]">We Say Yes.</span>
       </h1>
-      <p class="lead mt-6 text-white/90 max-w-2xl">
-        Most lenders have rules where we have solutions. Bank statements, DSCR, reverse, and Non-QM loans mean your income doesn't have to look perfect to qualify.
+
+      <p class="lead mt-6 text-white/85 max-w-2xl">
+        Buy a home, refinance, or use your equity. We find a yes where big banks say no.
       </p>
 
-      <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-2xl">
-        <a href="/self-employed-mortgage/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-lg px-4 py-3 text-white font-medium flex items-center justify-center no-underline transition-colors text-sm whitespace-nowrap">I'm Self-Employed</a>
-        <a href="/real-estate-investor-mortgage/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-lg px-4 py-3 text-white font-medium text-center no-underline transition-colors text-sm">I'm an Investor</a>
-        <a href="/reverse-mortgage/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-lg px-4 py-3 text-white font-medium text-center no-underline transition-colors text-sm">I'm 62+</a>
-        <a href="/denied-mortgage/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-lg px-4 py-3 text-white font-medium text-center no-underline transition-colors text-sm">I Was Denied</a>
-        <a href="/purchasing-refinancing/" class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-lg px-4 py-3 text-white font-medium text-center no-underline transition-colors text-sm">I'm Purchasing</a>
+      <div class="mt-9 flex flex-wrap justify-center gap-3 max-w-2xl">
+        {heroTiles.map((t) => (
+          <a
+            href={t.href}
+            class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-lg px-5 py-3.5 text-white font-medium text-sm no-underline transition-colors whitespace-nowrap"
+          >{t.label}</a>
+        ))}
       </div>
 
-      <div class="mt-8">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Check My Eligibility</a>
+      <div class="mt-9">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Start a Pre-Approval</a>
         <p class="mt-3 text-white/70 text-sm">No credit pull. No commitment. Takes 2 minutes.</p>
       </div>
     </div>
@@ -97,31 +102,6 @@ const yearsInBiz = COMPANY.yearsInBusiness();
     </div>
   </section>
 
-  <!-- WHAT WE DO -->
-  <section class="section bg-white">
-    <div class="container-wide grid lg:grid-cols-2 gap-12 items-center">
-      <div class="rounded-lg overflow-hidden aspect-[4/3] bg-[var(--color-mist-gray)]">
-        <img
-          src="/images/content%20images/what-we-do.webp"
-          loading="lazy"
-          alt="Cliffco loan officer sitting with a family"
-          class="w-full h-full object-cover"
-        />
-      </div>
-      <div>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">In business over 40 years serving borrowers big banks overlook.</h2>
-        <p class="mt-6" style="font-size: var(--text-lead); line-height: 1.55; color: var(--color-text);">
-          Cliffco Mortgage Bankers (NMLS #{COMPANY.nmls}) is an independent mortgage banker
-          founded in 1989 and licensed in 32 states. We specialize in <strong>Non-QM and
-          self-employed loans</strong>, <strong>reverse mortgages</strong>, <strong>DSCR loans for
-          investors</strong>, and <strong>business bank statement loans</strong>. We have nine branches
-          across New York, New Jersey, Arizona, Minnesota, and Florida. Every file is underwritten
-          in-house. No call centers. No handoffs. No shortcuts.
-        </p>
-      </div>
-    </div>
-  </section>
-
   <!-- WHO WE HELP - SITUATION CARDS -->
   <section class="section bg-[var(--color-mist-gray)]">
     <div class="container-wide">
@@ -157,192 +137,13 @@ const yearsInBiz = COMPANY.yearsInBusiness();
     </div>
   </section>
 
-  <!-- LOAN PROGRAMS -->
-  <section class="section bg-white">
-    <div class="container-wide">
-      <div class="max-w-3xl">
-        <p class="eyebrow">Our niche</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">The four loan types we've spent decades mastering.</h2>
-        <p class="lead mt-4 text-[var(--color-text-muted)]">
-          Most lenders bolt on Non-QM and DSCR as a side product. We've been originating these
-          scenarios since the day they existed, writing them when other banks said no.
-        </p>
-      </div>
-
-      <div class="mt-10 grid md:grid-cols-2 gap-x-16">
-        {products.map((p) => (
-          <a href={`/loans/${p.slug}/`} class="no-underline text-[var(--color-ink)] border-t border-[var(--color-ink)]/15 py-8 flex flex-col gap-3">
-            <h3 style="font-size: var(--text-h3);">{p.shortName}</h3>
-            <p class="text-[var(--color-text-muted)] leading-relaxed flex-1">{p.oneLiner}</p>
-            <span class="text-sm font-semibold text-[var(--color-accent)]">Learn more →</span>
-          </a>
-        ))}
-      </div>
-
-      <div class="mt-8 text-center">
-        <a href="/loans/" class="text-sm font-medium">See conventional, FHA, VA, USDA, and renovation loans →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- HELOC SPOTLIGHT -->
-  <section class="accent-gradient">
-    <div class="container-wide py-12 lg:py-16">
-      <div class="grid lg:grid-cols-[2fr_1fr] gap-8 items-center">
-        <div>
-          <p class="eyebrow !text-[var(--color-ice-blue)]">Featured Program</p>
-          <h2 class="mt-3 text-white" style="font-size: var(--text-h2);">HELOC: Approved in 5 minutes. Funded in 5 days.<sup class="text-sm">*</sup></h2>
-          <p class="lead mt-4 text-white/85">
-            Access your home equity without refinancing your first mortgage. Our HELOC program delivers an approval decision in five minutes and funding in as few as five business days. <a href="/loans/heloc/" class="text-[var(--color-ice-blue)] underline">Learn how our HELOC works</a>.
-          </p>
-          <p class="mt-6 text-xs text-white/50 leading-relaxed max-w-2xl">
-            *Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report. Five business day funding timeline assumes closing the loan with our remote online notary. Funding timelines may be longer for loans secured by properties located in counties that do not permit recording of e-signatures or that otherwise require an in-person closing.
-          </p>
-        </div>
-        <div class="flex flex-col gap-3">
-          <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Pre-Qualified</a>
-          <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="bg-white">
-    <!-- Static layout: mobile, reduced-motion, and no-JS default -->
-    <div id="hiw-static" class="section">
-      <div class="container-wide">
-        <div class="max-w-3xl">
-          <p class="eyebrow">How it works</p>
-          <h2 class="mt-3" style="font-size: var(--text-h2);">A simple process, no matter how complex your situation.</h2>
-        </div>
-
-        <div class="mt-10 grid gap-10 md:grid-cols-3">
-          <div>
-            <p class="text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-accent)]">Step 01</p>
-            <h3 class="mt-4" style="font-size: var(--text-h3);">Tell us your situation</h3>
-            <p class="mt-2 text-[var(--color-text-muted)]">No credit pull. No commitment. Just a conversation about where you are and where you want to go.</p>
-          </div>
-          <div>
-            <p class="text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-accent)]">Step 02</p>
-            <h3 class="mt-4" style="font-size: var(--text-h3);">We find your path</h3>
-            <p class="mt-2 text-[var(--color-text-muted)]">A real mortgage specialist reviews your file within 24 hours and identifies the right program, not a bot.</p>
-          </div>
-          <div>
-            <p class="text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-accent)]">Step 03</p>
-            <h3 class="mt-4" style="font-size: var(--text-h3);">Close with confidence</h3>
-            <p class="mt-2 text-[var(--color-text-muted)]">We manage every step from application to keys. You focus on what's next.</p>
-          </div>
-        </div>
-
-        <div class="mt-10">
-          <a href="/get-started/" class="btn btn-primary">Tell us your situation</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pinned scroll stepper: desktop only, enabled by JS -->
-    <div id="hiw-scroller" class="hidden">
-      <div class="hiw-track" style="height: 260vh;">
-        <div class="sticky top-0 h-screen flex items-center">
-          <div class="container-wide w-full">
-            <div class="max-w-3xl">
-              <p class="eyebrow">How it works</p>
-              <h2 class="mt-3" style="font-size: var(--text-h2);">A simple process, no matter how complex your situation.</h2>
-            </div>
-
-            <div class="mt-14 grid grid-cols-[260px_1fr] gap-16 items-start">
-              <!-- Step labels + progress rail -->
-              <div class="relative pl-6">
-                <div class="absolute left-0 top-1 bottom-1 w-px bg-[var(--color-ink)]/10" aria-hidden="true">
-                  <div class="hiw-rail-fill w-px bg-[var(--color-accent)]" style="height: 0%;"></div>
-                </div>
-                <ol class="space-y-8 list-none m-0 p-0">
-                  <li class="hiw-label" data-step="0">
-                    <p class="text-xs uppercase tracking-[0.2em] font-semibold hiw-label-num">Step 01</p>
-                    <p class="mt-1 font-medium hiw-label-title">Tell us your situation</p>
-                  </li>
-                  <li class="hiw-label" data-step="1">
-                    <p class="text-xs uppercase tracking-[0.2em] font-semibold hiw-label-num">Step 02</p>
-                    <p class="mt-1 font-medium hiw-label-title">We find your path</p>
-                  </li>
-                  <li class="hiw-label" data-step="2">
-                    <p class="text-xs uppercase tracking-[0.2em] font-semibold hiw-label-num">Step 03</p>
-                    <p class="mt-1 font-medium hiw-label-title">Close with confidence</p>
-                  </li>
-                </ol>
-              </div>
-
-              <!-- Active step stage -->
-              <div class="relative min-h-[260px]">
-                <div class="hiw-step absolute inset-0" data-step="0">
-                  <h3 style="font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.2;">Tell us your situation</h3>
-                  <p class="lead mt-5 text-[var(--color-text-muted)] max-w-xl">No credit pull. No commitment. Just a conversation about where you are and where you want to go.</p>
-                </div>
-                <div class="hiw-step absolute inset-0" data-step="1">
-                  <h3 style="font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.2;">We find your path</h3>
-                  <p class="lead mt-5 text-[var(--color-text-muted)] max-w-xl">A real mortgage specialist reviews your file within 24 hours and identifies the right program, not a bot.</p>
-                </div>
-                <div class="hiw-step absolute inset-0" data-step="2">
-                  <h3 style="font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.2;">Close with confidence</h3>
-                  <p class="lead mt-5 text-[var(--color-text-muted)] max-w-xl">We manage every step from application to keys. You focus on what's next.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-14">
-              <a href="/get-started/" class="btn btn-primary">Tell us your situation</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <p class="eyebrow">From our borrowers</p>
-
-      <div class="mt-6" id="reviews-widget-slot">
-        <!-- Elfsight Google Reviews widget: script injected only when this
-             section approaches the viewport, so it never competes with
-             above-the-fold work -->
-        <div class="elfsight-app-48e4bead-fc89-45e0-9839-000043509c1d" data-elfsight-app-lazy></div>
-      </div>
-      <script>
-        (() => {
-          const slot = document.getElementById('reviews-widget-slot');
-          if (!slot) return;
-          let injected = false;
-          const inject = () => {
-            if (injected) return;
-            injected = true;
-            const s = document.createElement('script');
-            s.src = 'https://elfsightcdn.com/platform.js';
-            s.async = true;
-            document.head.appendChild(s);
-          };
-          const io = new IntersectionObserver((entries) => {
-            if (entries.some((e) => e.isIntersecting)) { inject(); io.disconnect(); }
-          }, { rootMargin: '600px 0px' });
-          io.observe(slot);
-        })();
-      </script>
-
-      <div class="mt-8 text-center">
-        <a href="/reviews/" class="text-sm font-medium">Read all reviews →</a>
-      </div>
-    </div>
-  </section>
-
   <!-- LOCATIONS -->
   <section class="section bg-white">
     <div class="container-wide">
       <div class="max-w-3xl">
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Nine offices. Five priority states. Real local people.</h2>
+        <h2 class="mt-3" style="font-size: var(--text-h2);">Six offices. Five states. Real local people.</h2>
         <p class="lead mt-4 text-[var(--color-text-muted)]">
-          New York is home to four of our eight offices, including our HQ in Uniondale. We've grown into the markets
+          New York is home to two of our six offices, including our HQ in Uniondale. We've grown into the markets
           where people actually live, work, retire, and invest.
         </p>
       </div>
@@ -360,71 +161,11 @@ const yearsInBiz = COMPANY.yearsInBusiness();
                   ))}
                 </div>
               )}
-              <p class="text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{l.blurb.split(".")[0]}.</p>
+              <p class="text-sm text-[var(--color-text-muted)] leading-relaxed flex-1 line-clamp-2">{l.blurb}</p>
               <span class="text-sm font-semibold text-[var(--color-accent)]">Visit market →</span>
             </a>
           );
         })}
-      </div>
-    </div>
-  </section>
-
-  <!-- VALUES -->
-  <section class="section accent-gradient">
-    <div class="container-wide grid gap-10 lg:grid-cols-[1fr_2fr] items-start">
-      <div>
-        <p class="eyebrow !text-[var(--color-ice-blue)]">Our values</p>
-        <h2 class="mt-3 text-white" style="font-size: var(--text-h2);">The four things we won't compromise on.</h2>
-      </div>
-      <div class="grid gap-8 sm:grid-cols-2">
-        <div>
-          <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-[var(--color-ice-blue)] mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
-          </div>
-          <h3 class="text-white" style="font-size: var(--text-h3);">Family</h3>
-          <p class="mt-2 text-white/75">We treat every borrower like family, because we've been one for {yearsInBiz} years.</p>
-        </div>
-        <div>
-          <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-[var(--color-ice-blue)] mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>
-          </div>
-          <h3 class="text-white" style="font-size: var(--text-h3);">Integrity</h3>
-          <p class="mt-2 text-white/75">We do the right thing when it's hard, when it's slow, and when no one's watching.</p>
-        </div>
-        <div>
-          <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-[var(--color-ice-blue)] mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" /></svg>
-          </div>
-          <h3 class="text-white" style="font-size: var(--text-h3);">Care</h3>
-          <p class="mt-2 text-white/75">Real hands on every file. No call centers, no handoffs, no shortcuts.</p>
-        </div>
-        <div>
-          <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-[var(--color-ice-blue)] mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
-          </div>
-          <h3 class="text-white" style="font-size: var(--text-h3);">Possibility</h3>
-          <p class="mt-2 text-white/75">Other banks see a "no." We see a story worth working with.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LEADERSHIP -->
-  <section class="section bg-white">
-    <div class="container-wide grid gap-10 lg:grid-cols-[1fr_1fr] items-center">
-      <div>
-        <Headshot slug={president.slug} name={president.displayName} fluid shape="rounded" />
-      </div>
-      <div>
-        <p class="eyebrow">Leadership</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Nearly 40 years doesn't happen by accident.</h2>
-        <p class="lead mt-4 text-[var(--color-text-muted)]">
-          Cliffco was founded in 1989 and has been independently owned ever since. Our President,
-          <a href={`/loan-officers/${president.slug}/`}>{president.displayName}</a> (NMLS #{president.nmls}),
-          is personally licensed in 29 of our 32 states. When a complex file comes in, he can
-          step in personally and see it through.
-        </p>
-        <a href="/about/" class="btn btn-secondary mt-6">Read our story</a>
       </div>
     </div>
   </section>
@@ -440,67 +181,10 @@ const yearsInBiz = COMPANY.yearsInBusiness();
         </p>
       </div>
       <div class="flex flex-col gap-3">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Start a pre-qual</a>
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Start a Pre-Approval</a>
         <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
       </div>
     </div>
   </section>
 
-<style>
-  /* How-it-works pinned stepper */
-  .hiw-step {
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 450ms ease, transform 450ms ease;
-    pointer-events: none;
-  }
-  .hiw-step.hiw-active {
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-  }
-  .hiw-label-num { color: var(--color-text-muted); transition: color 300ms ease; }
-  .hiw-label-title { color: var(--color-text-muted); transition: color 300ms ease; }
-  .hiw-label.hiw-active .hiw-label-num { color: var(--color-accent); }
-  .hiw-label.hiw-active .hiw-label-title { color: var(--color-ink); }
-  .hiw-rail-fill { transition: height 150ms linear; }
-</style>
-
-<script>
-// How-it-works pinned scroll stepper. Desktop only; the static layout
-// remains for mobile, reduced-motion, and no-JS visitors.
-(() => {
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const desktop = window.matchMedia('(min-width: 1024px)').matches;
-  const scroller = document.getElementById('hiw-scroller');
-  const staticEl = document.getElementById('hiw-static');
-  if (!scroller || !staticEl || reduced || !desktop) return;
-
-  staticEl.classList.add('hidden');
-  scroller.classList.remove('hidden');
-
-  const track  = scroller.querySelector<HTMLElement>('.hiw-track')!;
-  const steps  = Array.from(scroller.querySelectorAll<HTMLElement>('.hiw-step'));
-  const labels = Array.from(scroller.querySelectorAll<HTMLElement>('.hiw-label'));
-  const fill   = scroller.querySelector<HTMLElement>('.hiw-rail-fill')!;
-
-  let ticking = false;
-  const update = () => {
-    ticking = false;
-    const rect = track.getBoundingClientRect();
-    const total = rect.height - window.innerHeight;
-    const progress = Math.min(1, Math.max(0, -rect.top / total));
-    const idx = Math.min(steps.length - 1, Math.floor(progress * steps.length));
-    steps.forEach((s, i) => s.classList.toggle('hiw-active', i === idx));
-    labels.forEach((l, i) => l.classList.toggle('hiw-active', i === idx));
-    fill.style.height = `${progress * 100}%`;
-  };
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) { ticking = true; requestAnimationFrame(update); }
-  }, { passive: true });
-  window.addEventListener('resize', update, { passive: true });
-  update();
-})();
-</script>
 </Layout>
