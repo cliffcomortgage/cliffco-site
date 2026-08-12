@@ -3,8 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import { COMPANY } from "../data/company";
 import { LOCATIONS } from "../data/locations";
 import { BRANCHES } from "../data/branches";
+import { STATE_LICENSES } from "../data/state-licenses";
 
 const officeLocations = LOCATIONS.filter((l) => !l.path.includes("/"));
+const licensedStates = [...STATE_LICENSES].map((s) => s.name).sort();
 const yearsInBiz = COMPANY.yearsInBusiness();
 
 // Hero path tiles + primary CTA
@@ -12,8 +14,6 @@ const heroTiles = [
   { label: "Buy a Home", href: "/purchasing-refinancing/" },
   { label: "Refinance My Mortgage", href: "/loans/refinancing/" },
   { label: "Get Cash from My Home", href: "/loans/heloc/" },
-  { label: "I'm Self-Employed", href: "/self-employed-mortgage/" },
-  { label: "I'm an Investor", href: "/real-estate-investor-mortgage/" },
 ];
 ---
 
@@ -34,69 +34,59 @@ const heroTiles = [
     <div class="container-wide py-24 lg:py-32 text-center flex flex-col items-center">
       <p class="eyebrow !text-[var(--color-ice-blue)]">Family-built since 1989 · NMLS #{COMPANY.nmls}</p>
 
-      <h1 class="mt-5 text-white max-w-4xl" style="font-size: var(--text-display-xl); line-height: 1.05; font-weight: 700; font-family: var(--font-sans);">
-        <span class="whitespace-nowrap">When Big Banks Say No,</span><br/>
-        <span class="text-[var(--color-ice-blue)]">We Say Yes.</span>
+      <h1 class="mt-5 text-white md:whitespace-nowrap" style="font-size: clamp(1.9rem, 3.4vw, 3.25rem); line-height: 1.12; font-weight: 700; font-family: var(--font-sans);">
+        When Big Banks Say No, <span class="text-[var(--color-ice-blue)]">We Say Yes.</span>
       </h1>
 
-      <p class="lead mt-6 text-white/85 max-w-2xl">
-        Buy a home, refinance, or use your equity. We find a yes where big banks say no.
+      <p class="mt-6 text-white/85 max-w-3xl" style="font-size: clamp(1.15rem, 1.65vw, 1.5rem); line-height: 1.5;">
+        Complex scenarios don't scare us. Traditional Income Earners, Self-Employed, Business Owners, or Entrepreneurs - Our solutions work for all.
       </p>
 
-      <div class="mt-9 flex flex-wrap justify-center gap-3 max-w-2xl">
+      <div class="mt-10 flex flex-wrap justify-center gap-4 max-w-3xl">
         {heroTiles.map((t) => (
-          <a
-            href={t.href}
-            class="bg-white/10 hover:bg-white/20 border border-white/30 rounded-lg px-5 py-3.5 text-white font-medium text-sm no-underline transition-colors whitespace-nowrap"
-          >{t.label}</a>
+          <a href={t.href} class="hero-tile">{t.label}</a>
         ))}
       </div>
 
-      <div class="mt-9">
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
         <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Start a Pre-Approval</a>
-        <p class="mt-3 text-white/70 text-sm">No credit pull. No commitment. Takes 2 minutes.</p>
+        <a href="/loan-officers/" class="btn btn-secondary !border-white !text-white hover:!bg-white/10">Find a Loan Officer</a>
       </div>
+      <p class="mt-3 text-white/70 text-sm">No credit pull. No commitment. Takes 2 minutes.</p>
     </div>
   </section>
 
   <!-- TRUST BAR -->
   <section class="bg-white border-b border-[var(--color-mist-gray)]">
-    <div class="container-wide py-6">
-      <dl class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-px bg-[var(--color-mist-gray)] rounded-lg overflow-hidden text-center">
-        <div class="bg-white py-5 px-4">
-          <dt class="flex items-center justify-center gap-1.5 text-[var(--color-text-muted)] text-xs uppercase tracking-wider">
-            <svg class="w-3 h-3 text-[var(--color-accent)] shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
-            Experience.com
-          </dt>
-          <dd class="font-semibold text-[var(--color-ink)] text-base mt-1.5">4.9★ 3,617</dd>
-        </div>
-        <div class="bg-white py-5 px-4">
-          <dt class="flex items-center justify-center gap-1.5 text-[var(--color-text-muted)] text-xs uppercase tracking-wider">
-            <svg class="w-3 h-3 text-[var(--color-accent)] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+    <div class="container-wide py-8">
+      <dl class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--color-mist-gray)] rounded-lg overflow-hidden text-center">
+        <div class="bg-white py-7 px-4">
+          <dt class="flex items-center justify-center gap-2 text-[var(--color-text-muted)] text-sm uppercase tracking-wide">
+            <svg class="w-4 h-4 text-[var(--color-accent)] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
             BBB Rating
           </dt>
-          <dd class="font-semibold text-[var(--color-ink)] text-base mt-1.5">A+</dd>
+          <dd class="font-bold text-[var(--color-ink)] text-3xl mt-2">A+</dd>
         </div>
-        <div class="bg-white py-5 px-4 col-span-2 sm:col-span-1">
-          <dt class="flex items-center justify-center gap-1.5 text-[var(--color-text-muted)] text-xs uppercase tracking-wider">
-            <svg class="w-3 h-3 text-[var(--color-accent)] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+        <div class="bg-white py-7 px-4">
+          <dt class="flex items-center justify-center gap-2 text-[var(--color-text-muted)] text-sm uppercase tracking-wide">
+            <svg class="w-4 h-4 text-[var(--color-accent)] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
             Total Closed
           </dt>
-          <dd class="font-semibold text-[var(--color-ink)] text-base mt-1.5">$6B+</dd>
+          <dd class="font-bold text-[var(--color-ink)] text-3xl mt-2">$6B+</dd>
         </div>
-        <div class="bg-white py-5 px-4">
-          <dt class="flex items-center justify-center gap-1.5 text-[var(--color-text-muted)] text-xs uppercase tracking-wider">
-            <svg class="w-3 h-3 text-[var(--color-accent)] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>
-            Est.
+        <div class="bg-white py-7 px-4">
+          <dt class="flex items-center justify-center gap-2 text-[var(--color-text-muted)] text-sm uppercase tracking-wide">
+            <svg class="w-4 h-4 text-[var(--color-accent)] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>
+            Lending Since
           </dt>
-          <dd class="font-semibold text-[var(--color-ink)] text-base mt-1.5">1989</dd>
+          <dd class="font-bold text-[var(--color-ink)] text-3xl mt-2">1989</dd>
         </div>
-        <div class="bg-white py-5 px-4">
-          <dt class="flex items-center justify-center gap-1.5 text-[var(--color-text-muted)] text-xs uppercase tracking-wider">
-            <svg class="w-3 h-3 text-[var(--color-accent)] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+        <div class="bg-white py-7 px-4">
+          <dt class="flex items-center justify-center gap-2 text-[var(--color-text-muted)] text-sm uppercase tracking-wide">
+            <svg class="w-4 h-4 text-[var(--color-accent)] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0 1 15 0Z"/></svg>
             Licensed In
           </dt>
-          <dd class="font-semibold text-[var(--color-ink)] text-base mt-1.5">32 States</dd>
+          <dd class="font-bold text-[var(--color-ink)] text-3xl mt-2">{licensedStates.length} States</dd>
         </div>
       </dl>
     </div>
@@ -167,6 +157,19 @@ const heroTiles = [
           );
         })}
       </div>
+
+      <!-- Licensed states -->
+      <div class="mt-14 border-t border-[var(--color-ink)]/15 pt-10">
+        <h3 style="font-size: var(--text-h3);">Licensed in {licensedStates.length} states.</h3>
+        <p class="mt-3 text-sm text-[var(--color-text-muted)] max-w-3xl">
+          Cliffco Mortgage Bankers (NMLS #{COMPANY.nmls}) is licensed to lend in:
+        </p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          {licensedStates.map((s) => (
+            <span class="text-sm font-medium px-3 py-1.5 rounded-full bg-[var(--color-mist-gray)] text-[var(--color-text)]">{s}</span>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 
@@ -187,4 +190,31 @@ const heroTiles = [
     </div>
   </section>
 
+<style>
+  /* Glossy, glass hero tiles */
+  .hero-tile {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 32px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.06));
+    border: 1px solid rgba(255,255,255,0.38);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.40), 0 8px 24px rgba(0,0,0,0.28);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  }
+  .hero-tile:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(180deg, rgba(255,255,255,0.32), rgba(255,255,255,0.14));
+    border-color: rgba(189,232,241,0.85);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.55), 0 14px 32px rgba(102,51,204,0.45);
+  }
+</style>
 </Layout>
