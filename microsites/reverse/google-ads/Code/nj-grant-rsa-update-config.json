@@ -2,7 +2,7 @@
   "_comment": "RSA refresh only for the NJ grant campaign (adds LP-matching headline). No callouts/snippets here so re-running does NOT duplicate the assets already linked. Run: node Code/update_ads_and_assets.mjs Code/nj-grant-rsa-update-config.json",
   "campaignId": "24114720869",
   "adGroupId": "202774378727",
-  "finalUrl": "https://cliffcodirect.cliffcomortgage.com/nj-grant-program",
+  "finalUrl": "https://cliffcomortgage.com/nj-grant-program/",
   "path1": "Down-Payment",
   "path2": "Assistance",
   "rsas": [

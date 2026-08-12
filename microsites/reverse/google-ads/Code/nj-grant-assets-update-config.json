@@ -2,7 +2,7 @@
   "_comment": "Adds callouts + structured snippets to the NJ grant campaign. Re-adds the same 3 RSAs (update_ads_and_assets clears+re-adds RSAs). Run: node Code/update_ads_and_assets.mjs Code/nj-grant-assets-update-config.json",
   "campaignId": "24114720869",
   "adGroupId": "202774378727",
-  "finalUrl": "https://cliffcodirect.cliffcomortgage.com/nj-grant-program",
+  "finalUrl": "https://cliffcomortgage.com/nj-grant-program/",
   "path1": "Down-Payment",
   "path2": "Assistance",
   "rsas": [
