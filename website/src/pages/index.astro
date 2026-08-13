@@ -245,19 +245,19 @@ const heroTiles = [
   .hero-animated::after {
     content: "";
     position: absolute;
-    inset: -15%;
+    inset: -20%;
     z-index: 0;
     pointer-events: none;
     background:
-      radial-gradient(38% 44% at 25% 30%, rgba(102,51,204,0.40), transparent 70%),
-      radial-gradient(34% 40% at 78% 68%, rgba(189,232,241,0.16), transparent 70%);
+      radial-gradient(38% 44% at 25% 30%, rgba(102,51,204,0.55), transparent 70%),
+      radial-gradient(34% 40% at 78% 68%, rgba(189,232,241,0.24), transparent 70%);
     filter: blur(12px);
-    animation: heroDrift 16s ease-in-out infinite alternate;
-    will-change: transform;
+    animation: heroDrift 13s ease-in-out infinite alternate;
+    will-change: transform, opacity;
   }
   @keyframes heroDrift {
-    from { transform: translate3d(-4%, -3%, 0) scale(1.05); }
-    to   { transform: translate3d(4%, 3%, 0) scale(1.13); }
+    from { transform: translate3d(-8%, -5%, 0) scale(1.05); opacity: 0.7; }
+    to   { transform: translate3d(8%, 6%, 0) scale(1.2); opacity: 1; }
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-animated::after { animation: none; }
