@@ -53,14 +53,11 @@ const heroTiles = [
 >
 
   <!-- HERO -->
-  <section
-    class="accent-gradient hero-animated relative overflow-hidden"
-    style="background:
-      radial-gradient(1000px 520px at 50% -8%, rgba(102,51,204,0.55), transparent 60%),
-      radial-gradient(900px 520px at 15% 115%, rgba(189,232,241,0.18), transparent 55%),
-      radial-gradient(760px 460px at 90% 108%, rgba(102,51,204,0.26), transparent 58%),
-      linear-gradient(160deg, #0d0d0d 0%, #1c1a20 100%);"
-  >
+  <section class="accent-gradient hero-animated relative overflow-hidden">
+    <div class="hero-blobs" aria-hidden="true">
+      <span class="hero-blob hero-blob-1"></span>
+      <span class="hero-blob hero-blob-2"></span>
+    </div>
     <div class="container-wide py-24 lg:py-32 text-center flex flex-col items-center">
       <p class="eyebrow !text-[var(--color-ice-blue)]">Family-built since 1989 · NMLS #{COMPANY.nmls}</p>
 
@@ -240,27 +237,50 @@ const heroTiles = [
   </section>
 
 <style>
-  /* Ambient light animation: a soft violet/ice-blue glow that slowly drifts
-     and breathes behind the hero content. Disabled under reduced-motion. */
-  .hero-animated::after {
-    content: "";
+  /* Ambient light: two faded purple blurs that wander around the hero on their
+     own slow paths. Disabled under reduced-motion. */
+  .hero-blobs {
     position: absolute;
-    inset: -20%;
+    inset: 0;
     z-index: 0;
+    overflow: hidden;
     pointer-events: none;
-    background:
-      radial-gradient(38% 44% at 25% 30%, rgba(102,51,204,0.55), transparent 70%),
-      radial-gradient(34% 40% at 78% 68%, rgba(189,232,241,0.24), transparent 70%);
-    filter: blur(12px);
-    animation: heroDrift 13s ease-in-out infinite alternate;
-    will-change: transform, opacity;
   }
-  @keyframes heroDrift {
-    from { transform: translate3d(-8%, -5%, 0) scale(1.05); opacity: 0.7; }
-    to   { transform: translate3d(8%, 6%, 0) scale(1.2); opacity: 1; }
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    will-change: transform;
   }
+  .hero-blob-1 {
+    width: clamp(360px, 46vw, 640px);
+    height: clamp(360px, 46vw, 640px);
+    left: 2%;
+    top: -8%;
+    background: radial-gradient(circle, rgba(102,51,204,0.60), rgba(102,51,204,0) 68%);
+    animation: heroBlob1 24s ease-in-out infinite alternate;
+  }
+  .hero-blob-2 {
+    width: clamp(320px, 40vw, 560px);
+    height: clamp(320px, 40vw, 560px);
+    right: 0%;
+    bottom: -12%;
+    background: radial-gradient(circle, rgba(124,69,224,0.50), rgba(124,69,224,0) 68%);
+    animation: heroBlob2 30s ease-in-out infinite alternate;
+  }
+  @keyframes heroBlob1 {
+    0%   { transform: translate(0%, 0%) scale(1); }
+    50%  { transform: translate(55%, 45%) scale(1.15); }
+    100% { transform: translate(20%, 10%) scale(0.95); }
+  }
+  @keyframes heroBlob2 {
+    0%   { transform: translate(0%, 0%) scale(1); }
+    50%  { transform: translate(-45%, -35%) scale(1.10); }
+    100% { transform: translate(-15%, -5%) scale(1.05); }
+  }
+  .hero-animated .hero-blobs { z-index: 0; }
   @media (prefers-reduced-motion: reduce) {
-    .hero-animated::after { animation: none; }
+    .hero-blob { animation: none; }
   }
 
   /* Sleek solid pill hero tiles */
