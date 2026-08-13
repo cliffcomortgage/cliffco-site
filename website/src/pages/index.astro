@@ -54,7 +54,7 @@ const heroTiles = [
 
   <!-- HERO -->
   <section
-    class="accent-gradient relative overflow-hidden"
+    class="accent-gradient hero-animated relative overflow-hidden"
     style="background:
       radial-gradient(1000px 520px at 50% -8%, rgba(102,51,204,0.55), transparent 60%),
       radial-gradient(900px 520px at 15% 115%, rgba(189,232,241,0.18), transparent 55%),
@@ -240,6 +240,29 @@ const heroTiles = [
   </section>
 
 <style>
+  /* Ambient light animation: a soft violet/ice-blue glow that slowly drifts
+     and breathes behind the hero content. Disabled under reduced-motion. */
+  .hero-animated::after {
+    content: "";
+    position: absolute;
+    inset: -15%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(38% 44% at 25% 30%, rgba(102,51,204,0.40), transparent 70%),
+      radial-gradient(34% 40% at 78% 68%, rgba(189,232,241,0.16), transparent 70%);
+    filter: blur(12px);
+    animation: heroDrift 16s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @keyframes heroDrift {
+    from { transform: translate3d(-4%, -3%, 0) scale(1.05); }
+    to   { transform: translate3d(4%, 3%, 0) scale(1.13); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-animated::after { animation: none; }
+  }
+
   /* Sleek solid pill hero tiles */
   .hero-tile {
     display: inline-flex;
