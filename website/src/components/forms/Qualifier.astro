@@ -1,0 +1,279 @@
+---
+/**
+ * Better.com-style guided qualifier. Renders a single flow's question steps
+ * (from qualifier-flows.ts), one screen at a time, then a contact-intake step,
+ * and submits every answer to /api/lead (HubSpot + SMTP2GO), routed to the
+ * corporate inbox. Purely client-driven navigation; SSR-rendered panels.
+ */
+import type { Flow } from "../../data/qualifier-flows";
+import { STATE_LICENSES } from "../../data/state-licenses";
+
+interface Props {
+  flow: Flow;
+}
+const { flow } = Astro.props;
+const licensedStates = [...STATE_LICENSES].map((s) => s.name).sort();
+
+// Total steps = question steps + contact step
+const total = flow.steps.length + 1;
+const contactIndex = flow.steps.length;
+
+// Metadata the client script needs to build a readable lead summary
+const qmeta = flow.steps.map((s) => ({
+  id: s.id,
+  title: s.title,
+  labels: Object.fromEntries(s.options.map((o) => [o.value, o.label])),
+}));
+
+const cardBase =
+  "q-card w-full text-left px-5 py-4 rounded-xl border-2 border-[var(--color-mist-gray)] bg-white text-[var(--color-ink)] font-medium cursor-pointer transition-colors hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)]/5";
+const inputClass =
+  "w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-3 text-sm focus:outline-none focus:border-[var(--color-accent)]";
+---
+
+<div class="q-wrap max-w-2xl mx-auto" data-flow={flow.key} data-flow-label={flow.label} data-total={total}>
+
+  <!-- Progress header -->
+  <div class="flex items-center gap-4 mb-10">
+    <button id="q-back" type="button" hidden
+      class="shrink-0 text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-ink)] cursor-pointer">
+      ← Back
+    </button>
+    <div class="flex-1 h-1.5 rounded-full bg-[var(--color-mist-gray)] overflow-hidden">
+      <div id="q-bar" class="h-full bg-[var(--color-accent)] transition-[width] duration-300" style="width: 0%;"></div>
+    </div>
+    <span id="q-count" class="shrink-0 text-sm text-[var(--color-text-muted)] tabular-nums">Step 1 of {total}</span>
+  </div>
+
+  <!-- Question steps -->
+  {flow.steps.map((s, i) => (
+    <div class="q-step" data-index={i} data-qid={s.id} hidden={i !== 0}>
+      <h2 class="mt-0" style="font-size: var(--text-display-lg); line-height: 1.1;">{s.title}</h2>
+      {s.subtitle && <p class="mt-3 text-[var(--color-text-muted)]">{s.subtitle}</p>}
+
+      {s.type === "cards" && (
+        <div class={`mt-8 grid gap-3 ${s.cols === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2"}`}>
+          {s.options.map((o) => (
+            <button type="button" class={cardBase} data-qid={s.id} data-value={o.value}>{o.label}</button>
+          ))}
+        </div>
+      )}
+
+      {s.type === "select" && (
+        <div class="mt-8 max-w-sm">
+          <select class={`q-select ${inputClass}`} data-qid={s.id}>
+            <option value="">{s.placeholder}</option>
+            {s.options.map((o) => <option value={o.value}>{o.label}</option>)}
+          </select>
+          <button type="button" class="q-continue btn btn-primary mt-6 disabled:opacity-50" disabled>Continue</button>
+        </div>
+      )}
+    </div>
+  ))}
+
+  <!-- Contact intake step -->
+  <div class="q-step" data-index={contactIndex} data-contact hidden>
+    <h2 class="mt-0" style="font-size: var(--text-display-lg); line-height: 1.1;">Almost there. Where should we send your results?</h2>
+    <p class="mt-3 text-[var(--color-text-muted)]">A licensed Cliffco loan officer will review your answers and reach out within one business day. No bots, no call center.</p>
+
+    <form id="q-form" novalidate class="mt-8 space-y-5">
+      <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+        <label for="q-website">Website</label>
+        <input id="q-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <input id="q-loaded" name="_loaded" type="hidden" value="" />
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label for="q-fname" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">First name <span class="text-red-400">*</span></label>
+          <input id="q-fname" name="first_name" type="text" required autocomplete="given-name" placeholder="Jane" class={inputClass} />
+        </div>
+        <div>
+          <label for="q-lname" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Last name <span class="text-red-400">*</span></label>
+          <input id="q-lname" name="last_name" type="text" required autocomplete="family-name" placeholder="Smith" class={inputClass} />
+        </div>
+      </div>
+      <div>
+        <label for="q-email" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Email <span class="text-red-400">*</span></label>
+        <input id="q-email" name="email" type="email" required autocomplete="email" placeholder="jane@example.com" class={inputClass} />
+      </div>
+      <div>
+        <label for="q-phone" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Phone <span class="text-red-400">*</span></label>
+        <input id="q-phone" name="phone" type="tel" required autocomplete="tel" placeholder="(555) 000-0000" class={inputClass} />
+      </div>
+
+      <div class="flex items-start gap-3">
+        <input type="checkbox" id="q-tcpa" name="tcpa_consent" value="yes" required class="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 accent-[var(--color-accent)]" />
+        <label for="q-tcpa" class="text-xs leading-relaxed text-[var(--color-text-muted)]">
+          By submitting this form I consent to be contacted by Cliffco, Inc. (NMLS #65328) regarding my inquiry via calls, texts, and emails, including via automated technology. Consent is not required to obtain credit. Reply STOP to opt out of texts.
+        </label>
+      </div>
+
+      <p class="q-error hidden text-sm text-red-500 font-medium"></p>
+      <button type="submit" class="btn btn-primary w-full disabled:opacity-60">See My Results</button>
+    </form>
+  </div>
+
+  <!-- Success -->
+  <div class="q-success" hidden>
+    <div class="w-12 h-12 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent)]">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+    </div>
+    <h2 class="mt-5" style="font-size: var(--text-display-lg); line-height: 1.1;">Thank you. We've got your info.</h2>
+    <p class="mt-3 text-[var(--color-text-muted)] max-w-lg">A licensed Cliffco loan officer will review your answers and reach out within one business day.</p>
+    <a href="/" class="btn btn-secondary mt-8 inline-flex">Back to home</a>
+  </div>
+</div>
+
+<script define:vars={{ flowKey: flow.key, flowLabel: flow.label, qmeta, total }}>
+  (() => {
+    const wrap = document.querySelector(".q-wrap");
+    if (!wrap) return;
+    const steps = Array.from(wrap.querySelectorAll(".q-step"));
+    const bar = wrap.querySelector("#q-bar");
+    const count = wrap.querySelector("#q-count");
+    const backBtn = wrap.querySelector("#q-back");
+    const successEl = wrap.querySelector(".q-success");
+    const loaded = wrap.querySelector("#q-loaded");
+    if (loaded) loaded.value = String(Date.now());
+
+    const answers = {};
+    let current = 0;
+
+    const track = (event, props = {}) =>
+      window.posthog?.capture?.(event, { flow: flowKey, ...props });
+
+    function show(i) {
+      current = i;
+      steps.forEach((s, idx) => (s.hidden = idx !== i));
+      const pct = Math.round(((i + 1) / total) * 100);
+      if (bar) bar.style.width = pct + "%";
+      if (count) count.textContent = `Step ${i + 1} of ${total}`;
+      if (backBtn) backBtn.hidden = i === 0;
+      // restore any prior selection on card steps
+      const qid = steps[i].getAttribute("data-qid");
+      if (qid && answers[qid]) {
+        steps[i].querySelectorAll(".q-card").forEach((c) =>
+          c.classList.toggle("q-card-active", c.getAttribute("data-value") === answers[qid])
+        );
+        const sel = steps[i].querySelector(".q-select");
+        if (sel) { sel.value = answers[qid]; const cont = steps[i].querySelector(".q-continue"); if (cont) cont.disabled = false; }
+      }
+      window.scrollTo({ top: wrap.getBoundingClientRect().top + window.scrollY - 90, behavior: "smooth" });
+    }
+
+    function next() { if (current < steps.length - 1) show(current + 1); }
+
+    // Card selection -> record + auto-advance
+    wrap.querySelectorAll(".q-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        const qid = card.getAttribute("data-qid");
+        answers[qid] = card.getAttribute("data-value");
+        card.parentElement.querySelectorAll(".q-card").forEach((c) => c.classList.remove("q-card-active"));
+        card.classList.add("q-card-active");
+        track("qualifier_answer", { step: qid });
+        setTimeout(next, 180);
+      });
+    });
+
+    // Select dropdowns -> enable Continue, then advance
+    wrap.querySelectorAll(".q-select").forEach((sel) => {
+      const cont = sel.parentElement.querySelector(".q-continue");
+      sel.addEventListener("change", () => { if (cont) cont.disabled = !sel.value; });
+      if (cont) cont.addEventListener("click", () => {
+        if (!sel.value) return;
+        answers[sel.getAttribute("data-qid")] = sel.value;
+        track("qualifier_answer", { step: sel.getAttribute("data-qid") });
+        next();
+      });
+    });
+
+    if (backBtn) backBtn.addEventListener("click", () => { if (current > 0) show(current - 1); });
+
+    // Build a readable summary of all answers for the lead notes
+    function summary() {
+      const lines = [];
+      for (const q of qmeta) {
+        if (q.id === "state") continue; // sent as its own field
+        const v = answers[q.id];
+        if (v) lines.push(`${q.title} ${q.labels[v] ?? v}`);
+      }
+      return lines.join("\n");
+    }
+
+    // Contact submit
+    const form = wrap.querySelector("#q-form");
+    form?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const errEl = form.querySelector(".q-error");
+      const btn = form.querySelector('button[type="submit"]');
+      const first = form.querySelector("#q-fname").value.trim();
+      const last = form.querySelector("#q-lname").value.trim();
+      const email = form.querySelector("#q-email").value.trim();
+      const phone = form.querySelector("#q-phone").value.trim();
+      const tcpa = form.querySelector("#q-tcpa").checked;
+      errEl.classList.add("hidden");
+
+      if (!first || !last || !email || !phone || !tcpa) {
+        errEl.textContent = "Please fill in every field and agree to be contacted.";
+        errEl.classList.remove("hidden");
+        return;
+      }
+
+      const fd = new FormData();
+      fd.set("name", `${first} ${last}`);
+      fd.set("email", email);
+      fd.set("phone", phone);
+      fd.set("tcpa_consent", "yes");
+      fd.set("form_to", "websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com");
+      fd.set("form_source", `qualifier-${flowKey}`);
+      fd.set("program", flowLabel);
+      if (answers.state) fd.set("state", answers.state);
+      if (answers.income_type) fd.set("income_type", answers.income_type);
+      if (answers.credit_range) fd.set("credit_range", answers.credit_range);
+      if (answers.purpose) fd.set("purpose", answers.purpose);
+      fd.set("notes", summary());
+      fd.set("website", form.querySelector("#q-website").value.trim());
+      fd.set("_loaded", loaded ? loaded.value : "");
+      fd.set("page_uri", window.location.href);
+      const hutk = document.cookie.match(/(?:^|; )hubspotutk=([^;]*)/);
+      if (hutk) fd.set("hutk", hutk[1]);
+
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+      try {
+        const res = await fetch("/api/lead/", { method: "POST", body: fd });
+        const json = await res.json();
+        if (res.ok && json.success) {
+          track("qualifier_submitted");
+          steps.forEach((s) => (s.hidden = true));
+          if (bar) bar.style.width = "100%";
+          if (count) count.textContent = "Done";
+          if (backBtn) backBtn.hidden = true;
+          if (successEl) successEl.hidden = false;
+          window.scrollTo({ top: wrap.getBoundingClientRect().top + window.scrollY - 90, behavior: "smooth" });
+        } else {
+          errEl.textContent = json.error ?? "Something went wrong. Please try again or call (800) 834-4040.";
+          errEl.classList.remove("hidden");
+          btn.disabled = false;
+          btn.textContent = "See My Results";
+        }
+      } catch {
+        errEl.textContent = "Network error. Check your connection and try again, or call (800) 834-4040.";
+        errEl.classList.remove("hidden");
+        btn.disabled = false;
+        btn.textContent = "See My Results";
+      }
+    });
+
+    show(0);
+    track("qualifier_started");
+  })();
+</script>
+
+<style>
+  .q-card-active {
+    border-color: var(--color-accent) !important;
+    background: color-mix(in srgb, var(--color-accent) 6%, white) !important;
+  }
+</style>

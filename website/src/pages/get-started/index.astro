@@ -1,0 +1,39 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { COMPANY } from "../../data/company";
+import { INTENT_OPTIONS } from "../../data/qualifier-flows";
+---
+
+<Layout
+  title={`Start a Pre-Approval | ${COMPANY.brandName}`}
+  description={`Answer a few quick questions and a licensed Cliffco loan officer (NMLS #${COMPANY.nmls}) will follow up within one business day. No bots, no call center.`}
+>
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <div class="max-w-2xl mx-auto text-center">
+        <p class="eyebrow">Start a pre-approval</p>
+        <h1 class="mt-3" style="font-size: var(--text-display-lg); line-height: 1.1;">What would you like to do?</h1>
+        <p class="mt-4 text-[var(--color-text-muted)]">Pick one and we'll ask a few quick questions. Takes about 2 minutes, with no credit pull.</p>
+
+        <div class="mt-10 grid gap-4 text-left">
+          {INTENT_OPTIONS.map((o) => (
+            <a
+              href={`/get-started/${o.key}/`}
+              class="card flex items-center justify-between gap-4 border-2 border-transparent hover:border-[var(--color-accent)] transition-colors no-underline"
+            >
+              <div>
+                <p class="font-semibold text-[var(--color-ink)] text-lg">{o.label}</p>
+                <p class="text-sm text-[var(--color-text-muted)] mt-1">{o.description}</p>
+              </div>
+              <span class="shrink-0 text-[var(--color-accent)] text-2xl" aria-hidden="true">→</span>
+            </a>
+          ))}
+        </div>
+
+        <p class="mt-8 text-xs text-[var(--color-text-muted)]">
+          Prefer to talk to someone? Call <a href={`tel:${COMPANY.tollFreeE164}`} class="font-semibold text-[var(--color-accent)] no-underline">{COMPANY.tollFree}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

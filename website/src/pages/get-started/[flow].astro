@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Qualifier from "../../components/forms/Qualifier.astro";
+import { FLOWS } from "../../data/qualifier-flows";
+import { COMPANY } from "../../data/company";
+
+export function getStaticPaths() {
+  return Object.values(FLOWS).map((f) => ({ params: { flow: f.key }, props: { flow: f } }));
+}
+
+const { flow } = Astro.props;
+---
+
+<Layout
+  title={`${flow.label} | ${COMPANY.brandName}`}
+  description={`${flow.heading} Answer a few quick questions and a licensed Cliffco loan officer (NMLS #${COMPANY.nmls}) will follow up within one business day.`}
+>
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <h1 class="sr-only">{flow.label} - {COMPANY.brandName}</h1>
+      <Qualifier flow={flow} />
+    </div>
+  </section>
+</Layout>
