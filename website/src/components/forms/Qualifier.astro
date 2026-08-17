@@ -146,6 +146,9 @@ const inputClass =
     function show(i) {
       current = i;
       steps.forEach((s, idx) => (s.hidden = idx !== i));
+      // The site's scroll-reveal starts headings invisible; force the current
+      // step's content visible so swapping steps doesn't require a scroll.
+      steps[i].querySelectorAll(".cf-reveal").forEach((el) => el.classList.add("cf-visible"));
       const pct = Math.round(((i + 1) / total) * 100);
       if (bar) bar.style.width = pct + "%";
       if (count) count.textContent = `Step ${i + 1} of ${total}`;
@@ -159,7 +162,10 @@ const inputClass =
         const sel = steps[i].querySelector(".q-select");
         if (sel) { sel.value = answers[qid]; const cont = steps[i].querySelector(".q-continue"); if (cont) cont.disabled = false; }
       }
-      window.scrollTo({ top: wrap.getBoundingClientRect().top + window.scrollY - 90, behavior: "smooth" });
+      // If the wizard has been scrolled above the viewport (e.g. a long question
+      // on mobile), bring its top back into view - but never scroll the page down.
+      const topRel = wrap.getBoundingClientRect().top;
+      if (topRel < 0) window.scrollTo({ top: window.scrollY + topRel - 20, behavior: "smooth" });
     }
 
     function next() { if (current < steps.length - 1) show(current + 1); }
