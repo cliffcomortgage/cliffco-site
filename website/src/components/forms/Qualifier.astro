@@ -76,7 +76,7 @@ const inputClass =
     <h2 class="mt-0" style="font-size: var(--text-display-lg); line-height: 1.1;">Almost there. Where should we send your results?</h2>
     <p class="mt-3 text-[var(--color-text-muted)]">A licensed Cliffco loan officer will review your answers and reach out within one business day. No bots, no call center.</p>
 
-    <form id="q-form" novalidate class="mt-8 space-y-5">
+    <div id="q-form" class="mt-8 space-y-5">
       <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
         <label for="q-website">Website</label>
         <input id="q-website" name="website" type="text" tabindex="-1" autocomplete="off" />
@@ -110,8 +110,8 @@ const inputClass =
       </div>
 
       <p class="q-error hidden text-sm text-red-500 font-medium"></p>
-      <button type="submit" class="btn btn-primary w-full disabled:opacity-60">See My Results</button>
-    </form>
+      <button type="button" id="q-submit" class="btn btn-primary w-full disabled:opacity-60">See My Results</button>
+    </div>
   </div>
 
   <!-- Success -->
@@ -208,11 +208,13 @@ const inputClass =
     }
 
     // Contact submit
+    // Not a <form>/submit — a button click — so HubSpot's collected-forms
+    // script can't auto-capture it as a duplicate. We post via the API below.
     const form = wrap.querySelector("#q-form");
-    form?.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    const submitBtn = wrap.querySelector("#q-submit");
+    async function submitForm() {
       const errEl = form.querySelector(".q-error");
-      const btn = form.querySelector('button[type="submit"]');
+      const btn = submitBtn;
       const first = form.querySelector("#q-fname").value.trim();
       const last = form.querySelector("#q-lname").value.trim();
       const email = form.querySelector("#q-email").value.trim();
@@ -270,6 +272,10 @@ const inputClass =
         btn.disabled = false;
         btn.textContent = "See My Results";
       }
+    }
+    submitBtn?.addEventListener("click", submitForm);
+    form?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && e.target && e.target.tagName === "INPUT") { e.preventDefault(); submitForm(); }
     });
 
     show(0);

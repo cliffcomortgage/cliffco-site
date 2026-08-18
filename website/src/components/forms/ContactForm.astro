@@ -157,7 +157,7 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
     Thank you! A loan officer will reach out within one business day.
   </p>
 
-  <button type="submit"
+  <button type="button"
     class={dark
       ? 'w-full rounded-lg py-3 text-sm font-semibold bg-white text-[var(--color-rich-black)] hover:bg-[var(--color-ice-blue)] transition-colors disabled:opacity-60'
       : 'btn btn-primary w-full disabled:opacity-60'}>
@@ -179,10 +179,11 @@ document.querySelectorAll<HTMLFormElement>('.cf-contact-form').forEach((form) =>
   }, { threshold: 0.5 }).observe(form);
   form.addEventListener('input', () => track('lead_form_started'), { once: true });
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const btn    = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+  const submitBtn = form.querySelector('button') as HTMLButtonElement | null;
+  // Button click, not a form submit, so HubSpot's collected-forms script can't
+  // auto-capture a duplicate - we post through /api/contact ourselves.
+  const onSubmit = async () => {
+    const btn    = submitBtn as HTMLButtonElement;
     const errEl  = form.querySelector('.cf-error') as HTMLParagraphElement;
     const okEl   = form.querySelector('.cf-success') as HTMLParagraphElement;
     const origLabel = btn.textContent ?? 'Send Message';
@@ -225,6 +226,11 @@ document.querySelectorAll<HTMLFormElement>('.cf-contact-form').forEach((form) =>
       btn.disabled = false;
       btn.textContent = origLabel;
     }
+  };
+
+  submitBtn?.addEventListener('click', onSubmit);
+  form.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.target as HTMLElement)?.tagName === 'INPUT') { e.preventDefault(); onSubmit(); }
   });
 });
 </script>
