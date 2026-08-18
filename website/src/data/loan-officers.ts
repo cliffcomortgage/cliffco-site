@@ -173,6 +173,13 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
     blog: [
       {
+        title: "K-1 Income and Mortgage Approval: How Business Owners, Partners, and Investors Can Qualify",
+        slug: "k1-income-mortgage-approval",
+        description: "K-1 income can make mortgage approval more complex, but complexity is not disqualification. How business owners, partners, and investors document income, distributions, and the right loan program to qualify.",
+        image: "/images/DFallarino%20Blog/Complex%20Income%20Blog.jpg",
+        section: "500:1 Blog",
+      },
+      {
         title: "Business Tax Write-Offs Hurt My Mortgage Approval. Now What?",
         slug: "business-tax-write-offs-mortgage-approval",
         description: "Smart tax strategy can make a profitable business look small on a mortgage application. Six ways business owners qualify when the tax return understates the income.",

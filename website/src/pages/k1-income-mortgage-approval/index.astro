@@ -1,0 +1,253 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { loanOfficer } from "../../data/loan-officers";
+import Headshot from "../../components/ui/Headshot.astro";
+import ContactForm from "../../components/forms/ContactForm.astro";
+import { faqPageSchema } from "../../lib/schema";
+
+const david = loanOfficer("david-fallarino")!;
+
+const faqs = [
+  { question: "Can K-1 income be used to qualify for a mortgage?", answer: "Yes, K-1 income can often be used for mortgage qualification if it is stable, documented, and likely to continue. The lender may also review whether the income was actually distributed to you." },
+  { question: "How many years of K-1 income do lenders need?", answer: "Many lenders prefer a two-year history of K-1 income. Some programs may allow flexibility depending on the borrower's overall profile, the income trend, and the loan type." },
+  { question: "Does K-1 income have to be distributed to count?", answer: "In many cases, distributions are important because they show that the income is accessible to the borrower. If income is reported but not distributed, the lender may require additional documentation." },
+  { question: "What if my K-1 shows a loss?", answer: "A K-1 loss may reduce your qualifying income, depending on the loan program and the nature of the loss. Some noncash items may be reviewed differently, but this requires careful analysis." },
+  { question: "Can I use K-1 income from multiple businesses?", answer: "Yes, but each source may need to be documented and analyzed separately. The lender may consider income, losses, ownership percentage, distributions, and business stability for each entity." },
+  { question: "Can real estate K-1 income help me qualify?", answer: "It can, but real estate K-1s often include depreciation or other deductions that may complicate the calculation. A detailed review is needed to determine how the income or loss affects your mortgage application." },
+  { question: "Can I qualify if my K-1 income fluctuates?", answer: "Possibly. The lender may average the income over two years or use a more conservative figure. If the fluctuation was caused by a one-time event, additional documentation may help explain it." },
+  { question: "Are K-1 borrowers limited to Non-QM loans?", answer: "No. Some K-1 borrowers qualify through conventional or jumbo loans. Others may benefit from Alt-A, bank statement, asset-based, or DSCR programs depending on the full financial picture." },
+  { question: "Should I talk to a mortgage advisor before filing taxes?", answer: "If you plan to buy or refinance soon, yes. Coordinating early with your CPA and mortgage advisor can help you understand how your income documentation may affect your mortgage options." },
+];
+const schema = faqPageSchema(faqs);
+---
+
+<Layout
+  title="K-1 Income and Mortgage Approval: How Business Owners, Partners, and Investors Can Qualify | 500:1 Blog"
+  description="K-1 income can make mortgage approval more complex, but complexity is not disqualification. How business owners, partners, and investors document income, distributions, and the right loan program to qualify."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "500:1 Blog", href: `/loan-officers/${david.slug}/` },
+    { name: "K-1 Income and Mortgage Approval", href: "/k1-income-mortgage-approval/" },
+  ]} />
+
+  <article class="section bg-white relative overflow-hidden">
+    <div class="absolute inset-x-0 top-0 h-[300px] bg-[var(--color-rich-black)]" aria-hidden="true"></div>
+    <div class="container-prose relative z-10">
+      <div class="rounded-lg overflow-hidden mb-10 aspect-video bg-[var(--color-mist-gray)] shadow-2xl">
+        <img src="/images/DFallarino%20Blog/Complex%20Income%20Blog.jpg" alt="Business owner and partner reviewing K-1 income documents for mortgage qualification at Cliffco" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+
+      <p class="eyebrow mb-4">500:1 Blog · David Fallarino</p>
+      <h1 style="font-size: var(--text-display-lg); letter-spacing: -0.03em; line-height: 1.1;">K-1 Income and Mortgage Approval: How Business Owners, Partners, and Investors Can Qualify</h1>
+      <p class="lead mt-4">K-1 income can make mortgage approval more complex, but complexity does not mean disqualification. Business owners, partners, shareholders, and investors often have strong financial profiles that simply require a more strategic review.</p>
+
+      <h2>What Is K-1 Income?</h2>
+      <p>A Schedule K-1 is a tax document used to report income, losses, deductions, and credits from certain business entities.</p>
+      <p>You may receive a K-1 if you have ownership interest in:</p>
+      <ul>
+        <li>A partnership</li>
+        <li>An S corporation</li>
+        <li>A limited liability company taxed as a partnership or S corporation</li>
+        <li>A trust</li>
+        <li>An estate</li>
+        <li>Certain real estate investment structures</li>
+      </ul>
+      <p>Unlike a W-2, which reports wages from an employer, a K-1 reflects your share of income or loss from an entity.</p>
+      <p>That income may come from business profits, rental real estate, investment activity, partnership distributions, or other sources depending on the structure.</p>
+      <p>For mortgage purposes, this can create a more detailed underwriting review because the lender has to determine not only what income was reported, but whether that income is stable, recurring, and available to you.</p>
+
+      <h2>Why K-1 Income Can Complicate Mortgage Approval</h2>
+      <p>K-1 income is not necessarily difficult because the borrower is risky. It is difficult because the documentation requires interpretation.</p>
+      <p>A lender may need to answer questions such as:</p>
+      <ul>
+        <li>How long have you received this income?</li>
+        <li>Is the income stable or declining?</li>
+        <li>Do you actually receive distributions?</li>
+        <li>Does the business have enough liquidity to support continued distributions?</li>
+        <li>Are there business losses that reduce qualifying income?</li>
+        <li>Do you own enough of the business for the lender to require additional documentation?</li>
+        <li>Is the income likely to continue for at least the next few years?</li>
+      </ul>
+      <p>A salaried borrower can usually provide pay stubs and W-2s. A K-1 borrower may need personal tax returns, business tax returns, K-1s, balance sheets, profit and loss statements, liquidity documentation, and sometimes letters from a CPA or business accountant.</p>
+      <p>That does not mean you cannot qualify. It means the file needs to be structured carefully from the beginning.</p>
+
+      <h2>The Key Question: Is the Income Actually Available to You?</h2>
+      <p>One of the biggest issues with K-1 income is the difference between reported income and distributed income.</p>
+      <p>Your K-1 may show that you earned income from a business or partnership. But that does not always mean you personally received that money in cash.</p>
+      <p>For example, a business may report profit on your K-1, but keep some or all of that profit inside the company for working capital, expansion, debt repayment, payroll, or future investment.</p>
+      <p>From a mortgage underwriting standpoint, the lender wants to know whether the income is actually available to help you repay the loan. That is why distributions matter.</p>
+      <p>If your K-1 shows income and you also receive consistent distributions, that may strengthen the case for using the income to qualify. If your K-1 shows income but no distributions, the lender may require additional documentation to prove you have access to that income.</p>
+      <p>This is where many borrowers get tripped up. They assume the income listed on the K-1 automatically counts, but lenders may look deeper.</p>
+
+      <h2>K-1 Income from an S Corporation</h2>
+      <p>Many business owners receive K-1 income from an S corporation. In this scenario, the borrower may receive both W-2 wages from the business and K-1 income or distributions from the business.</p>
+      <p>A lender may review both sources, but the treatment depends on the business performance, ownership percentage, tax returns, and the borrower's history of receiving distributions.</p>
+      <p>If the business is stable and the borrower has a consistent track record of receiving K-1 income, that income may help strengthen the mortgage file. However, if the business shows declining revenue, losses, limited liquidity, or inconsistent distributions, the lender may reduce or exclude some of the income.</p>
+      <p>The goal is to show that the income is not only reported, but reliable.</p>
+
+      <h2>K-1 Income from a Partnership</h2>
+      <p>Partnership income can also be used for mortgage qualification, but it often requires a detailed review. A partner may receive income from a law firm, medical practice, investment partnership, consulting firm, real estate partnership, or another business entity.</p>
+      <p>The lender may review:</p>
+      <ul>
+        <li>The borrower's ownership percentage</li>
+        <li>Two years of K-1s</li>
+        <li>Personal tax returns</li>
+        <li>Partnership tax returns</li>
+        <li>Distribution history</li>
+        <li>Business liquidity</li>
+        <li>Whether income is increasing, stable, or declining</li>
+        <li>Any losses or deductions passed through to the borrower</li>
+      </ul>
+      <p>Partnership income can be powerful, especially for high-earning professionals. But because the income flows through an entity, it needs to be documented in a way that makes sense to underwriting.</p>
+
+      <h2>K-1 Income from Real Estate Investments</h2>
+      <p>Real estate investors often receive K-1 income from partnerships, LLCs, or syndications. This can include income or losses from:</p>
+      <ul>
+        <li>Rental properties</li>
+        <li>Multifamily investments</li>
+        <li>Commercial real estate</li>
+        <li>Real estate partnerships</li>
+        <li>Syndicated investments</li>
+        <li>Development projects</li>
+        <li>Short-term rental entities</li>
+      </ul>
+      <p>The challenge is that real estate K-1s may show paper losses due to depreciation or other deductions, even when the investment is producing cash flow.</p>
+      <p>A traditional lender may see those losses and reduce the borrower's qualifying income. But an experienced mortgage team can review whether certain noncash expenses may be treated differently depending on the loan program.</p>
+      <p>For investors, K-1 income may be part of a broader strategy that includes rental income, asset reserves, DSCR financing, or alternative documentation. The right approach depends on whether the borrower is buying a primary residence, second home, or investment property.</p>
+
+      <h2>What Lenders Usually Look For</h2>
+      <p>When reviewing K-1 income, lenders typically want to see stability and continuity. They may evaluate:</p>
+      <ul>
+        <li>A two-year history of receiving K-1 income</li>
+        <li>Whether the income is stable, increasing, or declining</li>
+        <li>Whether distributions were actually paid</li>
+        <li>Whether the business or partnership has enough liquidity</li>
+        <li>Whether the borrower has access to the income</li>
+        <li>Whether the income is likely to continue</li>
+        <li>Any ownership changes</li>
+        <li>Any business losses or unusual one-time events</li>
+      </ul>
+      <p>The more complex the entity, the more important the documentation becomes. This is why K-1 borrowers should avoid waiting until the last minute to get preapproved. A proper review may take more time than a standard W-2 file, but it can prevent major issues later in the process.</p>
+
+      <h2>Common Problems K-1 Borrowers Face</h2>
+      <h3>The income shows on paper, but was not distributed</h3>
+      <p>This is one of the most common issues. The borrower may report income through a K-1 but not actually receive the money personally. In that case, the lender may not count the full amount unless the borrower can document access to it.</p>
+      <h3>The business shows a loss</h3>
+      <p>A K-1 may reflect losses from the business or investment entity. Those losses may reduce qualifying income, even if the borrower has strong assets or cash flow elsewhere.</p>
+      <h3>The income fluctuates year to year</h3>
+      <p>If K-1 income varies significantly, the lender may average it over two years or use a more conservative calculation.</p>
+      <h3>The borrower owns multiple entities</h3>
+      <p>Some borrowers receive several K-1s from different businesses, partnerships, or investments. This requires a more detailed analysis to determine which income can be used and which losses must be counted.</p>
+      <h3>The business has strong revenue but limited liquidity</h3>
+      <p>A lender may question whether future distributions can continue if the business does not show enough available cash.</p>
+      <h3>The borrower has a great CPA but not a mortgage-ready file</h3>
+      <p>Tax planning and mortgage qualification do not always align. A CPA may structure income efficiently for taxes, while a mortgage lender needs income presented in a way that supports repayment ability.</p>
+
+      <h2>Mortgage Strategies for Borrowers with K-1 Income</h2>
+      <p>The right mortgage strategy depends on the borrower's full profile. K-1 income may be used on its own, combined with other income sources, or supported by alternative documentation.</p>
+      <h3>1. Conventional or Jumbo Loans</h3>
+      <p>Some borrowers with K-1 income can qualify through traditional conventional or jumbo financing. This may work well when the income is stable, well-documented, and supported by consistent distributions.</p>
+      <h3>2. Alt-A Loans</h3>
+      <p>Alt-A programs may provide more flexibility for high-quality borrowers whose income is strong but does not fit perfectly into standard underwriting. This can be helpful for business owners, partners, and high-net-worth borrowers who need a more thoughtful review of K-1 income, business assets, distributions, or multiple income streams.</p>
+      <h3>3. Bank Statement Loans</h3>
+      <p>If K-1 income does not fully support the loan, a bank statement loan may be an option for self-employed borrowers with strong deposit history. This allows the lender to review actual cash flow through personal or business bank statements rather than relying only on tax-return income.</p>
+      <h3>4. Asset-Based Qualification</h3>
+      <p>Some borrowers with K-1 income also have substantial liquid assets, investment accounts, or business reserves. In certain cases, an asset-based program may help convert eligible assets into qualifying income.</p>
+      <h3>5. DSCR Loans for Investment Properties</h3>
+      <p>If the property being financed is an investment property, a DSCR loan may allow the borrower to qualify based on the rental income of the property instead of personal income. This can be useful for investors whose personal tax returns or K-1s are too complex for a conventional loan.</p>
+
+      <h2>Real-World Scenario: The Partner with Strong Income but Complicated Documentation</h2>
+      <p>Imagine a partner in a growing consulting firm. She receives W-2 wages from the company, plus K-1 income based on her ownership share. Her personal income is strong, her credit is excellent, and she has significant savings.</p>
+      <p>But her K-1 income fluctuates from year to year because the company reinvests in hiring, software, and expansion. One year shows strong profit. The next year shows lower taxable income due to business growth expenses. A big bank reviews the file and says the income is inconsistent.</p>
+      <p>Instead of stopping there, Cliffco and The Fallarino Group review the full picture:</p>
+      <ul>
+        <li>W-2 income from the business</li>
+        <li>Two years of K-1s</li>
+        <li>Personal tax returns</li>
+        <li>Business tax returns</li>
+        <li>Distribution history</li>
+        <li>Current year profit and loss</li>
+        <li>Business liquidity</li>
+        <li>Personal assets and reserves</li>
+        <li>Explanation of one-time business expenses</li>
+      </ul>
+      <p>With the right structure, the borrower may be able to qualify through a more complete income analysis or a more flexible loan program. The issue was never that she could not afford the home. The issue was that the first lender did not know how to evaluate her income correctly.</p>
+
+      <h2>How to Prepare If You Have K-1 Income</h2>
+      <p>If you receive K-1 income and plan to buy or refinance, preparation matters. Before applying, gather:</p>
+      <ul>
+        <li>Two years of personal tax returns</li>
+        <li>Two years of K-1s</li>
+        <li>Business or partnership tax returns, if applicable</li>
+        <li>Year-to-date profit and loss statements</li>
+        <li>Balance sheets</li>
+        <li>Documentation of distributions</li>
+        <li>Business bank statements</li>
+        <li>Personal bank statements</li>
+        <li>Operating agreements, if needed</li>
+        <li>CPA letters explaining unusual items or one-time events</li>
+        <li>Asset statements</li>
+        <li>Documentation for any other income sources</li>
+      </ul>
+      <p>You do not need every document for every program, but having them organized early helps your mortgage team determine the strongest path.</p>
+
+      <h2>Should You Change How You Take Income Before Applying?</h2>
+      <p>Maybe, but not without guidance. Some business owners wonder whether they should increase distributions, change compensation, or restructure income before applying for a mortgage.</p>
+      <p>Those decisions can have tax, business, and legal implications. They should be discussed with your CPA or tax advisor first.</p>
+      <p>From a mortgage standpoint, the best approach is usually to plan early. A strategic review can show whether your current income structure supports the loan you want or whether another mortgage program would be a better fit. The answer is not always to change your business. Sometimes the answer is to change the loan strategy.</p>
+
+      <h2>FAQs About K-1 Income and Mortgage Approval</h2>
+      <div class="mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold cursor-pointer text-lg list-none">{item.question}</summary>
+            <p class="mt-3">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <h2>The Bottom Line</h2>
+      <p>K-1 income can make mortgage approval more complex, but complexity does not mean disqualification.</p>
+      <p>Business owners, partners, shareholders, and investors often have strong financial profiles that simply require a more strategic review. The key is understanding how the income is reported, whether it is distributed, whether it is stable, and which loan program best fits the borrower's situation.</p>
+      <p>At Cliffco and The Fallarino Group, we specialize in helping borrowers with sophisticated income structures find mortgage solutions that work. If your K-1 income has made the mortgage process confusing, frustrating, or slower than expected, it may be time for a second opinion.</p>
+    </div>
+  </article>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <div class="max-w-2xl mx-auto card flex flex-col sm:flex-row gap-6 items-start">
+        {david.hasPhoto && (
+          <div class="w-20 h-20 shrink-0 rounded-full overflow-hidden">
+            <Headshot slug={david.slug} name={david.displayName} size={80} shape="circle" />
+          </div>
+        )}
+        <div>
+          <p class="eyebrow text-xs mb-1">Written by</p>
+          <h3 class="font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">{david.displayName}</h3>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">{david.title} · NMLS #{david.nmls}</p>
+          <p class="text-sm text-[var(--color-text)] mt-3 leading-relaxed">Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors.</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href={`/loan-officers/${david.slug}/`} class="btn btn-primary text-sm">View David's profile</a>
+            <a href="/the-fallarino-group/" class="btn btn-secondary text-sm">The Fallarino Group</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-2xl">
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Have K-1 income and a home to buy or refinance? Let's talk it through.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us how your income is structured and David will identify which loan path actually fits.</p>
+      <div class="mt-8">
+        <ContactForm
+          formTo="dfallarino@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
+          formSource="blog-k1-income"
+        />
+      </div>
+    </div>
+  </section>
+</Layout>
