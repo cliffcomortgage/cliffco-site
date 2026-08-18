@@ -191,6 +191,31 @@ export default defineConfig({
         },
       },
     },
+    // IndexNow: notify Bing/Yandex (and, downstream, ChatGPT/Copilot search) of
+    // the site's URLs after a production build. Opt-in via INDEXNOW_SUBMIT=true
+    // so it stays dormant until the site is live on cliffcomortgage.com and the
+    // key file is served there. Non-fatal.
+    {
+      name: 'indexnow-submit',
+      hooks: {
+        'astro:build:done': async ({ pages, logger }) => {
+          if (isPages || process.env.INDEXNOW_SUBMIT !== 'true') return;
+          const KEY = 'b8e4d1a9c7f2436e8a05d3c9f1e6072b';
+          const base = 'https://cliffcomortgage.com';
+          const urlList = pages.map((p) => `${base}/${p.pathname}`.replace(/(?<!:)\/{2,}/g, '/'));
+          try {
+            const res = await fetch('https://api.indexnow.org/indexnow', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json; charset=utf-8' },
+              body: JSON.stringify({ host: 'cliffcomortgage.com', key: KEY, keyLocation: `${base}/${KEY}.txt`, urlList }),
+            });
+            logger.info(`IndexNow: submitted ${urlList.length} URLs (HTTP ${res.status})`);
+          } catch (err) {
+            logger.warn(`IndexNow submit failed (non-fatal): ${err}`);
+          }
+        },
+      },
+    },
   ],
 
   build: {
