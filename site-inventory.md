@@ -1,0 +1,353 @@
+# Cliffco New Site — Inventory
+
+_Generated 2026-08-18 from the current build. Production domain shown as cliffcomortgage.com._
+
+## Pages / Sitemap
+
+Total pages: 200
+(Note: `/nj-22k-grant/` and `/thank-you/` are live pages but intentionally excluded from the XML sitemap.)
+
+- https://cliffcomortgage.com/
+- https://cliffcomortgage.com/about/
+- https://cliffcomortgage.com/alt-a-vs-conventional-mortgage/
+- https://cliffcomortgage.com/bay-shore-ny/
+- https://cliffcomortgage.com/branchburg-nj/
+- https://cliffcomortgage.com/buckeye-az/
+- https://cliffcomortgage.com/business-tax-write-offs-mortgage-approval/
+- https://cliffcomortgage.com/careers/
+- https://cliffcomortgage.com/complex-income-mortgage-solutions/
+- https://cliffcomortgage.com/contact/
+- https://cliffcomortgage.com/denied-mortgage/
+- https://cliffcomortgage.com/down-payment-assistance/
+- https://cliffcomortgage.com/dscr-loans-demystified/
+- https://cliffcomortgage.com/excelsior-mn/
+- https://cliffcomortgage.com/first-time-homebuyer/
+- https://cliffcomortgage.com/get-started/
+- https://cliffcomortgage.com/get-started/buy/
+- https://cliffcomortgage.com/get-started/cash-out/
+- https://cliffcomortgage.com/get-started/refinance/
+- https://cliffcomortgage.com/jumbo-alt-a-loans-entrepreneurs-david-fallarino/
+- https://cliffcomortgage.com/k1-income-mortgage-approval/
+- https://cliffcomortgage.com/legal/accessibility/
+- https://cliffcomortgage.com/legal/ccpa/
+- https://cliffcomortgage.com/legal/privacy/
+- https://cliffcomortgage.com/legal/sms-consent/
+- https://cliffcomortgage.com/legal/texas-complaints/
+- https://cliffcomortgage.com/licensing/
+- https://cliffcomortgage.com/loan-officers/
+- https://cliffcomortgage.com/loan-officers/adam-broder/
+- https://cliffcomortgage.com/loan-officers/anastasios-zervas/
+- https://cliffcomortgage.com/loan-officers/andrea-carver/
+- https://cliffcomortgage.com/loan-officers/angelique-street/
+- https://cliffcomortgage.com/loan-officers/brandon-kenney/
+- https://cliffcomortgage.com/loan-officers/brendan-mcclarnon/
+- https://cliffcomortgage.com/loan-officers/christian-nguyen/
+- https://cliffcomortgage.com/loan-officers/christian-soto/
+- https://cliffcomortgage.com/loan-officers/christopher-clifford/
+- https://cliffcomortgage.com/loan-officers/daniel-ebbecke/
+- https://cliffcomortgage.com/loan-officers/daphne-feliciano/
+- https://cliffcomortgage.com/loan-officers/david-fallarino/
+- https://cliffcomortgage.com/loan-officers/david-illouz/
+- https://cliffcomortgage.com/loan-officers/david-mizrahi/
+- https://cliffcomortgage.com/loan-officers/donna-hemberger/
+- https://cliffcomortgage.com/loan-officers/edward-morais/
+- https://cliffcomortgage.com/loan-officers/emily-cordeira/
+- https://cliffcomortgage.com/loan-officers/emmanuel-estinvil/
+- https://cliffcomortgage.com/loan-officers/eric-mueller/
+- https://cliffcomortgage.com/loan-officers/fabrizio-alosa/
+- https://cliffcomortgage.com/loan-officers/gary-johansen/
+- https://cliffcomortgage.com/loan-officers/gary-lai/
+- https://cliffcomortgage.com/loan-officers/george-diamantakis/
+- https://cliffcomortgage.com/loan-officers/james-chen/
+- https://cliffcomortgage.com/loan-officers/james-perrone/
+- https://cliffcomortgage.com/loan-officers/jeannette-zucker/
+- https://cliffcomortgage.com/loan-officers/johana-amaya/
+- https://cliffcomortgage.com/loan-officers/joseph-cordeira/
+- https://cliffcomortgage.com/loan-officers/joshua-borrero/
+- https://cliffcomortgage.com/loan-officers/joshua-brenner/
+- https://cliffcomortgage.com/loan-officers/justin-hu/
+- https://cliffcomortgage.com/loan-officers/kathie-adler/
+- https://cliffcomortgage.com/loan-officers/kendra-daniel/
+- https://cliffcomortgage.com/loan-officers/kevan-scott/
+- https://cliffcomortgage.com/loan-officers/kyle-arabian/
+- https://cliffcomortgage.com/loan-officers/larisa-zambelli/
+- https://cliffcomortgage.com/loan-officers/lauren-zambelli/
+- https://cliffcomortgage.com/loan-officers/lee-horen/
+- https://cliffcomortgage.com/loan-officers/lisa-hartman/
+- https://cliffcomortgage.com/loan-officers/lisa-zambelli/
+- https://cliffcomortgage.com/loan-officers/logan-levy/
+- https://cliffcomortgage.com/loan-officers/mario-argenzio/
+- https://cliffcomortgage.com/loan-officers/michael-aziz/
+- https://cliffcomortgage.com/loan-officers/michael-bisbee/
+- https://cliffcomortgage.com/loan-officers/mitchell-patterson/
+- https://cliffcomortgage.com/loan-officers/moses-youssef/
+- https://cliffcomortgage.com/loan-officers/paul-montesano/
+- https://cliffcomortgage.com/loan-officers/queeny-duong/
+- https://cliffcomortgage.com/loan-officers/rafael-rojas/
+- https://cliffcomortgage.com/loan-officers/raymond-garcia/
+- https://cliffcomortgage.com/loan-officers/renald-appo/
+- https://cliffcomortgage.com/loan-officers/ryan-riddle/
+- https://cliffcomortgage.com/loan-officers/shahraj-khan/
+- https://cliffcomortgage.com/loan-officers/steve-lazo/
+- https://cliffcomortgage.com/loan-officers/steven-rivera/
+- https://cliffcomortgage.com/loan-officers/tamara-williamson/
+- https://cliffcomortgage.com/loan-officers/thomas-whalen/
+- https://cliffcomortgage.com/loans/
+- https://cliffcomortgage.com/loans/1099-mortgage/
+- https://cliffcomortgage.com/loans/asset-utilization-mortgage/
+- https://cliffcomortgage.com/loans/business-bank-statement/
+- https://cliffcomortgage.com/loans/condos-co-ops-condotels/
+- https://cliffcomortgage.com/loans/conventional-government/
+- https://cliffcomortgage.com/loans/conventional/
+- https://cliffcomortgage.com/loans/dscr/
+- https://cliffcomortgage.com/loans/fha/
+- https://cliffcomortgage.com/loans/foreign-national-mortgage/
+- https://cliffcomortgage.com/loans/heloc/
+- https://cliffcomortgage.com/loans/itin-mortgage/
+- https://cliffcomortgage.com/loans/non-qm-self-employed/
+- https://cliffcomortgage.com/loans/refinancing/
+- https://cliffcomortgage.com/loans/renovation/
+- https://cliffcomortgage.com/loans/reverse-mortgage/
+- https://cliffcomortgage.com/loans/usda/
+- https://cliffcomortgage.com/loans/va/
+- https://cliffcomortgage.com/locations/
+- https://cliffcomortgage.com/locations/arizona/
+- https://cliffcomortgage.com/locations/florida/
+- https://cliffcomortgage.com/locations/florida/fort-lauderdale/
+- https://cliffcomortgage.com/locations/minnesota/
+- https://cliffcomortgage.com/locations/new-jersey/
+- https://cliffcomortgage.com/locations/new-york/
+- https://cliffcomortgage.com/locations/new-york/long-island/
+- https://cliffcomortgage.com/mortgage-guides/blog/
+- https://cliffcomortgage.com/mortgage-guides/blog/1099-loan-vs-bank-statement-loan-freelancer/
+- https://cliffcomortgage.com/mortgage-guides/blog/1099-loan-vs-w2-mortgage-independent-contractor/
+- https://cliffcomortgage.com/mortgage-guides/blog/bank-statement-loan-freelancers/
+- https://cliffcomortgage.com/mortgage-guides/blog/building-credit-us-non-citizen-mortgage/
+- https://cliffcomortgage.com/mortgage-guides/blog/business-bank-statement-loan-mortgage-small-business-owner/
+- https://cliffcomortgage.com/mortgage-guides/blog/cash-out-refinance-vs-heloc/
+- https://cliffcomortgage.com/mortgage-guides/blog/cash-reserves-investment-property-loan/
+- https://cliffcomortgage.com/mortgage-guides/blog/contract-gaps-inconsistent-income-mortgage-independent-contractor/
+- https://cliffcomortgage.com/mortgage-guides/blog/conventional-loan-vs-dscr-loan-investment-property/
+- https://cliffcomortgage.com/mortgage-guides/blog/credit-score-mortgage-application-first-time-homebuyer/
+- https://cliffcomortgage.com/mortgage-guides/blog/credit-score-tips-freelancers-mortgage/
+- https://cliffcomortgage.com/mortgage-guides/blog/down-payment-assistance-programs-first-time-homebuyers/
+- https://cliffcomortgage.com/mortgage-guides/blog/dscr-loan-foreign-national-investor/
+- https://cliffcomortgage.com/mortgage-guides/blog/dscr-loan-vs-bank-statement-loan-business-owner-investment-property/
+- https://cliffcomortgage.com/mortgage-guides/blog/existing-mortgage-qualify-new-home-purchase/
+- https://cliffcomortgage.com/mortgage-guides/blog/foreign-national-loan-buy-property-us/
+- https://cliffcomortgage.com/mortgage-guides/blog/house-hacking-fha-loan-multi-family-property/
+- https://cliffcomortgage.com/mortgage-guides/blog/how-does-a-reverse-mortgage-work/
+- https://cliffcomortgage.com/mortgage-guides/blog/how-does-a-va-loan-work/
+- https://cliffcomortgage.com/mortgage-guides/blog/how-dscr-loans-work/
+- https://cliffcomortgage.com/mortgage-guides/blog/how-first-time-homebuyers-compete-sellers-market/
+- https://cliffcomortgage.com/mortgage-guides/blog/how-itin-holders-qualify-mortgage/
+- https://cliffcomortgage.com/mortgage-guides/blog/how-mortgage-lenders-define-self-employment-independent-contractor/
+- https://cliffcomortgage.com/mortgage-guides/blog/how-to-buy-home-before-selling-current-one/
+- https://cliffcomortgage.com/mortgage-guides/blog/how-to-refinance-after-financial-situation-changed/
+- https://cliffcomortgage.com/mortgage-guides/blog/how-to-use-home-equity-buying-next-home/
+- https://cliffcomortgage.com/mortgage-guides/blog/investment-property-loan-self-employed/
+- https://cliffcomortgage.com/mortgage-guides/blog/mortgage-pre-approval-vs-actual-budget-first-time-homebuyer/
+- https://cliffcomortgage.com/mortgage-guides/blog/mortgage-qualify-multiple-income-sources-freelancer/
+- https://cliffcomortgage.com/mortgage-guides/blog/mortgage-ready-financial-profile-independent-contractor/
+- https://cliffcomortgage.com/mortgage-guides/blog/multiple-clients-1099-income-mortgage-consultant/
+- https://cliffcomortgage.com/mortgage-guides/blog/pl-loan-vs-wvoe-loan-small-business-owner-mortgage/
+- https://cliffcomortgage.com/mortgage-guides/blog/reverse-mortgage-costs-and-fees/
+- https://cliffcomortgage.com/mortgage-guides/blog/reverse-mortgage-retirement-planning-strategy/
+- https://cliffcomortgage.com/mortgage-guides/blog/reverse-mortgage-vs-selling-and-downsizing/
+- https://cliffcomortgage.com/mortgage-guides/blog/reverse-mortgage-what-happens-to-heirs-and-home/
+- https://cliffcomortgage.com/mortgage-guides/blog/should-i-refinance-my-mortgage/
+- https://cliffcomortgage.com/mortgage-guides/blog/surviving-spouse-va-loan-eligibility/
+- https://cliffcomortgage.com/mortgage-guides/blog/va-disability-income-mortgage-qualification/
+- https://cliffcomortgage.com/mortgage-guides/blog/va-fha-streamline-refinance/
+- https://cliffcomortgage.com/mortgage-guides/blog/va-loan-active-duty-pcs-occupancy-requirement/
+- https://cliffcomortgage.com/mortgage-guides/blog/va-loan-entitlement-explained/
+- https://cliffcomortgage.com/mortgage-guides/blog/w2-to-independent-contractor-mortgage-qualification/
+- https://cliffcomortgage.com/mortgage-guides/blog/waiting-to-buy-home-first-time-homebuyer/
+- https://cliffcomortgage.com/mortgage-guides/blog/what-changes-mortgage-process-second-time-buying-home/
+- https://cliffcomortgage.com/mortgage-guides/blog/what-is-an-itin-loan/
+- https://cliffcomortgage.com/mortgage-guides/blog/what-to-expect-refinance-process-application-to-closing/
+- https://cliffcomortgage.com/mortgage-guides/blog/why-freelancers-struggle-to-buy-home/
+- https://cliffcomortgage.com/mortgage-guides/blog/why-move-up-buyers-overpay-competitive-market/
+- https://cliffcomortgage.com/mortgage-guides/blog/why-small-business-owners-get-denied-mortgages/
+- https://cliffcomortgage.com/mortgage-guides/calculators/
+- https://cliffcomortgage.com/mortgage-guides/calculators/affordability/
+- https://cliffcomortgage.com/mortgage-guides/calculators/budget-builder/
+- https://cliffcomortgage.com/mortgage-guides/calculators/buydown/
+- https://cliffcomortgage.com/mortgage-guides/calculators/closing-costs/
+- https://cliffcomortgage.com/mortgage-guides/calculators/dscr/
+- https://cliffcomortgage.com/mortgage-guides/calculators/mortgage-readiness/
+- https://cliffcomortgage.com/mortgage-guides/calculators/payment-estimator/
+- https://cliffcomortgage.com/mortgage-guides/calculators/refi-checkup/
+- https://cliffcomortgage.com/mortgage-guides/calculators/rent-vs-buy/
+- https://cliffcomortgage.com/mortgage-guides/calculators/reverse-mortgage/
+- https://cliffcomortgage.com/mortgage-guides/calculators/self-employed-income/
+- https://cliffcomortgage.com/mortgage-guides/calculators/va-loan/
+- https://cliffcomortgage.com/mortgage-guides/down-payment-assistance-programs/
+- https://cliffcomortgage.com/mortgage-guides/dscr-loan-guide/
+- https://cliffcomortgage.com/mortgage-guides/glossary/
+- https://cliffcomortgage.com/mortgage-guides/non-qm-loans-guide/
+- https://cliffcomortgage.com/mortgage-guides/non-qm-mortgage-self-employed/
+- https://cliffcomortgage.com/mortgage-guides/reverse-mortgage-guide/
+- https://cliffcomortgage.com/mortgage-guides/what-is-an-investment-mortgage/
+- https://cliffcomortgage.com/mortgage-rates/
+- https://cliffcomortgage.com/mortgages-for-freelancers-entrepreneurs-investors/
+- https://cliffcomortgage.com/nj-22k-grant/
+- https://cliffcomortgage.com/press/
+- https://cliffcomortgage.com/process/
+- https://cliffcomortgage.com/purchasing-refinancing/
+- https://cliffcomortgage.com/real-estate-investor-mortgage/
+- https://cliffcomortgage.com/reverse-mortgage/
+- https://cliffcomortgage.com/reviews/
+- https://cliffcomortgage.com/self-employed-mortgage/
+- https://cliffcomortgage.com/team-chen/
+- https://cliffcomortgage.com/team-cordeira/
+- https://cliffcomortgage.com/team-str/
+- https://cliffcomortgage.com/team-zambelli/
+- https://cliffcomortgage.com/thank-you/
+- https://cliffcomortgage.com/the-fallarino-group/
+- https://cliffcomortgage.com/uniondale/
+- https://cliffcomortgage.com/why-cliffco/
+
+## Redirects (301, old path -> new path)
+
+Total redirects: 0
+
+- /about-us/  ->  /about/
+- /abroder/  ->  /loan-officers/adam-broder/
+- /acarver/  ->  /loan-officers/andrea-carver/
+- /accessibility-statement/  ->  /legal/accessibility/
+- /affordability-calculator/  ->  /mortgage-guides/calculators/affordability/
+- /all-open-positions/  ->  /careers/
+- /astreet/  ->  /loan-officers/angelique-street/
+- /azervas/  ->  /loan-officers/anastasios-zervas/
+- /bkenney/  ->  /loan-officers/brandon-kenney/
+- /blog/  ->  /mortgage-guides/blog/
+- /bmcclarnon/  ->  /loan-officers/brendan-mcclarnon/
+- /buydown-calculator/  ->  /mortgage-guides/calculators/buydown/
+- /ccpa/  ->  /legal/ccpa/
+- /closing-costs/  ->  /mortgage-guides/calculators/closing-costs/
+- /cnguyen/  ->  /loan-officers/christian-nguyen/
+- /condos-co-ops-condotels/  ->  /loans/condos-co-ops-condotels/
+- /contact-us/  ->  /contact/
+- /conventional-loans/  ->  /loans/conventional/
+- /csoto/  ->  /loan-officers/christian-soto/
+- /debbecke/  ->  /loan-officers/daniel-ebbecke/
+- /dfallarino/  ->  /loan-officers/david-fallarino/
+- /dfeliciano/  ->  /loan-officers/daphne-feliciano/
+- /dhemberger/  ->  /loan-officers/donna-hemberger/
+- /dillouz/  ->  /loan-officers/david-illouz/
+- /dmizrahi/  ->  /loan-officers/david-mizrahi/
+- /down-payment-assistance-programs/  ->  /mortgage-guides/down-payment-assistance-programs/
+- /dscr-loans-real-estate-investors-guide/  ->  /mortgage-guides/dscr-loan-guide/
+- /dscr-loans-real-estate-investors/  ->  /dscr-loans-demystified/
+- /ecordeira/  ->  /loan-officers/emily-cordeira/
+- /eestinvil/  ->  /loan-officers/emmanuel-estinvil/
+- /emorais/  ->  /loan-officers/edward-morais/
+- /emueller/  ->  /loan-officers/eric-mueller/
+- /falosa/  ->  /loan-officers/fabrizio-alosa/
+- /faqs/  ->  /mortgage-rates/
+- /fha-loans/  ->  /loans/fha/
+- /find-a-branch/  ->  /locations/
+- /find-a-loan-officer/  ->  /loan-officers/
+- /first-time-homebuyers/  ->  /first-time-homebuyer/
+- /fort-lauderdale-fl/  ->  /locations/florida/fort-lauderdale/
+- /freelance/  ->  /mortgages-for-freelancers-entrepreneurs-investors/
+- /fveras/  ->  /loan-officers/
+- /gdiamantakis/  ->  /loan-officers/george-diamantakis/
+- /gjohansen/  ->  /loan-officers/gary-johansen/
+- /glai/  ->  /loan-officers/gary-lai/
+- /healthcare-professionals/  ->  /purchasing-refinancing/
+- /home/  ->  /
+- /investors/  ->  /real-estate-investor-mortgage/
+- /jamaica-ny/  ->  /locations/new-york/
+- /jamaya/  ->  /loan-officers/johana-amaya/
+- /jborrero/  ->  /loan-officers/joshua-borrero/
+- /jbrenner/  ->  /loan-officers/joshua-brenner/
+- /jchen/  ->  /loan-officers/james-chen/
+- /jcordeira/  ->  /loan-officers/joseph-cordeira/
+- /jgiaquinto/  ->  /loan-officers/
+- /jhu/  ->  /loan-officers/justin-hu/
+- /jmarrero/  ->  /loan-officers/
+- /jperrone/  ->  /loan-officers/james-perrone/
+- /jzucker/  ->  /loan-officers/jeannette-zucker/
+- /kadler/  ->  /loan-officers/kathie-adler/
+- /karabian/  ->  /loan-officers/kyle-arabian/
+- /kcruz/  ->  /loan-officers/
+- /kdaniel/  ->  /loan-officers/kendra-daniel/
+- /kscott/  ->  /loan-officers/kevan-scott/
+- /larisa-zambelli/  ->  /loan-officers/larisa-zambelli/
+- /lauren-zambelli/  ->  /loan-officers/lauren-zambelli/
+- /lhartman/  ->  /loan-officers/lisa-hartman/
+- /lhoren/  ->  /loan-officers/lee-horen/
+- /lisa-zambelli/  ->  /loan-officers/lisa-zambelli/
+- /llevy/  ->  /loan-officers/logan-levy/
+- /loan-officers/adam-turkewitz/  ->  /loan-officers/
+- /loan-officers/aturkewitz/  ->  /loan-officers/
+- /loan-officers/francisco-veras/  ->  /loan-officers/
+- /loan-officers/jcruz/  ->  /loan-officers/
+- /loan-officers/jjorge/  ->  /loan-officers/
+- /loan-officers/jose-cruz/  ->  /loan-officers/
+- /loan-officers/julia-jorge-delcarmen/  ->  /loan-officers/
+- /loan-officers/julia-jorge/  ->  /loan-officers/
+- /loan-officers/julian-giaquinto/  ->  /loan-officers/
+- /loan-officers/keyla-cruz/  ->  /loan-officers/
+- /loan-officers/nadia-geyer/  ->  /loan-officers/
+- /loan-officers/ralvarez/  ->  /loan-officers/
+- /loan-officers/richard-alvarez/  ->  /loan-officers/
+- /loan-officers/samantha-roach/  ->  /loan-officers/
+- /loan-officers/sroach/  ->  /loan-officers/
+- /loan-officers/syed-hasib/  ->  /loan-officers/
+- /loan-officers/wenceslao-romero/  ->  /loan-officers/
+- /loans/fix-and-flip/  ->  /loans/business-bank-statement/
+- /locations/florida/orlando/  ->  /locations/florida/
+- /locations/new-york/queens/  ->  /locations/new-york/
+- /margenzio/  ->  /loan-officers/mario-argenzio/
+- /maziz/  ->  /loan-officers/michael-aziz/
+- /mbisbee/  ->  /loan-officers/michael-bisbee/
+- /mortgage-glossary/  ->  /mortgage-guides/glossary/
+- /mortgage-guides/blog/dscr-loans-real-estate-investors/  ->  /mortgage-guides/blog/how-dscr-loans-work/
+- /mortgage-guides/dscr-loans-real-estate-investors-guide/  ->  /mortgage-guides/dscr-loan-guide/
+- /mpatterson/  ->  /loan-officers/mitchell-patterson/
+- /myoussef/  ->  /loan-officers/moses-youssef/
+- /ngeyer/  ->  /loan-officers/
+- /non-qm-loans-guide/  ->  /mortgage-guides/non-qm-loans-guide/
+- /non-qm-loans/  ->  /loans/non-qm-self-employed/
+- /non-qm-mortgage-self-employed/  ->  /mortgage-guides/non-qm-mortgage-self-employed/
+- /non-us-citizens/  ->  /loans/itin-mortgage/
+- /orlando-fl/  ->  /locations/florida/
+- /pmontesano/  ->  /loan-officers/paul-montesano/
+- /privacy-policy/  ->  /legal/privacy/
+- /products/  ->  /loans/
+- /purchase-clients/  ->  /purchasing-refinancing/
+- /qduong/  ->  /loan-officers/queeny-duong/
+- /rappo/  ->  /loan-officers/renald-appo/
+- /real-estate-agents/  ->  /self-employed-mortgage/
+- /refinancing/  ->  /loans/refinancing/
+- /renovation-loan/  ->  /loans/renovation/
+- /reverse-mortgage-guide/  ->  /mortgage-guides/reverse-mortgage-guide/
+- /reverse-mortgages/  ->  /reverse-mortgage/
+- /rgarcia/  ->  /loan-officers/raymond-garcia/
+- /rriddle/  ->  /loan-officers/ryan-riddle/
+- /rrojas/  ->  /loan-officers/rafael-rojas/
+- /rural-residents/  ->  /loans/usda/
+- /salon/  ->  /self-employed-mortgage/
+- /scottsdale-az/  ->  /buckeye-az/
+- /self-employed/  ->  /self-employed-mortgage/
+- /seniors/  ->  /reverse-mortgage/
+- /service-members/  ->  /loans/va/
+- /shasib/  ->  /loan-officers/
+- /skhan/  ->  /loan-officers/shahraj-khan/
+- /slazo/  ->  /loan-officers/steve-lazo/
+- /small-business/  ->  /self-employed-mortgage/
+- /srivera/  ->  /loan-officers/steven-rivera/
+- /team-giaquinto/  ->  /loan-officers/
+- /team-veras/  ->  /locations/florida/
+- /tech/  ->  /complex-income-mortgage-solutions/
+- /trade-workers/  ->  /self-employed-mortgage/
+- /twhalen/  ->  /loan-officers/thomas-whalen/
+- /twilliamson/  ->  /loan-officers/tamara-williamson/
+- /usda-loans/  ->  /loans/usda/
+- /va-loans/  ->  /loans/va/
+- /wantagh-ny/  ->  /locations/new-york/long-island/
+- /what-is-an-investment-mortgage/  ->  /mortgage-guides/what-is-an-investment-mortgage/
+- /wromero/  ->  /loan-officers/
