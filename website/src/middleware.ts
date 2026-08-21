@@ -42,7 +42,7 @@ function loginPage(error: boolean): string {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Dashboard · Cliffco Reverse</title>
+  <title>Dashboard · Cliffco</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: system-ui, -apple-system, sans-serif; background: #0d0d0d; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; }
@@ -60,7 +60,7 @@ function loginPage(error: boolean): string {
 </head>
 <body>
   <div class="card">
-    <div class="eyebrow">Cliffco Reverse · Internal</div>
+    <div class="eyebrow">Cliffco · Internal</div>
     <h1>Performance Dashboard</h1>
     <p class="sub">Enter the password to access campaign data.</p>
     <form method="POST">

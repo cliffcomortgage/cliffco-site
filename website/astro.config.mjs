@@ -175,7 +175,7 @@ export default defineConfig({
   integrations: [
     // nj-22k-grant is an ads-only landing page, deliberately excluded here
     // and noindexed - reached only via paid ads, never linked from the site.
-    sitemap({ filter: (page) => !page.includes('/thank-you/') && !page.includes('/nj-22k-grant/') }),
+    sitemap({ filter: (page) => !page.includes('/thank-you/') && !page.includes('/nj-22k-grant/') && !page.includes('/dashboard') }),
     // API routes must be serverless functions on Vercel (POST handlers) but
     // prerendered stubs on the static GitHub Pages preview. This is set here,
     // not via a `prerender` export in the route files, because Astro can only
@@ -185,7 +185,10 @@ export default defineConfig({
       name: 'api-prerender-per-target',
       hooks: {
         'astro:route:setup': ({ route }) => {
-          if (route.component.replace(/\\/g, '/').includes('/pages/api/')) {
+          const c = route.component.replace(/\\/g, '/');
+          // API routes and the SSR dashboard: server-rendered on Vercel,
+          // prerendered stub on the static GitHub Pages preview.
+          if (c.includes('/pages/api/') || c.includes('/pages/dashboard')) {
             route.prerender = isPages;
           }
         },

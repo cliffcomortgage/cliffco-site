@@ -1,5 +1,6 @@
 ---
-export const prerender = false;
+// prerender is controlled per build target in astro.config.mjs (SSR on Vercel,
+// prerendered stub on the static GitHub Pages preview).
 import "../styles/global.css";
 import { COMPANY } from "../data/company";
 
@@ -480,7 +481,7 @@ const currentYear = new Date().getFullYear();
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Google Ads Dashboard | Cliffco Reverse</title>
+  <title>Google Ads Dashboard | Cliffco</title>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
