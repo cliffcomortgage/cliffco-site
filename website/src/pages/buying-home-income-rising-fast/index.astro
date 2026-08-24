@@ -1,0 +1,197 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { loanOfficer } from "../../data/loan-officers";
+import Headshot from "../../components/ui/Headshot.astro";
+import ContactForm from "../../components/forms/ContactForm.astro";
+import { faqPageSchema } from "../../lib/schema";
+
+const david = loanOfficer("david-fallarino")!;
+
+const faqs = [
+  { question: "Can I get a mortgage if my income recently increased?", answer: "Yes, but the lender will need to document the increase and determine whether it is stable and likely to continue." },
+  { question: "Will lenders use my current income or average my past income?", answer: "It depends on the income type and loan program. Salaried income may be treated differently than commission, bonus, self-employed, or business income. Some lenders may average income over two years, while others may allow more flexibility." },
+  { question: "What if my business is making more this year than last year?", answer: "A current profit and loss statement, business bank statements, and supporting documentation may help show recent growth. The right loan program matters." },
+  { question: "Can I use a new job offer or employment contract to qualify?", answer: "In some cases, yes. Certain programs may allow an offer letter or employment contract, depending on the position, start date, compensation structure, and loan guidelines." },
+  { question: "What if my tax returns show lower income than I make now?", answer: "You may still have options. Bank statement loans, Alt-A programs, asset-based loans, or other alternative documentation programs may provide a better fit." },
+  { question: "Should I wait another year before buying?", answer: "Not necessarily. Waiting may help in some cases, but it is worth reviewing your options first. A strategic mortgage review can show whether you qualify now or whether waiting would improve your position." },
+];
+const schema = faqPageSchema(faqs);
+---
+
+<Layout
+  title="Buying a Home When Your Income Is Rising Fast: Mortgage Options for High-Growth Borrowers | 500:1 Blog"
+  description="Rising income should open doors, not create confusion. Mortgage options for entrepreneurs, executives, and commissioned pros whose current earnings outpace their tax returns."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "500:1 Blog", href: `/loan-officers/${david.slug}/` },
+    { name: "Buying a Home When Your Income Is Rising Fast", href: "/buying-home-income-rising-fast/" },
+  ]} />
+
+  <article class="section bg-white relative overflow-hidden">
+    <div class="absolute inset-x-0 top-0 h-[300px] bg-[var(--color-rich-black)]" aria-hidden="true"></div>
+    <div class="container-prose relative z-10">
+      <div class="rounded-lg overflow-hidden mb-10 aspect-video bg-[var(--color-mist-gray)] shadow-2xl">
+        <img src="/images/DFallarino%20Blog/Rising%20Income%20Blog.jpg" alt="High-growth professional reviewing mortgage options as income rises at Cliffco" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+
+      <p class="eyebrow mb-4">500:1 Blog · David Fallarino</p>
+      <h1 style="font-size: var(--text-display-lg); letter-spacing: -0.03em; line-height: 1.1;">Buying a Home When Your Income Is Rising Fast: Mortgage Options for High-Growth Borrowers</h1>
+      <p class="mt-3 text-sm text-[var(--color-text-muted)]">Published August 24, 2026</p>
+      <p class="lead mt-4">A fast-growing career or business should be exciting. But when it comes time to buy a home, rising income can create an unexpected mortgage challenge.</p>
+
+      <p>You may be earning significantly more today than you did one or two years ago. Maybe your business just took off. Maybe your commission income increased. Maybe you became a partner, landed a major contract, changed compensation structures, or moved into a higher-paying role.</p>
+      <p>On paper, though, the lender may still be looking backward. That is where frustration begins.</p>
+      <p>Traditional mortgage underwriting is often based on income history, not income momentum. So even if your current earnings are strong, a lender may average your income over the past two years or focus on older tax returns that no longer reflect your financial reality.</p>
+      <p>At Cliffco and The Fallarino Group, we help high-growth borrowers bridge that gap.</p>
+
+      <h2>Rising Income Can Be Hard for Traditional Lenders</h2>
+      <p>Most lenders want to see stable, predictable income. That works well for salaried borrowers with years of consistent W-2 earnings. But it can create problems for borrowers whose income is growing quickly.</p>
+      <p>This may include:</p>
+      <ul>
+        <li>Entrepreneurs with a rapidly growing business</li>
+        <li>Commission-based professionals</li>
+        <li>Sales executives</li>
+        <li>Real estate agents</li>
+        <li>Business owners who recently became profitable</li>
+        <li>Partners receiving increased distributions</li>
+        <li>Doctors, attorneys, or executives early in a major income jump</li>
+        <li>Borrowers with new contracts or expanding revenue</li>
+        <li>Self-employed borrowers whose current year looks much stronger than prior years</li>
+      </ul>
+      <p>A lender may see the income increase but still ask: "Can we document this? Is it stable? Is it likely to continue?" Those are fair questions. The problem is that not every lender knows how to answer them correctly.</p>
+
+      <h2>The Problem with Looking Only at the Past</h2>
+      <p>For high-growth borrowers, last year's tax return may not tell the full story.</p>
+      <p>A business owner may have spent the previous year reinvesting into growth, hiring employees, building infrastructure, or expanding operations. A commissioned professional may have had a breakout year after building a stronger client base. An executive may have recently moved into a compensation package with higher salary, bonus, or equity potential.</p>
+      <p>In each case, the borrower's current income may be far stronger than the historical average. But if a lender only uses older income documentation, the borrower may qualify for less than they can realistically afford.</p>
+      <p>That does not necessarily mean the borrower is unqualified. It may mean the income needs to be reviewed through a more strategic lens.</p>
+
+      <h2>What Lenders Need to See</h2>
+      <p>When income is rising quickly, the key is proving that the increase is real, documented, and likely to continue. Depending on the borrower's situation, a lender may review:</p>
+      <ul>
+        <li>Recent pay stubs</li>
+        <li>W-2s</li>
+        <li>Tax returns</li>
+        <li>Year-to-date income</li>
+        <li>Commission or bonus history</li>
+        <li>Employment contracts</li>
+        <li>Offer letters</li>
+        <li>Business bank statements</li>
+        <li>Profit and loss statements</li>
+        <li>K-1s or distribution history</li>
+        <li>Signed client contracts</li>
+        <li>Business liquidity</li>
+        <li>Asset reserves</li>
+      </ul>
+      <p>The goal is to connect the dots between past income, current earnings, and future stability. A strong file does not just say, "I make more now." It shows why the income increased, how it is documented, and why it is expected to continue.</p>
+
+      <h2>Mortgage Options for High-Growth Borrowers</h2>
+      <p>There are several ways to approach a mortgage when your income is rising fast. The right option depends on whether you are salaried, commissioned, self-employed, a business owner, or an investor.</p>
+      <h3>1. Conventional or Jumbo Loans</h3>
+      <p>Some high-growth borrowers can still qualify through conventional or jumbo financing, especially if the increased income is well-documented and tied to a stable position or business. This may work for borrowers with strong credit, low debt, and clear income history.</p>
+      <h3>2. Alt-A Mortgage Programs</h3>
+      <p>Alt-A programs can be helpful for borrowers who are financially strong but do not fit perfectly into traditional underwriting. For entrepreneurs, executives, and high-income borrowers, Alt-A may allow a more thoughtful review of income growth, business cash flow, assets, and documentation.</p>
+      <h3>3. Bank Statement Loans</h3>
+      <p>For self-employed borrowers, bank statement loans may help when tax returns lag behind current business performance. Instead of relying only on older tax returns, the lender may review recent personal or business bank deposits to better understand current cash flow.</p>
+      <h3>4. Profit and Loss Statement Programs</h3>
+      <p>A year-to-date profit and loss statement can help show that a business has grown since the most recent tax return was filed. This may be useful when current revenue is substantially stronger than prior-year taxable income.</p>
+      <h3>5. Asset-Based Qualification</h3>
+      <p>Borrowers with significant liquid assets may be able to support qualification through asset-based programs. This can be useful when income is increasing but not yet fully documented through traditional methods.</p>
+
+      <h2>Real-World Scenario: The Borrower Whose Business Took Off</h2>
+      <p>Imagine a business owner who started a company three years ago. In year one, income was modest. In year two, the business improved. In year three, revenue grew significantly after landing several large contracts.</p>
+      <p>The borrower now has strong deposits, healthy reserves, and a much more profitable business. But the most recent filed tax returns still reflect the earlier growth stage. A traditional lender may average the last two years and approve the borrower for far less than expected.</p>
+      <p>At Cliffco and The Fallarino Group, we would look deeper. That may include reviewing current bank statements, a year-to-date profit and loss statement, business liquidity, signed contracts, prior tax returns, and available alternative loan programs.</p>
+      <p>The question is not just, "What did you earn two years ago?" The better question is, "What does your full financial picture show now?"</p>
+
+      <h2>How to Prepare Before Applying</h2>
+      <p>If your income is rising fast and you plan to buy a home, preparation matters. Before applying, gather:</p>
+      <ul>
+        <li>Recent pay stubs or income statements</li>
+        <li>Two years of tax returns, if available</li>
+        <li>Year-to-date profit and loss statement</li>
+        <li>Personal and business bank statements</li>
+        <li>Bonus, commission, or contract documentation</li>
+        <li>K-1s or distribution history, if applicable</li>
+        <li>Asset statements</li>
+        <li>Documentation explaining the income increase</li>
+      </ul>
+      <p>It also helps to speak with a mortgage advisor before making an offer, especially if your income changed significantly in the last 12 to 24 months. A stronger preapproval starts with a stronger income strategy.</p>
+
+      <h2>Common Mistakes to Avoid</h2>
+      <h3>Assuming current income automatically counts</h3>
+      <p>Just because you are earning more now does not mean every lender will use the higher number. The income needs to be documented properly.</p>
+      <h3>Waiting until you are under contract</h3>
+      <p>Fast-rising income may require additional review. Starting early gives your mortgage team time to structure the file correctly.</p>
+      <h3>Applying only with a big bank</h3>
+      <p>Large banks often have stricter guidelines and less flexibility for borrowers with changing or entrepreneurial income.</p>
+      <h3>Comparing only interest rates</h3>
+      <p>The lowest rate does not matter if the loan program cannot approve your income. The right structure is just as important as the rate.</p>
+
+      <h2>Why High-Growth Borrowers Choose Us</h2>
+      <p>At Cliffco and The Fallarino Group, we understand that strong borrowers do not always have simple income histories. We work with entrepreneurs, business owners, investors, executives, and professionals whose financial lives are moving quickly. Our job is to help translate that growth into a mortgage strategy that makes sense.</p>
+      <p>We help borrowers:</p>
+      <ul>
+        <li>Review current and historical income</li>
+        <li>Identify the strongest documentation path</li>
+        <li>Compare conventional, jumbo, Alt-A, Non-QM, and asset-based options</li>
+        <li>Structure the file before underwriting</li>
+        <li>Avoid unnecessary delays</li>
+        <li>Present fast-rising income clearly and strategically</li>
+      </ul>
+      <p>A growing income should open doors, not create confusion.</p>
+
+      <h2>FAQs About Buying a Home with Rising Income</h2>
+      <div class="mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold cursor-pointer text-lg list-none">{item.question}</summary>
+            <p class="mt-3">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <h2>The Bottom Line</h2>
+      <p>Fast-rising income can be a great sign of financial strength, but traditional mortgage underwriting does not always keep up with your momentum.</p>
+      <p>If your current income is stronger than your past tax returns, pay history, or average earnings suggest, you may need a mortgage strategy built around your full financial picture. At Cliffco and The Fallarino Group, we help high-growth borrowers find smart, flexible mortgage solutions for where they are now, not just where they were two years ago.</p>
+    </div>
+  </article>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <div class="max-w-2xl mx-auto card flex flex-col sm:flex-row gap-6 items-start">
+        {david.hasPhoto && (
+          <div class="w-20 h-20 shrink-0 rounded-full overflow-hidden">
+            <Headshot slug={david.slug} name={david.displayName} size={80} shape="circle" />
+          </div>
+        )}
+        <div>
+          <p class="eyebrow text-xs mb-1">Written by</p>
+          <h3 class="font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">{david.displayName}</h3>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">{david.title} · NMLS #{david.nmls}</p>
+          <p class="text-sm text-[var(--color-text)] mt-3 leading-relaxed">Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors.</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href={`/loan-officers/${david.slug}/`} class="btn btn-primary text-sm">View David's profile</a>
+            <a href="/the-fallarino-group/" class="btn btn-secondary text-sm">The Fallarino Group</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-2xl">
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Income climbing faster than your tax returns show? Let's talk.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us how your income is growing and David will identify which loan path fits where you are now.</p>
+      <div class="mt-8">
+        <ContactForm
+          formTo="dfallarino@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
+          formSource="blog-rising-income"
+        />
+      </div>
+    </div>
+  </section>
+</Layout>

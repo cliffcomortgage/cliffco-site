@@ -173,6 +173,13 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
     blog: [
       {
+        title: "Buying a Home When Your Income Is Rising Fast: Mortgage Options for High-Growth Borrowers",
+        slug: "buying-home-income-rising-fast",
+        description: "Rising income should open doors, not create confusion. Mortgage options for entrepreneurs, executives, and commissioned pros whose current earnings outpace their tax returns.",
+        image: "/images/DFallarino%20Blog/Rising%20Income%20Blog.jpg",
+        section: "500:1 Blog",
+      },
+      {
         title: "K-1 Income and Mortgage Approval: How Business Owners, Partners, and Investors Can Qualify",
         slug: "k1-income-mortgage-approval",
         description: "K-1 income can make mortgage approval more complex, but complexity is not disqualification. How business owners, partners, and investors document income, distributions, and the right loan program to qualify.",
