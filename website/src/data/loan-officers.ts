@@ -173,6 +173,13 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
     blog: [
       {
+        title: "Using Business Bank Statements to Qualify for a Mortgage",
+        slug: "business-bank-statements-mortgage-qualification",
+        description: "Strong cash flow but low taxable income after write-offs? Business bank statement loans qualify self-employed borrowers on 12 to 24 months of deposits instead of tax returns.",
+        image: "/images/DFallarino%20Blog/Business%20Bank%20Statements%20Blog.jpg",
+        section: "500:1 Blog",
+      },
+      {
         title: "Buying a Home When Your Income Is Rising Fast: Mortgage Options for High-Growth Borrowers",
         slug: "buying-home-income-rising-fast",
         description: "Rising income should open doors, not create confusion. Mortgage options for entrepreneurs, executives, and commissioned pros whose current earnings outpace their tax returns.",

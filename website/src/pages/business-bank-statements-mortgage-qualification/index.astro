@@ -1,0 +1,168 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { loanOfficer } from "../../data/loan-officers";
+import Headshot from "../../components/ui/Headshot.astro";
+import ContactForm from "../../components/forms/ContactForm.astro";
+import { faqPageSchema } from "../../lib/schema";
+
+const david = loanOfficer("david-fallarino")!;
+
+const faqs = [
+  { question: "Can I use business bank statements to qualify for a mortgage?", answer: "Yes. Some mortgage programs allow self-employed borrowers to qualify using business bank statements instead of traditional tax-return income." },
+  { question: "How many months of bank statements do I need?", answer: "Many programs review 12 to 24 months of business bank statements. The exact requirement depends on the lender and loan program." },
+  { question: "Do I still need tax returns?", answer: "Some bank statement programs may not require tax returns for income qualification, though additional documentation may still be needed." },
+  { question: "Will the lender use all of my business deposits as income?", answer: "Usually not. Lenders may apply an expense factor to account for business operating costs before calculating qualifying income." },
+  { question: "Are business bank statement loans only for people with bad credit?", answer: "No. Many borrowers using bank statement loans have strong credit. The issue is usually income documentation, not credit quality." },
+  { question: "Can this work for a jumbo loan?", answer: "Possibly. Some bank statement programs may be available for higher loan amounts, depending on the borrower's full profile." },
+];
+const schema = faqPageSchema(faqs);
+---
+
+<Layout
+  title="Using Business Bank Statements to Qualify for a Mortgage | 500:1 Blog"
+  description="Strong cash flow but low taxable income after write-offs? Business bank statement loans qualify self-employed borrowers on 12 to 24 months of deposits instead of tax returns."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "500:1 Blog", href: `/loan-officers/${david.slug}/` },
+    { name: "Using Business Bank Statements to Qualify for a Mortgage", href: "/business-bank-statements-mortgage-qualification/" },
+  ]} />
+
+  <article class="section bg-white relative overflow-hidden">
+    <div class="absolute inset-x-0 top-0 h-[300px] bg-[var(--color-rich-black)]" aria-hidden="true"></div>
+    <div class="container-prose relative z-10">
+      <div class="rounded-lg overflow-hidden mb-10 aspect-video bg-[var(--color-mist-gray)] shadow-2xl">
+        <img src="/images/DFallarino%20Blog/Business%20Bank%20Statements%20Blog.jpg" alt="Business owner reviewing business bank statements to qualify for a mortgage with Cliffco" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+
+      <p class="eyebrow mb-4">500:1 Blog · David Fallarino</p>
+      <h1 style="font-size: var(--text-display-lg); letter-spacing: -0.03em; line-height: 1.1;">Using Business Bank Statements to Qualify for a Mortgage</h1>
+      <p class="mt-3 text-sm text-[var(--color-text-muted)]">Published September 1, 2026</p>
+      <p class="lead mt-4">For many business owners, tax returns do not tell the full story. You may have strong revenue, healthy deposits, and consistent cash flow, but after deductions, write-offs, payroll, and reinvestment, your taxable income may look much lower than what your business actually produces.</p>
+
+      <p>That can become a problem when applying for a mortgage.</p>
+      <p>Traditional lenders often rely heavily on tax returns to calculate income. But for self-employed borrowers, entrepreneurs, and business owners, that approach can sometimes make a strong financial profile look weaker than it really is.</p>
+      <p>That is where business bank statement loans can help. Instead of focusing only on tax-return income, these programs review your business bank statements to better understand your actual cash flow.</p>
+
+      <h2>What Is a Business Bank Statement Loan?</h2>
+      <p>A business bank statement loan is a mortgage option designed for self-employed borrowers who may not qualify through traditional income documentation.</p>
+      <p>Rather than using only W-2s, pay stubs, or tax returns, the lender reviews deposits into your business bank accounts over a set period of time. Typically, the lender looks at 12 to 24 months of business bank statements and calculates qualifying income based on your deposit history.</p>
+      <p>This can be especially helpful for borrowers who:</p>
+      <ul>
+        <li>Own a business</li>
+        <li>Are self-employed</li>
+        <li>Receive 1099 income</li>
+        <li>Have strong business deposits</li>
+        <li>Claim significant tax deductions</li>
+        <li>Reinvest profits into the company</li>
+        <li>Show lower taxable income than actual cash flow</li>
+      </ul>
+      <p>The goal is simple: evaluate how your business actually earns, not just what your tax return shows after deductions.</p>
+
+      <h2>Why Business Bank Statements Matter</h2>
+      <p>Business owners often manage income differently than W-2 employees. A salaried employee usually has predictable paychecks. A business owner may have seasonal revenue, large client payments, fluctuating deposits, or multiple streams of income.</p>
+      <p>That does not mean the income is weak. It just means it needs to be reviewed differently.</p>
+      <p>Business bank statements can help show:</p>
+      <ul>
+        <li>Consistent business revenue</li>
+        <li>Cash flow trends</li>
+        <li>Monthly deposit patterns</li>
+        <li>Business growth</li>
+        <li>Income that may not be clear from tax returns alone</li>
+      </ul>
+      <p>For the right borrower, this can create a more accurate picture of affordability.</p>
+
+      <h2>When This Option Makes Sense</h2>
+      <p>A business bank statement loan may be a good fit if your business is doing well, but your tax returns make it difficult to qualify conventionally.</p>
+      <p>For example, you may be a contractor, consultant, agency owner, real estate professional, medical provider, designer, attorney, or entrepreneur with steady deposits but a lower taxable bottom line.</p>
+      <p>You may also benefit if your most recent year has improved significantly, but your filed tax returns still reflect an earlier stage of the business.</p>
+      <p>The key is documentation. The stronger and cleaner your business bank statements are, the easier it may be to evaluate your income.</p>
+
+      <h2>What Lenders May Review</h2>
+      <p>Every program is different, but lenders may ask for:</p>
+      <ul>
+        <li>12 to 24 months of business bank statements</li>
+        <li>Business ownership documentation</li>
+        <li>Personal bank statements</li>
+        <li>Profit and loss statement</li>
+        <li>CPA or tax-preparer letter</li>
+        <li>Explanation of large deposits</li>
+        <li>Credit report</li>
+        <li>Asset statements</li>
+        <li>Property details</li>
+      </ul>
+      <p>The lender may also apply an expense factor to estimate how much of the business deposits can be counted as qualifying income.</p>
+      <p>This is why working with someone who understands self-employed borrowers matters. The same bank statements can be interpreted very differently depending on the loan program.</p>
+
+      <h2>Real-World Scenario</h2>
+      <p>Imagine a business owner whose company deposits an average of $45,000 per month. The business is healthy, the borrower has strong credit, and there is enough money saved for a down payment. But after deductions, equipment purchases, marketing expenses, and reinvestment, the tax returns show much lower income.</p>
+      <p>A traditional lender may say the borrower does not qualify. But a business bank statement program may review the actual deposit history and calculate income in a way that better reflects the business's cash flow.</p>
+      <p>The borrower was not unqualified. They simply needed a loan program built for the way they earn.</p>
+
+      <h2>Why Borrowers Choose Cliffco and The Fallarino Group</h2>
+      <p>At Cliffco and The Fallarino Group, we work with business owners, entrepreneurs, investors, and self-employed borrowers whose income does not always fit into a traditional lending box.</p>
+      <p>We help borrowers:</p>
+      <ul>
+        <li>Review business bank statements</li>
+        <li>Understand how income may be calculated</li>
+        <li>Compare bank statement, Alt-A, Non-QM, jumbo, and conventional options</li>
+        <li>Identify documentation issues early</li>
+        <li>Structure the file clearly before underwriting</li>
+        <li>Find a mortgage path that fits the borrower's real financial picture</li>
+      </ul>
+      <p>For business owners, the right strategy can be the difference between a frustrating denial and a clear path forward.</p>
+
+      <h2>FAQs About Business Bank Statement Loans</h2>
+      <div class="mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold cursor-pointer text-lg list-none">{item.question}</summary>
+            <p class="mt-3">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <h2>The Bottom Line</h2>
+      <p>If your business bank statements show strong cash flow but your tax returns make it hard to qualify, you may still have mortgage options.</p>
+      <p>Business bank statement loans are designed to help self-employed borrowers and entrepreneurs qualify based on a more realistic view of how their business earns.</p>
+      <p>At Cliffco and The Fallarino Group, we help business owners find mortgage solutions that match their financial reality, not just the bottom line on a tax return.</p>
+    </div>
+  </article>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <div class="max-w-2xl mx-auto card flex flex-col sm:flex-row gap-6 items-start">
+        {david.hasPhoto && (
+          <div class="w-20 h-20 shrink-0 rounded-full overflow-hidden">
+            <Headshot slug={david.slug} name={david.displayName} size={80} shape="circle" />
+          </div>
+        )}
+        <div>
+          <p class="eyebrow text-xs mb-1">Written by</p>
+          <h3 class="font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">{david.displayName}</h3>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">{david.title} · NMLS #{david.nmls}</p>
+          <p class="text-sm text-[var(--color-text)] mt-3 leading-relaxed">Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors.</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href={`/loan-officers/${david.slug}/`} class="btn btn-primary text-sm">View David's profile</a>
+            <a href="/the-fallarino-group/" class="btn btn-secondary text-sm">The Fallarino Group</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-2xl">
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Strong deposits but a tax return that says otherwise? Let's talk it through.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us how your business earns and David will identify which loan path actually fits.</p>
+      <div class="mt-8">
+        <ContactForm
+          formTo="dfallarino@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
+          formSource="blog-business-bank-statements"
+        />
+      </div>
+    </div>
+  </section>
+</Layout>
