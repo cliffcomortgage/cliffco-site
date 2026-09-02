@@ -16,6 +16,7 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 | DE | Delaware Office of the State Bank Commissioner | 040096 |
 | FL | Florida — operating as **Swish Capital, Inc.** (NY corporation authorized to transact in FL) | DBA registration |
 | GA | Georgia Department of Banking & Finance | 65328 |
+| IA | Iowa Division of Banking — Mortgage Banker License | 2026-0104 |
 | IL | Illinois Department of Financial & Professional Regulation | MB.6761824 |
 | IN | Indiana Department of Financial Institutions | 70581 |
 | KS | Kansas State Bank Commissioner | MC.0026625 |
@@ -41,7 +42,7 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 | VT | Vermont Department of Financial Regulation | LL-65328 |
 | WA | Washington State Department of Financial Institutions | CL-65328 |
 
-**Total states: 34** (counting FL DBA registration).
+**Total states: 35** (counting FL DBA registration).
 
 ## Cliffco's stated priority territories — license status
 
