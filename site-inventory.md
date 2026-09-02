@@ -40,7 +40,6 @@ Total pages: 200
 - https://cliffcomortgage.com/loan-officers/andrea-carver/
 - https://cliffcomortgage.com/loan-officers/angelique-street/
 - https://cliffcomortgage.com/loan-officers/brandon-kenney/
-- https://cliffcomortgage.com/loan-officers/brendan-mcclarnon/
 - https://cliffcomortgage.com/loan-officers/christian-nguyen/
 - https://cliffcomortgage.com/loan-officers/christian-soto/
 - https://cliffcomortgage.com/loan-officers/christopher-clifford/
@@ -56,7 +55,6 @@ Total pages: 200
 - https://cliffcomortgage.com/loan-officers/eric-mueller/
 - https://cliffcomortgage.com/loan-officers/fabrizio-alosa/
 - https://cliffcomortgage.com/loan-officers/gary-johansen/
-- https://cliffcomortgage.com/loan-officers/gary-lai/
 - https://cliffcomortgage.com/loan-officers/george-diamantakis/
 - https://cliffcomortgage.com/loan-officers/james-chen/
 - https://cliffcomortgage.com/loan-officers/james-perrone/
@@ -222,7 +220,7 @@ Total redirects: 0
 - /azervas/  ->  /loan-officers/anastasios-zervas/
 - /bkenney/  ->  /loan-officers/brandon-kenney/
 - /blog/  ->  /mortgage-guides/blog/
-- /bmcclarnon/  ->  /loan-officers/brendan-mcclarnon/
+- /bmcclarnon/  ->  /loan-officers/
 - /buydown-calculator/  ->  /mortgage-guides/calculators/buydown/
 - /ccpa/  ->  /legal/ccpa/
 - /closing-costs/  ->  /mortgage-guides/calculators/closing-costs/
@@ -255,7 +253,7 @@ Total redirects: 0
 - /fveras/  ->  /loan-officers/
 - /gdiamantakis/  ->  /loan-officers/george-diamantakis/
 - /gjohansen/  ->  /loan-officers/gary-johansen/
-- /glai/  ->  /loan-officers/gary-lai/
+- /glai/  ->  /loan-officers/
 - /healthcare-professionals/  ->  /purchasing-refinancing/
 - /home/  ->  /
 - /investors/  ->  /real-estate-investor-mortgage/

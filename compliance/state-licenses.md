@@ -25,11 +25,13 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 | MD | Maryland Office of Financial Regulation | (no number cited in disclosure) |
 | MI | Michigan Department of Insurance and Financial Services 1st Mortgage Broker/Lender Registrant | FR0026300 |
 | **MN** | **Minnesota Department of Commerce** | **MN-MO-65328** |
+| MT | Montana Department of Administration — Mortgage Broker, Lender, and Servicer | 65328 |
 | NC | North Carolina Commissioner of Banks | L-211081 |
 | NJ | New Jersey Department of Banking & Insurance | (no number cited in disclosure) |
 | NM | New Mexico Regulation & Licensing Department | (no number cited in disclosure) |
 | NY | NY Department of Financial Services — Licensed Mortgage Banker | LMBC109800 |
 | OH | Ohio Department of Commerce — Residential Mortgage Lending Act | RM.805200.000 |
+| OK | Oklahoma Department of Consumer Credit — Mortgage Lender License | ML018351 |
 | OR | Oregon Department of Consumer and Business Services | 65328 |
 | PA | Pennsylvania Department of Banking & Securities | 45275 |
 | SC | South Carolina State Board of Financial Institutions | MLS-65328 |
@@ -39,7 +41,7 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 | VT | Vermont Department of Financial Regulation | LL-65328 |
 | WA | Washington State Department of Financial Institutions | CL-65328 |
 
-**Total states: 32** (counting FL DBA registration).
+**Total states: 34** (counting FL DBA registration).
 
 ## Cliffco's stated priority territories — license status
 

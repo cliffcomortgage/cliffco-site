@@ -280,12 +280,12 @@
     },
     {
       "source": "/bmcclarnon/",
-      "destination": "/loan-officers/brendan-mcclarnon/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/bmcclarnon",
-      "destination": "/loan-officers/brendan-mcclarnon/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
@@ -610,12 +610,12 @@
     },
     {
       "source": "/glai/",
-      "destination": "/loan-officers/gary-lai/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/glai",
-      "destination": "/loan-officers/gary-lai/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
