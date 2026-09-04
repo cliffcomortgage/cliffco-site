@@ -1,0 +1,44 @@
+{
+  "_comment": "Sitelinks, callouts, and structured snippets for the Minnesota campaign (24055195846). Assets-only — does not touch ads or keywords. Run: node Code/add_assets.mjs Code/minnesota-assets-config.json",
+  "campaignId": "24055195846",
+  "sitelinks": [
+    {
+      "linkText": "Get Approved Fast",
+      "url": "https://cliffcomn.com/#start",
+      "d1": "Start in 5 minutes",
+      "d2": "No credit pull to begin"
+    },
+    {
+      "linkText": "Meet Mitch",
+      "url": "https://cliffcomn.com/#about",
+      "d1": "Your local MN loan officer",
+      "d2": "NMLS #2560483"
+    },
+    {
+      "linkText": "Why Cliffco",
+      "url": "https://cliffcomn.com/#why",
+      "d1": "Family-run since 1989",
+      "d2": "$6B+ in mortgages closed"
+    },
+    {
+      "linkText": "The Cliffco Difference",
+      "url": "https://cliffcomn.com/#difference",
+      "d1": "No jargon, no surprises",
+      "d2": "A real person, not a call center"
+    }
+  ],
+  "callouts": [
+    "Licensed MN Lender",
+    "5-Minute Application",
+    "No Credit Pull to Start",
+    "Family-Run Since 1989",
+    "Self-Employed Welcome",
+    "Talk to a Real Person"
+  ],
+  "structuredSnippets": [
+    {
+      "header": "Types",
+      "values": ["Purchase", "Refinance", "First-Time Buyer", "Self-Employed", "Jumbo", "FHA", "Conventional"]
+    }
+  ]
+}
