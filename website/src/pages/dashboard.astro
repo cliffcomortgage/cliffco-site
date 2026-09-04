@@ -405,15 +405,27 @@ const TYPE_STYLE: Record<string, { label: string; color: string; bg: string }> =
   tracking: { label: "Tracking", color: "#dc2626", bg: "#fef2f2" },
 };
 
-const campViews: CampView[] = rawCampaigns.map(c => ({
-  name: c.name, status: c.status,
-  roasBg: roasBg(c.roas), roasFg: roasFg(c.roas),
-  roasLabel: c.roas > 0 ? c.roas.toFixed(2) + "x" : "—",
-  spend: fmtUSD(c.spend),
-  conversions: c.conversions.toFixed(1),
-  avgCpc: "$" + c.avgCpc.toFixed(2),
-  impShare: c.impressionShare > 0 ? (c.impressionShare * 100).toFixed(0) + "%" : "—",
-}));
+// Manual backfill for form submissions captured in HubSpot during periods the
+// Google Ads tag was not firing. Tracking is fixed now, so Google records new
+// submissions automatically; these are the historical ones it missed. Keyed by
+// exact campaign name. Display-only — does not feed the recommendation math.
+const MANUAL_CONVERSION_BACKFILL: Record<string, number> = {
+  "NJ Down Payment Assistance — First Gen": 34,
+};
+const hasBackfill = Object.keys(MANUAL_CONVERSION_BACKFILL).length > 0;
+
+const campViews: CampView[] = rawCampaigns.map(c => {
+  const backfill = MANUAL_CONVERSION_BACKFILL[c.name] ?? 0;
+  return {
+    name: c.name, status: c.status,
+    roasBg: roasBg(c.roas), roasFg: roasFg(c.roas),
+    roasLabel: c.roas > 0 ? c.roas.toFixed(2) + "x" : "—",
+    spend: fmtUSD(c.spend),
+    conversions: (c.conversions + backfill).toFixed(0) + (backfill > 0 ? "*" : ""),
+    avgCpc: "$" + c.avgCpc.toFixed(2),
+    impShare: c.impressionShare > 0 ? (c.impressionShare * 100).toFixed(0) + "%" : "—",
+  };
+});
 
 const recViews: RecView[] = rawRecs.map((rec, i) => {
   const ts = TYPE_STYLE[rec.type] ?? TYPE_STYLE.tracking;
@@ -447,6 +459,7 @@ const recViews: RecView[] = rawRecs.map((rec, i) => {
 
 const totalSpend     = rawCampaigns.reduce((s, c) => s + c.spend, 0);
 const totalConv      = rawCampaigns.reduce((s, c) => s + c.conversions, 0);
+const totalBackfill  = rawCampaigns.reduce((s, c) => s + (MANUAL_CONVERSION_BACKFILL[c.name] ?? 0), 0);
 const totalConvValue = rawCampaigns.reduce((s, c) => s + c.conversionsValue, 0);
 const avgRoas        = totalSpend > 0 ? totalConvValue / totalSpend : 0;
 const totalRecover   = rawRecs.reduce((s, r) => s + r.dollarsRecoverable, 0);
@@ -573,7 +586,7 @@ const currentYear = new Date().getFullYear();
           </div>
           <div class="stat-box">
             <span class="stat-label">Conversions</span>
-            <span class="stat-value">{totalConv.toFixed(0)}</span>
+            <span class="stat-value">{(totalConv + totalBackfill).toFixed(0)}{totalBackfill > 0 ? "*" : ""}</span>
           </div>
           <div class="stat-box">
             <span class="stat-label">Recoverable</span>
@@ -607,6 +620,11 @@ const currentYear = new Date().getFullYear();
               </div>
             ))}
           </div>
+          {hasBackfill && (
+            <p style="font-size:0.75rem;color:var(--color-text-muted);margin-top:0.75rem;">
+              * Includes form submissions captured in HubSpot during the period the Google Ads conversion tag was not firing (now fixed). New submissions record in Google Ads automatically.
+            </p>
+          )}
         </section>
       )}
 
