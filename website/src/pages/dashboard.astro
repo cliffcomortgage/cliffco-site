@@ -650,7 +650,7 @@ const currentYear = new Date().getFullYear();
                       <span style="font-size:1.375rem;font-weight:800;color:var(--color-accent);">{rv.dollarsFormatted}</span>
                     </div>
                     <button class="send-btn" data-prompt={rv.promptEncoded}>
-                      Send to Claude →
+                      Copy details
                     </button>
                   </div>
                 </div>
@@ -912,7 +912,7 @@ const currentYear = new Date().getFullYear();
   </footer>
 
   <!-- Toast -->
-  <div id="toast">Prompt copied · Paste in Claude</div>
+  <div id="toast">Copied to clipboard</div>
 
   <!-- Custom cursor dot -->
   <div id="cf-cursor" aria-hidden="true"></div>
@@ -985,7 +985,6 @@ const currentYear = new Date().getFullYear();
             setTimeout(function() { t.classList.remove("show"); }, 2500);
           }
         });
-        window.open("https://claude.ai/chat", "_blank", "noopener");
       });
     });
   </script>
