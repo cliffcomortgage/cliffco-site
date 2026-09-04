@@ -80,7 +80,7 @@ if (hasCredentials) {
     };
 
     const resp = await fetch(
-      "https://googleads.googleapis.com/v21/customers/" + CID + "/googleAds:search",
+      "https://googleads.googleapis.com/v24/customers/" + CID + "/googleAds:search",
       {
         method: "POST",
         headers: gh,
@@ -197,9 +197,10 @@ if (hasCredentials) {
     }
     rawRecs.sort((a, b) => b.dollarsRecoverable - a.dollarsRecoverable);
 
-    // Keyword-level performance
+    // Keyword-level performance for the top-spend campaign
+    const topCampaignId = rawCampaigns[0]?.id ?? 0;
     const kwResp = await fetch(
-      "https://googleads.googleapis.com/v21/customers/" + CID + "/googleAds:search",
+      "https://googleads.googleapis.com/v24/customers/" + CID + "/googleAds:search",
       {
         method: "POST", headers: gh,
         body: JSON.stringify({
@@ -210,7 +211,7 @@ if (hasCredentials) {
               metrics.conversions, metrics.ctr, metrics.average_cpc
             FROM keyword_view
             WHERE segments.date DURING LAST_30_DAYS
-              AND campaign.id = 23946171105
+              AND campaign.id = ${topCampaignId}
               AND ad_group_criterion.status != 'REMOVED'
               AND metrics.impressions > 0
             ORDER BY metrics.cost_micros DESC
@@ -500,7 +501,7 @@ const currentYear = new Date().getFullYear();
   <!-- Header -->
   <header style="background:var(--color-rich-black);border-bottom:1px solid rgba(255,255,255,0.07);">
     <div class="container-wide flex items-center justify-between gap-6 py-4">
-      <a href="/long-island/" aria-label="Cliffco Mortgage Bankers home">
+      <a href="/" aria-label="Cliffco Mortgage Bankers home">
         <img src="/logo-black.png" alt="Cliffco Mortgage Bankers" width="160" height="32"
           style="height:32px;width:auto;filter:invert(1) brightness(2);" />
       </a>
@@ -902,8 +903,7 @@ const currentYear = new Date().getFullYear();
     <div class="container-wide" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:0.75rem;">
       <span>© {currentYear} {COMPANY.legalName} · NMLS {COMPANY.nmls}</span>
       <nav style="display:flex;gap:1.25rem;">
-        <a href="/long-island/" style="color:rgba(255,255,255,0.45);">Long Island LP</a>
-        <a href="/how-hecm-works/" style="color:rgba(255,255,255,0.45);">How It Works</a>
+        <a href="/" style="color:rgba(255,255,255,0.45);">Home</a>
       </nav>
     </div>
   </footer>
