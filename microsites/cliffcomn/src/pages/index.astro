@@ -16,6 +16,15 @@ import PostHog from "../components/posthog.astro";
     <PostHog />
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/21616430.js"></script>
     <script src="https://js.hsforms.net/forms/embed/21616430.js" defer></script>
+    <!-- Google tag (gtag.js) — Google Ads conversion tracking -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WV6SFC5W7P"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WV6SFC5W7P');
+      gtag('config', 'AW-17848823591');
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=optional" onload="this.onload=null;this.rel='stylesheet'" />
@@ -100,14 +109,6 @@ import PostHog from "../components/posthog.astro";
                   <p class="text-center font-semibold text-[var(--color-ink)] mb-4">Get started in minutes</p>
                   <!-- HubSpot lead form -->
                   <div class="hs-form-frame" data-region="na1" data-form-id="e42a309d-1520-473c-8bd2-777240aacfbc" data-portal-id="21616430"></div>
-                  <p class="text-center mt-4">
-                    <a
-                      href="mailto:mpatterson@cliffcomortgage.com"
-                      class="text-sm text-[var(--color-accent)] no-underline hover:underline"
-                    >
-                      Prefer email? mpatterson@cliffcomortgage.com
-                    </a>
-                  </p>
                 </div>
               </div>
             </div>
@@ -341,6 +342,20 @@ import PostHog from "../components/posthog.astro";
             window.posthog?.capture('full_site_visited');
           });
         });
+      });
+
+      // Fire the Google Ads conversion when the HubSpot form is submitted
+      window.addEventListener('message', function (event) {
+        if (event.data && event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmitted') {
+          if (typeof gtag === 'function') {
+            gtag('event', 'conversion', {
+              send_to: 'AW-17848823591/pK6iCOimrO4cEKfe_b5C',
+              value: 0.0,
+              currency: 'USD'
+            });
+          }
+          window.posthog?.capture('mn_form_submitted');
+        }
       });
     </script>
   </body>

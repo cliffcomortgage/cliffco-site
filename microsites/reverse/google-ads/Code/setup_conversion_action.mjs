@@ -33,9 +33,11 @@ async function getToken() {
   return j.access_token;
 }
 
-const CONVERSION_NAME = "Lead · Form Submit";
-const LEAD_VALUE      = 16452;
-const CURRENCY        = "USD";
+// Optional CLI overrides: node setup_conversion_action.mjs "<name>" [value] [currency]
+// Defaults preserve the original reverse-campaign conversion action.
+const CONVERSION_NAME = process.argv[2] || "Lead · Form Submit";
+const LEAD_VALUE      = process.argv[3] !== undefined ? Number(process.argv[3]) : 16452;
+const CURRENCY        = process.argv[4] || "USD";
 
 const token = await getToken();
 const headers = {
