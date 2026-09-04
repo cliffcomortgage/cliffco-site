@@ -15,7 +15,7 @@ import PostHog from "../components/posthog.astro";
     <link rel="icon" type="image/png" href="/favicon.png" />
     <PostHog />
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/21616430.js"></script>
-    <script src="https://js.hsforms.net/forms/embed/21616430.js" defer></script>
+    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
     <!-- Google tag (gtag.js) — Google Ads conversion tracking -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WV6SFC5W7P"></script>
     <script is:inline>
@@ -107,8 +107,8 @@ import PostHog from "../components/posthog.astro";
                 </div>
                 <div class="mt-5 pt-5 border-t border-[var(--color-mist-gray)]">
                   <p class="text-center font-semibold text-[var(--color-ink)] mb-4">Get started in minutes</p>
-                  <!-- HubSpot lead form -->
-                  <div class="hs-form-frame" data-region="na1" data-form-id="e42a309d-1520-473c-8bd2-777240aacfbc" data-portal-id="21616430"></div>
+                  <!-- HubSpot lead form (rendered via hbspt.forms.create for reliable submit callback) -->
+                  <div id="mn-lead-form"></div>
                 </div>
               </div>
             </div>
@@ -344,19 +344,27 @@ import PostHog from "../components/posthog.astro";
         });
       });
 
-      // Fire the Google Ads conversion when the HubSpot form is submitted
-      window.addEventListener('message', function (event) {
-        if (event.data && event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmitted') {
-          if (typeof gtag === 'function') {
-            gtag('event', 'conversion', {
-              send_to: 'AW-17848823591/pK6iCOimrO4cEKfe_b5C',
-              value: 0.0,
-              currency: 'USD'
-            });
+      // Render the HubSpot form and fire the Google Ads conversion on submit.
+      // hbspt.forms.create's onFormSubmitted is a reliable lifecycle callback,
+      // unlike the new hs-form-frame embed's postMessage (which fires inconsistently).
+      if (window.hbspt && window.hbspt.forms) {
+        window.hbspt.forms.create({
+          region: 'na1',
+          portalId: '21616430',
+          formId: 'e42a309d-1520-473c-8bd2-777240aacfbc',
+          target: '#mn-lead-form',
+          onFormSubmitted: function () {
+            if (typeof gtag === 'function') {
+              gtag('event', 'conversion', {
+                send_to: 'AW-17848823591/pK6iCOimrO4cEKfe_b5C',
+                value: 0.0,
+                currency: 'USD'
+              });
+            }
+            if (window.posthog) window.posthog.capture('mn_form_submitted');
           }
-          window.posthog?.capture('mn_form_submitted');
-        }
-      });
+        });
+      }
     </script>
   </body>
 </html>
