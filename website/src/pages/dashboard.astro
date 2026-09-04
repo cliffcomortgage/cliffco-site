@@ -12,7 +12,10 @@ const LOGIN_CID     = import.meta.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID;
 const CID           = import.meta.env.GOOGLE_ADS_CUSTOMER_ID;
 const HUBSPOT_TOKEN = import.meta.env.HUBSPOT_TOKEN;
 
-const LEAD_VALUE  = 16452;
+// Expected value of one lead = revenue per funded loan x lead-to-funded rate.
+// Ballpark: $400k avg loan x 1.5% revenue x 8% close rate ≈ $480. Adjust as real
+// close-rate and revenue data come in.
+const LEAD_VALUE  = 480;
 const TARGET_ROAS = 3.0;
 
 interface Campaign {
@@ -620,7 +623,7 @@ const currentYear = new Date().getFullYear();
           <div style="margin-bottom:1.25rem;">
             <h2 class="section-title" style="margin-bottom:0.3rem;">Top Opportunities</h2>
             <p style="font-size:0.875rem;color:var(--color-text-muted);margin:0;">
-              Ranked by dollars recoverable · Lead value $16,452 · {recViews.length} {recViews.length === 1 ? "recommendation" : "recommendations"}
+              Ranked by dollars recoverable · Lead value {fmtUSD(LEAD_VALUE)} · {recViews.length} {recViews.length === 1 ? "recommendation" : "recommendations"}
             </p>
           </div>
           <div style="display:flex;flex-direction:column;gap:0.875rem;">
