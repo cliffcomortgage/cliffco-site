@@ -173,6 +173,13 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
     blog: [
       {
+        title: "Mortgage Options for Borrowers with Multiple LLCs",
+        slug: "mortgage-options-multiple-llcs",
+        description: "Own several LLCs for real estate, operations, or asset protection? How lenders evaluate income across multiple entities, and the loan programs that fit layered business structures.",
+        image: "/images/DFallarino%20Blog/Multiple%20LLCs%20Blog.jpg",
+        section: "500:1 Blog",
+      },
+      {
         title: "Using Business Bank Statements to Qualify for a Mortgage",
         slug: "business-bank-statements-mortgage-qualification",
         description: "Strong cash flow but low taxable income after write-offs? Business bank statement loans qualify self-employed borrowers on 12 to 24 months of deposits instead of tax returns.",

@@ -1,0 +1,204 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { loanOfficer } from "../../data/loan-officers";
+import Headshot from "../../components/ui/Headshot.astro";
+import ContactForm from "../../components/forms/ContactForm.astro";
+import { faqPageSchema } from "../../lib/schema";
+
+const david = loanOfficer("david-fallarino")!;
+
+const faqs = [
+  { question: "Can I get a mortgage if I own multiple LLCs?", answer: "Yes. Many borrowers with multiple LLCs can qualify for a mortgage, but the lender will need to review income, ownership, business performance, debts, and documentation for each relevant entity." },
+  { question: "Will lenders use income from all of my LLCs?", answer: "Possibly. The lender will determine which income is stable, accessible, and likely to continue. Losses from certain entities may also need to be considered." },
+  { question: "Do I need business tax returns for every LLC?", answer: "It depends on the loan program and your ownership structure. Some lenders may require business tax returns, K-1s, P&Ls, or other documentation for entities tied to your income." },
+  { question: "Can I use business funds for my down payment?", answer: "In some cases, yes. The lender may need to verify that using business funds will not negatively affect the company's operations." },
+  { question: "What if one of my LLCs shows a loss?", answer: "A loss may affect your qualifying income, depending on the loan program and the nature of the loss. Some paper losses, such as depreciation, may be reviewed differently." },
+  { question: "Are DSCR loans good for LLC-owned rental properties?", answer: "They can be. DSCR loans may allow real estate investors to qualify based on the rental property's cash flow rather than personal income." },
+];
+const schema = faqPageSchema(faqs);
+---
+
+<Layout
+  title="Mortgage Options for Borrowers with Multiple LLCs | 500:1 Blog"
+  description="Own several LLCs for real estate, operations, or asset protection? How lenders evaluate income across multiple entities, and the loan programs that fit layered business structures."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "500:1 Blog", href: `/loan-officers/${david.slug}/` },
+    { name: "Mortgage Options for Borrowers with Multiple LLCs", href: "/mortgage-options-multiple-llcs/" },
+  ]} />
+
+  <article class="section bg-white relative overflow-hidden">
+    <div class="absolute inset-x-0 top-0 h-[300px] bg-[var(--color-rich-black)]" aria-hidden="true"></div>
+    <div class="container-prose relative z-10">
+      <div class="rounded-lg overflow-hidden mb-10 aspect-video bg-[var(--color-mist-gray)] shadow-2xl">
+        <img src="/images/DFallarino%20Blog/Multiple%20LLCs%20Blog.jpg" alt="Business owner with multiple LLCs reviewing mortgage options with Cliffco" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+
+      <p class="eyebrow mb-4">500:1 Blog · David Fallarino</p>
+      <h1 style="font-size: var(--text-display-lg); letter-spacing: -0.03em; line-height: 1.1;">Mortgage Options for Borrowers with Multiple LLCs</h1>
+      <p class="mt-3 text-sm text-[var(--color-text-muted)]">Published September 8, 2026</p>
+      <p class="lead mt-4">Owning multiple LLCs can be a sign of financial growth. You may have separate entities for real estate investments, business operations, partnerships, consulting work, or asset protection. From a business standpoint, that structure may make sense. But when it is time to apply for a mortgage, multiple LLCs can make the process more complicated.</p>
+
+      <p>Traditional lenders often want simple income documentation. They prefer clean W-2s, straightforward tax returns, and easy-to-follow income streams. When a borrower owns several entities, the lender may need to understand how each business performs, how income flows between accounts, and which income can actually be used to qualify.</p>
+      <p>At Cliffco and The Fallarino Group, we help borrowers with layered business structures turn complexity into a clear mortgage strategy.</p>
+
+      <h2>Why Multiple LLCs Can Complicate Approval</h2>
+      <p>Multiple LLCs are common for entrepreneurs and investors, but they can raise questions during underwriting. A lender may need to review:</p>
+      <ul>
+        <li>Which LLCs generate income</li>
+        <li>Which LLCs show losses</li>
+        <li>Whether income is recurring</li>
+        <li>Whether distributions are paid to the borrower</li>
+        <li>How much ownership the borrower has in each entity</li>
+        <li>Whether business debts affect the borrower personally</li>
+        <li>Whether funds used for closing are personal or business assets</li>
+        <li>Whether one entity supports or depends on another</li>
+      </ul>
+      <p>This does not mean the borrower is unqualified. It simply means the file needs to be organized in a way the lender can understand.</p>
+
+      <h2>Common Borrowers with Multiple LLCs</h2>
+      <p>This situation often applies to:</p>
+      <ul>
+        <li>Real estate investors</li>
+        <li>Entrepreneurs</li>
+        <li>Business owners with separate operating companies</li>
+        <li>Consultants with multiple entities</li>
+        <li>Short-term rental owners</li>
+        <li>Franchise owners</li>
+        <li>Partners in several businesses</li>
+        <li>High-net-worth borrowers with layered assets</li>
+        <li>Borrowers who separate business income from property ownership</li>
+      </ul>
+      <p>For these borrowers, income may be strong, but it may not show up neatly in one place. That is where the right mortgage review matters.</p>
+
+      <h2>The Main Issue: Income Flow</h2>
+      <p>When a borrower owns multiple LLCs, the lender needs to determine how income moves. For example, one LLC may own rental property. Another may hold business assets. Another may operate the main company. Another may show a tax loss due to depreciation or reinvestment.</p>
+      <p>The lender has to figure out which income is usable, which losses must be counted, and whether the borrower personally has access to the money. That can require reviewing:</p>
+      <ul>
+        <li>Personal tax returns</li>
+        <li>Business tax returns</li>
+        <li>K-1s</li>
+        <li>Profit and loss statements</li>
+        <li>Balance sheets</li>
+        <li>Bank statements</li>
+        <li>Operating agreements</li>
+        <li>Distribution history</li>
+        <li>Business debt obligations</li>
+      </ul>
+      <p>The stronger and cleaner the documentation, the easier it is to tell the full story.</p>
+
+      <h2>Mortgage Options for Borrowers with Multiple LLCs</h2>
+      <p>There is no single best loan for every borrower with multiple entities. The right option depends on income, assets, credit, property type, and loan amount.</p>
+      <h3>1. Conventional or Jumbo Loans</h3>
+      <p>Some borrowers with multiple LLCs can still qualify through conventional or jumbo financing, especially when income is stable, well-documented, and supported by tax returns. This may work best when the borrower has strong credit, clear ownership documentation, and consistent income from the entities.</p>
+      <h3>2. Alt-A Mortgage Programs</h3>
+      <p>Alt-A loans may be helpful for borrowers who are financially strong but need more flexibility than traditional guidelines allow. These programs can be a fit for entrepreneurs, business owners, and jumbo borrowers whose income is spread across several entities or does not fit neatly into conventional underwriting.</p>
+      <h3>3. Bank Statement Loans</h3>
+      <p>If tax returns do not clearly reflect cash flow, a bank statement loan may be an option. This allows the lender to review personal or business bank deposits to better understand income patterns.</p>
+      <h3>4. Asset-Based Qualification</h3>
+      <p>Some borrowers with multiple LLCs also have significant liquid assets, investment accounts, or reserves. An asset-based program may help support qualification when income is complex or difficult to document traditionally.</p>
+      <h3>5. DSCR Loans for Investment Properties</h3>
+      <p>For borrowers buying or refinancing rental properties, DSCR loans may allow qualification based on the property's rental income instead of the borrower's personal income. This can be useful for investors who own multiple properties through separate LLCs.</p>
+
+      <h2>Real-World Scenario</h2>
+      <p>Imagine a real estate investor who owns five rental properties, each held in a separate LLC. The investor also owns an operating business through another entity. Cash flow is strong, credit is solid, and reserves are healthy. But the tax returns include depreciation, property expenses, intercompany transfers, and several K-1s.</p>
+      <p>A traditional lender may struggle to calculate income quickly or may only use a conservative portion of the borrower's financial picture. At Cliffco and The Fallarino Group, the strategy would be to review the full structure, identify which income sources can be used, understand which losses are paper losses versus cash-flow issues, and compare the best loan options.</p>
+      <p>The borrower may not need a simpler financial life. They may just need a more sophisticated mortgage strategy.</p>
+
+      <h2>How to Prepare Before Applying</h2>
+      <p>If you own multiple LLCs and plan to buy or refinance, start early. Helpful documents may include:</p>
+      <ul>
+        <li>Personal tax returns</li>
+        <li>Business tax returns</li>
+        <li>K-1s</li>
+        <li>LLC operating agreements</li>
+        <li>Profit and loss statements</li>
+        <li>Balance sheets</li>
+        <li>Business bank statements</li>
+        <li>Personal bank statements</li>
+        <li>Rental leases</li>
+        <li>Mortgage statements for existing properties</li>
+        <li>Asset statements</li>
+        <li>Documentation of distributions</li>
+      </ul>
+      <p>Having these organized upfront can prevent delays and help your mortgage team determine the strongest path.</p>
+
+      <h2>Common Mistakes to Avoid</h2>
+      <h3>Mixing Business and Personal Funds</h3>
+      <p>Transfers between accounts may be normal, but they need to be documented clearly.</p>
+      <h3>Assuming All Business Income Counts</h3>
+      <p>Not all income shown in an LLC can automatically be used for mortgage qualification. The lender has to verify access, stability, and continuity.</p>
+      <h3>Ignoring Business Losses</h3>
+      <p>Even if one entity is profitable, another LLC's loss may affect the overall income calculation.</p>
+      <h3>Waiting Until the Last Minute</h3>
+      <p>Multiple-entity borrowers usually require more review time. Starting early helps avoid surprises once you are under contract.</p>
+      <h3>Applying with a Lender Who Does Not Understand LLC Structures</h3>
+      <p>The wrong lender may see complexity and stop. The right lender knows how to organize the file.</p>
+
+      <h2>Why Borrowers with Multiple LLCs Choose Us</h2>
+      <p>At Cliffco and The Fallarino Group, we work with entrepreneurs, investors, and business owners whose income and assets are not always simple. We help borrowers:</p>
+      <ul>
+        <li>Review income across multiple entities</li>
+        <li>Understand how LLC income may be calculated</li>
+        <li>Compare conventional, jumbo, Alt-A, Non-QM, DSCR, and asset-based options</li>
+        <li>Identify documentation issues early</li>
+        <li>Structure the loan file clearly</li>
+        <li>Present the borrower's full financial picture strategically</li>
+      </ul>
+      <p>Owning multiple LLCs should not automatically make mortgage approval feel impossible. With the right approach, a complex file can still become a strong file.</p>
+
+      <h2>FAQs About Mortgages and Multiple LLCs</h2>
+      <div class="mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="border-b border-[var(--color-mist-gray)] pb-4">
+            <summary class="font-semibold cursor-pointer text-lg list-none">{item.question}</summary>
+            <p class="mt-3">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <h2>The Bottom Line</h2>
+      <p>Multiple LLCs can make mortgage approval more complicated, but they do not have to make it impossible.</p>
+      <p>For entrepreneurs, investors, and business owners, layered entities are often part of a smart financial strategy. The key is working with a mortgage team that knows how to evaluate the full picture.</p>
+      <p>At Cliffco and The Fallarino Group, we help borrowers with complex business structures find mortgage solutions that fit the way they actually earn, invest, and grow.</p>
+    </div>
+  </article>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide">
+      <div class="max-w-2xl mx-auto card flex flex-col sm:flex-row gap-6 items-start">
+        {david.hasPhoto && (
+          <div class="w-20 h-20 shrink-0 rounded-full overflow-hidden">
+            <Headshot slug={david.slug} name={david.displayName} size={80} shape="circle" />
+          </div>
+        )}
+        <div>
+          <p class="eyebrow text-xs mb-1">Written by</p>
+          <h3 class="font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">{david.displayName}</h3>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">{david.title} · NMLS #{david.nmls}</p>
+          <p class="text-sm text-[var(--color-text)] mt-3 leading-relaxed">Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors.</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href={`/loan-officers/${david.slug}/`} class="btn btn-primary text-sm">View David's profile</a>
+            <a href="/the-fallarino-group/" class="btn btn-secondary text-sm">The Fallarino Group</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[var(--color-mist-gray)]">
+    <div class="container-wide max-w-2xl">
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Own multiple LLCs and a home to buy or refinance? Let's map it out.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us how your entities are structured and David will identify which income counts and which loan path fits.</p>
+      <div class="mt-8">
+        <ContactForm
+          formTo="dfallarino@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
+          formSource="blog-multiple-llcs"
+        />
+      </div>
+    </div>
+  </section>
+</Layout>
