@@ -1,0 +1,154 @@
+{
+  "campaignId": "24055195846",
+  "_comment": "Minnesota — Fast Mortgage Approval. Adds 4 new SKAG ad groups targeting real search volume (state was geo-modified 'minnesota mortgage lender' at ~10 searches/mo; these terms rely on the campaign's existing Minnesota geo-targeting instead of the keyword text, per generateKeywordHistoricalMetrics pulled 2026-09-15). Ad copy still leads with 'Minnesota'/'Fast Approval' to match the landing page H1 (\"Fast Mortgage Approval for Minnesota Homebuyers.\") since the search query itself won't say Minnesota.",
+  "adGroups": [
+    {
+      "name": "mortgage lenders",
+      "_volume": "~260 searches/mo, MN",
+      "finalUrl": "https://cliffcomn.com/",
+      "path1": "minnesota",
+      "path2": "mortgage",
+      "keywords": [
+        { "text": "mortgage lenders", "matchType": "PHRASE" }
+      ],
+      "rsas": [
+        {
+          "headlines": [
+            { "text": "Minnesota Mortgage Lender", "pinnedField": "HEADLINE_1" },
+            { "text": "Fast Mortgage Approval MN", "pinnedField": "HEADLINE_1" },
+            { "text": "Minnesota Home Loan Approval", "pinnedField": "HEADLINE_1" },
+            { "text": "5 Minutes To Get Started" },
+            { "text": "No Credit Pull Required" },
+            { "text": "No Commitment Required" },
+            { "text": "Free Rate Quote Today" },
+            { "text": "Apply Online In Minutes" },
+            { "text": "Quick Mortgage Pre-Approval" },
+            { "text": "Simple Online Application" },
+            { "text": "See Your Options Today" },
+            { "text": "Licensed Minnesota Lender" },
+            { "text": "Straightforward Process" },
+            { "text": "Get Started Today" },
+            { "text": "Cliffco Mortgage Bankers" }
+          ],
+          "descriptions": [
+            "Get pre-approved in minutes. No credit pull, no commitment, no pressure.",
+            "Cliffco Mortgage Bankers, a licensed Minnesota lender since 1989.",
+            "We find financing options other lenders miss. Straightforward, no jargon.",
+            "See your mortgage options today. Free, no-obligation quote in 5 minutes."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "mortgage pre approval",
+      "_volume": "~70 searches/mo, MN",
+      "finalUrl": "https://cliffcomn.com/",
+      "path1": "minnesota",
+      "path2": "mortgage",
+      "keywords": [
+        { "text": "mortgage pre approval", "matchType": "PHRASE" }
+      ],
+      "rsas": [
+        {
+          "headlines": [
+            { "text": "Minnesota Mortgage Lender", "pinnedField": "HEADLINE_1" },
+            { "text": "Fast Mortgage Approval MN", "pinnedField": "HEADLINE_1" },
+            { "text": "Minnesota Home Loan Approval", "pinnedField": "HEADLINE_1" },
+            { "text": "5 Minutes To Get Started" },
+            { "text": "No Credit Pull Required" },
+            { "text": "No Commitment Required" },
+            { "text": "Free Rate Quote Today" },
+            { "text": "Apply Online In Minutes" },
+            { "text": "Quick Mortgage Pre-Approval" },
+            { "text": "Simple Online Application" },
+            { "text": "See Your Options Today" },
+            { "text": "Licensed Minnesota Lender" },
+            { "text": "Straightforward Process" },
+            { "text": "Get Started Today" },
+            { "text": "Cliffco Mortgage Bankers" }
+          ],
+          "descriptions": [
+            "Get pre-approved in minutes. No credit pull, no commitment, no pressure.",
+            "Cliffco Mortgage Bankers, a licensed Minnesota lender since 1989.",
+            "We find financing options other lenders miss. Straightforward, no jargon.",
+            "See your mortgage options today. Free, no-obligation quote in 5 minutes."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "mortgage lender near me",
+      "_volume": "~20 searches/mo, MN",
+      "finalUrl": "https://cliffcomn.com/",
+      "path1": "minnesota",
+      "path2": "mortgage",
+      "keywords": [
+        { "text": "mortgage lender near me", "matchType": "PHRASE" }
+      ],
+      "rsas": [
+        {
+          "headlines": [
+            { "text": "Minnesota Mortgage Lender", "pinnedField": "HEADLINE_1" },
+            { "text": "Fast Mortgage Approval MN", "pinnedField": "HEADLINE_1" },
+            { "text": "Minnesota Home Loan Approval", "pinnedField": "HEADLINE_1" },
+            { "text": "Speak With Mitch Directly" },
+            { "text": "Your Minnesota Loan Officer" },
+            { "text": "Licensed MN Loan Officer" },
+            { "text": "Local Minnesota Expertise" },
+            { "text": "No Confusing Loan Terms" },
+            { "text": "Guidance Past Closing Day" },
+            { "text": "Built Around Your Goals" },
+            { "text": "Cliffco Mortgage Bankers" },
+            { "text": "Free Consultation Today" },
+            { "text": "Call Mitch Today" },
+            { "text": "Financing Solutions For You" },
+            { "text": "Trusted MN Homebuying Guide" }
+          ],
+          "descriptions": [
+            "Talk directly with Mitch Patterson, your Minnesota loan officer. NMLS #2560483.",
+            "Mitch explains every option clearly: no confusing terms, no surprises, ever.",
+            "Cliffco Mortgage Bankers has helped Minnesota families since 1989.",
+            "Get a free consultation with Mitch. No obligation, no pressure, no rush."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "first time home buyer loan",
+      "_volume": "~70 searches/mo, MN",
+      "finalUrl": "https://cliffcomn.com/",
+      "path1": "minnesota",
+      "path2": "mortgage",
+      "keywords": [
+        { "text": "first time home buyer loan", "matchType": "PHRASE" }
+      ],
+      "rsas": [
+        {
+          "headlines": [
+            { "text": "Fast Mortgage Approval MN", "pinnedField": "HEADLINE_1" },
+            { "text": "Minnesota Home Loan Approval", "pinnedField": "HEADLINE_1" },
+            { "text": "First-Time Buyer Loans MN", "pinnedField": "HEADLINE_1" },
+            { "text": "New To Homebuying? We Help" },
+            { "text": "No Credit Pull Required" },
+            { "text": "Free Rate Quote Today" },
+            { "text": "Licensed Minnesota Lender" },
+            { "text": "Simple Online Application" },
+            { "text": "Guidance Every Step" },
+            { "text": "5 Minutes To Get Started" },
+            { "text": "Cliffco Mortgage Bankers" },
+            { "text": "See What You Qualify For" },
+            { "text": "Straightforward Process" },
+            { "text": "Apply Online In Minutes" },
+            { "text": "Get Started Today" }
+          ],
+          "descriptions": [
+            "First-time buyer? Get pre-approved in minutes. No credit pull, no pressure.",
+            "Cliffco Mortgage Bankers, a licensed Minnesota lender since 1989.",
+            "We find financing options other lenders miss. Straightforward, no jargon.",
+            "New to homebuying? We guide you every step, free and no obligation."
+          ]
+        }
+      ]
+    }
+  ]
+}

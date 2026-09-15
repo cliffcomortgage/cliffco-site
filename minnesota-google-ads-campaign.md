@@ -2,7 +2,49 @@
 
 Full ad copy and parameters for the Minnesota paid-search campaign.
 Source of truth: `microsites/reverse/google-ads/Code/minnesota-fast-approval-config.json`
-(initial build) and `minnesota-add-rsas-config.json` (live campaign/ad-group IDs).
+(initial build), `minnesota-add-rsas-config.json` (live campaign/ad-group IDs), and
+`minnesota-volume-expansion-config.json` (2026-09-15 volume expansion — see below).
+
+## Volume expansion (2026-09-15)
+
+The original ad group's only keyword, "minnesota mortgage lender" (phrase match),
+averages ~10 searches/month statewide per Keyword Planner — the campaign had run a
+full day with $0 spend and 0 impressions because there was essentially no search
+volume to serve against, not a budget/bid problem ($50/day was never the bottleneck).
+
+City/suburb-level variants (Excelsior, Minnetonka, Wayzata, Minneapolis, St. Paul,
+etc. + "mortgage lender") returned zero measurable volume. Dropping "Minnesota" from
+the keyword text and relying on the campaign's existing Minnesota geo-targeting
+instead unlocked real volume:
+
+| Keyword (Phrase match) | Avg monthly searches, MN |
+|---|---|
+| mortgage lenders | ~260 |
+| mortgage pre approval | ~70 |
+| first time home buyer loan | ~70 |
+| mortgage lender near me | ~20 |
+
+4 new SKAG ad groups were added to the existing campaign (ID 24055195846) via
+`Code/add_ad_groups.mjs Code/minnesota-volume-expansion-config.json`, all created
+**PAUSED** for review:
+
+| Ad group ID | Keyword | RSA reused/new |
+|---|---|---|
+| 200659024016 | mortgage lenders | RSA 1 (fast approval — verbatim) |
+| 202916338249 | mortgage pre approval | RSA 1 (fast approval — verbatim) |
+| 202684757160 | mortgage lender near me | RSA 2 (Mitch/personal LO — verbatim) |
+| 199885009883 | first time home buyer loan | New RSA (first-time-buyer angle) |
+
+All 4 keep the same landing page (`https://cliffcomn.com/`) and the same pinned
+Headline-1 rotation ("Minnesota Mortgage Lender" / "Fast Mortgage Approval MN" /
+"Minnesota Home Loan Approval") so ad copy still matches the landing page H1,
+*"Fast Mortgage Approval for Minnesota Homebuyers."* — even though these keywords
+no longer contain "Minnesota" in the query text, the campaign's Minnesota
+geo-targeting scopes who sees them.
+
+**To go live:** review each ad group + its RSA in the UI, then unpause both the
+ad group and the RSA. The original "minnesota mortgage lender" ad group
+(201240361129) was left untouched and stays enabled throughout.
 
 ## Campaign parameters
 
