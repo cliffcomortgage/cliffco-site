@@ -300,12 +300,12 @@
     },
     {
       "source": "/cnguyen/",
-      "destination": "/loan-officers/christian-nguyen/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/cnguyen",
-      "destination": "/loan-officers/christian-nguyen/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
@@ -719,6 +719,16 @@
       "permanent": true
     },
     {
+      "source": "/team-chen/",
+      "destination": "/loan-officers/james-chen/",
+      "permanent": true
+    },
+    {
+      "source": "/team-chen",
+      "destination": "/loan-officers/james-chen/",
+      "permanent": true
+    },
+    {
       "source": "/team-giaquinto/",
       "destination": "/loan-officers/",
       "permanent": true
@@ -790,12 +800,12 @@
     },
     {
       "source": "/jzucker/",
-      "destination": "/loan-officers/jeannette-zucker/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/jzucker",
-      "destination": "/loan-officers/jeannette-zucker/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
@@ -1260,12 +1270,12 @@
     },
     {
       "source": "/twilliamson/",
-      "destination": "/loan-officers/tamara-williamson/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/twilliamson",
-      "destination": "/loan-officers/tamara-williamson/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
