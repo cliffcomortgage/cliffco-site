@@ -61,5 +61,7 @@ Always confirm leadership titles with Rafe before publishing.
 - `brand/` — mission-vision-values, brand guide, logos. Originals in OneDrive at `~/Library/CloudStorage/OneDrive-CliffcoMortgageBank/Creative/2. Cliffco New Brand/Assets & Logos/`. If you update an asset, update both places.
 - `compliance/` — disclosure/licensing source of truth. Last NMLS audit: 2025-07-23. Refresh quarterly.
 - `website/` — Astro site skeleton for the rebuild.
+- `microsites/` — standalone single-purpose Astro projects (own `package.json`/`astro.config.mjs`/`vercel.json`/`.env` each), separate from `website/`. E.g. `microsites/cliffcomn/` (cliffcomn.com, the MN homepage + landing pages) and `microsites/reverse/` (the reverse-mortgage Long Island microsite).
+- `google-ads/` — the one shared Google Ads API tooling folder for **all** Cliffco paid-search campaigns (single ads account, CID 7324255239): `.env` with OAuth credentials, reusable scripts (`Code/create_campaign.mjs`, `add_ad_groups.mjs`, etc.), and one config JSON per campaign (NJ grant, MN, DSCR-MN, reverse-mortgage-LI, ...). Despite living alongside the microsites, it's account-wide, not per-microsite — new campaigns' configs go here regardless of which microsite/page they promote. (Moved from `microsites/reverse/google-ads/` on 2026-09-18; the old path was a naming leftover from when this tooling was reverse-mortgage-only.)
 - `seo-aeo-research/` — SEO/AEO research notes.
 - `scripts/` — utility scripts.

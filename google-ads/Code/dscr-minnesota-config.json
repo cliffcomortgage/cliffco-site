@@ -1,0 +1,72 @@
+{
+  "campaignName": "Minnesota — DSCR Investor Loans",
+  "budgetMicrosPerDay": "50000000",
+  "geoTargets": ["Minnesota"],
+  "language": "English",
+  "adSchedule": null,
+  "biddingStrategy": "MAXIMIZE_CLICKS",
+  "adGroupName": "dscr loan",
+  "keywords": [
+    { "text": "dscr loan", "matchType": "PHRASE" }
+  ],
+  "negativeKeywords": [
+    "jobs", "job openings", "career", "careers", "salary", "hiring",
+    "training", "certification", "license exam", "how to become", "school", "classes", "course",
+    "scam", "fraud", "lawsuit", "class action", "predatory", "complaints",
+    "calculator", "first time home buyer", "fha loan", "va loan", "owner occupied",
+    "reverse mortgage", "heloc", "credit repair"
+  ],
+  "finalUrl": "https://cliffcomn.com/dscr/",
+  "path1": "dscr",
+  "path2": "minnesota",
+  "rsas": [
+    {
+      "headlines": [
+        { "text": "DSCR Loans Minnesota", "pinnedField": "HEADLINE_1" },
+        { "text": "Qualify On Rental Income", "pinnedField": "HEADLINE_1" },
+        { "text": "No Personal Income Docs", "pinnedField": "HEADLINE_1" },
+        { "text": "No Tax Returns Required" },
+        { "text": "LLC Vesting Welcome" },
+        { "text": "Long & Short-Term Rentals" },
+        { "text": "Ratios From 0.75 To 1.25+" },
+        { "text": "Out-Of-State Investors OK" },
+        { "text": "Licensed Minnesota Lender" },
+        { "text": "Free Rate Quote Today" },
+        { "text": "Pre-Qual In 24 Hours" },
+        { "text": "Close In 21-30 Days" },
+        { "text": "Cliffco Mortgage Bankers" },
+        { "text": "Get Started Today" }
+      ],
+      "descriptions": [
+        "Qualify on rental income, not your paycheck. No tax returns, no W-2s required.",
+        "LLC vesting welcome. Long-term or short-term rentals. MN investors welcome.",
+        "Cliffco Mortgage Bankers, a licensed Minnesota lender since 1989.",
+        "Pre-qual in 24 hours, close in 21-30 days. Free quote, no obligation."
+      ]
+    },
+    {
+      "headlines": [
+        { "text": "DSCR Loans Minnesota", "pinnedField": "HEADLINE_1" },
+        { "text": "Qualify On Rental Income", "pinnedField": "HEADLINE_1" },
+        { "text": "No Personal Income Docs", "pinnedField": "HEADLINE_1" },
+        { "text": "Speak With Mitch Directly" },
+        { "text": "Your Minnesota Loan Officer" },
+        { "text": "Licensed MN Loan Officer" },
+        { "text": "Local Minnesota Expertise" },
+        { "text": "Excelsior Branch Originator" },
+        { "text": "A Person, Not A Call Center" },
+        { "text": "Free Consultation Today" },
+        { "text": "Call Mitch Today" },
+        { "text": "No Personal Income Docs" },
+        { "text": "LLC Vesting Welcome" },
+        { "text": "Get Started Today" }
+      ],
+      "descriptions": [
+        "Talk directly with Mitch Patterson, your Minnesota loan officer. NMLS #2560483.",
+        "Local origination from our Excelsior, MN branch. Not a call center.",
+        "Cliffco Mortgage Bankers has helped Minnesota families and investors since 1989.",
+        "Get a free consultation with Mitch. No obligation, no pressure, no rush."
+      ]
+    }
+  ]
+}

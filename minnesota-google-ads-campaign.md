@@ -1,7 +1,7 @@
 # Minnesota Google Ads Campaign — Reference
 
 Full ad copy and parameters for the Minnesota paid-search campaign.
-Source of truth: `microsites/reverse/google-ads/Code/minnesota-fast-approval-config.json`
+Source of truth: `google-ads/Code/minnesota-fast-approval-config.json`
 (initial build), `minnesota-add-rsas-config.json` (live campaign/ad-group IDs), and
 `minnesota-volume-expansion-config.json` (2026-09-15 volume expansion — see below).
 
@@ -180,10 +180,10 @@ relying on conversion data.
 RSAs and assets can be refreshed from a config file with the bundled script:
 
 ```
-node microsites/reverse/google-ads/Code/update_ads_and_assets.mjs \
-  microsites/reverse/google-ads/Code/minnesota-add-rsas-config.json
+node google-ads/Code/update_ads_and_assets.mjs \
+  google-ads/Code/minnesota-add-rsas-config.json
 ```
 
 (Requires a valid `.env` with the Google Ads API credentials in
-`microsites/reverse/google-ads/`. The refresh token expires periodically; re-run
+`google-ads/`. The refresh token expires periodically; re-run
 `get_refresh_token.mjs` if calls fail with `invalid_grant`.)
