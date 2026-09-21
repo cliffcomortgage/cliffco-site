@@ -49,3 +49,5 @@ Allow: /
 # Common Crawl
 User-agent: CCBot
 Allow: /
+
+Sitemap: https://cliffcomn.com/sitemap-index.xml
