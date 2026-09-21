@@ -2,6 +2,18 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "astro",
+  "redirects": [
+    {
+      "source": "/dscr/",
+      "destination": "/dscr-loans-minnesota/",
+      "permanent": true
+    },
+    {
+      "source": "/dscr",
+      "destination": "/dscr-loans-minnesota/",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

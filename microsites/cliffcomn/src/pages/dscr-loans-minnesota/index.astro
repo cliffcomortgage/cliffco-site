@@ -14,6 +14,18 @@ const faq = [
   { q: "Are short-term rentals (Airbnb / Vrbo) eligible?", a: "Yes, on 1–4 unit properties where the municipality allows short-term rental operation. STR loans require a minimum 1.0 DSCR and 680 credit score — both a bit higher than the long-term-rental minimums. Talk to Mitch about your specific property and market." },
   { q: "I've never owned an investment property before — can I still qualify?", a: "Yes, first-time investors are eligible, but the minimum DSCR is 1.0 rather than 0.75 — the lower ratio floor is reserved for borrowers with prior investment-property ownership." },
 ];
+
+const directAnswer = "A DSCR (Debt-Service Coverage Ratio) loan lets Minnesota real estate investors qualify for financing based on a property's rental income, not personal income or tax returns. Cliffco's DSCR program covers long-term rentals down to a 0.75 DSCR and short-term rentals (Airbnb/Vrbo) down to a 1.0 DSCR, allows LLC vesting, and is available to out-of-state investors buying property anywhere in Minnesota — originated locally from Cliffco's Excelsior, MN branch.";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map((item) => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a },
+  })),
+};
 ---
 
 <!doctype html>
@@ -21,9 +33,11 @@ const faq = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>DSCR Investment Property Loans in Minnesota | Cliffco</title>
+    <title>DSCR Loans Minnesota | Investment Property Financing | Cliffco</title>
     <meta name="description" content="Qualify on rental income, not your paycheck. DSCR loans for Minnesota real estate investors: no personal income docs, LLC vesting, long-term or short-term rentals. Work directly with Mitchell Patterson, Cliffco's Minnesota loan officer." />
+    <link rel="canonical" href="https://cliffcomn.com/dscr-loans-minnesota/" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
     <PostHog />
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/21616430.js"></script>
     <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
@@ -121,6 +135,13 @@ const faq = [
             </div>
 
           </div>
+        </div>
+      </section>
+
+      <!-- DIRECT ANSWER (AEO) -->
+      <section class="bg-white py-10">
+        <div class="container-wide max-w-3xl">
+          <p class="text-[var(--color-text)] leading-relaxed">{directAnswer}</p>
         </div>
       </section>
 
