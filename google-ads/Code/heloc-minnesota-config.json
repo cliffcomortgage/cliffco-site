@@ -1,0 +1,73 @@
+{
+  "campaignName": "Minnesota — HELOC",
+  "budgetMicrosPerDay": "35000000",
+  "geoTargets": ["Minnesota"],
+  "language": "English",
+  "adSchedule": null,
+  "biddingStrategy": "MAXIMIZE_CLICKS",
+  "adGroupName": "heloc",
+  "keywords": [
+    { "text": "heloc", "matchType": "PHRASE" }
+  ],
+  "negativeKeywords": [
+    "jobs", "job openings", "career", "careers", "salary", "hiring",
+    "training", "certification", "license exam", "how to become", "school", "classes", "course",
+    "scam", "fraud", "lawsuit", "class action", "predatory", "complaints",
+    "calculator", "first time home buyer", "fha loan", "va loan", "usda loan",
+    "reverse mortgage", "dscr", "investment property", "rental property",
+    "personal loan", "credit card", "student loan", "auto loan"
+  ],
+  "finalUrl": "https://cliffcomn.com/heloc-minnesota/",
+  "path1": "heloc",
+  "path2": "minnesota",
+  "rsas": [
+    {
+      "headlines": [
+        { "text": "Minnesota HELOC Lender", "pinnedField": "HEADLINE_1" },
+        { "text": "Fixed-Rate HELOC MN", "pinnedField": "HEADLINE_1" },
+        { "text": "Tap Equity, Keep Your Rate", "pinnedField": "HEADLINE_1" },
+        { "text": "Lines Up To $750,000" },
+        { "text": "Approval In 5 Minutes" },
+        { "text": "Funding In 5 Business Days" },
+        { "text": "First Mortgage Untouched" },
+        { "text": "Fully Online Application" },
+        { "text": "Fixed Rate, Not Variable" },
+        { "text": "Free Rate Quote Today" },
+        { "text": "Licensed Minnesota Lender" },
+        { "text": "No Cost To Check" },
+        { "text": "Cliffco Mortgage Bankers" },
+        { "text": "Get Started Today" }
+      ],
+      "descriptions": [
+        "Borrow against your equity without touching your first mortgage rate. Fixed-rate HELOC.",
+        "Lines up to $750,000. Approval decision in 5 minutes, funding in 5 business days.",
+        "Cliffco Mortgage Bankers, a licensed Minnesota lender since 1989.",
+        "See what your equity could do. Free quote, no obligation, takes minutes."
+      ]
+    },
+    {
+      "headlines": [
+        { "text": "Minnesota HELOC Lender", "pinnedField": "HEADLINE_1" },
+        { "text": "Fixed-Rate HELOC MN", "pinnedField": "HEADLINE_1" },
+        { "text": "Tap Equity, Keep Your Rate", "pinnedField": "HEADLINE_1" },
+        { "text": "Speak With Mitch Directly" },
+        { "text": "Your Minnesota Loan Officer" },
+        { "text": "Licensed MN Loan Officer" },
+        { "text": "Local Minnesota Expertise" },
+        { "text": "Excelsior Branch Originator" },
+        { "text": "A Person, Not A Call Center" },
+        { "text": "Free Consultation Today" },
+        { "text": "Call Mitch Today" },
+        { "text": "Lines Up To $750,000" },
+        { "text": "Fixed Rate, Not Variable" },
+        { "text": "Get Started Today" }
+      ],
+      "descriptions": [
+        "Talk directly with Mitch Patterson, your Minnesota loan officer. NMLS #2560483.",
+        "Local origination from our Excelsior, MN branch. Not a call center.",
+        "Cliffco Mortgage Bankers has helped Minnesota families since 1989.",
+        "Get a free consultation with Mitch. No obligation, no pressure, no rush."
+      ]
+    }
+  ]
+}

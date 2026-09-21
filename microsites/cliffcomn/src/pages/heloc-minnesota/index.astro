@@ -1,0 +1,377 @@
+---
+import "../../styles/global.css";
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import PostHog from "../../components/posthog.astro";
+
+const faq = [
+  { q: "What is a HELOC?", a: "A home equity line of credit (HELOC) is a loan secured by the equity in your home. It sits behind your existing mortgage as a second lien, which means your first mortgage, and its rate, stays exactly as it is. You draw funds from the line and repay them over the loan term." },
+  { q: "Does a HELOC replace my current mortgage?", a: "No. A HELOC is a second lien, so your existing first mortgage and its rate are untouched. That makes a HELOC especially useful if you locked a low first-mortgage rate and don't want to give it up with a cash-out refinance." },
+  { q: "Is the rate fixed or variable?", a: "Cliffco's HELOC program uses fixed rates, so your payment on drawn funds doesn't move with the market the way traditional variable-rate HELOCs do. Your rate depends on your credit profile, the line amount, and your combined loan-to-value ratio." },
+  { q: "How much can I borrow with a HELOC?", a: "Lines are available up to $750,000. Your maximum depends on how much equity you have, your credit profile, and the combined loan-to-value ratio of your first mortgage plus the new line." },
+  { q: "How can a HELOC be approved in five minutes?", a: "The application uses automated income, credit, and property verification instead of a manual underwriting queue. Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report." },
+  { q: "How fast can I receive the funds?", a: "Funding can happen in as few as five business days after approval, assuming the loan closes with our remote online notary. Funding timelines may be longer for properties in counties that do not permit recording of e-signatures or that otherwise require an in-person closing." },
+  { q: "What can I use HELOC funds for?", a: "Common uses are home renovations, consolidating higher-interest debt, education costs, and major purchases. Because the line is secured by your home, the rate is typically far lower than credit cards or personal loans." },
+];
+
+const directAnswer = "A HELOC (home equity line of credit) lets Minnesota homeowners borrow against their home's equity without touching their existing first mortgage or its rate. Cliffco's HELOC is fixed-rate, offers lines up to $750,000 depending on equity and credit profile, and is fully online — an approval decision in as little as five minutes and funding in as few as five business days, originated locally from Cliffco's Excelsior, MN branch.";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map((item) => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a },
+  })),
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HELOC Minnesota | Home Equity Line of Credit | Cliffco</title>
+    <meta name="description" content="Tap your home's equity without touching your first mortgage rate. Fixed-rate HELOC for Minnesota homeowners, lines up to $750,000, approval in minutes, funding in days. Work directly with Mitchell Patterson, Cliffco's Minnesota loan officer." />
+    <link rel="canonical" href="https://cliffcomn.com/heloc-minnesota/" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <PostHog />
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/21616430.js"></script>
+    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+    <!-- Google tag (gtag.js) — Google Ads conversion tracking -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WV6SFC5W7P"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WV6SFC5W7P');
+      gtag('config', 'AW-17848823591');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=optional" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=optional" /></noscript>
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+
+    <!-- HEADER -->
+    <header class="bg-white border-b border-[var(--color-mist-gray)] sticky top-0 z-40">
+      <div class="container-wide flex items-center justify-between py-4">
+        <a href="/" aria-label="Cliffco Mortgage Bankers home">
+          <img src="/logo-black.png" alt="Cliffco Mortgage Bankers" class="h-8 w-auto" loading="eager" />
+        </a>
+        <a href="tel:9524546635" class="btn btn-primary text-sm !py-2 !px-5">
+          Call Mitch: (952) 454-6635
+        </a>
+      </div>
+    </header>
+
+    <main class="flex-1">
+
+      <!-- HERO -->
+      <section id="start" class="accent-gradient">
+        <div class="container-wide py-20 lg:py-28">
+          <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+            <!-- Left: headline + CTA -->
+            <div>
+              <p class="eyebrow !text-[var(--color-ice-blue)]">HELOC &middot; Minnesota Homeowners</p>
+              <h1 class="mt-4 text-white max-w-xl" style="font-size: var(--text-display-xl); line-height: 1.08; font-weight: 400;">
+                Tap your equity. Keep your rate.
+              </h1>
+              <p class="lead mt-5 text-white/85 max-w-lg">
+                A Cliffco HELOC lets Minnesota homeowners borrow against their home's equity without touching their existing first mortgage or its rate. Fixed-rate, fully online, originated locally from our Excelsior office.
+              </p>
+              <div class="mt-8">
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <a href="#apply" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)] text-base !px-8 !py-4">
+                    See What You Qualify For
+                  </a>
+                  <a href="tel:9524546635" class="btn text-base !px-8 !py-4 !bg-transparent !text-white border border-white/40 hover:!bg-white/10">
+                    (952) 454-6635
+                  </a>
+                </div>
+                <p class="mt-3 text-sm text-white/60">Approval decision in as little as 5 minutes.* No cost to check.</p>
+              </div>
+              <div class="mt-10 flex items-center gap-4">
+                <img
+                  src="/mitchell-patterson.webp"
+                  alt="Mitchell Patterson, Cliffco Loan Officer"
+                  class="w-16 h-16 rounded-full object-cover border-2 border-white/20"
+                  loading="eager"
+                />
+                <div>
+                  <p class="font-semibold text-white">Mitch Patterson</p>
+                  <p class="text-white/60 text-sm">Loan Officer &middot; NMLS #2560483</p>
+                  <p class="text-white/40 text-xs">Licensed in California, Florida, Minnesota &amp; Texas</p>
+                </div>
+              </div>
+              <ul class="mt-10 space-y-4">
+                {[
+                  "First mortgage and its rate stay untouched",
+                  "Fixed rate — payment doesn't move with the market",
+                  "Lines up to $750,000, based on equity and credit",
+                  "Fully online, with a remote notary closing",
+                ].map((item) => (
+                  <li class="flex items-start gap-3 text-white/80">
+                    <svg class="w-5 h-5 shrink-0 text-[var(--color-ice-blue)] mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Right: lead form -->
+            <div class="flex justify-center lg:justify-end" id="apply">
+              <div class="card max-w-lg w-full !p-8">
+                <p class="text-center font-semibold text-[var(--color-ink)] mb-4">See what your equity could do</p>
+                <!-- HubSpot lead form (rendered via hbspt.forms.create for reliable submit callback) -->
+                <div id="heloc-lead-form"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- DIRECT ANSWER (AEO) -->
+      <section class="bg-white py-10">
+        <div class="container-wide max-w-3xl">
+          <p class="text-[var(--color-text)] leading-relaxed">{directAnswer}</p>
+        </div>
+      </section>
+
+      <!-- TRUST BAR -->
+      <section class="bg-[var(--color-mist-gray)] py-12">
+        <div class="container-wide">
+          <p class="text-center text-sm text-[var(--color-text-muted)] mb-8">Cliffco Mortgage Bankers company-wide stats: the team and track record behind your loan.</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            {[
+              { stat: "37+", label: "Years in business" },
+              { stat: "32", label: "Licensed states" },
+              { stat: "$6B+", label: "Mortgages closed" },
+              { stat: "4.9★", label: "Average rating" },
+            ].map((item) => (
+              <div class="flex flex-col gap-1">
+                <span class="text-3xl font-bold text-[var(--color-accent)]">{item.stat}</span>
+                <span class="text-sm text-[var(--color-text-muted)]">{item.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- AT A GLANCE -->
+      <section class="bg-white py-20">
+        <div class="container-wide grid gap-10 lg:grid-cols-2">
+          <div>
+            <p class="eyebrow">HELOC at a glance</p>
+            <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 300;">Your equity, without touching your first mortgage.</h2>
+          </div>
+          <dl class="space-y-3">
+            {[
+              ["Approval decision", "In as little as 5 minutes*"],
+              ["Funding", "In as few as 5 business days*"],
+              ["Line amounts", "Up to $750,000"],
+              ["Rate structure", "Fixed"],
+              ["First mortgage", "Unchanged; the line is a second lien"],
+              ["Process", "Fully online, remote notary closing"],
+            ].map(([dt, dd]) => (
+              <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
+                <dt class="text-[var(--color-ink)] font-medium">{dt}</dt>
+                <dd class="text-[var(--color-text-muted)]">{dd}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <!-- ABOUT MITCH -->
+      <section class="bg-[var(--color-mist-gray)] py-20">
+        <div class="container-wide">
+          <div class="grid lg:grid-cols-[320px_1fr] gap-12 items-start">
+
+            <div class="text-center">
+              <img
+                src="/mitchell-patterson.webp"
+                alt="Mitchell Patterson, Cliffco Mortgage Loan Officer"
+                class="w-48 h-48 rounded-lg object-cover mx-auto shadow-lg"
+                loading="lazy"
+              />
+              <h2 class="mt-5 text-2xl font-bold text-[var(--color-ink)]">Mitch Patterson</h2>
+              <p class="text-[var(--color-accent)] font-semibold text-sm mt-1">Loan Officer</p>
+              <div class="mt-4 space-y-2 text-sm text-[var(--color-text-muted)]">
+                <p>
+                  <strong class="text-[var(--color-ink)]">NMLS</strong> #2560483 &middot;
+                  <a href="https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2560483" class="text-[var(--color-accent)] no-underline hover:underline" target="_blank" rel="noopener">
+                    Verify ↗
+                  </a>
+                </p>
+                <p><strong class="text-[var(--color-ink)]">Licensed in</strong> California, Florida, Minnesota &amp; Texas</p>
+                <p><strong class="text-[var(--color-ink)]">Branch</strong> Excelsior, MN</p>
+              </div>
+              <div class="mt-6 flex flex-col gap-3">
+                <a href="#apply" class="btn btn-primary w-full">See What You Qualify For</a>
+                <a href="tel:9524546635" class="btn btn-secondary w-full">(952) 454-6635</a>
+                <a href="mailto:mpatterson@cliffcomortgage.com" class="text-sm text-[var(--color-accent)] no-underline hover:underline">
+                  mpatterson@cliffcomortgage.com
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <p class="eyebrow">Your Minnesota Loan Officer</p>
+              <h3 class="mt-3" style="font-size: var(--text-h2); font-weight: 300;">
+                A real person who answers the phone.
+              </h3>
+              <div class="mt-5 space-y-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
+                <p>
+                  At Cliffco Mortgage Bankers, Mitch Patterson works with Minnesota homeowners to find financing that fits their actual situation, not a one-size-fits-all product.
+                </p>
+                <p>
+                  What sets Mitch apart: he explains everything clearly, with no confusing terms and no surprises. He's in it for the long term, not just until your loan closes &mdash; and your file is handled locally, from Cliffco's Excelsior office.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="bg-white py-20">
+        <div class="container-wide max-w-3xl">
+          <h2 style="font-size: var(--text-h2); font-weight: 300;">Common HELOC questions.</h2>
+          <div class="mt-10 space-y-2">
+            {faq.map((item) => (
+              <details class="bg-[var(--color-mist-gray)] rounded-lg border border-[var(--color-mist-gray)] overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-5 font-semibold text-[var(--color-ink)] cursor-pointer list-none">
+                  {item.q}
+                </summary>
+                <p class="px-6 pb-6 text-sm text-[var(--color-text)] leading-relaxed border-t border-white pt-4">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="accent-gradient">
+        <div class="container-wide py-16 text-center">
+          <h2 class="text-white" style="font-size: var(--text-h2); font-weight: 300;">Tap your equity. Keep your rate.</h2>
+          <p class="lead mt-4 text-white/85 max-w-xl mx-auto">Tell Mitch your home's approximate value and your current mortgage balance. He'll show you what a line could look like.</p>
+          <div class="mt-8 flex justify-center gap-3 flex-wrap">
+            <a href="#apply" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">See What You Qualify For</a>
+            <a href="tel:9524546635" class="btn btn-secondary !border-white !text-white">(952) 454-6635</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- DISCLOSURE -->
+      <section class="bg-white py-8">
+        <div class="container-wide">
+          <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
+            *Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report. Five business day funding timeline assumes closing the loan with our remote online notary. Funding timelines may be longer for loans secured by properties located in counties that do not permit recording of e-signatures or that otherwise require an in-person closing.
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[var(--color-rich-black)] text-white">
+      <div class="container-wide py-10">
+
+        <div class="flex flex-wrap gap-4 justify-between items-center pb-6 border-b border-white/10">
+          <img src="/logo-black.png" alt="Cliffco Mortgage Bankers" class="h-6 w-auto" style="filter: brightness(0) invert(1);" loading="lazy" />
+          <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+            <a href="https://cliffcomortgage.com/" class="text-white/60 hover:text-white no-underline" target="_blank" rel="noopener">Visit Full Site</a>
+            <a href="https://cliffcomortgage.com/licensing/" class="text-white/60 hover:text-white no-underline" target="_blank" rel="noopener">Licensing</a>
+            <a href="https://cliffcomortgage.com/privacy-policy/" class="text-white/60 hover:text-white no-underline" target="_blank" rel="noopener">Privacy Policy</a>
+            <a href="https://www.nmlsconsumeraccess.org/" class="text-white/60 hover:text-white no-underline" target="_blank" rel="noopener">NMLS Consumer Access</a>
+          </div>
+        </div>
+
+        <div class="mt-6 pb-6 border-b border-white/10 text-sm text-white/60">
+          <p class="font-semibold text-white/80">Cliffco Mortgage Bankers &middot; Excelsior, MN</p>
+          <p class="mt-1">276 Water Street, Excelsior, MN 55331</p>
+          <p class="mt-0.5">Branch NMLS #2763960 &middot; <a href="tel:5162023307" class="hover:text-white no-underline">Office: 516-202-3307</a></p>
+        </div>
+
+        <div class="mt-6 text-xs text-white/40 leading-relaxed space-y-3">
+          <p>
+            Cliffco, Inc. is not affiliated with or acting on behalf of the FHA or any government entity. Equal Housing Lender. Cliffco, Inc. Corporate NMLS#65328 (<a href="https://www.nmlsconsumeraccess.org/" class="text-white/50 hover:text-white underline" target="_blank" rel="noopener">www.nmlsconsumeraccess.org</a>) 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553 (516) 408-7300. MN Department of Commerce #MN-MO-65328. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.
+          </p>
+          <p>
+            This site is not authorized by the New York State Department of Financial Services. No mortgage solicitation activity or loan applications for properties located in the State of New York can be facilitated through this site. This website is only for property of persons located in the state of Minnesota.
+          </p>
+        </div>
+
+        <p class="mt-6 text-xs text-white/30">&copy; 2026 Cliffco, Inc. &middot; NMLS #65328 &middot; Equal Housing Lender</p>
+
+      </div>
+    </footer>
+
+    <!-- MOBILE STICKY CTA -->
+    <div class="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-white border-t border-[var(--color-mist-gray)] p-3 shadow-[0_-4px_16px_rgba(13,13,13,0.08)]">
+      <a href="#apply" class="btn btn-primary w-full text-sm !py-3">See What You Qualify For &middot; 2 Minutes</a>
+    </div>
+    <div class="lg:hidden h-16" aria-hidden="true"></div>
+
+    <Analytics />
+    <SpeedInsights />
+
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('a[href^="tel:"]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            window.posthog?.capture('phone_clicked', { phone_number: el.getAttribute('href').replace('tel:', '') });
+          });
+        });
+
+        document.querySelectorAll('a[href^="mailto:"]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            window.posthog?.capture('email_clicked', { email: el.getAttribute('href').replace('mailto:', '') });
+          });
+        });
+
+        document.querySelectorAll('a[href*="nmlsconsumeraccess.org/EntityDetails"]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            window.posthog?.capture('nmls_verify_clicked');
+          });
+        });
+
+        document.querySelectorAll('a[href="https://cliffcomortgage.com/"]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            window.posthog?.capture('full_site_visited');
+          });
+        });
+      });
+
+      // Render the HubSpot form and fire the Google Ads conversion on submit.
+      // hbspt.forms.create's onFormSubmitted is a reliable lifecycle callback,
+      // unlike the new hs-form-frame embed's postMessage (which fires inconsistently).
+      if (window.hbspt && window.hbspt.forms) {
+        window.hbspt.forms.create({
+          region: 'na1',
+          portalId: '21616430',
+          formId: 'e42a309d-1520-473c-8bd2-777240aacfbc',
+          target: '#heloc-lead-form',
+          onFormSubmitted: function () {
+            if (typeof gtag === 'function') {
+              gtag('event', 'conversion', {
+                send_to: 'AW-17848823591/8n2gCInJqIAdEKfe_b5C',
+                value: 0.0,
+                currency: 'USD'
+              });
+            }
+            if (window.posthog) window.posthog.capture('heloc_mn_form_submitted');
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
