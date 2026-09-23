@@ -11,8 +11,9 @@ const faq = [
   { question: "What is a HELOC?", answer: "A home equity line of credit (HELOC) is a loan secured by the equity in your home. It sits behind your existing mortgage as a second lien, which means your first mortgage, and its rate, stays exactly as it is. You draw funds from the line and repay them over the loan term." },
   { question: "How can a HELOC be approved in five minutes?", answer: "The application uses automated income, credit, and property verification instead of a manual underwriting queue. Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report." },
   { question: "Does a HELOC replace my current mortgage?", answer: "No. A HELOC is a second lien, so your existing first mortgage and its rate are untouched. That makes a HELOC especially useful if you locked a low first-mortgage rate and don't want to give it up with a cash-out refinance." },
-  { question: "Is the rate fixed or variable?", answer: "Cliffco's HELOC program uses fixed rates, so your payment on drawn funds doesn't move with the market the way traditional variable-rate HELOCs do. Your rate depends on your credit profile, the line amount, and your combined loan-to-value ratio." },
-  { question: "How much can I borrow with a HELOC?", answer: "Lines are available up to $750,000. Your maximum depends on how much equity you have, your credit profile, and the combined loan-to-value ratio of your first mortgage plus the new line." },
+  { question: "Is the rate fixed or variable?", answer: "Cliffco's HELOC is a variable-rate line tied to the Wall Street Journal Prime Rate plus a margin, so your rate can adjust monthly as Prime moves (with a 4% floor and an 18% lifetime cap). That's standard for a HELOC." },
+  { question: "How much can I borrow with a HELOC?", answer: "Lines range from $50,000 to $1,000,000. Your maximum depends on how much equity you have, your credit profile, and the combined loan-to-value ratio of your first mortgage plus the new line." },
+  { question: "Is there a minimum draw amount?", answer: "Yes. At closing you're required to draw at least 80% of your approved line, with a minimum initial draw of $50,000." },
   { question: "What can I use HELOC funds for?", answer: "Common uses are home renovations, consolidating higher-interest debt, education costs, and major purchases. Because the line is secured by your home, the rate is typically far lower than credit cards or personal loans." },
   { question: "How fast can I receive the funds?", answer: "Funding can happen in as few as five business days after approval, assuming the loan closes with our remote online notary. Funding timelines may be longer for properties in counties that do not permit recording of e-signatures or that otherwise require an in-person closing." },
 ];
@@ -59,8 +60,8 @@ import ContactForm from "../../../components/forms/ContactForm.astro";
       <dl class="space-y-3">
         <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Approval decision</dt><dd class="text-[var(--color-text-muted)]">In as little as 5 minutes*</dd></div>
         <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Funding</dt><dd class="text-[var(--color-text-muted)]">In as few as 5 business days*</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Line amounts</dt><dd class="text-[var(--color-text-muted)]">Up to $750,000</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Rate structure</dt><dd class="text-[var(--color-text-muted)]">Fixed</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Line amounts</dt><dd class="text-[var(--color-text-muted)]">$50,000–$1,000,000</dd></div>
+        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Rate structure</dt><dd class="text-[var(--color-text-muted)]">Variable</dd></div>
         <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>First mortgage</dt><dd class="text-[var(--color-text-muted)]">Unchanged; the line is a second lien</dd></div>
         <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Process</dt><dd class="text-[var(--color-text-muted)]">Fully online, remote notary closing</dd></div>
       </dl>
@@ -107,7 +108,7 @@ import ContactForm from "../../../components/forms/ContactForm.astro";
   <section class="bg-white py-8">
     <div class="container-wide">
       <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-        *Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report. Five business day funding timeline assumes closing the loan with our remote online notary. Funding timelines may be longer for loans secured by properties located in counties that do not permit recording of e-signatures or that otherwise require an in-person closing.
+        *Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report. Five business day funding timeline assumes closing the loan with our remote online notary. Funding timelines may be longer for loans secured by properties located in counties that do not permit recording of e-signatures or that otherwise require an in-person closing. The HELOC's interest rate is variable, tied to the Wall Street Journal Prime Rate plus a margin, subject to a 4% floor and an 18% lifetime cap (may vary by state); your rate and payment may increase or decrease over the life of the line.
       </p>
     </div>
   </section>
