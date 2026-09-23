@@ -7,17 +7,18 @@ import PostHog from "../../components/posthog.astro";
 const faq = [
   { q: "What is a HELOC?", a: "A home equity line of credit (HELOC) is a loan secured by the equity in your home. It sits behind your existing mortgage as a second lien, which means your first mortgage, and its rate, stays exactly as it is. You draw funds from the line and repay them over the loan term." },
   { q: "Does a HELOC replace my current mortgage?", a: "No. A HELOC is a second lien, so your existing first mortgage and its rate are untouched. That makes a HELOC especially useful if you locked a low first-mortgage rate and don't want to give it up with a cash-out refinance." },
-  { q: "Is the rate fixed or variable?", a: "Cliffco's HELOC program uses fixed rates, so your payment on drawn funds doesn't move with the market the way traditional variable-rate HELOCs do. Your rate depends on your credit profile, the line amount, and your combined loan-to-value ratio." },
-  { q: "How much can I borrow with a HELOC?", a: "Lines are available up to $750,000. Your maximum depends on how much equity you have, your credit profile, and the combined loan-to-value ratio of your first mortgage plus the new line." },
+  { q: "Is the rate fixed or variable?", a: "Cliffco's HELOC is a variable-rate line tied to the Wall Street Journal Prime Rate plus a margin, so your rate can adjust monthly as Prime moves (with a 4% floor and an 18% lifetime cap). That's standard for a HELOC. If a fixed rate matters more to you, Cliffco's cash-out refinance option comes with fixed-rate terms instead — Mitch can walk through both." },
+  { q: "How much can I borrow with a HELOC?", a: "Lines range from $50,000 to $1,000,000. Your maximum depends on how much equity you have, your credit profile, and the combined loan-to-value ratio of your first mortgage plus the new line." },
+  { q: "Is there a minimum draw amount?", a: "Yes. At closing you're required to draw at least 80% of your approved line, with a minimum initial draw of $50,000. If you're looking for a smaller amount, Mitch can talk through whether a HELOC or another option fits better." },
   { q: "How can a HELOC be approved in five minutes?", a: "The application uses automated income, credit, and property verification instead of a manual underwriting queue. Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report." },
   { q: "How fast can I receive the funds?", a: "Funding can happen in as few as five business days after approval, assuming the loan closes with our remote online notary. Funding timelines may be longer for properties in counties that do not permit recording of e-signatures or that otherwise require an in-person closing." },
   { q: "What can I use HELOC funds for?", a: "Common uses are home renovations, consolidating higher-interest debt, education costs, and major purchases. Because the line is secured by your home, the rate is typically far lower than credit cards or personal loans." },
   { q: "What is a cash-out refinance?", a: "A cash-out refinance replaces your existing mortgage with a new, larger loan and gives you the difference in cash. Unlike a HELOC, it replaces your first mortgage entirely, including its rate and term, rather than adding a second lien behind it." },
   { q: "HELOC or cash-out refinance: which is right for me?", a: "If your current mortgage rate is low, a HELOC usually wins since it leaves that rate untouched. If restructuring your whole loan makes sense (your current rate isn't particularly low, or you'd rather lock one new fixed rate on the full balance), a cash-out refinance may be the better fit. Mitch can walk through both options with your specific numbers." },
-  { q: "How much can I cash out with a refinance?", a: "Cliffco's cash-out refinance programs go up to 80–85% loan-to-value, depending on the program and your credit profile." },
+  { q: "How much can I cash out with a refinance?", a: "Cliffco's cash-out refinance programs go up to 80% loan-to-value, depending on your credit profile and loan amount." },
 ];
 
-const directAnswer = "Minnesota homeowners looking to access their home's equity generally have two options: a HELOC, which adds a second loan behind your existing mortgage and leaves its rate untouched, or a cash-out refinance, which replaces your first mortgage with a new, larger one. Cliffco offers both: a fixed-rate HELOC with lines up to $750,000, and cash-out refinancing up to 80–85% LTV, fully online, originated locally from Cliffco's Excelsior, MN branch.";
+const directAnswer = "Minnesota homeowners looking to access their home's equity generally have two options: a HELOC, which adds a second loan behind your existing mortgage and leaves its rate untouched, or a cash-out refinance, which replaces your first mortgage with a new, larger one. Cliffco offers both: a variable-rate HELOC with lines from $50,000 to $1,000,000, and cash-out refinancing up to 80% LTV, fully online, originated locally from Cliffco's Excelsior, MN branch.";
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -36,7 +37,7 @@ const faqSchema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>HELOC & Cash-Out Refinance Minnesota | Access Your Equity | Cliffco</title>
-    <meta name="description" content="Access your home's equity two ways: a fixed-rate HELOC that keeps your first mortgage untouched, or a cash-out refinance up to 85% LTV. Minnesota homeowners, work directly with Mitchell Patterson, Cliffco's Minnesota loan officer." />
+    <meta name="description" content="Access your home's equity two ways: a HELOC that keeps your first mortgage untouched, or a cash-out refinance up to 80% LTV. Minnesota homeowners, work directly with Mitchell Patterson, Cliffco's Minnesota loan officer." />
     <link rel="canonical" href="https://cliffcomn.com/heloc-minnesota/" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
@@ -86,7 +87,7 @@ const faqSchema = {
                 Access your home's equity. Your way.
               </h1>
               <p class="lead mt-5 text-white/85 max-w-lg">
-                Cliffco offers two paths to your home's equity: a fixed-rate HELOC that leaves your first mortgage untouched, or a cash-out refinance up to 85% loan-to-value. Fully online, originated locally from our Excelsior office.
+                Cliffco offers two paths to your home's equity: a HELOC that leaves your first mortgage untouched, or a cash-out refinance up to 80% loan-to-value. Fully online, originated locally from our Excelsior office.
               </p>
               <div class="mt-8">
                 <div class="flex flex-col sm:flex-row gap-3">
@@ -115,8 +116,8 @@ const faqSchema = {
               <ul class="mt-10 space-y-4">
                 {[
                   "HELOC: your first mortgage and its rate stay untouched",
-                  "Cash-out refinance: up to 85% loan-to-value",
-                  "Fixed-rate HELOC lines up to $750,000",
+                  "Cash-out refinance: up to 80% loan-to-value",
+                  "HELOC lines from $50,000 to $1,000,000",
                   "Fully online, with a remote notary closing",
                 ].map((item) => (
                   <li class="flex items-start gap-3 text-white/80">
@@ -178,8 +179,8 @@ const faqSchema = {
             {[
               ["Approval decision", "In as little as 5 minutes*"],
               ["Funding", "In as few as 5 business days*"],
-              ["Line amounts", "Up to $750,000"],
-              ["Rate structure", "Fixed"],
+              ["Line amounts", "$50,000–$1,000,000"],
+              ["Rate structure", "Variable (WSJ Prime + margin)"],
               ["First mortgage", "Unchanged; the line is a second lien"],
               ["Process", "Fully online, remote notary closing"],
             ].map(([dt, dd]) => (
@@ -201,12 +202,12 @@ const faqSchema = {
             <div class="card">
               <h3 class="font-semibold text-[var(--color-ink)]" style="font-size: 1.15rem;">HELOC</h3>
               <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">Adds a second loan behind your existing mortgage. Your first mortgage and its rate stay exactly as they are. Usually the better fit if you locked a low rate and don't want to give it up.</p>
-              <p class="mt-4 text-sm font-medium text-[var(--color-ink)]">Fixed rate &middot; lines up to $750,000</p>
+              <p class="mt-4 text-sm font-medium text-[var(--color-ink)]">Variable rate &middot; lines from $50,000 to $1,000,000</p>
             </div>
             <div class="card">
               <h3 class="font-semibold text-[var(--color-ink)]" style="font-size: 1.15rem;">Cash-Out Refinance</h3>
               <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">Replaces your first mortgage entirely with a new, larger loan and gives you the difference in cash. Usually the better fit if restructuring the whole loan makes sense for your situation.</p>
-              <p class="mt-4 text-sm font-medium text-[var(--color-ink)]">Up to 80&ndash;85% loan-to-value</p>
+              <p class="mt-4 text-sm font-medium text-[var(--color-ink)]">Fixed-rate options &middot; up to 80% loan-to-value</p>
             </div>
           </div>
           <p class="mt-6 text-sm text-[var(--color-text-muted)]">Not sure which fits your numbers? Mitch compares both for you, free, no obligation.</p>
@@ -298,7 +299,7 @@ const faqSchema = {
       <section class="bg-white py-8">
         <div class="container-wide">
           <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-            *Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report. Five business day funding timeline assumes closing the loan with our remote online notary. Funding timelines may be longer for loans secured by properties located in counties that do not permit recording of e-signatures or that otherwise require an in-person closing.
+            *Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report. Five business day funding timeline assumes closing the loan with our remote online notary. Funding timelines may be longer for loans secured by properties located in counties that do not permit recording of e-signatures or that otherwise require an in-person closing. The HELOC's interest rate is variable, tied to the Wall Street Journal Prime Rate plus a margin, subject to a 4% floor and an 18% lifetime cap (may vary by state); your rate and payment may increase or decrease over the life of the line.
           </p>
         </div>
       </section>

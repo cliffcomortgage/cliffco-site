@@ -24,14 +24,14 @@
     {
       "headlines": [
         { "text": "Minnesota HELOC Lender", "pinnedField": "HEADLINE_1" },
-        { "text": "Fixed-Rate HELOC MN", "pinnedField": "HEADLINE_1" },
+        { "text": "Home Equity Line MN", "pinnedField": "HEADLINE_1" },
         { "text": "Tap Equity, Keep Your Rate", "pinnedField": "HEADLINE_1" },
-        { "text": "Lines Up To $750,000" },
+        { "text": "Lines Up To $1,000,000" },
         { "text": "Approval In 5 Minutes" },
         { "text": "Funding In 5 Business Days" },
         { "text": "First Mortgage Untouched" },
         { "text": "Fully Online Application" },
-        { "text": "Fixed Rate, Not Variable" },
+        { "text": "3 Or 5 Year Draw Period" },
         { "text": "Free Rate Quote Today" },
         { "text": "Licensed Minnesota Lender" },
         { "text": "No Cost To Check" },
@@ -48,7 +48,7 @@
     {
       "headlines": [
         { "text": "Minnesota HELOC Lender", "pinnedField": "HEADLINE_1" },
-        { "text": "Fixed-Rate HELOC MN", "pinnedField": "HEADLINE_1" },
+        { "text": "Home Equity Line MN", "pinnedField": "HEADLINE_1" },
         { "text": "Tap Equity, Keep Your Rate", "pinnedField": "HEADLINE_1" },
         { "text": "Speak With Mitch Directly" },
         { "text": "Your Minnesota Loan Officer" },
@@ -58,8 +58,8 @@
         { "text": "A Person, Not A Call Center" },
         { "text": "Free Consultation Today" },
         { "text": "Call Mitch Today" },
-        { "text": "Lines Up To $750,000" },
-        { "text": "Fixed Rate, Not Variable" },
+        { "text": "Lines Up To $1,000,000" },
+        { "text": "3 Or 5 Year Draw Period" },
         { "text": "Get Started Today" }
       ],
       "descriptions": [
