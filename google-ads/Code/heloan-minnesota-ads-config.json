@@ -1,0 +1,62 @@
+{
+  "_note": "HELOAN-specific ad copy for the 3 existing ad groups whose keywords (home equity loan / home equity loan rates / home equity loan vs heloc) match Cliffco's actual Home Equity Loan (Closed End Second) product, not the HELOC. Applied to ad group IDs 205555472772, 200584501139, 200841017216 within campaign 24280317553.",
+  "campaignId": "24280317553",
+  "finalUrl": "https://cliffcomn.com/heloc-minnesota/",
+  "path1": "heloan",
+  "path2": "minnesota",
+  "adGroupIds": {
+    "home equity loan": "205555472772",
+    "home equity loan rates": "200584501139",
+    "home equity loan vs heloc": "200841017216"
+  },
+  "rsas": [
+    {
+      "headlines": [
+        { "text": "Minnesota Home Equity Loan", "pinnedField": "HEADLINE_1" },
+        { "text": "Fixed-Rate HELOAN MN", "pinnedField": "HEADLINE_1" },
+        { "text": "Tap Equity, Keep Your Rate", "pinnedField": "HEADLINE_1" },
+        { "text": "Lump Sum, Fixed Payment" },
+        { "text": "$50K To $750K Loans" },
+        { "text": "First Mortgage Untouched" },
+        { "text": "Fully Online Application" },
+        { "text": "Predictable Fixed Rate" },
+        { "text": "Free Rate Quote Today" },
+        { "text": "Licensed Minnesota Lender" },
+        { "text": "No Cost To Check" },
+        { "text": "Approval In 5 Minutes" },
+        { "text": "Cliffco Mortgage Bankers" },
+        { "text": "Get Started Today" }
+      ],
+      "descriptions": [
+        "Fixed-rate home equity loan from $50,000 to $750,000. First mortgage untouched.",
+        "One lump sum, one fixed payment — no variable rate to track over time.",
+        "Cliffco Mortgage Bankers, a licensed Minnesota lender since 1989.",
+        "Free rate quote today. No obligation, no pressure, no rush."
+      ]
+    },
+    {
+      "headlines": [
+        { "text": "Minnesota Home Equity Loan", "pinnedField": "HEADLINE_1" },
+        { "text": "Fixed-Rate HELOAN MN", "pinnedField": "HEADLINE_1" },
+        { "text": "Tap Equity, Keep Your Rate", "pinnedField": "HEADLINE_1" },
+        { "text": "Speak With Mitch Directly" },
+        { "text": "Your Minnesota Loan Officer" },
+        { "text": "Licensed MN Loan Officer" },
+        { "text": "Local Minnesota Expertise" },
+        { "text": "Excelsior Branch Originator" },
+        { "text": "A Person, Not A Call Center" },
+        { "text": "Free Consultation Today" },
+        { "text": "Call Mitch Today" },
+        { "text": "$50K To $750K Loans" },
+        { "text": "Lump Sum, Fixed Payment" },
+        { "text": "Get Started Today" }
+      ],
+      "descriptions": [
+        "Talk directly with Mitch Patterson, your Minnesota loan officer. NMLS #2560483.",
+        "Local origination from our Excelsior, MN branch. Not a call center.",
+        "Cliffco Mortgage Bankers has helped Minnesota families since 1989.",
+        "Get a free consultation with Mitch. No obligation, no pressure, no rush."
+      ]
+    }
+  ]
+}
