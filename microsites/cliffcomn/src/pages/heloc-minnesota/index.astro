@@ -13,12 +13,15 @@ const faq = [
   { q: "How can a HELOC be approved in five minutes?", a: "The application uses automated income, credit, and property verification instead of a manual underwriting queue. Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report." },
   { q: "How fast can I receive the funds?", a: "Funding can happen in as few as five business days after approval, assuming the loan closes with our remote online notary. Funding timelines may be longer for properties in counties that do not permit recording of e-signatures or that otherwise require an in-person closing." },
   { q: "What can I use HELOC funds for?", a: "Common uses are home renovations, consolidating higher-interest debt, education costs, and major purchases. Because the line is secured by your home, the rate is typically far lower than credit cards or personal loans." },
-  { q: "What is a cash-out refinance?", a: "A cash-out refinance replaces your existing mortgage with a new, larger loan and gives you the difference in cash. Unlike a HELOC, it replaces your first mortgage entirely, including its rate and term, rather than adding a second lien behind it." },
-  { q: "HELOC or cash-out refinance: which is right for me?", a: "If your current mortgage rate is low, a HELOC usually wins since it leaves that rate untouched. If restructuring your whole loan makes sense (your current rate isn't particularly low, or you'd rather lock one new fixed rate on the full balance), a cash-out refinance may be the better fit. Mitch can walk through both options with your specific numbers." },
+  { q: "What is a home equity loan (HELOAN)?", a: "A home equity loan, or HELOAN, is a second mortgage that gives you a single lump sum at a fixed rate, repaid over a set term (10, 15, 20, 25, or 30 years). Like a HELOC, it's a second lien behind your existing mortgage, so your first mortgage and its rate stay untouched — the difference is a HELOAN gives you one fixed payment instead of a variable-rate line you draw from as needed." },
+  { q: "HELOC or home equity loan (HELOAN): which is right for me?", a: "Both leave your first mortgage untouched. A HELOC gives you a flexible, variable-rate line you draw from over time — useful if you don't know the exact amount you'll need, like an ongoing renovation. A HELOAN gives you one lump sum at a fixed rate with a predictable payment — useful if you know exactly how much you need today. Mitch can help you decide." },
+  { q: "How much can I borrow with a home equity loan?", a: "HELOAN amounts range from $50,000 to $750,000, with terms up to 90% combined loan-to-value depending on your credit profile and loan amount." },
+  { q: "What is a cash-out refinance?", a: "A cash-out refinance replaces your existing mortgage with a new, larger loan and gives you the difference in cash. Unlike a HELOC or HELOAN, it replaces your first mortgage entirely, including its rate and term, rather than adding a second lien behind it." },
+  { q: "HELOC, HELOAN, or cash-out refinance: which is right for me?", a: "If your current mortgage rate is low, a HELOC or HELOAN usually wins since both leave that rate untouched — pick a HELOC for flexibility to draw as needed, or a HELOAN for one fixed lump sum. If restructuring your whole loan makes sense (your current rate isn't particularly low, or you'd rather lock one new fixed rate on the full balance), a cash-out refinance may be the better fit. Mitch can walk through all three with your specific numbers." },
   { q: "How much can I cash out with a refinance?", a: "Cliffco's cash-out refinance programs go up to 80% loan-to-value, depending on your credit profile and loan amount." },
 ];
 
-const directAnswer = "Minnesota homeowners looking to access their home's equity generally have two options: a HELOC, which adds a second loan behind your existing mortgage and leaves its rate untouched, or a cash-out refinance, which replaces your first mortgage with a new, larger one. Cliffco offers both: a variable-rate HELOC with lines from $50,000 to $1,000,000, and cash-out refinancing up to 80% LTV, fully online, originated locally from Cliffco's Excelsior, MN branch.";
+const directAnswer = "Minnesota homeowners looking to access their home's equity generally have three options: a HELOC, a variable-rate line of credit that leaves your first mortgage untouched; a home equity loan (HELOAN), a fixed-rate lump sum that also leaves your first mortgage untouched; or a cash-out refinance, which replaces your first mortgage with a new, larger one. Cliffco offers all three — a HELOC with lines from $50,000 to $1,000,000, a HELOAN from $50,000 to $750,000, and cash-out refinancing up to 80% LTV — fully online, originated locally from Cliffco's Excelsior, MN branch.";
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -36,8 +39,8 @@ const faqSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>HELOC & Cash-Out Refinance Minnesota | Access Your Equity | Cliffco</title>
-    <meta name="description" content="Access your home's equity two ways: a HELOC that keeps your first mortgage untouched, or a cash-out refinance up to 80% LTV. Minnesota homeowners, work directly with Mitchell Patterson, Cliffco's Minnesota loan officer." />
+    <title>HELOC, Home Equity Loan &amp; Cash-Out Refinance MN | Cliffco</title>
+    <meta name="description" content="Access your home's equity three ways: a HELOC or home equity loan (HELOAN) that keep your first mortgage untouched, or a cash-out refinance up to 80% LTV. Minnesota homeowners, work directly with Mitchell Patterson, Cliffco's Minnesota loan officer." />
     <link rel="canonical" href="https://cliffcomn.com/heloc-minnesota/" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
@@ -82,12 +85,12 @@ const faqSchema = {
 
             <!-- Left: headline + CTA -->
             <div>
-              <p class="eyebrow !text-[var(--color-ice-blue)]">HELOC &amp; Cash-Out Refinance &middot; Minnesota Homeowners</p>
+              <p class="eyebrow !text-[var(--color-ice-blue)]">HELOC, HELOAN &amp; Cash-Out Refinance &middot; Minnesota Homeowners</p>
               <h1 class="mt-4 text-white max-w-xl" style="font-size: var(--text-display-xl); line-height: 1.08; font-weight: 400;">
                 Access your home's equity. Your way.
               </h1>
               <p class="lead mt-5 text-white/85 max-w-lg">
-                Cliffco offers two paths to your home's equity: a HELOC that leaves your first mortgage untouched, or a cash-out refinance up to 80% loan-to-value. Fully online, originated locally from our Excelsior office.
+                Cliffco offers three paths to your home's equity: a HELOC or home equity loan (HELOAN) that both leave your first mortgage untouched, or a cash-out refinance up to 80% loan-to-value. Fully online, originated locally from our Excelsior office.
               </p>
               <div class="mt-8">
                 <div class="flex flex-col sm:flex-row gap-3">
@@ -115,9 +118,9 @@ const faqSchema = {
               </div>
               <ul class="mt-10 space-y-4">
                 {[
-                  "HELOC: your first mortgage and its rate stay untouched",
+                  "HELOC & HELOAN: your first mortgage and its rate stay untouched",
                   "Cash-out refinance: up to 80% loan-to-value",
-                  "HELOC lines from $50,000 to $1,000,000",
+                  "HELOC $50K–$1M · HELOAN $50K–$750K",
                   "Fully online, with a remote notary closing",
                 ].map((item) => (
                   <li class="flex items-start gap-3 text-white/80">
@@ -180,7 +183,7 @@ const faqSchema = {
               ["Approval decision", "In as little as 5 minutes*"],
               ["Funding", "In as few as 5 business days*"],
               ["Line amounts", "$50,000–$1,000,000"],
-              ["Rate structure", "Variable (WSJ Prime + margin)"],
+              ["Rate structure", "Variable"],
               ["First mortgage", "Unchanged; the line is a second lien"],
               ["Process", "Fully online, remote notary closing"],
             ].map(([dt, dd]) => (
@@ -193,16 +196,21 @@ const faqSchema = {
         </div>
       </section>
 
-      <!-- HELOC VS CASH-OUT REFI -->
+      <!-- HELOC VS HELOAN VS CASH-OUT REFI -->
       <section class="bg-[var(--color-mist-gray)] py-20">
         <div class="container-wide">
-          <p class="eyebrow">Two paths, one goal</p>
-          <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 300;">HELOC or cash-out refinance? Here's the difference.</h2>
-          <div class="mt-10 grid gap-6 md:grid-cols-2">
+          <p class="eyebrow">Three paths, one goal</p>
+          <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 300;">HELOC, home equity loan, or cash-out refinance? Here's the difference.</h2>
+          <div class="mt-10 grid gap-6 md:grid-cols-3">
             <div class="card">
               <h3 class="font-semibold text-[var(--color-ink)]" style="font-size: 1.15rem;">HELOC</h3>
-              <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">Adds a second loan behind your existing mortgage. Your first mortgage and its rate stay exactly as they are. Usually the better fit if you locked a low rate and don't want to give it up.</p>
+              <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">A revolving line behind your existing mortgage. Your first mortgage and its rate stay exactly as they are. Draw what you need, when you need it &mdash; good for costs that add up over time.</p>
               <p class="mt-4 text-sm font-medium text-[var(--color-ink)]">Variable rate &middot; lines from $50,000 to $1,000,000</p>
+            </div>
+            <div class="card">
+              <h3 class="font-semibold text-[var(--color-ink)]" style="font-size: 1.15rem;">Home Equity Loan (HELOAN)</h3>
+              <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">A second loan behind your existing mortgage, same as a HELOC &mdash; but as one lump sum with a fixed rate and payment. Good when you know exactly how much you need today.</p>
+              <p class="mt-4 text-sm font-medium text-[var(--color-ink)]">Fixed rate &middot; $50,000 to $750,000</p>
             </div>
             <div class="card">
               <h3 class="font-semibold text-[var(--color-ink)]" style="font-size: 1.15rem;">Cash-Out Refinance</h3>
@@ -210,7 +218,7 @@ const faqSchema = {
               <p class="mt-4 text-sm font-medium text-[var(--color-ink)]">Fixed-rate options &middot; up to 80% loan-to-value</p>
             </div>
           </div>
-          <p class="mt-6 text-sm text-[var(--color-text-muted)]">Not sure which fits your numbers? Mitch compares both for you, free, no obligation.</p>
+          <p class="mt-6 text-sm text-[var(--color-text-muted)]">Not sure which fits your numbers? Mitch compares all three for you, free, no obligation.</p>
         </div>
       </section>
 
