@@ -5,7 +5,7 @@
  * Every state Cliffco can lend in. The site footer state list, /licensing/
  * page, GBP service areas, schema areaServed all derive from this array.
  *
- * Florida is a DBA ("Swish Capital, Inc.") - see COMPANY.floridaDba.
+ * Florida is a DBA ("Clout Mortgage, Inc.") - see COMPANY.floridaDba.
  */
 
 export type StateLicense = {
@@ -32,7 +32,7 @@ export const STATE_LICENSES: readonly StateLicense[] = [
   { code: "CT", name: "Connecticut",  regulator: "Connecticut Department of Banking",                                   licenseNumber: "MCL-65328" },
   { code: "DC", name: "District of Columbia", regulator: "DC Department of Insurance, Securities, & Banking",           licenseNumber: "MLB65328" },
   { code: "DE", name: "Delaware",     regulator: "Delaware Office of the State Bank Commissioner",                      licenseNumber: "040096" },
-  { code: "FL", name: "Florida",      regulator: "Florida Office of Financial Regulation", licenseNumber: "MLD1245", notes: "DBA: Swish Capital, Inc." },
+  { code: "FL", name: "Florida",      regulator: "Florida Office of Financial Regulation", licenseNumber: "MLD1245", notes: "DBA: Clout Mortgage, Inc." },
   { code: "GA", name: "Georgia",      regulator: "Georgia Department of Banking & Finance",                             licenseNumber: "65328" },
   { code: "IA", name: "Iowa",         regulator: "Iowa Division of Banking - Mortgage Banker License",                  licenseNumber: "2026-0104" },
   { code: "IL", name: "Illinois",     regulator: "Illinois Department of Financial & Professional Regulation",          licenseNumber: "MB.6761824" },

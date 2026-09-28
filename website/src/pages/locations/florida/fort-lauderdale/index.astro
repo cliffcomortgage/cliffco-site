@@ -19,8 +19,8 @@ const licensedOnlyLOs = LOAN_OFFICERS.filter(
 const totalFLLOs = LOAN_OFFICERS.filter((lo) => lo.states.includes("FL")).length;
 
 const faq = [
-  { question: "Where is Cliffco's Ft. Lauderdale office?", answer: "Cliffco's Ft. Lauderdale branch is at 300 SE 2nd Street, Suite 600, Office 50, Fort Lauderdale, FL 33301. It operates under Cliffco's Florida DBA, Swish Capital, Inc. Branch NMLS #2829876." },
-  { question: "Is Cliffco licensed to lend in Florida?", answer: "Yes. Cliffco, Inc. doing business in Florida as Swish Capital, Inc., is a New York corporation authorized to transact business in the State of Florida. Corporate NMLS #65328." },
+  { question: "Where is Cliffco's Ft. Lauderdale office?", answer: "Cliffco's Ft. Lauderdale branch is at 300 SE 2nd Street, Suite 600, Office 50, Fort Lauderdale, FL 33301. It operates under Cliffco's Florida DBA, Clout Mortgage, Inc. Branch NMLS #2829876." },
+  { question: "Is Cliffco licensed to lend in Florida?", answer: "Yes. Cliffco, Inc. doing business in Florida as Clout Mortgage, Inc., is a New York corporation authorized to transact business in the State of Florida. Corporate NMLS #65328." },
   { question: "What loan products does Cliffco offer in South Florida?", answer: "South Florida is a strong market for DSCR loans for investors, foreign national and ITIN programs, non-warrantable condo financing (especially post-Champlain Towers), jumbo and super-jumbo, business bank statement, and Non-QM for self-employed borrowers." },
   { question: "Can Cliffco finance a Miami-Dade or Broward non-warrantable condo?", answer: "Yes. Many South Florida condo buildings became non-warrantable after the structural inspection requirements that followed the Champlain Towers collapse. Cliffco's Non-QM and portfolio programs handle non-warrantable scenarios that conventional Fannie/Freddie lenders cannot." },
   { question: "Does Cliffco work with foreign national buyers in South Florida?", answer: "Yes. Foreign national and ITIN programs are a significant part of South Florida mortgage demand. Speak with a Cliffco loan officer about documentation requirements and available programs for non-US-citizen borrowers." },
@@ -40,7 +40,7 @@ import ContactForm from "../../../../components/forms/ContactForm.astro";
 ---
 
 <Layout
-  title="Ft. Lauderdale Mortgage Lender | Cliffco (Swish Capital)"
+  title="Ft. Lauderdale Mortgage Lender | Cliffco (Clout Mortgage)"
   description={loc.blurb}
   schema={schema}
 >
@@ -53,7 +53,7 @@ import ContactForm from "../../../../components/forms/ContactForm.astro";
 
   <section class="accent-gradient">
     <div class="container-wide py-16 lg:py-24">
-      <p class="eyebrow !text-[var(--color-ice-blue)]">Ft. Lauderdale, FL · Operating as Swish Capital, Inc.</p>
+      <p class="eyebrow !text-[var(--color-ice-blue)]">Ft. Lauderdale, FL · Operating as Clout Mortgage, Inc.</p>
       <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.1; font-weight: 400; font-family: var(--font-sans);">
         Ft. Lauderdale Mortgage Lender
       </h1>
@@ -75,7 +75,7 @@ import ContactForm from "../../../../components/forms/ContactForm.astro";
           <h3 class="text-lg font-semibold">{ftlBranch.name}</h3>
           {ftlBranch.street && <p class="text-sm text-[var(--color-text-muted)] mt-2">{ftlBranch.street}<br/>{ftlBranch.city}, {ftlBranch.region} {ftlBranch.postalCode}</p>}
           {ftlBranch.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{ftlBranch.nmls}</p>}
-          <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">Operates as Swish Capital, Inc.</p>
+          <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">Operates as Clout Mortgage, Inc.</p>
         </article>
       </div>
     </div>
@@ -108,7 +108,7 @@ import ContactForm from "../../../../components/forms/ContactForm.astro";
         <p class="eyebrow">Located at our Ft. Lauderdale office</p>
         <h2 class="mt-3" style="font-size: var(--text-h2);">Loan officers based here.</h2>
         <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
-          These loan officers are physically based at Cliffco's Ft. Lauderdale branch (operating as Swish Capital, Inc.).
+          These loan officers are physically based at Cliffco's Ft. Lauderdale branch (operating as Clout Mortgage, Inc.).
         </p>
         <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {branchLOs.map((lo) => (

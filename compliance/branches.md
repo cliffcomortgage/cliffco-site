@@ -11,8 +11,8 @@ Six physical branch offices (Jamaica NY, Wantagh NY, and Orlando FL closed July 
 | ~~3~~ | ~~**Jamaica, NY** (closed 2026-07)~~ | 142-62 Rockaway Boulevard | Jamaica | NY | 11436-1419 | 2565193 | 2 | Queens / NYC presence |
 | ~~4~~ | ~~**Wantagh, NY** (closed 2026-07)~~ | 3265 Merrick Road | Wantagh | NY | 11793 | 988006 | 2 | Nassau County — Long Island |
 | 5 | **Bay Shore, NY** | 50 Park Avenue, 2nd Floor, Suite 1 | Bay Shore | NY | 11706-7309 | 2733073 | 3 | Suffolk County — Long Island |
-| ~~6~~ | ~~**Orlando, FL** (closed 2026-07)~~ | 3801 Avalon Park East Blvd, 2nd Floor, Office 229 | Orlando | FL | 32828 | 2526419 | 7 | Swish Capital DBA · bilingual team |
-| 7 | **Ft. Lauderdale, FL** | 300 SE 2nd Street, Suite 600, Office 50 | Fort Lauderdale | FL | 33301-1950 | 2829876 | TBD | Swish Capital DBA · South Florida |
+| ~~6~~ | ~~**Orlando, FL** (closed 2026-07)~~ | 3801 Avalon Park East Blvd, 2nd Floor, Office 229 | Orlando | FL | 32828 | 2526419 | 7 | Clout Mortgage DBA · bilingual team |
+| 7 | **Ft. Lauderdale, FL** | 300 SE 2nd Street, Suite 600, Office 50 | Fort Lauderdale | FL | 33301-1950 | 2829876 | TBD | Clout Mortgage DBA · South Florida |
 | 8 | **Buckeye, AZ** | 21610 W Hillcrest Road | Buckeye | AZ | 85396 | 2476150 | 2 | Phoenix metro (relocated from Scottsdale, 2026-07) |
 | 9 | **Excelsior, MN** | 276 Water Street | Excelsior | MN | 55331-1874 | 2763960 | 1 | Twin Cities |
 
@@ -37,7 +37,7 @@ Cliffco, Inc. corporate NMLS: **#65328**. All branch NMLS IDs above are in addit
 
 ## Branch-specific compliance notes
 
-- **Florida branches (Orlando and Ft. Lauderdale)** must display the **"Swish Capital, Inc." DBA** on all marketing: landing pages, GBP descriptions, business cards, signage.
+- **Florida branches (Orlando and Ft. Lauderdale)** must display the **"Clout Mortgage, Inc." DBA** on all marketing: landing pages, GBP descriptions, business cards, signage.
 - **Arizona (Scottsdale)**: AZ license discrepancy noted — most disclosures show AZ #1045708 (corporate); Julian Giaquinto's disclosure shows AZ #0949291. Verify with Rafe before publishing AZ-licensed-state lists.
 - **All branches** display corporate NMLS #65328 plus the branch-level NMLS ID where required by state law.
 

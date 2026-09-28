@@ -8,7 +8,7 @@ Canonical disclosure blocks pulled from `loan-officer-disclosures.csv`. Use thes
 
 ## Block 2 — Florida DBA (REQUIRED on any FL-targeted material)
 
-> Cliffco, Inc. doing business in Florida as **Swish Capital, Inc.**, is a New York corporation authorized to transact business in the State of Florida.
+> Cliffco, Inc. doing business in Florida as **Clout Mortgage, Inc.**, is a New York corporation authorized to transact business in the State of Florida.
 
 ## Block 3 — Standard restrictions language (always include after license list)
 
@@ -73,7 +73,7 @@ Each LO bio page footer should display only that LO's licensed-state subset. The
 
 ## Florida pages — emphasis required
 
-Per FL DOFR convention, the Swish Capital, Inc. DBA notice should appear:
+Per FL DOFR convention, the Clout Mortgage, Inc. DBA notice should appear:
 1. In the disclosure block (Block 2) at the bottom of every FL-targeted page
 2. On the GBP description for the Orlando branch
 3. In meta descriptions and structured-data `description` fields for FL service-area pages

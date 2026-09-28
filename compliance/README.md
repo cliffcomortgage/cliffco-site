@@ -16,7 +16,7 @@ Single source of truth for state licensing, DBAs, branch addresses, and loan off
 ## Critical facts
 
 - **Corporate entity:** Cliffco, Inc. — NMLS #65328
-- **Florida DBA:** "Swish Capital, Inc." — every FL marketing piece must include the DBA disclosure
+- **Florida DBA:** "Clout Mortgage, Inc." — every FL marketing piece must include the DBA disclosure
 - **Headquarters:** 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553 · (516) 408-7300
 - **President:** Christopher Clifford — NMLS #65234
 - **Total branches:** 8 (NY HQ + Newark NJ + Jamaica NY + Wantagh NY + Bay Shore NY + Orlando FL + Scottsdale AZ + Excelsior MN)

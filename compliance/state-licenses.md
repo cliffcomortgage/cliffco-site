@@ -14,7 +14,7 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 | CT | Connecticut Department of Banking | MCL-65328 |
 | DC | DC Department of Insurance, Securities, & Banking | MLB65328 |
 | DE | Delaware Office of the State Bank Commissioner | 040096 |
-| FL | Florida — operating as **Swish Capital, Inc.** (NY corporation authorized to transact in FL) | DBA registration |
+| FL | Florida — operating as **Clout Mortgage, Inc.** (NY corporation authorized to transact in FL) | DBA registration |
 | GA | Georgia Department of Banking & Finance | 65328 |
 | IA | Iowa Division of Banking — Mortgage Banker License | 2026-0104 |
 | IL | Illinois Department of Financial & Professional Regulation | MB.6761824 |
@@ -52,7 +52,7 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 | New Jersey | ✅ NJ DOBI |
 | Arizona | ✅ AZ #1045708 |
 | **Minnesota** | ✅ **MN-MO-65328** (corrects earlier strategy-doc gating) |
-| Florida (incl. Orlando) | ✅ FL — operating as **Swish Capital, Inc.** |
+| Florida (incl. Orlando) | ✅ FL — operating as **Clout Mortgage, Inc.** |
 
 All five priority territories are licensed. Minnesota is fully cleared for content publishing.
 
@@ -64,6 +64,6 @@ All five priority territories are licensed. Minnesota is fully cleared for conte
 
 ## Florida-specific disclosure language (must appear on all FL marketing)
 
-> Cliffco, Inc. doing business in Florida as **Swish Capital, Inc.**, is a New York corporation authorized to transact business in the State of Florida.
+> Cliffco, Inc. doing business in Florida as **Clout Mortgage, Inc.**, is a New York corporation authorized to transact business in the State of Florida.
 
 This applies to: any FL-targeted landing page, FL LO bios, FL GBP descriptions, Spanish FL pages, and any social/PR mention of FL service.

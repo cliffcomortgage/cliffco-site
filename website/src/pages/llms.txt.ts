@@ -42,7 +42,7 @@ export const GET: APIRoute = () => {
       `Non-QM and self-employed loans, reverse mortgages, DSCR loans for real estate ` +
       `investors, and business bank statement loans. Cliffco is licensed in ${stateCount} ` +
       `states and operates ${branchCount} branches across New York, New Jersey, Arizona, ` +
-      `Minnesota, and Florida. In Florida, Cliffco operates as Swish Capital, Inc.`
+      `Minnesota, and Florida. In Florida, Cliffco operates as Clout Mortgage, Inc.`
   );
   lines.push("");
 
@@ -67,7 +67,7 @@ export const GET: APIRoute = () => {
   lines.push("## Service Areas");
   lines.push("");
   for (const l of LOCATIONS) {
-    const dba = l.isFlorida ? " — operates as Swish Capital, Inc." : "";
+    const dba = l.isFlorida ? " — operates as Clout Mortgage, Inc." : "";
     lines.push(`- [${l.name}](${abs(`/locations/${l.path}/`)})${dba}`);
   }
   lines.push("");
@@ -75,7 +75,7 @@ export const GET: APIRoute = () => {
   lines.push("## Branches (physical offices)");
   lines.push("");
   for (const b of BRANCHES) {
-    const dba = b.isFloridaDba ? " — operates as Swish Capital, Inc." : "";
+    const dba = b.isFloridaDba ? " — operates as Clout Mortgage, Inc." : "";
     const addr = b.street ? ` — ${b.street}` : "";
     lines.push(`- ${b.name}${addr}${dba}`);
   }

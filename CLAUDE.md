@@ -33,7 +33,7 @@ The `compliance/` directory holds source-of-truth disclosure data (state license
 
 Critical facts that must show up in the right places:
 
-1. **Florida DBA: "Swish Capital, Inc."** — every FL-targeted page, FL LO bio, Orlando GBP, and FL marketing piece must include this DBA disclosure.
+1. **Florida DBA: "Clout Mortgage, Inc."** — every FL-targeted page, FL LO bio, Orlando GBP, and FL marketing piece must include this DBA disclosure.
 2. **32 licensed states** (not the 27 the current public footer shows). Full list + NMLS numbers in `compliance/state-licenses.md`. **MN is fully licensed** — treat it as a normal priority territory, not gated.
 3. **6 physical branches** (as of 2026-07-15): Uniondale NY (HQ), Bay Shore NY, Branchburg NJ, Ft. Lauderdale FL, Buckeye AZ, Excelsior MN. The Jamaica NY, Wantagh NY, and Orlando FL branches closed in July 2026 — do not reference them as current offices.
 4. **80+ active LOs.** Each gets a bio page at `/loan-officers/{name-nmlsid}/` with Person schema + sameAs to NMLS Consumer Access. Roster: `compliance/loan-officers.md`.

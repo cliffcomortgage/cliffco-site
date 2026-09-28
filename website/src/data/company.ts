@@ -33,9 +33,9 @@ export const COMPANY = {
   },
   // Florida is the only DBA
   floridaDba: {
-    name: "Swish Capital, Inc.",
+    name: "Clout Mortgage, Inc.",
     disclosure:
-      "Cliffco, Inc. doing business in Florida as Swish Capital, Inc., is a New York corporation authorized to transact business in the State of Florida.",
+      "Cliffco, Inc. doing business in Florida as Clout Mortgage, Inc., is a New York corporation authorized to transact business in the State of Florida.",
   },
   // Last NMLS audit confirming the data in /compliance/
   lastAudit: "2025-07-23",

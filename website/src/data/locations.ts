@@ -100,7 +100,7 @@ export const LOCATIONS: readonly Location[] = [
       "Cliffco's Ft. Lauderdale office serves Broward, Miami-Dade, and Palm Beach counties. " +
       "South Florida's investor-dense market is a strong fit for DSCR, foreign national, ITIN, " +
       "non-warrantable condo, and jumbo financing, loan types conventional lenders routinely " +
-      "decline. Operating as Swish Capital, Inc.",
+      "decline. Operating as Clout Mortgage, Inc.",
     branchSlugs: ["fort-lauderdale-fl"],
     featuredProducts: ["dscr", "non-qm-self-employed", "business-bank-statement", "reverse-mortgage"],
   },
