@@ -1,0 +1,27 @@
+{
+  "_comment": "Sitelinks, callouts, and structured snippets for the HELOC & Cash-Out Refi MN campaign (24280317553). Assets-only. Run: node Code/add_assets.mjs Code/heloc-minnesota-assets-config.json",
+  "campaignId": "24280317553",
+  "sitelinks": [
+    { "linkText": "See Your Options", "url": "https://cliffcomn.com/heloc-minnesota/#start", "d1": "HELOC, HELOAN & cash-out refi", "d2": "Compare all three" },
+    { "linkText": "Apply Now", "url": "https://cliffcomn.com/heloc-minnesota/#apply", "d1": "Approval in 5 minutes*", "d2": "Funding in 5 business days*" },
+    { "linkText": "HELOC FAQs", "url": "https://cliffcomn.com/heloc-minnesota/#faq", "d1": "Rates, draws & line amounts", "d2": "Answered plainly" },
+    { "linkText": "Meet Mitch", "url": "https://cliffcomn.com/#about", "d1": "Your local MN loan officer", "d2": "NMLS #2560483" },
+    { "linkText": "Why Cliffco", "url": "https://cliffcomn.com/#why", "d1": "Family-run since 1989", "d2": "$6B+ in mortgages closed" }
+  ],
+  "callouts": [
+    "Licensed MN Lender",
+    "Variable-Rate HELOC",
+    "First Mortgage Untouched",
+    "Lines Up To $1,000,000",
+    "5-Min Approval Decision",
+    "Funding In 5 Days",
+    "HELOC, HELOAN & Cash-Out",
+    "Family-Run Since 1989",
+    "Talk To A Real Person",
+    "No Cost To Check"
+  ],
+  "structuredSnippets": [
+    { "header": "Services", "values": ["HELOC", "HELOAN", "Cash-Out Refinance"] },
+    { "header": "Types", "values": ["Debt Consolidation", "Home Renovation", "Major Purchase", "Education Costs"] }
+  ]
+}
