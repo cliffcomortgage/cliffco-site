@@ -50,45 +50,6 @@ const qmeta = flow.steps.map((s) => ({
 const flowSections = flow.steps.filter((s, i) => i === 0 || s.section !== flow.steps[i - 1].section).map((s) => s.section);
 const sections = ["Goal Selection", ...flowSections, "Contact Info"];
 
-// 8-bit zebra that runs along the progress bar. 24x17 pixel grid (B = black,
-// W = white, . = empty): one body plus two leg poses (stride / tucked),
-// alternated in CSS for the running-in-place loop.
-const ZEBRA_BODY = [
-  "...................B.B..",
-  "..................BWBWB.",
-  "................BBBWWWWB",
-  "...............BWBWWBWWB",
-  "..............BWBWWWWWWB",
-  ".............BWBWWWWWWWB",
-  "............BWBWBBBBBBB.",
-  "...........BWBWWB.......",
-  ".BB.......BWBWWWB.......",
-  "B..BBBBBBBWWBWWWB.......",
-  "...BWBWBWBWBWBWWB.......",
-  "...BWBWBWBWBWBWWB.......",
-  "...BBBBBBBBBBBBBB.......",
-];
-const ZEBRA_FRAMES = [
-  [
-    ...ZEBRA_BODY,
-    "...BW.BW.....BW.BW......",
-    "..BW...BW...BW...BW.....",
-    ".BW.....BW.BW.....BW....",
-    ".BB......BBBB.....BB....",
-  ],
-  [
-    ...ZEBRA_BODY,
-    "....BWBW.....BWBW.......",
-    "....BWBW.....BWBW.......",
-    "....BWBW.....BWBW.......",
-    "....BBBB.....BBBB.......",
-  ],
-];
-// One path per color per frame instead of ~140 <rect>s.
-const zebraPath = (grid: string[], ch: string) =>
-  grid.flatMap((row, y) => [...row].map((c, x) => (c === ch ? `M${x} ${y}h1v1h-1z` : ""))).join("");
-const zebraFrames = ZEBRA_FRAMES.map((g) => ({ black: zebraPath(g, "B"), white: zebraPath(g, "W") }));
-
 const cardBase =
   "q-card w-full text-left px-5 py-4 rounded-xl border-2 border-black/15 bg-white text-[var(--color-ink)] font-medium cursor-pointer transition-colors hover:border-[var(--color-ink)]";
 const inputClass =
@@ -108,20 +69,8 @@ const inputClass =
     </div>
     <span id="q-pct" class="shrink-0 text-sm text-[var(--color-text-muted)] tabular-nums">0% complete</span>
   </div>
-  <div class="relative mt-14 mb-10">
-    <div id="q-zebra" class="q-zebra" aria-hidden="true">
-      <svg viewBox="0 0 24 17" width="60" height="42.5" shape-rendering="crispEdges">
-        {zebraFrames.map((f, i) => (
-          <g class={i === 0 ? "q-zebra-a" : "q-zebra-b"}>
-            <path d={f.white} fill="#fff" />
-            <path d={f.black} fill="#0d0d0d" />
-          </g>
-        ))}
-      </svg>
-    </div>
-    <div class="h-2 rounded-full bg-white border border-black overflow-hidden">
-      <div id="q-bar" class="h-full bg-[var(--color-ink)] transition-[width] duration-300" style="width: 0%;"></div>
-    </div>
+  <div class="h-2 rounded-full bg-white border border-black overflow-hidden mb-10">
+    <div id="q-bar" class="h-full bg-[var(--color-ink)] transition-[width] duration-300" style="width: 0%;"></div>
   </div>
 
   <div class="grid lg:grid-cols-[1fr_280px] gap-8 items-start">
@@ -267,13 +216,6 @@ const inputClass =
     const loaded = wrap.querySelector("#q-loaded");
     const sectionRows = Array.from(wrap.querySelectorAll(".q-section-row[data-section]"));
     const nextTitleEl = wrap.querySelector("#q-next-title");
-    const zebra = wrap.querySelector("#q-zebra");
-    // left: p% + translateX(-p%) keeps the zebra inside the bar at 0% and 100%.
-    const moveZebra = (p) => {
-      if (!zebra) return;
-      zebra.style.left = p + "%";
-      zebra.style.transform = `translateX(-${p}%)`;
-    };
     if (loaded) loaded.value = String(Date.now());
 
     const answers = {};
@@ -295,7 +237,6 @@ const inputClass =
       const p = Math.round(((i + 1) / total) * 100);
       if (bar) bar.style.width = p + "%";
       if (pct) pct.textContent = p + "% complete";
-      moveZebra(p);
       if (backBtn) backBtn.hidden = i === 0;
       updateSidebar(i);
       // restore any prior selection on card steps
@@ -515,8 +456,6 @@ const inputClass =
           steps.forEach((s) => (s.hidden = true));
           if (bar) bar.style.width = "100%";
           if (pct) pct.textContent = "100% complete";
-          moveZebra(100);
-          zebra?.classList.add("q-zebra-done");
           if (backBtn) backBtn.hidden = true;
           if (successEl) successEl.hidden = false;
           window.scrollTo({ top: wrap.getBoundingClientRect().top + window.scrollY - 90, behavior: "smooth" });
@@ -580,30 +519,6 @@ const inputClass =
   .q-section-row span.text-sm,
   .q-section-row a span.text-sm {
     color: var(--color-text-muted);
-  }
-
-  /* 8-bit zebra riding the progress bar: feet on the bar, runs in place
-     by flipping two frames, slides to each step's percent. */
-  .q-zebra {
-    position: absolute;
-    bottom: calc(100% - 2px);
-    left: 0;
-    line-height: 0;
-    pointer-events: none;
-    transition: left 0.3s ease, transform 0.3s ease;
-  }
-  .q-zebra svg { display: block; }
-  .q-zebra-a { animation: q-zebra-a 0.36s steps(1, end) infinite; }
-  .q-zebra-b { animation: q-zebra-b 0.36s steps(1, end) infinite; }
-  @keyframes q-zebra-a { 0% { opacity: 1; } 50% { opacity: 0; } }
-  @keyframes q-zebra-b { 0% { opacity: 0; } 50% { opacity: 1; } }
-  /* Finished (or reduced motion): stand still on frame A */
-  .q-zebra-done .q-zebra-a { animation: none; opacity: 1; }
-  .q-zebra-done .q-zebra-b { animation: none; opacity: 0; }
-  @media (prefers-reduced-motion: reduce) {
-    .q-zebra { transition: none; }
-    .q-zebra-a { animation: none; opacity: 1; }
-    .q-zebra-b { animation: none; opacity: 0; }
   }
 
   /* Monochrome overrides for this form - the shared .btn-primary hover is
