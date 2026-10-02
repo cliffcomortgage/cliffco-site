@@ -30,14 +30,14 @@ const heroTiles = [
 >
 
   <!-- HERO -->
-  <section class="bg-white">
-    <div class="container-wide py-24 lg:py-32 text-center flex flex-col items-center">
-      <h1 class="text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 5vw, 4.25rem); line-height: 1.1; font-weight: 700; font-family: var(--font-sans);">
-        Clarity looks good in black and white.
+  <section class="bg-white flex items-center" style="min-height: calc(100svh - 72px);">
+    <div class="container-wide py-16 text-center flex flex-col items-center">
+      <h1 class="text-[var(--color-ink)]" style="font-size: clamp(1.75rem, 3.4vw, 2.75rem); line-height: 1.15; font-weight: 700; font-family: var(--font-sans);">
+        The mortgage process should be black and white.
       </h1>
 
-      <p class="mt-6 text-[var(--color-text-muted)] max-w-2xl" style="font-size: clamp(1.05rem, 1.35vw, 1.25rem); line-height: 1.55;">
-        A mortgage process that cuts through the noise.
+      <p class="mt-5 text-[var(--color-text-muted)] max-w-2xl" style="font-size: clamp(0.95rem, 1.1vw, 1.0625rem); line-height: 1.55;">
+        Clarity and simplicity that cuts through the noise.
       </p>
 
       <div class="mt-10 flex flex-wrap justify-center gap-4 max-w-3xl">
@@ -53,11 +53,11 @@ const heroTiles = [
         ))}
       </div>
 
-      <div class="mt-10 flex flex-wrap justify-center gap-3">
-        <a href="/get-started/" class="btn btn-primary hero-btn-primary">Start a Pre-Approval</a>
-        <a href="/loan-officers/" class="btn btn-secondary">Find a Loan Officer</a>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/get-started/" class="btn btn-primary hero-btn-primary hero-btn">Start a Pre-Approval</a>
+        <a href="/loan-officers/" class="btn btn-secondary hero-btn">Find a Loan Officer</a>
       </div>
-      <p class="mt-3 text-[var(--color-text-muted)] text-sm">No credit pull. No commitment. Takes 2 minutes.</p>
+      <p class="mt-3 text-[var(--color-text-muted)] text-xs">No credit pull. No commitment. Takes 2 minutes.</p>
     </div>
   </section>
 
@@ -66,10 +66,10 @@ const heroTiles = [
   .hero-tile {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 15px 28px;
+    gap: 8px;
+    padding: 12px 22px;
     border-radius: 9999px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: #fff;
     text-decoration: none;
@@ -81,6 +81,11 @@ const heroTiles = [
     transform: translateY(-2px);
     background: #262626;
     box-shadow: 0 12px 30px rgba(13,13,13,0.35);
+  }
+  .hero-btn {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.875rem;
+    min-height: 40px;
   }
   .hero-tile-icon {
     width: 20px;
