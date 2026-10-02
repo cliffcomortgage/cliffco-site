@@ -9,8 +9,9 @@ import { STATE_LICENSES } from "./state-licenses";
 
 export type QOption = { value: string; label: string };
 export type QStep =
-  | { id: string; type: "cards"; title: string; subtitle?: string; cols?: 2 | 3; options: QOption[] }
-  | { id: string; type: "select"; title: string; subtitle?: string; placeholder: string; options: QOption[] };
+  | { id: string; type: "cards"; title: string; subtitle?: string; cols?: 2 | 3; options: QOption[]; section: string }
+  | { id: string; type: "select"; title: string; subtitle?: string; placeholder: string; options: QOption[]; section: string }
+  | { id: string; type: "lo-search"; title: string; subtitle?: string; section: string };
 
 export type Flow = {
   key: string;
@@ -19,6 +20,23 @@ export type Flow = {
   /** headline shown above the wizard */
   heading: string;
   steps: QStep[];
+};
+
+// Shared first question for every flow - lets a borrower who already has a
+// Cliffco loan officer search for them by name or state instead of starting
+// a fresh assignment. Both steps share the "Loan Officer" sidebar section.
+const hasLoStep: QStep = {
+  id: "has_lo", type: "cards", cols: 2, section: "Loan Officer",
+  title: "Are you already working with a Cliffco loan officer?",
+  options: [
+    { value: "Yes", label: "Yes" },
+    { value: "No", label: "No, I need one" },
+  ],
+};
+const loSearchStep: QStep = {
+  id: "lo_search", type: "lo-search", section: "Loan Officer",
+  title: "Who are you working with?",
+  subtitle: "Search by their name, or type a state to see every loan officer licensed there.",
 };
 
 const STATE_OPTIONS: QOption[] = [...STATE_LICENSES]
@@ -67,11 +85,11 @@ const MORTGAGE_BALANCE: QOption[] = [
 ];
 
 const stateStep = (title: string): QStep => ({
-  id: "state", type: "select", title, placeholder: "Select a state", options: STATE_OPTIONS,
+  id: "state", type: "select", title, section: "State", placeholder: "Select a state", options: STATE_OPTIONS,
 });
-const creditStep: QStep = { id: "credit_range", type: "cards", title: "What's your estimated credit score?", options: CREDIT };
-const incomeStep: QStep = { id: "income_type", type: "cards", title: "How do you earn your income?", subtitle: "This helps us match you to the right loan. Non-traditional income is our specialty.", options: INCOME };
-const useStep: QStep = { id: "property_use", type: "cards", title: "How will the property be used?", options: PROPERTY_USE };
+const creditStep: QStep = { id: "credit_range", type: "cards", section: "Credit Score", title: "What's your estimated credit score?", options: CREDIT };
+const incomeStep: QStep = { id: "income_type", type: "cards", section: "Income Type", title: "How do you earn your income?", subtitle: "This helps us match you to the right loan. Non-traditional income is our specialty.", options: INCOME };
+const useStep: QStep = { id: "property_use", type: "cards", section: "Property Use", title: "How will the property be used?", options: PROPERTY_USE };
 
 // ── Flows ───────────────────────────────────────────────────────────
 export const FLOWS: Record<string, Flow> = {
@@ -80,16 +98,18 @@ export const FLOWS: Record<string, Flow> = {
     label: "Buy a Home",
     heading: "Let's find your path to buying a home.",
     steps: [
+      hasLoStep,
+      loSearchStep,
       stateStep("What state are you buying in?"),
-      { id: "stage", type: "cards", title: "Where are you in the process?", options: [
+      { id: "stage", type: "cards", section: "Buying Stage", title: "Where are you in the process?", options: [
         { value: "Just exploring", label: "Just exploring" },
         { value: "Actively shopping", label: "Actively shopping" },
         { value: "Making offers", label: "Making offers" },
         { value: "Under contract", label: "Under contract" },
       ]},
-      { id: "property_type", type: "cards", title: "What type of home?", options: PROPERTY_TYPE },
+      { id: "property_type", type: "cards", section: "Property Type", title: "What type of home?", options: PROPERTY_TYPE },
       useStep,
-      { id: "price_range", type: "cards", title: "Estimated purchase price?", options: [
+      { id: "price_range", type: "cards", section: "Price Range", title: "Estimated purchase price?", options: [
         { value: "Under $250k", label: "Under $250,000" },
         { value: "$250k-$500k", label: "$250,000 - $500,000" },
         { value: "$500k-$750k", label: "$500,000 - $750,000" },
@@ -97,14 +117,14 @@ export const FLOWS: Record<string, Flow> = {
         { value: "Over $1M", label: "Over $1M" },
         { value: "Not sure", label: "Not sure yet" },
       ]},
-      { id: "down_payment", type: "cards", title: "How much are you planning to put down?", options: [
+      { id: "down_payment", type: "cards", section: "Down Payment", title: "How much are you planning to put down?", options: [
         { value: "Under 5%", label: "Under 5%" },
         { value: "5-10%", label: "5 - 10%" },
         { value: "10-20%", label: "10 - 20%" },
         { value: "20%+", label: "20% or more" },
         { value: "Not sure", label: "Not sure" },
       ]},
-      { id: "first_time", type: "cards", cols: 2, title: "Are you a first-time homebuyer?", options: [
+      { id: "first_time", type: "cards", cols: 2, section: "First-Time Buyer", title: "Are you a first-time homebuyer?", options: [
         { value: "Yes", label: "Yes" },
         { value: "No", label: "No" },
       ]},
@@ -118,18 +138,20 @@ export const FLOWS: Record<string, Flow> = {
     label: "Refinance My Mortgage",
     heading: "Let's see what refinancing could do for you.",
     steps: [
+      hasLoStep,
+      loSearchStep,
       stateStep("What state is the property in?"),
-      { id: "purpose", type: "cards", title: "What's your main goal?", options: [
+      { id: "purpose", type: "cards", section: "Refinance Goal", title: "What's your main goal?", options: [
         { value: "Lower my rate or payment", label: "Lower my rate or payment" },
         { value: "Take cash out", label: "Take cash out" },
         { value: "Remove mortgage insurance", label: "Remove mortgage insurance" },
         { value: "Shorten my term", label: "Shorten my term" },
         { value: "Consolidate debt", label: "Consolidate debt" },
       ]},
-      { id: "property_type", type: "cards", title: "What type of property?", options: PROPERTY_TYPE },
+      { id: "property_type", type: "cards", section: "Property Type", title: "What type of property?", options: PROPERTY_TYPE },
       useStep,
-      { id: "home_value", type: "cards", title: "Estimated home value?", options: HOME_VALUE },
-      { id: "mortgage_balance", type: "cards", title: "How much do you owe on your mortgage?", options: MORTGAGE_BALANCE },
+      { id: "home_value", type: "cards", section: "Home Value", title: "Estimated home value?", options: HOME_VALUE },
+      { id: "mortgage_balance", type: "cards", section: "Mortgage Balance", title: "How much do you owe on your mortgage?", options: MORTGAGE_BALANCE },
       creditStep,
       incomeStep,
     ],
@@ -140,17 +162,19 @@ export const FLOWS: Record<string, Flow> = {
     label: "Get Cash from My Home",
     heading: "Let's turn your home equity into cash.",
     steps: [
+      hasLoStep,
+      loSearchStep,
       stateStep("What state is the property in?"),
-      { id: "home_value", type: "cards", title: "Estimated home value?", options: HOME_VALUE },
-      { id: "mortgage_balance", type: "cards", title: "How much do you owe on your mortgage?", options: MORTGAGE_BALANCE },
-      { id: "cash_amount", type: "cards", title: "How much cash are you looking for?", options: [
+      { id: "home_value", type: "cards", section: "Home Value", title: "Estimated home value?", options: HOME_VALUE },
+      { id: "mortgage_balance", type: "cards", section: "Mortgage Balance", title: "How much do you owe on your mortgage?", options: MORTGAGE_BALANCE },
+      { id: "cash_amount", type: "cards", section: "Cash Amount", title: "How much cash are you looking for?", options: [
         { value: "Under $25k", label: "Under $25,000" },
         { value: "$25k-$50k", label: "$25,000 - $50,000" },
         { value: "$50k-$100k", label: "$50,000 - $100,000" },
         { value: "$100k+", label: "$100,000 or more" },
         { value: "Not sure", label: "Not sure" },
       ]},
-      { id: "cash_purpose", type: "cards", title: "What's the cash for?", options: [
+      { id: "cash_purpose", type: "cards", section: "Cash Purpose", title: "What's the cash for?", options: [
         { value: "Home improvement", label: "Home improvement" },
         { value: "Debt consolidation", label: "Debt consolidation" },
         { value: "Investment", label: "Investment" },

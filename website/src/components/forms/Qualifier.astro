@@ -1,18 +1,36 @@
 ---
 /**
- * Better.com-style guided qualifier. Renders a single flow's question steps
+ * Guided pre-approval qualifier. Renders a single flow's question steps
  * (from qualifier-flows.ts), one screen at a time, then a contact-intake step,
  * and submits every answer to /api/lead (HubSpot + SMTP2GO), routed to the
  * corporate inbox. Purely client-driven navigation; SSR-rendered panels.
+ *
+ * A right-hand "Pre-Approval Sections" panel lists every section up front
+ * (including the goal-selection step the borrower already completed on the
+ * prior page) so nothing about the flow is a surprise - per the black/white,
+ * full-transparency direction for the site.
  */
 import type { Flow } from "../../data/qualifier-flows";
 import { STATE_LICENSES } from "../../data/state-licenses";
+import { LOAN_OFFICERS } from "../../data/loan-officers";
 
 interface Props {
   flow: Flow;
 }
 const { flow } = Astro.props;
 const licensedStates = [...STATE_LICENSES].map((s) => s.name).sort();
+
+const stateNameByCode = Object.fromEntries(STATE_LICENSES.map((s) => [s.code, s.name]));
+// Compact LO directory for the client-side search step - name, nmls, title,
+// and both the state codes and full names (so "ny" and "new york" both work).
+const loDirectory = LOAN_OFFICERS.map((lo) => ({
+  slug: lo.slug,
+  name: lo.displayName,
+  nmls: lo.nmls,
+  title: lo.title,
+  states: lo.states,
+  stateNames: lo.states.map((c) => stateNameByCode[c] ?? c),
+}));
 
 // Total steps = question steps + contact step
 const total = flow.steps.length + 1;
@@ -22,119 +40,182 @@ const contactIndex = flow.steps.length;
 const qmeta = flow.steps.map((s) => ({
   id: s.id,
   title: s.title,
-  labels: Object.fromEntries(s.options.map((o) => [o.value, o.label])),
+  labels: s.type === "lo-search" ? {} : Object.fromEntries(s.options.map((o) => [o.value, o.label])),
 }));
 
+// Sidebar sections: de-duplicated, in order, one entry per unique section
+// label (has_lo + lo_search share "Loan Officer" so they collapse to one).
+// "Goal Selection" is prepended for the flow-picker page the borrower
+// already completed, and "Contact Info" appended for the final step.
+const flowSections = flow.steps.filter((s, i) => i === 0 || s.section !== flow.steps[i - 1].section).map((s) => s.section);
+const sections = ["Goal Selection", ...flowSections, "Contact Info"];
+
 const cardBase =
-  "q-card w-full text-left px-5 py-4 rounded-xl border-2 border-[var(--color-mist-gray)] bg-white text-[var(--color-ink)] font-medium cursor-pointer transition-colors hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)]/5";
+  "q-card w-full text-left px-5 py-4 rounded-xl border-2 border-[var(--color-mist-gray)] bg-white text-[var(--color-ink)] font-medium cursor-pointer transition-colors hover:border-[var(--color-ink)]";
 const inputClass =
-  "w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-3 text-sm focus:outline-none focus:border-[var(--color-accent)]";
+  "w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-3 text-sm focus:outline-none focus:border-[var(--color-ink)]";
 ---
 
-<div class="q-wrap max-w-2xl mx-auto" data-flow={flow.key} data-flow-label={flow.label} data-total={total}>
+<div class="q-wrap" data-flow={flow.key} data-flow-label={flow.label} data-total={total}>
 
-  <!-- Progress header -->
-  <div class="flex items-center gap-4 mb-10">
-    <button id="q-back" type="button" hidden
-      class="shrink-0 text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-ink)] cursor-pointer">
-      ← Back
-    </button>
-    <div class="flex-1 h-1.5 rounded-full bg-[var(--color-mist-gray)] overflow-hidden">
-      <div id="q-bar" class="h-full bg-[var(--color-accent)] transition-[width] duration-300" style="width: 0%;"></div>
+  <!-- Top bar: back link, flow label, percent complete -->
+  <div class="flex items-center justify-between gap-4 mb-3">
+    <div class="flex items-center gap-4">
+      <button id="q-back" type="button" hidden
+        class="shrink-0 text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-ink)] cursor-pointer">
+        ← Back
+      </button>
+      <span class="text-sm font-semibold text-[var(--color-ink)]">{flow.label}</span>
     </div>
-    <span id="q-count" class="shrink-0 text-sm text-[var(--color-text-muted)] tabular-nums">Step 1 of {total}</span>
+    <span id="q-pct" class="shrink-0 text-sm text-[var(--color-text-muted)] tabular-nums">0% complete</span>
+  </div>
+  <div class="h-1.5 rounded-full bg-[var(--color-mist-gray)] overflow-hidden mb-10">
+    <div id="q-bar" class="h-full bg-[var(--color-ink)] transition-[width] duration-300" style="width: 0%;"></div>
   </div>
 
-  <!-- Question steps -->
-  {flow.steps.map((s, i) => (
-    <div class="q-step" data-index={i} data-qid={s.id} hidden={i !== 0}>
-      <h2 class="mt-0" style="font-size: var(--text-display-lg); line-height: 1.1;">{s.title}</h2>
-      {s.subtitle && <p class="mt-3 text-[var(--color-text-muted)]">{s.subtitle}</p>}
+  <div class="grid lg:grid-cols-[1fr_280px] gap-8 items-start">
+    <!-- Main question panel -->
+    <div class="q-panel bg-white border border-[var(--color-mist-gray)] rounded-2xl p-6 sm:p-10">
 
-      {s.type === "cards" && (
-        <div class={`mt-8 grid gap-3 ${s.cols === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2"}`}>
-          {s.options.map((o) => (
-            <button type="button" class={cardBase} data-qid={s.id} data-value={o.value}>{o.label}</button>
+      <!-- Question steps -->
+      {flow.steps.map((s, i) => (
+        <div class="q-step" data-index={i} data-qid={s.id} hidden={i !== 0}>
+          <h2 class="mt-0" style="font-size: var(--text-h1); line-height: 1.15;">{s.title}</h2>
+          {s.subtitle && <p class="mt-3 text-[var(--color-text-muted)]">{s.subtitle}</p>}
+
+          {s.type === "cards" && (
+            <div class={`mt-8 grid gap-3 ${s.cols === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2"}`}>
+              {s.options.map((o) => (
+                <button type="button" class={cardBase} data-qid={s.id} data-value={o.value}>{o.label}</button>
+              ))}
+            </div>
+          )}
+
+          {s.type === "select" && (
+            <div class="mt-8 max-w-sm">
+              <select class={`q-select ${inputClass}`} data-qid={s.id}>
+                <option value="">{s.placeholder}</option>
+                {s.options.map((o) => <option value={o.value}>{o.label}</option>)}
+              </select>
+              <button type="button" class="q-continue btn btn-primary mt-6 disabled:opacity-50" disabled>Continue</button>
+            </div>
+          )}
+
+          {s.type === "lo-search" && (
+            <div class="mt-8">
+              <input
+                type="text"
+                class={`q-lo-input ${inputClass}`}
+                placeholder="Search by name or state (e.g. “Sarah” or “Texas”)"
+                autocomplete="off"
+              />
+              <div class="q-lo-results mt-4 space-y-2" hidden></div>
+              <p class="q-lo-empty mt-4 text-sm text-[var(--color-text-muted)] hidden">No match yet - try a different name or state.</p>
+              <button type="button" class="q-lo-skip mt-6 text-sm font-semibold text-[var(--color-ink)] underline underline-offset-2">
+                I don't know who yet - skip this
+              </button>
+            </div>
+          )}
+        </div>
+      ))}
+
+      <!-- Contact intake step -->
+      <div class="q-step" data-index={contactIndex} data-contact hidden>
+        <h2 class="mt-0" style="font-size: var(--text-h1); line-height: 1.15;">Almost there. Where should we send your results?</h2>
+        <p class="mt-3 text-[var(--color-text-muted)]">A licensed Cliffco loan officer will review your answers and reach out within one business day. No bots, no call center.</p>
+
+        <div id="q-form" class="mt-8 space-y-5">
+          <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+            <label for="q-website">Website</label>
+            <input id="q-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+          <input id="q-loaded" name="_loaded" type="hidden" value="" />
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="q-fname" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">First name <span class="text-red-400">*</span></label>
+              <input id="q-fname" name="first_name" type="text" required autocomplete="given-name" placeholder="Jane" class={inputClass} />
+            </div>
+            <div>
+              <label for="q-lname" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Last name <span class="text-red-400">*</span></label>
+              <input id="q-lname" name="last_name" type="text" required autocomplete="family-name" placeholder="Smith" class={inputClass} />
+            </div>
+          </div>
+          <div>
+            <label for="q-email" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Email <span class="text-red-400">*</span></label>
+            <input id="q-email" name="email" type="email" required autocomplete="email" placeholder="jane@example.com" class={inputClass} />
+          </div>
+          <div>
+            <label for="q-phone" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Phone <span class="text-red-400">*</span></label>
+            <input id="q-phone" name="phone" type="tel" required autocomplete="tel" placeholder="(555) 000-0000" class={inputClass} />
+          </div>
+
+          <div class="flex items-start gap-3">
+            <input type="checkbox" id="q-tcpa" name="tcpa_consent" value="yes" required class="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 accent-[var(--color-ink)]" />
+            <label for="q-tcpa" class="text-xs leading-relaxed text-[var(--color-text-muted)]">
+              By submitting this form I consent to be contacted by Cliffco, Inc. (NMLS #65328) regarding my inquiry via calls, texts, and emails, including via automated technology. Consent is not required to obtain credit. Reply STOP to opt out of texts.
+            </label>
+          </div>
+
+          <p class="q-error hidden text-sm text-red-500 font-medium"></p>
+          <button type="button" id="q-submit" class="btn btn-primary w-full disabled:opacity-60">See My Results</button>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="q-success" hidden>
+        <div class="w-12 h-12 rounded-full bg-[var(--color-mist-gray)] flex items-center justify-center text-[var(--color-ink)]">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+        </div>
+        <h2 class="mt-5" style="font-size: var(--text-h1); line-height: 1.15;">Thank you. We've got your info.</h2>
+        <p class="mt-3 text-[var(--color-text-muted)] max-w-lg">A licensed Cliffco loan officer will review your answers and reach out within one business day.</p>
+        <a href="/" class="btn btn-secondary mt-8 inline-flex">Back to home</a>
+      </div>
+    </div>
+
+    <!-- Sidebar: all sections, up front -->
+    <aside class="space-y-4">
+      <div class="border border-[var(--color-mist-gray)] rounded-2xl p-5">
+        <p class="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)] mb-4">Pre-Approval Sections</p>
+        <ul id="q-sections" class="space-y-1 list-none p-0 m-0">
+          <li class="q-section-row q-section-done">
+            <a href="/get-started/" class="flex items-center gap-3 py-1.5 no-underline text-[var(--color-ink)]">
+              <span class="q-section-dot" aria-hidden="true">✓</span>
+              <span class="text-sm font-medium">Goal Selection</span>
+            </a>
+          </li>
+          {sections.slice(1).map((label) => (
+            <li class="q-section-row" data-section={label}>
+              <span class="flex items-center gap-3 py-1.5">
+                <span class="q-section-dot" aria-hidden="true"></span>
+                <span class="text-sm">{label}</span>
+              </span>
+            </li>
           ))}
-        </div>
-      )}
-
-      {s.type === "select" && (
-        <div class="mt-8 max-w-sm">
-          <select class={`q-select ${inputClass}`} data-qid={s.id}>
-            <option value="">{s.placeholder}</option>
-            {s.options.map((o) => <option value={o.value}>{o.label}</option>)}
-          </select>
-          <button type="button" class="q-continue btn btn-primary mt-6 disabled:opacity-50" disabled>Continue</button>
-        </div>
-      )}
-    </div>
-  ))}
-
-  <!-- Contact intake step -->
-  <div class="q-step" data-index={contactIndex} data-contact hidden>
-    <h2 class="mt-0" style="font-size: var(--text-display-lg); line-height: 1.1;">Almost there. Where should we send your results?</h2>
-    <p class="mt-3 text-[var(--color-text-muted)]">A licensed Cliffco loan officer will review your answers and reach out within one business day. No bots, no call center.</p>
-
-    <div id="q-form" class="mt-8 space-y-5">
-      <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
-        <label for="q-website">Website</label>
-        <input id="q-website" name="website" type="text" tabindex="-1" autocomplete="off" />
-      </div>
-      <input id="q-loaded" name="_loaded" type="hidden" value="" />
-
-      <div class="grid sm:grid-cols-2 gap-4">
-        <div>
-          <label for="q-fname" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">First name <span class="text-red-400">*</span></label>
-          <input id="q-fname" name="first_name" type="text" required autocomplete="given-name" placeholder="Jane" class={inputClass} />
-        </div>
-        <div>
-          <label for="q-lname" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Last name <span class="text-red-400">*</span></label>
-          <input id="q-lname" name="last_name" type="text" required autocomplete="family-name" placeholder="Smith" class={inputClass} />
-        </div>
-      </div>
-      <div>
-        <label for="q-email" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Email <span class="text-red-400">*</span></label>
-        <input id="q-email" name="email" type="email" required autocomplete="email" placeholder="jane@example.com" class={inputClass} />
-      </div>
-      <div>
-        <label for="q-phone" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Phone <span class="text-red-400">*</span></label>
-        <input id="q-phone" name="phone" type="tel" required autocomplete="tel" placeholder="(555) 000-0000" class={inputClass} />
+        </ul>
       </div>
 
-      <div class="flex items-start gap-3">
-        <input type="checkbox" id="q-tcpa" name="tcpa_consent" value="yes" required class="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 accent-[var(--color-accent)]" />
-        <label for="q-tcpa" class="text-xs leading-relaxed text-[var(--color-text-muted)]">
-          By submitting this form I consent to be contacted by Cliffco, Inc. (NMLS #65328) regarding my inquiry via calls, texts, and emails, including via automated technology. Consent is not required to obtain credit. Reply STOP to opt out of texts.
-        </label>
+      <div class="border border-[var(--color-mist-gray)] rounded-2xl p-5">
+        <p class="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)] mb-2">Next up</p>
+        <p id="q-next-title" class="text-sm font-semibold text-[var(--color-ink)]"></p>
+        <p class="mt-2 text-xs text-[var(--color-text-muted)]">Takes about 2 minutes. No credit pull.</p>
       </div>
-
-      <p class="q-error hidden text-sm text-red-500 font-medium"></p>
-      <button type="button" id="q-submit" class="btn btn-primary w-full disabled:opacity-60">See My Results</button>
-    </div>
-  </div>
-
-  <!-- Success -->
-  <div class="q-success" hidden>
-    <div class="w-12 h-12 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent)]">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-    </div>
-    <h2 class="mt-5" style="font-size: var(--text-display-lg); line-height: 1.1;">Thank you. We've got your info.</h2>
-    <p class="mt-3 text-[var(--color-text-muted)] max-w-lg">A licensed Cliffco loan officer will review your answers and reach out within one business day.</p>
-    <a href="/" class="btn btn-secondary mt-8 inline-flex">Back to home</a>
+    </aside>
   </div>
 </div>
 
-<script define:vars={{ flowKey: flow.key, flowLabel: flow.label, qmeta, total }}>
+<script define:vars={{ flowKey: flow.key, flowLabel: flow.label, qmeta, total, loDirectory }}>
   (() => {
     const wrap = document.querySelector(".q-wrap");
     if (!wrap) return;
     const steps = Array.from(wrap.querySelectorAll(".q-step"));
     const bar = wrap.querySelector("#q-bar");
-    const count = wrap.querySelector("#q-count");
+    const pct = wrap.querySelector("#q-pct");
     const backBtn = wrap.querySelector("#q-back");
     const successEl = wrap.querySelector(".q-success");
     const loaded = wrap.querySelector("#q-loaded");
+    const sectionRows = Array.from(wrap.querySelectorAll(".q-section-row[data-section]"));
+    const nextTitleEl = wrap.querySelector("#q-next-title");
     if (loaded) loaded.value = String(Date.now());
 
     const answers = {};
@@ -143,16 +224,21 @@ const inputClass =
     const track = (event, props = {}) =>
       window.posthog?.capture?.(event, { flow: flowKey, ...props });
 
+    // The lo_search step only shows when the prior "has_lo" answer is Yes.
+    function isSkipped(i) {
+      const step = steps[i];
+      return step && step.getAttribute("data-qid") === "lo_search" && answers.has_lo !== "Yes";
+    }
+
     function show(i) {
       current = i;
       steps.forEach((s, idx) => (s.hidden = idx !== i));
-      // The site's scroll-reveal starts headings invisible; force the current
-      // step's content visible so swapping steps doesn't require a scroll.
       steps[i].querySelectorAll(".cf-reveal").forEach((el) => el.classList.add("cf-visible"));
-      const pct = Math.round(((i + 1) / total) * 100);
-      if (bar) bar.style.width = pct + "%";
-      if (count) count.textContent = `Step ${i + 1} of ${total}`;
+      const p = Math.round(((i + 1) / total) * 100);
+      if (bar) bar.style.width = p + "%";
+      if (pct) pct.textContent = p + "% complete";
       if (backBtn) backBtn.hidden = i === 0;
+      updateSidebar(i);
       // restore any prior selection on card steps
       const qid = steps[i].getAttribute("data-qid");
       if (qid && answers[qid]) {
@@ -162,13 +248,56 @@ const inputClass =
         const sel = steps[i].querySelector(".q-select");
         if (sel) { sel.value = answers[qid]; const cont = steps[i].querySelector(".q-continue"); if (cont) cont.disabled = false; }
       }
-      // If the wizard has been scrolled above the viewport (e.g. a long question
-      // on mobile), bring its top back into view - but never scroll the page down.
       const topRel = wrap.getBoundingClientRect().top;
       if (topRel < 0) window.scrollTo({ top: window.scrollY + topRel - 20, behavior: "smooth" });
     }
 
-    function next() { if (current < steps.length - 1) show(current + 1); }
+    function updateSidebar(i) {
+      const step = steps[i];
+      const isContact = step?.hasAttribute("data-contact");
+      const label = isContact ? "Contact Info" : currentSectionLabel(i);
+      sectionRows.forEach((row) => {
+        const rowLabel = row.getAttribute("data-section");
+        row.classList.remove("q-section-active", "q-section-done");
+        const rowIndex = sectionRows.indexOf(row);
+        const currentSectionIndex = sectionRows.findIndex((r) => r.getAttribute("data-section") === label);
+        if (rowLabel === label) row.classList.add("q-section-active");
+        else if (currentSectionIndex !== -1 && rowIndex < currentSectionIndex) row.classList.add("q-section-done");
+      });
+      if (nextTitleEl) nextTitleEl.textContent = label ?? "";
+    }
+
+    // The server already grouped sections for the sidebar; mirror that here
+    // using the same section rows in document order (excluding Goal Selection).
+    function currentSectionLabel(i) {
+      // Distance-based fallback: find which section "bucket" index i belongs
+      // to by walking steps in order and advancing the bucket pointer each
+      // time the underlying qid's section changes. We reconstruct using the
+      // data-qid -> section via qmeta order isn't section-aware, so instead
+      // count qid transitions against the sectionRows list directly.
+      let bucket = 0;
+      let lastQid = null;
+      for (let idx = 0; idx <= i; idx++) {
+        const qid = steps[idx].getAttribute("data-qid");
+        const contact = steps[idx].hasAttribute("data-contact");
+        if (contact) { bucket = sectionRows.length - 1; break; }
+        if (idx > 0 && qidSectionChanged(lastQid, qid)) bucket++;
+        lastQid = qid;
+      }
+      return sectionRows[Math.min(bucket, sectionRows.length - 1)]?.getAttribute("data-section") ?? null;
+    }
+    // has_lo and lo_search share one section; every other consecutive pair of
+    // steps is a new section (matches the server-side de-dup rule).
+    function qidSectionChanged(prevQid, qid) {
+      if (prevQid === "has_lo" && qid === "lo_search") return false;
+      return true;
+    }
+
+    function next() {
+      let n = current + 1;
+      while (n < steps.length && isSkipped(n)) n++;
+      if (n < steps.length) show(n);
+    }
 
     // Card selection -> record + auto-advance
     wrap.querySelectorAll(".q-card").forEach((card) => {
@@ -194,15 +323,76 @@ const inputClass =
       });
     });
 
-    if (backBtn) backBtn.addEventListener("click", () => { if (current > 0) show(current - 1); });
+    // Loan officer search step
+    wrap.querySelectorAll(".q-step[data-qid='lo_search']").forEach((stepEl) => {
+      const input = stepEl.querySelector(".q-lo-input");
+      const results = stepEl.querySelector(".q-lo-results");
+      const empty = stepEl.querySelector(".q-lo-empty");
+      const skip = stepEl.querySelector(".q-lo-skip");
+
+      function render(matches) {
+        results.innerHTML = "";
+        if (!matches.length) {
+          results.hidden = true;
+          empty.classList.toggle("hidden", input.value.trim().length === 0);
+          return;
+        }
+        empty.classList.add("hidden");
+        results.hidden = false;
+        matches.slice(0, 20).forEach((lo) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "q-card w-full text-left px-5 py-3 rounded-xl border-2 border-[var(--color-mist-gray)] bg-white cursor-pointer hover:border-[var(--color-ink)]";
+          btn.innerHTML = `<span class="font-semibold text-[var(--color-ink)]">${lo.name}</span>` +
+            `<span class="block text-xs text-[var(--color-text-muted)] mt-0.5">${lo.title} · NMLS #${lo.nmls}</span>` +
+            `<span class="block text-xs text-[var(--color-text-muted)] mt-0.5">Licensed in ${lo.states.join(", ")}</span>`;
+          btn.addEventListener("click", () => {
+            answers.lo_search = `${lo.name} (NMLS #${lo.nmls})`;
+            stepEl.querySelectorAll(".q-card").forEach((c) => c.classList.remove("q-card-active"));
+            btn.classList.add("q-card-active");
+            track("qualifier_lo_selected", { lo: lo.slug });
+            setTimeout(next, 220);
+          });
+          results.appendChild(btn);
+        });
+      }
+
+      input?.addEventListener("input", () => {
+        const q = input.value.trim().toLowerCase();
+        if (!q) { render([]); return; }
+        const stateMatches = loDirectory.filter((lo) =>
+          lo.states.some((c) => c.toLowerCase() === q) ||
+          lo.stateNames.some((n) => n.toLowerCase().includes(q))
+        );
+        render(stateMatches.length ? stateMatches : loDirectory.filter((lo) => lo.name.toLowerCase().includes(q)));
+      });
+
+      skip?.addEventListener("click", () => {
+        answers.lo_search = "Not found / skipped";
+        track("qualifier_lo_skip");
+        next();
+      });
+    });
+
+    if (backBtn) backBtn.addEventListener("click", () => {
+      let p = current - 1;
+      while (p >= 0 && isSkipped(p)) p--;
+      if (p >= 0) show(p);
+    });
 
     // Build a readable summary of all answers for the lead notes
     function summary() {
       const lines = [];
       for (const q of qmeta) {
         if (q.id === "state") continue; // sent as its own field
+        if (q.id === "has_lo" || q.id === "lo_search") continue; // handled below
         const v = answers[q.id];
         if (v) lines.push(`${q.title} ${q.labels[v] ?? v}`);
+      }
+      if (answers.has_lo === "Yes") {
+        lines.unshift(`Already working with: ${answers.lo_search ?? "Not specified"}`);
+      } else if (answers.has_lo === "No") {
+        lines.unshift("Not currently working with a Cliffco loan officer.");
       }
       return lines.join("\n");
     }
@@ -256,7 +446,7 @@ const inputClass =
           track("qualifier_submitted");
           steps.forEach((s) => (s.hidden = true));
           if (bar) bar.style.width = "100%";
-          if (count) count.textContent = "Done";
+          if (pct) pct.textContent = "100% complete";
           if (backBtn) backBtn.hidden = true;
           if (successEl) successEl.hidden = false;
           window.scrollTo({ top: wrap.getBoundingClientRect().top + window.scrollY - 90, behavior: "smooth" });
@@ -285,7 +475,42 @@ const inputClass =
 
 <style>
   .q-card-active {
-    border-color: var(--color-accent) !important;
-    background: color-mix(in srgb, var(--color-accent) 6%, white) !important;
+    border-color: var(--color-ink) !important;
+    background: var(--color-mist-gray) !important;
+  }
+  .q-section-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 9999px;
+    border: 2px solid var(--color-soft-gray);
+    font-size: 11px;
+    color: transparent;
+    flex-shrink: 0;
+  }
+  .q-section-active .q-section-dot {
+    border-color: var(--color-ink);
+    background: var(--color-ink);
+  }
+  .q-section-active span.text-sm {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .q-section-done .q-section-dot {
+    border-color: var(--color-ink);
+    background: var(--color-ink);
+    color: #fff;
+  }
+  .q-section-row span.text-sm,
+  .q-section-row a span.text-sm {
+    color: var(--color-text-muted);
+  }
+
+  /* Monochrome overrides for this form - the shared .btn-primary hover is
+     purple sitewide; this component is black/white only. */
+  .q-panel .btn-primary:hover {
+    background: #262626;
   }
 </style>

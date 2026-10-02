@@ -19,19 +19,19 @@ import { INTENT_OPTIONS } from "../../data/qualifier-flows";
           {INTENT_OPTIONS.map((o) => (
             <a
               href={`/get-started/${o.key}/`}
-              class="card flex items-center justify-between gap-4 border-2 border-transparent hover:border-[var(--color-accent)] transition-colors no-underline"
+              class="card flex items-center justify-between gap-4 border-2 border-transparent hover:border-[var(--color-ink)] transition-colors no-underline"
             >
               <div>
                 <p class="font-semibold text-[var(--color-ink)] text-lg">{o.label}</p>
                 <p class="text-sm text-[var(--color-text-muted)] mt-1">{o.description}</p>
               </div>
-              <span class="shrink-0 text-[var(--color-accent)] text-2xl" aria-hidden="true">→</span>
+              <span class="shrink-0 text-[var(--color-ink)] text-2xl" aria-hidden="true">→</span>
             </a>
           ))}
         </div>
 
         <p class="mt-8 text-xs text-[var(--color-text-muted)]">
-          Prefer to talk to someone? Call <a href={`tel:${COMPANY.tollFreeE164}`} class="font-semibold text-[var(--color-accent)] no-underline">{COMPANY.tollFree}</a>.
+          Prefer to talk to someone? Call <a href={`tel:${COMPANY.tollFreeE164}`} class="font-semibold text-[var(--color-ink)] no-underline">{COMPANY.tollFree}</a>.
         </p>
       </div>
     </div>
