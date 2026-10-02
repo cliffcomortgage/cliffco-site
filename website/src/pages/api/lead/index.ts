@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { LOAN_OFFICERS } from '../../../data/loan-officers';
 
 // Prerender behavior is set per-target in astro.config.mjs (astro:route:setup hook).
 
@@ -233,6 +234,15 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const recipients = validateRecipients(formTo);
+
+    // Borrower picked their existing LO in the qualifier: route to that LO,
+    // resolved server-side from the slug (same leadTo ?? email rule as the
+    // LO bio-page forms) so the address never ships in page source.
+    const loSlug = (data.get('lo_slug') as string | null)?.trim() ?? '';
+    const lo = loSlug ? LOAN_OFFICERS.find((l) => l.slug === loSlug) : undefined;
+    const loAddress = validateRecipients(lo?.links?.leadTo ?? lo?.links?.email ?? '')[0];
+    if (loAddress && !recipients.includes(loAddress)) recipients.unshift(loAddress);
+
     if (!recipients.length) {
       return new Response(
         JSON.stringify({ error: 'Invalid form configuration.' }),
@@ -273,6 +283,8 @@ export const POST: APIRoute = async ({ request }) => {
       evt: 'lead_submission',
       endpoint: 'lead',
       formSource,
+      loSlug: loSlug || undefined,
+      loRouted: Boolean(loAddress),
       email,
       recipients,
       hubspotOk,

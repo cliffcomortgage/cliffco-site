@@ -304,6 +304,12 @@ const inputClass =
       card.addEventListener("click", () => {
         const qid = card.getAttribute("data-qid");
         answers[qid] = card.getAttribute("data-value");
+        // Changing "has_lo" away from Yes must drop any LO picked earlier,
+        // or the lead would still route to them.
+        if (qid === "has_lo" && answers.has_lo !== "Yes") {
+          delete answers.lo_search;
+          delete answers.lo_slug;
+        }
         card.parentElement.querySelectorAll(".q-card").forEach((c) => c.classList.remove("q-card-active"));
         card.classList.add("q-card-active");
         track("qualifier_answer", { step: qid });
@@ -348,6 +354,7 @@ const inputClass =
             `<span class="block text-xs text-[var(--color-text-muted)] mt-0.5">Licensed in ${lo.states.join(", ")}</span>`;
           btn.addEventListener("click", () => {
             answers.lo_search = `${lo.name} (NMLS #${lo.nmls})`;
+            answers.lo_slug = lo.slug;
             stepEl.querySelectorAll(".q-card").forEach((c) => c.classList.remove("q-card-active"));
             btn.classList.add("q-card-active");
             track("qualifier_lo_selected", { lo: lo.slug });
@@ -369,6 +376,7 @@ const inputClass =
 
       skip?.addEventListener("click", () => {
         answers.lo_search = "Not found / skipped";
+        delete answers.lo_slug;
         track("qualifier_lo_skip");
         next();
       });
@@ -430,6 +438,7 @@ const inputClass =
       if (answers.income_type) fd.set("income_type", answers.income_type);
       if (answers.credit_range) fd.set("credit_range", answers.credit_range);
       if (answers.purpose) fd.set("purpose", answers.purpose);
+      if (answers.has_lo === "Yes" && answers.lo_slug) fd.set("lo_slug", answers.lo_slug);
       fd.set("notes", summary());
       fd.set("website", form.querySelector("#q-website").value.trim());
       fd.set("_loaded", loaded ? loaded.value : "");
