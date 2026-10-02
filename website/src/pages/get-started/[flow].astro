@@ -15,7 +15,7 @@ const { flow } = Astro.props;
   title={`${flow.label} | ${COMPANY.brandName}`}
   description={`${flow.heading} Answer a few quick questions and a licensed Cliffco loan officer (NMLS #${COMPANY.nmls}) will follow up within one business day.`}
 >
-  <section class="section bg-[var(--color-mist-gray)]">
+  <section class="section bg-white">
     <div class="container-wide">
       <h1 class="sr-only">{flow.label} - {COMPANY.brandName}</h1>
       <Qualifier flow={flow} />
