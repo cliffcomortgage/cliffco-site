@@ -16,8 +16,8 @@
 @theme {
   /* ---------- Brand colors (from brand guide) ---------- */
   --color-rich-black: #0d0d0d;       /* primary - headers, design elements */
-  --color-bright-plum: #6633cc;      /* accent - gradients, emphasis */
-  --color-ice-blue: #bde8f1;         /* accent - backgrounds, overlays */
+  --color-bright-plum: #262626;      /* accent - gradients, emphasis (was purple #6633cc; black/white direction, 2026-10-02) */
+  --color-ice-blue: #d4d4d4;         /* accent - backgrounds, overlays (was light blue #bde8f1) */
   --color-soft-gray: #b3b2b4;        /* neutral - backgrounds */
   --color-mist-gray: #f0eef1;        /* neutral - surfaces */
   --color-body: #3d4040;             /* body copy */
@@ -28,8 +28,8 @@
   --color-text-muted: #5a5d5d;
   --color-surface: #ffffff;
   --color-surface-soft: #f0eef1;
-  --color-accent: #6633cc;
-  --color-accent-soft: #bde8f1;
+  --color-accent: #262626;
+  --color-accent-soft: #d4d4d4;
 
   /* ---------- Typography ---------- */
   --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system,
@@ -237,7 +237,7 @@
     transition: border-color 200ms ease;
   }
   .card:hover {
-    border-color: rgba(102, 51, 204, 0.3);
+    border-color: rgba(13, 13, 13, 0.3);
   }
 
   /* Dark background for hero / accent panels — grain texture added via ::before */
@@ -359,7 +359,7 @@ a:not(.btn):not(.card):not(.no-underline) {
   outline: 2.5px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 6px;
-  box-shadow: 0 0 0 4px rgba(102, 51, 204, 0.15);
+  box-shadow: 0 0 0 4px rgba(13, 13, 13, 0.15);
 }
 
 
