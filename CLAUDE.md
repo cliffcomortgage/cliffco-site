@@ -51,10 +51,11 @@ Always confirm leadership titles with Rafe before publishing.
 
 ## Fonts
 
-**The website ships Open Sans** — decided by Rafe on 2026-07-16. The brand guide's primary typeface is Graphik, but the trial OTFs at `brand/fonts/` (gitignored) are not licensed for web use, so the site uses the brand guide's published web fallback instead. Do not reference the trial OTFs from any web code.
+**The website ships Outfit** (body/UI/headings) **+ IBM Plex Mono** (figures, IDs, timestamps) — decided 2026-10-02, to match the type system already shipping in `cliffco-pos`, so the website and the POS feel like one product family. This replaces the earlier Open Sans decision (Rafe, 2026-07-16). The brand guide's primary typeface is still Graphik, but the trial OTFs at `brand/fonts/` (gitignored) are not licensed for web use and are not part of this direction either.
 
 - Never re-add `brand/fonts/*.otf` to git, and never reference them via `@font-face` in `website/` (Vite bundles them into build output).
-- If a licensed Graphik web kit is ever purchased from [Commercial Type](https://commercialtype.com/catalog/graphik), add the WOFF2 kit and update `--font-sans` in `website/src/styles/global.css` — the swap point is documented there.
+- Both fonts load via Google Fonts in `website/src/layouts/Layout.astro`; the tokens are `--font-sans`/`--font-display`/`--font-accent` (Outfit) and `--font-mono` (IBM Plex Mono) in `website/src/styles/global.css` — that's the swap point if this changes again.
+- `--font-logo` (Montserrat, for the wordmark) was left unchanged in this pass — confirm with Rafe before touching it.
 
 ## Where things live
 
