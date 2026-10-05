@@ -25,6 +25,8 @@ export type LoanOfficer = {
   states: readonly string[];
   /** Primary office (branch slug) */
   branchSlug: string;
+  /** Other branches the LO also works out of (listed under each in the directory) */
+  alsoAtBranchSlugs?: readonly string[];
   /** Languages spoken (LO to confirm) */
   languages?: readonly string[];
   /** External anchors (sameAs) for Person schema */
@@ -493,6 +495,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     title: "Loan Officer",
     states: ["CT", "FL", "NJ", "NY", "PA", "SC", "TX"],
     branchSlug: "bay-shore-ny",
+    alsoAtBranchSlugs: ["uniondale-headquarters"],
     links: {
       email: "zambellil@cliffcomortgage.com",
       directPhone: "516-350-5351",
@@ -511,6 +514,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     title: "Loan Officer",
     states: ["NY"],
     branchSlug: "bay-shore-ny",
+    alsoAtBranchSlugs: ["uniondale-headquarters"],
     links: {
       email: "laurenz@cliffcomortgage.com",
       directPhone: "516-350-5311",
@@ -531,6 +535,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     title: "Loan Officer",
     states: ["NY"],
     branchSlug: "bay-shore-ny",
+    alsoAtBranchSlugs: ["uniondale-headquarters"],
     links: {
       email: "lzambelli@cliffcomortgage.com",
       directPhone: "516-874-6381",
