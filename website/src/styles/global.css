@@ -5,11 +5,11 @@
  * Source of truth: brand/brand-guide.pdf (Colors + Typography + Voice) - note
  * the brand guide's Graphik/purple-blue palette is being phased out; see below.
  *
- * Typography (decision 2026-10-05): Helvetica for body text (--font-sans),
- * Outfit for headings (--font-display), IBM Plex Mono for eyebrows and small
- * uppercase labels (--font-mono). Outfit + Plex Mono load from Google Fonts in
- * Layout.astro; Helvetica comes from the visitor's device, never self-hosted.
- * The brand guide's Graphik trial OTFs remain unlicensed for web use.
+ * Typography (decision 2026-10-05): Outfit for all body text and headings
+ * (--font-sans / --font-display), IBM Plex Mono for eyebrows and small
+ * uppercase labels (--font-mono). Both load from Google Fonts in Layout.astro.
+ * Helvetica was tried for body text and dropped. The brand guide's Graphik
+ * trial OTFs remain unlicensed for web use.
  */
 
 @theme {
@@ -31,10 +31,9 @@
   --color-accent-soft: #d4d4d4;
 
   /* ---------- Typography ---------- */
-  /* Body: Helvetica from the visitor's device (not self-hosted - Helvetica is
-     a commercial font with no web license on file); Arial is the near-metric
-     fallback where Helvetica isn't installed. */
-  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Body */
+  --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   /* Headings */
   --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-logo: "Montserrat", ui-sans-serif, system-ui, sans-serif;

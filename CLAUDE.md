@@ -51,18 +51,16 @@ Always confirm leadership titles with Rafe before publishing.
 
 ## Fonts
 
-**Three typefaces, three jobs** (decided 2026-10-05; Outfit + Plex Mono chosen 2026-10-02 to match `cliffco-pos`):
+**Two typefaces** (decided 2026-10-05; both chosen 2026-10-02 to match `cliffco-pos`):
 
 | Role | Font | Token in `website/src/styles/global.css` |
 |---|---|---|
-| Body text | **Helvetica** | `--font-sans` |
-| Headings (h1–h6) | **Outfit** | `--font-display` |
+| Body text + headings | **Outfit** | `--font-sans` (body), `--font-display` (h1–h6) |
 | Eyebrows + small uppercase labels (e.g. "Who qualifies") | **IBM Plex Mono** | `--font-mono` (the `.eyebrow` class uses it) |
 
+- **Helvetica is not used.** It was tried for body text on 2026-10-05 and dropped the same day. Don't reintroduce it — and never self-host it: it's a commercial font with no web license on file.
 - **Font files:** Helvetica, Outfit, and IBM Plex Mono `.ttf` files were added to `brand/fonts/` on 2026-10-05. That folder is **gitignored** — the files live only on the machine they were copied to, not in git, so the other collaborator needs their own copy (or grab Outfit/Plex Mono from Google Fonts).
-- **Never self-host Helvetica on the site.** It's a commercial font with no web license on file (the files in `brand/fonts/` look like a free-font-site download, not a licensed web kit). The site uses `"Helvetica Neue", Helvetica, Arial, sans-serif` — Helvetica from the visitor's device, Arial as the near-identical fallback. If a Monotype web license is ever bought, that's when to add `@font-face`.
 - Outfit + IBM Plex Mono are free (OFL) and load from Google Fonts in `website/src/layouts/Layout.astro`, not from `brand/fonts/`.
-- Page headlines must use `var(--font-display)`, not `var(--font-sans)` — `--font-sans` is now Helvetica body text.
 - Never commit anything from `brand/fonts/` to git, and never reference those files via `@font-face` in `website/` (Vite bundles them into public build output). The brand guide's Graphik trial OTFs remain unlicensed for web use.
 - `--font-logo` (Montserrat, for the wordmark) is unchanged — confirm with Rafe before touching it.
 
