@@ -77,11 +77,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     /* Brand cursor: the arrow from the logo (white outline so it shows on
-       dark sections). Hotspot 28 5 = the arrow's tip. Second declaration adds
+       dark sections), mirrored to point up-left like a standard pointer. Hotspot 4 5 = the arrow's tip. Second declaration adds
        the retina image where image-set() is supported; the first is the
        fallback. */
-    cursor: url("/images/cursor.png") 28 5, auto;
-    cursor: image-set(url("/images/cursor.png") 1x, url("/images/cursor@2x.png") 2x) 28 5, auto;
+    cursor: url("/images/cursor.png") 4 5, auto;
+    cursor: image-set(url("/images/cursor.png") 1x, url("/images/cursor@2x.png") 2x) 4 5, auto;
   }
 
   /* Keep the standard hand on clickable things and the I-beam in text fields */
