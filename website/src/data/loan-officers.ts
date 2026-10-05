@@ -11,6 +11,7 @@
  */
 
 import { COMPANY } from "./company";
+import { STATE_LICENSES } from "./state-licenses";
 
 export type LoanOfficer = {
   /** Vanity slug matching current site (e.g. "skhan", "larisa-zambelli") */
@@ -83,12 +84,13 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     displayName: "Christopher Clifford",
     nmls: "65234",
     title: "President",
-    states: ["AK", "AL", "AZ", "CA", "CT", "DC", "DE", "FL", "GA", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "MI", "MN", "NC", "NJ", "NM", "NY", "OH", "OR", "PA", "SC", "TN", "TX", "VA", "VT", "WA"],
+    // Licensed in every state Cliffco is (confirmed 2026-10-05)
+    states: STATE_LICENSES.map((s) => s.code),
     branchSlug: "uniondale-headquarters",
     specialties: ["Non-QM & Self-Employed", "Reverse Mortgage (HECM)", "DSCR for Investors", "Business Bank Statement", "Jumbo"],
     bio:
       "Christopher Clifford leads Cliffco Mortgage Bankers as President, carrying forward a " + COMPANY.yearsInBusiness() + "-year " +
-      "family-built mortgage operation that's licensed in 32 states. He's licensed in 29 of them personally, " +
+      "family-built mortgage operation that's licensed in " + STATE_LICENSES.length + " states. He's licensed in every one of them personally, " +
       "which means he can pick up the file directly when a complex scenario lands (Non-QM, reverse, DSCR, " +
       "business bank statement) with the same hands-on approach Cliffco was founded on.",
     links: {

@@ -1,4 +1,5 @@
 ﻿---
+import { STATE_LICENSES } from "../../../data/state-licenses";
 import Layout from "../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../data/company";
@@ -14,7 +15,7 @@ const faq = [
   { question: "Are Airbnb / short-term rentals eligible?", answer: "Yes. Cliffco's DSCR program accepts short-term-rental income for properties in markets where STR is allowed (e.g., Disney-area Polk County, FL). For new STR purchases without operating history, we use market projections from sources like AirDNA. For existing STRs, we use trailing 12-month operating statements." },
   { question: "Can I close in an LLC?", answer: "Yes. Cliffco's DSCR loans allow vesting in an LLC (or in a personal name), a common preference among investors building portfolios. We provide the documentation requirements at the application stage." },
   { question: "What's the minimum DSCR ratio?", answer: "Cliffco offers programs that go as low as 0.75 DSCR with compensating factors (higher down payment, stronger reserves, experienced investor profile). The most competitive pricing is at 1.25+ DSCR." },
-  { question: "Can I get a DSCR loan from out of state?", answer: "Yes. A large share of Cliffco's DSCR borrowers live out of state, particularly New Yorkers and New Jerseyans buying Florida or Arizona investment properties. Cliffco is licensed in 32 states; we can lend in any of them on the property and any of them on the borrower's residence." },
+  { question: "Can I get a DSCR loan from out of state?", answer: "Yes. A large share of Cliffco's DSCR borrowers live out of state, particularly New Yorkers and New Jerseyans buying Florida or Arizona investment properties. Cliffco is licensed in " + STATE_LICENSES.length + " states; we can lend in any of them on the property and any of them on the borrower's residence." },
 ];
 
 const schema = [

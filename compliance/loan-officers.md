@@ -6,7 +6,7 @@ Active LOs from `loan-officer-disclosures.csv` (last NMLS audit 2025-07-23). Ros
 
 | Name | NMLS # | Title | States | Branch |
 |---|---|---|---|---|
-| Christopher Clifford | 65234 | President | 29 states (AK, AL, AZ, CA, CT, DC, DE, FL, GA, IL, IN, KS, KY, LA, MD, MI, MN, NC, NJ, NM, NY, OH, PA, SC, TN, TX, VA, VT, WA) | Uniondale, NY (HQ) |
+| Christopher Clifford | 65234 | President | All 35 states, confirmed 2026-10-05 (AK, AL, AZ, CA, CO, CT, DC, DE, FL, GA, IA, IL, IN, KS, KY, LA, MA, MD, MI, MN, MT, NC, NJ, NM, NY, OH, OK, OR, PA, SC, TN, TX, VA, VT, WA) | Uniondale, NY (HQ) |
 | Adam Turkewitz | 32900 | Senior VP of Sales | 24 states | Uniondale, NY (HQ) |
 | Ryan Dennis Riddle | 1730872 | Loan Officer | 27 states | Uniondale, NY (HQ) |
 | James Chen | 17991 | Senior Vice President of Sales | CT, FL, GA, MD, NC, NJ, NY, OR, PA, SC, VA, AZ, TX | Uniondale, NY (HQ) |

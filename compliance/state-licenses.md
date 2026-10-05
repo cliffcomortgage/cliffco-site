@@ -2,6 +2,8 @@
 
 Every state license held by **Cliffco, Inc. (NMLS #65328)** as of the last NMLS audit (2025-07-23). Source: `loan-officer-disclosures.csv`.
 
+**Total: 35 licensed jurisdictions (34 states + DC)**, confirmed 2026-10-05. Iowa was added 2026-09-02; the MN row was missing from this table and was restored to match `website/src/data/state-licenses.ts`. The website reads its state count from that data file, so keep the two in sync.
+
 This is the canonical list to use in: site footer state-license disclosure, `/licensing/` page, schema `areaServed`, GBP service areas, marketing collateral.
 
 | State | Regulator | License # |
@@ -25,6 +27,7 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 | MA | Massachusetts Division of Banks (Mortgage Broker and Mortgage Lender) | MC65328 |
 | MD | Maryland Office of Financial Regulation | (no number cited in disclosure) |
 | MI | Michigan Department of Insurance and Financial Services 1st Mortgage Broker/Lender Registrant | FR0026300 |
+| MN | Minnesota Department of Commerce | MN-MO-65328 |
 | **MN** | **Minnesota Department of Commerce** | **MN-MO-65328** |
 | MT | Montana Department of Administration — Mortgage Broker, Lender, and Servicer | 65328 |
 | NC | North Carolina Commissioner of Banks | L-211081 |

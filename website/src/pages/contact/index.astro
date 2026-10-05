@@ -1,4 +1,5 @@
 ---
+import { STATE_LICENSES } from "../../data/state-licenses";
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
@@ -147,7 +148,7 @@ const allBranches = BRANCHES;
         ))}
       </div>
       <p class="mt-6 text-sm text-[var(--color-text-muted)]">
-        Cliffco is licensed in 32 states. <a href="/locations/" class="text-[var(--color-accent)]">View all locations and loan officers →</a>
+        Cliffco is licensed in {STATE_LICENSES.length} states. <a href="/locations/" class="text-[var(--color-accent)]">View all locations and loan officers →</a>
       </p>
     </div>
   </section>

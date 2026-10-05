@@ -1,4 +1,5 @@
 ﻿---
+import { STATE_LICENSES } from "../../data/state-licenses";
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
@@ -86,7 +87,7 @@ import { PRESS, formatPressDate } from "../../data/press";
           <p class="text-sm font-semibold text-[var(--color-ink)]">Quick facts</p>
           <ul class="mt-3 text-sm text-[var(--color-text-muted)] space-y-2">
             <li>Founded 1989, headquartered in Uniondale, NY (Long Island)</li>
-            <li>Licensed in 32 states</li>
+            <li>Licensed in {STATE_LICENSES.length} states</li>
             <li>Specialty: Non-QM, reverse mortgage, DSCR, business bank statement</li>
             <li>{BRANCHES.length} branch offices across NY, NJ, FL, AZ, and MN</li>
             <li>NMLS #{COMPANY.nmls}</li>

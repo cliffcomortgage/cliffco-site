@@ -1,4 +1,5 @@
 ﻿---
+import { STATE_LICENSES } from "../../../data/state-licenses";
 import Layout from "../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../data/company";
@@ -120,7 +121,7 @@ import ContactForm from "../../../components/forms/ContactForm.astro";
   <section class="bg-white pb-12">
     <div class="container-wide">
       <p class="lead">
-        Cliffco originates conventional, FHA, VA, and USDA loans across all 32 states where we're
+        Cliffco originates conventional, FHA, VA, and USDA loans across all {STATE_LICENSES.length} states where we're
         licensed. Each program has different down payment requirements, mortgage insurance rules,
         and eligibility criteria. The right one depends on your credit, your military status, where
         the property is located, and how much you're putting down.
