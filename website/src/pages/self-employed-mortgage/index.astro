@@ -82,11 +82,18 @@ import ContactForm from "../../components/forms/ContactForm.astro";
     </div>
   </section>
 
-  <!-- WHO THIS IS FOR -->
+  <!-- CONTACT FORM + WHO THIS IS FOR -->
   <section class="section bg-white">
     <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
-      <div class="rounded-lg overflow-hidden aspect-[4/3] bg-[var(--color-mist-gray)]">
-        <img src="/images/content%20images/Self%20Employed%20Mortgage.jpg" alt="Self-employed business owner reviewing bank statement mortgage qualification with Cliffco" class="w-full h-full object-cover" loading="lazy" />
+      <div id="contact" class="rounded-2xl border border-black/15 p-6 sm:p-8">
+        <h2 class="mt-0" style="font-size: var(--text-h2);">Self-employed and wondering what you qualify for?</h2>
+        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us how you document income and we'll find the program that works.</p>
+        <div class="mt-8">
+          <ContactForm
+            formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
+            formSource="self-employed"
+          />
+        </div>
       </div>
       <div>
         <p class="eyebrow">Who qualifies</p>
@@ -193,17 +200,22 @@ import ContactForm from "../../components/forms/ContactForm.astro";
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- FAQ (picture left, questions right) -->
   <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">How bank statement qualifying works.</h2>
-      <div class="mt-8 space-y-6">
-        {faq.map((q) => (
-          <details class="border-b border-[var(--color-border)] pb-4">
-            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
-            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
-          </details>
-        ))}
+    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
+      <div class="rounded-lg overflow-hidden aspect-[4/3] bg-[var(--color-mist-gray)]">
+        <img src="/images/content%20images/Self%20Employed%20Mortgage.jpg" alt="Self-employed business owner reviewing bank statement mortgage qualification with Cliffco" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div>
+        <h2 class="mt-0" style="font-size: var(--text-h2);">How bank statement qualifying works.</h2>
+        <div class="mt-8 space-y-6">
+          {faq.map((q) => (
+            <details class="border-b border-[var(--color-border)] pb-4">
+              <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
+              <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
+            </details>
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -220,17 +232,4 @@ import ContactForm from "../../components/forms/ContactForm.astro";
     </div>
   </section>
 
-  <!-- CONTACT FORM -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Self-employed and wondering what you qualify for?</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us how you document income and we'll find the program that works.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
-          formSource="self-employed"
-        />
-      </div>
-    </div>
-  </section>
 </Layout>
