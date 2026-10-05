@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
 import { BRANCHES } from "../../data/branches";
-import { LOAN_OFFICERS } from "../../data/loan-officers";
+import { LOAN_OFFICERS, loanOfficersByBranch } from "../../data/loan-officers";
 import Headshot from "../../components/ui/Headshot.astro";
 import { localBusinessSchema, breadcrumbSchema } from "../../lib/schema";
 
@@ -13,6 +13,7 @@ const los = LOAN_OFFICERS.filter(
   (lo) => lo.branchSlug === "uniondale-headquarters" && !EXCLUDE.has(lo.slug),
 );
 const featuredLOs = los.slice(0, 12);
+const uniondaleCount = loanOfficersByBranch("uniondale-headquarters").length;
 
 const schema = [
   localBusinessSchema(branch),
@@ -94,7 +95,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
         <p class="eyebrow">Loan officers at headquarters</p>
         <h2 class="mt-3" style="font-size: var(--text-h2);">Our Uniondale team.</h2>
         <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
-          {los.length} loan officers are based at our Uniondale headquarters. A selection is shown below.
+          {uniondaleCount} loan officers work out of our Uniondale headquarters. A selection is shown below.
         </p>
         <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {featuredLOs.map((lo) => (
@@ -115,7 +116,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
           ))}
         </div>
         <div class="mt-8 text-center">
-          <a href="/loan-officers/" class="btn btn-primary">View all {los.length} Uniondale loan officers →</a>
+          <a href="/loan-officers/" class="btn btn-primary">View all {uniondaleCount} Uniondale loan officers →</a>
         </div>
       </div>
     </section>

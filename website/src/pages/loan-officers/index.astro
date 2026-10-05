@@ -1,13 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
-import { LOAN_OFFICERS } from "../../data/loan-officers";
+import { LOAN_OFFICERS, loanOfficersByBranch } from "../../data/loan-officers";
 import { BRANCHES } from "../../data/branches";
 
 // Group by branch for the default view
 const byBranch = BRANCHES.map((b) => ({
   branch: b,
-  officers: LOAN_OFFICERS.filter((lo) => lo.branchSlug === b.slug || lo.alsoAtBranchSlugs?.includes(b.slug)),
+  officers: loanOfficersByBranch(b.slug),
 })).filter((g) => g.officers.length > 0);
 
 // All unique states across all LOs, sorted

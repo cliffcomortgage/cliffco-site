@@ -3,6 +3,7 @@ import Layout from "../../../layouts/Layout.astro";
 import ArticleImage from "../../../components/ui/ArticleImage.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { faqPageSchema } from "../../../lib/schema";
+import { COMPANY } from "../../../data/company";
 
 const faq = faqPageSchema([
   { question: "What are Non-QM loans?", answer: "Non-QM loans are home financing solutions that fall outside the qualified mortgage definition established by the Consumer Financial Protection Bureau. They serve borrowers who do not meet conventional documentation requirements but still demonstrate a reasonable ability to repay, such as self-employed individuals, real estate investors, and those with complex income sources." },
@@ -201,7 +202,7 @@ const faq = faqPageSchema([
 
     <h2 id="conclusion" class="mt-12">Conclusion</h2>
     <p class="mt-4">Non-QM loans aren't a workaround for unqualified borrowers. They're a different underwriting approach for borrowers whose financial strength doesn't show up cleanly on a tax return or a debt-to-income calculation. The income is real. The assets are real. The qualification method just has to match how the borrower actually earns.</p>
-    <p class="mt-4">At Cliffco, we've spent 35+ years helping borrowers that other lenders turned away. Non-QM is a large part of how we do that. If you're not sure whether a Non-QM program applies to your situation, talk to one of our loan officers. We'll tell you honestly what's available and what isn't.</p>
+    <p class="mt-4">At Cliffco, we've spent {COMPANY.yearsInBusiness()} years helping borrowers that other lenders turned away. Non-QM is a large part of how we do that. If you're not sure whether a Non-QM program applies to your situation, talk to one of our loan officers. We'll tell you honestly what's available and what isn't.</p>
 
     <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
       <div>

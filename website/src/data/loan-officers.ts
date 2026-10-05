@@ -1130,8 +1130,9 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   },
 ];
 
+/** Everyone who works out of a branch: primary office or alsoAtBranchSlugs. */
 export const loanOfficersByBranch = (branchSlug: string): LoanOfficer[] =>
-  LOAN_OFFICERS.filter((lo) => lo.branchSlug === branchSlug);
+  LOAN_OFFICERS.filter((lo) => lo.branchSlug === branchSlug || lo.alsoAtBranchSlugs?.includes(branchSlug));
 
 export const loanOfficersByState = (state: string): LoanOfficer[] =>
   LOAN_OFFICERS.filter((lo) => lo.states.includes(state));

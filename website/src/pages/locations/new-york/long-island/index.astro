@@ -4,7 +4,7 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
 import { location } from "../../../../data/locations";
 import { BRANCHES } from "../../../../data/branches";
-import { LOAN_OFFICERS } from "../../../../data/loan-officers";
+import { LOAN_OFFICERS, loanOfficersByBranch } from "../../../../data/loan-officers";
 import { product } from "../../../../data/products";
 import { localBusinessSchema, faqPageSchema, breadcrumbSchema } from "../../../../lib/schema";
 import Headshot from "../../../../components/ui/Headshot.astro";
@@ -23,8 +23,8 @@ const uniondaleLOs = LOAN_OFFICERS.filter(
 const bayShore    = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "bay-shore-ny");
 
 const branchLOCount: Record<string, number> = {
-  "uniondale-headquarters": LOAN_OFFICERS.filter((lo) => lo.branchSlug === "uniondale-headquarters" && !EXCLUDE.has(lo.slug)).length,
-  "bay-shore-ny":           bayShore.length,
+  "uniondale-headquarters": loanOfficersByBranch("uniondale-headquarters").length,
+  "bay-shore-ny":           loanOfficersByBranch("bay-shore-ny").length,
 };
 
 const faq = [
@@ -93,7 +93,7 @@ import ContactForm from "../../../../components/forms/ContactForm.astro";
         </div>
         <div class="card">
           <p class="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">2026 conforming limit (Nassau-Suffolk MSA)</p>
-          <p class="mt-2 text-3xl font-semibold text-[var(--color-ink)]">$1,209,750</p>
+          <p class="mt-2 text-3xl font-semibold text-[var(--color-ink)]">$1,249,125</p>
           <p class="mt-2 text-xs text-[var(--color-text-muted)]">High-balance conforming limit; jumbo above</p>
         </div>
       </div>
@@ -123,7 +123,7 @@ import ContactForm from "../../../../components/forms/ContactForm.astro";
   <section class="section bg-[var(--color-mist-gray)]">
     <div class="container-wide">
       <p class="eyebrow">Our Long Island offices</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Three offices across the Island.</h2>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">Two offices across the Island.</h2>
       <div class="mt-8 grid gap-6 md:grid-cols-3">
         {liBranches.map((b) => {
           const landingUrl = branchLandingPages[b.slug];

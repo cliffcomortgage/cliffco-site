@@ -145,7 +145,7 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     const value = +(document.getElementById("art-rm-value") as HTMLInputElement).value;
     const balance = +(document.getElementById("art-rm-bal") as HTMLInputElement).value;
 
-    const hecmLimit = 1209750;
+    const hecmLimit = 1249125;
     const lendingLimit = Math.min(value, hecmLimit);
     const ageFactor = Math.min(0.75, 0.40 + (age - 62) * 0.01);
     const grossProceeds = lendingLimit * ageFactor;
@@ -157,7 +157,7 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 
     let note = "";
     if (value > hecmLimit) {
-      note = "Note: HECM loans are limited to the 2025 FHA lending limit of $1,209,750. Your home value above that limit is not factored into HECM proceeds. A proprietary (jumbo) reverse mortgage may be available for higher-value homes.";
+      note = "Note: HECM loans are limited to the 2026 FHA lending limit of $1,249,125. Your home value above that limit is not factored into HECM proceeds. A proprietary (jumbo) reverse mortgage may be available for higher-value homes.";
     } else if (balance > grossProceeds * 0.6) {
       note = "Your existing mortgage balance is substantial relative to estimated proceeds. You may still qualify, but less equity will remain after payoff.";
     }
