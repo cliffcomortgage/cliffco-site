@@ -76,6 +76,21 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Brand cursor: the arrow from the logo (white outline so it shows on
+       dark sections). Hotspot 28 5 = the arrow's tip. Second declaration adds
+       the retina image where image-set() is supported; the first is the
+       fallback. */
+    cursor: url("/images/cursor.png") 28 5, auto;
+    cursor: image-set(url("/images/cursor.png") 1x, url("/images/cursor@2x.png") 2x) 28 5, auto;
+  }
+
+  /* Keep the standard hand on clickable things and the I-beam in text fields */
+  a[href], button:not(:disabled), summary, select, label[for], [role="button"] {
+    cursor: pointer;
+  }
+  input:not([type="checkbox"], [type="radio"], [type="button"], [type="submit"], [type="reset"], [type="range"], [type="color"], [type="file"]),
+  textarea, [contenteditable="true"] {
+    cursor: text;
   }
 
   body {
@@ -398,5 +413,4 @@ a:not(.btn):not(.card):not(.no-underline) {
   .btn { transition: none !important; }
   .card { transition: none !important; }
   header { transition: none !important; }
-  html, html * { cursor: auto !important; }
 }
