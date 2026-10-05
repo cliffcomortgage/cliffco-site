@@ -5,12 +5,11 @@
  * Source of truth: brand/brand-guide.pdf (Colors + Typography + Voice) - note
  * the brand guide's Graphik/purple-blue palette is being phased out; see below.
  *
- * Typography: Outfit is the production typeface (decision 2026-10-02 - moving
- * away from Open Sans to match the type system already shipping in the
- * cliffco-pos app, so the website and POS feel like one product family).
- * IBM Plex Mono is the secondary/mono font for figures, IDs, and timestamps,
- * also matching cliffco-pos. The brand guide's Graphik trial OTFs remain
- * unlicensed for web use regardless.
+ * Typography (decision 2026-10-05): Helvetica for body text (--font-sans),
+ * Outfit for headings (--font-display), IBM Plex Mono for eyebrows and small
+ * uppercase labels (--font-mono). Outfit + Plex Mono load from Google Fonts in
+ * Layout.astro; Helvetica comes from the visitor's device, never self-hosted.
+ * The brand guide's Graphik trial OTFs remain unlicensed for web use.
  */
 
 @theme {
@@ -32,11 +31,15 @@
   --color-accent-soft: #d4d4d4;
 
   /* ---------- Typography ---------- */
-  --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Body: Helvetica from the visitor's device (not self-hosted - Helvetica is
+     a commercial font with no web license on file); Arial is the near-metric
+     fallback where Helvetica isn't installed. */
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Headings */
   --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-logo: "Montserrat", ui-sans-serif, system-ui, sans-serif;
   --font-accent: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  /* Eyebrows and small uppercase labels (e.g. "Who qualifies") */
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 
   /* Tracking - per brand guide:
@@ -80,6 +83,10 @@
     font-size: var(--text-body);
     line-height: 1.6;
     letter-spacing: var(--tracking-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
   }
 
   h1, h2, h3, h4 {
@@ -155,10 +162,11 @@
 
   .eyebrow {
     display: inline-block;
+    font-family: var(--font-mono);
     font-size: var(--text-eyebrow);
     text-transform: uppercase;
     font-weight: 600;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.12em;
     color: var(--color-accent);
   }
 
