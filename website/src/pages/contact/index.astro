@@ -10,7 +10,7 @@ const allBranches = BRANCHES;
 
 <Layout
   title="Contact Cliffco Mortgage Bankers | (800) 834-4040"
-  description="Reach Cliffco by phone, online, or in person. 9 branch offices across NY, NJ, FL, AZ, and MN. Toll-free (800) 834-4040. A loan officer responds within one business day."
+  description={`Reach Cliffco by phone, online, or in person. ${BRANCHES.length} branch offices across NY, NJ, FL, AZ, and MN. Toll-free (800) 834-4040. A loan officer responds within one business day.`}
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
@@ -122,7 +122,7 @@ const allBranches = BRANCHES;
   <section class="section bg-[var(--color-mist-gray)]">
     <div class="container-wide">
       <p class="eyebrow">Our offices</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">9 branches across 5 states.</h2>
+      <h2 class="mt-3" style="font-size: var(--text-h2);">{BRANCHES.length} branches across 5 states.</h2>
       <div class="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {allBranches.map((b) => (
           <div class="card">

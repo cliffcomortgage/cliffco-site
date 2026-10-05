@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
+import { BRANCHES } from "../../data/branches";
 import { PRESS, formatPressDate } from "../../data/press";
 ---
 
@@ -87,7 +88,7 @@ import { PRESS, formatPressDate } from "../../data/press";
             <li>Founded 1989, headquartered in Uniondale, NY (Long Island)</li>
             <li>Licensed in 32 states</li>
             <li>Specialty: Non-QM, reverse mortgage, DSCR, business bank statement</li>
-            <li>9 branch offices across NY, NJ, FL, AZ, and MN</li>
+            <li>{BRANCHES.length} branch offices across NY, NJ, FL, AZ, and MN</li>
             <li>NMLS #{COMPANY.nmls}</li>
           </ul>
         </div>

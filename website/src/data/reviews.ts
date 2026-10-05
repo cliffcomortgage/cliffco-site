@@ -76,6 +76,17 @@ export const REVIEW_PLATFORMS: readonly ReviewPlatform[] = [
   },
 ];
 
+/**
+ * Overall star rating, weighted by review count. A plain average of the
+ * platform ratings rounded up to 5.0 because platforms with an unknown
+ * review count (entered as 0) counted as much as Experience.com's 3,600+.
+ */
+export const averageRating = (): number => {
+  const rated = REVIEW_PLATFORMS.filter((p) => p.rating !== null && p.reviewCount > 0);
+  const total = rated.reduce((sum, p) => sum + p.reviewCount, 0);
+  return rated.reduce((sum, p) => sum + (p.rating as number) * p.reviewCount, 0) / total;
+};
+
 export type FeaturedReview = {
   quote: string;
   author: string;

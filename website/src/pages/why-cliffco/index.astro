@@ -3,17 +3,18 @@ import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
 import { articleSchema } from "../../lib/schema";
-import { REVIEW_PLATFORMS } from "../../data/reviews";
+import { averageRating } from "../../data/reviews";
+import { BRANCHES } from "../../data/branches";
 
-const numericRatings = REVIEW_PLATFORMS.filter(p => p.rating !== null).map(p => p.rating as number);
-const avgRating = (numericRatings.reduce((a, b) => a + b, 0) / numericRatings.length).toFixed(1);
+const avgRating = averageRating().toFixed(1);
 
-const yearsInBiz = new Date().getFullYear() - COMPANY.founded;
+const yearsInBiz = COMPANY.yearsInBusiness();
+const branchCount = BRANCHES.length;
 
 const schema = [
   articleSchema({
     headline: "Why Cliffco Mortgage Bankers",
-    description: "36 years of mortgage lending, 32 states, 6 branches, and a specialty in loans conventional lenders won't touch. What makes Cliffco different.",
+    description: `${yearsInBiz} years of mortgage lending, 32 states, ${branchCount} branches, and a specialty in loans conventional lenders won't touch. What makes Cliffco different.`,
     url: "/why-cliffco/",
     datePublished: "2026-04-15",
     dateModified: "2026-10-05",
@@ -38,7 +39,7 @@ const difference = [
   },
   {
     heading: "Licensed Coast to Coast",
-    body: "32 states. 6 branch offices. In New York, New Jersey, Arizona, Florida, Minnesota, or beyond, you work with a real loan officer who knows your market, your state's rules, and your specific loan type.",
+    body: `32 states. ${branchCount} branch offices. In New York, New Jersey, Arizona, Florida, Minnesota, or beyond, you work with a real loan officer who knows your market, your state's rules, and your specific loan type.`,
   },
 ];
 
@@ -56,7 +57,7 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
 
 <Layout
   title="Why Cliffco Mortgage Bankers | Non-QM Specialists Since 1989"
-  description="Cliffco has been getting families home since 1989 - especially the ones other banks turned away. 32 states, 6 branches, $6B+ closed. What sets us apart."
+  description={`Cliffco has been getting families home since 1989 - especially the ones other banks turned away. 32 states, ${branchCount} branches, $6B+ closed. What sets us apart.`}
   schema={schema}
 >
   <Breadcrumbs trail={[
@@ -170,7 +171,7 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
       </div>
       <div class="lg:col-span-6 lg:col-start-7 space-y-5 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
         <p>Cliffco was founded in {COMPANY.founded} on Long Island, where we remain headquartered today. For {yearsInBiz} years, our core business has been the loans that don't fit the standard mold: self-employed borrowers, real estate investors, seniors who want to stay in their homes, and borrowers who walked in with a denial letter from somewhere else.</p>
-        <p>We grew into 32 states and 6 offices by building a reputation for saying yes when everyone else said no. That reputation travels. About half our business today comes from referrals.</p>
+        <p>We grew into 32 states and {branchCount} offices by building a reputation for saying yes when everyone else said no. That reputation travels. About half our business today comes from referrals.</p>
         <p>Christopher Clifford, our President (NMLS #65234), has been with Cliffco since the beginning. The company he leads today is built on the same conviction it started with: every family deserves a real chance at homeownership, regardless of whether their financial life fits a box.</p>
       </div>
     </div>

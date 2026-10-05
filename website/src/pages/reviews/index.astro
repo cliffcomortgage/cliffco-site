@@ -2,12 +2,10 @@
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
-import { REVIEW_PLATFORMS, FEATURED_REVIEWS } from "../../data/reviews";
+import { REVIEW_PLATFORMS, FEATURED_REVIEWS, averageRating } from "../../data/reviews";
 
 const totalReviews = REVIEW_PLATFORMS.reduce((sum, p) => sum + p.reviewCount, 0);
-const ratedPlatforms = REVIEW_PLATFORMS.filter((p) => p.rating !== null);
-const avgRating =
-  ratedPlatforms.reduce((sum, p) => sum + (p.rating ?? 0), 0) / ratedPlatforms.length;
+const avgRating = averageRating();
 
 function stars(rating: number | null) {
   if (rating === null) return "";
@@ -33,7 +31,7 @@ const writeReviewPlatforms = REVIEW_PLATFORMS.filter((p) => p.writeUrl);
     <p class="eyebrow">Reviews</p>
     <h1 class="mt-3" style="font-size: var(--text-display-lg);">What borrowers say about Cliffco.</h1>
     <p class="lead mt-6">
-      Over {totalReviews.toLocaleString()}+ reviews across the web. Averaged across rated platforms: {avgRating.toFixed(1)} out of 5.
+      {totalReviews.toLocaleString()}+ reviews across the web. Average rating, weighted by number of reviews: {avgRating.toFixed(1)} out of 5.
     </p>
   </section>
 
