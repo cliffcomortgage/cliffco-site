@@ -62,16 +62,28 @@ function isoMonth(pubDate) {
   }
 }
 
+// Google News RSS descriptions are entity-escaped HTML (&lt;a href=...&gt;), so
+// entities must be decoded BEFORE stripping tags, or the tags survive as text.
 function stripHtml(html) {
-  return html
-    .replace(/<[^>]*>/g, " ")
-    .replace(/&amp;/g, "&")
+  const decode = (s) => s
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&");
+  return decode(decode(html).replace(/<[^>]*>/g, " "))
+    .replace(/<[^>]*>/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+// Google News descriptions are just "<headline> <source>"; drop them rather
+// than show the headline twice.
+function summaryFor(title, description) {
+  const text = stripHtml(description);
+  const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  return norm(text).startsWith(norm(stripHtml(title))) ? "" : text.slice(0, 400);
 }
 
 // ── Main ───────────────────────────────────────────────────────────────────
@@ -106,7 +118,7 @@ async function main() {
     if (!item.link || existingUrls.has(item.link)) continue;
 
     const { title, publication } = splitTitle(item.title);
-    const summary = stripHtml(item.description).slice(0, 400);
+    const summary = summaryFor(title, item.description);
 
     newItems.push({
       title,

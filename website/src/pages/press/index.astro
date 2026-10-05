@@ -47,7 +47,7 @@ import { PRESS, formatPressDate } from "../../data/press";
                   {item.title}
                 </a>
               </h2>
-              <p class="mt-3 text-sm text-[var(--color-text-muted)]">{item.summary}</p>
+              {item.summary && <p class="mt-3 text-sm text-[var(--color-text-muted)] [overflow-wrap:anywhere]">{item.summary}</p>}
               <a
                 href={item.url}
                 target="_blank"
