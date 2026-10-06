@@ -27,7 +27,21 @@ const schema = [
     dateModified: "2026-07-15",
   }),
 ];
-import ContactForm from "../../../components/forms/ContactForm.astro";
+
+import AsymHero from "../../../components/asym/AsymHero.astro";
+import Split from "../../../components/asym/Split.astro";
+import FormCard from "../../../components/asym/FormCard.astro";
+import FaqList from "../../../components/asym/FaqList.astro";
+import CtaBand from "../../../components/asym/CtaBand.astro";
+
+const glance = [
+  ["Down payment", "0% for eligible borrowers with full entitlement"],
+  ["Mortgage insurance", "None (VA funding fee applies instead)"],
+  ["Funding fee", "2.15% (first use, 0% down); exempt for 10%+ disability"],
+  ["Loan limit", "No cap with full entitlement (as of 2020)"],
+  ["Eligible property types", "Primary residence, 1–4 units"],
+  ["Min FICO (Cliffco)", "580 (program dependent)"],
+];
 ---
 
 <Layout title={`VA Loans | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
@@ -37,71 +51,51 @@ import ContactForm from "../../../components/forms/ContactForm.astro";
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <section class="container-wide pt-12 pb-5">
-    <p class="eyebrow">{p.category}</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
-    <p class="lead mt-6">{p.oneLiner}</p>
-  </section>
+  <AsymHero
+    eyebrow={p.category}
+    lead={p.oneLiner}
+    facts={[
+      { label: "Down payment", value: "0% with full entitlement" },
+      { label: "Mortgage insurance", value: "None" },
+      { label: "Min FICO (Cliffco)", value: "580" },
+    ]}
+  >
+    {p.name}
+    <Fragment slot="actions">
+      <a href="#contact" class="btn btn-primary">Get a VA pre-qual</a>
+      <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+    </Fragment>
+  </AsymHero>
 
-  <section class="bg-white pb-12">
-    <div class="container-wide">
-      <p class="lead">{p.directAnswer}</p>
-    </div>
-  </section>
-
-  <section class="bg-[var(--color-mist-gray)] section">
-    <div class="container-wide grid gap-10 lg:grid-cols-2">
-      <div>
+  <!-- LEAD FORM + OVERVIEW -->
+  <section class="bg-white border-t border-[var(--color-ink)]">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <FormCard title="Served your country. Let's put your VA benefit to work." sub="We'll confirm your entitlement and show you what you can buy without a down payment." formSource="loan-va" />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
         <p class="eyebrow">VA benefit at a glance</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">No down payment. No mortgage insurance.</h2>
-      </div>
-      <dl class="space-y-3">
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Down payment</dt><dd class="text-[var(--color-text-muted)]">0% for eligible borrowers with full entitlement</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Mortgage insurance</dt><dd class="text-[var(--color-text-muted)]">None (VA funding fee applies instead)</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Funding fee</dt><dd class="text-[var(--color-text-muted)]">2.15% (first use, 0% down); exempt for 10%+ disability</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Loan limit</dt><dd class="text-[var(--color-text-muted)]">No cap with full entitlement (as of 2020)</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Eligible property types</dt><dd class="text-[var(--color-text-muted)]">Primary residence, 1–4 units</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min FICO (Cliffco)</dt><dd class="text-[var(--color-text-muted)]">580 (program dependent)</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Common VA loan questions.</h2>
-      <div class="mt-8 space-y-6">
-        {faq.map((q) => (
-          <details class="border-b border-[var(--color-mist-gray)] pb-4">
-            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
-            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
-          </details>
-        ))}
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">No down payment. No mortgage insurance.</h2>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
+        <dl class="mt-8 border-t border-[var(--color-ink)]">
+          {glance.map(([k, v]) => (
+            <div class="grid sm:grid-cols-[minmax(0,11rem)_1fr] gap-x-6 gap-y-1 py-4 border-b border-black/15">
+              <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">{k}</dt>
+              <dd class="text-[var(--color-text)]">{v}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </div>
   </section>
 
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">You served. Zero down is your benefit.</h2>
-      <p class="lead mt-4 text-white/85">A Cliffco loan officer can pull your Certificate of Eligibility and pre-qual you in one business day.</p>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get a VA pre-qual</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
-    </div>
-  </section>
+  <!-- FAQ -->
+  <Split eyebrow="FAQ" title="Common VA loan questions.">
+    <FaqList items={faq} />
+  </Split>
 
-  <!-- CONTACT FORM -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Served your country. Let's put your VA benefit to work.</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">We'll confirm your entitlement and show you what you can buy without a down payment.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
-          formSource="loan-va"
-        />
-      </div>
-    </div>
-  </section>
+  <CtaBand title="You served. Zero down is your benefit." text="A Cliffco loan officer can pull your Certificate of Eligibility and pre-qual you in one business day.">
+    <a href="#contact" class="btn btn-primary">Get a VA pre-qual</a>
+    <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+  </CtaBand>
 </Layout>

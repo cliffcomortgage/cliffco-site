@@ -29,7 +29,21 @@ const schema = [
     dateModified: "2026-07-15",
   }),
 ];
-import ContactForm from "../../../components/forms/ContactForm.astro";
+
+import AsymHero from "../../../components/asym/AsymHero.astro";
+import Split from "../../../components/asym/Split.astro";
+import FormCard from "../../../components/asym/FormCard.astro";
+import FaqList from "../../../components/asym/FaqList.astro";
+import CtaBand from "../../../components/asym/CtaBand.astro";
+
+const glance = [
+  ["Approval decision", "In as little as 5 minutes*"],
+  ["Funding", "In as few as 5 business days*"],
+  ["Line amounts", "$50,000–$1,000,000"],
+  ["Rate structure", "Variable"],
+  ["First mortgage", "Unchanged; the line is a second lien"],
+  ["Process", "Fully online, remote notary closing"],
+];
 ---
 
 <Layout title={`HELOC | Home Equity Line of Credit | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
@@ -39,91 +53,66 @@ import ContactForm from "../../../components/forms/ContactForm.astro";
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <section class="container-wide pt-12 pb-5">
-    <p class="eyebrow">{p.category}</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
-    <p class="lead mt-6">{p.oneLiner}</p>
-  </section>
+  <AsymHero
+    eyebrow={p.category}
+    lead={p.oneLiner}
+    facts={[
+      { label: "Approval decision", value: "As little as 5 minutes*" },
+      { label: "Funding", value: "As few as 5 business days*" },
+      { label: "Line amounts", value: "$50K–$1M" },
+    ]}
+  >
+    {p.name}
+    <Fragment slot="actions">
+      <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+      <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+    </Fragment>
+    <Fragment slot="note">*See terms below.</Fragment>
+  </AsymHero>
 
-  <section class="bg-white pb-12">
-    <div class="container-wide">
-      <p class="lead">{p.directAnswer}</p>
-    </div>
-  </section>
-
-  <section class="bg-[var(--color-mist-gray)] section">
-    <div class="container-wide grid gap-10 lg:grid-cols-2">
-      <div>
+  <!-- LEAD FORM + AT A GLANCE -->
+  <section class="bg-white border-t border-[var(--color-ink)]">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <FormCard title="See what your equity could do." sub="Tell us your home's approximate value and your current mortgage balance and we'll show you what a line could look like." formSource="loan-heloc" />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
         <p class="eyebrow">HELOC at a glance</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Your equity, without touching your first mortgage.</h2>
-      </div>
-      <dl class="space-y-3">
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Approval decision</dt><dd class="text-[var(--color-text-muted)]">In as little as 5 minutes*</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Funding</dt><dd class="text-[var(--color-text-muted)]">In as few as 5 business days*</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Line amounts</dt><dd class="text-[var(--color-text-muted)]">$50,000–$1,000,000</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Rate structure</dt><dd class="text-[var(--color-text-muted)]">Variable</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>First mortgage</dt><dd class="text-[var(--color-text-muted)]">Unchanged; the line is a second lien</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Process</dt><dd class="text-[var(--color-text-muted)]">Fully online, remote notary closing</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Common HELOC questions.</h2>
-      <div class="mt-8 space-y-6">
-        {faq.map((q) => (
-          <details class="border-b border-[var(--color-mist-gray)] pb-4">
-            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
-            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
-          </details>
-        ))}
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">Your equity, without touching your first mortgage.</h2>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
+        <dl class="mt-8 border-t border-[var(--color-ink)]">
+          {glance.map(([k, v]) => (
+            <div class="grid sm:grid-cols-[minmax(0,11rem)_1fr] gap-x-6 gap-y-1 py-4 border-b border-black/15">
+              <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">{k}</dt>
+              <dd class="text-[var(--color-text)]">{v}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </div>
   </section>
 
-  <section class="section bg-white">
-    <div class="container-wide">
-      <div class="rounded-lg border border-[var(--color-mist-gray)] p-6 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
-        <div>
-          <p class="font-semibold text-[var(--color-ink)]">Comparing a HELOC to a cash-out refinance?</p>
-          <p class="text-sm text-[var(--color-text-muted)] mt-1">If your first mortgage rate is low, a HELOC usually wins. If you'd benefit from restructuring the whole loan, cash-out may make more sense. We compare both for you.</p>
-        </div>
-        <a href="/mortgage-guides/blog/cash-out-refinance-vs-heloc/" class="btn btn-secondary text-sm shrink-0">Read the comparison →</a>
-      </div>
-    </div>
-  </section>
+  <!-- FAQ -->
+  <Split eyebrow="FAQ" title="Common HELOC questions.">
+    <FaqList items={faq} />
+  </Split>
 
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Tap your equity. Keep your rate.</h2>
-      <p class="lead mt-4 text-white/85">Apply online and get an approval decision in minutes.</p>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Pre-Qualified</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
-    </div>
-  </section>
+  <!-- HELOC VS CASH-OUT -->
+  <Split eyebrow="HELOC or cash-out?" title="Comparing a HELOC to a cash-out refinance?">
+    <p class="text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">If your first mortgage rate is low, a HELOC usually wins. If you'd benefit from restructuring the whole loan, cash-out may make more sense. We compare both for you.</p>
+    <a href="/mortgage-guides/blog/cash-out-refinance-vs-heloc/" class="mt-6 btn btn-secondary text-sm">Read the comparison →</a>
+  </Split>
 
-  <section class="bg-white py-8">
+  <CtaBand title="Tap your equity. Keep your rate." text="Apply online and get an approval decision in minutes.">
+    <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+    <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+  </CtaBand>
+
+  <section class="bg-white py-8" id="terms">
     <div class="container-wide">
       <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
         *Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report. Five business day funding timeline assumes closing the loan with our remote online notary. Funding timelines may be longer for loans secured by properties located in counties that do not permit recording of e-signatures or that otherwise require an in-person closing. The HELOC's interest rate is variable, tied to the Wall Street Journal Prime Rate plus a margin, subject to a 4% floor and an 18% lifetime cap (may vary by state); your rate and payment may increase or decrease over the life of the line.
       </p>
-    </div>
-  </section>
-
-  <!-- CONTACT FORM -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">See what your equity could do.</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us your home's approximate value and your current mortgage balance and we'll show you what a line could look like.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
-          formSource="loan-heloc"
-        />
-      </div>
     </div>
   </section>
 </Layout>

@@ -4,7 +4,6 @@ import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../data/company";
 import { product } from "../../../data/products";
 import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
-import ContactForm from "../../../components/forms/ContactForm.astro";
 
 const p = product("business-bank-statement")!;
 
@@ -28,6 +27,21 @@ const schema = [
     dateModified: "2026-07-15",
   }),
 ];
+import AsymHero from "../../../components/asym/AsymHero.astro";
+import Split from "../../../components/asym/Split.astro";
+import FormCard from "../../../components/asym/FormCard.astro";
+import FaqList from "../../../components/asym/FaqList.astro";
+import CtaBand from "../../../components/asym/CtaBand.astro";
+
+const numbers = [
+  ["Statement period", "12 or 24 months"],
+  ["Rate range", "7.00%-9.50%"],
+  ["Expense ratio", "typically 50% (varies by industry)"],
+  ["Max LTV", "up to 90%"],
+  ["Min FICO", "620 (best pricing 720+)"],
+  ["Loan amounts", "$150K-$3M+"],
+  ["Property types", "SFR, 2-4 unit, condo, PUD, co-ops"],
+];
 ---
 
 <Layout title={`${p.name} | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
@@ -37,87 +51,62 @@ const schema = [
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <section class="container-wide pt-12 pb-5">
-    <p class="eyebrow">{p.category}</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
-    <p class="lead mt-6">{p.oneLiner}</p>
-  </section>
+  <AsymHero
+    eyebrow={p.category}
+    lead={p.oneLiner}
+    facts={[
+      { label: "Statement period", value: "12 or 24 months" },
+      { label: "Max LTV", value: "Up to 90%" },
+      { label: "Loan amounts", value: "$150K–$3M+" },
+    ]}
+  >
+    {p.name}
+    <Fragment slot="actions">
+      <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+      <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+    </Fragment>
+  </AsymHero>
 
-  <section class="bg-white pb-12">
-    <div class="container-wide">
-      <p class="lead">{p.directAnswer}</p>
-</div>
-    </div>
-  </section>
-
-  <section class="bg-[var(--color-mist-gray)] section">
-    <div class="container-wide grid gap-10 lg:grid-cols-2">
-      <div>
+  <!-- LEAD FORM + THE NUMBERS -->
+  <section class="bg-white border-t border-[var(--color-ink)]">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <FormCard title="See what your business deposits qualify you for." sub="Tell us about your business and we'll run the numbers using your bank statements." formSource="loan-bank-statement" />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
         <p class="eyebrow">The numbers</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">What to expect.</h2>
-      </div>
-      <dl class="space-y-3">
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Statement period</dt><dd class="text-[var(--color-text-muted)]">12 or 24 months</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Rate range</dt><dd class="text-[var(--color-text-muted)]">7.00%-9.50%</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Expense ratio</dt><dd class="text-[var(--color-text-muted)]">typically 50% (varies by industry)</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Max LTV</dt><dd class="text-[var(--color-text-muted)]">up to 90%</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min FICO</dt><dd class="text-[var(--color-text-muted)]">620 (best pricing 720+)</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Loan amounts</dt><dd class="text-[var(--color-text-muted)]">$150K-$3M+</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Property types</dt><dd class="text-[var(--color-text-muted)]">SFR, 2-4 unit, condo, PUD, co-ops</dd></div>
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">What to expect.</h2>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
+        <dl class="mt-8 border-t border-[var(--color-ink)]">
+          {numbers.map(([k, v]) => (
+            <div class="grid sm:grid-cols-[minmax(0,11rem)_1fr] gap-x-6 gap-y-1 py-4 border-b border-black/15">
+              <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">{k}</dt>
+              <dd class="text-[var(--color-text)]">{v}</dd>
+            </div>
+          ))}
+        </dl>
         <p class="text-xs text-[var(--color-text-muted)] mt-4 leading-relaxed">The chart above is for illustrative purposes only. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.</p>
-      </dl>
-    </div>
-  </section>
-
-  <section class="section bg-white">
-    <div class="container-wide">
-      <p class="eyebrow">Pair with DSCR</p>
-      <h2 class="mt-3 max-w-3xl" style="font-size: var(--text-h2);">Own a business and investment properties? We can handle both.</h2>
-      <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
-        Many of Cliffco's business bank statement borrowers are also real estate investors. We combine
-        the business bank statement program for your primary residence with DSCR financing for your
-        investment portfolio: one relationship, one underwriting team.
-      </p>
-      <a href="/loans/dscr/" class="btn btn-secondary mt-6">See DSCR for investors →</a>
-    </div>
-  </section>
-
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Common questions from business owners.</h2>
-      <div class="mt-8 space-y-6">
-        {faq.map((q) => (
-          <details class="border-b border-[var(--color-mist-gray)] pb-4">
-            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
-            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
-          </details>
-        ))}
       </div>
     </div>
   </section>
 
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Self-employed and ready to buy?</h2>
-      <p class="lead mt-4 text-white/85">Send us 12 months of business bank statements. Pre-qual in one business day.</p>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Pre-Qualified</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
-    </div>
-  </section>
+  <!-- PAIR WITH DSCR (black band) -->
+  <Split dark eyebrow="Pair with DSCR" title="Own a business and investment properties? We can handle both.">
+    <p class="text-white/85 leading-relaxed" style="font-size: 1.125rem;">
+      Many of Cliffco's business bank statement borrowers are also real estate investors. We combine
+      the business bank statement program for your primary residence with DSCR financing for your
+      investment portfolio: one relationship, one underwriting team.
+    </p>
+    <a href="/loans/dscr/" class="btn btn-secondary mt-8 !border-white !text-white">See DSCR for investors →</a>
+  </Split>
 
-  <!-- CONTACT FORM -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">See what your business deposits qualify you for.</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us about your business and we'll run the numbers using your bank statements.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
-          formSource="loan-bank-statement"
-        />
-      </div>
-    </div>
-  </section>
+  <!-- FAQ -->
+  <Split rule={false} eyebrow="FAQ" title="Common questions from business owners.">
+    <FaqList items={faq} />
+  </Split>
+
+  <CtaBand title="Self-employed and ready to buy?" text="Send us 12 months of business bank statements. Pre-qual in one business day.">
+    <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+    <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+  </CtaBand>
 </Layout>

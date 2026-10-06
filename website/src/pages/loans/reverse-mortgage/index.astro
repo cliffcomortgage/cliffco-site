@@ -4,7 +4,6 @@ import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../data/company";
 import { product } from "../../../data/products";
 import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
-import ContactForm from "../../../components/forms/ContactForm.astro";
 
 const p = product("reverse-mortgage")!;
 const HECM_LIMIT_2026 = "$1,249,125";
@@ -29,6 +28,17 @@ const schema = [
     dateModified: "2026-07-15",
   }),
 ];
+import AsymHero from "../../../components/asym/AsymHero.astro";
+import Split from "../../../components/asym/Split.astro";
+import FormCard from "../../../components/asym/FormCard.astro";
+import FaqList from "../../../components/asym/FaqList.astro";
+import CtaBand from "../../../components/asym/CtaBand.astro";
+
+const payouts = [
+  { name: "Lump sum", body: "A single one-time disbursement at closing. Often used to pay off an existing mortgage or make a major purchase." },
+  { name: "Line of credit (with growth feature)", body: "Draw as needed. The unused portion of the line grows over time at the same rate the loan would accrue, a unique HECM feature financial planners often pair with retirement strategies." },
+  { name: "Tenure or term payments", body: "Monthly disbursements for life (tenure) or for a fixed period (term). Useful for supplementing fixed income." },
+];
 ---
 
 <Layout title={`${p.name} (HECM) | Cliffco`} description={p.directAnswer} schema={schema}>
@@ -38,101 +48,80 @@ const schema = [
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <section class="container-wide pt-12 pb-5">
-    <p class="eyebrow">{p.category}</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name} (HECM and proprietary)</h1>
-    <p class="lead mt-6">{p.oneLiner}</p>
-  </section>
+  <AsymHero
+    eyebrow={p.category}
+    lead={p.oneLiner}
+    facts={[
+      { label: "Eligible age", value: "62 and older" },
+      { label: "2026 HECM limit", value: HECM_LIMIT_2026 },
+      { label: "Programs", value: "HECM & proprietary jumbo" },
+    ]}
+  >
+    {p.name} (HECM and proprietary)
+    <Fragment slot="actions">
+      <a href="#contact" class="btn btn-primary">Schedule a family consultation</a>
+      <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+    </Fragment>
+  </AsymHero>
 
-  <section class="bg-white pb-12">
-    <div class="container-wide">
-      <p class="lead">{p.directAnswer}</p>
-</div>
-    </div>
-  </section>
-
-  <section class="bg-[var(--color-mist-gray)] section">
-    <div class="container-wide">
-      <p class="eyebrow">Programs</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">HECM and proprietary jumbo reverse.</h2>
-      <div class="mt-8 grid gap-6 md:grid-cols-2">
-        <article class="card">
-          <h3 class="text-lg font-semibold">HECM (Home Equity Conversion Mortgage)</h3>
-          <p class="mt-3 text-sm">FHA-insured. Available nationwide for owner-occupied 1-4 unit properties (with primary occupancy). 2026 maximum claim amount: <strong>{HECM_LIMIT_2026}</strong>.</p>
-        </article>
-        <article class="card">
-          <h3 class="text-lg font-semibold">Proprietary jumbo reverse</h3>
-          <p class="mt-3 text-sm">For higher-value homes above the FHA HECM limit. Underwriting and loan amounts vary by program; Cliffco can compare proprietary options to a standard HECM.</p>
-        </article>
+  <!-- LEAD FORM + PROGRAMS -->
+  <section class="bg-white border-t border-[var(--color-ink)]">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <FormCard title="Want to see if a reverse mortgage makes sense for your situation?" sub="Tell us about your home and your goals and we'll be direct about whether it's the right move." formSource="loan-reverse" />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
+        <p class="eyebrow">Programs</p>
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">HECM and proprietary jumbo reverse.</h2>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
+        <div class="mt-8 grid gap-4">
+          <article class="rounded-2xl p-6 bg-[var(--color-ink)] text-white">
+            <h3 class="text-lg font-semibold !text-white">HECM (Home Equity Conversion Mortgage)</h3>
+            <p class="mt-3 text-sm text-white/85 leading-relaxed">FHA-insured. Available nationwide for owner-occupied 1-4 unit properties (with primary occupancy). 2026 maximum claim amount: <strong class="text-white">{HECM_LIMIT_2026}</strong>.</p>
+          </article>
+          <article class="rounded-2xl p-6 border-2 border-[var(--color-ink)]">
+            <h3 class="text-lg font-semibold text-[var(--color-ink)]">Proprietary jumbo reverse</h3>
+            <p class="mt-3 text-sm text-[var(--color-text)] leading-relaxed">For higher-value homes above the FHA HECM limit. Underwriting and loan amounts vary by program; Cliffco can compare proprietary options to a standard HECM.</p>
+          </article>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section bg-white">
-    <div class="container-wide grid gap-10 lg:grid-cols-2">
-      <div>
-        <p class="eyebrow">Three ways to receive your money</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Pick the structure that fits your plan.</h2>
-      </div>
-      <div class="space-y-4">
-        <div class="card"><h3 class="text-base font-semibold">Lump sum</h3><p class="mt-2 text-sm text-[var(--color-text-muted)]">A single one-time disbursement at closing. Often used to pay off an existing mortgage or make a major purchase.</p></div>
-        <div class="card"><h3 class="text-base font-semibold">Line of credit (with growth feature)</h3><p class="mt-2 text-sm text-[var(--color-text-muted)]">Draw as needed. The unused portion of the line grows over time at the same rate the loan would accrue, a unique HECM feature financial planners often pair with retirement strategies.</p></div>
-        <div class="card"><h3 class="text-base font-semibold">Tenure or term payments</h3><p class="mt-2 text-sm text-[var(--color-text-muted)]">Monthly disbursements for life (tenure) or for a fixed period (term). Useful for supplementing fixed income.</p></div>
-      </div>
-    </div>
-  </section>
+  <!-- PAYOUT OPTIONS -->
+  <Split eyebrow="Three ways to receive your money" title="Pick the structure that fits your plan.">
+    <ol class="list-none m-0 p-0 border-t border-[var(--color-ink)]">
+      {payouts.map((o, i) => (
+        <li class="grid grid-cols-[3rem_1fr] gap-4 py-7 border-b border-black/15">
+          <span class="font-mono text-sm text-[var(--color-text-muted)] pt-1">0{i + 1}</span>
+          <div>
+            <h3 class="text-lg font-semibold text-[var(--color-ink)]">{o.name}</h3>
+            <p class="mt-2 text-[var(--color-text)] leading-relaxed">{o.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </Split>
 
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <p class="eyebrow">Counseling is required (typically low-cost or covered entirely)</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Independent HUD-approved counseling, before any application.</h2>
-      <p class="mt-4">
-        Federal law requires every HECM borrower to complete a counseling session with an
-        independent <a href="https://www.hudexchange.info/programs/housing-counseling/" rel="noopener">HUD-approved housing counseling agency</a>
-        before signing a reverse mortgage application. Sessions take roughly 60-90 minutes, are
-        available by phone or in person, and cost $125-$200 (often financeable into the loan).
-        Cliffco can recommend approved agencies, but the counselor must be independent of the
-        lender. That's the law, and we like it that way.
-      </p>
-    </div>
-  </section>
+  <!-- COUNSELING (black band) -->
+  <Split dark eyebrow="Counseling is required (typically low-cost or covered entirely)" title="Independent HUD-approved counseling, before any application.">
+    <p class="text-white/85 leading-relaxed" style="font-size: 1.125rem;">
+      Federal law requires every HECM borrower to complete a counseling session with an
+      independent <a href="https://www.hudexchange.info/programs/housing-counseling/" rel="noopener" class="!text-white underline">HUD-approved housing counseling agency</a>
+      before signing a reverse mortgage application. Sessions take roughly 60-90 minutes, are
+      available by phone or in person, and cost $125-$200 (often financeable into the loan).
+      Cliffco can recommend approved agencies, but the counselor must be independent of the
+      lender. That's the law, and we like it that way.
+    </p>
+  </Split>
 
-  <section class="section bg-white">
-    <div class="container-wide">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Common reverse mortgage questions.</h2>
-      <div class="mt-8 space-y-6">
-        {faq.map((q) => (
-          <details class="border-b border-[var(--color-mist-gray)] pb-4">
-            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
-            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
+  <!-- FAQ -->
+  <Split rule={false} eyebrow="FAQ" title="Common reverse mortgage questions.">
+    <FaqList items={faq} />
+  </Split>
 
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Bring the kids on the call.</h2>
-      <p class="lead mt-4 text-white/85">A reverse mortgage decision is a family decision. Cliffco welcomes adult children on the consultation.</p>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Schedule a family consultation</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT FORM -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Want to see if a reverse mortgage makes sense for your situation?</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us about your home and your goals and we'll be direct about whether it's the right move.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
-          formSource="loan-reverse"
-        />
-      </div>
-    </div>
-  </section>
+  <CtaBand title="Bring the kids on the call." text="A reverse mortgage decision is a family decision. Cliffco welcomes adult children on the consultation.">
+    <a href="#contact" class="btn btn-primary">Schedule a family consultation</a>
+    <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+  </CtaBand>
 </Layout>

@@ -6,16 +6,20 @@
  * cutout (stands at the bottom of the panel). Optional black/white tag
  * overlaps the panel's left edge.
  *
+ * Without an image, pass `facts` and the panel shows them as large white
+ * type instead (used by the loan program pages).
+ *
  * Slots: default = h1 content, "actions" = buttons, "note" = small print.
  */
 interface Props {
   eyebrow: string;
   lead?: string;
-  image: { src: string; alt?: string; cutout?: boolean; srcset?: string };
+  image?: { src: string; alt?: string; cutout?: boolean; srcset?: string };
+  facts?: { label: string; value: string }[];
   tag?: { stat: string; label: string };
 }
-const { eyebrow, lead, image, tag } = Astro.props;
-const decorative = !image.alt;
+const { eyebrow, lead, image, facts, tag } = Astro.props;
+const decorative = !image?.alt;
 ---
 
 <section class="relative bg-white overflow-hidden">
@@ -37,8 +41,17 @@ const decorative = !image.alt;
     </div>
   </div>
 
-  <div class={`relative mx-6 mb-12 lg:m-0 lg:absolute lg:top-14 lg:bottom-0 lg:right-0 lg:w-[46vw] bg-[var(--color-ink)] rounded-2xl lg:rounded-none lg:rounded-tl-[2.5rem] ${image.cutout ? "h-[340px] lg:h-auto" : "aspect-[4/3] lg:aspect-auto overflow-hidden"}`}>
-    {image.cutout ? (
+  <div class={`relative mx-6 mb-12 lg:m-0 lg:absolute lg:top-14 lg:bottom-0 lg:right-0 lg:w-[46vw] bg-[var(--color-ink)] rounded-2xl lg:rounded-none lg:rounded-tl-[2.5rem] ${!image ? "" : image.cutout ? "h-[340px] lg:h-auto" : "aspect-[4/3] lg:aspect-auto overflow-hidden"}`}>
+    {!image ? (
+      <dl class="relative px-7 py-9 sm:px-10 lg:absolute lg:inset-0 lg:pl-[12%] lg:pr-[10%] lg:py-14 flex flex-col justify-center gap-6 lg:gap-8">
+        {facts?.map((f) => (
+          <div class="border-t border-white/25 pt-4">
+            <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-white/55">{f.label}</dt>
+            <dd class="mt-2 text-white font-bold leading-tight" style="font-family: var(--font-display); font-size: clamp(1.375rem, 2.1vw, 2rem); letter-spacing: -0.02em;">{f.value}</dd>
+          </div>
+        ))}
+      </dl>
+    ) : image.cutout ? (
       <img
         src={image.src}
         alt={image.alt ?? ""}

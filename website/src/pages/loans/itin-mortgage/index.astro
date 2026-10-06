@@ -4,7 +4,6 @@ import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../data/company";
 import { product } from "../../../data/products";
 import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
-import ContactForm from "../../../components/forms/ContactForm.astro";
 
 const p = product("itin-mortgage")!;
 
@@ -50,6 +49,27 @@ const schema = [
     dateModified: "2026-07-15",
   }),
 ];
+import AsymHero from "../../../components/asym/AsymHero.astro";
+import Split from "../../../components/asym/Split.astro";
+import FormCard from "../../../components/asym/FormCard.astro";
+import FaqList from "../../../components/asym/FaqList.astro";
+import CtaBand from "../../../components/asym/CtaBand.astro";
+
+const whoQualifies = [
+  { title: "Immigrants and non-residents", body: "Foreign-born borrowers living in the US who file taxes with an ITIN and have no Social Security number, regardless of immigration status." },
+  { title: "Self-employed ITIN holders", body: "Business owners and self-employed individuals who earn income in the US, file with an ITIN, and can document income through bank statements or 1099s." },
+  { title: "First-time homebuyers", body: "Buyers purchasing a primary residence for the first time, regardless of immigration status. ITIN loans are available for primary homes, second homes, and investment properties." },
+  { title: "Real estate investors", body: "Borrowers looking to purchase investment or rental properties using ITIN documentation. Multi-unit properties and condos are eligible." },
+];
+const numbers = [
+  ["Rate range", "7.50%–9.50%"],
+  ["Min down payment", "15%–20% (primary) / 20–25% (investment)"],
+  ["Credit requirement", "660+ FICO or alternative credit"],
+  ["Income documentation", "12–24 months bank statements or 1099s"],
+  ["Loan amounts", "$150K–$2.5M+"],
+  ["Property types", "SFR, 2–4 unit, condo"],
+  ["Occupancy", "Primary, second home, investment"],
+];
 ---
 
 <Layout title={`${p.name} | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
@@ -59,118 +79,75 @@ const schema = [
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <section class="container-wide pt-12 pb-5">
-    <p class="eyebrow">{p.category}</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
-    <p class="lead mt-6">{p.oneLiner}</p>
-  </section>
+  <AsymHero
+    eyebrow={p.category}
+    lead={p.oneLiner}
+    facts={[
+      { label: "Down payment", value: "From 15% (primary)" },
+      { label: "Credit", value: "660+ FICO or alternative credit" },
+      { label: "Occupancy", value: "Primary, second home, investment" },
+    ]}
+  >
+    {p.name}
+    <Fragment slot="actions">
+      <a href="#contact" class="btn btn-primary">Start a pre-qual</a>
+      <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+    </Fragment>
+  </AsymHero>
 
-  <section class="bg-white pb-12">
-    <div class="container-wide">
-      <p class="lead">{p.directAnswer}</p>
+  <!-- LEAD FORM + THE NUMBERS -->
+  <section class="bg-white border-t border-[var(--color-ink)]">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <FormCard title="Questions about ITIN mortgage programs?" sub="Tell us your situation and we'll walk you through which ITIN loan programs are available in your state." formSource="loan-itin" />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
+        <p class="eyebrow">The numbers</p>
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">What to expect.</h2>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
+        <p class="mt-4 text-[var(--color-text-muted)]">Final terms depend on documentation type, property use, FICO equivalent, and LTV.</p>
+        <dl class="mt-8 border-t border-[var(--color-ink)]">
+          {numbers.map(([k, v]) => (
+            <div class="grid sm:grid-cols-[minmax(0,11rem)_1fr] gap-x-6 gap-y-1 py-4 border-b border-black/15">
+              <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">{k}</dt>
+              <dd class="text-[var(--color-text)]">{v}</dd>
+            </div>
+          ))}
+        </dl>
+        <p class="text-xs text-[var(--color-text-muted)] mt-4 leading-relaxed">The chart above is for illustrative purposes only. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.</p>
+      </div>
     </div>
   </section>
 
   <!-- WHO QUALIFIES -->
-  <section class="bg-[var(--color-mist-gray)] section">
-    <div class="container-wide grid gap-10 lg:grid-cols-[1fr_2fr]">
-      <div>
-        <p class="eyebrow">Who qualifies</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">No SSN? You still have options.</h2>
-      </div>
-      <div class="grid gap-6 md:grid-cols-2">
-        <div class="card">
-          <h3 class="text-base font-semibold text-[var(--color-ink)]">Immigrants and non-residents</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Foreign-born borrowers living in the US who file taxes with an ITIN and have no Social Security number, regardless of immigration status.</p>
-        </div>
-        <div class="card">
-          <h3 class="text-base font-semibold text-[var(--color-ink)]">Self-employed ITIN holders</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Business owners and self-employed individuals who earn income in the US, file with an ITIN, and can document income through bank statements or 1099s.</p>
-        </div>
-        <div class="card">
-          <h3 class="text-base font-semibold text-[var(--color-ink)]">First-time homebuyers</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Buyers purchasing a primary residence for the first time, regardless of immigration status. ITIN loans are available for primary homes, second homes, and investment properties.</p>
-        </div>
-        <div class="card">
-          <h3 class="text-base font-semibold text-[var(--color-ink)]">Real estate investors</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Borrowers looking to purchase investment or rental properties using ITIN documentation. Multi-unit properties and condos are eligible.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- THE NUMBERS -->
-  <section class="section bg-white">
-    <div class="container-wide grid gap-10 lg:grid-cols-2">
-      <div>
-        <p class="eyebrow">The numbers</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">What to expect.</h2>
-        <p class="mt-4 text-[var(--color-text-muted)]">Final terms depend on documentation type, property use, FICO equivalent, and LTV.</p>
-      </div>
-      <dl class="space-y-3">
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Rate range</dt><dd class="text-[var(--color-text-muted)]">7.50%–9.50%</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min down payment</dt><dd class="text-[var(--color-text-muted)]">15%–20% (primary) / 20–25% (investment)</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Credit requirement</dt><dd class="text-[var(--color-text-muted)]">660+ FICO or alternative credit</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Income documentation</dt><dd class="text-[var(--color-text-muted)]">12–24 months bank statements or 1099s</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Loan amounts</dt><dd class="text-[var(--color-text-muted)]">$150K–$2.5M+</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Property types</dt><dd class="text-[var(--color-text-muted)]">SFR, 2–4 unit, condo</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Occupancy</dt><dd class="text-[var(--color-text-muted)]">Primary, second home, investment</dd></div>
-        <p class="text-xs text-[var(--color-text-muted)] mt-4 leading-relaxed">The chart above is for illustrative purposes only. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.</p>
-      </dl>
-    </div>
-  </section>
+  <Split eyebrow="Who qualifies" title="No SSN? You still have options." wide>
+    <ol class="list-none m-0 p-0 grid sm:grid-cols-2 gap-4">
+      {whoQualifies.map((w, i) => (
+        <li class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
+          <span class="font-mono text-xs text-[var(--color-text-muted)]">0{i + 1}</span>
+          <h3 class="mt-3 text-lg font-semibold text-[var(--color-ink)]">{w.title}</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{w.body}</p>
+        </li>
+      ))}
+    </ol>
+  </Split>
 
   <!-- FAQ -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Questions about ITIN mortgages.</h2>
-      <div class="mt-8 space-y-6">
-        {faq.map((q) => (
-          <details class="border-b border-[var(--color-mist-gray)] pb-4">
-            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
-            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
+  <Split eyebrow="FAQ" title="Questions about ITIN mortgages.">
+    <FaqList items={faq} />
+  </Split>
 
   <!-- RELATED -->
-  <section class="section bg-white">
-    <div class="container-wide">
-      <p class="eyebrow">Related programs</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Not sure which Non-QM program fits?</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] max-w-2xl">ITIN mortgages are one of several Non-QM programs Cliffco originates. If you reside entirely outside the US and have no US financial presence, the foreign national program may be a better fit.</p>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="/loans/non-qm-self-employed/" class="btn btn-secondary">Non-QM overview →</a>
-        <a href="/loans/foreign-national-mortgage/" class="btn btn-secondary">Foreign national mortgage →</a>
-      </div>
+  <Split eyebrow="Related programs" title="Not sure which Non-QM program fits?">
+    <p class="text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">ITIN mortgages are one of several Non-QM programs Cliffco originates. If you reside entirely outside the US and have no US financial presence, the foreign national program may be a better fit.</p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="/loans/non-qm-self-employed/" class="btn btn-secondary">Non-QM overview →</a>
+      <a href="/loans/foreign-national-mortgage/" class="btn btn-secondary">Foreign national mortgage →</a>
     </div>
-  </section>
+  </Split>
 
-  <!-- CTA -->
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Have an ITIN? Let's see what you qualify for.</h2>
-      <p class="lead mt-4 text-white/85">A Cliffco loan officer responds within one business day. No credit pull to start.</p>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Start a pre-qual</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT FORM -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Questions about ITIN mortgage programs?</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us your situation and we'll walk you through which ITIN loan programs are available in your state.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
-          formSource="loan-itin"
-        />
-      </div>
-    </div>
-  </section>
+  <CtaBand title="Have an ITIN? Let's see what you qualify for." text="A Cliffco loan officer responds within one business day. No credit pull to start.">
+    <a href="#contact" class="btn btn-primary">Start a pre-qual</a>
+    <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+  </CtaBand>
 </Layout>

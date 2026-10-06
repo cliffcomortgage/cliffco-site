@@ -27,7 +27,21 @@ const schema = [
     dateModified: "2026-07-15",
   }),
 ];
-import ContactForm from "../../../components/forms/ContactForm.astro";
+
+import AsymHero from "../../../components/asym/AsymHero.astro";
+import Split from "../../../components/asym/Split.astro";
+import FormCard from "../../../components/asym/FormCard.astro";
+import FaqList from "../../../components/asym/FaqList.astro";
+import CtaBand from "../../../components/asym/CtaBand.astro";
+
+const glance = [
+  ["Min down payment", "3.5% (580+ FICO); 10% (500–579 FICO)"],
+  ["Min FICO", "500 (FHA min); 580 for 3.5% down"],
+  ["2026 loan limit (standard)", "$541,287 (SFR); up to $1,249,125 (high-cost)"],
+  ["Mortgage insurance", "1.75% UFMIP + annual MIP (typically for life of loan)"],
+  ["Property types", "Primary residence, 1–4 units"],
+  ["Max DTI", "Up to 57% with strong compensating factors"],
+];
 ---
 
 <Layout title={`FHA Loans | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
@@ -37,83 +51,57 @@ import ContactForm from "../../../components/forms/ContactForm.astro";
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <section class="container-wide pt-12 pb-5">
-    <p class="eyebrow">{p.category}</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
-    <p class="lead mt-6">{p.oneLiner}</p>
-  </section>
+  <AsymHero
+    eyebrow={p.category}
+    lead={p.oneLiner}
+    facts={[
+      { label: "Down payment", value: "3.5% with 580+ FICO" },
+      { label: "Min FICO", value: "500 (10% down)" },
+      { label: "Max DTI", value: "Up to 57%" },
+    ]}
+  >
+    {p.name}
+    <Fragment slot="actions">
+      <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+      <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+    </Fragment>
+  </AsymHero>
 
-  <section class="bg-white pb-12">
-    <div class="container-wide">
-      <p class="lead">{p.directAnswer}</p>
-    </div>
-  </section>
-
-  <section class="bg-[var(--color-mist-gray)] section">
-    <div class="container-wide grid gap-10 lg:grid-cols-2">
-      <div>
+  <!-- LEAD FORM + OVERVIEW -->
+  <section class="bg-white border-t border-[var(--color-ink)]">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <FormCard title="See what an FHA loan looks like for your situation." sub="Tell us your credit score, income, and target price and we'll show you what you'd qualify for." formSource="loan-fha" />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
         <p class="eyebrow">FHA at a glance</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Low down payment. Flexible credit.</h2>
-      </div>
-      <dl class="space-y-3">
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min down payment</dt><dd class="text-[var(--color-text-muted)]">3.5% (580+ FICO); 10% (500–579 FICO)</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min FICO</dt><dd class="text-[var(--color-text-muted)]">500 (FHA min); 580 for 3.5% down</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>2026 loan limit (standard)</dt><dd class="text-[var(--color-text-muted)]">$541,287 (SFR); up to $1,249,125 (high-cost)</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Mortgage insurance</dt><dd class="text-[var(--color-text-muted)]">1.75% UFMIP + annual MIP (typically for life of loan)</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Property types</dt><dd class="text-[var(--color-text-muted)]">Primary residence, 1–4 units</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Max DTI</dt><dd class="text-[var(--color-text-muted)]">Up to 57% with strong compensating factors</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Common FHA questions.</h2>
-      <div class="mt-8 space-y-6">
-        {faq.map((q) => (
-          <details class="border-b border-[var(--color-mist-gray)] pb-4">
-            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
-            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
-          </details>
-        ))}
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">Low down payment. Flexible credit.</h2>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
+        <dl class="mt-8 border-t border-[var(--color-ink)]">
+          {glance.map(([k, v]) => (
+            <div class="grid sm:grid-cols-[minmax(0,11rem)_1fr] gap-x-6 gap-y-1 py-4 border-b border-black/15">
+              <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">{k}</dt>
+              <dd class="text-[var(--color-text)]">{v}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </div>
   </section>
 
-  <section class="section bg-white">
-    <div class="container-wide">
-      <div class="rounded-lg border border-[var(--color-mist-gray)] p-6 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
-        <div>
-          <p class="font-semibold text-[var(--color-ink)]">Still need help with the down payment?</p>
-          <p class="text-sm text-[var(--color-text-muted)] mt-1">FHA pairs well with many down payment assistance programs - grants, forgivable loans, and deferred second mortgages that can cover your 3.5%.</p>
-        </div>
-        <a href="/down-payment-assistance/" class="btn btn-secondary text-sm shrink-0">Explore DPA options →</a>
-      </div>
-    </div>
-  </section>
+  <!-- FAQ -->
+  <Split eyebrow="FAQ" title="Common FHA questions.">
+    <FaqList items={faq} />
+  </Split>
 
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Low down payment. Real loan officer.</h2>
-      <p class="lead mt-4 text-white/85">Get pre-qualified for an FHA loan in one business day.</p>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Pre-Qualified</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
-    </div>
-  </section>
+  <!-- DPA -->
+  <Split eyebrow="Down payment help" title="Still need help with the down payment?">
+    <p class="text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">FHA pairs well with many down payment assistance programs - grants, forgivable loans, and deferred second mortgages that can cover your 3.5%.</p>
+    <a href="/down-payment-assistance/" class="mt-6 btn btn-secondary text-sm">Explore DPA options →</a>
+  </Split>
 
-  <!-- CONTACT FORM -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">See what an FHA loan looks like for your situation.</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us your credit score, income, and target price and we'll show you what you'd qualify for.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
-          formSource="loan-fha"
-        />
-      </div>
-    </div>
-  </section>
+  <CtaBand title="Low down payment. Real loan officer." text="Get pre-qualified for an FHA loan in one business day.">
+    <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+    <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+  </CtaBand>
 </Layout>

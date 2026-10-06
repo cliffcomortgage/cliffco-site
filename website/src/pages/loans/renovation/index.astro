@@ -27,7 +27,35 @@ const schema = [
     dateModified: "2026-07-15",
   }),
 ];
-import ContactForm from "../../../components/forms/ContactForm.astro";
+
+import AsymHero from "../../../components/asym/AsymHero.astro";
+import Split from "../../../components/asym/Split.astro";
+import FormCard from "../../../components/asym/FormCard.astro";
+import FaqList from "../../../components/asym/FaqList.astro";
+import CtaBand from "../../../components/asym/CtaBand.astro";
+
+const programs = [
+  {
+    name: "FHA 203(k)",
+    rows: [
+      ["Down payment", "3.5% (580+ FICO)"],
+      ["Loan limit", "FHA county limit"],
+      ["Property types", "Primary residence, 1–4 units"],
+      ["Luxury items", "Not eligible"],
+      ["Mortgage insurance", "FHA MIP (typically for life of loan)"],
+    ],
+  },
+  {
+    name: "Fannie Mae HomeStyle",
+    rows: [
+      ["Down payment", "5% primary; 10–15% investment"],
+      ["Loan limit", "Conforming / high-balance"],
+      ["Property types", "Primary, second home, investment"],
+      ["Luxury items", "Eligible"],
+      ["Mortgage insurance", "PMI (removable at 80% LTV)"],
+    ],
+  },
+];
 ---
 
 <Layout title={`Renovation Loans (FHA 203k & HomeStyle) | Cliffco`} description={p.directAnswer} schema={schema}>
@@ -37,83 +65,58 @@ import ContactForm from "../../../components/forms/ContactForm.astro";
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <section class="container-wide pt-12 pb-5">
-    <p class="eyebrow">{p.category}</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
-    <p class="lead mt-6">{p.oneLiner}</p>
-  </section>
+  <AsymHero
+    eyebrow={p.category}
+    lead={p.oneLiner}
+    facts={[
+      { label: "Programs", value: "FHA 203(k) & HomeStyle" },
+      { label: "Down payment", value: "From 3.5%" },
+      { label: "Based on", value: "After-renovation value" },
+    ]}
+  >
+    {p.name}
+    <Fragment slot="actions">
+      <a href="#contact" class="btn btn-primary">Start the conversation</a>
+      <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+    </Fragment>
+  </AsymHero>
 
-  <section class="bg-white pb-12">
-    <div class="container-wide">
-      <p class="lead">{p.directAnswer}</p>
-    </div>
-  </section>
-
-  <section class="bg-[var(--color-mist-gray)] section">
-    <div class="container-wide">
-      <p class="eyebrow">Program comparison</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">FHA 203(k) vs. Fannie Mae HomeStyle.</h2>
-      <div class="mt-8 grid gap-6 lg:grid-cols-2">
-        <article class="card">
-          <h3 class="text-lg font-semibold">FHA 203(k)</h3>
-          <dl class="mt-4 space-y-2 text-sm">
-            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Down payment</dt><dd>3.5% (580+ FICO)</dd></div>
-            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Loan limit</dt><dd>FHA county limit</dd></div>
-            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Property types</dt><dd>Primary residence, 1–4 units</dd></div>
-            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Luxury items</dt><dd>Not eligible</dd></div>
-            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Mortgage insurance</dt><dd>FHA MIP (typically for life of loan)</dd></div>
-          </dl>
-        </article>
-        <article class="card">
-          <h3 class="text-lg font-semibold">Fannie Mae HomeStyle</h3>
-          <dl class="mt-4 space-y-2 text-sm">
-            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Down payment</dt><dd>5% primary; 10–15% investment</dd></div>
-            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Loan limit</dt><dd>Conforming / high-balance</dd></div>
-            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Property types</dt><dd>Primary, second home, investment</dd></div>
-            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Luxury items</dt><dd>Eligible</dd></div>
-            <div class="flex gap-2"><dt class="text-[var(--color-text-muted)] w-32 shrink-0">Mortgage insurance</dt><dd>PMI (removable at 80% LTV)</dd></div>
-          </dl>
-        </article>
+  <!-- LEAD FORM + OVERVIEW -->
+  <section class="bg-white border-t border-[var(--color-ink)]">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <FormCard title="Price out your renovation with a loan officer." sub="Tell us the property and the scope of the project and we'll show you which program fits." formSource="loan-renovation" />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
+        <p class="eyebrow">Program comparison</p>
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">FHA 203(k) vs. Fannie Mae HomeStyle.</h2>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
+        <div class="mt-8 grid gap-4">
+          {programs.map((prog, i) => (
+            <article class={`rounded-2xl p-6 ${i === 0 ? "bg-[var(--color-ink)] text-white" : "border-2 border-[var(--color-ink)]"}`}>
+              <h3 class={`text-lg font-semibold ${i === 0 ? "!text-white" : "text-[var(--color-ink)]"}`}>{prog.name}</h3>
+              <dl class={`mt-4 border-t ${i === 0 ? "border-white/25" : "border-black/15"}`}>
+                {prog.rows.map(([k, v]) => (
+                  <div class={`flex justify-between gap-4 py-2.5 border-b text-sm ${i === 0 ? "border-white/15" : "border-black/10"}`}>
+                    <dt class={i === 0 ? "text-white/60" : "text-[var(--color-text-muted)]"}>{k}</dt>
+                    <dd class="text-right">{v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">How renovation financing works.</h2>
-      <div class="mt-8 space-y-6">
-        {faq.map((q) => (
-          <details class="border-b border-[var(--color-mist-gray)] pb-4">
-            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
-            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
+  <!-- FAQ -->
+  <Split eyebrow="FAQ" title="How renovation financing works.">
+    <FaqList items={faq} />
+  </Split>
 
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Buy the house. Fund the renovation. One loan.</h2>
-      <p class="lead mt-4 text-white/85">A Cliffco loan officer can walk you through the right program for your project.</p>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Start the conversation</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT FORM -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Price out your renovation with a loan officer.</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us the property and the scope of the project and we'll show you which program fits.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
-          formSource="loan-renovation"
-        />
-      </div>
-    </div>
-  </section>
+  <CtaBand title="Buy the house. Fund the renovation. One loan." text="A Cliffco loan officer can walk you through the right program for your project.">
+    <a href="#contact" class="btn btn-primary">Start the conversation</a>
+    <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+  </CtaBand>
 </Layout>

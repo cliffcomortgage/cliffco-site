@@ -27,7 +27,21 @@ const schema = [
     dateModified: "2026-07-15",
   }),
 ];
-import ContactForm from "../../../components/forms/ContactForm.astro";
+
+import AsymHero from "../../../components/asym/AsymHero.astro";
+import Split from "../../../components/asym/Split.astro";
+import FormCard from "../../../components/asym/FormCard.astro";
+import FaqList from "../../../components/asym/FaqList.astro";
+import CtaBand from "../../../components/asym/CtaBand.astro";
+
+const glance = [
+  ["Min down payment", "3% (first-time), 5% (repeat buyers)"],
+  ["Min FICO", "620 (best pricing 740+)"],
+  ["2026 conforming limit", "$832,750 (standard); up to $1,249,125 (high-cost)"],
+  ["PMI required", "Under 20% down; removable at 80% LTV"],
+  ["Terms", "10, 15, 20, 25, 30-year fixed; 5/1, 7/1, 10/1 ARM"],
+  ["Property types", "Primary, second home, investment (1–4 units)"],
+];
 ---
 
 <Layout title={`Conventional Loans | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
@@ -37,83 +51,57 @@ import ContactForm from "../../../components/forms/ContactForm.astro";
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <section class="container-wide pt-12 pb-5">
-    <p class="eyebrow">{p.category}</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">{p.name}</h1>
-    <p class="lead mt-6">{p.oneLiner}</p>
-  </section>
+  <AsymHero
+    eyebrow={p.category}
+    lead={p.oneLiner}
+    facts={[
+      { label: "Down payment", value: "As little as 3%" },
+      { label: "Min FICO", value: "620" },
+      { label: "2026 conforming limit", value: "$832,750" },
+    ]}
+  >
+    {p.name}
+    <Fragment slot="actions">
+      <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+      <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+    </Fragment>
+  </AsymHero>
 
-  <section class="bg-white pb-12">
-    <div class="container-wide">
-      <p class="lead">{p.directAnswer}</p>
-    </div>
-  </section>
-
-  <section class="bg-[var(--color-mist-gray)] section">
-    <div class="container-wide grid gap-10 lg:grid-cols-2">
-      <div>
+  <!-- LEAD FORM + OVERVIEW -->
+  <section class="bg-white border-t border-[var(--color-ink)]">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <FormCard title="Want to compare your conventional loan options?" sub="Tell us your situation and we'll show you which programs apply and what each costs." formSource="loan-conventional" />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
         <p class="eyebrow">Conventional at a glance</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Flexible terms. PMI you can shed.</h2>
-      </div>
-      <dl class="space-y-3">
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min down payment</dt><dd class="text-[var(--color-text-muted)]">3% (first-time), 5% (repeat buyers)</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Min FICO</dt><dd class="text-[var(--color-text-muted)]">620 (best pricing 740+)</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>2026 conforming limit</dt><dd class="text-[var(--color-text-muted)]">$832,750 (standard); up to $1,249,125 (high-cost)</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>PMI required</dt><dd class="text-[var(--color-text-muted)]">Under 20% down; removable at 80% LTV</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Terms</dt><dd class="text-[var(--color-text-muted)]">10, 15, 20, 25, 30-year fixed; 5/1, 7/1, 10/1 ARM</dd></div>
-        <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2"><dt>Property types</dt><dd class="text-[var(--color-text-muted)]">Primary, second home, investment (1–4 units)</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Conventional loan questions.</h2>
-      <div class="mt-8 space-y-6">
-        {faq.map((q) => (
-          <details class="border-b border-[var(--color-mist-gray)] pb-4">
-            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
-            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
-          </details>
-        ))}
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">Flexible terms. PMI you can shed.</h2>
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
+        <dl class="mt-8 border-t border-[var(--color-ink)]">
+          {glance.map(([k, v]) => (
+            <div class="grid sm:grid-cols-[minmax(0,11rem)_1fr] gap-x-6 gap-y-1 py-4 border-b border-black/15">
+              <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">{k}</dt>
+              <dd class="text-[var(--color-text)]">{v}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </div>
   </section>
 
-  <section class="section bg-white">
-    <div class="container-wide">
-      <div class="rounded-lg border border-[var(--color-mist-gray)] p-6 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
-        <div>
-          <p class="font-semibold text-[var(--color-ink)]">Need help with the down payment?</p>
-          <p class="text-sm text-[var(--color-text-muted)] mt-1">Down payment assistance programs can cover your 3–5% down payment. Ask your loan officer what's currently available in your county.</p>
-        </div>
-        <a href="/down-payment-assistance/" class="btn btn-secondary text-sm shrink-0">Explore DPA options →</a>
-      </div>
-    </div>
-  </section>
+  <!-- FAQ -->
+  <Split eyebrow="FAQ" title="Conventional loan questions.">
+    <FaqList items={faq} />
+  </Split>
 
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Get pre-qualified this week.</h2>
-      <p class="lead mt-4 text-white/85">A licensed Cliffco loan officer responds in one business day.</p>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Pre-Qualified</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
-    </div>
-  </section>
+  <!-- DPA -->
+  <Split eyebrow="Down payment help" title="Need help with the down payment?">
+    <p class="text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">Down payment assistance programs can cover your 3–5% down payment. Ask your loan officer what's currently available in your county.</p>
+    <a href="/down-payment-assistance/" class="mt-6 btn btn-secondary text-sm">Explore DPA options →</a>
+  </Split>
 
-  <!-- CONTACT FORM -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Want to compare your conventional loan options?</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us your situation and we'll show you which programs apply and what each costs.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
-          formSource="loan-conventional"
-        />
-      </div>
-    </div>
-  </section>
+  <CtaBand title="Get pre-qualified this week." text="A licensed Cliffco loan officer responds in one business day.">
+    <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+    <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+  </CtaBand>
 </Layout>
