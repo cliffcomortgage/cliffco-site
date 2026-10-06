@@ -1,0 +1,38 @@
+---
+/**
+ * Numbered section for the loan program "term sheet" layout. Numbers come from
+ * a CSS counter on <TermSheet>, so chapters number themselves in order.
+ * Accepts the same props as <Split> so pages can switch between them;
+ * `wide` and `rule` are ignored here. dark = black card.
+ */
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+  id?: string;
+  dark?: boolean;
+  wide?: boolean;
+  rule?: boolean;
+}
+const { eyebrow, title, intro, id, dark = false } = Astro.props;
+---
+
+<section id={id} class={`chapter scroll-mt-24 ${dark ? "chapter-dark rounded-[1.75rem] bg-[var(--color-ink)] text-white px-6 sm:px-10 py-10 my-10" : "border-t border-[var(--color-ink)] pt-8 pb-14"}`}>
+  <div class="flex items-baseline gap-4">
+    <span class={`chapter-num font-mono text-sm ${dark ? "text-white/55" : "text-[var(--color-ink)]"}`} aria-hidden="true"></span>
+    {eyebrow && <p class={`eyebrow ${dark ? "!text-white/55" : ""}`}>{eyebrow}</p>}
+  </div>
+  {title && (
+    <h2 class={`mt-4 ${dark ? "!text-white" : ""}`} style="font-size: var(--text-h2); font-weight: 700; line-height: 1.15;">{title}</h2>
+  )}
+  {intro && <p class={`mt-4 leading-relaxed ${dark ? "text-white/75" : "text-[var(--color-text-muted)]"}`}>{intro}</p>}
+  <div class={title || intro ? "mt-8" : "mt-4"}>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .chapter { counter-increment: chapter; }
+  .chapter-num::before { content: counter(chapter, decimal-leading-zero); }
+  .chapter-dark + :global(.chapter) { border-top: 0; padding-top: 0.5rem; }
+</style>

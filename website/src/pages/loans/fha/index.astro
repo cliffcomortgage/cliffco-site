@@ -28,8 +28,9 @@ const schema = [
   }),
 ];
 
-import AsymHero from "../../../components/asym/AsymHero.astro";
-import Split from "../../../components/asym/Split.astro";
+import TermSheetHero from "../../../components/asym/TermSheetHero.astro";
+import TermSheet from "../../../components/asym/TermSheet.astro";
+import Chapter from "../../../components/asym/Chapter.astro";
 import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
@@ -51,7 +52,7 @@ const glance = [
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <AsymHero
+  <TermSheetHero
     eyebrow={p.category}
     lead={p.oneLiner}
     facts={[
@@ -65,17 +66,12 @@ const glance = [
       <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
       <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
     </Fragment>
-  </AsymHero>
+  </TermSheetHero>
 
-  <!-- LEAD FORM + OVERVIEW -->
-  <section class="bg-white border-t border-[var(--color-ink)]">
-    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5">
-        <FormCard title="See what an FHA loan looks like for your situation." sub="Tell us your credit score, income, and target price and we'll show you what you'd qualify for." formSource="loan-fha" />
-      </div>
-      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
-        <p class="eyebrow">FHA at a glance</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">Low down payment. Flexible credit.</h2>
+  <TermSheet>
+    <FormCard slot="form" title="See what an FHA loan looks like for your situation." sub="Tell us your credit score, income, and target price and we'll show you what you'd qualify for." formSource="loan-fha" />
+
+    <Chapter eyebrow="FHA at a glance" title="Low down payment. Flexible credit.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
         <dl class="mt-8 border-t border-[var(--color-ink)]">
           {glance.map(([k, v]) => (
@@ -85,20 +81,20 @@ const glance = [
             </div>
           ))}
         </dl>
-      </div>
-    </div>
-  </section>
+      </Chapter>
 
   <!-- FAQ -->
-  <Split eyebrow="FAQ" title="Common FHA questions.">
+  <Chapter eyebrow="FAQ" title="Common FHA questions.">
     <FaqList items={faq} />
-  </Split>
+  </Chapter>
 
   <!-- DPA -->
-  <Split eyebrow="Down payment help" title="Still need help with the down payment?">
+  <Chapter eyebrow="Down payment help" title="Still need help with the down payment?">
     <p class="text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">FHA pairs well with many down payment assistance programs - grants, forgivable loans, and deferred second mortgages that can cover your 3.5%.</p>
     <a href="/down-payment-assistance/" class="mt-6 btn btn-secondary text-sm">Explore DPA options →</a>
-  </Split>
+  </Chapter>
+  </TermSheet>
+
 
   <CtaBand title="Low down payment. Real loan officer." text="Get pre-qualified for an FHA loan in one business day.">
     <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>

@@ -1,6 +1,7 @@
 ﻿---
 import BlogLayout from "../../../../layouts/BlogLayout.astro";
-import ArticleImage from "../../../../components/ui/ArticleImage.astro";
+import ArticleHero from "../../../../components/asym/ArticleHero.astro";
+import ArticleBody from "../../../../components/asym/ArticleBody.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 ---
 
@@ -15,12 +16,9 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     { name: "Business Bank Statement Loan Guide", href: "/mortgage-guides/blog/business-bank-statement-loan-mortgage-small-business-owner/" },
   ]} />
 
-  <article class="container-prose pt-12 pb-16">
+  <ArticleHero byline="By the Cliffco editorial team">Business Bank Statement Loans: How to Qualify for a Mortgage When Your Tax Returns Don't Tell the Full Story</ArticleHero>
 
-    <h1 style="font-size: var(--text-display-lg);">Business Bank Statement Loans: How to Qualify for a Mortgage When Your Tax Returns Don't Tell the Full Story</h1>
-    <p class="mt-3 text-sm text-[var(--color-text-muted)]">By the Cliffco editorial team</p>
-
-    <ArticleImage />
+  <ArticleBody>
 
     <p class="mt-8 font-bold">For the Business Owner Whose Deposits Tell a Better Story Than Their Returns</p>
 
@@ -61,8 +59,8 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     <p class="mt-4">Cliffco's Self-Employed Income Calculator can show you your estimated qualifying income under bank statement guidelines based on your deposit history and expense ratio, so you know what purchase price is realistic before you start looking at properties. Run the number first. Then go find the house.</p>
 
     <!-- Embedded lite Self-Employed Income Calculator -->
-    <div class="mt-12 border border-[var(--color-accent)]/25 rounded-lg overflow-hidden">
-      <div class="bg-[var(--color-accent)]/8 px-6 py-5 border-b border-[var(--color-accent)]/15">
+    <div class="mt-12 border-2 border-[var(--color-ink)] rounded-2xl overflow-hidden">
+      <div class="bg-white px-6 py-5 border-b-2 border-[var(--color-ink)]">
         <p class="eyebrow text-xs mb-1">Quick check</p>
         <h2 class="text-xl font-semibold text-[var(--color-ink)]">Compare your qualifying income.</h2>
         <p class="text-sm text-[var(--color-text-muted)] mt-1">See how conventional lenders vs. bank statement lenders view your income, side by side.</p>
@@ -97,7 +95,7 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
         <button id="art-se-btn" class="btn btn-primary mt-5">Compare My Income</button>
 
         <div id="art-se-result" class="hidden mt-6">
-          <div class="p-5 bg-[var(--color-mist-gray)] rounded-lg">
+          <div class="p-5 bg-white border border-black/15 rounded-lg">
             <div class="grid gap-4 sm:grid-cols-3">
               <div>
                 <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Conventional Qualifying Income</p>
@@ -111,28 +109,28 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
               </div>
               <div>
                 <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Recommended Path</p>
-                <p id="art-se-rec" class="text-2xl font-bold text-[var(--color-accent)] mt-1"></p>
+                <p id="art-se-rec" class="text-2xl font-bold text-[var(--color-ink)] mt-1"></p>
               </div>
             </div>
             <p class="mt-3 text-xs text-[var(--color-text-muted)]">Conventional path uses 24-month average (or lower year if declining). Bank statement path uses deposits minus expense ratio, annualized. Both are estimates. Actual lender guidelines vary.</p>
           </div>
 
-          <div class="mt-4 p-5 bg-[var(--color-rich-black)] rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+          <div class="mt-4 p-5 bg-[var(--color-ink)] rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
             <div>
               <p class="text-white font-semibold">Not sure which path fits your income?</p>
               <p class="text-white/70 text-sm mt-1">A Cliffco self-employed specialist can run both scenarios with real lender guidelines and tell you what you qualify for.</p>
             </div>
-            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-ink)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
           </div>
 
           <p class="mt-4 text-sm text-center text-[var(--color-text-muted)]">
-            Want to model other scenarios? <a href="/mortgage-guides/calculators/self-employed-income/" class="text-[var(--color-accent)] font-medium">View the full self-employed income calculator →</a>
+            Want to model other scenarios? <a href="/mortgage-guides/calculators/self-employed-income/" class="text-[var(--color-ink)] font-medium">View the full self-employed income calculator →</a>
           </p>
         </div>
       </div>
     </div>
 
-  </article>
+  </ArticleBody>
 </BlogLayout>
 
 <style>
@@ -148,8 +146,8 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     transition: border-color 0.15s;
   }
   .art-calc-input:focus {
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+    border-color: var(--color-ink);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-ink) 15%, transparent);
   }
 </style>
 

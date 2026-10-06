@@ -46,8 +46,9 @@ const schema = [
   }),
 ];
 
-import AsymHero from "../../../components/asym/AsymHero.astro";
-import Split from "../../../components/asym/Split.astro";
+import TermSheetHero from "../../../components/asym/TermSheetHero.astro";
+import TermSheet from "../../../components/asym/TermSheet.astro";
+import Chapter from "../../../components/asym/Chapter.astro";
 import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
@@ -73,7 +74,7 @@ const breakEven = [
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <AsymHero
+  <TermSheetHero
     eyebrow={p.category}
     lead={p.oneLiner}
     facts={[
@@ -87,17 +88,12 @@ const breakEven = [
       <a href="#contact" class="btn btn-primary">Get a refi quote</a>
       <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
     </Fragment>
-  </AsymHero>
+  </TermSheetHero>
 
-  <!-- LEAD FORM + BREAK-EVEN -->
-  <section class="bg-white border-t border-[var(--color-ink)]">
-    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5">
-        <FormCard title="Thinking about refinancing?" sub="Tell us your current rate, balance, and goals and we'll tell you if the numbers work." formSource="loan-refinancing" />
-      </div>
-      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
-        <p class="eyebrow">When to refinance</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">The break-even math.</h2>
+  <TermSheet>
+    <FormCard slot="form" title="Thinking about refinancing?" sub="Tell us your current rate, balance, and goals and we'll tell you if the numbers work." formSource="loan-refinancing" />
+
+    <Chapter eyebrow="When to refinance" title="The break-even math.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
         <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
           A refinance costs money upfront (closing costs typically 2–3% of the loan balance). The question is whether the monthly savings justify that cost before you sell or pay off the home.
@@ -113,12 +109,10 @@ const breakEven = [
           </dl>
           <p class="mt-4 text-xs text-white/60 leading-relaxed">If you plan to stay in the home past 32 months, the refinance saves money. If not, it may not be worth the closing costs.</p>
         </div>
-      </div>
-    </div>
-  </section>
+      </Chapter>
 
   <!-- REFINANCE TYPES -->
-  <Split eyebrow="Refinance types" title="Five refinance programs Cliffco originates.">
+  <Chapter eyebrow="Refinance types" title="Five refinance programs Cliffco originates.">
     <ol class="list-none m-0 p-0 border-t border-[var(--color-ink)]">
       {refiTypes.map((t, i) => (
         <li class="grid grid-cols-[3rem_1fr] gap-4 py-7 border-b border-black/15">
@@ -130,10 +124,10 @@ const breakEven = [
         </li>
       ))}
     </ol>
-  </Split>
+  </Chapter>
 
   <!-- HELOC SPOTLIGHT (black band) -->
-  <Split dark eyebrow="Also from Cliffco" title="HELOC: Approved in 5 minutes. Funded in 5 days.*">
+  <Chapter dark eyebrow="Also from Cliffco" title="HELOC: Approved in 5 minutes. Funded in 5 days.*">
     <p class="text-white/85 leading-relaxed" style="font-size: 1.125rem;">
       Not ready to touch your first mortgage? A HELOC lets you access your equity as a revolving line of credit, with no cash-out refi required.
     </p>
@@ -144,12 +138,14 @@ const breakEven = [
     <p class="mt-8 text-xs text-white/50 leading-relaxed">
       *Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report. Five business day funding timeline assumes closing the loan with our remote online notary. Funding timelines may be longer for loans secured by properties located in counties that do not permit recording of e-signatures or that otherwise require an in-person closing.
     </p>
-  </Split>
+  </Chapter>
 
   <!-- FAQ -->
-  <Split rule={false} eyebrow="FAQ" title="Questions to ask before you refinance.">
+  <Chapter rule={false} eyebrow="FAQ" title="Questions to ask before you refinance.">
     <FaqList items={faq} />
-  </Split>
+  </Chapter>
+  </TermSheet>
+
 
   <CtaBand title="Tell us your current loan. We'll run the numbers." text="A licensed Cliffco loan officer responds in one business day.">
     <a href="#contact" class="btn btn-primary">Get a refi quote</a>

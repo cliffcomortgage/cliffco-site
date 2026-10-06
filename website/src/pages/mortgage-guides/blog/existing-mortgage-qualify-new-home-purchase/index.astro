@@ -1,6 +1,7 @@
 ﻿---
 import BlogLayout from "../../../../layouts/BlogLayout.astro";
-import ArticleImage from "../../../../components/ui/ArticleImage.astro";
+import ArticleHero from "../../../../components/asym/ArticleHero.astro";
+import ArticleBody from "../../../../components/asym/ArticleBody.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 ---
 
@@ -15,12 +16,9 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     { name: "Existing Mortgage and New Home Qualification", href: "/mortgage-guides/blog/existing-mortgage-qualify-new-home-purchase/" },
   ]} />
 
-  <article class="container-prose pt-12 pb-16">
+  <ArticleHero byline="By the Cliffco editorial team">How Your Existing Mortgage Affects Your Ability to Qualify for a New Home Purchase</ArticleHero>
 
-    <h1 style="font-size: var(--text-display-lg);">How Your Existing Mortgage Affects Your Ability to Qualify for a New Home Purchase</h1>
-    <p class="mt-3 text-sm text-[var(--color-text-muted)]">By the Cliffco editorial team</p>
-
-    <ArticleImage />
+  <ArticleBody>
 
     <p class="mt-8">If you've bought a home before, you probably expect the mortgage process to feel familiar the second time around. In some ways it does. In one critical way it doesn't. The mortgage you already carry changes how a lender evaluates your new application, and most repeat buyers don't fully understand the impact until they're in underwriting and the numbers don't add up the way they expected.</p>
 
@@ -57,8 +55,8 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     <p class="mt-4">Cliffco's Payment Estimator below can model your full monthly payment on any target property. Pair that with a conversation with a Cliffco loan officer who can factor in your existing mortgage to show your actual qualification ceiling before you fall in love with a purchase price the numbers won't support.</p>
 
     <!-- Embedded lite Payment Estimator -->
-    <div class="mt-12 border border-[var(--color-accent)]/25 rounded-lg overflow-hidden">
-      <div class="bg-[var(--color-accent)]/8 px-6 py-5 border-b border-[var(--color-accent)]/15">
+    <div class="mt-12 border-2 border-[var(--color-ink)] rounded-2xl overflow-hidden">
+      <div class="bg-white px-6 py-5 border-b-2 border-[var(--color-ink)]">
         <p class="eyebrow text-xs mb-1">Quick check</p>
         <h2 class="text-xl font-semibold text-[var(--color-ink)]">Estimate your monthly payment.</h2>
         <p class="text-sm text-[var(--color-text-muted)] mt-1">Enter the numbers for any property to see your estimated monthly payment before you make an offer.</p>
@@ -97,11 +95,11 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
         <button id="art-pe-btn" class="btn btn-primary mt-5">Estimate Payment</button>
 
         <div id="art-pe-result" class="hidden mt-6">
-          <div class="p-5 bg-[var(--color-mist-gray)] rounded-lg">
+          <div class="p-5 bg-white border border-black/15 rounded-lg">
             <div class="grid gap-4 sm:grid-cols-3">
               <div>
                 <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Principal &amp; Interest</p>
-                <p id="art-pe-pi" class="text-3xl font-bold text-[var(--color-accent)] mt-1"></p>
+                <p id="art-pe-pi" class="text-3xl font-bold text-[var(--color-ink)] mt-1"></p>
               </div>
               <div>
                 <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Taxes &amp; Insurance</p>
@@ -115,22 +113,22 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
             <p id="art-pe-note" class="mt-3 text-xs text-[var(--color-text-muted)]"></p>
           </div>
 
-          <div class="mt-4 p-5 bg-[var(--color-rich-black)] rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+          <div class="mt-4 p-5 bg-[var(--color-ink)] rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
             <div>
               <p class="text-white font-semibold">Know your number before you make an offer.</p>
               <p class="text-white/70 text-sm mt-1">A Cliffco loan officer can lock a rate and get you pre-approved the same day.</p>
             </div>
-            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-ink)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
           </div>
 
           <p class="mt-4 text-sm text-center text-[var(--color-text-muted)]">
-            Want to model other scenarios? <a href="/mortgage-guides/calculators/payment-estimator/" class="text-[var(--color-accent)] font-medium">View the full payment estimator →</a>
+            Want to model other scenarios? <a href="/mortgage-guides/calculators/payment-estimator/" class="text-[var(--color-ink)] font-medium">View the full payment estimator →</a>
           </p>
         </div>
       </div>
     </div>
 
-  </article>
+  </ArticleBody>
 </BlogLayout>
 
 <style>
@@ -146,8 +144,8 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     transition: border-color 0.15s;
   }
   .art-calc-input:focus {
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+    border-color: var(--color-ink);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-ink) 15%, transparent);
   }
 </style>
 

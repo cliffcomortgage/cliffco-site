@@ -46,8 +46,9 @@ const schema = [
   }),
 ];
 
-import AsymHero from "../../../components/asym/AsymHero.astro";
-import Split from "../../../components/asym/Split.astro";
+import TermSheetHero from "../../../components/asym/TermSheetHero.astro";
+import TermSheet from "../../../components/asym/TermSheet.astro";
+import Chapter from "../../../components/asym/Chapter.astro";
 import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
@@ -78,7 +79,7 @@ const propertyTypes = [
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <AsymHero
+  <TermSheetHero
     eyebrow={p.category}
     lead={p.oneLiner}
     facts={[
@@ -92,17 +93,12 @@ const propertyTypes = [
       <a href="#contact" class="btn btn-primary">Get started</a>
       <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
     </Fragment>
-  </AsymHero>
+  </TermSheetHero>
 
-  <!-- LEAD FORM + WARRANTABLE VS NON-WARRANTABLE -->
-  <section class="bg-white border-t border-[var(--color-ink)]">
-    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5">
-        <FormCard title="Questions about financing a condo, co-op, or condotel?" sub="Tell us about the property and we'll confirm what financing is available for that building." formSource="loan-condos" />
-      </div>
-      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
-        <p class="eyebrow">Why this matters</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">Warrantable vs. non-warrantable: the key distinction.</h2>
+  <TermSheet>
+    <FormCard slot="form" title="Questions about financing a condo, co-op, or condotel?" sub="Tell us about the property and we'll confirm what financing is available for that building." formSource="loan-condos" />
+
+    <Chapter eyebrow="Why this matters" title="Warrantable vs. non-warrantable: the key distinction.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
         <div class="mt-8 grid gap-4">
           <article class="rounded-2xl p-6 border-2 border-[var(--color-ink)]">
@@ -114,12 +110,10 @@ const propertyTypes = [
             <p class="mt-2 text-sm text-white/85 leading-relaxed">One or more Fannie/Freddie guidelines are not met. Standard conventional and FHA programs are unavailable. Rates are typically 0.25–0.75 points higher. Portfolio or Non-QM lending is required. Cliffco handles non-warrantable scenarios daily.</p>
           </article>
         </div>
-      </div>
-    </div>
-  </section>
+      </Chapter>
 
   <!-- PROPERTY TYPES -->
-  <Split eyebrow="Property types we finance" title="When conventional lenders say no.">
+  <Chapter eyebrow="Property types we finance" title="When conventional lenders say no.">
     <ol class="list-none m-0 p-0 border-t border-[var(--color-ink)]">
       {propertyTypes.map((t, i) => (
         <li class="grid grid-cols-[3rem_1fr] gap-4 py-8 border-b border-black/15">
@@ -136,12 +130,14 @@ const propertyTypes = [
         </li>
       ))}
     </ol>
-  </Split>
+  </Chapter>
 
   <!-- FAQ -->
-  <Split eyebrow="FAQ" title="Condo, co-op, and condotel questions.">
+  <Chapter eyebrow="FAQ" title="Condo, co-op, and condotel questions.">
     <FaqList items={faq} />
-  </Split>
+  </Chapter>
+  </TermSheet>
+
 
   <CtaBand title="Tell us the building. We'll tell you what we can do." text="A licensed Cliffco loan officer responds in one business day.">
     <a href="#contact" class="btn btn-primary">Get started</a>

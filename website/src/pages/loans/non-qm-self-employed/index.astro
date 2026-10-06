@@ -52,8 +52,9 @@ const schema = [
     dateModified: "2026-07-15",
   }),
 ];
-import AsymHero from "../../../components/asym/AsymHero.astro";
-import Split from "../../../components/asym/Split.astro";
+import TermSheetHero from "../../../components/asym/TermSheetHero.astro";
+import TermSheet from "../../../components/asym/TermSheet.astro";
+import Chapter from "../../../components/asym/Chapter.astro";
 import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
@@ -97,7 +98,7 @@ const rates = [
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <AsymHero
+  <TermSheetHero
     eyebrow={p.category}
     lead={p.oneLiner}
     facts={[
@@ -111,17 +112,12 @@ const rates = [
       <a href="#contact" class="btn btn-primary">Start a pre-qual</a>
       <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
     </Fragment>
-  </AsymHero>
+  </TermSheetHero>
 
-  <!-- LEAD FORM + RATES & TERMS -->
-  <section class="bg-white border-t border-[var(--color-ink)]">
-    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5">
-        <FormCard title="Find the Non-QM program that fits how you earn." sub="Tell us how you document income and we'll match you to the right program." formSource="loan-non-qm" />
-      </div>
-      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
-        <p class="eyebrow">Rates & terms</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">What to expect.</h2>
+  <TermSheet>
+    <FormCard slot="form" title="Find the Non-QM program that fits how you earn." sub="Tell us how you document income and we'll match you to the right program." formSource="loan-non-qm" />
+
+    <Chapter eyebrow="Rates & terms" title="What to expect.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
         <p class="mt-4 text-[var(--color-text-muted)]">Final pricing depends on program, FICO, LTV, occupancy, and documentation type.</p>
         <dl class="mt-8 border-t border-[var(--color-ink)]">
@@ -133,12 +129,10 @@ const rates = [
           ))}
         </dl>
         <p class="text-xs text-[var(--color-text-muted)] mt-4 leading-relaxed">The chart above is for illustrative purposes only. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.</p>
-      </div>
-    </div>
-  </section>
+      </Chapter>
 
   <!-- WHO QUALIFIES -->
-  <Split eyebrow="Who qualifies" title="If a bank pre-declined you, start here." wide>
+  <Chapter eyebrow="Who qualifies" title="If a bank pre-declined you, start here." wide>
     <ol class="list-none m-0 p-0 grid sm:grid-cols-2 gap-4">
       {whoQualifies.map((w, i) => (
         <li class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
@@ -148,10 +142,10 @@ const rates = [
         </li>
       ))}
     </ol>
-  </Split>
+  </Chapter>
 
   <!-- PROGRAM TYPES -->
-  <Split eyebrow="Programs" title="Seven Non-QM programs Cliffco originates.">
+  <Chapter eyebrow="Programs" title="Seven Non-QM programs Cliffco originates.">
     <ol class="list-none m-0 p-0 border-t border-[var(--color-ink)]">
       {programs.map((prog, i) => (
         <li class="grid grid-cols-[3rem_1fr] gap-4 py-7 border-b border-black/15">
@@ -164,10 +158,10 @@ const rates = [
         </li>
       ))}
     </ol>
-  </Split>
+  </Chapter>
 
   <!-- WORKED EXAMPLE (black band) -->
-  <Split dark eyebrow="How we calculate it" title="A worked bank-statement income example.">
+  <Chapter dark eyebrow="How we calculate it" title="A worked bank-statement income example.">
     <div class="space-y-4 text-white/85 leading-relaxed" style="font-size: 1.0625rem;">
       <p>
         Suppose you're a 1099 contractor with average monthly business deposits of $42,000 over
@@ -188,12 +182,14 @@ const rates = [
         Cliffco's underwriting and the documentation Cliffco requests.</em>
       </p>
     </div>
-  </Split>
+  </Chapter>
 
   <!-- FAQ -->
-  <Split rule={false} eyebrow="FAQ" title="Questions about Non-QM lending.">
+  <Chapter rule={false} eyebrow="FAQ" title="Questions about Non-QM lending.">
     <FaqList items={faq} />
-  </Split>
+  </Chapter>
+  </TermSheet>
+
 
   <CtaBand title="Tell us your situation. We'll tell you what we can do." text="A licensed Cliffco loan officer responds in one business day.">
     <a href="#contact" class="btn btn-primary">Start a pre-qual</a>

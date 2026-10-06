@@ -1,0 +1,114 @@
+---
+/**
+ * Shared body for the branch office pages (Uniondale, Bay Shore, Branchburg,
+ * Buckeye, Excelsior), "big city name" layout: giant place name + info strip,
+ * the local team, then a black visit/call block beside the contact form.
+ * Each page passes its own copy; render inside <Layout> after the breadcrumbs.
+ * Slot "info" = extra lines under the address (license numbers etc.).
+ */
+import CityHero from "./CityHero.astro";
+import Split from "./Split.astro";
+import FormCard from "./FormCard.astro";
+import CtaBand from "./CtaBand.astro";
+import LoCard from "./LoCard.astro";
+import type { LoanOfficer } from "../../data/loan-officers";
+
+interface Props {
+  city: string;
+  eyebrow: string;
+  title: string;
+  lead: string;
+  addressName: string;
+  street: string;
+  cityLine: string;
+  nmlsLabel: string;
+  phone: { e164: string; display: string; label: string };
+  findTitle: string;
+  about: string;
+  aboutNote?: string;
+  back: { href: string; label: string };
+  los: readonly LoanOfficer[];
+  teamEyebrow: string;
+  teamTitle: string;
+  teamIntro?: string;
+  allLink?: { href: string; label: string };
+  ctaTitle: string;
+  formTitle: string;
+  formSub: string;
+  formSource: string;
+}
+const p = Astro.props;
+---
+
+<CityHero
+  eyebrow={p.eyebrow}
+  word={p.city}
+  sub={p.title}
+  lead={p.lead}
+  facts={[
+    { label: "Address", value: `${p.street}, ${p.cityLine}` },
+    { label: p.phone.label, value: p.phone.display },
+    { label: "NMLS", value: p.nmlsLabel },
+  ]}
+>
+  <Fragment slot="actions">
+    <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+    <a href={`tel:${p.phone.e164}`} class="btn btn-secondary">
+      <span class="font-normal text-xs opacity-70">{p.phone.label}</span>&nbsp;{p.phone.display}
+    </a>
+  </Fragment>
+</CityHero>
+
+<!-- TEAM -->
+{p.los.length > 0 && (
+  <Split eyebrow={p.teamEyebrow} title={p.teamTitle} intro={p.teamIntro} wide rule={false}>
+    <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
+      {p.los.map((lo) => <LoCard lo={lo} />)}
+    </div>
+    {p.allLink && (
+      <a href={p.allLink.href} class="mt-8 btn btn-primary">{p.allLink.label}</a>
+    )}
+  </Split>
+)}
+
+<CtaBand title={p.ctaTitle} text="A licensed Cliffco loan officer responds in one business day.">
+  <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+  <a href={`tel:${p.phone.e164}`} class="btn btn-secondary">{p.phone.display}</a>
+</CtaBand>
+
+<!-- VISIT / CALL + FORM -->
+<section class="bg-white">
+  <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+    <div class="lg:col-span-6">
+      <p class="eyebrow">Branch information</p>
+      <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">{p.findTitle}</h2>
+      <div class="mt-8 rounded-[1.75rem] bg-[var(--color-ink)] text-white p-8 sm:p-10">
+        <address class="not-italic space-y-1" style="font-size: 1.125rem;">
+          <p class="font-semibold text-white">{p.addressName}</p>
+          <p class="text-white/85">{p.street}</p>
+          <p class="text-white/85">{p.cityLine}</p>
+        </address>
+        <div class="mt-4 space-y-1 text-sm text-white/60 branch-info">
+          <slot name="info" />
+        </div>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href={`tel:${p.phone.e164}`} class="btn btn-primary !bg-white !text-[var(--color-ink)] hover:!bg-white/85 text-sm">Call {p.phone.label}: {p.phone.display}</a>
+          <a href="/get-started/" class="btn btn-secondary !border-white !text-white text-sm">Start Application</a>
+        </div>
+        <div class="mt-8 border-t border-white/25 pt-6">
+          <p class="eyebrow !text-white/55">About this office</p>
+          <p class="mt-3 text-white/85 leading-relaxed">{p.about}</p>
+          {p.aboutNote && <p class="mt-4 text-sm text-white/60">{p.aboutNote}</p>}
+          <a href={p.back.href} class="mt-5 inline-block text-sm font-semibold !text-white underline underline-offset-2">{p.back.label}</a>
+        </div>
+      </div>
+    </div>
+    <div class="lg:col-span-5 lg:col-start-8">
+      <FormCard title={p.formTitle} sub={p.formSub} formSource={p.formSource} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .branch-info :global(a) { color: #fff !important; }
+</style>

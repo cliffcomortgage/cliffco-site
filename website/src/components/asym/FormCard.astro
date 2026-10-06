@@ -11,21 +11,25 @@ interface Props {
   sub?: string;
   formTo?: string;
   formSource: string;
+  eyebrow?: string;
+  ctaLabel?: string;
 }
 const {
   title,
   sub,
   formTo = "websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com",
   formSource,
+  eyebrow = "Talk to a loan officer",
+  ctaLabel,
 } = Astro.props;
 ---
 
 <div id="contact" class="scroll-mt-24 rounded-2xl border-2 border-[var(--color-ink)] p-6 sm:p-8 bg-white">
-  <p class="eyebrow">Talk to a loan officer</p>
+  <p class="eyebrow">{eyebrow}</p>
   <h2 class="mt-3" style="font-size: clamp(1.5rem, 2.2vw, 1.875rem); font-weight: 700; line-height: 1.2;">{title}</h2>
   {sub && <p class="mt-3 text-[var(--color-text-muted)] leading-relaxed">{sub}</p>}
   <div class="mt-7">
-    <ContactForm formTo={formTo} formSource={formSource} />
+    <ContactForm formTo={formTo} formSource={formSource} ctaLabel={ctaLabel} />
   </div>
   <slot />
 </div>

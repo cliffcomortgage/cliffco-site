@@ -1,0 +1,50 @@
+---
+/**
+ * Blog article header, editorial layout: big headline across the top, byline,
+ * then the article's mapped hero photo (data/article-images.json, keyed by URL
+ * path) full width underneath. Default slot = the h1 text.
+ */
+import articleImages from "../../data/article-images.json";
+
+interface Props {
+  byline?: string;
+  eyebrow?: string;
+}
+const { byline, eyebrow = "Mortgage Guides" } = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+let pathname = Astro.url.pathname;
+if (base && pathname.startsWith(base)) pathname = pathname.slice(base.length);
+if (!pathname.endsWith("/")) pathname += "/";
+
+const images = articleImages as Record<string, { url: string; alt: string; objectPosition?: string }>;
+const image = images[pathname];
+---
+
+<header class="bg-white">
+  <div class="container-wide pt-12 lg:pt-20 pb-10 lg:pb-14">
+    <div class="flex items-center gap-4">
+      <p class="eyebrow">{eyebrow}</p>
+      <span class="h-px flex-1 max-w-24 bg-[var(--color-ink)]" aria-hidden="true"></span>
+      <a href="/mortgage-guides/blog/" class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)] no-underline hover:underline">All articles</a>
+    </div>
+    <h1 class="mt-6 max-w-5xl text-[var(--color-ink)]" style="font-size: clamp(1.875rem, 3.4vw, 3.25rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">
+      <slot />
+    </h1>
+    {byline && <p class="mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">{byline}</p>}
+  </div>
+  {image && (
+    <div class="container-wide">
+      <div class="overflow-hidden rounded-[1.75rem] aspect-[16/10] sm:aspect-[21/9]">
+        <img
+          src={image.url}
+          alt={image.alt}
+          class="w-full h-full object-cover"
+          style={image.objectPosition ? `object-position: ${image.objectPosition}` : undefined}
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  )}
+</header>

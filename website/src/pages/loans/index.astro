@@ -5,8 +5,9 @@ import { PRODUCTS, priorityProducts } from "../../data/products";
 
 const priority = priorityProducts();
 const supporting = PRODUCTS.filter((p) => !p.isPriority);
-import AsymHero from "../../components/asym/AsymHero.astro";
-import Split from "../../components/asym/Split.astro";
+import TermSheetHero from "../../components/asym/TermSheetHero.astro";
+import TermSheet from "../../components/asym/TermSheet.astro";
+import Chapter from "../../components/asym/Chapter.astro";
 import CtaBand from "../../components/asym/CtaBand.astro";
 import { COMPANY } from "../../data/company";
 ---
@@ -20,7 +21,7 @@ import { COMPANY } from "../../data/company";
     { name: "Loans", href: "/loans/" },
   ]} />
 
-  <AsymHero
+  <TermSheetHero
     eyebrow="Loans"
     lead="Cliffco's specialty is non-traditional mortgage scenarios: the loans most banks don't know how to underwrite. We also do conventional, FHA, VA, USDA, and renovation. Pick a product to learn more."
     facts={priority.map((p) => ({ label: p.category, value: p.shortName }))}
@@ -30,10 +31,12 @@ import { COMPANY } from "../../data/company";
       <a href="#specialties" class="btn btn-primary">See our specialties</a>
       <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
     </Fragment>
-  </AsymHero>
+  </TermSheetHero>
+
+  <TermSheet>
 
   <!-- SPECIALTIES -->
-  <Split id="specialties" eyebrow="Our specialties" title="The loans other banks turn away." wide>
+  <Chapter id="specialties" eyebrow="Our specialties" title="The loans other banks turn away." wide>
     <div class="grid sm:grid-cols-2 gap-4">
       {priority.map((p, i) => (
         <a href={`/loans/${p.slug}/`} class={`group rounded-2xl p-7 flex flex-col h-full no-underline transition-colors ${i === 0 ? "bg-[var(--color-ink)] text-white" : "border-2 border-[var(--color-ink)] text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white"}`}>
@@ -44,10 +47,10 @@ import { COMPANY } from "../../data/company";
         </a>
       ))}
     </div>
-  </Split>
+  </Chapter>
 
   <!-- HELOC SPOTLIGHT (black band) -->
-  <Split dark eyebrow="Featured Program" title="HELOC: Approved in 5 minutes. Funded in 5 days.*">
+  <Chapter dark eyebrow="Featured Program" title="HELOC: Approved in 5 minutes. Funded in 5 days.*">
     <p class="text-white/85 leading-relaxed" style="font-size: 1.125rem;">
       Access your home equity as a revolving line of credit without refinancing your first mortgage. Instant approval decision, five-business-day funding.
     </p>
@@ -58,10 +61,10 @@ import { COMPANY } from "../../data/company";
     <p class="mt-8 text-xs text-white/50 leading-relaxed">
       *Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report. Five business day funding timeline assumes closing the loan with our remote online notary. Funding timelines may be longer for loans secured by properties located in counties that do not permit recording of e-signatures or that otherwise require an in-person closing.
     </p>
-  </Split>
+  </Chapter>
 
   <!-- OTHER PROGRAMS -->
-  <Split rule={false} eyebrow="Everything else" title="Other loan programs.">
+  <Chapter rule={false} eyebrow="Everything else" title="Other loan programs.">
     <ul class="list-none m-0 p-0 border-t border-[var(--color-ink)]">
       {supporting.map((p) => (
         <li class="border-b border-black/15">
@@ -73,7 +76,9 @@ import { COMPANY } from "../../data/company";
         </li>
       ))}
     </ul>
-  </Split>
+  </Chapter>
+  </TermSheet>
+
 
   <CtaBand title="Not sure which loan fits?" text="Tell us your situation. A licensed Cliffco loan officer responds in one business day.">
     <a href="/get-started/" class="btn btn-primary">Get Started</a>

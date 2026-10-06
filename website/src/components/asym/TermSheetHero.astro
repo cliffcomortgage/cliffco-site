@@ -1,0 +1,48 @@
+---
+/**
+ * Loan program header ("term sheet"): full-width black band with a very large
+ * program name, then a row of the program's key numbers like a lender's term
+ * sheet. Slots: default = h1 content, "actions" = buttons, "note" = small print.
+ */
+interface Props {
+  eyebrow: string;
+  lead?: string;
+  facts?: { label: string; value: string }[];
+}
+const { eyebrow, lead, facts = [] } = Astro.props;
+const cols = facts.length >= 4 ? "md:grid-cols-4" : facts.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2";
+---
+
+<section class="termsheet-hero bg-[var(--color-ink)] text-white">
+  <div class="container-wide pt-14 pb-12 lg:pt-20 lg:pb-14">
+    <p class="eyebrow !text-white/55">{eyebrow}</p>
+    <h1 class="mt-5 !text-white max-w-5xl" style="font-size: clamp(2.375rem, 4.8vw, 4.5rem); line-height: 1.02; font-weight: 700; letter-spacing: -0.035em; font-family: var(--font-display);">
+      <slot />
+    </h1>
+    <div class="mt-8 grid lg:grid-cols-12 gap-8 items-end">
+      {lead && <p class="lg:col-span-7 text-white/75" style="font-size: 1.1875rem; line-height: 1.6;">{lead}</p>}
+      {Astro.slots.has("actions") && (
+        <div class="lg:col-span-5 flex flex-wrap gap-3 lg:justify-end"><slot name="actions" /></div>
+      )}
+    </div>
+    {Astro.slots.has("note") && <p class="mt-4 text-sm text-white/60"><slot name="note" /></p>}
+
+    {facts.length > 0 && (
+      <dl class={`mt-12 lg:mt-16 grid grid-cols-1 sm:grid-cols-2 ${cols} border-t border-white/30`}>
+        {facts.map((f, i) => (
+          <div class={`pt-5 pb-2 sm:pr-6 ${i > 0 ? "md:border-l md:border-white/30 md:pl-6" : ""}`}>
+            <dd class="text-white font-bold leading-tight" style="font-family: var(--font-display); font-size: clamp(1.375rem, 2vw, 1.875rem); letter-spacing: -0.02em;">{f.value}</dd>
+            <dt class="mt-2 font-mono text-[11px] uppercase tracking-[0.14em] text-white/55">{f.label}</dt>
+          </div>
+        ))}
+      </dl>
+    )}
+  </div>
+</section>
+
+<style>
+  .termsheet-hero :global(.btn-primary) { background: #fff; color: var(--color-ink); }
+  .termsheet-hero :global(.btn-primary:hover) { background: rgb(255 255 255 / 0.85); }
+  .termsheet-hero :global(.btn-secondary) { background: transparent; color: #fff; border-color: #fff; }
+  .termsheet-hero :global(.btn-secondary:hover) { background: rgb(255 255 255 / 0.1); }
+</style>

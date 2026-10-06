@@ -6,7 +6,6 @@ import { location } from "../../../data/locations";
 import { BRANCHES } from "../../../data/branches";
 import { product } from "../../../data/products";
 import { localBusinessSchema, faqPageSchema, breadcrumbSchema } from "../../../lib/schema";
-import ContactForm from "../../../components/forms/ContactForm.astro";
 
 const loc = location("new-york")!;
 const nyBranches = BRANCHES.filter((b) => loc.branchSlugs?.includes(b.slug));
@@ -27,6 +26,11 @@ const schema = [
     { name: "New York", url: "/locations/new-york/" },
   ]),
 ];
+import CityHero from "../../../components/asym/CityHero.astro";
+import Split from "../../../components/asym/Split.astro";
+import FormCard from "../../../components/asym/FormCard.astro";
+import FaqList from "../../../components/asym/FaqList.astro";
+import CtaBand from "../../../components/asym/CtaBand.astro";
 ---
 
 <Layout title="New York Mortgage Lender | Cliffco" description={loc.blurb} schema={schema}>
@@ -36,105 +40,82 @@ const schema = [
     { name: "New York", href: "/locations/new-york/" },
   ]} />
 
-  <section class="accent-gradient">
-    <div class="container-wide py-16 lg:py-24">
-      <p class="eyebrow !text-[var(--color-ice-blue)]">New York · Cliffco Mortgage Bankers</p>
-      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.1; font-weight: 400; font-family: var(--font-display);">
-        New York Mortgage Lender
-      </h1>
-      <p class="lead mt-6 text-white/90 max-w-2xl">{loc.blurb}</p>
-      <div class="mt-8 flex flex-wrap gap-4 items-center">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Get Pre-Qualified</a>
-        <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
-      </div>
+  <CityHero
+    word="New York"
+    sub="Mortgage Lender"
+    eyebrow="New York · Cliffco Mortgage Bankers"
+    lead={loc.blurb}
+    facts={[
+      { label: "Home market since", value: "1989" },
+      { label: "Long Island offices", value: nyBranches.map((b) => b.city).join(" · ") },
+      { label: "NY license", value: "LMBC109800" },
+    ]}
+  >
+    <Fragment slot="actions">
+      <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+      <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary">{COMPANY.hq.phone}</a>
+    </Fragment>
+  </CityHero>
+
+  
+
+  <!-- FEATURED PRODUCTS -->
+  <Split eyebrow="What we lead with in New York" title="Built for New York borrowers." wide>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {loc.featuredProducts.map((slug) => {
+        const p = product(slug);
+        if (!p) return null;
+        return (
+          <a href={`/loans/${p.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+            <h3 class="text-lg font-semibold group-hover:!text-white">{p.shortName}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] group-hover:text-white/75 flex-1 leading-relaxed">{p.oneLiner}</p>
+            <span class="mt-4 text-sm font-semibold">Learn more →</span>
+          </a>
+        );
+      })}
     </div>
-  </section>
+  </Split>
 
-  <section class="bg-[var(--color-mist-gray)] section">
-    <div class="container-wide space-y-4">
-      <!-- Long Island - prominent featured card -->
-      <a href="/locations/new-york/long-island/" class="card no-underline text-[var(--color-ink)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border-2 border-[var(--color-accent)]/30 hover:border-[var(--color-accent)] transition-colors">
-        <div>
-          <p class="eyebrow">Our home market since 1989</p>
-          <h2 class="mt-1" style="font-size: var(--text-h3);">Long Island</h2>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)] max-w-xl">Nassau and Suffolk counties, two offices (Uniondale HQ and Bay Shore). More Long Island loan officers and more Long Island experience than any other independent mortgage bank our size.</p>
-        </div>
-        <span class="btn btn-primary shrink-0">Find Long Island Loan Officers</span>
-      </a>
+  <!-- FAQ -->
+  <Split eyebrow="New York FAQ" title="Local borrower questions.">
+    <FaqList items={faq} />
+  </Split>
 
-      <!-- Other coverage areas -->
-      <div class="grid gap-4 sm:grid-cols-2">
-        <div class="card">
+  <CtaBand title="New York borrowers: talk to a Long Island-based Cliffco LO.">
+    <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+    <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary">{COMPANY.hq.phone}</a>
+  </CtaBand>
+
+  <!-- VISIT / CALL + FORM -->
+  <section class="bg-white">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5 lg:col-start-8 lg:row-start-1">
+        <FormCard
+          title="Questions about buying or refinancing in New York?"
+          sub="Tell us your situation and a Long Island-based loan officer will be in touch within one business day."
+          formSource="location-new-york"
+        />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:pt-8 space-y-4">
+        <!-- Long Island - prominent featured card -->
+        <a href="/locations/new-york/long-island/" class="block rounded-2xl bg-[var(--color-ink)] p-7 no-underline">
+          <p class="eyebrow !text-white/55">Our home market since 1989</p>
+          <h2 class="mt-2 !text-white" style="font-size: var(--text-h3); font-weight: 700;">Long Island</h2>
+          <p class="mt-3 text-sm text-white/80 leading-relaxed">Nassau and Suffolk counties, two offices (Uniondale HQ and Bay Shore). More Long Island loan officers and more Long Island experience than any other independent mortgage bank our size.</p>
+          <span class="mt-5 btn btn-primary !bg-white !text-[var(--color-ink)]">Find Long Island Loan Officers</span>
+        </a>
+
+        <!-- Other coverage areas -->
+        <div class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
           <h2 class="text-lg font-semibold">Hudson Valley + Upstate</h2>
           <p class="mt-2 text-sm text-[var(--color-text-muted)]">Cliffco lends statewide. Loan officers based on Long Island serve all 62 NY counties remotely.</p>
         </div>
-        <div class="card">
+        <div class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
           <h2 class="text-lg font-semibold">NYC Boroughs</h2>
           <p class="mt-2 text-sm text-[var(--color-text-muted)]">Queens, Brooklyn, the Bronx, Manhattan, Staten Island. Co-op, condo, jumbo, and Non-QM specialists.</p>
         </div>
-      </div>
 
-      <div class="mt-6">
-        <a href="/loan-officers/?state=NY" class="btn btn-primary">View all NY loan officers →</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section bg-white">
-    <div class="container-wide">
-      <p class="eyebrow">What we lead with in New York</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Built for New York borrowers.</h2>
-      <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {loc.featuredProducts.map((slug) => {
-          const p = product(slug);
-          if (!p) return null;
-          return (
-            <a href={`/loans/${p.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
-              <h3 class="font-semibold">{p.shortName}</h3>
-              <p class="mt-2 text-sm text-[var(--color-text-muted)] flex-1">{p.oneLiner}</p>
-              <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">Learn more →</span>
-            </a>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-prose">
-      <p class="eyebrow">New York FAQ</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Local borrower questions.</h2>
-      <div class="mt-8 space-y-6">
-        {faq.map((q) => (
-          <details class="border-b border-[var(--color-mist-gray)] pb-4">
-            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
-            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">New York borrowers: talk to a Long Island-based Cliffco LO.</h2>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Pre-Qualified</a>
-        <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT FORM -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Questions about buying or refinancing in New York?</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us your situation and a Long Island-based loan officer will be in touch within one business day.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
-          formSource="location-new-york"
-        />
+        <a href="/loan-officers/?state=NY" class="mt-2 btn btn-secondary">View all NY loan officers →</a>
       </div>
     </div>
   </section>

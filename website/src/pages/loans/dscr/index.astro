@@ -28,8 +28,9 @@ const schema = [
     dateModified: "2026-07-15",
   }),
 ];
-import AsymHero from "../../../components/asym/AsymHero.astro";
-import Split from "../../../components/asym/Split.astro";
+import TermSheetHero from "../../../components/asym/TermSheetHero.astro";
+import TermSheet from "../../../components/asym/TermSheet.astro";
+import Chapter from "../../../components/asym/Chapter.astro";
 import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
@@ -51,7 +52,7 @@ const fits = [
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <AsymHero
+  <TermSheetHero
     eyebrow={p.category}
     lead={p.oneLiner}
     facts={[
@@ -65,17 +66,12 @@ const fits = [
       <a href="#contact" class="btn btn-primary">Get a DSCR pre-qual</a>
       <a href="/mortgage-guides/calculators/dscr/" class="btn btn-secondary">DSCR calculator</a>
     </Fragment>
-  </AsymHero>
+  </TermSheetHero>
 
-  <!-- LEAD FORM + QUICK MATH -->
-  <section class="bg-white border-t border-[var(--color-ink)]">
-    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5">
-        <FormCard title="Got a property in mind? Let's run the DSCR." sub="Tell us the address, the projected rent, and the down payment and we'll tell you what we can do." formSource="loan-dscr" />
-      </div>
-      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
-        <p class="eyebrow">Quick math</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">DSCR is a one-line formula.</h2>
+  <TermSheet>
+    <FormCard slot="form" title="Got a property in mind? Let's run the DSCR." sub="Tell us the address, the projected rent, and the down payment and we'll tell you what we can do." formSource="loan-dscr" />
+
+    <Chapter eyebrow="Quick math" title="DSCR is a one-line formula.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
         <div class="mt-8 rounded-2xl bg-[var(--color-ink)] text-white p-7 sm:p-8">
           <p class="text-base sm:text-lg font-mono text-white leading-relaxed"><strong>DSCR</strong> = Gross Monthly Rent ÷ Monthly PITIA</p>
@@ -85,12 +81,10 @@ const fits = [
           </p>
           <a href="/mortgage-guides/calculators/dscr/" class="btn btn-primary mt-6 !bg-white !text-[var(--color-ink)] hover:!bg-white/85">Open the DSCR calculator →</a>
         </div>
-      </div>
-    </div>
-  </section>
+      </Chapter>
 
   <!-- WHERE WE LEND -->
-  <Split eyebrow="Where Cliffco lends DSCR" title="Strong fits." wide>
+  <Chapter eyebrow="Where Cliffco lends DSCR" title="Strong fits." wide>
     <div class="grid sm:grid-cols-2 gap-4">
       {fits.map((f) => (
         <a href={f.href} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white transition-colors">
@@ -99,12 +93,14 @@ const fits = [
         </a>
       ))}
     </div>
-  </Split>
+  </Chapter>
 
   <!-- FAQ -->
-  <Split eyebrow="FAQ" title="What investors ask before their first DSCR deal.">
+  <Chapter eyebrow="FAQ" title="What investors ask before their first DSCR deal.">
     <FaqList items={faq} />
-  </Split>
+  </Chapter>
+  </TermSheet>
+
 
   <CtaBand title="Pre-qual in 24 hours. Close in 21-30 days." text="Tell us the address, the projected rent, and the down payment. We'll tell you what we can do.">
     <a href="#contact" class="btn btn-primary">Get a DSCR pre-qual</a>

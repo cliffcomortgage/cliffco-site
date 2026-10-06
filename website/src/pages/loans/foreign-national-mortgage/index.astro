@@ -49,8 +49,9 @@ const schema = [
     dateModified: "2026-07-15",
   }),
 ];
-import AsymHero from "../../../components/asym/AsymHero.astro";
-import Split from "../../../components/asym/Split.astro";
+import TermSheetHero from "../../../components/asym/TermSheetHero.astro";
+import TermSheet from "../../../components/asym/TermSheet.astro";
+import Chapter from "../../../components/asym/Chapter.astro";
 import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
@@ -79,7 +80,7 @@ const numbers = [
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <AsymHero
+  <TermSheetHero
     eyebrow={p.category}
     lead={p.oneLiner}
     facts={[
@@ -93,17 +94,12 @@ const numbers = [
       <a href="#contact" class="btn btn-primary">Start a pre-qual</a>
       <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
     </Fragment>
-  </AsymHero>
+  </TermSheetHero>
 
-  <!-- LEAD FORM + THE NUMBERS -->
-  <section class="bg-white border-t border-[var(--color-ink)]">
-    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5">
-        <FormCard title="Questions about buying U.S. property as a foreign national?" sub="Tell us about your visa status and target property and we'll show you which programs apply." formSource="loan-foreign-national" />
-      </div>
-      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
-        <p class="eyebrow">The numbers</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">What to expect.</h2>
+  <TermSheet>
+    <FormCard slot="form" title="Questions about buying U.S. property as a foreign national?" sub="Tell us about your visa status and target property and we'll show you which programs apply." formSource="loan-foreign-national" />
+
+    <Chapter eyebrow="The numbers" title="What to expect.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
         <p class="mt-4 text-[var(--color-text-muted)]">Final terms depend on country of origin, documentation, LTV, and property type.</p>
         <dl class="mt-8 border-t border-[var(--color-ink)]">
@@ -115,12 +111,10 @@ const numbers = [
           ))}
         </dl>
         <p class="text-xs text-[var(--color-text-muted)] mt-4 leading-relaxed">The chart above is for illustrative purposes only. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.</p>
-      </div>
-    </div>
-  </section>
+      </Chapter>
 
   <!-- WHO QUALIFIES -->
-  <Split eyebrow="Who qualifies" title="You don't have to live here to own here." wide>
+  <Chapter eyebrow="Who qualifies" title="You don't have to live here to own here." wide>
     <ol class="list-none m-0 p-0 grid sm:grid-cols-2 gap-4">
       {whoQualifies.map((w, i) => (
         <li class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
@@ -130,10 +124,10 @@ const numbers = [
         </li>
       ))}
     </ol>
-  </Split>
+  </Chapter>
 
   <!-- LEARN MORE (black band) -->
-  <Split dark eyebrow="Learn more" title="How foreign national loans work.">
+  <Chapter dark eyebrow="Learn more" title="How foreign national loans work.">
     <p class="text-white/85 leading-relaxed" style="font-size: 1.0625rem;">
       Our guide walks through the full process, from documentation to closing, including down payment sourcing, credit alternatives, reserve requirements, and what to expect at each stage if you've never bought US property before.
     </p>
@@ -148,12 +142,14 @@ const numbers = [
       </ul>
     </div>
     <a href="/mortgage-guides/blog/foreign-national-loan-buy-property-us/" class="btn btn-secondary mt-8 !border-white !text-white">Read the complete guide →</a>
-  </Split>
+  </Chapter>
 
   <!-- FAQ -->
-  <Split rule={false} eyebrow="FAQ" title="Questions foreign national buyers ask.">
+  <Chapter rule={false} eyebrow="FAQ" title="Questions foreign national buyers ask.">
     <FaqList items={faq} />
-  </Split>
+  </Chapter>
+  </TermSheet>
+
 
   <CtaBand title="Buying from abroad starts with one call." text="A Cliffco loan officer responds within one business day. No US credit pull required to get started.">
     <a href="#contact" class="btn btn-primary">Start a pre-qual</a>

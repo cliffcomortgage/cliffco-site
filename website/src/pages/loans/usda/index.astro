@@ -28,8 +28,9 @@ const schema = [
   }),
 ];
 
-import AsymHero from "../../../components/asym/AsymHero.astro";
-import Split from "../../../components/asym/Split.astro";
+import TermSheetHero from "../../../components/asym/TermSheetHero.astro";
+import TermSheet from "../../../components/asym/TermSheet.astro";
+import Chapter from "../../../components/asym/Chapter.astro";
 import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
@@ -51,7 +52,7 @@ const glance = [
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <AsymHero
+  <TermSheetHero
     eyebrow={p.category}
     lead={p.oneLiner}
     facts={[
@@ -65,17 +66,12 @@ const glance = [
       <a href="#contact" class="btn btn-primary">Check eligibility</a>
       <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
     </Fragment>
-  </AsymHero>
+  </TermSheetHero>
 
-  <!-- LEAD FORM + OVERVIEW -->
-  <section class="bg-white border-t border-[var(--color-ink)]">
-    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5">
-        <FormCard title="Think a USDA loan might fit? Let's find out." sub="We'll check the property location and income limits for your area and tell you if you qualify." formSource="loan-usda" />
-      </div>
-      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
-        <p class="eyebrow">USDA at a glance</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">Zero down. For the right address.</h2>
+  <TermSheet>
+    <FormCard slot="form" title="Think a USDA loan might fit? Let's find out." sub="We'll check the property location and income limits for your area and tell you if you qualify." formSource="loan-usda" />
+
+    <Chapter eyebrow="USDA at a glance" title="Zero down. For the right address.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
         <dl class="mt-8 border-t border-[var(--color-ink)]">
           {glance.map(([k, v]) => (
@@ -85,14 +81,14 @@ const glance = [
             </div>
           ))}
         </dl>
-      </div>
-    </div>
-  </section>
+      </Chapter>
 
   <!-- FAQ -->
-  <Split eyebrow="FAQ" title="Is USDA right for your address?">
+  <Chapter eyebrow="FAQ" title="Is USDA right for your address?">
     <FaqList items={faq} />
-  </Split>
+  </Chapter>
+  </TermSheet>
+
 
   <CtaBand title="Zero down. Check if your address qualifies." text="A Cliffco loan officer can confirm property and income eligibility in minutes.">
     <a href="#contact" class="btn btn-primary">Check eligibility</a>

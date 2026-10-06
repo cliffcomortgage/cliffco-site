@@ -30,8 +30,9 @@ const schema = [
   }),
 ];
 
-import AsymHero from "../../../components/asym/AsymHero.astro";
-import Split from "../../../components/asym/Split.astro";
+import TermSheetHero from "../../../components/asym/TermSheetHero.astro";
+import TermSheet from "../../../components/asym/TermSheet.astro";
+import Chapter from "../../../components/asym/Chapter.astro";
 import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
@@ -53,7 +54,7 @@ const glance = [
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <AsymHero
+  <TermSheetHero
     eyebrow={p.category}
     lead={p.oneLiner}
     facts={[
@@ -68,17 +69,12 @@ const glance = [
       <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
     </Fragment>
     <Fragment slot="note">*See terms below.</Fragment>
-  </AsymHero>
+  </TermSheetHero>
 
-  <!-- LEAD FORM + AT A GLANCE -->
-  <section class="bg-white border-t border-[var(--color-ink)]">
-    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5">
-        <FormCard title="See what your equity could do." sub="Tell us your home's approximate value and your current mortgage balance and we'll show you what a line could look like." formSource="loan-heloc" />
-      </div>
-      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
-        <p class="eyebrow">HELOC at a glance</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">Your equity, without touching your first mortgage.</h2>
+  <TermSheet>
+    <FormCard slot="form" title="See what your equity could do." sub="Tell us your home's approximate value and your current mortgage balance and we'll show you what a line could look like." formSource="loan-heloc" />
+
+    <Chapter eyebrow="HELOC at a glance" title="Your equity, without touching your first mortgage.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
         <dl class="mt-8 border-t border-[var(--color-ink)]">
           {glance.map(([k, v]) => (
@@ -88,20 +84,20 @@ const glance = [
             </div>
           ))}
         </dl>
-      </div>
-    </div>
-  </section>
+      </Chapter>
 
   <!-- FAQ -->
-  <Split eyebrow="FAQ" title="Common HELOC questions.">
+  <Chapter eyebrow="FAQ" title="Common HELOC questions.">
     <FaqList items={faq} />
-  </Split>
+  </Chapter>
 
   <!-- HELOC VS CASH-OUT -->
-  <Split eyebrow="HELOC or cash-out?" title="Comparing a HELOC to a cash-out refinance?">
+  <Chapter eyebrow="HELOC or cash-out?" title="Comparing a HELOC to a cash-out refinance?">
     <p class="text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">If your first mortgage rate is low, a HELOC usually wins. If you'd benefit from restructuring the whole loan, cash-out may make more sense. We compare both for you.</p>
     <a href="/mortgage-guides/blog/cash-out-refinance-vs-heloc/" class="mt-6 btn btn-secondary text-sm">Read the comparison →</a>
-  </Split>
+  </Chapter>
+  </TermSheet>
+
 
   <CtaBand title="Tap your equity. Keep your rate." text="Apply online and get an approval decision in minutes.">
     <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>

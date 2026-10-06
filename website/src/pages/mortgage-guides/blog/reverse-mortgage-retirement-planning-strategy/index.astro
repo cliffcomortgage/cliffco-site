@@ -1,6 +1,7 @@
 ﻿---
 import BlogLayout from "../../../../layouts/BlogLayout.astro";
-import ArticleImage from "../../../../components/ui/ArticleImage.astro";
+import ArticleHero from "../../../../components/asym/ArticleHero.astro";
+import ArticleBody from "../../../../components/asym/ArticleBody.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 ---
 
@@ -15,12 +16,9 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     { name: "Reverse Mortgage Retirement Planning Strategy", href: "/mortgage-guides/blog/reverse-mortgage-retirement-planning-strategy/" },
   ]} />
 
-  <article class="container-prose pt-12 pb-16">
+  <ArticleHero byline="By the Cliffco editorial team">A Reverse Mortgage Is Not a Last Resort: How Homeowners Are Using It as a Retirement Planning Tool</ArticleHero>
 
-    <h1 style="font-size: var(--text-display-lg);">A Reverse Mortgage Is Not a Last Resort: How Homeowners Are Using It as a Retirement Planning Tool</h1>
-    <p class="mt-3 text-sm text-[var(--color-text-muted)]">By the Cliffco editorial team</p>
-
-    <ArticleImage />
+  <ArticleBody>
 
     <p class="mt-8 font-bold">For the Homeowner Who Assumed This Product Wasn't for Them</p>
 
@@ -61,8 +59,8 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     <p class="mt-4">Cliffco's Reverse Mortgage Estimator can show you how much equity you could access and how a line of credit would grow over time, giving you a concrete starting point for a strategic conversation with your financial planner. If your home equity is your largest asset and it isn't part of your retirement plan yet, that's the conversation worth having next.</p>
 
     <!-- Embedded lite Reverse Mortgage Estimator -->
-    <div class="mt-12 border border-[var(--color-accent)]/25 rounded-lg overflow-hidden">
-      <div class="bg-[var(--color-accent)]/8 px-6 py-5 border-b border-[var(--color-accent)]/15">
+    <div class="mt-12 border-2 border-[var(--color-ink)] rounded-2xl overflow-hidden">
+      <div class="bg-white px-6 py-5 border-b-2 border-[var(--color-ink)]">
         <p class="eyebrow text-xs mb-1">Quick check</p>
         <h2 class="text-xl font-semibold text-[var(--color-ink)]">Estimate your reverse mortgage proceeds.</h2>
         <p class="text-sm text-[var(--color-text-muted)] mt-1">Enter your age, home value, and current mortgage balance to see a rough proceeds estimate.</p>
@@ -85,11 +83,11 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
         <button id="art-rm-btn" class="btn btn-primary mt-5">Estimate Proceeds</button>
 
         <div id="art-rm-result" class="hidden mt-6">
-          <div class="p-5 bg-[var(--color-mist-gray)] rounded-lg">
+          <div class="p-5 bg-white border border-black/15 rounded-lg">
             <div class="grid gap-4 sm:grid-cols-2">
               <div>
                 <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Gross Proceeds Estimate</p>
-                <p id="art-rm-gross" class="text-3xl font-bold text-[var(--color-accent)] mt-1"></p>
+                <p id="art-rm-gross" class="text-3xl font-bold text-[var(--color-ink)] mt-1"></p>
               </div>
               <div>
                 <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">Net Proceeds After Payoff</p>
@@ -100,22 +98,22 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
             <p class="mt-2 text-xs text-[var(--color-text-muted)]">Estimate based on HECM principal limit factors. Actual proceeds depend on current interest rates, FHA MIP, and lender-specific guidelines. A licensed reverse mortgage specialist will provide a personalized illustration.</p>
           </div>
 
-          <div class="mt-4 p-5 bg-[var(--color-rich-black)] rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+          <div class="mt-4 p-5 bg-[var(--color-ink)] rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
             <div>
               <p class="text-white font-semibold">Want the real numbers for your home?</p>
               <p class="text-white/70 text-sm mt-1">A Cliffco reverse mortgage specialist can give you a personalized illustration with current rates and full fee disclosure.</p>
             </div>
-            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a specialist</a>
+            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-ink)] shrink-0 whitespace-nowrap">Talk to a specialist</a>
           </div>
 
           <p class="mt-4 text-sm text-center text-[var(--color-text-muted)]">
-            Want to model other scenarios? <a href="/mortgage-guides/calculators/reverse-mortgage/" class="text-[var(--color-accent)] font-medium">View the full reverse mortgage estimator →</a>
+            Want to model other scenarios? <a href="/mortgage-guides/calculators/reverse-mortgage/" class="text-[var(--color-ink)] font-medium">View the full reverse mortgage estimator →</a>
           </p>
         </div>
       </div>
     </div>
 
-  </article>
+  </ArticleBody>
 </BlogLayout>
 
 <style>
@@ -131,8 +129,8 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     transition: border-color 0.15s;
   }
   .art-calc-input:focus {
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+    border-color: var(--color-ink);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-ink) 15%, transparent);
   }
 </style>
 

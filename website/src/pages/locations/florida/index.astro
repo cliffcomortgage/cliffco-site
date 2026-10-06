@@ -27,9 +27,20 @@ const schema = [
     { name: "Florida", url: "/locations/florida/" },
   ]),
 ];
-import ContactForm from "../../../components/forms/ContactForm.astro";
----
 
+import CityHero from "../../../components/asym/CityHero.astro";
+import Split from "../../../components/asym/Split.astro";
+import FormCard from "../../../components/asym/FormCard.astro";
+import FaqList from "../../../components/asym/FaqList.astro";
+import CtaBand from "../../../components/asym/CtaBand.astro";
+
+const coverage = [
+  { name: "Orlando / Central Florida", body: "Disney-area short-term-rental and DSCR investors, plus Non-QM for self-employed Central Florida buyers." },
+  { name: "Tampa Bay", body: "Investor SFR and small-multi DSCR; growing primary-residence market." },
+  { name: "Jacksonville", body: "Affordable entry market; military and first-time buyer." },
+  { name: "Naples / SW Florida", body: "Reverse, jumbo, and post-Ian rebuild financing." },
+];
+---
 <Layout title="Florida Mortgage Lender | Cliffco (Clout Mortgage)" description={loc.blurb} schema={schema}>
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
@@ -37,101 +48,83 @@ import ContactForm from "../../../components/forms/ContactForm.astro";
     { name: "Florida", href: "/locations/florida/" },
   ]} />
 
-  <section class="accent-gradient">
-    <div class="container-wide py-16 lg:py-24">
-      <p class="eyebrow !text-[var(--color-ice-blue)]">Florida · Operating as Clout Mortgage, Inc.</p>
-      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.1; font-weight: 400; font-family: var(--font-display);">
-        Florida Mortgage Lender
-      </h1>
-      <p class="lead mt-6 text-white/90 max-w-2xl">{loc.blurb}</p>
-      <p class="mt-4 text-sm text-white/70">{COMPANY.floridaDba.disclosure}</p>
-      <div class="mt-6 flex flex-wrap gap-4 items-center">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Get Pre-Qualified</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
+  <CityHero
+    word="Florida"
+    sub="Mortgage Lender"
+    eyebrow="Florida · Operating as Clout Mortgage, Inc."
+    lead={loc.blurb}
+    facts={[
+      { label: "Florida office", value: "Ft. Lauderdale" },
+      { label: "Operating as", value: "Clout Mortgage, Inc." },
+      { label: "Corporate NMLS", value: `#${COMPANY.nmls}` },
+    ]}
+  >
+    <Fragment slot="actions">
+      <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+      <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+    </Fragment>
+    <Fragment slot="note">{COMPANY.floridaDba.disclosure}</Fragment>
+  </CityHero>
+
+  
+
+  <!-- FEATURED PRODUCTS -->
+  <Split eyebrow="What we lead with in Florida" title="Built for Florida borrowers and investors." wide>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {loc.featuredProducts.map((slug) => {
+        const p = product(slug);
+        if (!p) return null;
+        return (
+          <a href={`/loans/${p.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+            <h3 class="text-lg font-semibold group-hover:!text-white">{p.shortName}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] group-hover:text-white/75 flex-1 leading-relaxed">{p.oneLiner}</p>
+            <span class="mt-4 text-sm font-semibold">Learn more →</span>
+          </a>
+        );
+      })}
     </div>
-  </section>
+  </Split>
 
-  <!-- Branch offices - prominent cards -->
-  <section class="bg-[var(--color-mist-gray)] section">
-    <div class="container-wide space-y-4">
-      <!-- Ft. Lauderdale - primary FL branch -->
-      <a href="/locations/florida/fort-lauderdale/" class="card no-underline text-[var(--color-ink)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border-2 border-[var(--color-accent)]/30 hover:border-[var(--color-accent)] transition-colors">
-        <div>
-          <p class="eyebrow">Our Florida anchor office</p>
-          <h2 class="mt-1" style="font-size: var(--text-h3);">Ft. Lauderdale, FL</h2>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)] max-w-xl">Serving Miami-Dade, Broward, and Palm Beach. Foreign national, ITIN, condo non-warrantable, jumbo, and DSCR for SE Florida's investor-dense markets. Operates as Clout Mortgage, Inc.</p>
-        </div>
-        <span class="btn btn-primary shrink-0">Find Ft. Lauderdale Loan Officers</span>
-      </a>
+  <!-- FAQ -->
+  <Split eyebrow="Florida FAQ" title="Borrower and investor questions.">
+    <FaqList items={faq} />
+  </Split>
 
-      <!-- Other coverage areas -->
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="card">
-          <h3 class="text-base font-semibold">Orlando / Central Florida</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Disney-area short-term-rental and DSCR investors, plus Non-QM for self-employed Central Florida buyers.</p>
-        </div>
-        <div class="card">
-          <h3 class="text-base font-semibold">Tampa Bay</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Investor SFR and small-multi DSCR; growing primary-residence market.</p>
-        </div>
-        <div class="card">
-          <h3 class="text-base font-semibold">Jacksonville</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Affordable entry market; military and first-time buyer.</p>
-        </div>
-        <div class="card">
-          <h3 class="text-base font-semibold">Naples / SW Florida</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Reverse, jumbo, and post-Ian rebuild financing.</p>
-        </div>
+  <CtaBand title="Florida borrowers: talk to our Florida team.">
+    <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+    <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary">{COMPANY.hq.phone}</a>
+  </CtaBand>
+
+  <!-- VISIT / CALL + FORM -->
+  <section class="bg-white">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5 lg:col-start-8 lg:row-start-1">
+        <FormCard
+          title="Questions about buying or investing in Florida?"
+          sub="Tell us your situation and we'll connect you with a Florida loan officer who knows this market."
+          formSource="location-florida"
+        />
       </div>
+      <div class="lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:pt-8 space-y-4">
+        <!-- Ft. Lauderdale - primary FL branch -->
+        <a href="/locations/florida/fort-lauderdale/" class="block rounded-2xl bg-[var(--color-ink)] p-7 no-underline">
+          <p class="eyebrow !text-white/55">Our Florida anchor office</p>
+          <h2 class="mt-2 !text-white" style="font-size: var(--text-h3); font-weight: 700;">Ft. Lauderdale, FL</h2>
+          <p class="mt-3 text-sm text-white/80 leading-relaxed">Serving Miami-Dade, Broward, and Palm Beach. Foreign national, ITIN, condo non-warrantable, jumbo, and DSCR for SE Florida's investor-dense markets. Operates as Clout Mortgage, Inc.</p>
+          <span class="mt-5 btn btn-primary !bg-white !text-[var(--color-ink)]">Find Ft. Lauderdale Loan Officers</span>
+        </a>
 
-      <div class="mt-6">
-        <a href="/loan-officers/?state=FL" class="btn btn-primary">View all FL loan officers →</a>
-      </div>
-    </div>
-  </section>
+        <!-- Other coverage areas -->
+        <div class="grid gap-4 sm:grid-cols-2">
+          {coverage.map((c) => (
+            <div class="rounded-2xl border-2 border-[var(--color-ink)] p-5">
+              <h3 class="text-base font-semibold">{c.name}</h3>
+              <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{c.body}</p>
+            </div>
+          ))}
+        </div>
 
-  <section class="section bg-white">
-    <div class="container-wide">
-      <p class="eyebrow">What we lead with in Florida</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Built for Florida borrowers and investors.</h2>
-      <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {loc.featuredProducts.map((slug) => {
-          const p = product(slug);
-          if (!p) return null;
-          return (
-            <a href={`/loans/${p.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
-              <h3 class="font-semibold">{p.shortName}</h3>
-              <p class="mt-2 text-sm text-[var(--color-text-muted)] flex-1">{p.oneLiner}</p>
-              <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">Learn more →</span>
-            </a>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-prose">
-      <p class="eyebrow">Florida FAQ</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Borrower and investor questions.</h2>
-      <div class="mt-8 space-y-6">
-        {faq.map((q) => (
-          <details class="border-b border-[var(--color-mist-gray)] pb-4">
-            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
-            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Florida borrowers: talk to our Florida team.</h2>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Pre-Qualified</a>
-        <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
+        <a href="/loan-officers/?state=FL" class="mt-2 btn btn-secondary">View all FL loan officers →</a>
       </div>
     </div>
   </section>
@@ -139,20 +132,6 @@ import ContactForm from "../../../components/forms/ContactForm.astro";
   <section class="bg-white py-8">
     <div class="container-wide">
       <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">{COMPANY.floridaDba.disclosure}</p>
-    </div>
-  </section>
-
-  <!-- CONTACT FORM -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Questions about buying or investing in Florida?</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us your situation and we'll connect you with a Florida loan officer who knows this market.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
-          formSource="location-florida"
-        />
-      </div>
     </div>
   </section>
 </Layout>

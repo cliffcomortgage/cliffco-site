@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { LOAN_OFFICERS, loanOfficersByBranch } from "../../data/loan-officers";
 import { BRANCHES } from "../../data/branches";
+import AsymHero from "../../components/asym/AsymHero.astro";
 
 // Group by branch for the default view
 const byBranch = BRANCHES.map((b) => ({
@@ -37,76 +38,89 @@ const stateNames: Record<string, string> = {
     { name: "Loan Officers", href: "/loan-officers/" },
   ]} />
 
-  <section class="container-wide pt-12 pb-10">
-    <p class="eyebrow">Our People</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">
-      Meet the people who get families home.
-    </h1>
-    <p class="lead mt-6">
-      Cliffco's loan officers aren't a call center you get routed to. They know their markets, answer their own phones, and have seen the kinds of loans conventional lenders turn away. Browse by office or filter by state to find yours.
-    </p>
+  <AsymHero
+    eyebrow="Our People"
+    lead="Cliffco's loan officers aren't a call center you get routed to. They know their markets, answer their own phones, and have seen the kinds of loans conventional lenders turn away. Browse by office or filter by state to find yours."
+    facts={[
+      { label: "Loan officers", value: String(LOAN_OFFICERS.length) },
+      { label: "Offices", value: String(byBranch.length) },
+      { label: "States covered", value: String(allStates.length) },
+    ]}
+  >
+    Meet the people who get families home.
+    <Fragment slot="actions">
+      <a href="#find" class="btn btn-primary">Find your loan officer</a>
+      <a href="/get-started/" class="btn btn-secondary">Get Started</a>
+    </Fragment>
+  </AsymHero>
 
-    <!-- Filters -->
-    <div class="mt-8 flex flex-wrap items-center gap-3 bg-[var(--color-mist-gray)] rounded-lg px-6 py-4 border border-[var(--color-accent)]/20">
-      <div class="flex items-center gap-2 flex-1 min-w-[200px]">
-        <label for="lo-search" class="font-semibold text-sm text-[var(--color-ink)] whitespace-nowrap">Search:</label>
-        <div class="relative flex-1">
-          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-text-muted)] pointer-events-none" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803 7.5 7.5 0 0015.803 15.803z" /></svg>
-          <input
-            id="lo-search"
-            type="search"
-            placeholder="Name..."
-            autocomplete="off"
-            class="w-full border-2 border-[var(--color-accent)]/40 rounded-lg pl-9 pr-4 py-2 text-sm font-medium text-[var(--color-ink)] bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
-          />
+  <!-- Filters -->
+  <section id="find" class="bg-white border-t border-[var(--color-ink)] scroll-mt-24">
+    <div class="container-wide py-10 lg:py-12">
+      <div class="flex flex-wrap items-center gap-4">
+        <div class="flex items-center gap-3 flex-1 min-w-[220px]">
+          <label for="lo-search" class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] whitespace-nowrap">Search</label>
+          <div class="relative flex-1">
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-text-muted)] pointer-events-none" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803 7.5 7.5 0 0015.803 15.803z" /></svg>
+            <input
+              id="lo-search"
+              type="search"
+              placeholder="Name..."
+              autocomplete="off"
+              class="w-full border-2 border-[var(--color-ink)] rounded-xl pl-9 pr-4 py-2.5 text-sm font-medium text-[var(--color-ink)] bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-ink)]/30"
+            />
+          </div>
         </div>
+        <div class="flex items-center gap-3">
+          <label for="state-filter" class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] whitespace-nowrap">State</label>
+          <select
+            id="state-filter"
+            class="border-2 border-[var(--color-ink)] rounded-xl px-4 py-2.5 text-sm font-medium text-[var(--color-ink)] bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-ink)]/30 min-w-[200px] cursor-pointer"
+          >
+            <option value="">All states</option>
+            {allStates.map((s) => (
+              <option value={s}>{stateNames[s] ?? s} ({s})</option>
+            ))}
+          </select>
+        </div>
+        <span id="filter-count" class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] hidden"></span>
       </div>
-      <div class="flex items-center gap-2">
-        <label for="state-filter" class="font-semibold text-sm text-[var(--color-ink)] whitespace-nowrap">State:</label>
-        <select
-          id="state-filter"
-          class="border-2 border-[var(--color-accent)]/40 rounded-lg px-4 py-2 text-sm font-medium text-[var(--color-ink)] bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] min-w-[200px] cursor-pointer"
-        >
-          <option value="">All states</option>
-          {allStates.map((s) => (
-            <option value={s}>{stateNames[s] ?? s} ({s})</option>
-          ))}
-        </select>
-      </div>
-      <span id="filter-count" class="text-sm font-medium text-[var(--color-accent)] hidden"></span>
     </div>
   </section>
 
   <!-- Branch-grouped view (default) -->
-  <section id="branch-view" class="bg-white pb-16">
-    <div class="container-wide space-y-12">
-      {byBranch.map((g) => (
-        <div>
-          <h2 class="text-xl font-semibold text-[var(--color-ink)]" id={g.branch.slug}>{g.branch.name}</h2>
-          {g.branch.metro && <p class="text-sm text-[var(--color-text-muted)] mt-1">{g.branch.metro}</p>}
-          <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3 lo-shuffle-grid">
+  <section id="branch-view" class="bg-white">
+    {byBranch.map((g) => (
+      <div class="border-t border-[var(--color-ink)]">
+        <div class="container-wide py-14 lg:py-20 grid lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-3 lg:sticky lg:top-28 self-start">
+            <p class="eyebrow">{g.branch.metro ?? "Office"}</p>
+            <h2 class="mt-3" id={g.branch.slug} style="font-size: var(--text-h3); font-weight: 700;">{g.branch.name}</h2>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)]">{g.officers.length} loan officer{g.officers.length === 1 ? "" : "s"}</p>
+          </div>
+          <div class="lg:col-span-9 grid gap-4 sm:grid-cols-2 xl:grid-cols-3 lo-shuffle-grid">
             {g.officers.map((lo) => (
-              <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
-                <p class="eyebrow">{lo.title}</p>
-                <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
-                <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>
-                <p class="text-xs text-[var(--color-text-muted)] mt-0.5">Licensed in {lo.states.join(", ")}</p>
+              <a href={`/loan-officers/${lo.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col bg-white hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+                <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/60">{lo.title}</p>
+                <h3 class="mt-2 text-lg font-semibold group-hover:!text-white">{lo.displayName}</h3>
+                <p class="text-xs text-[var(--color-text-muted)] group-hover:text-white/70 mt-1">NMLS #{lo.nmls}</p>
+                <p class="text-xs text-[var(--color-text-muted)] group-hover:text-white/70 mt-0.5">Licensed in {lo.states.join(", ")}</p>
                 {(() => { const extra = (lo.languages ?? []).filter((l: string) => l !== "English"); return extra.length > 0 && (
-                  <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{extra.join(" · ")}</p>
+                  <p class="text-xs mt-2 font-medium">{extra.join(" · ")}</p>
                 ); })()}
-                <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
+                <span class="mt-auto pt-4 text-sm font-semibold">View bio →</span>
               </a>
             ))}
           </div>
         </div>
-      ))}
-    </div>
+      </div>
+    ))}
   </section>
 
   <!-- State-filtered view (shown when a state is selected) -->
-  <section id="state-view" class="bg-white pb-16 hidden">
-    <div class="container-wide">
-      <div id="state-results" class="grid gap-4 md:grid-cols-2 xl:grid-cols-3"></div>
+  <section id="state-view" class="bg-white border-t border-[var(--color-ink)] hidden">
+    <div class="container-wide py-14 lg:py-20">
+      <div id="state-results" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
     </div>
   </section>
 </Layout>
@@ -138,14 +152,15 @@ const stateNames: Record<string, string> = {
   const filterCount = document.getElementById("filter-count");
 
   function cardHtml(lo) {
+    const extra = lo.languages.filter((l) => l !== "English");
     return `
-      <a href="/loan-officers/${lo.slug}/" class="card no-underline text-[var(--color-ink)] flex flex-col" style="text-decoration:none;">
-        <p style="font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-muted);margin:0 0 0.25rem;">${lo.title}</p>
-        <h3 style="margin:0 0 0.25rem;font-size:1rem;font-weight:600;">${lo.displayName}</h3>
-        <p style="font-size:0.75rem;color:var(--color-text-muted);margin:0 0 0.125rem;">NMLS #${lo.nmls}</p>
-        <p style="font-size:0.75rem;color:var(--color-text-muted);margin:0;">${lo.states.join(", ")}</p>
-        ${(() => { const extra = lo.languages.filter(l => l !== "English"); return extra.length > 0 ? `<p style="font-size:0.75rem;color:var(--color-accent);font-weight:500;margin:0.5rem 0 0;">${extra.join(" · ")}</p>` : ""; })()}
-        <span style="margin-top:1rem;font-size:0.875rem;font-weight:600;color:var(--color-accent);">View bio →</span>
+      <a href="/loan-officers/${lo.slug}/" class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col bg-white hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/60">${lo.title}</p>
+        <h3 class="mt-2 text-lg font-semibold group-hover:!text-white">${lo.displayName}</h3>
+        <p class="text-xs text-[var(--color-text-muted)] group-hover:text-white/70 mt-1">NMLS #${lo.nmls}</p>
+        <p class="text-xs text-[var(--color-text-muted)] group-hover:text-white/70 mt-0.5">${lo.states.join(", ")}</p>
+        ${extra.length > 0 ? `<p class="text-xs mt-2 font-medium">${extra.join(" · ")}</p>` : ""}
+        <span class="mt-auto pt-4 text-sm font-semibold">View bio →</span>
       </a>
     `;
   }

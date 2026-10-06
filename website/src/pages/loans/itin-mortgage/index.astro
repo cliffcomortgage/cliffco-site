@@ -49,8 +49,9 @@ const schema = [
     dateModified: "2026-07-15",
   }),
 ];
-import AsymHero from "../../../components/asym/AsymHero.astro";
-import Split from "../../../components/asym/Split.astro";
+import TermSheetHero from "../../../components/asym/TermSheetHero.astro";
+import TermSheet from "../../../components/asym/TermSheet.astro";
+import Chapter from "../../../components/asym/Chapter.astro";
 import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
@@ -79,7 +80,7 @@ const numbers = [
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <AsymHero
+  <TermSheetHero
     eyebrow={p.category}
     lead={p.oneLiner}
     facts={[
@@ -93,17 +94,12 @@ const numbers = [
       <a href="#contact" class="btn btn-primary">Start a pre-qual</a>
       <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
     </Fragment>
-  </AsymHero>
+  </TermSheetHero>
 
-  <!-- LEAD FORM + THE NUMBERS -->
-  <section class="bg-white border-t border-[var(--color-ink)]">
-    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5">
-        <FormCard title="Questions about ITIN mortgage programs?" sub="Tell us your situation and we'll walk you through which ITIN loan programs are available in your state." formSource="loan-itin" />
-      </div>
-      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
-        <p class="eyebrow">The numbers</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">What to expect.</h2>
+  <TermSheet>
+    <FormCard slot="form" title="Questions about ITIN mortgage programs?" sub="Tell us your situation and we'll walk you through which ITIN loan programs are available in your state." formSource="loan-itin" />
+
+    <Chapter eyebrow="The numbers" title="What to expect.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
         <p class="mt-4 text-[var(--color-text-muted)]">Final terms depend on documentation type, property use, FICO equivalent, and LTV.</p>
         <dl class="mt-8 border-t border-[var(--color-ink)]">
@@ -115,12 +111,10 @@ const numbers = [
           ))}
         </dl>
         <p class="text-xs text-[var(--color-text-muted)] mt-4 leading-relaxed">The chart above is for illustrative purposes only. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.</p>
-      </div>
-    </div>
-  </section>
+      </Chapter>
 
   <!-- WHO QUALIFIES -->
-  <Split eyebrow="Who qualifies" title="No SSN? You still have options." wide>
+  <Chapter eyebrow="Who qualifies" title="No SSN? You still have options." wide>
     <ol class="list-none m-0 p-0 grid sm:grid-cols-2 gap-4">
       {whoQualifies.map((w, i) => (
         <li class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
@@ -130,21 +124,23 @@ const numbers = [
         </li>
       ))}
     </ol>
-  </Split>
+  </Chapter>
 
   <!-- FAQ -->
-  <Split eyebrow="FAQ" title="Questions about ITIN mortgages.">
+  <Chapter eyebrow="FAQ" title="Questions about ITIN mortgages.">
     <FaqList items={faq} />
-  </Split>
+  </Chapter>
 
   <!-- RELATED -->
-  <Split eyebrow="Related programs" title="Not sure which Non-QM program fits?">
+  <Chapter eyebrow="Related programs" title="Not sure which Non-QM program fits?">
     <p class="text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">ITIN mortgages are one of several Non-QM programs Cliffco originates. If you reside entirely outside the US and have no US financial presence, the foreign national program may be a better fit.</p>
     <div class="mt-6 flex flex-wrap gap-3">
       <a href="/loans/non-qm-self-employed/" class="btn btn-secondary">Non-QM overview →</a>
       <a href="/loans/foreign-national-mortgage/" class="btn btn-secondary">Foreign national mortgage →</a>
     </div>
-  </Split>
+  </Chapter>
+  </TermSheet>
+
 
   <CtaBand title="Have an ITIN? Let's see what you qualify for." text="A Cliffco loan officer responds within one business day. No credit pull to start.">
     <a href="#contact" class="btn btn-primary">Start a pre-qual</a>

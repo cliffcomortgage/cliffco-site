@@ -7,7 +7,6 @@ import { BRANCHES } from "../../../../data/branches";
 import { LOAN_OFFICERS } from "../../../../data/loan-officers";
 import { product } from "../../../../data/products";
 import { localBusinessSchema, faqPageSchema, breadcrumbSchema } from "../../../../lib/schema";
-import Headshot from "../../../../components/ui/Headshot.astro";
 
 const loc = location("florida/fort-lauderdale")!;
 const ftlBranch = BRANCHES.find((b) => b.slug === "fort-lauderdale-fl")!;
@@ -36,9 +35,14 @@ const schema = [
     { name: "Ft. Lauderdale", url: "/locations/florida/fort-lauderdale/" },
   ]),
 ];
-import ContactForm from "../../../../components/forms/ContactForm.astro";
----
 
+import CityHero from "../../../../components/asym/CityHero.astro";
+import Split from "../../../../components/asym/Split.astro";
+import FormCard from "../../../../components/asym/FormCard.astro";
+import FaqList from "../../../../components/asym/FaqList.astro";
+import CtaBand from "../../../../components/asym/CtaBand.astro";
+import LoCard from "../../../../components/asym/LoCard.astro";
+---
 <Layout
   title="Ft. Lauderdale Mortgage Lender | Cliffco (Clout Mortgage)"
   description={loc.blurb}
@@ -51,141 +55,102 @@ import ContactForm from "../../../../components/forms/ContactForm.astro";
     { name: "Ft. Lauderdale", href: "/locations/florida/fort-lauderdale/" },
   ]} />
 
-  <section class="accent-gradient">
-    <div class="container-wide py-16 lg:py-24">
-      <p class="eyebrow !text-[var(--color-ice-blue)]">Ft. Lauderdale, FL · Operating as Clout Mortgage, Inc.</p>
-      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.1; font-weight: 400; font-family: var(--font-display);">
-        Ft. Lauderdale Mortgage Lender
-      </h1>
-      <p class="lead mt-6 text-white/90 max-w-2xl">{loc.blurb}</p>
-      <p class="mt-4 text-sm text-white/70">{COMPANY.floridaDba.disclosure}</p>
-      <div class="mt-6 flex flex-wrap gap-4 items-center">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Get Pre-Qualified</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
-    </div>
-  </section>
+  <CityHero
+    word="Ft. Lauderdale"
+    sub="Mortgage Lender"
+    eyebrow="Ft. Lauderdale, FL · Operating as Clout Mortgage, Inc."
+    lead={loc.blurb}
+    facts={[
+      { label: "Address", value: `${ftlBranch.street}, ${ftlBranch.city}, ${ftlBranch.region} ${ftlBranch.postalCode}` },
+      ...(ftlBranch.nmls ? [{ label: "Branch NMLS", value: `#${ftlBranch.nmls}` }] : []),
+      { label: "Florida-licensed loan officers", value: String(totalFLLOs) },
+    ]}
+  >
+    <Fragment slot="actions">
+      <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+      <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+    </Fragment>
+    <Fragment slot="note">{COMPANY.floridaDba.disclosure}</Fragment>
+  </CityHero>
 
-  <section class="bg-[var(--color-mist-gray)] section">
-    <div class="container-wide">
-      <p class="eyebrow">Our Ft. Lauderdale office</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Where we are.</h2>
-      <div class="mt-8 max-w-sm">
-        <article class="card">
-          <h3 class="text-lg font-semibold">{ftlBranch.name}</h3>
-          {ftlBranch.street && <p class="text-sm text-[var(--color-text-muted)] mt-2">{ftlBranch.street}<br/>{ftlBranch.city}, {ftlBranch.region} {ftlBranch.postalCode}</p>}
-          {ftlBranch.nmls && <p class="text-xs text-[var(--color-text-muted)] mt-2">Branch NMLS #{ftlBranch.nmls}</p>}
-          <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">Operates as Clout Mortgage, Inc.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+  
 
-  <section class="section bg-white">
-    <div class="container-wide">
-      <p class="eyebrow">What we lead with in South Florida</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Built for South Florida borrowers and investors.</h2>
-      <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {loc.featuredProducts.map((slug) => {
-          const p = product(slug);
-          if (!p) return null;
-          return (
-            <a href={`/loans/${p.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col h-full">
-              <h3 class="font-semibold">{p.shortName}</h3>
-              <p class="mt-2 text-sm text-[var(--color-text-muted)] flex-1">{p.oneLiner}</p>
-              <span class="mt-4 text-sm font-semibold text-[var(--color-accent)]">Learn more →</span>
-            </a>
-          );
-        })}
-      </div>
+  <!-- FEATURED PRODUCTS -->
+  <Split eyebrow="What we lead with in South Florida" title="Built for South Florida borrowers and investors." wide>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {loc.featuredProducts.map((slug) => {
+        const p = product(slug);
+        if (!p) return null;
+        return (
+          <a href={`/loans/${p.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+            <h3 class="text-lg font-semibold group-hover:!text-white">{p.shortName}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] group-hover:text-white/75 flex-1 leading-relaxed">{p.oneLiner}</p>
+            <span class="mt-4 text-sm font-semibold">Learn more →</span>
+          </a>
+        );
+      })}
     </div>
-  </section>
+  </Split>
 
   <!-- LOs physically at the Ft. Lauderdale branch -->
   {branchLOs.length > 0 && (
-    <section class="section bg-[var(--color-mist-gray)]">
-      <div class="container-wide">
-        <p class="eyebrow">Located at our Ft. Lauderdale office</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Loan officers based here.</h2>
-        <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
-          These loan officers are physically based at Cliffco's Ft. Lauderdale branch (operating as Clout Mortgage, Inc.).
-        </p>
-        <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {branchLOs.map((lo) => (
-            <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
-              {lo.hasPhoto && (
-                <div class="mb-4 -mx-6 -mt-6">
-                  <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="rounded-t-xl" />
-                </div>
-              )}
-              <p class="eyebrow">{lo.title}</p>
-              <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
-              <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>
-              {lo.languages && lo.languages.length > 1 && (
-                <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
-              )}
-              <span class="mt-3 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
-            </a>
-          ))}
-        </div>
+    <Split
+      eyebrow="Located at our Ft. Lauderdale office"
+      title="Loan officers based here."
+      intro="These loan officers are physically based at Cliffco's Ft. Lauderdale branch (operating as Clout Mortgage, Inc.)."
+      wide
+    >
+      <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
+        {branchLOs.map((lo) => <LoCard lo={lo} />)}
       </div>
-    </section>
+    </Split>
   )}
 
   <!-- LOs licensed in FL but based elsewhere -->
   {licensedOnlyLOs.length > 0 && (
-    <section class={`section ${branchLOs.length > 0 ? "bg-white" : "bg-[var(--color-mist-gray)]"}`}>
-      <div class="container-wide">
-        <p class="eyebrow">Also licensed in Florida</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Other Florida-licensed loan officers.</h2>
-        <p class="lead mt-4 max-w-3xl text-[var(--color-text-muted)]">
-          These loan officers are based at other Cliffco offices but are fully licensed to originate loans in Florida.
-        </p>
-        <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3 lo-shuffle-grid">
-          {licensedOnlyLOs.slice(0, 6).map((lo) => (
-            <a href={`/loan-officers/${lo.slug}/`} class="card no-underline text-[var(--color-ink)] flex flex-col">
-              {lo.hasPhoto && (
-                <div class="mb-4 -mx-6 -mt-6">
-                  <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="rounded-t-xl" />
-                </div>
-              )}
-              <p class="eyebrow">{lo.title}</p>
-              <h3 class="mt-1 text-base font-semibold">{lo.displayName}</h3>
-              <p class="text-xs text-[var(--color-text-muted)] mt-1">NMLS #{lo.nmls}</p>
-              {lo.languages && lo.languages.length > 1 && (
-                <p class="text-xs text-[var(--color-accent)] mt-2 font-medium">{lo.languages.join(" · ")}</p>
-              )}
-              <span class="mt-3 text-sm font-semibold text-[var(--color-accent)]">View bio →</span>
-            </a>
-          ))}
-        </div>
-        <p class="mt-6"><a href="/loan-officers/?state=FL" class="btn btn-primary">View all {totalFLLOs} Florida-licensed loan officers →</a></p>
+    <Split
+      eyebrow="Also licensed in Florida"
+      title="Other Florida-licensed loan officers."
+      intro="These loan officers are based at other Cliffco offices but are fully licensed to originate loans in Florida."
+      wide
+    >
+      <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 lo-shuffle-grid">
+        {licensedOnlyLOs.slice(0, 6).map((lo) => <LoCard lo={lo} />)}
       </div>
-    </section>
+      <a href="/loan-officers/?state=FL" class="mt-8 btn btn-primary">View all {totalFLLOs} Florida-licensed loan officers →</a>
+    </Split>
   )}
 
-  <section class="section bg-white">
-    <div class="container-prose">
-      <p class="eyebrow">Ft. Lauderdale FAQ</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Borrower and investor questions.</h2>
-      <div class="mt-8 space-y-6">
-        {faq.map((q) => (
-          <details class="border-b border-[var(--color-mist-gray)] pb-4">
-            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
-            <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
+  <!-- FAQ -->
+  <Split eyebrow="Ft. Lauderdale FAQ" title="Borrower and investor questions.">
+    <FaqList items={faq} />
+  </Split>
 
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Got a South Florida deal? Talk to our team.</h2>
-      <p class="lead mt-4 text-white/85">DSCR, non-warrantable condo, foreign national, and Non-QM specialists. Real underwriting in 24 hours.</p>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Pre-Qualified</a>
-        <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
+  <CtaBand title="Got a South Florida deal? Talk to our team." text="DSCR, non-warrantable condo, foreign national, and Non-QM specialists. Real underwriting in 24 hours.">
+    <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+    <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary">{COMPANY.hq.phone}</a>
+  </CtaBand>
+
+  <!-- VISIT / CALL + FORM -->
+  <section class="bg-white">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5 lg:col-start-8 lg:row-start-1">
+        <FormCard
+          title="Have a South Florida deal or question? Talk to our team."
+          sub="Tell us the property and your situation and we'll have a South Florida loan officer back to you within one business day."
+          formTo="karabian@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
+          formSource="location-ftlauderdale"
+        />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:pt-8">
+        <p class="eyebrow">Our Ft. Lauderdale office</p>
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">Where we are.</h2>
+        <article class="mt-8 rounded-2xl bg-[var(--color-ink)] text-white p-7">
+          <h3 class="text-lg font-semibold !text-white">{ftlBranch.name}</h3>
+          {ftlBranch.street && <p class="text-white/80 mt-3">{ftlBranch.street}<br/>{ftlBranch.city}, {ftlBranch.region} {ftlBranch.postalCode}</p>}
+          {ftlBranch.nmls && <p class="text-xs text-white/55 mt-3">Branch NMLS #{ftlBranch.nmls}</p>}
+          <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-white mt-4">Operates as Clout Mortgage, Inc.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -193,20 +158,6 @@ import ContactForm from "../../../../components/forms/ContactForm.astro";
   <section class="bg-white py-8">
     <div class="container-wide">
       <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">{COMPANY.floridaDba.disclosure}</p>
-    </div>
-  </section>
-
-  <!-- CONTACT FORM -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Have a South Florida deal or question? Talk to our team.</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us the property and your situation and we'll have a South Florida loan officer back to you within one business day.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="karabian@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
-          formSource="location-ftlauderdale"
-        />
-      </div>
     </div>
   </section>
 </Layout>

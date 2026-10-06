@@ -1,6 +1,7 @@
 ﻿---
 import BlogLayout from "../../../../layouts/BlogLayout.astro";
-import ArticleImage from "../../../../components/ui/ArticleImage.astro";
+import ArticleHero from "../../../../components/asym/ArticleHero.astro";
+import ArticleBody from "../../../../components/asym/ArticleBody.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 ---
 
@@ -15,12 +16,9 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     { name: "DSCR Loan vs Bank Statement Loan", href: "/mortgage-guides/blog/dscr-loan-vs-bank-statement-loan-business-owner-investment-property/" },
   ]} />
 
-  <article class="container-prose pt-12 pb-16">
+  <ArticleHero byline="By the Cliffco editorial team">DSCR Loan vs Bank Statement Loan: How Business Owners Should Choose When Buying Investment Property</ArticleHero>
 
-    <h1 style="font-size: var(--text-display-lg);">DSCR Loan vs Bank Statement Loan: How Business Owners Should Choose When Buying Investment Property</h1>
-    <p class="mt-3 text-sm text-[var(--color-text-muted)]">By the Cliffco editorial team</p>
-
-    <ArticleImage />
+  <ArticleBody>
 
     <p class="mt-8 font-bold">For the Business Owner Who Is Also Building a Rental Portfolio</p>
 
@@ -57,8 +55,8 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     <p class="mt-4">Cliffco's <a href="/mortgage-guides/calculators/payment-estimator/">Payment Estimator</a> can show you the projected PITIA on any target property so you can calculate the DSCR before you commit to a loan type. Pair that with the <a href="/mortgage-guides/calculators/self-employed-income/">Self-Employed Income Calculator</a> to see what your bank statement qualifying income looks like. Put both numbers on the table and the right product usually becomes clear.</p>
 
     <!-- Embedded lite DSCR Calculator -->
-    <div class="mt-12 border border-[var(--color-accent)]/25 rounded-lg overflow-hidden">
-      <div class="bg-[var(--color-accent)]/8 px-6 py-5 border-b border-[var(--color-accent)]/15">
+    <div class="mt-12 border-2 border-[var(--color-ink)] rounded-2xl overflow-hidden">
+      <div class="bg-white px-6 py-5 border-b-2 border-[var(--color-ink)]">
         <p class="eyebrow text-xs mb-1">Quick check</p>
         <h2 class="text-xl font-semibold text-[var(--color-ink)]">Match the loan to the property, not the paperwork.</h2>
         <p class="text-sm text-[var(--color-text-muted)] mt-1">Enter your numbers to see the DSCR ratio and whether the deal pencils out.</p>
@@ -89,7 +87,7 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
         <button id="art-dscr-btn" class="btn btn-primary mt-5">Calculate DSCR</button>
 
         <div id="art-dscr-result" class="hidden mt-6">
-          <div class="p-5 bg-[var(--color-mist-gray)] rounded-lg">
+          <div class="p-5 bg-white border border-black/15 rounded-lg">
             <div class="grid gap-4 sm:grid-cols-3">
               <div>
                 <p class="text-xs text-[var(--color-text-muted)] uppercase tracking-wide">DSCR Ratio</p>
@@ -107,22 +105,22 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
             <p id="art-dscr-verdict" class="mt-3 text-sm font-medium text-[var(--color-text-muted)]"></p>
           </div>
 
-          <div class="mt-4 p-5 bg-[var(--color-rich-black)] rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+          <div class="mt-4 p-5 bg-[var(--color-ink)] rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
             <div>
               <p class="text-white font-semibold">Ready to move on this property?</p>
               <p class="text-white/70 text-sm mt-1">A Cliffco loan officer can lock a rate, confirm DSCR eligibility, and get you to pre-approval in 24 hours.</p>
             </div>
-            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+            <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-ink)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
           </div>
 
           <p class="mt-4 text-sm text-center text-[var(--color-text-muted)]">
-            Want to model other scenarios? <a href="/mortgage-guides/calculators/dscr/" class="text-[var(--color-accent)] font-medium">View the full DSCR calculator →</a>
+            Want to model other scenarios? <a href="/mortgage-guides/calculators/dscr/" class="text-[var(--color-ink)] font-medium">View the full DSCR calculator →</a>
           </p>
         </div>
       </div>
     </div>
 
-  </article>
+  </ArticleBody>
 </BlogLayout>
 
 <style>
@@ -138,8 +136,8 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     transition: border-color 0.15s;
   }
   .art-calc-input:focus {
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+    border-color: var(--color-ink);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-ink) 15%, transparent);
   }
 </style>
 

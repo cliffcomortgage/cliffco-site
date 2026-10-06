@@ -28,8 +28,9 @@ const schema = [
   }),
 ];
 
-import AsymHero from "../../../components/asym/AsymHero.astro";
-import Split from "../../../components/asym/Split.astro";
+import TermSheetHero from "../../../components/asym/TermSheetHero.astro";
+import TermSheet from "../../../components/asym/TermSheet.astro";
+import Chapter from "../../../components/asym/Chapter.astro";
 import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
@@ -65,7 +66,7 @@ const programs = [
     { name: p.shortName, href: `/loans/${p.slug}/` },
   ]} />
 
-  <AsymHero
+  <TermSheetHero
     eyebrow={p.category}
     lead={p.oneLiner}
     facts={[
@@ -79,17 +80,12 @@ const programs = [
       <a href="#contact" class="btn btn-primary">Start the conversation</a>
       <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
     </Fragment>
-  </AsymHero>
+  </TermSheetHero>
 
-  <!-- LEAD FORM + OVERVIEW -->
-  <section class="bg-white border-t border-[var(--color-ink)]">
-    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5">
-        <FormCard title="Price out your renovation with a loan officer." sub="Tell us the property and the scope of the project and we'll show you which program fits." formSource="loan-renovation" />
-      </div>
-      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
-        <p class="eyebrow">Program comparison</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">FHA 203(k) vs. Fannie Mae HomeStyle.</h2>
+  <TermSheet>
+    <FormCard slot="form" title="Price out your renovation with a loan officer." sub="Tell us the property and the scope of the project and we'll show you which program fits." formSource="loan-renovation" />
+
+    <Chapter eyebrow="Program comparison" title="FHA 203(k) vs. Fannie Mae HomeStyle.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
         <div class="mt-8 grid gap-4">
           {programs.map((prog, i) => (
@@ -106,14 +102,14 @@ const programs = [
             </article>
           ))}
         </div>
-      </div>
-    </div>
-  </section>
+      </Chapter>
 
   <!-- FAQ -->
-  <Split eyebrow="FAQ" title="How renovation financing works.">
+  <Chapter eyebrow="FAQ" title="How renovation financing works.">
     <FaqList items={faq} />
-  </Split>
+  </Chapter>
+  </TermSheet>
+
 
   <CtaBand title="Buy the house. Fund the renovation. One loan." text="A Cliffco loan officer can walk you through the right program for your project.">
     <a href="#contact" class="btn btn-primary">Start the conversation</a>

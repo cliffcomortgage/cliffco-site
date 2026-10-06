@@ -99,8 +99,9 @@ const programs = [
   },
 ];
 
-import AsymHero from "../../../components/asym/AsymHero.astro";
-import Split from "../../../components/asym/Split.astro";
+import TermSheetHero from "../../../components/asym/TermSheetHero.astro";
+import TermSheet from "../../../components/asym/TermSheet.astro";
+import Chapter from "../../../components/asym/Chapter.astro";
 import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
@@ -117,7 +118,7 @@ import CtaBand from "../../../components/asym/CtaBand.astro";
     { name: "Conventional / FHA / VA / USDA", href: "/loans/conventional-government/" },
   ]} />
 
-  <AsymHero
+  <TermSheetHero
     eyebrow="Loan Programs"
     lead="Four standard loan programs. One lender who can originate all of them."
     facts={programs.map((prog) => ({ label: prog.name, value: prog.tag }))}
@@ -127,17 +128,12 @@ import CtaBand from "../../../components/asym/CtaBand.astro";
       <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
       <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
     </Fragment>
-  </AsymHero>
+  </TermSheetHero>
 
-  <!-- LEAD FORM + INTRO -->
-  <section class="bg-white border-t border-[var(--color-ink)]">
-    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5">
-        <FormCard title="Not sure which loan program fits? Let's figure it out." sub="Tell us your situation and we'll lay out your conventional and government-backed options side by side." formSource="loan-conventional-govt" />
-      </div>
-      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
-        <p class="eyebrow">One lender, four programs</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">The right one depends on you.</h2>
+  <TermSheet>
+    <FormCard slot="form" title="Not sure which loan program fits? Let's figure it out." sub="Tell us your situation and we'll lay out your conventional and government-backed options side by side." formSource="loan-conventional-govt" />
+
+    <Chapter eyebrow="One lender, four programs" title="The right one depends on you.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
           Cliffco originates conventional, FHA, VA, and USDA loans across all {STATE_LICENSES.length} states where we're
           licensed. Each program has different down payment requirements, mortgage insurance rules,
@@ -154,12 +150,10 @@ import CtaBand from "../../../components/asym/CtaBand.astro";
             </li>
           ))}
         </ul>
-      </div>
-    </div>
-  </section>
+      </Chapter>
 
   <!-- PROGRAM CARDS -->
-  <Split eyebrow="The programs" title="Four programs, compared." wide>
+  <Chapter eyebrow="The programs" title="Four programs, compared." wide>
     <div class="grid sm:grid-cols-2 gap-4">
       {programs.map((prog) => (
         <article class="rounded-2xl border-2 border-[var(--color-ink)] p-6 flex flex-col h-full">
@@ -180,12 +174,14 @@ import CtaBand from "../../../components/asym/CtaBand.astro";
         </article>
       ))}
     </div>
-  </Split>
+  </Chapter>
 
   <!-- FAQ -->
-  <Split eyebrow="FAQ" title="Questions about conventional and government programs.">
+  <Chapter eyebrow="FAQ" title="Questions about conventional and government programs.">
     <FaqList items={faq} />
-  </Split>
+  </Chapter>
+  </TermSheet>
+
 
   <CtaBand title="Not sure which program fits? We'll figure it out together." text="A licensed Cliffco loan officer responds in one business day.">
     <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
