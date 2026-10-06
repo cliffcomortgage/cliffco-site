@@ -66,7 +66,24 @@ const schema = [
     dateModified: "2026-07-15",
   }),
 ];
-import ContactForm from "../../components/forms/ContactForm.astro";
+
+import AsymHero from "../../components/asym/AsymHero.astro";
+import Split from "../../components/asym/Split.astro";
+import FormCard from "../../components/asym/FormCard.astro";
+import FaqList from "../../components/asym/FaqList.astro";
+import CtaBand from "../../components/asym/CtaBand.astro";
+
+const steps = [
+  { heading: "Get pre-approved", body: "Your loan officer reviews your income, credit, and assets and gives you a pre-approval letter. This tells you exactly what you can afford and makes your offer competitive. Takes one business day." },
+  { heading: "Find your home and go under contract", body: "Once you have an accepted offer, your loan officer orders the appraisal and begins underwriting. You'll provide documents and answer questions as they come up. We keep you informed at every stage." },
+  { heading: "Close and get your keys", body: "Closing typically takes 30 to 45 days from accepted offer. You'll sign documents, pay closing costs (or roll them in), and walk away with the keys. Your loan officer is reachable the entire way." },
+];
+const concerns = [
+  { concern: "I don't have enough saved for a down payment.", response: "FHA requires 3.5%. Conventional goes to 3%. VA requires nothing. On a $400,000 home, 3.5% is $14,000. Down payment assistance programs in many states can reduce this further. Most buyers need less than they think." },
+  { concern: "My credit isn't great.", response: "FHA works with scores as low as 580 for the standard 3.5% down option. Scores between 500 and 579 can still qualify with 10% down. If you're below 580, your loan officer can walk you through what it would take to get there, or whether a different program fits now." },
+  { concern: "I don't understand the process.", response: "That's exactly what we're here for. Cliffco loan officers explain every document, every step, and every decision point in plain language. You are never left guessing what comes next." },
+  { concern: "I'm not sure how much house I can afford.", response: "That's what pre-approval is for. Before you look at a single listing, your loan officer will tell you your real number: what the payment looks like, what you'd need at closing, and what range makes sense for your budget." },
+];
 ---
 
 <Layout
@@ -79,39 +96,34 @@ import ContactForm from "../../components/forms/ContactForm.astro";
     { name: "First-Time Homebuyer", href: "/first-time-homebuyer/" },
   ]} />
 
-  <!-- HERO -->
-  <section class="accent-gradient relative overflow-hidden">
-    <img src="/images/content%20images/First%20Time%20Homebuyer%20Hero.webp" alt="" aria-hidden="true" class="absolute bottom-0 right-0 hidden lg:block w-auto object-contain object-bottom pointer-events-none select-none" style="height:580px;right:12%;" loading="eager" />
-    <div class="container-wide py-20 lg:py-28 relative z-10">
-      <p class="eyebrow !text-[var(--color-ice-blue)]">First-Time Homebuyer · FHA, Conventional, and VA Loans</p>
-      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.1; font-weight: 400; font-family: var(--font-display);">
-        Buying Your First Home<br/>
-        <span class="text-[var(--color-ice-blue)]">Should Be Simple.</span>
-      </h1>
-      <p class="lead mt-6 text-white/90 max-w-2xl">
-        Low down payments. Flexible credit standards. A loan officer who makes the whole process make sense.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-4 items-center">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">See What I Qualify For</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
-      <p class="mt-4 text-white/70 text-sm">No credit pull. No commitment. A loan officer responds in one business day.</p>
-    </div>
-  </section>
+  <AsymHero
+    eyebrow="First-Time Homebuyer · FHA, Conventional, and VA Loans"
+    lead="Low down payments. Flexible credit standards. A loan officer who makes the whole process make sense."
+    image={{ src: "/images/content%20images/First%20Time%20Homebuyer%20Hero.webp", cutout: true }}
+    tag={{ stat: "3%", label: "Down, conventional" }}
+  >
+    Buying Your First Home<br />Should Be Simple.
+    <Fragment slot="actions">
+      <a href="#contact" class="btn btn-primary">See What I Qualify For</a>
+      <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+    </Fragment>
+    <Fragment slot="note">No credit pull. No commitment. A loan officer responds in one business day.</Fragment>
+  </AsymHero>
 
-  <!-- WHO THIS IS FOR -->
-  <section class="section bg-white">
-    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
-      <div>
+  <!-- LEAD FORM + WHO THIS IS FOR -->
+  <section class="bg-white border-t border-[var(--color-ink)]">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <FormCard title="Start with a conversation, not an application." sub="Tell us your situation and we'll show you which programs apply and what you'd pay monthly." formSource="first-time-homebuyer" />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
         <p class="eyebrow">Who this is for</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">You don't need a perfect financial picture to buy your first home.</h2>
-        <p class="lead mt-4 text-[var(--color-text-muted)]">
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">You don't need a perfect financial picture to buy your first home.</h2>
+        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed" style="font-size: 1.0625rem;">
           Most first-time buyers are surprised by how accessible homeownership actually is. The barriers are usually smaller than they appear.
         </p>
-      </div>
-      <div>
-        <p class="font-semibold text-[var(--color-ink)] mb-4">You may be ready if you:</p>
-        <ul class="space-y-3">
+        <p class="mt-8 font-semibold text-[var(--color-ink)]">You may be ready if you:</p>
+        <ul class="mt-4 list-none m-0 p-0 border-t border-[var(--color-ink)]">
           {[
             "Have a credit score of 580 or higher (lower scores may still have options)",
             "Can put 3 to 3.5% down, or qualify for VA with zero down",
@@ -119,8 +131,8 @@ import ContactForm from "../../components/forms/ContactForm.astro";
             "Are buying a primary residence (not an investment property)",
             "Are a first-time buyer, or haven't owned a home in the past 3 years",
           ].map((item) => (
-            <li class="flex gap-3 items-start" style="font-size: 1.0625rem;">
-              <span class="mt-0.5 shrink-0 text-[var(--color-accent)] font-semibold">✓</span>
+            <li class="flex gap-4 items-start py-4 border-b border-black/15" style="font-size: 1.0625rem;">
+              <span class="font-mono text-sm text-[var(--color-ink)] pt-0.5" aria-hidden="true">✓</span>
               <span class="text-[var(--color-text)]">{item}</span>
             </li>
           ))}
@@ -130,154 +142,74 @@ import ContactForm from "../../components/forms/ContactForm.astro";
   </section>
 
   <!-- LOAN OPTIONS -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <p class="eyebrow">Your options</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">The most common first-time buyer loan programs.</h2>
-      <p class="lead mt-4 text-[var(--color-text-muted)] max-w-2xl">There is no single "best" program. The right fit depends on your credit, down payment, and whether you have military service.</p>
-      <div class="mt-8 grid gap-6 md:grid-cols-3">
-        {loanOptions.map((opt) => (
-          <div class={`card flex flex-col gap-3 ${opt.highlight ? "border-2 border-[var(--color-accent)]" : ""}`}>
-            {opt.highlight && (
-              <span class="text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">Most Common</span>
-            )}
-            <h3 class="text-lg font-semibold text-[var(--color-ink)]">{opt.name}</h3>
-            <div class="flex gap-4 text-sm">
-              <span class="font-medium text-[var(--color-accent)]">{opt.downPayment}</span>
-              <span class="text-[var(--color-text-muted)]">{opt.minFICO} FICO</span>
-            </div>
-            <p class="text-sm text-[var(--color-text)] leading-relaxed">{opt.description}</p>
+  <Split eyebrow="Your options" title="The most common first-time buyer loan programs." intro={`There is no single "best" program. The right fit depends on your credit, down payment, and whether you have military service.`}>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {loanOptions.map((opt) => (
+        <div class={`rounded-2xl p-6 flex flex-col gap-3 ${opt.highlight ? "bg-[var(--color-ink)] text-white" : "border-2 border-[var(--color-ink)]"}`}>
+          {opt.highlight && (
+            <span class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/60">Most Common</span>
+          )}
+          <h3 class={`text-lg font-semibold ${opt.highlight ? "!text-white" : "text-[var(--color-ink)]"}`}>{opt.name}</h3>
+          <div class="flex gap-4 text-sm">
+            <span class="font-semibold">{opt.downPayment}</span>
+            <span class={opt.highlight ? "text-white/65" : "text-[var(--color-text-muted)]"}>{opt.minFICO} FICO</span>
           </div>
-        ))}
-      </div>
-      <p class="mt-6 text-sm text-[var(--color-text-muted)]">Down payment assistance programs may be available in your state. Ask your Cliffco loan officer what's offered where you're buying.</p>
+          <p class={`text-sm leading-relaxed ${opt.highlight ? "text-white/85" : "text-[var(--color-text)]"}`}>{opt.description}</p>
+        </div>
+      ))}
     </div>
-  </section>
+    <p class="mt-6 text-sm text-[var(--color-text-muted)]">Down payment assistance programs may be available in your state. Ask your Cliffco loan officer what's offered where you're buying.</p>
+  </Split>
 
   <!-- HOW IT WORKS -->
-  <section class="section bg-white">
-    <div class="container-wide">
-      <p class="eyebrow">The process</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">What buying your first home looks like, step by step.</h2>
-      <div class="mt-8 grid gap-8 md:grid-cols-3">
-        {[
-          {
-            step: "01",
-            heading: "Get pre-approved",
-            body: "Your loan officer reviews your income, credit, and assets and gives you a pre-approval letter. This tells you exactly what you can afford and makes your offer competitive. Takes one business day.",
-          },
-          {
-            step: "02",
-            heading: "Find your home and go under contract",
-            body: "Once you have an accepted offer, your loan officer orders the appraisal and begins underwriting. You'll provide documents and answer questions as they come up. We keep you informed at every stage.",
-          },
-          {
-            step: "03",
-            heading: "Close and get your keys",
-            body: "Closing typically takes 30 to 45 days from accepted offer. You'll sign documents, pay closing costs (or roll them in), and walk away with the keys. Your loan officer is reachable the entire way.",
-          },
-        ].map((s) => (
-          <div class="flex flex-col gap-3">
-            <span class="text-xs uppercase tracking-[0.2em] font-semibold text-[var(--color-accent)]">Step {s.step}</span>
-            <h3 class="text-lg font-semibold text-[var(--color-ink)]">{s.heading}</h3>
-            <p class="text-[var(--color-text)] leading-relaxed">{s.body}</p>
+  <Split eyebrow="The process" title="What buying your first home looks like, step by step.">
+    <ol class="list-none m-0 p-0 border-t border-[var(--color-ink)]">
+      {steps.map((s, i) => (
+        <li class="grid grid-cols-[3rem_1fr] gap-4 py-8 border-b border-black/15">
+          <span class="font-mono text-sm text-[var(--color-text-muted)] pt-1">0{i + 1}</span>
+          <div>
+            <h3 class="text-xl font-semibold text-[var(--color-ink)]">{s.heading}</h3>
+            <p class="mt-3 text-[var(--color-text)] leading-relaxed">{s.body}</p>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
+        </li>
+      ))}
+    </ol>
+  </Split>
 
-  <!-- WHAT PEOPLE WORRY ABOUT -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <p class="eyebrow">Common concerns</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">The things first-time buyers worry about most.</h2>
-      <div class="mt-8 grid gap-6 md:grid-cols-2">
-        {[
-          {
-            concern: "I don't have enough saved for a down payment.",
-            response: "FHA requires 3.5%. Conventional goes to 3%. VA requires nothing. On a $400,000 home, 3.5% is $14,000. Down payment assistance programs in many states can reduce this further. Most buyers need less than they think.",
-          },
-          {
-            concern: "My credit isn't great.",
-            response: "FHA works with scores as low as 580 for the standard 3.5% down option. Scores between 500 and 579 can still qualify with 10% down. If you're below 580, your loan officer can walk you through what it would take to get there, or whether a different program fits now.",
-          },
-          {
-            concern: "I don't understand the process.",
-            response: "That's exactly what we're here for. Cliffco loan officers explain every document, every step, and every decision point in plain language. You are never left guessing what comes next.",
-          },
-          {
-            concern: "I'm not sure how much house I can afford.",
-            response: "That's what pre-approval is for. Before you look at a single listing, your loan officer will tell you your real number: what the payment looks like, what you'd need at closing, and what range makes sense for your budget.",
-          },
-        ].map((item) => (
-          <div class="card">
-            <p class="text-sm font-semibold text-[var(--color-text-muted)]">"{item.concern}"</p>
-            <p class="mt-2 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{item.response}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <!-- WHAT PEOPLE WORRY ABOUT (black band) -->
+  <Split dark eyebrow="Common concerns" title="The things first-time buyers worry about most.">
+    <ol class="list-none m-0 p-0 border-t border-white/40">
+      {concerns.map((item) => (
+        <li class="py-6 border-b border-white/15">
+          <p class="text-sm font-semibold text-white/55">"{item.concern}"</p>
+          <p class="mt-2 text-white leading-relaxed" style="font-size: 1.0625rem;">{item.response}</p>
+        </li>
+      ))}
+    </ol>
+  </Split>
 
   <!-- FAQ -->
-  <section class="section bg-white">
-    <div class="container-wide">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">What first-time buyers ask us most.</h2>
-      <div class="mt-8 space-y-6">
-        {faq.map((q) => (
-          <details class="border-b border-[var(--color-border)] pb-4">
-            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer list-none" style="font-size: 1.0625rem;">{q.question}</summary>
-            <p class="mt-3 text-[var(--color-text)]" style="font-size: 1.0625rem;">{q.answer}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
+  <Split rule={false} eyebrow="FAQ" title="What first-time buyers ask us most.">
+    <FaqList items={faq} />
+  </Split>
 
   <!-- DPA CALLOUT -->
-  <section class="section bg-white">
-    <div class="container-wide">
-      <div class="rounded-lg bg-[var(--color-mist-gray)] p-8 lg:p-10 grid lg:grid-cols-[2fr_1fr] gap-8 items-center">
-        <div>
-          <p class="eyebrow">Don't have enough saved?</p>
-          <h2 class="mt-3" style="font-size: var(--text-h2);">Down payment assistance programs may cover it.</h2>
-          <p class="mt-4 text-[var(--color-text)] leading-relaxed">
-            Many first-time buyers don't realize that state, county, and nonprofit programs can cover some or all of your down payment and closing costs. Grants, forgivable loans, and deferred-payment second mortgages are all available in most of the markets we serve.
-          </p>
-          <a href="/down-payment-assistance/" class="mt-5 inline-block text-sm font-semibold text-[var(--color-accent)] no-underline hover:underline">Learn about down payment assistance →</a>
-        </div>
-        <div class="flex flex-col gap-3">
-          <a href="/down-payment-assistance/" class="btn btn-primary">Explore DPA options</a>
-          <a href="/get-started/" class="btn btn-secondary">Start my pre-qual</a>
-        </div>
-      </div>
+  <Split eyebrow="Don't have enough saved?" title="Down payment assistance programs may cover it.">
+    <p class="text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
+      Many first-time buyers don't realize that state, county, and nonprofit programs can cover some or all of your down payment and closing costs. Grants, forgivable loans, and deferred-payment second mortgages are all available in most of the markets we serve.
+    </p>
+    <a href="/down-payment-assistance/" class="mt-5 inline-block text-sm font-semibold text-[var(--color-ink)]">Learn about down payment assistance →</a>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/down-payment-assistance/" class="btn btn-primary">Explore DPA options</a>
+      <a href="/get-started/" class="btn btn-secondary">Start my pre-qual</a>
     </div>
-  </section>
+  </Split>
 
-  <!-- CTA -->
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">See what first-time buyers in your area can qualify for.</h2>
-      <p class="lead mt-4 text-white/85">A Cliffco loan officer reviews your situation within one business day and tells you exactly where you stand.</p>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Pre-Approved</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT FORM -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Start with a conversation, not an application.</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us your situation and we'll show you which programs apply and what you'd pay monthly.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
-          formSource="first-time-homebuyer"
-        />
-      </div>
-    </div>
-  </section>
+  <CtaBand
+    title="See what first-time buyers in your area can qualify for."
+    text="A Cliffco loan officer reviews your situation within one business day and tells you exactly where you stand."
+  >
+    <a href="#contact" class="btn btn-primary">Get Pre-Approved</a>
+    <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+  </CtaBand>
 </Layout>

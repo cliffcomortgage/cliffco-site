@@ -1,0 +1,31 @@
+---
+/**
+ * Lead-capture card (id="contact" so hero/CTA buttons can jump to it).
+ * Placed directly under the hero on Who We Help pages, per lead-capture
+ * best practice. Default slot = optional extra content under the form.
+ */
+import ContactForm from "../forms/ContactForm.astro";
+
+interface Props {
+  title: string;
+  sub?: string;
+  formTo?: string;
+  formSource: string;
+}
+const {
+  title,
+  sub,
+  formTo = "websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com",
+  formSource,
+} = Astro.props;
+---
+
+<div id="contact" class="scroll-mt-24 rounded-2xl border-2 border-[var(--color-ink)] p-6 sm:p-8 bg-white">
+  <p class="eyebrow">Talk to a loan officer</p>
+  <h2 class="mt-3" style="font-size: clamp(1.5rem, 2.2vw, 1.875rem); font-weight: 700; line-height: 1.2;">{title}</h2>
+  {sub && <p class="mt-3 text-[var(--color-text-muted)] leading-relaxed">{sub}</p>}
+  <div class="mt-7">
+    <ContactForm formTo={formTo} formSource={formSource} />
+  </div>
+  <slot />
+</div>

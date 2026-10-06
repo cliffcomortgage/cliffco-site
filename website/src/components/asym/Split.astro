@@ -1,0 +1,31 @@
+---
+/**
+ * Asymmetric section: eyebrow + heading in a narrow left column (sticky on
+ * desktop), content offset to the right. White by default; dark=true gives
+ * the black band. Slot "aside" renders under the heading on the left.
+ */
+interface Props {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  id?: string;
+  dark?: boolean;
+  rule?: boolean;
+  wide?: boolean;
+}
+const { eyebrow, title, intro, id, dark = false, rule = true, wide = false } = Astro.props;
+---
+
+<section id={id} class={`${dark ? "bg-[var(--color-ink)] text-white" : "bg-white"} ${rule && !dark ? "border-t border-[var(--color-ink)]" : ""} scroll-mt-24`}>
+  <div class="container-wide py-20 lg:py-28 grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-4 lg:sticky lg:top-28 self-start">
+      {eyebrow && <p class={`eyebrow ${dark ? "!text-white/60" : ""}`}>{eyebrow}</p>}
+      <h2 class={`mt-4 ${dark ? "!text-white" : ""}`} style="font-size: var(--text-h2); font-weight: 700; line-height: 1.15;">{title}</h2>
+      {intro && <p class={`mt-4 leading-relaxed ${dark ? "text-white/75" : "text-[var(--color-text-muted)]"}`}>{intro}</p>}
+      <slot name="aside" />
+    </div>
+    <div class={wide ? "lg:col-span-8" : "lg:col-span-7 lg:col-start-6"}>
+      <slot />
+    </div>
+  </div>
+</section>

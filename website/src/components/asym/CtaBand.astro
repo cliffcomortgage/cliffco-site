@@ -1,0 +1,29 @@
+---
+/** Closing call-to-action: black band, copy left-aligned, buttons pushed right. Slot = buttons. */
+interface Props {
+  eyebrow?: string;
+  title: string;
+  text?: string;
+}
+const { eyebrow = "Get started", title, text } = Astro.props;
+---
+
+<section class="bg-[var(--color-ink)]">
+  <div class="container-wide py-16 lg:py-20 grid lg:grid-cols-12 gap-8 items-end">
+    <div class="lg:col-span-7">
+      <p class="eyebrow !text-white/60">{eyebrow}</p>
+      <h2 class="mt-4 !text-white" style="font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.08; font-weight: 700;">{title}</h2>
+      {text && <p class="mt-4 text-white/75" style="font-size: 1.125rem;">{text}</p>}
+    </div>
+    <div class="lg:col-span-5 lg:col-start-8 flex flex-wrap gap-3 lg:justify-end cta-band-actions">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band-actions :global(.btn-primary) { background: #fff; color: var(--color-ink); }
+  .cta-band-actions :global(.btn-primary:hover) { background: rgba(255, 255, 255, 0.85); }
+  .cta-band-actions :global(.btn-secondary) { border-color: #fff; color: #fff; }
+  .cta-band-actions :global(.btn-secondary:hover) { background: #fff; color: var(--color-ink); }
+</style>

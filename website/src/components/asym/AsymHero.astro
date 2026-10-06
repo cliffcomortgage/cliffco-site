@@ -1,0 +1,70 @@
+---
+/**
+ * Asymmetric page hero (the Why Cliffco style): copy on the left, a black
+ * panel bleeding off the right edge of the screen, offset lower than the
+ * headline, holding either a photo (fills the panel) or a transparent
+ * cutout (stands at the bottom of the panel). Optional black/white tag
+ * overlaps the panel's left edge.
+ *
+ * Slots: default = h1 content, "actions" = buttons, "note" = small print.
+ */
+interface Props {
+  eyebrow: string;
+  lead?: string;
+  image: { src: string; alt?: string; cutout?: boolean; srcset?: string };
+  tag?: { stat: string; label: string };
+}
+const { eyebrow, lead, image, tag } = Astro.props;
+const decorative = !image.alt;
+---
+
+<section class="relative bg-white overflow-hidden">
+  <div class="container-wide relative z-10 pt-10 pb-12 lg:pt-20 lg:pb-28 lg:min-h-[600px]">
+    <div class="lg:w-[48%]">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1 class="mt-5 text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 4.6vw, 4.25rem); line-height: 1.04; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">
+        <slot />
+      </h1>
+      {lead && (
+        <p class="mt-7 max-w-lg text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">{lead}</p>
+      )}
+      {Astro.slots.has("actions") && (
+        <div class="mt-9 flex flex-wrap gap-3 items-center"><slot name="actions" /></div>
+      )}
+      {Astro.slots.has("note") && (
+        <p class="mt-4 text-sm text-[var(--color-text-muted)]"><slot name="note" /></p>
+      )}
+    </div>
+  </div>
+
+  <div class={`relative mx-6 mb-12 lg:m-0 lg:absolute lg:top-14 lg:bottom-0 lg:right-0 lg:w-[46vw] bg-[var(--color-ink)] rounded-2xl lg:rounded-none lg:rounded-tl-[2.5rem] ${image.cutout ? "h-[340px] lg:h-auto" : "aspect-[4/3] lg:aspect-auto overflow-hidden"}`}>
+    {image.cutout ? (
+      <img
+        src={image.src}
+        alt={image.alt ?? ""}
+        aria-hidden={decorative ? "true" : undefined}
+        class="absolute bottom-0 left-1/2 -translate-x-1/2 lg:left-[44%] h-full w-auto max-w-none object-contain object-bottom pointer-events-none select-none"
+        width="1080" height="1080"
+        loading="eager"
+        fetchpriority="high"
+      />
+    ) : (
+      <img
+        src={image.src}
+        srcset={image.srcset}
+        sizes="(min-width: 1024px) 46vw, 100vw"
+        alt={image.alt ?? ""}
+        aria-hidden={decorative ? "true" : undefined}
+        class="w-full h-full object-cover lg:rounded-tl-[2.5rem]"
+        loading="eager"
+        fetchpriority="high"
+      />
+    )}
+    {tag && (
+      <div class="absolute left-4 -bottom-6 lg:-left-10 lg:bottom-16 bg-white text-[var(--color-ink)] border-2 border-[var(--color-ink)] px-6 py-5 rounded-xl shadow-xl">
+        <p class="text-3xl font-bold leading-none" style="font-family: var(--font-display);">{tag.stat}</p>
+        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] mt-2">{tag.label}</p>
+      </div>
+    )}
+  </div>
+</section>

@@ -42,7 +42,26 @@ const schema = [
     dateModified: "2026-07-15",
   }),
 ];
-import ContactForm from "../../components/forms/ContactForm.astro";
+
+import AsymHero from "../../components/asym/AsymHero.astro";
+import Split from "../../components/asym/Split.astro";
+import FormCard from "../../components/asym/FormCard.astro";
+import FaqList from "../../components/asym/FaqList.astro";
+import CtaBand from "../../components/asym/CtaBand.astro";
+
+const steps = [
+  { h: "Share your bank statements", b: "12 months of personal or business bank statements. We analyze actual deposits, not tax return figures." },
+  { h: "We calculate your qualifying income", b: "Your loan officer averages your monthly deposits and identifies the program with the best fit for your situation." },
+  { h: "Close in 30 to 45 days", b: "Underwriting is done in-house. No handoffs, no call centers. Your file gets personal attention from start to close." },
+];
+const details = [
+  ["Down payment", "10 to 25% (program dependent)"],
+  ["Min FICO", "620"],
+  ["Loan amount", "Up to $3.5 million"],
+  ["Property types", "Primary, second home, investment"],
+  ["Loan terms", "30-year fixed, interest only options available"],
+  ["Tax returns required", "Not required (program dependent)"],
+];
 ---
 
 <Layout
@@ -55,181 +74,104 @@ import ContactForm from "../../components/forms/ContactForm.astro";
     { name: "Self-Employed Mortgage", href: "/self-employed-mortgage/" },
   ]} />
 
-  <!-- HERO -->
-  <section class="accent-gradient relative overflow-hidden">
-    <img
-      src="/images/content%20images/Self%20Employed%20Hero.webp"
-      alt=""
-      aria-hidden="true"
-      class="absolute bottom-0 right-0 hidden lg:block h-full w-auto object-contain object-bottom pointer-events-none select-none"
-      style="max-height:95%;right:10%;"
-      loading="eager"
-    />
-    <div class="container-wide py-20 lg:py-28 relative z-10">
-      <p class="eyebrow !text-[var(--color-ice-blue)]">Non-QM Lending · Bank Statement Qualifying</p>
-      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.1; font-weight: 400; font-family: var(--font-display);">
-        You Built a Business.<br/>
-        <span class="text-[var(--color-ice-blue)]">Your Mortgage Should Reflect That.</span>
-      </h1>
-      <p class="lead mt-6 text-white/90 max-w-2xl">
-        Conventional lenders require W-2s. We require 12 months of bank statements. If your tax returns don't tell the whole story, Cliffco has a path forward.
-      </p>
-      <div class="mt-8 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-        <a href="#contact" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)] w-full sm:w-auto">See If I Qualify</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white w-full sm:w-auto">{COMPANY.tollFree}</a>
-      </div>
-      <p class="mt-4 text-white/70 text-sm">No credit pull. No commitment. A loan officer responds in one business day.</p>
-    </div>
-  </section>
+  <AsymHero
+    eyebrow="Non-QM Lending · Bank Statement Qualifying"
+    lead="Conventional lenders require W-2s. We require 12 months of bank statements. If your tax returns don't tell the whole story, Cliffco has a path forward."
+    image={{ src: "/images/content%20images/Self%20Employed%20Hero.webp", cutout: true }}
+    tag={{ stat: "12 mo.", label: "of bank statements" }}
+  >
+    You Built a Business.<br />Your Mortgage Should Reflect That.
+    <Fragment slot="actions">
+      <a href="#contact" class="btn btn-primary">See If I Qualify</a>
+      <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+    </Fragment>
+    <Fragment slot="note">No credit pull. No commitment. A loan officer responds in one business day.</Fragment>
+  </AsymHero>
 
-  <!-- CONTACT FORM + WHO THIS IS FOR -->
-  <section class="section bg-white">
-    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
-      <div id="contact" class="scroll-mt-24 rounded-2xl border border-black/15 p-6 sm:p-8">
-        <h2 class="mt-0" style="font-size: var(--text-h2);">Self-employed and wondering what you qualify for?</h2>
-        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us how you document income and we'll find the program that works.</p>
-        <div class="mt-8">
-          <ContactForm
-            formTo="websiteleads@cliffcomortgage.com,cliffcorpteam@cliffcomortgage.com"
-            formSource="self-employed"
-          />
-        </div>
+  <!-- LEAD FORM + WHO QUALIFIES -->
+  <section class="bg-white border-t border-[var(--color-ink)]">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <FormCard title="Self-employed and wondering what you qualify for?" sub="Tell us how you document income and we'll find the program that works." formSource="self-employed" />
       </div>
-      <div>
+      <div class="lg:col-span-6 lg:col-start-7 lg:pt-8">
         <p class="eyebrow">Who qualifies</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">This program was built for you specifically.</h2>
-        <p class="lead mt-4 text-[var(--color-text-muted)]">
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">This program was built for you specifically.</h2>
+        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed" style="font-size: 1.0625rem;">
           Conventional mortgage guidelines were written for W-2 employees. If you don't fit that mold, bank statement qualifying changes the equation entirely.
         </p>
-      <ul class="space-y-3 mt-6">
-        {[
-          "Sole proprietors and single-member LLC owners",
-          "S-Corp and C-Corp owners",
-          "1099 contractors and freelancers",
-          "Seasonal business owners",
-          "Restaurant, retail, and service business owners",
-          "Real estate agents and commissioned salespeople",
-          "Borrowers whose tax returns show less income than they actually earn",
-        ].map((item) => (
-          <li class="flex gap-3 items-start">
-            <span class="mt-0.5 shrink-0 text-[var(--color-accent)] font-semibold">✓</span>
-            <span class="text-[var(--color-text)]">{item}</span>
-          </li>
-        ))}
-      </ul>
+        <ul class="mt-8 list-none m-0 p-0 border-t border-[var(--color-ink)]">
+          {[
+            "Sole proprietors and single-member LLC owners",
+            "S-Corp and C-Corp owners",
+            "1099 contractors and freelancers",
+            "Seasonal business owners",
+            "Restaurant, retail, and service business owners",
+            "Real estate agents and commissioned salespeople",
+            "Borrowers whose tax returns show less income than they actually earn",
+          ].map((item) => (
+            <li class="flex gap-4 items-start py-4 border-b border-black/15">
+              <span class="font-mono text-sm text-[var(--color-ink)] pt-0.5" aria-hidden="true">✓</span>
+              <span class="text-[var(--color-text)]">{item}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </section>
 
   <!-- HOW IT WORKS -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <p class="eyebrow">The process</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Three steps. No tax returns required.</h2>
-
-      <div class="mt-10 grid gap-8 md:grid-cols-3">
-        <div class="card">
-          <p class="text-[var(--color-accent)] font-bold text-3xl">01</p>
-          <h3 class="mt-4" style="font-size: var(--text-h3);">Share your bank statements</h3>
-          <p class="mt-2 text-[var(--color-text-muted)] text-sm leading-relaxed">12 months of personal or business bank statements. We analyze actual deposits, not tax return figures.</p>
-        </div>
-        <div class="card">
-          <p class="text-[var(--color-accent)] font-bold text-3xl">02</p>
-          <h3 class="mt-4" style="font-size: var(--text-h3);">We calculate your qualifying income</h3>
-          <p class="mt-2 text-[var(--color-text-muted)] text-sm leading-relaxed">Your loan officer averages your monthly deposits and identifies the program with the best fit for your situation.</p>
-        </div>
-        <div class="card">
-          <p class="text-[var(--color-accent)] font-bold text-3xl">03</p>
-          <h3 class="mt-4" style="font-size: var(--text-h3);">Close in 30 to 45 days</h3>
-          <p class="mt-2 text-[var(--color-text-muted)] text-sm leading-relaxed">Underwriting is done in-house. No handoffs, no call centers. Your file gets personal attention from start to close.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <Split eyebrow="The process" title="Three steps. No tax returns required.">
+    <ol class="list-none m-0 p-0 border-t border-[var(--color-ink)]">
+      {steps.map((s, i) => (
+        <li class="grid grid-cols-[3rem_1fr] gap-4 py-8 border-b border-black/15">
+          <span class="font-mono text-sm text-[var(--color-text-muted)] pt-1">0{i + 1}</span>
+          <div>
+            <h3 class="text-xl font-semibold text-[var(--color-ink)]">{s.h}</h3>
+            <p class="mt-3 text-[var(--color-text)] leading-relaxed">{s.b}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </Split>
 
   <!-- WHAT YOU NEED + LOAN DETAILS -->
-  <section class="section bg-white">
-    <div class="container-wide grid lg:grid-cols-2 gap-12">
-      <div>
-        <p class="eyebrow">Document checklist</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">What to have ready.</h2>
-        <ul class="mt-6 space-y-3">
-          {[
-            "12 to 24 months of bank statements (personal or business)",
-            "Proof of self-employment: business license, CPA letter, or business bank statements",
-            "Minimum 10 to 20% down payment (program dependent)",
-            "3 to 6 months of reserves (PITI)",
-          ].map((item) => (
-            <li class="flex gap-3 items-start text-sm text-[var(--color-text)]">
-              <span class="mt-0.5 shrink-0 text-[var(--color-accent)]">→</span>
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Loan details.</h2>
-        <dl class="mt-6 space-y-3">
-          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
-            <dt class="text-sm text-[var(--color-text-muted)]">Down payment</dt>
-            <dd class="text-sm font-medium">10 to 25% (program dependent)</dd>
-          </div>
-          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
-            <dt class="text-sm text-[var(--color-text-muted)]">Min FICO</dt>
-            <dd class="text-sm font-medium">620</dd>
-          </div>
-          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
-            <dt class="text-sm text-[var(--color-text-muted)]">Loan amount</dt>
-            <dd class="text-sm font-medium">Up to $3.5 million</dd>
-          </div>
-          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
-            <dt class="text-sm text-[var(--color-text-muted)]">Property types</dt>
-            <dd class="text-sm font-medium">Primary, second home, investment</dd>
-          </div>
-          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
-            <dt class="text-sm text-[var(--color-text-muted)]">Loan terms</dt>
-            <dd class="text-sm font-medium">30-year fixed, interest only options available</dd>
-          </div>
-          <div class="flex justify-between border-b border-[var(--color-mist-gray)] pb-2">
-            <dt class="text-sm text-[var(--color-text-muted)]">Tax returns required</dt>
-            <dd class="text-sm font-medium">Not required (program dependent)</dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-  </section>
+  <Split eyebrow="Document checklist" title="What to have ready.">
+    <ul slot="aside" class="mt-8 list-none m-0 p-0 space-y-4">
+      {[
+        "12 to 24 months of bank statements (personal or business)",
+        "Proof of self-employment: business license, CPA letter, or business bank statements",
+        "Minimum 10 to 20% down payment (program dependent)",
+        "3 to 6 months of reserves (PITI)",
+      ].map((item) => (
+        <li class="flex gap-3 items-start text-[var(--color-text)]">
+          <span class="font-mono text-[var(--color-ink)] shrink-0" aria-hidden="true">→</span>
+          {item}
+        </li>
+      ))}
+    </ul>
+    <h3 class="text-xl font-semibold text-[var(--color-ink)]">Loan details.</h3>
+    <dl class="mt-6 border-t border-[var(--color-ink)]">
+      {details.map(([dt, dd]) => (
+        <div class="grid sm:grid-cols-[minmax(0,12rem)_1fr] gap-x-6 gap-y-1 py-4 border-b border-black/15">
+          <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] pt-1">{dt}</dt>
+          <dd class="font-medium text-[var(--color-ink)]">{dd}</dd>
+        </div>
+      ))}
+    </dl>
+  </Split>
 
   <!-- FAQ (picture left, questions right) -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide grid lg:grid-cols-2 gap-12 items-start">
-      <div class="rounded-lg overflow-hidden aspect-[4/3] bg-[var(--color-mist-gray)]">
-        <img src="/images/content%20images/Self%20Employed%20Mortgage.jpg" alt="Self-employed business owner reviewing bank statement mortgage qualification with Cliffco" class="w-full h-full object-cover" loading="lazy" />
-      </div>
-      <div>
-        <h2 class="mt-0" style="font-size: var(--text-h2);">How bank statement qualifying works.</h2>
-        <div class="mt-8 space-y-6">
-          {faq.map((q) => (
-            <details class="border-b border-[var(--color-border)] pb-4">
-              <summary class="font-semibold text-[var(--color-ink)] cursor-pointer text-lg list-none">{q.question}</summary>
-              <p class="mt-3 text-[var(--color-text)]">{q.answer}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
+  <Split eyebrow="FAQ" title="How bank statement qualifying works.">
+    <img slot="aside" src="/images/content%20images/Self%20Employed%20Mortgage.jpg" alt="Self-employed business owner reviewing bank statement mortgage qualification with Cliffco" class="mt-10 rounded-2xl w-full aspect-[4/3] object-cover" loading="lazy" />
+    <FaqList items={faq} />
+  </Split>
 
-  <!-- CTA -->
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Bank statements don't lie. Let's build your loan around them.</h2>
-      <p class="lead mt-4 text-white/85">A Cliffco loan officer specializing in bank statement programs responds in one business day.</p>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="#contact" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Tell us your situation</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
-    </div>
-  </section>
-
+  <CtaBand
+    title="Bank statements don't lie. Let's build your loan around them."
+    text="A Cliffco loan officer specializing in bank statement programs responds in one business day."
+  >
+    <a href="#contact" class="btn btn-primary">Tell us your situation</a>
+    <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+  </CtaBand>
 </Layout>
