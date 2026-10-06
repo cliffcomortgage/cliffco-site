@@ -1,0 +1,33 @@
+---
+/**
+ * Info-page header ("index card" layout: Contact, Licensing, Press, Reviews,
+ * Mortgage Rates): compact headline and lead on the left, an optional mono
+ * meta column on the right (slot "meta"), closed by a thick black rule.
+ * Default slot = h1 content. Slot "actions" = buttons under the lead.
+ */
+interface Props {
+  eyebrow: string;
+  lead?: string;
+}
+const { eyebrow, lead } = Astro.props;
+---
+
+<section class="bg-white">
+  <div class="container-wide pt-12 lg:pt-16 pb-8 lg:pb-10 grid lg:grid-cols-12 gap-8 items-end">
+    <div class="lg:col-span-8">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1 class="mt-4 text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">
+        <slot />
+      </h1>
+      {lead && <p class="mt-5 max-w-2xl text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">{lead}</p>}
+      <slot name="lead" />
+      {Astro.slots.has("actions") && <div class="mt-7 flex flex-wrap gap-3"><slot name="actions" /></div>}
+    </div>
+    {Astro.slots.has("meta") && (
+      <dl class="lg:col-span-4 lg:col-start-9 border-t lg:border-t-0 lg:border-l border-[var(--color-ink)] pt-5 lg:pt-0 lg:pl-6 space-y-4">
+        <slot name="meta" />
+      </dl>
+    )}
+  </div>
+  <div class="container-wide"><div class="h-1.5 bg-[var(--color-ink)]"></div></div>
+</section>

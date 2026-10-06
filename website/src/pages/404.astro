@@ -8,22 +8,22 @@ import { COMPANY } from "../data/company";
   description="That page doesn't exist or has moved. Find loan programs, loan officers, and contact information for Cliffco Mortgage Bankers."
   noindex={true}
 >
-  <section class="accent-gradient h-full flex items-center justify-center">
-    <div class="container-wide py-24 lg:py-32 text-center">
-      <p class="eyebrow !text-[var(--color-ice-blue)]">404</p>
-      <h1 class="mt-4 text-white" style="font-size: var(--text-display-xl); line-height: 1.1; font-weight: 400; font-family: var(--font-display);">
+  <section class="bg-white">
+    <div class="container-wide py-24 lg:py-36 text-center">
+      <p class="font-mono text-sm uppercase tracking-[0.2em] text-[var(--color-ink)]">404</p>
+      <h1 class="mt-5 text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 4.4vw, 3.5rem); line-height: 1.08; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">
         We can't find that page.
       </h1>
-      <p class="lead mt-6 text-white/90 max-w-xl mx-auto">
+      <p class="mt-6 text-[var(--color-text-muted)] max-w-xl mx-auto" style="font-size: 1.125rem; line-height: 1.6;">
         The link may be old, or the page may have moved when we rebuilt the site. Either way, everything you're looking for is still here.
       </p>
       <div class="mt-10 flex justify-center gap-3 flex-wrap">
-        <a href="/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Go to the homepage</a>
-        <a href="/loans/" class="btn btn-secondary !border-white !text-white">Browse loan programs</a>
+        <a href="/" class="btn btn-primary">Go to the homepage</a>
+        <a href="/loans/" class="btn btn-secondary">Browse loan programs</a>
       </div>
-      <p class="mt-8 text-white/70 text-sm">
-        Looking for a loan officer? <a href="/loan-officers/" class="text-white underline">Find them here</a>.
-        Or call us at <a href={`tel:${COMPANY.tollFreeE164}`} class="text-white underline">{COMPANY.tollFree}</a>.
+      <p class="mt-8 text-sm text-[var(--color-text-muted)]">
+        Looking for a loan officer? <a href="/loan-officers/" class="text-[var(--color-ink)] underline underline-offset-2">Find them here</a>.
+        Or call us at <a href={`tel:${COMPANY.tollFreeE164}`} class="text-[var(--color-ink)] underline underline-offset-2">{COMPANY.tollFree}</a>.
       </p>
     </div>
   </section>

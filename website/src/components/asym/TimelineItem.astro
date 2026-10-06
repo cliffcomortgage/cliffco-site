@@ -1,0 +1,40 @@
+---
+/**
+ * One stop on the company-story timeline: a mono marker (a year, step number,
+ * or short label) on the left, a dot on the black vertical line, and the
+ * section content on the right. Consecutive items form one continuous line.
+ * dark = the content sits in a black card. last = line ends at this item.
+ */
+interface Props {
+  marker: string;
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+  id?: string;
+  dark?: boolean;
+  last?: boolean;
+}
+const { marker, eyebrow, title, intro, id, dark = false, last = false } = Astro.props;
+---
+
+<section id={id} class="bg-white scroll-mt-24">
+  <div class="container-wide grid grid-cols-[5.5rem_1fr] sm:grid-cols-[8rem_1fr] lg:grid-cols-[11rem_1fr]">
+    <div class="pr-4 text-right">
+      {marker.length <= 5 ? (
+        <span class="block font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(1.125rem, 2vw, 1.75rem); letter-spacing: -0.02em;">{marker}</span>
+      ) : (
+        <span class="block pt-1 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] leading-snug">{marker}</span>
+      )}
+    </div>
+    <div class={`relative pl-6 sm:pl-10 ${last ? "pb-16 lg:pb-24" : "pb-16 lg:pb-24 border-l-2 border-[var(--color-ink)]"}`}>
+      {last && <span class="absolute left-0 top-0 h-3 border-l-2 border-[var(--color-ink)]" aria-hidden="true"></span>}
+      <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-[var(--color-ink)] ring-4 ring-white" aria-hidden="true"></span>
+      <div class={dark ? "rounded-[1.75rem] bg-[var(--color-ink)] text-white p-7 sm:p-10" : ""}>
+        {eyebrow && <p class={`eyebrow ${dark ? "!text-white/55" : ""}`}>{eyebrow}</p>}
+        {title && <h2 class={`${eyebrow ? "mt-3" : ""} ${dark ? "!text-white" : ""}`} style="font-size: var(--text-h2); font-weight: 700; line-height: 1.15;">{title}</h2>}
+        {intro && <p class={`mt-4 max-w-3xl leading-relaxed ${dark ? "text-white/75" : "text-[var(--color-text-muted)]"}`} style="font-size: 1.0625rem;">{intro}</p>}
+        <div class={title || intro || eyebrow ? "mt-8" : ""}><slot /></div>
+      </div>
+    </div>
+  </div>
+</section>

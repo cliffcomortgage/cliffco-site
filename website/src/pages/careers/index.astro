@@ -2,6 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
+import StoryHero from "../../components/asym/StoryHero.astro";
+import TimelineItem from "../../components/asym/TimelineItem.astro";
 
 const values = [
   { name: "Intentionality",  desc: "We are present and aligned in our relationships.", icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />` },
@@ -61,184 +63,122 @@ const corporateRoles = [
     { name: "Careers", href: "/careers/" },
   ]} />
 
-  <!-- HERO -->
-  <section class="container-wide pt-14 pb-16">
-    <div class="grid gap-12 lg:grid-cols-2 items-center">
-      <div>
-        <h1 class="mt-3" style="font-size: var(--text-display-lg);">
-          Join a team that gets<br class="hidden sm:block"/> people home.
-        </h1>
-        <p class="lead mt-6">
-          At Cliffco, we surround ourselves with people who have an appetite for success. Loan officers
-          here don't compete against each other. They share blueprints, lift each other up, and win
-          together. If that sounds like your kind of team, keep reading.
-        </p>
-        <div class="mt-8 flex gap-3 flex-wrap">
-          <a href="#loan-officers" class="btn btn-primary">For Loan Officers</a>
-          <a href="#corporate" class="btn btn-secondary">For Corporate Roles</a>
-        </div>
-      </div>
-      <div class="hidden lg:block rounded-lg overflow-hidden aspect-[4/3]">
-        <img
-          src="/images/content%20images/Careers.jpg"
-          alt="Cliffco team"
-          class="w-full h-full object-cover"
-        />
-      </div>
-    </div>
-  </section>
+  <StoryHero eyebrow="Careers" marker="Why join">
+    Join a team that gets<br class="hidden sm:block"/> people home.
+    <Fragment slot="lead">
+      <p class="max-w-3xl text-[var(--color-text)]" style="font-size: 1.1875rem; line-height: 1.65;">
+        At Cliffco, we surround ourselves with people who have an appetite for success. Loan officers
+        here don't compete against each other. They share blueprints, lift each other up, and win
+        together. If that sounds like your kind of team, keep reading.
+      </p>
+    </Fragment>
+    <Fragment slot="actions">
+      <a href="#loan-officers" class="btn btn-primary">For Loan Officers</a>
+      <a href="#corporate" class="btn btn-secondary">For Corporate Roles</a>
+    </Fragment>
+  </StoryHero>
 
   <!-- THE CLIFFCO DIFFERENCE -->
-  <section class="bg-[var(--color-mist-gray)] section">
-    <div class="container-wide">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">A different kind of culture.</h2>
-      <p class="lead mt-4 max-w-2xl text-[var(--color-text-muted)]">
-        Our operations team and leadership are laser-focused on collaboration and transparency.
-        We're changemakers: people who provide real solutions and use technology to stay ahead
-        of the market.
-      </p>
-
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
-        <div class="card">
-          <div class="w-10 h-10 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center mb-4">
-            <svg class="w-5 h-5 text-[var(--color-accent)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-          </div>
-          <h3 class="font-semibold text-[var(--color-ink)]">Collaborative by design</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">
+  <TimelineItem
+    marker="Culture"
+    title="A different kind of culture."
+    intro="Our operations team and leadership are laser-focused on collaboration and transparency. We're changemakers: people who provide real solutions and use technology to stay ahead of the market."
+  >
+    <div class="grid xl:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-10 items-start">
+      <ol class="list-none m-0 p-0 border-t-2 border-[var(--color-ink)]">
+        <li class="py-5 border-b border-black/15">
+          <h3 class="font-semibold text-lg text-[var(--color-ink)]">Collaborative by design</h3>
+          <p class="mt-2 text-[var(--color-text)] leading-relaxed">
             Loan officers share strategies, not just leads. Leadership is accessible. The people
             at the top built their books the same way you will.
           </p>
-        </div>
-
-        <div class="card">
-          <div class="w-10 h-10 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center mb-4">
-            <svg class="w-5 h-5 text-[var(--color-accent)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <h3 class="font-semibold text-[var(--color-ink)]">Built for producers</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">
+        </li>
+        <li class="py-5 border-b border-black/15">
+          <h3 class="font-semibold text-lg text-[var(--color-ink)]">Built for producers</h3>
+          <p class="mt-2 text-[var(--color-text)] leading-relaxed">
             Marketing, technology, training, and a full product stack: everything a high-producing
             LO needs is already here. You focus on relationships; we handle the rest.
           </p>
-        </div>
-
-        <div class="card">
-          <div class="w-10 h-10 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center mb-4">
-            <svg class="w-5 h-5 text-[var(--color-accent)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
-          </div>
-          <h3 class="font-semibold text-[var(--color-ink)]">Real growth, real results</h3>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">
+        </li>
+        <li class="py-5 border-b border-black/15">
+          <h3 class="font-semibold text-lg text-[var(--color-ink)]">Real growth, real results</h3>
+          <p class="mt-2 text-[var(--color-text)] leading-relaxed">
             We celebrate wins, individually and as a team. Your growth is the whole point.
           </p>
-        </div>
+        </li>
+      </ol>
+      <div class="rounded-[1.75rem] overflow-hidden aspect-[4/3]">
+        <img src="/images/content%20images/Careers.jpg" alt="Cliffco team" class="w-full h-full object-cover" loading="lazy" />
       </div>
     </div>
-  </section>
+  </TimelineItem>
 
   <!-- VALUES -->
-  <section class="section bg-white">
-    <div class="container-wide">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">What we stand for.</h2>
-      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-        {values.map((v) => (
-          <div class="border border-[var(--color-mist-gray)] rounded-lg p-5 hover:border-[var(--color-accent)] transition-colors">
-            <div class="w-9 h-9 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center mb-3">
-              <svg class="w-4 h-4 text-[var(--color-accent)]" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" set:html={v.icon} />
-            </div>
-            <p class="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)]">{v.name}</p>
-            <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{v.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <TimelineItem marker="Values" title="What we stand for.">
+    <dl class="grid sm:grid-cols-2 gap-x-10 border-t-2 border-[var(--color-ink)]">
+      {values.map((v) => (
+        <div class="py-4 border-b border-black/15">
+          <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">{v.name}</dt>
+          <dd class="mt-1 text-[var(--color-text)]">{v.desc}</dd>
+        </div>
+      ))}
+    </dl>
+  </TimelineItem>
 
   <!-- LO BENEFITS -->
-  <section id="loan-officers" class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <p class="eyebrow">For loan officers</p>
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Everything you need to produce.</h2>
-      <p class="lead mt-4 max-w-2xl text-[var(--color-text-muted)]">
-        A seasoned LO looking for a better platform, or a branch manager ready to
-        bring your team: this is what you get on day one.
-      </p>
-
-      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {loBenefits.map((b) => (
-          <div class="card flex flex-col gap-3">
-            <h3 class="font-semibold text-[var(--color-ink)]">{b.title}</h3>
-            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{b.desc}</p>
-          </div>
-        ))}
-      </div>
-
-      <div class="mt-10 bg-[var(--color-rich-black)] text-white rounded-lg p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6 justify-between">
-        <div>
-          <p class="font-semibold text-lg">Loan officer or branch manager?</p>
-          <p class="mt-1 text-white/70 text-sm">Send your resume and we'll set up a conversation.</p>
+  <TimelineItem
+    id="loan-officers"
+    marker="Loan officers"
+    eyebrow="For loan officers"
+    title="Everything you need to produce."
+    intro="A seasoned LO looking for a better platform, or a branch manager ready to bring your team: this is what you get on day one."
+  >
+    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      {loBenefits.map((b, i) => (
+        <div class="rounded-2xl border-2 border-[var(--color-ink)] p-6 flex flex-col gap-3">
+          <span class="font-mono text-xs text-[var(--color-text-muted)]">0{i + 1}</span>
+          <h3 class="font-semibold text-lg text-[var(--color-ink)]">{b.title}</h3>
+          <p class="text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{b.desc}</p>
         </div>
-        <a
-          href="mailto:employment@cliffcomortgage.com"
-          class="btn btn-primary !bg-white !text-[var(--color-rich-black)] whitespace-nowrap shrink-0"
-        >
-          Apply Now
-        </a>
-      </div>
+      ))}
     </div>
-  </section>
+    <div class="mt-6 bg-[var(--color-ink)] text-white rounded-2xl p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6 justify-between">
+      <div>
+        <p class="font-semibold text-lg">Loan officer or branch manager?</p>
+        <p class="mt-1 text-white/70 text-sm">Send your resume and we'll set up a conversation.</p>
+      </div>
+      <a href="mailto:employment@cliffcomortgage.com" class="btn btn-primary !bg-white !text-[var(--color-ink)] hover:!bg-white/85 whitespace-nowrap shrink-0">Apply Now</a>
+    </div>
+  </TimelineItem>
 
   <!-- CORPORATE ROLES -->
-  <section id="corporate" class="section bg-white">
-    <div class="container-wide grid gap-12 lg:grid-cols-[1fr_1.2fr] items-start">
+  <TimelineItem id="corporate" marker="Corporate" eyebrow="Corporate and operations" title="Behind every great LO is a great team.">
+    <div class="grid xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10 items-start">
       <div>
-        <p class="eyebrow">Corporate and operations</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Behind every great LO is a great team.</h2>
-        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+        <p class="text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
           Our operations team is the backbone of Cliffco. From processors and underwriters to
           marketers and compliance professionals. Every role matters, and everyone is invested
           in getting borrowers across the finish line.
         </p>
-        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+        <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
           If you're interested in a career in mortgage operations, corporate administration,
           or any of the roles below, we'd love to hear from you.
         </p>
-        <a
-          href="mailto:hr@cliffcomortgage.com"
-          class="btn btn-primary mt-6 inline-block"
-        >
-          Apply Now
-        </a>
+        <a href="mailto:hr@cliffcomortgage.com" class="btn btn-primary mt-6 inline-block">Apply Now</a>
       </div>
-
-      <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 lg:pt-16">
+      <ul class="list-none m-0 p-0 grid grid-cols-2 sm:grid-cols-3 gap-2">
         {corporateRoles.map((role) => (
-          <div class="flex flex-col items-center gap-2 rounded-lg px-4 py-5 text-center bg-[var(--color-accent)]/8 border border-[var(--color-accent)]/20 hover:bg-[var(--color-accent)]/14 hover:border-[var(--color-accent)]/40 transition-colors">
-            <div class="w-9 h-9 rounded-full bg-[var(--color-accent)]/15 flex items-center justify-center shrink-0">
-              <svg class="w-4 h-4 text-[var(--color-accent)]" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" set:html={role.icon} />
-            </div>
-            <span class="text-sm font-semibold text-[var(--color-ink)] leading-tight">{role.name}</span>
-          </div>
+          <li class="rounded-xl border-2 border-[var(--color-ink)] px-4 py-4 text-sm font-semibold text-[var(--color-ink)] text-center">{role.name}</li>
         ))}
-      </div>
+      </ul>
     </div>
-  </section>
+  </TimelineItem>
 
   <!-- CTA -->
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">We are hiring loan officers and operations talent.</h2>
-      <p class="lead mt-4 text-white/85">
-        Two ways in. One culture. Tell us who you are and what you do best.
-      </p>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="mailto:employment@cliffcomortgage.com" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Loan Officers</a>
-        <a href="mailto:hr@cliffcomortgage.com" class="btn btn-secondary !border-white !text-white">Corporate Roles</a>
-      </div>
+  <TimelineItem marker="Apply" title="We are hiring loan officers and operations talent." intro="Two ways in. One culture. Tell us who you are and what you do best." dark last>
+    <div class="flex flex-wrap gap-3">
+      <a href="mailto:employment@cliffcomortgage.com" class="btn btn-primary !bg-white !text-[var(--color-ink)] hover:!bg-white/85">Loan Officers</a>
+      <a href="mailto:hr@cliffcomortgage.com" class="btn btn-secondary !border-white !text-white">Corporate Roles</a>
     </div>
-  </section>
+  </TimelineItem>
 </Layout>

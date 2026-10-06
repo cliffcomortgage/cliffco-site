@@ -1,6 +1,8 @@
-﻿---
+---
 import Layout from "../layouts/Layout.astro";
 import Breadcrumbs from "../components/layout/Breadcrumbs.astro";
+import IndexHeader from "../components/asym/IndexHeader.astro";
+import IndexSection from "../components/asym/IndexSection.astro";
 import { COMPANY } from "../data/company";
 import { STATE_LICENSES } from "../data/state-licenses";
 
@@ -16,75 +18,80 @@ const sorted = [...STATE_LICENSES].sort((a, b) => a.name.localeCompare(b.name));
     { name: "Licensing", href: "/licensing/" },
   ]} />
 
-  <section class="container-wide pt-12 pb-16">
-    <p class="eyebrow">State Licensing</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">
-      Licensed in {STATE_LICENSES.length} states.
-    </h1>
-    <p class="lead mt-6">
+  <IndexHeader eyebrow="State Licensing">
+    Licensed in {STATE_LICENSES.length} states.
+    <p slot="lead" class="mt-5 max-w-2xl text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">
       Our NMLS # is {COMPANY.nmls}. {COMPANY.legalName} (d/b/a Cliffco Mortgage Bankers)
       is licensed in the states listed below. Verify our licenses and complaint history
-      any time at <a href={COMPANY.nmlsConsumerAccessUrl} rel="noopener">NMLS Consumer Access</a>.
+      any time at <a href={COMPANY.nmlsConsumerAccessUrl} rel="noopener" class="text-[var(--color-ink)] underline underline-offset-2">NMLS Consumer Access</a>.
     </p>
-  </section>
+    <Fragment slot="meta">
+      <div>
+        <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Licensed states</dt>
+        <dd class="mt-1 text-2xl font-bold">{STATE_LICENSES.length}</dd>
+      </div>
+      <div>
+        <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Company NMLS</dt>
+        <dd class="mt-1 text-2xl font-bold">#{COMPANY.nmls}</dd>
+      </div>
+    </Fragment>
+  </IndexHeader>
 
-  <section class="bg-white pb-16">
-    <div class="container-wide">
-      <div class="overflow-x-auto rounded-lg border border-[var(--color-mist-gray)]">
+  <!-- LICENSE TABLE -->
+  <section class="bg-white">
+    <div class="container-wide py-10 lg:py-12">
+      <div class="overflow-x-auto">
         <table class="w-full text-sm">
-          <thead class="bg-[var(--color-mist-gray)] text-left">
-            <tr>
-              <th class="py-3 px-4 font-semibold text-[var(--color-ink)]">State</th>
-              <th class="py-3 px-4 font-semibold text-[var(--color-ink)]">Regulator</th>
-              <th class="py-3 px-4 font-semibold text-[var(--color-ink)]">License</th>
+          <thead class="text-left">
+            <tr class="border-b-2 border-[var(--color-ink)]">
+              <th class="py-3 pr-4 font-mono text-[11px] uppercase tracking-[0.14em] font-normal text-[var(--color-ink)] w-[24%]">State</th>
+              <th class="py-3 pr-4 font-mono text-[11px] uppercase tracking-[0.14em] font-normal text-[var(--color-ink)]">Regulator</th>
+              <th class="py-3 font-mono text-[11px] uppercase tracking-[0.14em] font-normal text-[var(--color-ink)] w-[30%]">License</th>
             </tr>
           </thead>
           <tbody>
             {sorted.map((s) => (
-              <tr class="border-t border-[var(--color-mist-gray)] align-top">
-                <td class="py-3 px-4 font-semibold text-[var(--color-ink)]">{s.name} <span class="text-[var(--color-text-muted)] text-xs ml-1">({s.code})</span></td>
-                <td class="py-3 px-4 text-[var(--color-text)]">{s.regulator}</td>
-                <td class="py-3 px-4 text-[var(--color-text)] font-mono text-xs">
+              <tr class="border-b border-black/15 align-top hover:bg-black/[0.03]">
+                <td class="py-3.5 pr-4 font-semibold text-[var(--color-ink)]">{s.name} <span class="font-mono text-[var(--color-text-muted)] text-xs ml-1">{s.code}</span></td>
+                <td class="py-3.5 pr-4 text-[var(--color-text)]">{s.regulator}</td>
+                <td class="py-3.5 text-[var(--color-ink)] font-mono text-xs">
                   {s.licenseNumber ?? "N/A"}
-                  {s.notes && <div class="mt-1 not-italic text-[var(--color-text-muted)] font-sans normal-case">{s.notes}</div>}
+                  {s.notes && <div class="mt-1 text-[var(--color-text-muted)] font-sans normal-case">{s.notes}</div>}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
-      <div class="mt-12 grid md:grid-cols-2 gap-6">
-        <div class="card">
-          <h2 class="text-base font-semibold text-[var(--color-ink)]">Florida DBA Disclosure</h2>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">
-            {COMPANY.floridaDba.disclosure}
-          </p>
-        </div>
-
-        <div class="card">
-          <h2 class="text-base font-semibold text-[var(--color-ink)]">Texas Consumer Complaint Procedure</h2>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">
-            See our <a href="/legal/texas-complaints/">Texas consumer complaint procedure page</a> for the
-            statutorily-required complaint contact information for Texas borrowers.
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-12">
-        <h2 class="text-xl font-semibold text-[var(--color-ink)]">Verify Cliffco at NMLS Consumer Access</h2>
-        <p class="lead mt-3 max-w-3xl text-[var(--color-text-muted)]">
-          NMLS Consumer Access is the public, federally-chartered registry for the residential
-          mortgage industry. You can look up Cliffco's company-level record (NMLS #{COMPANY.nmls})
-          and any individual loan officer's record there.
-        </p>
-        <a href={COMPANY.nmlsConsumerAccessUrl} class="btn btn-primary mt-6" rel="noopener">Verify Cliffco at NMLS Consumer Access ↗</a>
-      </div>
-
-      <div class="mt-12 border-t border-[var(--color-mist-gray)] pt-8 space-y-3 text-xs text-[var(--color-text-muted)]">
-        <p>{COMPANY.legalName} is not affiliated with or acting on behalf of the FHA or any government entity. Equal Housing Lender.</p>
-        <p>This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states.</p>
-      </div>
     </div>
   </section>
+
+  <IndexSection label="Disclosures">
+    <dl class="border-t border-[var(--color-ink)]">
+      <div class="grid md:grid-cols-[minmax(0,16rem)_1fr] gap-x-8 gap-y-2 py-5 border-b border-black/15">
+        <dt><h2 class="text-base font-semibold text-[var(--color-ink)]">Florida DBA Disclosure</h2></dt>
+        <dd class="text-sm text-[var(--color-text)] leading-relaxed">{COMPANY.floridaDba.disclosure}</dd>
+      </div>
+      <div class="grid md:grid-cols-[minmax(0,16rem)_1fr] gap-x-8 gap-y-2 py-5 border-b border-black/15">
+        <dt><h2 class="text-base font-semibold text-[var(--color-ink)]">Texas Consumer Complaint Procedure</h2></dt>
+        <dd class="text-sm text-[var(--color-text)] leading-relaxed">
+          See our <a href="/legal/texas-complaints/" class="text-[var(--color-ink)] underline underline-offset-2">Texas consumer complaint procedure page</a> for the
+          statutorily-required complaint contact information for Texas borrowers.
+        </dd>
+      </div>
+    </dl>
+  </IndexSection>
+
+  <IndexSection label="Verify" title="Verify Cliffco at NMLS Consumer Access">
+    <p class="text-[var(--color-text)] leading-relaxed max-w-3xl" style="font-size: 1.0625rem;">
+      NMLS Consumer Access is the public, federally-chartered registry for the residential
+      mortgage industry. You can look up Cliffco's company-level record (NMLS #{COMPANY.nmls})
+      and any individual loan officer's record there.
+    </p>
+    <a href={COMPANY.nmlsConsumerAccessUrl} class="btn btn-primary mt-6" rel="noopener">Verify Cliffco at NMLS Consumer Access ↗</a>
+    <div class="mt-10 space-y-3 text-xs text-[var(--color-text-muted)]">
+      <p>{COMPANY.legalName} is not affiliated with or acting on behalf of the FHA or any government entity. Equal Housing Lender.</p>
+      <p>This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states.</p>
+    </div>
+  </IndexSection>
 </Layout>

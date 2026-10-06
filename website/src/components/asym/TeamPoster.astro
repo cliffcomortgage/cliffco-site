@@ -1,0 +1,84 @@
+---
+/**
+ * Team page header ("team poster"): black band with the team logo, a pitch
+ * headline, the members' square headshots lined up edge to edge (linking to
+ * their bios), and a stats row. Default slot = h1 content.
+ * Slots: "lead", "actions".
+ */
+import Headshot from "../ui/Headshot.astro";
+import type { LoanOfficer } from "../../data/loan-officers";
+
+interface Props {
+  eyebrow: string;
+  logo?: { src: string; alt: string; maxHeight?: string };
+  members: readonly LoanOfficer[];
+  stats?: { stat: string; label: string; sub?: string }[];
+  teamTitle?: string;
+  teamIntro?: string;
+}
+const { eyebrow, logo, members, stats = [], teamTitle, teamIntro } = Astro.props;
+const memberCols = members.length >= 5 ? "sm:grid-cols-3 lg:grid-cols-5" : members.length === 4 ? "lg:grid-cols-4" : members.length === 3 ? "sm:grid-cols-3" : members.length === 2 ? "sm:grid-cols-2" : "";
+const statCols = stats.length >= 4 ? "md:grid-cols-4" : stats.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2";
+---
+
+<section class="team-poster bg-[var(--color-ink)] text-white">
+  <div class="container-wide pt-14 pb-12 lg:pt-20 lg:pb-16">
+    <div class="grid lg:grid-cols-12 gap-10 items-end">
+      <div class="lg:col-span-7">
+        {logo && <img src={logo.src} alt={logo.alt} class="select-none w-auto" style={`max-height: ${logo.maxHeight ?? "88px"};`} loading="eager" />}
+        <p class="mt-8 eyebrow !text-white/55">{eyebrow}</p>
+        <h1 class="mt-4 !text-white" style="font-size: clamp(2rem, 3.8vw, 3.25rem); line-height: 1.08; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">
+          <slot />
+        </h1>
+      </div>
+      <div class="lg:col-span-5">
+        <slot name="lead" />
+        {Astro.slots.has("actions") && <div class="mt-7 flex flex-wrap gap-3"><slot name="actions" /></div>}
+      </div>
+    </div>
+
+    {(teamTitle || teamIntro) && (
+      <div class="mt-14 lg:mt-20 grid lg:grid-cols-12 gap-4 lg:gap-10 items-end">
+        {teamTitle && <h2 class="lg:col-span-6 !text-white" style="font-size: var(--text-h3); font-weight: 700; letter-spacing: -0.02em;">{teamTitle}</h2>}
+        {teamIntro && <p class="lg:col-span-6 text-white/70 leading-relaxed">{teamIntro}</p>}
+      </div>
+    )}
+    {members.length > 0 && (
+      <ul class={`${teamTitle || teamIntro ? "mt-6" : "mt-12 lg:mt-16"} list-none m-0 p-0 grid grid-cols-2 ${memberCols} gap-[2px] bg-white/80 border-2 border-white/80 rounded-[1.5rem] overflow-hidden`}>
+        {members.map((lo) => (
+          <li class="bg-[var(--color-ink)]">
+            <a href={`/loan-officers/${lo.slug}/`} class="group block no-underline">
+              {lo.hasPhoto && (
+                <div class="overflow-hidden">
+                  <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" class="transition-transform duration-500 group-hover:scale-[1.03]" />
+                </div>
+              )}
+              <div class="px-4 py-4 border-t-2 border-white/80 bg-[var(--color-ink)]">
+                <p class="font-semibold !text-white group-hover:underline">{lo.displayName}</p>
+                <p class="font-mono text-[10px] uppercase tracking-[0.12em] text-white/55 mt-1">{lo.title} · NMLS #{lo.nmls}</p>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {stats.length > 0 && (
+      <dl class={`mt-12 grid grid-cols-1 ${statCols} border-t border-white/30`}>
+        {stats.map((d, i) => (
+          <div class={`pt-6 pb-2 md:pr-6 ${i > 0 ? "md:border-l md:border-white/30 md:pl-6" : ""}`}>
+            <dd class="!text-white font-bold leading-none" style="font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.5rem); letter-spacing: -0.02em;">{d.stat}</dd>
+            <dt class="mt-3 text-white/75 text-sm">{d.label}</dt>
+            {d.sub && <dt class="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-white/45">{d.sub}</dt>}
+          </div>
+        ))}
+      </dl>
+    )}
+  </div>
+</section>
+
+<style>
+  .team-poster :global(.btn-primary) { background: #fff; color: var(--color-ink); }
+  .team-poster :global(.btn-primary:hover) { background: rgb(255 255 255 / 0.85); }
+  .team-poster :global(.btn-secondary) { background: transparent; color: #fff; border-color: #fff; }
+</style>

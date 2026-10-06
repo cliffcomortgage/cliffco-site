@@ -1,0 +1,28 @@
+---
+/**
+ * Team page section: a heavy black rule, the heading on the left with the
+ * intro set opposite it on the right, then full-width content below.
+ * dark = black band (white text).
+ */
+interface Props {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  id?: string;
+  dark?: boolean;
+}
+const { eyebrow, title, intro, id, dark = false } = Astro.props;
+---
+
+<section id={id} class={`scroll-mt-24 ${dark ? "bg-[var(--color-ink)] text-white" : "bg-white"}`}>
+  <div class="container-wide py-16 lg:py-24">
+    <div class={`border-t-[3px] ${dark ? "border-white" : "border-[var(--color-ink)]"} pt-6 grid lg:grid-cols-12 gap-6 lg:gap-10 items-end`}>
+      <div class="lg:col-span-6">
+        {eyebrow && <p class={`eyebrow ${dark ? "!text-white/55" : ""}`}>{eyebrow}</p>}
+        <h2 class={`mt-3 ${dark ? "!text-white" : ""}`} style="font-size: var(--text-h2); font-weight: 700; line-height: 1.12; letter-spacing: -0.02em;"><Fragment set:html={title} /></h2>
+      </div>
+      {intro && <p class={`lg:col-span-5 lg:col-start-8 leading-relaxed ${dark ? "text-white/70" : "text-[var(--color-text-muted)]"}`} style="font-size: 1.0625rem;">{intro}</p>}
+    </div>
+    <div class="mt-10 lg:mt-12"><slot /></div>
+  </div>
+</section>

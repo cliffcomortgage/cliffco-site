@@ -2,6 +2,9 @@
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
+import StoryHero from "../../components/asym/StoryHero.astro";
+import TimelineItem from "../../components/asym/TimelineItem.astro";
+import FaqList from "../../components/asym/FaqList.astro";
 import { faqPageSchema, articleSchema } from "../../lib/schema";
 
 
@@ -125,95 +128,55 @@ const schema = [
     { name: "Our Process", href: "/process/" },
   ]} />
 
-  <!-- HERO -->
-  <section class="accent-gradient">
-    <div class="container-wide py-20 lg:py-28">
-      <p class="eyebrow !text-[var(--color-ice-blue)]">How It Works · Conventional, FHA, VA, and Non-QM</p>
-      <h1 class="mt-4 text-white max-w-3xl" style="font-size: var(--text-display-xl); line-height: 1.1; font-weight: 400; font-family: var(--font-display);">
-        From First Call<br/>
-        <span class="text-[var(--color-ice-blue)]">To Keys in Hand.</span>
-      </h1>
-      <p class="lead mt-6 text-white/90 max-w-2xl">
+  <StoryHero eyebrow="How It Works · Conventional, FHA, VA, and Non-QM" marker="Start">
+    From First Call To Keys in Hand.
+    <Fragment slot="lead">
+      <p class="max-w-3xl text-[var(--color-text)]" style="font-size: 1.1875rem; line-height: 1.65;">
         The mortgage process doesn't have to be a mystery. Here's what happens at every step, and how long each one takes.
       </p>
-      <div class="mt-8 flex flex-wrap gap-4 items-center">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] hover:!bg-[var(--color-ice-blue)]">Start the Process</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
-      <p class="mt-4 text-white/70 text-sm">No credit pull. No commitment. Just a conversation about your options.</p>
-    </div>
-  </section>
-
-  <!-- TIMELINE STRIP -->
-  <section class="bg-white py-10 border-b border-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <div class="flex items-center w-full">
-        {steps.map((s, i) => (
-          <div class="flex items-center flex-1 min-w-0">
-            <div class="flex flex-col items-center gap-2 flex-1 px-2">
-              <span class="text-sm font-bold text-[var(--color-accent)]">{s.number}</span>
-              <span class="text-sm text-center text-[var(--color-text-muted)] leading-tight">{s.heading.split(" ").slice(0, 3).join(" ")}</span>
-            </div>
-            {i < steps.length - 1 && <span class="text-[var(--color-mist-gray)] text-2xl shrink-0">›</span>}
-          </div>
+      <ol class="mt-8 list-none m-0 p-0 flex flex-wrap gap-2">
+        {steps.map((s) => (
+          <li><a href={`#step-${s.number}`} class="inline-flex items-center gap-2 rounded-full border-2 border-[var(--color-ink)] px-3.5 py-1.5 text-sm no-underline text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white transition-colors"><span class="font-mono text-xs">{s.number}</span>{s.heading.split(" ").slice(0, 3).join(" ")}</a></li>
         ))}
-      </div>
-    </div>
-  </section>
+      </ol>
+    </Fragment>
+    <Fragment slot="actions">
+      <a href="/get-started/" class="btn btn-primary">Start the Process</a>
+      <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+    </Fragment>
+    <Fragment slot="note">No credit pull. No commitment. Just a conversation about your options.</Fragment>
+  </StoryHero>
 
   <!-- STEP BY STEP -->
-  <section class="section bg-white">
-    <div class="container-wide space-y-12">
-      {steps.map((s, i) => (
-        <div class={`grid lg:grid-cols-[80px_1fr_1fr] gap-6 items-start ${i > 0 ? "border-t border-[var(--color-mist-gray)] pt-12" : ""}`}>
-          <div class="flex flex-col gap-1">
-            <span class="text-5xl font-bold text-[var(--color-accent)] opacity-30">{s.number}</span>
-            <span class="text-xs text-[var(--color-text-muted)] font-medium">{s.duration}</span>
-          </div>
-          <div>
-            <h2 style="font-size: var(--text-h3);" class="font-semibold text-[var(--color-ink)]">{s.heading}</h2>
-            <p class="mt-3 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{s.body}</p>
-          </div>
-          <div>
-            <p class="text-sm font-semibold text-[var(--color-ink)] mb-3">What this means for you:</p>
-            <ul class="space-y-2">
-              {s.details.map((d) => (
-                <li class="flex gap-2 items-start text-sm text-[var(--color-text)]">
-                  <span class="mt-0.5 shrink-0 text-[var(--color-accent)] font-semibold">✓</span>
-                  {d}
-                </li>
-              ))}
-            </ul>
-          </div>
+  {steps.map((s) => (
+    <TimelineItem id={`step-${s.number}`} marker={s.number} eyebrow={s.duration} title={s.heading}>
+      <div class="grid xl:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] gap-10 items-start">
+        <p class="text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{s.body}</p>
+        <div class="border-t-2 border-[var(--color-ink)] pt-4">
+          <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)] mb-3">What this means for you:</p>
+          <ul class="list-none m-0 p-0">
+            {s.details.map((d) => (
+              <li class="flex gap-3 items-start py-2 border-b border-black/10 text-sm text-[var(--color-text)]">
+                <span class="shrink-0 font-mono text-[var(--color-ink)]">✓</span>
+                {d}
+              </li>
+            ))}
+          </ul>
         </div>
-      ))}
-    </div>
-  </section>
+      </div>
+    </TimelineItem>
+  ))}
 
   <!-- FAQ -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">What to expect along the way.</h2>
-      <div class="mt-8 space-y-6">
-        {faq.map((q) => (
-          <details class="border-b border-[var(--color-border)] pb-4">
-            <summary class="font-semibold text-[var(--color-ink)] cursor-pointer list-none" style="font-size: 1.0625rem;">{q.question}</summary>
-            <p class="mt-3 text-[var(--color-text)]" style="font-size: 1.0625rem;">{q.answer}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
+  <TimelineItem marker="FAQ" title="What to expect along the way.">
+    <FaqList items={faq} />
+  </TimelineItem>
 
   <!-- CTA -->
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">The first step takes about ten minutes.</h2>
-      <p class="lead mt-4 text-white/85">No credit pull. No commitment. A loan officer reviews your scenario and responds within one business day.</p>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Start the Process</a>
-        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
-      </div>
+  <TimelineItem marker="Go" title="The first step takes about ten minutes." intro="No credit pull. No commitment. A loan officer reviews your scenario and responds within one business day." dark last>
+    <div class="flex flex-wrap gap-3">
+      <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-ink)] hover:!bg-white/85">Start the Process</a>
+      <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.tollFree}</a>
     </div>
-  </section>
+  </TimelineItem>
 </Layout>

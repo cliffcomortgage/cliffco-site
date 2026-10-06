@@ -1,7 +1,9 @@
-﻿---
+---
 import { STATE_LICENSES } from "../../data/state-licenses";
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import IndexHeader from "../../components/asym/IndexHeader.astro";
+import IndexSection from "../../components/asym/IndexSection.astro";
 import { COMPANY } from "../../data/company";
 import { BRANCHES } from "../../data/branches";
 import { PRESS, formatPressDate } from "../../data/press";
@@ -16,88 +18,85 @@ import { PRESS, formatPressDate } from "../../data/press";
     { name: "Press", href: "/press/" },
   ]} />
 
-  <section class="container-wide pt-12 pb-12">
-    <p class="eyebrow">Press</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Cliffco in the news.</h1>
-    <p class="lead mt-6 max-w-2xl">
+  <IndexHeader eyebrow="Press">
+    Cliffco in the news.
+    <p slot="lead" class="mt-5 max-w-2xl text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">
       Press coverage, industry recognition, and media mentions of Cliffco Mortgage Bankers.
       For press inquiries, contact us at
-      <a href="mailto:marketing@cliffcomortgage.com">marketing@cliffcomortgage.com</a>.
+      <a href="mailto:marketing@cliffcomortgage.com" class="text-[var(--color-ink)] underline underline-offset-2">marketing@cliffcomortgage.com</a>.
     </p>
-  </section>
-
-  <section class="bg-white pb-16">
-    <div class="container-wide">
-      {PRESS.length === 0 ? (
-        <p class="text-[var(--color-text-muted)]">No press items yet - check back soon.</p>
-      ) : (
-        <div class="space-y-6 max-w-3xl">
-          {PRESS.map((item) => (
-            <article class="card">
-              <p class="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">
-                {item.publication} &middot; {formatPressDate(item.date)}
-              </p>
-              <h2 class="mt-2 text-lg font-semibold text-[var(--color-ink)] leading-snug">
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-[var(--color-ink)] hover:text-[var(--color-accent)]"
-                >
-                  {item.title}
-                </a>
-              </h2>
-              {item.summary && <p class="mt-3 text-sm text-[var(--color-text-muted)] [overflow-wrap:anywhere]">{item.summary}</p>}
-              <a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="mt-4 inline-block text-sm font-semibold text-[var(--color-accent)]"
-              >
-                Read on {item.publication} ↗
-              </a>
-            </article>
-          ))}
+    <Fragment slot="meta">
+      <div>
+        <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Mentions</dt>
+        <dd class="mt-1 text-2xl font-bold">{PRESS.length}</dd>
+      </div>
+      {PRESS.length > 0 && (
+        <div>
+          <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Latest</dt>
+          <dd class="mt-1 text-lg font-semibold">{formatPressDate(PRESS[0].date)}</dd>
         </div>
+      )}
+    </Fragment>
+  </IndexHeader>
+
+  <!-- PRESS LIST -->
+  <section class="bg-white">
+    <div class="container-wide py-6 lg:py-8">
+      {PRESS.length === 0 ? (
+        <p class="py-8 text-[var(--color-text-muted)]">No press items yet - check back soon.</p>
+      ) : (
+        <ol class="list-none m-0 p-0">
+          {PRESS.map((item) => (
+            <li class="grid md:grid-cols-12 gap-x-8 gap-y-2 py-7 border-b border-black/15">
+              <p class="md:col-span-3 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] md:pt-1.5">
+                {formatPressDate(item.date)}<br class="hidden md:block" /><span class="md:hidden"> &middot; </span>{item.publication}
+              </p>
+              <div class="md:col-span-9 min-w-0">
+                <h2 class="text-lg font-semibold text-[var(--color-ink)] leading-snug">
+                  <a href={item.url} target="_blank" rel="noopener noreferrer" class="text-[var(--color-ink)] no-underline hover:underline">
+                    {item.title}
+                  </a>
+                </h2>
+                {item.summary && <p class="mt-2 text-sm text-[var(--color-text-muted)] [overflow-wrap:anywhere]">{item.summary}</p>}
+                <a href={item.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-block text-sm font-semibold text-[var(--color-ink)]">
+                  Read on {item.publication} ↗
+                </a>
+              </div>
+            </li>
+          ))}
+        </ol>
       )}
     </div>
   </section>
 
-  <section class="bg-[var(--color-mist-gray)] section">
-    <div class="container-wide grid gap-10 lg:grid-cols-2">
+  <!-- MEDIA INQUIRIES -->
+  <IndexSection label="Media inquiries" title="Working on a story?">
+    <div class="grid xl:grid-cols-2 gap-10">
       <div>
-        <p class="eyebrow">Media inquiries</p>
-        <h2 class="mt-3" style="font-size: var(--text-h2);">Working on a story?</h2>
-        <p class="mt-4 text-[var(--color-text-muted)]">
+        <p class="text-[var(--color-text)] leading-relaxed">
           We're available for comment on Non-QM lending, reverse mortgages, DSCR investor
           financing, self-employed borrowers, and the Long Island and New York mortgage markets.
           Christopher Clifford (President, NMLS #65234) is available for interviews.
         </p>
-        <div class="mt-6 flex flex-col gap-3">
-          <a href="mailto:marketing@cliffcomortgage.com" class="btn btn-primary self-start">
-            Email the press team
-          </a>
-          <a href={`tel:${COMPANY.hq.phoneE164}`} class="text-sm font-medium text-[var(--color-ink)]">
-            {COMPANY.hq.phone}
-          </a>
+        <div class="mt-6 flex flex-wrap items-center gap-4">
+          <a href="mailto:marketing@cliffcomortgage.com" class="btn btn-primary">Email the press team</a>
+          <a href={`tel:${COMPANY.hq.phoneE164}`} class="text-sm font-semibold text-[var(--color-ink)]">{COMPANY.hq.phone}</a>
         </div>
       </div>
-      <div class="space-y-4">
-        <div class="card">
-          <p class="text-sm font-semibold text-[var(--color-ink)]">Quick facts</p>
-          <ul class="mt-3 text-sm text-[var(--color-text-muted)] space-y-2">
-            <li>Founded 1989, headquartered in Uniondale, NY (Long Island)</li>
-            <li>Licensed in {STATE_LICENSES.length} states</li>
-            <li>Specialty: Non-QM, reverse mortgage, DSCR, business bank statement</li>
-            <li>{BRANCHES.length} branch offices across NY, NJ, FL, AZ, and MN</li>
-            <li>NMLS #{COMPANY.nmls}</li>
-          </ul>
-        </div>
-        <a href="/about/" class="card no-underline text-[var(--color-ink)] flex flex-col">
-          <p class="text-sm font-semibold">Company background →</p>
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">Quick facts</p>
+        <ul class="mt-3 list-none m-0 p-0 border-t border-[var(--color-ink)] text-sm text-[var(--color-text)]">
+          <li class="py-3 border-b border-black/15">Founded 1989, headquartered in Uniondale, NY (Long Island)</li>
+          <li class="py-3 border-b border-black/15">Licensed in {STATE_LICENSES.length} states</li>
+          <li class="py-3 border-b border-black/15">Specialty: Non-QM, reverse mortgage, DSCR, business bank statement</li>
+          <li class="py-3 border-b border-black/15">{BRANCHES.length} branch offices across NY, NJ, FL, AZ, and MN</li>
+          <li class="py-3 border-b border-black/15">NMLS #{COMPANY.nmls}</li>
+        </ul>
+        <a href="/about/" class="mt-5 block no-underline text-[var(--color-ink)] group">
+          <p class="text-sm font-semibold group-hover:underline">Company background →</p>
           <p class="mt-1 text-sm text-[var(--color-text-muted)]">Full history, leadership, and mission on our About page.</p>
         </a>
       </div>
     </div>
-  </section>
+  </IndexSection>
 </Layout>
