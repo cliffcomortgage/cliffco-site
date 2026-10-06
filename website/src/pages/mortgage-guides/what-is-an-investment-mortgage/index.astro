@@ -1,6 +1,6 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import ArticleImage from "../../../components/ui/ArticleImage.astro";
+import Handbook from "../../../components/asym/Handbook.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { faqPageSchema } from "../../../lib/schema";
 
@@ -26,34 +26,10 @@ const faq = faqPageSchema([
     { name: "Investment Mortgages Guide", href: "/mortgage-guides/what-is-an-investment-mortgage/" },
   ]} />
 
-  <article class="container-prose pt-12 pb-16">
-
-    <h1 style="font-size: var(--text-display-lg);">Investment Mortgage: A Complete Guide</h1>
-
-    <ArticleImage />
+  <Handbook title="Investment Mortgage: A Complete Guide">
 
     <p class="mt-8">Investment mortgages follow different rules than the home loan most people are familiar with. Lenders treat income-generating properties as higher-risk, which means higher rates, larger down payments, and a more scrutinized application. But the qualification path depends heavily on which loan type you use, and the options have expanded considerably over the past decade.</p>
     <p class="mt-4">This guide covers how investment property financing works: the loan types available, how lenders think about risk, what you need to qualify, and how to choose the right structure for your situation.</p>
-
-    <nav class="mt-10 p-6 bg-[var(--color-mist-gray)] rounded-lg">
-      <p class="font-semibold text-[var(--color-ink)] mb-3">Table of Contents</p>
-      <ul class="space-y-1 text-sm text-[var(--color-accent)]">
-        <li><a href="#what-is-an-investment-mortgage" class="hover:underline">What is an Investment Mortgage?</a></li>
-        <li><a href="#same-as-regular" class="hover:underline">Is an Investment Mortgage the Same as a Regular Mortgage?</a></li>
-        <li><a href="#what-is-an-investment-property-loan" class="hover:underline">What is an Investment Property Loan?</a></li>
-        <li><a href="#types-of-loans" class="hover:underline">Types of Loans for an Investment Property</a></li>
-        <li><a href="#dscr-loan" class="hover:underline">DSCR Loan for Investment Property</a></li>
-        <li><a href="#types-of-investment-properties" class="hover:underline">Types Of Investment Properties</a></li>
-        <li><a href="#requirements" class="hover:underline">Investment Property Loan Requirements and Qualifications</a></li>
-        <li><a href="#how-to-qualify" class="hover:underline">How to Qualify for an Investment Property Loan</a></li>
-        <li><a href="#less-than-20" class="hover:underline">Can I Put Less than 20% Down on an Investment Property?</a></li>
-        <li><a href="#minimum-down-payment" class="hover:underline">What is the Minimum Down Payment for an Investment Property?</a></li>
-        <li><a href="#fha-loan" class="hover:underline">Can You Use an FHA Loan for an Investment Property?</a></li>
-        <li><a href="#example" class="hover:underline">What is an Example of an Investment Loan?</a></li>
-        <li><a href="#what-type-of-mortgage" class="hover:underline">What Type of Mortgage Should I Get for an Investment Property?</a></li>
-        <li><a href="#conclusion" class="hover:underline">Conclusion</a></li>
-      </ul>
-    </nav>
 
     <h2 id="what-is-an-investment-mortgage" class="mt-12">What is an Investment Mortgage?</h2>
     <p class="mt-4">An investment mortgage is a loan for a property you buy to generate income: a rental house, a duplex, a unit you plan to renovate and sell, or a property held for long-term appreciation. The underlying structure is the same as any mortgage, but the pricing and requirements reflect the fact that lenders hold investment properties to a higher standard than primary residences.</p>
@@ -145,7 +121,7 @@ const faq = faqPageSchema([
     <p class="mt-4">Investment property financing isn't one-size-fits-all. The loan that makes sense for a first-time landlord buying a single-family rental looks nothing like the program that works for an experienced investor running a multi-unit portfolio through an LLC. Getting that match right from the start (rather than forcing the wrong product and running into a wall) is most of the work.</p>
     <p class="mt-4">At Cliffco, we work with investors at every stage: first rental, growing portfolio, complex income, cash-flow properties. If you're not sure which direction fits your situation, that's what a loan officer is for. Tell us what you're buying and how you earn, and we'll tell you which programs apply.</p>
 
-    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+    <div class="mt-12 p-6 bg-white border border-black/15 rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
       <div>
         <p class="font-semibold text-[var(--color-ink)]">Ready to finance your investment property?</p>
         <p class="text-sm text-[var(--color-text-muted)] mt-1">Contact Cliffco Mortgage Bankers today to discuss your investment goals and find the right loan.</p>
@@ -153,5 +129,5 @@ const faq = faqPageSchema([
       <a href="/get-started/" class="btn btn-primary shrink-0">Get started</a>
     </div>
 
-  </article>
+  </Handbook>
 </Layout>

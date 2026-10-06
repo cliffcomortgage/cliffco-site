@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import LegalDoc from "../../components/asym/LegalDoc.astro";
 import { COMPANY } from "../../data/company";
 ---
 
@@ -10,9 +11,7 @@ import { COMPANY } from "../../data/company";
     { name: "Legal", href: "/legal/" },
     { name: "Texas Complaints", href: "/legal/texas-complaints/" },
   ]} />
-  <section class="container-prose pt-12 pb-16">
-    <h1 style="font-size: var(--text-display-lg);">Texas Consumer Complaint Procedure</h1>
-    <p class="lead mt-6">
+  <LegalDoc title="Texas Consumer Complaint Procedure"><p class="lead mt-6">
       Texas borrowers wishing to file a complaint against {COMPANY.legalName} (NMLS #{COMPANY.nmls})
       may do so by contacting the Texas Department of Savings and Mortgage Lending.
     </p>
@@ -27,5 +26,5 @@ import { COMPANY } from "../../data/company";
     <p class="text-xs text-[var(--color-text-muted)] mt-8">
       This page satisfies the disclosure requirement under the Texas Mortgage Banker Registration Act.
     </p>
-  </section>
+  </LegalDoc>
 </Layout>

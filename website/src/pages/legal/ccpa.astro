@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import LegalDoc from "../../components/asym/LegalDoc.astro";
 import { COMPANY } from "../../data/company";
 const lastUpdated = "2026-05-21";
 ---
@@ -12,9 +13,7 @@ const lastUpdated = "2026-05-21";
     { name: "CCPA", href: "/legal/ccpa/" },
   ]} />
 
-  <section class="container-prose pt-12 pb-16">
-    <h1 style="font-size: var(--text-display-lg);">California Consumer Privacy Act (CCPA) Disclosure</h1>
-    <p class="text-sm text-[var(--color-text-muted)] mt-2">Last updated: {lastUpdated}</p>
+  <LegalDoc title="California Consumer Privacy Act (CCPA) Disclosure" updated={lastUpdated}>
 
     <p class="mt-6">
       This notice supplements our <a href="/legal/privacy/">Privacy Policy</a> and applies to
@@ -95,7 +94,7 @@ const lastUpdated = "2026-05-21";
     <div class="mt-6 overflow-x-auto">
       <table class="w-full text-sm border-collapse">
         <thead>
-          <tr class="bg-[var(--color-mist-gray)]">
+          <tr class="bg-white border border-black/15">
             <th class="text-left px-4 py-3 font-semibold border border-[var(--color-soft-gray)] w-1/3">Category</th>
             <th class="text-left px-4 py-3 font-semibold border border-[var(--color-soft-gray)]">Examples</th>
           </tr>
@@ -105,7 +104,7 @@ const lastUpdated = "2026-05-21";
             <td class="px-4 py-3 border border-[var(--color-soft-gray)] align-top font-medium">Personal Unique Identifiers</td>
             <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Full name, address, email address, Social Security number, etc.</td>
           </tr>
-          <tr class="bg-[var(--color-mist-gray)]/40">
+          <tr class="bg-white border border-black/15/40">
             <td class="px-4 py-3 border border-[var(--color-soft-gray)] align-top font-medium">Personal Information</td>
             <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Financial account numbers, credit scores, phone number, etc.</td>
           </tr>
@@ -113,7 +112,7 @@ const lastUpdated = "2026-05-21";
             <td class="px-4 py-3 border border-[var(--color-soft-gray)] align-top font-medium">Purchase Information</td>
             <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Records of personal property, products or services purchased, obtained or considered, and other purchasing histories such as account number, property details, etc.</td>
           </tr>
-          <tr class="bg-[var(--color-mist-gray)]/40">
+          <tr class="bg-white border border-black/15/40">
             <td class="px-4 py-3 border border-[var(--color-soft-gray)] align-top font-medium">Protected Classifications</td>
             <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Marital status, sex, racial or ethnic origin, etc.</td>
           </tr>
@@ -121,7 +120,7 @@ const lastUpdated = "2026-05-21";
             <td class="px-4 py-3 border border-[var(--color-soft-gray)] align-top font-medium">Internet / Browsing Activity</td>
             <td class="px-4 py-3 border border-[var(--color-soft-gray)]">IP address, browsing history, information regarding interaction with our websites, advertisements, etc.</td>
           </tr>
-          <tr class="bg-[var(--color-mist-gray)]/40">
+          <tr class="bg-white border border-black/15/40">
             <td class="px-4 py-3 border border-[var(--color-soft-gray)] align-top font-medium">Professional / Employment-Related Information</td>
             <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Employment history, income information, and related records provided during the loan application process.</td>
           </tr>
@@ -183,5 +182,5 @@ const lastUpdated = "2026-05-21";
       changes by posting the revised notice on our website with a revised "Last Updated" date.
       Unless otherwise stated, the revised notice is effective as of the date it is posted.
     </p>
-  </section>
+  </LegalDoc>
 </Layout>

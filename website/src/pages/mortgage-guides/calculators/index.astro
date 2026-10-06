@@ -122,74 +122,68 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
     { name: "Calculators", href: "/mortgage-guides/calculators/" },
   ]} />
 
-  <section class="container-wide pt-14 pb-12">
-    <p class="eyebrow">Free tools</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Run the numbers before you apply.</h1>
-    <p class="lead mt-5 max-w-2xl">
-      Twelve calculators covering every common mortgage scenario: from first-time buyers and self-employed
-      borrowers to investors, veterans, and homeowners considering a refinance, buydown, or reverse mortgage.
-    </p>
+  <section class="bg-white">
+    <div class="container-wide pt-12 lg:pt-16 pb-8 grid lg:grid-cols-12 gap-8 items-end">
+      <div class="lg:col-span-8">
+        <p class="eyebrow">Free tools</p>
+        <h1 class="mt-4 text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">Run the numbers before you apply.</h1>
+        <p class="mt-5 max-w-2xl text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">
+          Twelve calculators covering every common mortgage scenario: from first-time buyers and self-employed
+          borrowers to investors, veterans, and homeowners considering a refinance, buydown, or reverse mortgage.
+        </p>
+      </div>
+      <p class="lg:col-span-3 lg:col-start-10 lg:text-right font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.04em;">{calculators.length}<span class="block mt-2 font-mono text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Calculators</span></p>
+    </div>
   </section>
 
-  <section class="bg-[var(--color-mist-gray)] section">
+  <!-- Category filter -->
+  <section class="bg-white sticky top-[4.5rem] z-30 border-y-2 border-[var(--color-ink)]">
+    <div class="container-wide py-3 flex gap-2 overflow-x-auto" id="calc-filters">
+      {audiences.map((a) => (
+        <button
+          data-filter={a}
+          class={`calc-filter-btn shrink-0 whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-semibold border-2 border-[var(--color-ink)] transition-colors ${a === "All" ? "bg-[var(--color-ink)] text-white" : "bg-white text-[var(--color-ink)]"}`}
+        >{a}</button>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-white pb-16">
     <div class="container-wide">
-
-      <!-- Category filter -->
-      <div class="flex flex-wrap gap-2 mb-8" id="calc-filters">
-        {audiences.map((a) => (
-          <button
-            data-filter={a}
-            class={`calc-filter-btn px-4 py-2 rounded-full text-sm font-semibold border transition-colors ${a === "All" ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)] hover:text-[var(--color-ice-blue)]" : "bg-white text-[var(--color-text-muted)] border-[var(--color-mist-gray)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"}`}
-          >{a}</button>
-        ))}
-      </div>
-
-      <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3" id="calc-grid">
-        {calculators.map((c) => {
-          const colors = colorMap[c.color];
-          return (
-            <a
-              href={`/mortgage-guides/calculators/${c.slug}/`}
-              data-audience={c.audience}
-              class="calc-card group bg-white rounded-lg border border-[var(--color-mist-gray)] p-6 no-underline flex flex-col h-full hover:border-[var(--color-accent)]/40 hover:shadow-md transition-all duration-200"
-            >
-              <div class="flex items-start justify-between mb-4">
-                <div class={`w-11 h-11 rounded-lg ${colors.bg} flex items-center justify-center shrink-0`}>
-                  <svg class={`w-5 h-5 ${colors.icon}`} fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" set:html={c.icon} />
-                </div>
-                <span class="text-xs font-semibold text-[var(--color-text-muted)] bg-[var(--color-mist-gray)] px-2.5 py-1 rounded-full">{c.audience}</span>
-              </div>
-              <h2 class="font-semibold text-[var(--color-ink)] text-lg leading-snug">{c.title}</h2>
-              <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{c.description}</p>
-              <span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-accent)] group-hover:gap-2 transition-all">
-                Use calculator
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </span>
+      <ol class="list-none m-0 p-0" id="calc-grid">
+        {calculators.map((c, i) => (
+          <li class="calc-card border-b border-black/15" data-audience={c.audience}>
+            <a href={`/mortgage-guides/calculators/${c.slug}/`} class="group grid grid-cols-[2.5rem_1fr] md:grid-cols-[3rem_minmax(0,14rem)_1fr_auto] gap-x-6 gap-y-1 py-6 no-underline text-[var(--color-ink)] items-baseline">
+              <span class="font-mono text-sm text-[var(--color-text-muted)]">{String(i + 1).padStart(2, "0")}</span>
+              <h2 class="font-semibold leading-snug group-hover:underline" style="font-size: 1.1875rem;">{c.title}</h2>
+              <p class="col-start-2 md:col-start-auto text-sm text-[var(--color-text-muted)] leading-relaxed">
+                <span class="block font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--color-ink)] mb-1">{c.audience}</span>
+                {c.description}
+              </p>
+              <span class="col-start-2 md:col-start-auto text-sm font-semibold whitespace-nowrap">Use calculator →</span>
             </a>
-          );
-        })}
-      </div>
+          </li>
+        ))}
+      </ol>
 
-      <div class="mt-12 grid gap-5 md:grid-cols-3">
-        <div class="bg-white rounded-lg border border-[var(--color-mist-gray)] p-6">
+      <div class="mt-14 grid gap-4 md:grid-cols-3">
+        <div class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
           <p class="eyebrow text-xs mb-2">ITIN loans</p>
           <p class="font-semibold text-[var(--color-ink)]">Buying without a Social Security number?</p>
           <p class="mt-2 text-sm text-[var(--color-text-muted)]">ITIN mortgage qualification isn't something a calculator can fully model. Talk to a specialist.</p>
-          <a href="/get-started/" class="mt-4 inline-block text-sm font-semibold text-[var(--color-accent)]">Talk to a loan officer →</a>
+          <a href="/get-started/" class="mt-4 inline-block text-sm font-semibold text-[var(--color-ink)]">Talk to a loan officer →</a>
         </div>
-        <div class="bg-white rounded-lg border border-[var(--color-mist-gray)] p-6">
+        <div class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
           <p class="eyebrow text-xs mb-2">Foreign national loans</p>
           <p class="font-semibold text-[var(--color-ink)]">Investing in US property from abroad?</p>
           <p class="mt-2 text-sm text-[var(--color-text-muted)]">Qualification depends on your country of origin, visa status, and asset documentation.</p>
-          <a href="/get-started/" class="mt-4 inline-block text-sm font-semibold text-[var(--color-accent)]">Talk to a loan officer →</a>
+          <a href="/get-started/" class="mt-4 inline-block text-sm font-semibold text-[var(--color-ink)]">Talk to a loan officer →</a>
         </div>
-        <div class="bg-white rounded-lg border border-[var(--color-mist-gray)] p-6">
-          <p class="eyebrow text-xs mb-2">Not sure where to start?</p>
-          <p class="font-semibold text-[var(--color-ink)]">Skip the calculator and talk to a real person.</p>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">A Cliffco loan officer can tell you exactly what you qualify for in 24 hours.</p>
-          <a href="/get-started/" class="mt-4 inline-block text-sm font-semibold text-[var(--color-accent)]">Get started →</a>
+        <div class="rounded-2xl bg-[var(--color-ink)] text-white p-6">
+          <p class="eyebrow text-xs mb-2 !text-white/55">Not sure where to start?</p>
+          <p class="font-semibold text-white">Skip the calculator and talk to a real person.</p>
+          <p class="mt-2 text-sm text-white/70">A Cliffco loan officer can tell you exactly what you qualify for in 24 hours.</p>
+          <a href="/get-started/" class="mt-4 inline-block text-sm font-semibold !text-white">Get started →</a>
         </div>
       </div>
     </div>
@@ -199,8 +193,8 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
   const btns = document.querySelectorAll<HTMLButtonElement>('.calc-filter-btn');
   const cards = document.querySelectorAll<HTMLElement>('.calc-card');
 
-  const activeClass = ['bg-[var(--color-accent)]', 'text-white', 'border-[var(--color-accent)]', 'hover:text-[var(--color-ice-blue)]'];
-  const inactiveClass = ['bg-white', 'text-[var(--color-text-muted)]', 'border-[var(--color-mist-gray)]', 'hover:border-[var(--color-accent)]', 'hover:text-[var(--color-accent)]'];
+  const activeClass = ['bg-[var(--color-ink)]', 'text-white'];
+  const inactiveClass = ['bg-white', 'text-[var(--color-ink)]'];
 
   btns.forEach(btn => {
     btn.addEventListener('click', () => {

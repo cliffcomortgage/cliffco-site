@@ -2,8 +2,9 @@
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { loanOfficer } from "../../data/loan-officers";
-import Headshot from "../../components/ui/Headshot.astro";
-import ContactForm from "../../components/forms/ContactForm.astro";
+import AuthorHero from "../../components/asym/AuthorHero.astro";
+import ArticleBody from "../../components/asym/ArticleBody.astro";
+import AuthorFooter from "../../components/asym/AuthorFooter.astro";
 import { faqPageSchema } from "../../lib/schema";
 
 const david = loanOfficer("david-fallarino")!;
@@ -30,16 +31,9 @@ const schema = faqPageSchema(faqs);
     { name: "Buying a Home When Your Income Is Rising Fast", href: "/buying-home-income-rising-fast/" },
   ]} />
 
-  <article class="section bg-white relative overflow-hidden">
-    <div class="absolute inset-x-0 top-0 h-[300px] bg-[var(--color-rich-black)]" aria-hidden="true"></div>
-    <div class="container-prose relative z-10">
-      <div class="rounded-lg overflow-hidden mb-10 aspect-video bg-[var(--color-mist-gray)] shadow-2xl">
-        <img src="/images/DFallarino%20Blog/Rising%20Income%20Blog.jpg" alt="High-growth professional reviewing mortgage options as income rises at Cliffco" class="w-full h-full object-cover" loading="lazy" />
-      </div>
+  <AuthorHero eyebrow="500:1 Blog · David Fallarino" published="Published August 24, 2026" image={{ src: "/images/DFallarino%20Blog/Rising%20Income%20Blog.jpg", alt: "High-growth professional reviewing mortgage options as income rises at Cliffco" }} author={david}>Buying a Home When Your Income Is Rising Fast: Mortgage Options for High-Growth Borrowers</AuthorHero>
 
-      <p class="eyebrow mb-4">500:1 Blog · David Fallarino</p>
-      <h1 style="font-size: var(--text-display-lg); letter-spacing: -0.03em; line-height: 1.1;">Buying a Home When Your Income Is Rising Fast: Mortgage Options for High-Growth Borrowers</h1>
-      <p class="mt-3 text-sm text-[var(--color-text-muted)]">Published August 24, 2026</p>
+  <ArticleBody>
       <p class="lead mt-4">A fast-growing career or business should be exciting. But when it comes time to buy a home, rising income can create an unexpected mortgage challenge.</p>
 
       <p>You may be earning significantly more today than you did one or two years ago. Maybe your business just took off. Maybe your commission income increased. Maybe you became a partner, landed a major contract, changed compensation structures, or moved into a higher-paying role.</p>
@@ -157,41 +151,16 @@ const schema = faqPageSchema(faqs);
       <h2>The Bottom Line</h2>
       <p>Fast-rising income can be a great sign of financial strength, but traditional mortgage underwriting does not always keep up with your momentum.</p>
       <p>If your current income is stronger than your past tax returns, pay history, or average earnings suggest, you may need a mortgage strategy built around your full financial picture. At Cliffco and The Fallarino Group, we help high-growth borrowers find smart, flexible mortgage solutions for where they are now, not just where they were two years ago.</p>
-    </div>
-  </article>
+    </ArticleBody>
 
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <div class="max-w-2xl mx-auto card flex flex-col sm:flex-row gap-6 items-start">
-        {david.hasPhoto && (
-          <div class="w-20 h-20 shrink-0 rounded-full overflow-hidden">
-            <Headshot slug={david.slug} name={david.displayName} size={80} shape="circle" />
-          </div>
-        )}
-        <div>
-          <p class="eyebrow text-xs mb-1">Written by</p>
-          <h3 class="font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">{david.displayName}</h3>
-          <p class="text-sm text-[var(--color-text-muted)] mt-1">{david.title} · NMLS #{david.nmls}</p>
-          <p class="text-sm text-[var(--color-text)] mt-3 leading-relaxed">Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors.</p>
-          <div class="mt-4 flex flex-wrap gap-3">
-            <a href={`/loan-officers/${david.slug}/`} class="btn btn-primary text-sm">View David's profile</a>
-            <a href="/the-fallarino-group/" class="btn btn-secondary text-sm">The Fallarino Group</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Income climbing faster than your tax returns show? Let's talk.</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us how your income is growing and David will identify which loan path fits where you are now.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="dfallarino@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
-          formSource="blog-rising-income"
-        />
-      </div>
-    </div>
-  </section>
+  <AuthorFooter
+    author={david}
+    bio="Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors."
+    formTitle="Income climbing faster than your tax returns show? Let's talk."
+    formSub="Tell us how your income is growing and David will identify which loan path fits where you are now."
+    formTo="dfallarino@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
+    formSource="blog-rising-income"
+  />
 </Layout>

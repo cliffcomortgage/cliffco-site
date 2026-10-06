@@ -14,56 +14,25 @@ import { COMPANY } from "../../../../data/company";
     { name: "Mortgage Readiness Checkup", href: "/mortgage-guides/calculators/mortgage-readiness/" },
   ]} />
 
-  <!-- Hero -->
-  <section class="container-wide pt-14 pb-10">
-    <p class="eyebrow">For first-time buyers and anyone rebuilding credit</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Mortgage Readiness Checkup</h1>
-    <p class="lead mt-5 max-w-2xl">See your mortgage readiness score based on credit, income, debt load, and savings. Know exactly where you stand before you apply.</p>
+  <!-- Header -->
+  <section class="bg-white">
+    <div class="container-wide pt-12 lg:pt-16 pb-8">
+      <p class="eyebrow">Calculator · For first-time buyers and anyone rebuilding credit</p>
+      <h1 class="mt-4 max-w-4xl text-[var(--color-ink)]" style="font-size: clamp(2.125rem, 4vw, 3.25rem); line-height: 1.08; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">Mortgage Readiness Checkup</h1>
+      <p class="mt-4 max-w-2xl text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">See your mortgage readiness score based on credit, income, debt load, and savings. Know exactly where you stand before you apply.</p>
+    </div>
+    <div class="container-wide"><div class="h-1.5 bg-[var(--color-ink)]"></div></div>
   </section>
 
-  <!-- Calculator + Context -->
-  <section class="section bg-white">
-    <div class="container-wide">
-      <div class="lg:grid lg:grid-cols-[2fr_3fr] lg:gap-16 lg:items-start">
-
-        <!-- Left: context panel -->
-        <div class="mb-10 lg:mb-0 lg:sticky lg:top-8">
-          <h2 class="text-xl font-semibold text-[var(--color-ink)]">What lenders look at</h2>
-          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Before you walk into a lender's office, it helps to know how you look on paper. This checkup scores you on the same four factors underwriters use: credit, debt-to-income, reserves, and loan-to-value. See where you're strong and where you have room to improve.
-          </p>
-          <ul class="mt-5 space-y-3">
-            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
-              Lenders look at four things: credit score, DTI ratio, employment history, and cash reserves
-            </li>
-            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
-              A DTI above 43% is a hard stop for most conventional loans
-            </li>
-            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
-              FHA loans are more flexible but require a minimum 580 credit score for 3.5% down
-            </li>
-            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
-              Your score here is directional; a loan officer will give you the definitive read
-            </li>
-          </ul>
-          <p class="mt-6 text-xs text-[var(--color-text-muted)] leading-relaxed border-t border-[var(--color-mist-gray)] pt-4">
-            Estimate only. Readiness scores are directional, not a credit decision. Actual qualification depends on full underwriting review.
-          </p>
-        </div>
-
-        <!-- Right: calculator widget -->
-        <div class="rounded-lg overflow-hidden border border-[var(--color-mist-gray)] shadow-sm">
-          <!-- Calculator header (dark) -->
-          <div class="bg-[var(--color-rich-black)] px-6 py-5">
+  <!-- Instrument panel: controls (left) + readout (right) -->
+  <section class="bg-white">
+    <div class="container-wide py-10 lg:py-12 grid lg:grid-cols-12 gap-6 items-start">
+      <div class="calc-controls lg:col-span-5 rounded-[1.75rem] bg-[var(--color-ink)] text-white p-6 sm:p-8">
+        <div class="calc-head">
             <h2 class="text-lg font-semibold text-white">Mortgage Readiness Checkup</h2>
             <p class="text-sm text-white/60 mt-1">Results update as you type</p>
           </div>
-          <!-- Inputs -->
-          <div class="bg-white p-6 space-y-5">
+        <div class="mt-6 space-y-5">
             <div>
               <label for="mr-credit" class="block text-sm font-medium text-[var(--color-ink)]">Credit score estimate</label>
               <select id="mr-credit" class="calc-input mt-1.5">
@@ -92,8 +61,8 @@ import { COMPANY } from "../../../../data/company";
               <input id="mr-price" type="number" class="calc-input mt-1.5" value="400000" min="50000" step="5000" />
             </div>
           </div>
-          <!-- Results panel -->
-          <div class="border-t border-[var(--color-mist-gray)] bg-[var(--color-mist-gray)]/40 p-6">
+      </div>
+      <div class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
             <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-5">Your results</p>
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
@@ -112,24 +81,62 @@ import { COMPANY } from "../../../../data/company";
             </div>
             <p id="mr-verdict" class="mt-4 text-sm text-[var(--color-text-muted)]"></p>
           </div>
+    </div>
+  </section>
+
+  <!-- How to use it -->
+  <section class="bg-white">
+    <div class="container-wide pb-14 lg:pb-20">
+      <div class="calc-context grid lg:grid-cols-12 gap-6 lg:gap-10 border-t border-[var(--color-ink)] pt-8">
+        <p class="lg:col-span-3 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">How to read it</p>
+        <div class="lg:col-span-8 lg:col-start-5">
+          <h2 class="text-xl font-semibold text-[var(--color-ink)]">What lenders look at</h2>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Before you walk into a lender's office, it helps to know how you look on paper. This checkup scores you on the same four factors underwriters use: credit, debt-to-income, reserves, and loan-to-value. See where you're strong and where you have room to improve.
+          </p>
+          <ul class="mt-5 space-y-3">
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-ink)] font-bold shrink-0">&#10003;</span>
+              Lenders look at four things: credit score, DTI ratio, employment history, and cash reserves
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-ink)] font-bold shrink-0">&#10003;</span>
+              A DTI above 43% is a hard stop for most conventional loans
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-ink)] font-bold shrink-0">&#10003;</span>
+              FHA loans are more flexible but require a minimum 580 credit score for 3.5% down
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-ink)] font-bold shrink-0">&#10003;</span>
+              Your score here is directional; a loan officer will give you the definitive read
+            </li>
+          </ul>
+          <p class="mt-6 text-xs text-[var(--color-text-muted)] leading-relaxed border-t border-black/15 pt-4">
+            Estimate only. Readiness scores are directional, not a credit decision. Actual qualification depends on full underwriting review.
+          </p>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- CTA -->
-      <div class="mt-14 bg-[var(--color-rich-black)] rounded-lg p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
+  <!-- CTA -->
+  <section class="bg-white pb-14">
+    <div class="container-wide">
+      <div  class="mt-14 bg-[var(--color-ink)] rounded-lg p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
         <div>
           <p class="text-white font-semibold text-lg">Ready to find out where you really stand?</p>
           <p class="text-white/70 text-sm mt-1">A Cliffco loan officer reviews your full picture, not just a score. We help borrowers other banks turned away.</p>
         </div>
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-ink)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
         <a href={`tel:${COMPANY.tollFreeE164}`} class="text-white/80 hover:text-white no-underline text-sm font-semibold whitespace-nowrap shrink-0">{COMPANY.tollFree}</a>
       </div>
     </div>
   </section>
 
   <!-- Back link -->
-  <div class="bg-[var(--color-mist-gray)] py-6 text-center">
-    <a href="/mortgage-guides/calculators/" class="text-sm font-medium text-[var(--color-accent)]">&#8592; See all calculators</a>
+  <div class="border-t border-black/15 py-6 text-center">
+    <a href="/mortgage-guides/calculators/" class="text-sm font-semibold text-[var(--color-ink)]">← See all calculators</a>
   </div>
 </Layout>
 
@@ -148,8 +155,8 @@ import { COMPANY } from "../../../../data/company";
     -webkit-appearance: none;
   }
   .calc-input:focus {
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+    border-color: var(--color-ink);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-ink) 15%, transparent);
   }
   select.calc-input {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
@@ -168,7 +175,7 @@ import { COMPANY } from "../../../../data/company";
   }
   .result-num.primary {
     font-size: 3rem;
-    color: var(--color-accent);
+    color: var(--color-ink);
   }
 </style>
 

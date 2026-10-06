@@ -14,56 +14,25 @@ import { COMPANY } from "../../../../data/company";
     { name: "Self-Employed Income", href: "/mortgage-guides/calculators/self-employed-income/" },
   ]} />
 
-  <!-- Hero -->
-  <section class="container-wide pt-14 pb-10">
-    <p class="eyebrow">For self-employed borrowers and 1099 contractors</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Self-Employed Income Calculator</h1>
-    <p class="lead mt-5 max-w-2xl">Compare your qualifying income on tax returns vs. bank statements side by side. See which loan program gives you the higher number and the higher loan amount.</p>
+  <!-- Header -->
+  <section class="bg-white">
+    <div class="container-wide pt-12 lg:pt-16 pb-8">
+      <p class="eyebrow">Calculator · For self-employed borrowers and 1099 contractors</p>
+      <h1 class="mt-4 max-w-4xl text-[var(--color-ink)]" style="font-size: clamp(2.125rem, 4vw, 3.25rem); line-height: 1.08; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">Self-Employed Income Calculator</h1>
+      <p class="mt-4 max-w-2xl text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">Compare your qualifying income on tax returns vs. bank statements side by side. See which loan program gives you the higher number and the higher loan amount.</p>
+    </div>
+    <div class="container-wide"><div class="h-1.5 bg-[var(--color-ink)]"></div></div>
   </section>
 
-  <!-- Calculator + Context -->
-  <section class="section bg-white">
-    <div class="container-wide">
-      <div class="lg:grid lg:grid-cols-[2fr_3fr] lg:gap-16 lg:items-start">
-
-        <!-- Left: context panel -->
-        <div class="mb-10 lg:mb-0 lg:sticky lg:top-8">
-          <h2 class="text-xl font-semibold text-[var(--color-ink)]">Two ways lenders count your income</h2>
-          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Self-employed borrowers qualify differently than W-2 earners. Lenders use either your tax returns or your bank deposits to measure income, and the method that produces a higher number usually qualifies you for a higher purchase price. This calculator shows you both side by side.
-          </p>
-          <ul class="mt-5 space-y-3">
-            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
-              Tax return loans average your net income over 24 months, after write-offs
-            </li>
-            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
-              Bank statement loans use 12 or 24 months of deposits, minus an expense ratio
-            </li>
-            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
-              The method that produces more income usually qualifies you for a higher purchase price
-            </li>
-            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-              <span class="mt-0.5 text-[var(--color-accent)] font-bold shrink-0">&#10003;</span>
-              Add-backs (depreciation, depletion, business use of home) can significantly boost your tax-return income
-            </li>
-          </ul>
-          <p class="mt-6 text-xs text-[var(--color-text-muted)] leading-relaxed border-t border-[var(--color-mist-gray)] pt-4">
-            Estimate only. Actual qualifying income requires a full file review with your CPA. Both methods require documentation: 2 years of returns for tax-return loans, 12-24 bank statements for bank-statement loans.
-          </p>
-        </div>
-
-        <!-- Right: calculator widget -->
-        <div class="rounded-lg overflow-hidden border border-[var(--color-mist-gray)] shadow-sm">
-          <!-- Calculator header (dark) -->
-          <div class="bg-[var(--color-rich-black)] px-6 py-5">
+  <!-- Instrument panel: controls (left) + readout (right) -->
+  <section class="bg-white">
+    <div class="container-wide py-10 lg:py-12 grid lg:grid-cols-12 gap-6 items-start">
+      <div class="calc-controls lg:col-span-5 rounded-[1.75rem] bg-[var(--color-ink)] text-white p-6 sm:p-8">
+        <div class="calc-head">
             <h2 class="text-lg font-semibold text-white">Self-Employed Income Calculator</h2>
             <p class="text-sm text-white/60 mt-1">Results update as you type</p>
           </div>
-          <!-- Inputs -->
-          <div class="bg-white p-6 space-y-5">
+        <div class="mt-6 space-y-5">
 
             <!-- Tax Return Method -->
             <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)]">Tax Return Method</p>
@@ -95,9 +64,8 @@ import { COMPANY } from "../../../../data/company";
               <p class="text-xs text-[var(--color-text-muted)] mt-1">Lenders apply an expense ratio to deposits. 50% is common for service businesses; 30-40% for others.</p>
             </div>
           </div>
-
-          <!-- Results panel -->
-          <div class="border-t border-[var(--color-mist-gray)] bg-[var(--color-mist-gray)]/40 p-6">
+      </div>
+      <div class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
             <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-5">Your results</p>
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
@@ -116,24 +84,62 @@ import { COMPANY } from "../../../../data/company";
             <p id="se-winner" class="mt-4 text-sm font-semibold"></p>
             <p id="se-verdict" class="mt-2 text-sm text-[var(--color-text-muted)]"></p>
           </div>
+    </div>
+  </section>
+
+  <!-- How to use it -->
+  <section class="bg-white">
+    <div class="container-wide pb-14 lg:pb-20">
+      <div class="calc-context grid lg:grid-cols-12 gap-6 lg:gap-10 border-t border-[var(--color-ink)] pt-8">
+        <p class="lg:col-span-3 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">How to read it</p>
+        <div class="lg:col-span-8 lg:col-start-5">
+          <h2 class="text-xl font-semibold text-[var(--color-ink)]">Two ways lenders count your income</h2>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
+            Self-employed borrowers qualify differently than W-2 earners. Lenders use either your tax returns or your bank deposits to measure income, and the method that produces a higher number usually qualifies you for a higher purchase price. This calculator shows you both side by side.
+          </p>
+          <ul class="mt-5 space-y-3">
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-ink)] font-bold shrink-0">&#10003;</span>
+              Tax return loans average your net income over 24 months, after write-offs
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-ink)] font-bold shrink-0">&#10003;</span>
+              Bank statement loans use 12 or 24 months of deposits, minus an expense ratio
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-ink)] font-bold shrink-0">&#10003;</span>
+              The method that produces more income usually qualifies you for a higher purchase price
+            </li>
+            <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <span class="mt-0.5 text-[var(--color-ink)] font-bold shrink-0">&#10003;</span>
+              Add-backs (depreciation, depletion, business use of home) can significantly boost your tax-return income
+            </li>
+          </ul>
+          <p class="mt-6 text-xs text-[var(--color-text-muted)] leading-relaxed border-t border-black/15 pt-4">
+            Estimate only. Actual qualifying income requires a full file review with your CPA. Both methods require documentation: 2 years of returns for tax-return loans, 12-24 bank statements for bank-statement loans.
+          </p>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- CTA -->
-      <div class="mt-14 bg-[var(--color-rich-black)] rounded-lg p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
+  <!-- CTA -->
+  <section class="bg-white pb-14">
+    <div class="container-wide">
+      <div  class="mt-14 bg-[var(--color-ink)] rounded-lg p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
         <div>
           <p class="text-white font-semibold text-lg">Not sure which method works best for your file?</p>
           <p class="text-white/70 text-sm mt-1">A Cliffco loan officer can review your returns and bank statements and tell you which program qualifies you for more.</p>
         </div>
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-ink)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
         <a href={`tel:${COMPANY.tollFreeE164}`} class="text-white/80 hover:text-white no-underline text-sm font-semibold whitespace-nowrap shrink-0">{COMPANY.tollFree}</a>
       </div>
     </div>
   </section>
 
   <!-- Back link -->
-  <div class="bg-[var(--color-mist-gray)] py-6 text-center">
-    <a href="/mortgage-guides/calculators/" class="text-sm font-medium text-[var(--color-accent)]">← See all calculators</a>
+  <div class="border-t border-black/15 py-6 text-center">
+    <a href="/mortgage-guides/calculators/" class="text-sm font-semibold text-[var(--color-ink)]">← See all calculators</a>
   </div>
 </Layout>
 
@@ -152,8 +158,8 @@ import { COMPANY } from "../../../../data/company";
     -webkit-appearance: none;
   }
   .calc-input:focus {
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+    border-color: var(--color-ink);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-ink) 15%, transparent);
   }
   select.calc-input {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
@@ -172,7 +178,7 @@ import { COMPANY } from "../../../../data/company";
   }
   .result-num.primary {
     font-size: 3rem;
-    color: var(--color-accent);
+    color: var(--color-ink);
   }
 </style>
 

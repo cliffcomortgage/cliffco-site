@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import LegalDoc from "../../components/asym/LegalDoc.astro";
 import { COMPANY } from "../../data/company";
 const lastUpdated = "2026-07-16";
 ---
@@ -12,9 +13,7 @@ const lastUpdated = "2026-07-16";
     { name: "Privacy Policy", href: "/legal/privacy/" },
   ]} />
 
-  <section class="container-prose pt-12 pb-16">
-    <h1 style="font-size: var(--text-display-lg);">Privacy Policy</h1>
-    <p class="text-sm text-[var(--color-text-muted)] mt-2">Last updated: {lastUpdated}</p>
+  <LegalDoc title="Privacy Policy" updated={lastUpdated}>
 
     <p class="mt-6">
       Welcome to cliffcomortgage.com. This site is owned and operated by {COMPANY.legalName}
@@ -319,5 +318,5 @@ const lastUpdated = "2026-07-16";
       {COMPANY.hq.city}, {COMPANY.hq.region} {COMPANY.hq.postalCode}<br/>
       <a href={`tel:${COMPANY.hq.phoneE164}`}>{COMPANY.hq.phone}</a>
     </address>
-  </section>
+  </LegalDoc>
 </Layout>

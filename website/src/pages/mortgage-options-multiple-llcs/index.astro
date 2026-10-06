@@ -2,8 +2,9 @@
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { loanOfficer } from "../../data/loan-officers";
-import Headshot from "../../components/ui/Headshot.astro";
-import ContactForm from "../../components/forms/ContactForm.astro";
+import AuthorHero from "../../components/asym/AuthorHero.astro";
+import ArticleBody from "../../components/asym/ArticleBody.astro";
+import AuthorFooter from "../../components/asym/AuthorFooter.astro";
 import { faqPageSchema } from "../../lib/schema";
 
 const david = loanOfficer("david-fallarino")!;
@@ -30,16 +31,9 @@ const schema = faqPageSchema(faqs);
     { name: "Mortgage Options for Borrowers with Multiple LLCs", href: "/mortgage-options-multiple-llcs/" },
   ]} />
 
-  <article class="section bg-white relative overflow-hidden">
-    <div class="absolute inset-x-0 top-0 h-[300px] bg-[var(--color-rich-black)]" aria-hidden="true"></div>
-    <div class="container-prose relative z-10">
-      <div class="rounded-lg overflow-hidden mb-10 aspect-video bg-[var(--color-mist-gray)] shadow-2xl">
-        <img src="/images/DFallarino%20Blog/Multiple%20LLCs%20Blog.jpg" alt="Business owner with multiple LLCs reviewing mortgage options with Cliffco" class="w-full h-full object-cover" loading="lazy" />
-      </div>
+  <AuthorHero eyebrow="500:1 Blog · David Fallarino" published="Published September 8, 2026" image={{ src: "/images/DFallarino%20Blog/Multiple%20LLCs%20Blog.jpg", alt: "Business owner with multiple LLCs reviewing mortgage options with Cliffco" }} author={david}>Mortgage Options for Borrowers with Multiple LLCs</AuthorHero>
 
-      <p class="eyebrow mb-4">500:1 Blog · David Fallarino</p>
-      <h1 style="font-size: var(--text-display-lg); letter-spacing: -0.03em; line-height: 1.1;">Mortgage Options for Borrowers with Multiple LLCs</h1>
-      <p class="mt-3 text-sm text-[var(--color-text-muted)]">Published September 8, 2026</p>
+  <ArticleBody>
       <p class="lead mt-4">Owning multiple LLCs can be a sign of financial growth. You may have separate entities for real estate investments, business operations, partnerships, consulting work, or asset protection. From a business standpoint, that structure may make sense. But when it is time to apply for a mortgage, multiple LLCs can make the process more complicated.</p>
 
       <p>Traditional lenders often want simple income documentation. They prefer clean W-2s, straightforward tax returns, and easy-to-follow income streams. When a borrower owns several entities, the lender may need to understand how each business performs, how income flows between accounts, and which income can actually be used to qualify.</p>
@@ -164,41 +158,16 @@ const schema = faqPageSchema(faqs);
       <p>Multiple LLCs can make mortgage approval more complicated, but they do not have to make it impossible.</p>
       <p>For entrepreneurs, investors, and business owners, layered entities are often part of a smart financial strategy. The key is working with a mortgage team that knows how to evaluate the full picture.</p>
       <p>At Cliffco and The Fallarino Group, we help borrowers with complex business structures find mortgage solutions that fit the way they actually earn, invest, and grow.</p>
-    </div>
-  </article>
+    </ArticleBody>
 
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <div class="max-w-2xl mx-auto card flex flex-col sm:flex-row gap-6 items-start">
-        {david.hasPhoto && (
-          <div class="w-20 h-20 shrink-0 rounded-full overflow-hidden">
-            <Headshot slug={david.slug} name={david.displayName} size={80} shape="circle" />
-          </div>
-        )}
-        <div>
-          <p class="eyebrow text-xs mb-1">Written by</p>
-          <h3 class="font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">{david.displayName}</h3>
-          <p class="text-sm text-[var(--color-text-muted)] mt-1">{david.title} · NMLS #{david.nmls}</p>
-          <p class="text-sm text-[var(--color-text)] mt-3 leading-relaxed">Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors.</p>
-          <div class="mt-4 flex flex-wrap gap-3">
-            <a href={`/loan-officers/${david.slug}/`} class="btn btn-primary text-sm">View David's profile</a>
-            <a href="/the-fallarino-group/" class="btn btn-secondary text-sm">The Fallarino Group</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Own multiple LLCs and a home to buy or refinance? Let's map it out.</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us how your entities are structured and David will identify which income counts and which loan path fits.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="dfallarino@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
-          formSource="blog-multiple-llcs"
-        />
-      </div>
-    </div>
-  </section>
+  <AuthorFooter
+    author={david}
+    bio="Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors."
+    formTitle="Own multiple LLCs and a home to buy or refinance? Let's map it out."
+    formSub="Tell us how your entities are structured and David will identify which income counts and which loan path fits."
+    formTo="dfallarino@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
+    formSource="blog-multiple-llcs"
+  />
 </Layout>

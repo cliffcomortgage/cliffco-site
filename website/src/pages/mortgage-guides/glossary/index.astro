@@ -269,6 +269,7 @@ const sections = [
 ];
 
 const activeLetters = sections.map((s) => s.letter);
+const termCount = sections.reduce((n, s) => n + s.entries.length, 0);
 ---
 
 <Layout
@@ -281,56 +282,61 @@ const activeLetters = sections.map((s) => s.letter);
     { name: "Mortgage Glossary", href: "/mortgage-guides/glossary/" },
   ]} />
 
-  <section class="container-wide pt-12 pb-10">
-    <p class="eyebrow">Mortgage Glossary</p>
-    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Plain-English mortgage terms.</h1>
-    <p class="lead mt-6">
-      Definitions for the terms you'll encounter during the mortgage process, written for borrowers,
-      not bankers. We've focused on the language around Non-QM, DSCR, and reverse mortgages, since
-      that's where most glossaries fall short.
-    </p>
-  </section>
-
-  <section class="bg-white pb-16">
-    <div class="container-wide">
-
-      <!-- Alphabet jump nav -->
-      <div class="flex flex-wrap gap-2 mb-12 border-b border-[var(--color-mist-gray)] pb-6">
-        {["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","#"].map((letter) => (
-          activeLetters.includes(letter)
-            ? <a href={`#${letter.toLowerCase()}`} class="inline-flex items-center justify-center w-9 h-9 rounded-lg text-sm font-semibold no-underline bg-[var(--color-mist-gray)] text-[var(--color-ink)] hover:bg-[var(--color-accent)] hover:text-white transition-colors">{letter}</a>
-            : <span class="inline-flex items-center justify-center w-9 h-9 rounded-lg text-sm font-semibold text-[var(--color-mist-gray)] cursor-default">{letter}</span>
-        ))}
+  <section class="bg-white">
+    <div class="container-wide pt-12 lg:pt-16 pb-8 grid lg:grid-cols-12 gap-8 items-end">
+      <div class="lg:col-span-8">
+        <p class="eyebrow">Mortgage Glossary</p>
+        <h1 class="mt-4 text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">Plain-English mortgage terms.</h1>
+        <p class="mt-5 max-w-2xl text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">
+          Definitions for the terms you'll encounter during the mortgage process, written for borrowers,
+          not bankers. We've focused on the language around Non-QM, DSCR, and reverse mortgages, since
+          that's where most glossaries fall short.
+        </p>
       </div>
-
-      <!-- Term sections -->
-      <div class="max-w-3xl space-y-14">
-        {sections.map((section) => (
-          <div id={section.letter.toLowerCase()}>
-            <h2 class="text-4xl font-bold text-[var(--color-accent)] mb-6 pb-2 border-b border-[var(--color-mist-gray)]" style="font-size: 2rem; font-weight: 700;">
-              {section.letter}
-            </h2>
-            <dl class="space-y-8">
-              {section.entries.map((entry) => (
-                <div>
-                  <dt class="text-lg font-semibold text-[var(--color-ink)] leading-snug">{entry.term}</dt>
-                  <dd class="mt-2 text-[var(--color-text-muted)] leading-relaxed">{entry.definition}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        ))}
-      </div>
-
+      <p class="lg:col-span-3 lg:col-start-10 lg:text-right font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.04em;">{termCount}<span class="block mt-2 font-mono text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Terms</span></p>
     </div>
   </section>
 
-  <section class="accent-gradient">
-    <div class="container-wide py-16 text-center">
-      <h2 class="text-white" style="font-size: var(--text-h2);">Have a question a definition can't answer?</h2>
-      <p class="lead mt-4 text-white/85">A licensed Cliffco loan officer responds in one business day.</p>
-      <div class="mt-8 flex justify-center gap-3 flex-wrap">
-        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-rich-black)]">Get Pre-Qualified</a>
+  <!-- Alphabet jump nav -->
+  <nav class="bg-white sticky top-[4.5rem] z-30 border-y-2 border-[var(--color-ink)]" aria-label="Jump to letter">
+    <div class="container-wide py-2.5 flex gap-1 overflow-x-auto">
+      {["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","#"].map((letter) => (
+        activeLetters.includes(letter)
+          ? <a href={`#${letter.toLowerCase()}`} class="inline-flex items-center justify-center shrink-0 w-8 h-8 rounded-lg font-mono text-sm font-semibold no-underline text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white transition-colors">{letter}</a>
+          : <span class="inline-flex items-center justify-center shrink-0 w-8 h-8 font-mono text-sm text-black/20 cursor-default">{letter}</span>
+      ))}
+    </div>
+  </nav>
+
+  <!-- Term sections -->
+  <section class="bg-white pb-16">
+    <div class="container-wide">
+      {sections.map((section) => (
+        <div id={section.letter.toLowerCase()} class="scroll-mt-32 grid grid-cols-[3.5rem_1fr] sm:grid-cols-[6rem_1fr] lg:grid-cols-[10rem_1fr] gap-x-6 border-b border-black/15 py-10">
+          <h2 class="sm:sticky sm:top-36 self-start text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(2.25rem, 4vw, 3.5rem); font-weight: 700; letter-spacing: -0.03em;">
+            {section.letter}
+          </h2>
+          <dl class="max-w-3xl">
+            {section.entries.map((entry, i) => (
+              <div class={`${i > 0 ? "border-t border-black/10 pt-6 mt-6" : ""}`}>
+                <dt class="text-lg font-semibold text-[var(--color-ink)] leading-snug">{entry.term}</dt>
+                <dd class="mt-2 text-[var(--color-text)] leading-relaxed">{entry.definition}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-ink)] text-white">
+    <div class="container-wide py-16 lg:py-20 grid lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7">
+        <h2 class="!text-white" style="font-size: var(--text-h2); font-weight: 700;">Have a question a definition can't answer?</h2>
+        <p class="mt-4 text-white/75" style="font-size: 1.0625rem;">A licensed Cliffco loan officer responds in one business day.</p>
+      </div>
+      <div class="lg:col-span-5 flex flex-wrap gap-3 lg:justify-end">
+        <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-ink)] hover:!bg-white/85">Get Pre-Qualified</a>
         <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary !border-white !text-white">{COMPANY.hq.phone}</a>
       </div>
     </div>

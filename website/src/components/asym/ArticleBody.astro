@@ -41,7 +41,7 @@ import { COMPANY } from "../../data/company";
     letter-spacing: -0.02em;
   }
   /* Drop cap on the opening paragraph (after the bold kicker line, when there is one). */
-  .article-prose > :global(p:first-child:not(.font-bold))::first-letter,
+  .article-prose > :global(p:first-child:not(.font-bold):not(.lead))::first-letter,
   .article-prose > :global(p.font-bold:first-child + p)::first-letter {
     float: left;
     font-family: var(--font-display);

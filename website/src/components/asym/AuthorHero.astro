@@ -1,0 +1,46 @@
+---
+/**
+ * Editorial article header with an author byline card (used by David
+ * Fallarino's 500:1 posts): headline, published date, a black author strip
+ * with a square headshot, then the full-width article photo.
+ * Default slot = h1 content.
+ */
+import Headshot from "../ui/Headshot.astro";
+import type { LoanOfficer } from "../../data/loan-officers";
+
+interface Props {
+  eyebrow: string;
+  published?: string;
+  image?: { src: string; alt: string };
+  author: LoanOfficer;
+}
+const { eyebrow, published, image, author } = Astro.props;
+---
+
+<header class="bg-white">
+  <div class="container-wide pt-12 lg:pt-20 pb-10">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1 class="mt-6 max-w-5xl text-[var(--color-ink)]" style="font-size: clamp(1.875rem, 3.4vw, 3.25rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">
+      <slot />
+    </h1>
+    <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+      <a href={`/loan-officers/${author.slug}/`} class="group flex items-center gap-4 no-underline rounded-2xl bg-[var(--color-ink)] pr-6 overflow-hidden">
+        {author.hasPhoto && (
+          <span class="block w-16 h-16 shrink-0"><Headshot slug={author.slug} name={author.displayName} fluid shape="square" /></span>
+        )}
+        <span class="py-3">
+          <span class="block text-sm font-semibold text-white group-hover:underline">{author.displayName}</span>
+          <span class="block font-mono text-[10px] uppercase tracking-[0.12em] text-white/60 mt-0.5">{author.title} · NMLS #{author.nmls}</span>
+        </span>
+      </a>
+      {published && <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">{published}</p>}
+    </div>
+  </div>
+  {image && (
+    <div class="container-wide">
+      <div class="overflow-hidden rounded-[1.75rem] aspect-[16/10] sm:aspect-[21/9]">
+        <img src={image.src} alt={image.alt} class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+      </div>
+    </div>
+  )}
+</header>

@@ -2,10 +2,11 @@
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { loanOfficer } from "../../data/loan-officers";
-import Headshot from "../../components/ui/Headshot.astro";
 
 const david = loanOfficer("david-fallarino")!;
-import ContactForm from "../../components/forms/ContactForm.astro";
+import AuthorHero from "../../components/asym/AuthorHero.astro";
+import ArticleBody from "../../components/asym/ArticleBody.astro";
+import AuthorFooter from "../../components/asym/AuthorFooter.astro";
 ---
 
 <Layout
@@ -18,17 +19,9 @@ import ContactForm from "../../components/forms/ContactForm.astro";
     { name: "Jumbo Alt-A Loans for Entrepreneurs", href: "/jumbo-alt-a-loans-entrepreneurs-david-fallarino/" },
   ]} />
 
-  <article class="section bg-white relative overflow-hidden">
-    <div class="absolute inset-x-0 top-0 h-[300px] bg-[var(--color-rich-black)]" aria-hidden="true"></div>
-    <div class="container-prose relative z-10">
-      <div class="rounded-lg overflow-hidden mb-10 aspect-video bg-[var(--color-mist-gray)] shadow-2xl">
-        <img src="/images/DFallarino%20Blog/Jumbo%20Blog.jpg" alt="High-growth entrepreneur reviewing jumbo Alt-A financing options with The Fallarino Group at Cliffco" class="w-full h-full object-cover" loading="lazy" />
-      </div>
+  <AuthorHero eyebrow="500:1 Blog · David Fallarino" image={{ src: "/images/DFallarino%20Blog/Jumbo%20Blog.jpg", alt: "High-growth entrepreneur reviewing jumbo Alt-A financing options with The Fallarino Group at Cliffco" }} author={david}>Alt-A Loans Make a Comeback: How Entrepreneurs Use Jumbo Alt-A Programs When Big Banks Can't Lend</AuthorHero>
 
-      <p class="eyebrow mb-4">500:1 Blog · David Fallarino</p>
-      <h1 style="font-size: var(--text-display-lg); letter-spacing: -0.03em; line-height: 1.1;">Alt-A Loans Make a Comeback: How Entrepreneurs Use Jumbo Alt-A Programs When Big Banks Can't Lend</h1>
-
-      <p class="lead mt-6">When your income, assets, or tax strategy don't fit conventional jumbo guidelines, Alt-A loans bridge the gap-offering flexible approval for qualified borrowers who've outgrown traditional lending.</p>
+  <ArticleBody><p class="lead mt-6">When your income, assets, or tax strategy don't fit conventional jumbo guidelines, Alt-A loans bridge the gap-offering flexible approval for qualified borrowers who've outgrown traditional lending.</p>
 
       <h2>The Return of Alt-A Lending</h2>
       <p>If you follow mortgage markets, you've probably noticed a familiar term re-emerging: Alt-A. Once a niche product from the early 2000s, Alt-A loans are making a smart, more regulated comeback-this time built for entrepreneurs, investors, and high-income/High-Growth professionals who don't fit neatly into conventional jumbo requirements.</p>
@@ -66,7 +59,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
       <div class="overflow-x-auto mt-4">
         <table class="w-full text-sm border-collapse">
           <thead>
-            <tr class="bg-[var(--color-mist-gray)]">
+            <tr class="bg-white border border-black/15">
               <th class="text-left px-4 py-3 font-semibold text-[var(--color-ink)] border border-[var(--color-mist-gray)]">Feature</th>
               <th class="text-left px-4 py-3 font-semibold text-[var(--color-ink)] border border-[var(--color-mist-gray)]">Conventional Jumbo</th>
               <th class="text-left px-4 py-3 font-semibold text-[var(--color-ink)] border border-[var(--color-mist-gray)]">Alt-A Jumbo</th>
@@ -78,7 +71,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
               <td class="px-4 py-3 border border-[var(--color-mist-gray)]">W-2s &amp; full tax returns. Bottom line income after deductions</td>
               <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Uses the same tax returns and looks at gross income and only essential cash flow deductions.</td>
             </tr>
-            <tr class="bg-[var(--color-mist-gray)]/30">
+            <tr class="bg-white border border-black/15/30">
               <td class="px-4 py-3 border border-[var(--color-mist-gray)] font-medium">Credit Flexibility</td>
               <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Strict</td>
               <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Moderate exceptions allowed</td>
@@ -88,7 +81,7 @@ import ContactForm from "../../components/forms/ContactForm.astro";
               <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Up to conforming jumbo limits typically $5M</td>
               <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Extends into super-jumbo. $40M</td>
             </tr>
-            <tr class="bg-[var(--color-mist-gray)]/30">
+            <tr class="bg-white border border-black/15/30">
               <td class="px-4 py-3 border border-[var(--color-mist-gray)] font-medium">Underwriting Style</td>
               <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Boxed, checklist-driven</td>
               <td class="px-4 py-3 border border-[var(--color-mist-gray)]">Holistic and borrower-focused</td>
@@ -121,44 +114,17 @@ import ContactForm from "../../components/forms/ContactForm.astro";
       <h2>The Bottom Line</h2>
       <p>Alt-A loans are back, and they're better underwritten than before. For entrepreneurs, investors, and high-net-worth borrowers who don't fit the big-bank mold, these programs open access to jumbo financing with flexible documentation and real underwriting.</p>
       <p>At Cliffco, The Fallarino Group works specifically with high-earning borrowers who document income differently. If conventional lenders have turned you away based on tax returns alone, talk to us.</p>
-    </div>
-  </article>
+    </ArticleBody>
 
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide">
-      <div class="max-w-2xl mx-auto card flex flex-col sm:flex-row gap-6 items-start">
-        {david.hasPhoto && (
-          <div class="w-20 h-20 shrink-0 rounded-full overflow-hidden">
-            <Headshot slug={david.slug} name={david.displayName} size={80} shape="circle" />
-          </div>
-        )}
-        <div>
-          <p class="eyebrow text-xs mb-1">Written by</p>
-          <h3 class="font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">{david.displayName}</h3>
-          <p class="text-sm text-[var(--color-text-muted)] mt-1">{david.title} · NMLS #{david.nmls}</p>
-          <p class="text-sm text-[var(--color-text)] mt-3 leading-relaxed">Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors.</p>
-          <div class="mt-4 flex flex-wrap gap-3">
-            <a href={`/loan-officers/${david.slug}/`} class="btn btn-primary text-sm">View David's profile</a>
-            {david.links?.email && (
-              <a href={`mailto:${david.links.email}`} class="btn btn-secondary text-sm">Email David</a>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- CONTACT FORM -->
-  <section class="section bg-[var(--color-mist-gray)]">
-    <div class="container-wide max-w-2xl">
-      <h2 class="mt-3" style="font-size: var(--text-h2);">Looking at a jumbo or Alt-A loan?</h2>
-      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">Tell us the loan size, your income structure, and the property and David will show you what programs apply.</p>
-      <div class="mt-8">
-        <ContactForm
-          formTo="dfallarino@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
-          formSource="blog-jumbo-alt-a"
-        />
-      </div>
-    </div>
-  </section>
+  <AuthorFooter
+    author={david}
+    bio="Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors."
+    formTitle="Looking at a jumbo or Alt-A loan?"
+    formSub="Tell us the loan size, your income structure, and the property and David will show you what programs apply."
+    formTo="dfallarino@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
+    formSource="blog-jumbo-alt-a"
+  />
 </Layout>

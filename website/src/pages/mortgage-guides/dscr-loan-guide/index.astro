@@ -1,6 +1,6 @@
 ﻿---
 import Layout from "../../../layouts/Layout.astro";
-import ArticleImage from "../../../components/ui/ArticleImage.astro";
+import Handbook from "../../../components/asym/Handbook.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { faqPageSchema } from "../../../lib/schema";
 
@@ -25,29 +25,9 @@ const faq = faqPageSchema([
     { name: "DSCR Loans Guide", href: "/mortgage-guides/dscr-loans-real-estate-investors-guide/" },
   ]} />
 
-  <article class="container-prose pt-12 pb-16">
-
-    <h1 style="font-size: var(--text-display-lg);">DSCR Loan Guide: Ratios, Requirements, and Programs</h1>
-
-    <ArticleImage />
+  <Handbook title="DSCR Loan Guide: Ratios, Requirements, and Programs">
 
     <p class="mt-8">Conventional mortgages qualify you on personal income: W-2s, tax returns, debt-to-income ratio. For many real estate investors, that's the wrong lens. A DSCR loan qualifies the property instead. If the rental income covers the mortgage payment, the property qualifies regardless of how the owner's tax return looks.</p>
-
-    <nav class="mt-10 p-6 bg-[var(--color-mist-gray)] rounded-lg">
-      <p class="font-semibold text-[var(--color-ink)] mb-3">Table of Contents</p>
-      <ul class="space-y-1 text-sm text-[var(--color-accent)]">
-        <li><a href="#what-is-a-dscr-loan" class="hover:underline">What Is a DSCR Loan?</a></li>
-        <li><a href="#how-dscr-loans-work" class="hover:underline">How DSCR Loans Work</a></li>
-        <li><a href="#benefits" class="hover:underline">Benefits of DSCR Loans for Investors</a></li>
-        <li><a href="#requirements" class="hover:underline">Requirements &amp; Eligibility</a></li>
-        <li><a href="#pros-and-cons" class="hover:underline">Pros &amp; Cons of DSCR Loans</a></li>
-        <li><a href="#vs-conventional" class="hover:underline">DSCR Loan vs Conventional Mortgage</a></li>
-        <li><a href="#who-should-consider" class="hover:underline">Who Should Consider a DSCR Loan?</a></li>
-        <li><a href="#how-to-apply" class="hover:underline">How to Apply for a DSCR Loan</a></li>
-        <li><a href="#faqs" class="hover:underline">Frequently Asked Questions (FAQs)</a></li>
-        <li><a href="#conclusion" class="hover:underline">Conclusion</a></li>
-      </ul>
-    </nav>
 
     <h2 id="what-is-a-dscr-loan" class="mt-12">What Is a DSCR Loan?</h2>
     <p class="mt-4"><strong>DSCR</strong> stands for <strong>Debt Service Coverage Ratio</strong> - a measure of whether a property produces enough rental income to cover its debt obligations.</p>
@@ -66,7 +46,7 @@ const faq = faqPageSchema([
       <li>Mortgage + taxes + insurance + HOA: $2,000</li>
       <li>DSCR = 2,500 ÷ 2,000 = <strong>1.25</strong></li>
     </ul>
-    <p class="mt-4">A DSCR of 1.25 means the property earns 25% more than it costs to carry. Cliffco's minimum is 1.0 (break-even). The best pricing is at 1.25 and above. Programs that go below 1.0 exist but require compensating factors like a larger down payment or strong reserves.</p>
+    <p class="mt-4">A DSCR of 1.25 means the property earns 25% more than it costs to carry. Cliffco goes as low as 0.75 on long-term rentals, with a larger down payment required below 1.0 (break-even). Short-term rentals and first-time investors need at least 1.0. The best pricing is at 1.25 and above.</p>
 
     <h2 id="benefits" class="mt-12">Benefits of DSCR Loans for Investors</h2>
     <ul class="mt-4 list-disc list-inside space-y-2">
@@ -108,37 +88,37 @@ const faq = faqPageSchema([
     <div class="mt-6 overflow-x-auto">
       <table class="w-full text-sm border-collapse">
         <thead>
-          <tr class="bg-[var(--color-mist-gray)]">
-            <th class="text-left px-4 py-3 font-semibold border border-[var(--color-soft-gray)]">Feature</th>
-            <th class="text-left px-4 py-3 font-semibold border border-[var(--color-soft-gray)]">DSCR Loan</th>
-            <th class="text-left px-4 py-3 font-semibold border border-[var(--color-soft-gray)]">Conventional Loan</th>
+          <tr class="border-b-2 border-[var(--color-ink)]">
+            <th class="text-left px-4 py-3 font-semibold border border-black/20">Feature</th>
+            <th class="text-left px-4 py-3 font-semibold border border-black/20">DSCR Loan</th>
+            <th class="text-left px-4 py-3 font-semibold border border-black/20">Conventional Loan</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)] font-medium">Qualification</td>
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Based on property income &amp; DSCR ratio</td>
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">W-2s &amp; full tax returns. Bottom line income after deductions</td>
+            <td class="px-4 py-3 border border-black/20 font-medium">Qualification</td>
+            <td class="px-4 py-3 border border-black/20">Based on property income &amp; DSCR ratio</td>
+            <td class="px-4 py-3 border border-black/20">W-2s &amp; full tax returns. Bottom line income after deductions</td>
           </tr>
-          <tr class="bg-[var(--color-mist-gray)]/40">
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)] font-medium">Income Documentation</td>
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">None (no tax returns or W-2s)</td>
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">W-2s, pay stubs, tax returns</td>
-          </tr>
-          <tr>
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)] font-medium">Property Types</td>
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Investment properties, STRs, 1–4 units</td>
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Primary, second, and investment</td>
-          </tr>
-          <tr class="bg-[var(--color-mist-gray)]/40">
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)] font-medium">Down Payment</td>
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">20–25%</td>
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">As low as 3–5% (primary)</td>
+          <tr class="">
+            <td class="px-4 py-3 border border-black/20 font-medium">Income Documentation</td>
+            <td class="px-4 py-3 border border-black/20">None (no tax returns or W-2s)</td>
+            <td class="px-4 py-3 border border-black/20">W-2s, pay stubs, tax returns</td>
           </tr>
           <tr>
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)] font-medium">Rates</td>
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Higher than conventional</td>
-            <td class="px-4 py-3 border border-[var(--color-soft-gray)]">Typically lower</td>
+            <td class="px-4 py-3 border border-black/20 font-medium">Property Types</td>
+            <td class="px-4 py-3 border border-black/20">Investment properties, STRs, 1–4 units</td>
+            <td class="px-4 py-3 border border-black/20">Primary, second, and investment</td>
+          </tr>
+          <tr class="">
+            <td class="px-4 py-3 border border-black/20 font-medium">Down Payment</td>
+            <td class="px-4 py-3 border border-black/20">20–25%</td>
+            <td class="px-4 py-3 border border-black/20">As low as 3–5% (primary)</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 border border-black/20 font-medium">Rates</td>
+            <td class="px-4 py-3 border border-black/20">Higher than conventional</td>
+            <td class="px-4 py-3 border border-black/20">Typically lower</td>
           </tr>
         </tbody>
       </table>
@@ -181,9 +161,9 @@ const faq = faqPageSchema([
 
     <h2 id="conclusion" class="mt-12">Conclusion</h2>
     <p class="mt-4">DSCR loans let properties stand on their own financial merit. If the rent covers the mortgage, the investment qualifies, regardless of how the owner's income looks on a tax return. For investors who've been turned down because of DTI limits or complex income, that's the difference between growing a portfolio and being stuck.</p>
-    <p class="mt-4">At Cliffco, <a href="/loans/non-qm-self-employed/" class="text-[var(--color-accent)]">Non-QM programs</a> like DSCR are a core part of what we do. Talk to one of our loan officers and we'll run the numbers on your property.</p>
+    <p class="mt-4">At Cliffco, <a href="/loans/non-qm-self-employed/" class="text-[var(--color-ink)]">Non-QM programs</a> like DSCR are a core part of what we do. Talk to one of our loan officers and we'll run the numbers on your property.</p>
 
-    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+    <div class="mt-12 p-6 bg-white border border-black/15 rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
       <div>
         <p class="font-semibold text-[var(--color-ink)]">Explore DSCR loan options with Cliffco.</p>
         <p class="text-sm text-[var(--color-text-muted)] mt-1">Tell us about the property and we'll run the DSCR. No credit pull required to get started.</p>
@@ -191,5 +171,5 @@ const faq = faqPageSchema([
       <a href="/get-started/" class="btn btn-primary shrink-0">Get started</a>
     </div>
 
-  </article>
+  </Handbook>
 </Layout>

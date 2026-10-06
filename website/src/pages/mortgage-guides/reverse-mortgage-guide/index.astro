@@ -1,6 +1,6 @@
 ﻿---
 import Layout from "../../../layouts/Layout.astro";
-import ArticleImage from "../../../components/ui/ArticleImage.astro";
+import Handbook from "../../../components/asym/Handbook.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { faqPageSchema } from "../../../lib/schema";
 
@@ -29,11 +29,7 @@ const faq = faqPageSchema([
     { name: "Reverse Mortgage Guide", href: "/mortgage-guides/reverse-mortgage-guide/" },
   ]} />
 
-  <article class="container-prose pt-12 pb-16">
-
-    <h1 style="font-size: var(--text-display-lg);">Reverse Mortgage: Everything You Need To Know</h1>
-
-    <ArticleImage />
+  <Handbook title="Reverse Mortgage: Everything You Need To Know">
 
     <p class="mt-8">
       As retirement approaches, many seniors find themselves searching for ways to secure financial
@@ -65,23 +61,6 @@ const faq = faqPageSchema([
       In this article, we'll dive deep into the reverse mortgages pros and cons, breaking down how
       they work, who they're best for, and what to consider before signing on the dotted line.
     </p>
-
-    <nav class="mt-10 p-6 bg-[var(--color-mist-gray)] rounded-lg">
-      <p class="font-semibold text-[var(--color-ink)] mb-3">Table of Contents</p>
-      <ol class="list-decimal list-inside space-y-1 text-sm text-[var(--color-accent)]">
-        <li><a href="#what-is-a-reverse-mortgage" class="hover:underline">What is a Reverse Mortgage?</a></li>
-        <li><a href="#how-reverse-mortgages-work" class="hover:underline">How Reverse Mortgages Work</a></li>
-        <li><a href="#how-do-you-qualify" class="hover:underline">How Do You Qualify for a Reverse Mortgage?</a></li>
-        <li><a href="#who-is-a-good-candidate" class="hover:underline">Who is a Good Candidate for a Reverse Mortgage?</a></li>
-        <li><a href="#ineligible-property-types" class="hover:underline">Which Type of Property is Ineligible for a Reverse Mortgage?</a></li>
-        <li><a href="#at-what-age" class="hover:underline">At What Age is a Reverse Mortgage a Good Idea?</a></li>
-        <li><a href="#when-is-it-a-good-idea" class="hover:underline">When is a Reverse Mortgage a Good Idea?</a></li>
-        <li><a href="#too-good-to-be-true" class="hover:underline">Are Reverse Mortgages Too Good to Be True?</a></li>
-        <li><a href="#what-happens-when-homeowner-dies" class="hover:underline">What Happens to a Reverse Mortgage When the Homeowner Dies?</a></li>
-        <li><a href="#hard-to-sell" class="hover:underline">Is it Hard to Sell a House with a Reverse Mortgage?</a></li>
-        <li><a href="#conclusion" class="hover:underline">Conclusion</a></li>
-      </ol>
-    </nav>
 
     <h2 id="what-is-a-reverse-mortgage" class="mt-12">What is a Reverse Mortgage?</h2>
     <p class="mt-4">A reverse mortgage is a specialized loan for homeowners aged 62 and up, designed to unlock the equity in their homes without forcing them to sell or move. Unlike a traditional mortgage, where you pay the lender each month, a reverse mortgage loan works in reverse: the lender pays you. You can choose to receive this money as a lump sum, monthly payments, or a line of credit, depending on what suits your financial situation. The reverse mortgage loan is tied to your home, and you don't have to repay it until you pass away, sell the property, or leave it permanently. This makes it an attractive option for seniors who want to boost their retirement funds, handle unexpected costs, or maintain their lifestyle while staying in their homes.</p>
@@ -138,7 +117,7 @@ const faq = faqPageSchema([
     <p class="mt-4">Deciding if this path fits depends on your circumstances - how long you'll stay, what you need the money for, and what you want to leave behind. It's a tool that shines for some, like those with no plans to move and a cushion to handle ongoing costs, but falls short for others, like those eyeing a quick relocation or prioritizing inheritance. Exploring home equity loan alternatives might make sense if the perks outweigh the cons for you. The key is balance: weighing the immediate relief against the long-term impact.</p>
     <p class="mt-4">If you're not sure whether a reverse mortgage fits your situation, talk to one of our loan officers. We'll tell you honestly whether it makes sense and what the alternatives look like.</p>
 
-    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+    <div class="mt-12 p-6 bg-white border border-black/15 rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
       <div>
         <p class="font-semibold text-[var(--color-ink)]">Ready to explore a reverse mortgage?</p>
         <p class="text-sm text-[var(--color-text-muted)] mt-1">Talk to a Cliffco loan officer - we'll walk you through your options with no pressure.</p>
@@ -146,5 +125,5 @@ const faq = faqPageSchema([
       <a href="/get-started/" class="btn btn-primary shrink-0">Get started</a>
     </div>
 
-  </article>
+  </Handbook>
 </Layout>

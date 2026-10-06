@@ -414,3 +414,33 @@ a:not(.btn):not(.card):not(.no-underline) {
   .card { transition: none !important; }
   header { transition: none !important; }
 }
+
+/* ---------- Calculator "instrument panel" (mortgage-guides/calculators) ----------
+   Inputs sit in a black control panel; results read out large in mono. Selectors
+   are specific enough to win over each calculator page's own scoped styles. */
+.calc-controls .calc-head h2 { color: #fff; font-size: 1.25rem; font-weight: 700; }
+.calc-controls .calc-head p { color: rgb(255 255 255 / 0.6); }
+.calc-controls label { color: #fff; }
+.calc-controls p,
+.calc-controls .text-\[var\(--color-text-muted\)\] { color: rgb(255 255 255 / 0.6); }
+.calc-controls h3, .calc-controls h4 { color: #fff; }
+.calc-controls input.calc-input,
+.calc-controls select.calc-input { border-color: #fff; }
+.calc-controls input[type="checkbox"], .calc-controls input[type="radio"] { accent-color: #fff; }
+.calc-readout p.result-num {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+}
+.calc-readout p.result-num.primary { font-size: clamp(2.5rem, 5vw, 3.75rem); color: var(--color-ink); }
+/* The headline result gets its own row so the big number never crowds its neighbours. */
+.calc-readout .grid > div:first-child:has(.result-num.primary) {
+  grid-column: 1 / -1;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgb(0 0 0 / 0.15);
+}
+/* Labels and option text inside the black control panel (inputs keep their own dark text). */
+.calc-controls span:not(input):not(select),
+.calc-controls .text-\[var\(--color-ink\)\]:not(input):not(select) { color: #fff; }
+.calc-controls .relative > span { color: var(--color-text-muted); }

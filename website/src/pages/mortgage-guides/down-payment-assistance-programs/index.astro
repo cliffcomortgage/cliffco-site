@@ -1,6 +1,6 @@
 ﻿---
 import Layout from "../../../layouts/Layout.astro";
-import ArticleImage from "../../../components/ui/ArticleImage.astro";
+import Handbook from "../../../components/asym/Handbook.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { faqPageSchema } from "../../../lib/schema";
 
@@ -25,29 +25,11 @@ const faq = faqPageSchema([
     { name: "Down Payment Assistance Guide", href: "/mortgage-guides/down-payment-assistance-programs/" },
   ]} />
 
-  <article class="container-prose pt-12 pb-16">
-
-    <h1 style="font-size: var(--text-display-lg);">Down Payment Assistance 101: Your Complete Guide</h1>
-
-    <ArticleImage />
+  <Handbook title="Down Payment Assistance 101: Your Complete Guide">
 
     <p class="mt-8">Buying a home?</p>
     <p class="mt-4">You're not alone if the down payment feels like the biggest obstacle. With higher home prices and mortgage rates still above historic lows, saving tens of thousands of dollars for a down payment can delay the dream of homeownership for years.</p>
     <p class="mt-4">Down Payment Assistance (DPA) programs are designed to close that gap. From national initiatives to state-backed programs, these resources can make homeownership accessible sooner - especially for first-time buyers. This guide will walk you through what DPA is, how it works, who qualifies, and which programs you can access right now through Cliffco Mortgage.</p>
-
-    <nav class="mt-10 p-6 bg-[var(--color-mist-gray)] rounded-lg">
-      <p class="font-semibold text-[var(--color-ink)] mb-3">Table of Contents</p>
-      <ul class="space-y-1 text-sm text-[var(--color-accent)]">
-        <li><a href="#what-is-dpa" class="hover:underline">What Is Down Payment Assistance?</a></li>
-        <li><a href="#why-it-matters" class="hover:underline">Why Down Payment Assistance Matters</a></li>
-        <li><a href="#who-qualifies" class="hover:underline">Who Qualifies for Down Payment Assistance?</a></li>
-        <li><a href="#featured-programs" class="hover:underline">Featured Down Payment Assistance Programs at Cliffco Mortgage</a></li>
-        <li><a href="#how-to-apply" class="hover:underline">How to Apply for Down Payment Assistance</a></li>
-        <li><a href="#pros-and-cons" class="hover:underline">Pros &amp; Cons of DPA Programs</a></li>
-        <li><a href="#faqs" class="hover:underline">Frequently Asked Questions (FAQs)</a></li>
-        <li><a href="#conclusion" class="hover:underline">Conclusion</a></li>
-      </ul>
-    </nav>
 
     <h2 id="what-is-dpa" class="mt-12">What Is Down Payment Assistance?</h2>
     <p class="mt-4">Down Payment Assistance programs provide funds to help eligible buyers cover their down payment and, in some cases, closing costs. Instead of saving for years, buyers can use these programs to get into a home faster with less upfront cash.</p>
@@ -160,9 +142,9 @@ const faq = faqPageSchema([
     <h2 id="conclusion" class="mt-12">Conclusion</h2>
     <p class="mt-4">Down Payment Assistance programs are reshaping homeownership. With thousands of active programs and strong regional options like CHENOA, SONYMA, and New Jersey's HFA Advantage, it's easier than ever to bridge the gap between savings and purchase price.</p>
     <p class="mt-4">At Cliffco Mortgage, we proudly offer access to CHENOA, SONYMA, and New Jersey's First-Time Homebuyer, Homeward Bound, and HFA Advantage programs. Buying in New York, New Jersey, or beyond, our loan officers can help you find the right combination of programs to get you into a home faster.</p>
-    <p class="mt-4">Contact Cliffco Mortgage today to see if you qualify for <a href="/mortgage-guides/down-payment-assistance-programs/" class="text-[var(--color-accent)] font-medium">Down Payment Assistance</a> and take the next step toward homeownership.</p>
+    <p class="mt-4">Contact Cliffco Mortgage today to see if you qualify for <a href="/mortgage-guides/down-payment-assistance-programs/" class="text-[var(--color-ink)] font-medium">Down Payment Assistance</a> and take the next step toward homeownership.</p>
 
-    <div class="mt-12 p-6 bg-[var(--color-mist-gray)] rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+    <div class="mt-12 p-6 bg-white border border-black/15 rounded-lg flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
       <div>
         <p class="font-semibold text-[var(--color-ink)]">See if you qualify for Down Payment Assistance.</p>
         <p class="text-sm text-[var(--color-text-muted)] mt-1">Contact Cliffco Mortgage today and take the next step toward homeownership.</p>
@@ -170,5 +152,5 @@ const faq = faqPageSchema([
       <a href="/get-started/" class="btn btn-primary shrink-0">Get started</a>
     </div>
 
-  </article>
+  </Handbook>
 </Layout>

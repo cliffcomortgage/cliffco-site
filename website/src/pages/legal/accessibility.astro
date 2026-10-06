@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import LegalDoc from "../../components/asym/LegalDoc.astro";
 import { COMPANY } from "../../data/company";
 const lastUpdated = "2026-04-27";
 ---
@@ -11,9 +12,7 @@ const lastUpdated = "2026-04-27";
     { name: "Legal", href: "/legal/" },
     { name: "Accessibility", href: "/legal/accessibility/" },
   ]} />
-  <section class="container-prose pt-12 pb-16">
-    <h1 style="font-size: var(--text-display-lg);">Accessibility Statement</h1>
-    <p class="text-sm text-[var(--color-text-muted)] mt-2">Last updated: {lastUpdated}</p>
+  <LegalDoc title="Accessibility Statement" updated={lastUpdated}>
     <p class="mt-6">
       {COMPANY.legalName} is committed to digital accessibility. We strive to conform to the
       <a href="https://www.w3.org/TR/WCAG22/" rel="noopener">Web Content Accessibility Guidelines (WCAG) 2.2 Level AA</a>,
@@ -47,5 +46,5 @@ const lastUpdated = "2026-04-27";
       Phone: {COMPANY.hq.phone}<br/>
       Mail: {COMPANY.legalName}, {COMPANY.hq.street}, {COMPANY.hq.city}, {COMPANY.hq.region} {COMPANY.hq.postalCode}
     </p>
-  </section>
+  </LegalDoc>
 </Layout>
