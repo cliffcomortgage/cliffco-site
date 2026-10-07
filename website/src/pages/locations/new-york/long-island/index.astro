@@ -145,7 +145,7 @@ const marketData = [
             {b.street && <p class="text-sm text-white/75 mt-3">{b.street}<br/>{b.city}, {b.region} {b.postalCode}</p>}
             {b.phone && <p class="text-sm mt-1 font-medium text-white">{b.phone}</p>}
             {b.nmls && <p class="text-xs text-white/55 mt-2">Branch NMLS #{b.nmls}</p>}
-            <p class="text-sm text-white/75 mt-3">{n} loan officer{n === 1 ? "" : "s"}.</p>
+            {n > 0 && <p class="text-sm text-white/75 mt-3">{n} loan officer{n === 1 ? "" : "s"}.</p>}
             {landingUrl && <span class="mt-auto pt-4 text-sm font-semibold text-white">View office →</span>}
           </>
         );

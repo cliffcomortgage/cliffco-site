@@ -14,8 +14,8 @@ Both push to `main` directly. No branches/PRs needed for now.
 
 ## Brand pillars (drive every copy decision)
 
-- **Vision:** To be the lender every family wishes they'd called first.
-- **Mission:** We get families home. Especially the ones other banks turned away. And we grow their net worth and self-worth along the way.
+- **Vision:** We believe the mortgage industry can do better. Our vision is to lead as the nation’s most innovative and talent-nurturing firm, setting the benchmark for simplicity and collaboration in every partnership.
+- **Mission:** We exist to transform the dream of home ownership into reality while elevating the net worth and self worth of the families and team members we serve. (Vision + mission updated 2026-10-07.)
 - **Values:** Intentionality · Innovation · Accountability · Empowerment · Teamwork · Personalization · Growth · Security · Integrity · Achievement. These are the official company values (confirmed 2026-10-07); the website reads them from `website/src/data/company-values.ts`, and `brand/mission-vision-values.md` + the cliffcoinc About page match. The older "Family · Integrity · Care · Possibility" set is superseded. Don't publish it.
 
 **Voice:** warm, human, scrappy. Explicitly anti-call-center, pro-second-chance-borrower — "yes when other banks say no." Avoid corporate/banky/cold language. When writing or reviewing any user-facing copy (site, marketing, taglines, error states, forms), check it against these pillars. Canonical text: `brand/mission-vision-values.md`.

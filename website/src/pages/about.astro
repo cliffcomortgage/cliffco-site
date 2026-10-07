@@ -16,9 +16,11 @@ const president = loanOfficer("christopher-clifford")!;
 const seniorLeadership = LOAN_OFFICERS.filter((lo) =>
   ["christopher-clifford", "ryan-riddle", "adam-broder"].includes(lo.slug),
 );
-const photoLeaders = LEADERSHIP_TEAM.filter((l) => l.hasPhoto);
+const lastName = (name: string) => name.trim().split(/\s+/).pop() ?? name;
+const photoLeaders = LEADERSHIP_TEAM.filter((l) => l.hasPhoto)
+  .slice()
+  .sort((a, b) => lastName(a.name).localeCompare(lastName(b.name)));
 const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
-const kathleenIdx = photoLeaders.findIndex((l) => l.slug === "samantha-cardinal");
 ---
 
 <Layout
@@ -56,13 +58,13 @@ const kathleenIdx = photoLeaders.findIndex((l) => l.slug === "samantha-cardinal"
         <div class="border-t-2 border-[var(--color-ink)] pt-4">
           <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Vision</p>
           <p class="mt-2 text-2xl leading-snug text-[var(--color-ink)] font-semibold">
-            To be the lender every family wishes they'd called first.
+            We believe the mortgage industry can do better. Our vision is to lead as the nation’s most innovative and talent-nurturing firm, setting the benchmark for simplicity and collaboration in every partnership.
           </p>
         </div>
         <div class="border-t-2 border-[var(--color-ink)] pt-4">
           <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Mission</p>
           <p class="mt-2 text-2xl leading-snug text-[var(--color-ink)] font-semibold">
-            We get families home, especially the ones other banks turned away, and grow their net worth and self-worth along the way.
+            We exist to transform the dream of home ownership into reality while elevating the net worth and self worth of the families and team members we serve.
           </p>
         </div>
         <div class="border-t-2 border-[var(--color-ink)] pt-4">
@@ -118,32 +120,11 @@ const kathleenIdx = photoLeaders.findIndex((l) => l.slug === "samantha-cardinal"
   <TimelineItem
     marker="Operations"
     eyebrow="Operations leadership"
-    title="The team behind every closing."
+    title="The people who keep Cliffco running."
     intro="Cliffco runs on long-tenured operations leaders in compliance, underwriting, and marketing. Their collective experience is what makes the brand promise stick."
   >
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-      {photoLeaders.slice(0, kathleenIdx + 1).map((leader) => (
-        <article class="rounded-2xl border-2 border-[var(--color-ink)] overflow-hidden flex flex-col h-full bg-white">
-          <div class="border-b-2 border-[var(--color-ink)]">
-            <Headshot slug={leader.slug} name={leader.name} fluid shape="square" />
-          </div>
-          <div class="p-5">
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">{leader.title}</p>
-            <h3 class="mt-2 text-lg font-bold">{leader.name}</h3>
-          </div>
-        </article>
-      ))}
-      {compactLeaders.length > 0 && (
-        <div class="flex flex-col gap-3">
-          {compactLeaders.map((leader) => (
-            <article class="rounded-2xl bg-[var(--color-ink)] text-white p-5 flex-1">
-              <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/55">{leader.title}</p>
-              <h3 class="mt-1 text-lg font-bold !text-white">{leader.name}</h3>
-            </article>
-          ))}
-        </div>
-      )}
-      {photoLeaders.slice(kathleenIdx + 1).map((leader) => (
+      {photoLeaders.map((leader) => (
         <article class="rounded-2xl border-2 border-[var(--color-ink)] overflow-hidden flex flex-col h-full bg-white">
           <div class="border-b-2 border-[var(--color-ink)]">
             <Headshot slug={leader.slug} name={leader.name} fluid shape="square" />
@@ -155,6 +136,16 @@ const kathleenIdx = photoLeaders.findIndex((l) => l.slug === "samantha-cardinal"
         </article>
       ))}
     </div>
+    {compactLeaders.length > 0 && (
+      <div class="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        {compactLeaders.map((leader) => (
+          <article class="rounded-2xl bg-[var(--color-ink)] text-white p-5">
+            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/55">{leader.title}</p>
+            <h3 class="mt-1 text-lg font-bold !text-white">{leader.name}</h3>
+          </article>
+        ))}
+      </div>
+    )}
   </TimelineItem>
 
   <!-- BRANCHES -->
@@ -175,9 +166,11 @@ const kathleenIdx = photoLeaders.findIndex((l) => l.slug === "samantha-cardinal"
             </p>
           )}
           {b.nmls && <p class="text-xs text-white/55 mt-2">Branch NMLS #{b.nmls}</p>}
-          <p class="text-xs text-white/55 mt-1">
-            {loanOfficersByBranch(b.slug).length} loan officer{loanOfficersByBranch(b.slug).length === 1 ? "" : "s"}.
-          </p>
+          {loanOfficersByBranch(b.slug).length > 0 && (
+            <p class="text-xs text-white/55 mt-1">
+              {loanOfficersByBranch(b.slug).length} loan officer{loanOfficersByBranch(b.slug).length === 1 ? "" : "s"}.
+            </p>
+          )}
           {b.isFloridaDba && <p class="text-xs text-white mt-2 font-medium">Operates as Clout Mortgage, Inc.</p>}
         </div>
       ))}

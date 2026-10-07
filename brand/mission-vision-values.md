@@ -2,13 +2,11 @@
 
 ## Vision
 
-To be the lender every family wishes they'd called first.
+We believe the mortgage industry can do better. Our vision is to lead as the nation’s most innovative and talent-nurturing firm, setting the benchmark for simplicity and collaboration in every partnership.
 
 ## Mission
 
-We get families home.
-Especially the ones other banks turned away.
-And we grow their net worth and self-worth along the way.
+We exist to transform the dream of home ownership into reality while elevating the net worth and self worth of the families and team members we serve.
 
 ## Values
 
