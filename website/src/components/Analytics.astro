@@ -1,0 +1,97 @@
+---
+/**
+ * Google tag (GA4 + Google Ads) and the site's conversion events, carried over from the
+ * current WordPress site's tracker (scripts/hubspot-tracker-v3.1.js) so campaigns keep
+ * their conversion data after launch:
+ *   - lead form success -> GA4 generate_lead + Ads conversion ($50) + Meta Lead
+ *   - phone link click  -> GA4 phone_click + Ads conversion ($25) + Meta Contact
+ *   - Apply Now click   -> GA4 apply_now_click + Ads conversion ($50) + Meta InitiateCheckout
+ * Production domain only, so preview visits and test leads aren't counted. The Meta pixel
+ * itself (fbq) is loaded by HubSpot's tracking code from the portal's ads pixel settings.
+ *
+ * Forms report a lead from their success handler:
+ *   window.cliffcoTrack?.lead({ source, product, email, phone })
+ */
+---
+
+<script is:inline>
+  (function () {
+    var PROD = /(^|\.)cliffcomortgage\.com$/.test(location.hostname);
+    var GA4 = 'G-WV6SFC5W7P';
+    var ADS = 'AW-17848823591';
+    var LEAD = ADS + '/PI_xCMX574scEKfe_b5C';
+    var CALL = ADS + '/O9SzCMj574scEKfe_b5C';
+
+    window.dataLayer = window.dataLayer || [];
+    if (PROD) {
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4;
+      document.head.appendChild(s);
+      window.gtag('js', new Date());
+      window.gtag('config', GA4);
+      window.gtag('config', ADS);
+    }
+
+    function g() { if (PROD && typeof window.gtag === 'function') window.gtag.apply(null, arguments); }
+    function fb() { if (PROD && typeof window.fbq === 'function') window.fbq.apply(null, arguments); }
+
+    // The loan officer this visit belongs to: the LO page itself, or the one stored by the
+    // LO attribution bar (cliffco_lo cookie, set when a visitor lands on an LO page).
+    function loSlug() {
+      var m = location.pathname.match(/^\/loan-officers\/([^\/]+)\/?$/);
+      if (m) return m[1];
+      var c = document.cookie.match(/(?:^|;\s*)cliffco_lo=([^;]*)/);
+      return c ? decodeURIComponent(c[1]) : null;
+    }
+    function e164(phone) {
+      var d = String(phone || '').replace(/\D/g, '');
+      if (d.length === 10) return '+1' + d;
+      if (d.length === 11 && d.charAt(0) === '1') return '+' + d;
+      return undefined;
+    }
+
+    window.cliffcoTrack = {
+      lead: function (o) {
+        o = o || {};
+        var lo = loSlug();
+        var product = o.product || 'General Inquiry';
+        if (o.email || o.phone) g('set', 'user_data', { email: o.email || undefined, phone_number: e164(o.phone) });
+        g('event', 'generate_lead', {
+          event_category: 'mortgage_lead', event_label: product, value: 50.0, currency: 'USD',
+          lead_source: o.source || 'website', product_interest: product,
+          channel: lo ? 'retail' : 'dtc', loan_officer: lo || 'corporate',
+        });
+        g('event', 'conversion', { send_to: LEAD, value: 50.0, currency: 'USD' });
+        fb('track', 'Lead', { content_name: product, content_category: o.source || 'website', value: 50.0, currency: 'USD' });
+      },
+      // A page-specific Ads conversion, e.g. the NJ grant lander's own form conversion
+      conversion: function (sendTo, value) {
+        g('event', 'conversion', { send_to: sendTo, value: value || 0, currency: 'USD' });
+      },
+    };
+
+    document.addEventListener('click', function (e) {
+      var t = e.target && e.target.closest ? e.target : null;
+      if (!t) return;
+      var lo = loSlug();
+      var tel = t.closest('a[href^="tel:"]');
+      if (tel) {
+        g('event', 'phone_click', { event_category: 'contact', event_label: tel.href, loan_officer: lo || 'corporate' });
+        g('event', 'conversion', { send_to: CALL, value: 25.0, currency: 'USD' });
+        fb('track', 'Contact', { content_name: 'Phone Click' + (lo ? ' - ' + lo : '') });
+        return;
+      }
+      var apply = t.closest('a[href*="mymortgage-online.com"]');
+      if (apply) {
+        g('event', 'apply_now_click', {
+          event_category: 'mortgage_application', event_label: lo || 'corporate', loan_officer: lo || 'corporate',
+          page_path: location.pathname, value: 50.0, currency: 'USD',
+        });
+        g('event', 'conversion', { send_to: LEAD, value: 50.0, currency: 'USD' });
+        fb('track', 'InitiateCheckout', { content_name: 'Apply Now - ' + (lo || 'Corporate'), content_category: 'mortgage_application', value: 50.0, currency: 'USD' });
+      }
+    }, true);
+  })();
+</script>

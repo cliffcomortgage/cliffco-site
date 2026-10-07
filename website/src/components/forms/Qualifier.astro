@@ -468,6 +468,7 @@ const inputClass =
         const json = await res.json();
         if (res.ok && json.success) {
           track("qualifier_submitted");
+          if (window.cliffcoTrack) window.cliffcoTrack.lead({ source: "qualifier-" + flowKey, product: flowLabel, email: email, phone: phone });
           steps.forEach((s) => (s.hidden = true));
           if (bar) bar.style.width = "100%";
           if (pct) pct.textContent = "100% complete";

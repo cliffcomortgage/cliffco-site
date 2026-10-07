@@ -220,6 +220,12 @@ document.querySelectorAll<HTMLFormElement>('.cf-contact-form').forEach((form) =>
         announce(okEl.textContent?.trim() ?? 'Message sent.');
         btn.textContent = 'Sent ✓';
         track('lead_form_submitted');
+        (window as any).cliffcoTrack?.lead({
+          source: form.dataset.formSource ?? 'website',
+          product: String(fd.get('purpose') ?? '') || undefined,
+          email: String(fd.get('email') ?? ''),
+          phone: String(fd.get('phone') ?? ''),
+        });
       } else {
         errEl.textContent = json.error ?? 'Something went wrong. Please try again or call us at (800) 834-4040.';
         errEl.classList.remove('hidden');

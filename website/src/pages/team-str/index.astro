@@ -274,6 +274,13 @@ const schema = [faqPageSchema(faq)];
 
       if (res.ok && json.success) {
         track('lead_form_submitted');
+        const sent = new FormData(strForm);
+        (window as any).cliffcoTrack?.lead({
+          source: 'team-str',
+          product: 'DSCR (STR)',
+          email: String(sent.get('email') ?? ''),
+          phone: String(sent.get('phone') ?? ''),
+        });
         strForm.reset();
         strForm.classList.add('hidden');
         strSuccess?.classList.remove('hidden');

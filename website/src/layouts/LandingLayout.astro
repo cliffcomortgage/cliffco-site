@@ -8,6 +8,7 @@ import "../styles/global.css";
 import Meta from "../components/seo/Meta.astro";
 import JsonLd from "../components/seo/JsonLd.astro";
 import PostHog from "../components/posthog.astro";
+import Analytics from "../components/Analytics.astro";
 import { COMPANY } from "../data/company";
 import { FOOTER_MAIN_DISCLOSURE } from "../data/disclosures";
 
@@ -33,34 +34,12 @@ const { title, description, schema, phone, phoneE164 } = Astro.props;
     <Meta title={title} description={description} noindex={true} />
     {schema && <JsonLd data={schema} />}
     <PostHog />
+    <Analytics />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Montserrat:wght@600&display=optional" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Montserrat:wght@600&display=optional" /></noscript>
-    <!-- Google tag (Ads + GA4) and the phone-click conversion, matching the tracking on the
-         current WordPress site. Production domain only, so preview visits and test leads
-         aren't counted. -->
-    <script is:inline>
-      (function () {
-        if (!/(^|\.)cliffcomortgage\.com$/.test(location.hostname)) return;
-        var s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17848823591';
-        document.head.appendChild(s);
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function () { window.dataLayer.push(arguments); };
-        gtag('js', new Date());
-        gtag('config', 'G-WV6SFC5W7P');
-        gtag('config', 'AW-17848823591');
-        document.addEventListener('click', function (e) {
-          var link = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
-          if (!link) return;
-          gtag('event', 'phone_click', { event_category: 'contact', event_label: link.href });
-          gtag('event', 'conversion', { send_to: 'AW-17848823591/O9SzCMj574scEKfe_b5C', value: 25.0, currency: 'USD' });
-        });
-      })();
-    </script>
     <!-- HubSpot tracking: sets the hubspotutk cookie so form leads carry their ad source.
          Deferred until idle/first interaction, same as the main layout. -->
     <script is:inline>

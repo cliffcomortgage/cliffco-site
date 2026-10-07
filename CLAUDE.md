@@ -74,6 +74,7 @@ Always confirm leadership titles with Rafe before publishing.
 - `website/` — Astro site skeleton for the rebuild.
 - `microsites/` — standalone single-purpose Astro projects (own `package.json`/`astro.config.mjs`/`vercel.json`/`.env` each), separate from `website/`. E.g. `microsites/cliffcomn/` (cliffcomn.com, the MN homepage + landing pages) and `microsites/reverse/` (the reverse-mortgage Long Island microsite).
 - `google-ads/` — the one shared Google Ads API tooling folder for **all** Cliffco paid-search campaigns (single ads account, CID 7324255239): `.env` with OAuth credentials, reusable scripts (`Code/create_campaign.mjs`, `add_ad_groups.mjs`, etc.), and one config JSON per campaign (NJ grant, MN, DSCR-MN, reverse-mortgage-LI, ...). Despite living alongside the microsites, it's account-wide, not per-microsite — new campaigns' configs go here regardless of which microsite/page they promote. (Moved from `microsites/reverse/google-ads/` on 2026-09-18; the old path was a naming leftover from when this tooling was reverse-mortgage-only.)
+- `website/src/components/Analytics.astro` — GA4 + Google Ads tag and conversion events (production domain only). Any new lead form must call `window.cliffcoTrack?.lead({ source, product, email, phone })` on success, or its leads won't count as conversions.
 - `PRE-LAUNCH-CHECKLIST.md` — open items to clear before the new site goes live: product facts to confirm, accessibility follow-ups, launch steps. Add new launch-blocking items here.
 - `seo-aeo-research/` — SEO/AEO research notes.
 - `scripts/` — utility scripts.

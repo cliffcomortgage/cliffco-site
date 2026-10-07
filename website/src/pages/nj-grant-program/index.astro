@@ -372,13 +372,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
         formId: 'd614cef1-1fd7-4a16-bce3-a3832c5be61c',
         target: '#nj-lead-form',
         onFormSubmitted: function () {
-          if (typeof gtag === 'function') {
-            gtag('event', 'conversion', {
-              send_to: 'AW-17848823591/ulN2CMSi190cEKfe_b5C',
-              value: 0.0,
-              currency: 'USD'
-            });
-          }
+          if (window.cliffcoTrack) window.cliffcoTrack.conversion('AW-17848823591/ulN2CMSi190cEKfe_b5C', 0);
         }
       });
     }
