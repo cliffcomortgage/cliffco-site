@@ -1,0 +1,77 @@
+---
+/**
+ * Conventional vs. FHA, side by side (2026 figures). Used on both loan program
+ * pages inside a <Chapter>; `lead` puts that page's program in the first column.
+ * Stacks into labeled rows on phones.
+ */
+interface Props {
+  lead?: "conventional" | "fha";
+}
+const { lead = "conventional" } = Astro.props;
+
+const ROWS = [
+  {
+    label: "Down payment",
+    conventional: "As little as 3% for first-time buyers; 5% for repeat buyers",
+    fha: "3.5% with a 580+ credit score",
+  },
+  {
+    label: "Credit score",
+    conventional: "620 minimum; the best pricing at 780+",
+    fha: "580 for 3.5% down",
+  },
+  {
+    label: "Mortgage insurance",
+    conventional: "PMI with less than 20% down. You can ask to cancel it at 80% loan-to-value, and it ends automatically at 78%.",
+    fha: "1.75% upfront plus 0.50% to 0.55% a year on most 30-year loans. Lasts the life of the loan with less than 10% down, or 11 years with 10% or more.",
+  },
+  {
+    label: "Debt-to-income",
+    conventional: "Up to 50% with an automated approval",
+    fha: "Up to about 57% with an automated approval and strong compensating factors",
+  },
+  {
+    label: "Property types",
+    conventional: "Primary residence, second home, or investment property (1–4 units)",
+    fha: "Primary residence only (1–4 units)",
+  },
+  {
+    label: "2026 loan limit",
+    conventional: "$832,750 for a single-family home; up to $1,249,125 in high-cost areas",
+    fha: "$541,287 for a single-family home; up to $1,249,125 in high-cost areas",
+  },
+  {
+    label: "Seller credits",
+    conventional: "3% to 9% of the price, depending on your down payment",
+    fha: "Up to 6% of the price",
+  },
+  {
+    label: "Often the better fit if",
+    conventional: "Your credit is strong, or you can put 20% down and skip mortgage insurance",
+    fha: "Your credit is still growing, your savings are smaller, or you carry more debt",
+  },
+] as const;
+
+const cols = lead === "fha" ? (["fha", "conventional"] as const) : (["conventional", "fha"] as const);
+const names = { conventional: "Conventional", fha: "FHA" } as const;
+---
+
+<div class="border-t border-[var(--color-ink)]">
+  <div class="hidden sm:grid grid-cols-[minmax(0,9rem)_1fr_1fr] gap-x-6 py-3 border-b border-[var(--color-ink)]">
+    <span></span>
+    {cols.map((c) => <span class="font-semibold text-[var(--color-ink)]">{names[c]}</span>)}
+  </div>
+  {ROWS.map((r) => (
+    <div class="grid sm:grid-cols-[minmax(0,9rem)_1fr_1fr] gap-x-6 gap-y-2 py-4 border-b border-black/15">
+      <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">{r.label}</p>
+      {cols.map((c) => (
+        <p class="text-sm text-[var(--color-text)] leading-relaxed">
+          <span class="sm:hidden font-semibold text-[var(--color-ink)]">{names[c]}: </span>{r[c]}
+        </p>
+      ))}
+    </div>
+  ))}
+</div>
+<p class="mt-4 text-xs text-[var(--color-text-muted)] leading-relaxed">
+  Program guidelines summarized for comparison. Your approval depends on your full credit, income, asset, and property review.
+</p>

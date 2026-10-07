@@ -1,4 +1,4 @@
-﻿---
+---
 import Layout from "../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../data/company";
@@ -11,7 +11,10 @@ const faq = [
   { question: "What is an FHA loan?", answer: "An FHA loan is a mortgage insured by the Federal Housing Administration. Because FHA insures the lender against borrower default, lenders can offer more flexible qualification standards: lower credit scores, smaller down payments, and higher debt-to-income ratios than conventional programs allow. Cliffco is not affiliated with or acting on behalf of the FHA or any government entity." },
   { question: "What is the minimum down payment for an FHA loan?", answer: "3.5% for borrowers with a 580+ credit score. Borrowers with scores between 500 and 579 may still qualify with a 10% down payment. Below 500, FHA is not available." },
   { question: "What credit score do I need for an FHA loan?", answer: "The FHA program minimum is 500 (with 10% down). Most lenders, including Cliffco, require 580 for the 3.5% down option. Borrowers with 620+ FICO typically have a smoother path through underwriting." },
+  { question: "Can my down payment be a gift?", answer: "Yes. FHA allows your entire 3.5% down payment to come from a gift from a family member, employer, close friend, or an approved down payment assistance program, documented with a gift letter." },
   { question: "Do FHA loans require mortgage insurance?", answer: "Yes. FHA loans require an upfront mortgage insurance premium (UFMIP) of 1.75% of the loan amount (typically financed into the loan) and an annual MIP collected monthly. Unlike PMI on conventional loans, FHA MIP generally remains for the life of the loan if the down payment is less than 10%." },
+  { question: "Can I refinance an FHA loan later?", answer: "Yes. An FHA Streamline Refinance can lower the rate on an existing FHA loan with reduced paperwork and, in many cases, no appraisal. Once you reach 20% equity, refinancing into a conventional loan can remove mortgage insurance altogether." },
+  { question: "Does the home have to meet FHA standards?", answer: "Yes. The FHA appraisal checks that the home meets HUD's minimum property standards for safety, security, and soundness, such as a sound roof and working heat and electrical systems. Most move-in-ready homes pass without issue. For a home that needs work, an FHA 203(k) renovation loan can finance the repairs." },
   { question: "Can I use an FHA loan to buy a multi-family property?", answer: "Yes, up to 4 units, as long as the borrower occupies one unit as their primary residence. FHA allows multi-family purchases, which is a common strategy for first-time buyers who want rental income to help offset mortgage costs." },
   { question: "What are the FHA loan limits for 2026?", answer: "FHA loan limits vary by county. The standard floor is $541,287 for a single-family home; the ceiling in high-cost areas (including parts of New York and New Jersey) is $1,249,125. Multi-family limits are higher. Your Cliffco loan officer can confirm the limit for your county." },
 ];
@@ -24,7 +27,7 @@ const schema = [
     description: p.directAnswer,
     url: `/loans/${p.slug}/`,
     datePublished: "2026-04-15",
-    dateModified: "2026-07-15",
+    dateModified: "2026-10-07",
   }),
 ];
 
@@ -34,18 +37,30 @@ import Chapter from "../../../components/asym/Chapter.astro";
 import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
+import LoanCompare from "../../../components/asym/LoanCompare.astro";
 
 const glance = [
   ["Min down payment", "3.5% (580+ FICO); 10% (500–579 FICO)"],
   ["Min FICO", "500 (FHA min); 580 for 3.5% down"],
   ["2026 loan limit (standard)", "$541,287 (SFR); up to $1,249,125 (high-cost)"],
   ["Mortgage insurance", "1.75% UFMIP + annual MIP (typically for life of loan)"],
+  ["Gift funds", "Can cover the full down payment"],
+  ["Seller credits", "Up to 6% of the price toward closing costs"],
   ["Property types", "Primary residence, 1–4 units"],
   ["Max DTI", "Up to 57% with strong compensating factors"],
 ];
+
+const whoFor = [
+  { title: "First-time buyers with smaller savings", body: "Put 3.5% down, and let a gift from family or a down payment assistance program cover all of it." },
+  { title: "Buyers whose credit is still growing", body: "FHA accepts lower credit scores than conventional loans, with 3.5% down available from a 580 score." },
+  { title: "Buyers with student loans or car payments", body: "FHA allows higher debt-to-income ratios than most conventional loans, so monthly debts don't have to keep you renting." },
+  { title: "Buyers who want rental income", body: "Buy a 2–4 unit home with 3.5% down, live in one unit, and let the rent from the others help cover the mortgage.", href: "/mortgage-guides/blog/house-hacking-fha-loan-multi-family-property/" },
+  { title: "Buyers who need help with closing costs", body: "The seller can contribute up to 6% of the purchase price toward your closing costs and prepaid items." },
+  { title: "FHA homeowners who want a lower rate", body: "An FHA Streamline refinance can lower your rate with less paperwork, often with no appraisal.", href: "/mortgage-guides/blog/va-fha-streamline-refinance/" },
+];
 ---
 
-<Layout title={`FHA Loans | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
+<Layout title="FHA Loans: 3.5% Down, Flexible Credit | Cliffco Mortgage Bankers" description={p.directAnswer} schema={schema}>
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
     { name: "Loans", href: "/loans/" },
@@ -54,10 +69,10 @@ const glance = [
 
   <TermSheetHero
     eyebrow={p.category}
-    lead={p.oneLiner}
+    lead="A government-insured mortgage built for buyers with smaller down payments or credit that's still growing. Put 3.5% down with a 580 credit score, and let a gift or down payment assistance cover it."
     facts={[
       { label: "Down payment", value: "3.5% with 580+ FICO" },
-      { label: "Min FICO", value: "500 (10% down)" },
+      { label: "Gift funds", value: "Can cover all of it" },
       { label: "Max DTI", value: "Up to 57%" },
     ]}
   >
@@ -83,6 +98,53 @@ const glance = [
         </dl>
       </Chapter>
 
+  <!-- WHO IT'S FOR -->
+  <Chapter eyebrow="Who it's for" title="Made for getting started." wide>
+    <ol class="list-none m-0 p-0 grid sm:grid-cols-2 gap-4">
+      {whoFor.map((w, i) => (
+        <li class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
+          <span class="font-mono text-xs text-[var(--color-text-muted)]">0{i + 1}</span>
+          <h3 class="mt-3 text-lg font-semibold text-[var(--color-ink)]">{w.title}</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{w.body}</p>
+          {w.href && <a href={w.href} class="mt-3 inline-block text-sm font-semibold text-[var(--color-ink)]">Learn more →</a>}
+        </li>
+      ))}
+    </ol>
+  </Chapter>
+
+  <!-- MIP WORKED EXAMPLE (black band) -->
+  <Chapter dark eyebrow="Mortgage insurance" title="FHA mortgage insurance, in real numbers.">
+    <div class="space-y-4 text-white/85 leading-relaxed" style="font-size: 1.0625rem;">
+      <p>Say you're buying a $350,000 home with 3.5% down:</p>
+      <ul class="list-none m-0 p-0 border-t border-white/40 font-mono text-[0.9375rem]">
+        <li class="py-3.5 border-b border-white/15 text-white"><strong>$350,000</strong> purchase price</li>
+        <li class="py-3.5 border-b border-white/15 text-white"><strong>− $12,250</strong> down payment (3.5%)</li>
+        <li class="py-3.5 border-b border-white/15 text-white">= <strong>$337,750</strong> base loan amount</li>
+        <li class="py-3.5 border-b border-white/15 text-white"><strong>+ $5,911</strong> upfront MIP (1.75%), usually rolled into the loan</li>
+        <li class="py-3.5 border-b border-white/15 text-white">Annual MIP at 0.55%: about <strong>$155 a month</strong> to start</li>
+      </ul>
+      <p>
+        With less than 10% down, the annual premium stays for the life of the loan. Many buyers
+        refinance into a conventional loan once they reach 20% equity to drop it, so FHA works well
+        as a starting point, not a forever loan.
+      </p>
+      <p class="text-sm text-white/55">
+        <em>This is an illustrative example, not a quote. Annual MIP for most 30-year FHA loans is
+        0.50% to 0.55% of the loan amount; your exact figures depend on your loan amount, down
+        payment, and term.</em>
+      </p>
+    </div>
+  </Chapter>
+
+  <!-- FHA VS CONVENTIONAL -->
+  <Chapter eyebrow="FHA vs. conventional" title="Which one fits you?" wide>
+    <LoanCompare lead="fha" />
+    <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+      <a href="/loans/conventional/" class="text-sm font-semibold text-[var(--color-ink)]">See conventional loans →</a>
+      <a href="/loans/conventional-government/" class="text-sm font-semibold text-[var(--color-ink)]">Compare conventional, FHA, VA, and USDA →</a>
+    </div>
+  </Chapter>
+
   <!-- FAQ -->
   <Chapter eyebrow="FAQ" title="Common FHA questions.">
     <FaqList items={faq} />
@@ -90,7 +152,7 @@ const glance = [
 
   <!-- DPA -->
   <Chapter eyebrow="Down payment help" title="Still need help with the down payment?">
-    <p class="text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">FHA pairs well with many down payment assistance programs - grants, forgivable loans, and deferred second mortgages that can cover your 3.5%.</p>
+    <p class="text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">FHA pairs well with many down payment assistance programs: grants, forgivable loans, and deferred second mortgages that can cover your 3.5%.</p>
     <a href="/down-payment-assistance/" class="mt-6 btn btn-secondary text-sm">Explore DPA options →</a>
   </Chapter>
   </TermSheet>

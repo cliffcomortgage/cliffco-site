@@ -21,61 +21,55 @@ const categories = ["All", "First-Time Buyers", "Move-Up Buyers", "Refinancing",
     { name: "Mortgage Guides", href: "/mortgage-guides/blog/" },
   ]} />
 
-  <section class="bg-white">
-    <div class="container-wide pt-12 lg:pt-16 pb-8 grid lg:grid-cols-12 gap-8 items-end">
-      <div class="lg:col-span-8">
-        <p class="eyebrow">Mortgage Guides</p>
-        <h1 class="mt-4 text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">Real answers to real mortgage questions.</h1>
-        <p class="mt-5 max-w-2xl text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">
-          First-time buyer, move-up buyer, investor, or retiree weighing a reverse mortgage: these guides give you the full picture, written by the people who actually close these loans every day.
-        </p>
-      </div>
-      <p class="lg:col-span-3 lg:col-start-10 lg:text-right font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.04em;">{articles.length}<span class="block mt-2 font-mono text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Articles</span></p>
-    </div>
-  </section>
-
-  <section class="bg-white sticky top-[4.5rem] z-30 border-y-2 border-[var(--color-ink)]">
-    <div class="container-wide py-3 flex gap-2 overflow-x-auto" role="group" aria-label="Filter by topic">
-      {categories.map((cat, i) => (
-        <button
-          class={`filter-pill${i === 0 ? " active" : ""}`}
-          data-filter={cat === "All" ? "all" : cat}
-          type="button"
-        >
-          {cat}
-        </button>
-      ))}
-    </div>
+  <section class="container-wide pt-12 pb-10">
+    <p class="eyebrow">Mortgage Guides</p>
+    <h1 class="mt-3" style="font-size: var(--text-display-lg);">Real answers to real mortgage questions.</h1>
+    <p class="lead mt-6">
+      First-time buyer, move-up buyer, investor, or retiree weighing a reverse mortgage: these guides give you the full picture, written by the people who actually close these loans every day.
+    </p>
   </section>
 
   <section class="bg-white pb-16">
     <div class="container-wide">
-      <ol class="list-none m-0 p-0">
+      <div class="flex flex-wrap gap-2 mb-8" role="group" aria-label="Filter by topic">
+        {categories.map((cat, i) => (
+          <button
+            class={`filter-pill${i === 0 ? " active" : ""}`}
+            data-filter={cat === "All" ? "all" : cat}
+            type="button"
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {articles.map((article) => {
           const img = articleImages[article.href];
           const slug = article.href.replace(/\/$/, "").split("/").pop() ?? "";
           const date = fmtDate(BLOG_PUBLISH_DATES[slug]);
           return (
-            <li class="article-card border-b border-black/15" data-categories={article.category}>
-              <a href={article.href} class="group grid grid-cols-[1fr_5.5rem] sm:grid-cols-[minmax(0,9rem)_1fr_7rem] lg:grid-cols-[minmax(0,10rem)_minmax(0,11rem)_1fr_8rem] gap-x-6 gap-y-1 py-6 no-underline text-[var(--color-ink)] items-start">
-                <span class="hidden sm:block font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] pt-1">{date}</span>
-                <span class="hidden lg:block font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">{article.category}</span>
-                <span class="min-w-0">
-                  <span class="sm:hidden block font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] mb-1">{article.category}{date && ` · ${date}`}</span>
-                  <span class="lg:hidden hidden sm:block font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--color-ink)] mb-1">{article.category}</span>
-                  <h2 class="font-semibold leading-snug group-hover:underline" style="font-size: 1.1875rem;">{article.title}</h2>
-                  <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed line-clamp-2">{article.description}</p>
-                </span>
-                {img && (
-                  <span class="block aspect-square rounded-xl overflow-hidden border-2 border-[var(--color-ink)]">
-                    <img src={img.url} alt={img.alt} class="w-full h-full object-cover" style={img.objectPosition ? `object-position: ${img.objectPosition}` : undefined} loading="lazy" />
-                  </span>
-                )}
-              </a>
-            </li>
+            <a
+              href={article.href}
+              class="article-card card no-underline text-[var(--color-ink)] flex flex-col hover:shadow-md transition-shadow"
+              data-categories={article.category}
+            >
+              {img && (
+                <div class="-mx-6 -mt-6 mb-4 h-48 overflow-hidden rounded-t-xl">
+                  <img src={img.url} alt={img.alt} class="w-full h-full object-cover" style={img.objectPosition ? `object-position: ${img.objectPosition}` : undefined} loading="lazy" />
+                </div>
+              )}
+              <p class="eyebrow text-sm">{article.category}</p>
+              <h2 class="mt-2 text-xl font-semibold leading-snug">{article.title}</h2>
+              <p class="mt-3 text-sm text-[var(--color-text-muted)] flex-1">{article.description}</p>
+              <div class="mt-4 flex items-center justify-between gap-2">
+                <span class="text-sm font-medium text-[var(--color-accent)]">Read article →</span>
+                {date && <span class="text-xs text-[var(--color-text-muted)]">{date}</span>}
+              </div>
+            </a>
           );
         })}
-      </ol>
+      </div>
 
       <p id="no-results" class="hidden text-center text-[var(--color-text-muted)] text-sm mt-10">
         No articles in this category yet.
@@ -108,9 +102,3 @@ const categories = ["All", "First-Time Buyers", "Move-Up Buyers", "Refinancing",
     });
   });
 </script>
-
-<style>
-  :global(.filter-pill) { border-radius: 999px; border: 2px solid var(--color-ink); color: var(--color-ink); white-space: nowrap; font-weight: 600; }
-  :global(.filter-pill:hover) { border-color: var(--color-ink); color: var(--color-ink); background: rgb(0 0 0 / 0.04); }
-  :global(.filter-pill.active) { background: var(--color-ink); border-color: var(--color-ink); color: #fff; }
-</style>

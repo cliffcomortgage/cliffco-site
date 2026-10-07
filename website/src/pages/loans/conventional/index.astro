@@ -9,9 +9,11 @@ const p = product("conventional")!;
 
 const faq = [
   { question: "What is a conventional loan?", answer: "A conventional mortgage is a home loan that meets Fannie Mae or Freddie Mac guidelines and is not insured by a government agency (FHA, VA, or USDA). Conforming conventional loans fall within the annual loan limits set by the FHFA; high-balance loans allow higher amounts in designated high-cost counties." },
-  { question: "How much down payment do I need for a conventional loan?", answer: "As little as 3% for first-time homebuyers (HomeReady, Home Possible), 5% for repeat buyers, and 10–20% to avoid private mortgage insurance (PMI). Investment properties and second homes typically require 10–20% down." },
-  { question: "What credit score do I need?", answer: "Most conventional programs require a minimum 620 FICO. The best pricing is at 740+ FICO. Scores below 680 may require a larger down payment or result in higher rate adjustments." },
-  { question: "What is PMI and when can I remove it?", answer: "Private mortgage insurance (PMI) is required on conventional loans when the down payment is less than 20%. PMI can typically be removed once the loan-to-value ratio reaches 80%, either through scheduled amortization or increased home value (with a new appraisal)." },
+  { question: "How much down payment do I need for a conventional loan?", answer: "As little as 3% for first-time homebuyers (including programs like HomeReady and Home Possible), 5% for repeat buyers, and 20% to skip private mortgage insurance (PMI) entirely. Second homes typically need 10% down and investment properties 15% to 25%." },
+  { question: "What credit score do I need?", answer: "Most conventional programs require a minimum 620 FICO. Pricing improves at each credit tier, with the best rates at 780 and above. Scores below 680 may require a larger down payment or come with higher rate adjustments." },
+  { question: "What is PMI and when can I remove it?", answer: "Private mortgage insurance (PMI) is required on conventional loans when the down payment is less than 20%. You can ask to cancel it once your balance reaches 80% of the home's original value, and it ends automatically at 78%. If your home's value rises, a new appraisal may let you remove it sooner." },
+  { question: "Can my down payment be a gift?", answer: "Yes. For a single-family primary residence, your entire down payment can be a gift from an eligible donor, such as a family member, documented with a signed gift letter. Different rules apply to multi-unit homes and second homes, so talk to your loan officer before the money moves." },
+  { question: "What debt-to-income ratio do I need?", answer: "Conventional loans allow a debt-to-income (DTI) ratio up to 50% when the file receives an automated underwriting approval; files that need manual underwriting have lower limits. DTI is your total monthly debts, including the new mortgage payment, divided by your gross monthly income." },
   { question: "What is the 2026 conforming loan limit?", answer: "For 2026, the standard conforming loan limit is $832,750 for a single-family property in most of the country. High-cost counties (including much of the New York metro and coastal Florida markets) have higher limits up to $1,249,125. Cliffco originates both conforming and high-balance conventional loans." },
   { question: "Can I get a conventional loan on an investment property?", answer: "Yes. Conventional programs allow financing of 1–4 unit investment properties. Down payment requirements are higher (typically 15–25%), and rate adjustments apply. For investors who prefer to qualify on rental income rather than personal income, Cliffco's DSCR program may be a better fit." },
 ];
@@ -24,7 +26,7 @@ const schema = [
     description: p.directAnswer,
     url: `/loans/${p.slug}/`,
     datePublished: "2026-04-15",
-    dateModified: "2026-07-15",
+    dateModified: "2026-10-07",
   }),
 ];
 
@@ -34,18 +36,28 @@ import Chapter from "../../../components/asym/Chapter.astro";
 import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
+import LoanCompare from "../../../components/asym/LoanCompare.astro";
 
 const glance = [
-  ["Min down payment", "3% (first-time), 5% (repeat buyers)"],
-  ["Min FICO", "620 (best pricing 740+)"],
+  ["Min down payment", "3% (first-time buyers), 5% (repeat buyers)"],
+  ["Min FICO", "620 (best pricing at 780+)"],
   ["2026 conforming limit", "$832,750 (standard); up to $1,249,125 (high-cost)"],
   ["PMI required", "Under 20% down; removable at 80% LTV"],
-  ["Terms", "10, 15, 20, 25, 30-year fixed; 5/1, 7/1, 10/1 ARM"],
+  ["Terms", "10, 15, 20, 25, and 30-year fixed; 5, 7, and 10-year ARMs"],
   ["Property types", "Primary, second home, investment (1–4 units)"],
+];
+
+const whoFor = [
+  { title: "First-time buyers", body: "Put as little as 3% down. Programs like HomeReady and Home Possible lower the mortgage insurance cost for buyers within the income limits, and down payment assistance can help cover the rest." },
+  { title: "Move-up buyers", body: "Buying your next home? Put 5% or more down, roll the equity from the home you're selling into the purchase, and lock in a payment that stays put with a fixed rate." },
+  { title: "Buyers with 20% down", body: "Skip mortgage insurance entirely. With 20% down, your payment covers just principal, interest, taxes, and insurance." },
+  { title: "Strong-credit borrowers", body: "Conventional pricing improves at each credit tier up to 780, so a strong score turns directly into a lower rate." },
+  { title: "Second homes and rentals", body: "Conventional covers vacation homes and 1–4 unit investment properties, with 10% down on a second home and 15% to 25% on an investment property." },
+  { title: "Homeowners refinancing", body: "Lower your rate, shorten your term, or take cash out up to 80% of your home's value.", href: "/loans/refinancing/" },
 ];
 ---
 
-<Layout title={`Conventional Loans | Cliffco Mortgage Bankers`} description={p.directAnswer} schema={schema}>
+<Layout title="Conventional Loans: As Little as 3% Down | Cliffco Mortgage Bankers" description={p.directAnswer} schema={schema}>
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
     { name: "Loans", href: "/loans/" },
@@ -54,7 +66,7 @@ const glance = [
 
   <TermSheetHero
     eyebrow={p.category}
-    lead={p.oneLiner}
+    lead="The most common type of mortgage in the U.S. Put as little as 3% down, drop the mortgage insurance once you reach 20% equity, and pick the term that fits your budget."
     facts={[
       { label: "Down payment", value: "As little as 3%" },
       { label: "Min FICO", value: "620" },
@@ -82,6 +94,55 @@ const glance = [
           ))}
         </dl>
       </Chapter>
+
+  <!-- WHO IT'S FOR -->
+  <Chapter eyebrow="Who it's for" title="Built for most buyers." wide>
+    <ol class="list-none m-0 p-0 grid sm:grid-cols-2 gap-4">
+      {whoFor.map((w, i) => (
+        <li class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
+          <span class="font-mono text-xs text-[var(--color-text-muted)]">0{i + 1}</span>
+          <h3 class="mt-3 text-lg font-semibold text-[var(--color-ink)]">{w.title}</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{w.body}</p>
+          {w.href && <a href={w.href} class="mt-3 inline-block text-sm font-semibold text-[var(--color-ink)]">Learn more →</a>}
+        </li>
+      ))}
+    </ol>
+  </Chapter>
+
+  <!-- PMI WORKED EXAMPLE (black band) -->
+  <Chapter dark eyebrow="Mortgage insurance" title="What PMI costs, and when it goes away.">
+    <div class="space-y-4 text-white/85 leading-relaxed" style="font-size: 1.0625rem;">
+      <p>Say you're a first-time buyer putting 3% down on a $400,000 home:</p>
+      <ul class="list-none m-0 p-0 border-t border-white/40 font-mono text-[0.9375rem]">
+        <li class="py-3.5 border-b border-white/15 text-white"><strong>$400,000</strong> purchase price</li>
+        <li class="py-3.5 border-b border-white/15 text-white"><strong>− $12,000</strong> down payment (3%)</li>
+        <li class="py-3.5 border-b border-white/15 text-white">= <strong>$388,000</strong> loan amount</li>
+        <li class="py-3.5 border-b border-white/15 text-white">PMI: about <strong>$116 to $272 a month</strong></li>
+      </ul>
+      <p>
+        Freddie Mac estimates PMI at roughly $30 to $70 a month for every $100,000 borrowed. Your
+        credit score and down payment decide where you land in that range.
+      </p>
+      <p>
+        PMI isn't permanent. You can ask to cancel it once your balance reaches $320,000 (80% of the
+        original value), and it ends automatically at $312,000 (78%). If your home's value rises, a
+        new appraisal may let you remove it sooner.
+      </p>
+      <p class="text-sm text-white/55">
+        <em>This is an illustrative example, not a quote. Your actual PMI cost depends on your credit,
+        down payment, and loan terms.</em>
+      </p>
+    </div>
+  </Chapter>
+
+  <!-- CONVENTIONAL VS FHA -->
+  <Chapter eyebrow="Conventional vs. FHA" title="Which one fits you?" wide>
+    <LoanCompare lead="conventional" />
+    <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+      <a href="/loans/fha/" class="text-sm font-semibold text-[var(--color-ink)]">See FHA loans →</a>
+      <a href="/loans/conventional-government/" class="text-sm font-semibold text-[var(--color-ink)]">Compare conventional, FHA, VA, and USDA →</a>
+    </div>
+  </Chapter>
 
   <!-- FAQ -->
   <Chapter eyebrow="FAQ" title="Conventional loan questions.">
