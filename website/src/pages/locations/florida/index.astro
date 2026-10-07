@@ -33,6 +33,14 @@ import Split from "../../../components/asym/Split.astro";
 import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
+import LoCard from "../../../components/asym/LoCard.astro";
+import { LOAN_OFFICERS } from "../../../data/loan-officers";
+
+// Show up to LIST_MAX people per grid; a "View all" button only appears when there are more.
+const LIST_MAX = 9;
+const ftlLOs = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "fort-lauderdale-fl");
+const otherFlLOs = LOAN_OFFICERS.filter((lo) => lo.states.includes("FL") && lo.branchSlug !== "fort-lauderdale-fl");
+const totalFLLOs = ftlLOs.length + otherFlLOs.length;
 
 const coverage = [
   { name: "Orlando / Central Florida", body: "Disney-area short-term-rental and DSCR investors, plus Non-QM for self-employed Central Florida buyers." },
@@ -65,35 +73,6 @@ const coverage = [
     </Fragment>
     <Fragment slot="note">{COMPANY.floridaDba.disclosure}</Fragment>
   </CityHero>
-
-  
-
-  <!-- FEATURED PRODUCTS -->
-  <Split eyebrow="What we lead with in Florida" title="Built for Florida borrowers and investors." wide>
-    <div class="grid sm:grid-cols-2 gap-4">
-      {loc.featuredProducts.map((slug) => {
-        const p = product(slug);
-        if (!p) return null;
-        return (
-          <a href={`/loans/${p.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
-            <h3 class="text-lg font-semibold group-hover:!text-white">{p.shortName}</h3>
-            <p class="mt-2 text-sm text-[var(--color-text-muted)] group-hover:text-white/75 flex-1 leading-relaxed">{p.oneLiner}</p>
-            <span class="mt-4 text-sm font-semibold">Learn more →</span>
-          </a>
-        );
-      })}
-    </div>
-  </Split>
-
-  <!-- FAQ -->
-  <Split eyebrow="Florida FAQ" title="Borrower and investor questions.">
-    <FaqList items={faq} />
-  </Split>
-
-  <CtaBand title="Florida borrowers: talk to our Florida team.">
-    <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
-    <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary">{COMPANY.hq.phone}</a>
-  </CtaBand>
 
   <!-- VISIT / CALL + FORM -->
   <section class="bg-white">
@@ -129,9 +108,80 @@ const coverage = [
     </div>
   </section>
 
-  <section class="bg-white py-8">
+
+  
+
+  <!-- FEATURED PRODUCTS -->
+  <Split eyebrow="What we lead with in Florida" title="Built for Florida borrowers and investors." wide>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {loc.featuredProducts.map((slug) => {
+        const p = product(slug);
+        if (!p) return null;
+        return (
+          <a href={`/loans/${p.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+            <h3 class="text-lg font-semibold group-hover:!text-white">{p.shortName}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] group-hover:text-white/75 flex-1 leading-relaxed">{p.oneLiner}</p>
+            <span class="mt-4 text-sm font-semibold">Learn more →</span>
+          </a>
+        );
+      })}
+    </div>
+  </Split>
+
+  <!-- LOs at the Ft. Lauderdale office -->
+  {ftlLOs.length > 0 && (
+    <Split
+      eyebrow="Located at our Ft. Lauderdale office"
+      title="Loan officers based in Florida."
+      intro="Based at Cliffco's Ft. Lauderdale branch (operating as Clout Mortgage, Inc.)."
+      wide
+    >
+      <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
+        {ftlLOs.map((lo) => <LoCard lo={lo} />)}
+      </div>
+    </Split>
+  )}
+
+  <!-- LOs licensed in FL, based elsewhere -->
+  {otherFlLOs.length > 0 && (
+    <Split
+      eyebrow="Also licensed in Florida"
+      title="Other Florida-licensed loan officers."
+      intro="These loan officers are based at other Cliffco offices but are fully licensed to originate loans in Florida."
+      wide
+    >
+      <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 lo-shuffle-grid">
+        {otherFlLOs.slice(0, LIST_MAX).map((lo) => <LoCard lo={lo} note={`Based in ${BRANCHES.find((b) => b.slug === lo.branchSlug)?.city ?? "NY"}`} />)}
+      </div>
+      {otherFlLOs.length > LIST_MAX && (
+        <a href="/loan-officers/?state=FL" class="mt-8 btn btn-primary">View all {totalFLLOs} Florida-licensed loan officers →</a>
+      )}
+    </Split>
+  )}
+
+  <!-- FAQ -->
+  <Split eyebrow="Florida FAQ" title="Borrower and investor questions.">
+    <FaqList items={faq} />
+  </Split>
+
+  <CtaBand title="Florida borrowers: talk to our Florida team.">
+    <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+    <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary">{COMPANY.hq.phone}</a>
+  </CtaBand>
+
+<section class="bg-white py-8">
     <div class="container-wide">
       <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">{COMPANY.floridaDba.disclosure}</p>
     </div>
   </section>
 </Layout>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".lo-shuffle-grid").forEach((grid) => {
+    const children = [...grid.children] as HTMLElement[];
+    for (let i = children.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      grid.appendChild(children[j]);
+    }
+  });
+</script>

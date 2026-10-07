@@ -59,24 +59,7 @@ const p = Astro.props;
   </Fragment>
 </CityHero>
 
-<!-- TEAM -->
-{p.los.length > 0 && (
-  <Split eyebrow={p.teamEyebrow} title={p.teamTitle} intro={p.teamIntro} wide rule={false}>
-    <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
-      {p.los.map((lo) => <LoCard lo={lo} />)}
-    </div>
-    {p.allLink && (
-      <a href={p.allLink.href} class="mt-8 btn btn-primary">{p.allLink.label}</a>
-    )}
-  </Split>
-)}
-
-<CtaBand title={p.ctaTitle} text="A licensed Cliffco loan officer responds in one business day.">
-  <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
-  <a href={`tel:${p.phone.e164}`} class="btn btn-secondary">{p.phone.display}</a>
-</CtaBand>
-
-<!-- VISIT / CALL + FORM -->
+  <!-- VISIT / CALL + FORM -->
 <section class="bg-white">
   <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
     <div class="lg:col-span-6">
@@ -108,6 +91,24 @@ const p = Astro.props;
     </div>
   </div>
 </section>
+
+
+<!-- TEAM -->
+{p.los.length > 0 && (
+  <Split eyebrow={p.teamEyebrow} title={p.teamTitle} intro={p.teamIntro} wide rule={false}>
+    <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
+      {p.los.map((lo) => <LoCard lo={lo} />)}
+    </div>
+    {p.allLink && (
+      <a href={p.allLink.href} class="mt-8 btn btn-primary">{p.allLink.label}</a>
+    )}
+  </Split>
+)}
+
+<CtaBand title={p.ctaTitle} text="A licensed Cliffco loan officer responds in one business day.">
+  <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+  <a href={`tel:${p.phone.e164}`} class="btn btn-secondary">{p.phone.display}</a>
+</CtaBand>
 
 <style>
   .branch-info :global(a) { color: #fff !important; }

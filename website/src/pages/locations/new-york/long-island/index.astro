@@ -87,6 +87,33 @@ const marketData = [
     </Fragment>
   </CityHero>
 
+  <!-- VISIT / CALL + FORM -->
+  <section class="bg-white">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5 lg:col-start-8 lg:row-start-1">
+        <FormCard
+          title="Questions about buying or refinancing on Long Island?"
+          sub="Tell us what you're working with and a Long Island loan officer will be in touch within one business day."
+          formSource="location-long-island"
+        />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:pt-8">
+        <p class="eyebrow">Long Island market data (2026)</p>
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">What buyers and refinancers are seeing.</h2>
+        <dl class="mt-8 border-t border-[var(--color-ink)]">
+          {marketData.map((m) => (
+            <div class="py-6 border-b border-black/15">
+              <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">{m.label}</dt>
+              <dd class="mt-2 text-[var(--color-ink)] font-bold" style="font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.5rem); letter-spacing: -0.02em; line-height: 1.1;">{m.value}</dd>
+              <dd class="mt-2 text-xs text-[var(--color-text-muted)]">{m.note}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+
   
 
   <!-- FEATURED PRODUCTS -->
@@ -159,29 +186,4 @@ const marketData = [
     <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary">{COMPANY.hq.phone}</a>
   </CtaBand>
 
-  <!-- VISIT / CALL + FORM -->
-  <section class="bg-white">
-    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5 lg:col-start-8 lg:row-start-1">
-        <FormCard
-          title="Questions about buying or refinancing on Long Island?"
-          sub="Tell us what you're working with and a Long Island loan officer will be in touch within one business day."
-          formSource="location-long-island"
-        />
-      </div>
-      <div class="lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:pt-8">
-        <p class="eyebrow">Long Island market data (2026)</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">What buyers and refinancers are seeing.</h2>
-        <dl class="mt-8 border-t border-[var(--color-ink)]">
-          {marketData.map((m) => (
-            <div class="py-6 border-b border-black/15">
-              <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">{m.label}</dt>
-              <dd class="mt-2 text-[var(--color-ink)] font-bold" style="font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.5rem); letter-spacing: -0.02em; line-height: 1.1;">{m.value}</dd>
-              <dd class="mt-2 text-xs text-[var(--color-text-muted)]">{m.note}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </div>
-  </section>
 </Layout>

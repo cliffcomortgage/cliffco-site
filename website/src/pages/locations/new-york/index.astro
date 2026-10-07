@@ -57,35 +57,6 @@ import CtaBand from "../../../components/asym/CtaBand.astro";
     </Fragment>
   </CityHero>
 
-  
-
-  <!-- FEATURED PRODUCTS -->
-  <Split eyebrow="What we lead with in New York" title="Built for New York borrowers." wide>
-    <div class="grid sm:grid-cols-2 gap-4">
-      {loc.featuredProducts.map((slug) => {
-        const p = product(slug);
-        if (!p) return null;
-        return (
-          <a href={`/loans/${p.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
-            <h3 class="text-lg font-semibold group-hover:!text-white">{p.shortName}</h3>
-            <p class="mt-2 text-sm text-[var(--color-text-muted)] group-hover:text-white/75 flex-1 leading-relaxed">{p.oneLiner}</p>
-            <span class="mt-4 text-sm font-semibold">Learn more →</span>
-          </a>
-        );
-      })}
-    </div>
-  </Split>
-
-  <!-- FAQ -->
-  <Split eyebrow="New York FAQ" title="Local borrower questions.">
-    <FaqList items={faq} />
-  </Split>
-
-  <CtaBand title="New York borrowers: talk to a Long Island-based Cliffco LO.">
-    <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
-    <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary">{COMPANY.hq.phone}</a>
-  </CtaBand>
-
   <!-- VISIT / CALL + FORM -->
   <section class="bg-white">
     <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
@@ -119,4 +90,35 @@ import CtaBand from "../../../components/asym/CtaBand.astro";
       </div>
     </div>
   </section>
+
+
+  
+
+  <!-- FEATURED PRODUCTS -->
+  <Split eyebrow="What we lead with in New York" title="Built for New York borrowers." wide>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {loc.featuredProducts.map((slug) => {
+        const p = product(slug);
+        if (!p) return null;
+        return (
+          <a href={`/loans/${p.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+            <h3 class="text-lg font-semibold group-hover:!text-white">{p.shortName}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] group-hover:text-white/75 flex-1 leading-relaxed">{p.oneLiner}</p>
+            <span class="mt-4 text-sm font-semibold">Learn more →</span>
+          </a>
+        );
+      })}
+    </div>
+  </Split>
+
+  <!-- FAQ -->
+  <Split eyebrow="New York FAQ" title="Local borrower questions.">
+    <FaqList items={faq} />
+  </Split>
+
+  <CtaBand title="New York borrowers: talk to a Long Island-based Cliffco LO.">
+    <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+    <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary">{COMPANY.hq.phone}</a>
+  </CtaBand>
+
 </Layout>

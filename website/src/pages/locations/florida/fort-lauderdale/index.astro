@@ -13,8 +13,10 @@ const ftlBranch = BRANCHES.find((b) => b.slug === "fort-lauderdale-fl")!;
 const EXCLUDE = new Set(["christopher-clifford"]);
 const branchLOs = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "fort-lauderdale-fl" && !EXCLUDE.has(lo.slug));
 const licensedOnlyLOs = LOAN_OFFICERS.filter(
-  (lo) => lo.states.includes("FL") && lo.branchSlug !== "fort-lauderdale-fl" && !EXCLUDE.has(lo.slug),
+  (lo) => lo.states.includes("FL") && lo.branchSlug !== "fort-lauderdale-fl",
 );
+// Show up to LIST_MAX people per grid; a "View all" button only appears when there are more.
+const LIST_MAX = 9;
 const totalFLLOs = LOAN_OFFICERS.filter((lo) => lo.states.includes("FL")).length;
 
 const faq = [
@@ -73,6 +75,31 @@ import LoCard from "../../../../components/asym/LoCard.astro";
     <Fragment slot="note">{COMPANY.floridaDba.disclosure}</Fragment>
   </CityHero>
 
+  <!-- VISIT / CALL + FORM -->
+  <section class="bg-white">
+    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5 lg:col-start-8 lg:row-start-1">
+        <FormCard
+          title="Have a South Florida deal or question? Talk to our team."
+          sub="Tell us the property and your situation and we'll have a South Florida loan officer back to you within one business day."
+          formTo="karabian@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
+          formSource="location-ftlauderdale"
+        />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:pt-8">
+        <p class="eyebrow">Our Ft. Lauderdale office</p>
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">Where we are.</h2>
+        <article class="mt-8 rounded-2xl bg-[var(--color-ink)] text-white p-7">
+          <h3 class="text-lg font-semibold !text-white">{ftlBranch.name}</h3>
+          {ftlBranch.street && <p class="text-white/80 mt-3">{ftlBranch.street}<br/>{ftlBranch.city}, {ftlBranch.region} {ftlBranch.postalCode}</p>}
+          {ftlBranch.nmls && <p class="text-xs text-white/55 mt-3">Branch NMLS #{ftlBranch.nmls}</p>}
+          <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-white mt-4">Operates as Clout Mortgage, Inc.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
   
 
   <!-- FEATURED PRODUCTS -->
@@ -115,9 +142,11 @@ import LoCard from "../../../../components/asym/LoCard.astro";
       wide
     >
       <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 lo-shuffle-grid">
-        {licensedOnlyLOs.slice(0, 6).map((lo) => <LoCard lo={lo} />)}
+        {licensedOnlyLOs.slice(0, LIST_MAX).map((lo) => <LoCard lo={lo} />)}
       </div>
-      <a href="/loan-officers/?state=FL" class="mt-8 btn btn-primary">View all {totalFLLOs} Florida-licensed loan officers →</a>
+      {licensedOnlyLOs.length > LIST_MAX && (
+        <a href="/loan-officers/?state=FL" class="mt-8 btn btn-primary">View all {totalFLLOs} Florida-licensed loan officers →</a>
+      )}
     </Split>
   )}
 
@@ -131,31 +160,7 @@ import LoCard from "../../../../components/asym/LoCard.astro";
     <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary">{COMPANY.hq.phone}</a>
   </CtaBand>
 
-  <!-- VISIT / CALL + FORM -->
-  <section class="bg-white">
-    <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5 lg:col-start-8 lg:row-start-1">
-        <FormCard
-          title="Have a South Florida deal or question? Talk to our team."
-          sub="Tell us the property and your situation and we'll have a South Florida loan officer back to you within one business day."
-          formTo="karabian@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
-          formSource="location-ftlauderdale"
-        />
-      </div>
-      <div class="lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:pt-8">
-        <p class="eyebrow">Our Ft. Lauderdale office</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">Where we are.</h2>
-        <article class="mt-8 rounded-2xl bg-[var(--color-ink)] text-white p-7">
-          <h3 class="text-lg font-semibold !text-white">{ftlBranch.name}</h3>
-          {ftlBranch.street && <p class="text-white/80 mt-3">{ftlBranch.street}<br/>{ftlBranch.city}, {ftlBranch.region} {ftlBranch.postalCode}</p>}
-          {ftlBranch.nmls && <p class="text-xs text-white/55 mt-3">Branch NMLS #{ftlBranch.nmls}</p>}
-          <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-white mt-4">Operates as Clout Mortgage, Inc.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-white py-8">
+<section class="bg-white py-8">
     <div class="container-wide">
       <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">{COMPANY.floridaDba.disclosure}</p>
     </div>

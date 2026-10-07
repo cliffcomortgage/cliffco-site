@@ -9,86 +9,10 @@ import { COMPANY } from "../../data/company";
     </a>
 
     <nav aria-label="Primary" class="hidden lg:block">
-      <ul class="flex items-center gap-7 m-0 p-0 list-none">
-
-        <li class="relative group">
-          <button type="button" class="text-sm font-medium text-[var(--color-ink)] py-2 cursor-pointer" aria-haspopup="true">
-            Who We Help
-            <span aria-hidden="true" class="ml-1 text-xs">▾</span>
-          </button>
-          <div class="absolute left-0 top-full pt-2 hidden group-hover:block group-focus-within:block">
-            <div class="bg-white border border-[var(--color-mist-gray)] rounded-lg shadow-xl p-4 min-w-[240px]">
-              <ul class="m-0 p-0 list-none space-y-1">
-                <li><a href="/self-employed-mortgage/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">I'm Self-Employed</a></li>
-                <li><a href="/real-estate-investor-mortgage/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">I'm a Real Estate Investor</a></li>
-                <li><a href="/reverse-mortgage/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">I'm 62 or Older</a></li>
-                <li><a href="/denied-mortgage/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">I Was Denied Elsewhere</a></li>
-                <li><a href="/first-time-homebuyer/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">I'm Buying My First Home</a></li>
-                <li><a href="/purchasing-refinancing/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">I'm Purchasing or Refinancing</a></li>
-                <li><a href="/down-payment-assistance/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">I Need Down Payment Help</a></li>
-              </ul>
-            </div>
-          </div>
-        </li>
-
-        <li class="relative group">
-          <button type="button" class="text-sm font-medium text-[var(--color-ink)] py-2 cursor-pointer" aria-haspopup="true">
-            Loan Programs
-            <span aria-hidden="true" class="ml-1 text-xs">▾</span>
-          </button>
-          <div class="absolute left-0 top-full pt-2 hidden group-hover:block group-focus-within:block">
-            <div class="bg-white border border-[var(--color-mist-gray)] rounded-lg shadow-xl p-4 min-w-[220px]">
-              <ul class="m-0 p-0 list-none space-y-1">
-                <li><a href="/loans/business-bank-statement/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">Bank Statement Loans</a></li>
-                <li><a href="/loans/dscr/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">DSCR Loans</a></li>
-                <li><a href="/loans/reverse-mortgage/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">Reverse Mortgage</a></li>
-                <li><a href="/loans/non-qm-self-employed/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">Non-QM Loans</a></li>
-                <li><a href="/loans/conventional-government/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">Conventional / FHA / VA</a></li>
-                <li><a href="/loans/refinancing/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">Refinancing</a></li>
-                <li><a href="/loans/" class="text-sm no-underline text-[var(--color-accent)] hover:underline block py-1 font-medium">All Loan Programs →</a></li>
-              </ul>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <a href="/loan-officers/" class="text-sm font-medium text-[var(--color-ink)] py-2 no-underline hover:text-[var(--color-accent)]">Find a Loan Officer</a>
-        </li>
-
-        <li class="relative group">
-          <button type="button" class="text-sm font-medium text-[var(--color-ink)] py-2 cursor-pointer" aria-haspopup="true">
-            Resources
-            <span aria-hidden="true" class="ml-1 text-xs">▾</span>
-          </button>
-          <div class="absolute left-0 top-full pt-2 hidden group-hover:block group-focus-within:block">
-            <div class="bg-white border border-[var(--color-mist-gray)] rounded-lg shadow-xl p-4 min-w-[200px]">
-              <ul class="m-0 p-0 list-none space-y-1">
-                <li><a href="/mortgage-rates/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-0.5">Mortgage Rates</a></li>
-                <li><a href="/mortgage-guides/blog/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-0.5">Blog</a></li>
-                <li><a href="/mortgage-guides/calculators/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-0.5">Calculators</a></li>
-                <li><a href="/mortgage-guides/glossary/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-0.5">Mortgage Glossary</a></li>
-              </ul>
-            </div>
-          </div>
-        </li>
-
-        <li class="relative group">
-          <button type="button" class="text-sm font-medium text-[var(--color-ink)] py-2 cursor-pointer" aria-haspopup="true">
-            About
-            <span aria-hidden="true" class="ml-1 text-xs">▾</span>
-          </button>
-          <div class="absolute right-0 top-full pt-2 hidden group-hover:block group-focus-within:block">
-            <div class="bg-white border border-[var(--color-mist-gray)] rounded-lg shadow-xl p-4 min-w-[200px]">
-              <ul class="m-0 p-0 list-none space-y-1">
-                <li><a href="/about/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">About Cliffco</a></li>
-                <li><a href="/why-cliffco/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">Why Cliffco</a></li>
-                <li><a href="/process/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">Our Process</a></li>
-                <li><a href="/reviews/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">Reviews</a></li>
-                <li><a href="/contact/" class="text-sm no-underline text-[var(--color-ink)] hover:text-[var(--color-accent)] block py-1">Contact</a></li>
-              </ul>
-            </div>
-          </div>
-        </li>
+      <ul class="flex items-center gap-8 m-0 p-0 list-none">
+        <li><a href="/loans/" class="text-sm font-medium text-[var(--color-ink)] py-2 no-underline hover:underline underline-offset-4">Loan Programs</a></li>
+        <li><a href="/mortgage-guides/calculators/" class="text-sm font-medium text-[var(--color-ink)] py-2 no-underline hover:underline underline-offset-4">Calculators</a></li>
+        <li><a href="/loan-officers/" class="text-sm font-medium text-[var(--color-ink)] py-2 no-underline hover:underline underline-offset-4">Find a Loan Officer</a></li>
       </ul>
     </nav>
 
@@ -147,76 +71,9 @@ import { COMPANY } from "../../data/company";
 
   <!-- Nav sections -->
   <div class="flex-1 px-5 py-4 space-y-1">
-
-    <details class="group border-b border-[var(--color-mist-gray)]">
-      <summary class="flex items-center justify-between py-3 font-medium text-[var(--color-ink)] cursor-pointer list-none">
-        Who We Help
-        <svg class="w-4 h-4 shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </summary>
-      <ul class="pb-3 space-y-1 list-none m-0 p-0">
-        <li><a href="/self-employed-mortgage/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">I'm Self-Employed</a></li>
-        <li><a href="/real-estate-investor-mortgage/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">I'm a Real Estate Investor</a></li>
-        <li><a href="/reverse-mortgage/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">I'm 62 or Older</a></li>
-        <li><a href="/denied-mortgage/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">I Was Denied Elsewhere</a></li>
-        <li><a href="/first-time-homebuyer/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">I'm Buying My First Home</a></li>
-        <li><a href="/purchasing-refinancing/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">I'm Purchasing or Refinancing</a></li>
-        <li><a href="/down-payment-assistance/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">I Need Down Payment Help</a></li>
-      </ul>
-    </details>
-
-    <details class="group border-b border-[var(--color-mist-gray)]">
-      <summary class="flex items-center justify-between py-3 font-medium text-[var(--color-ink)] cursor-pointer list-none">
-        Loan Programs
-        <svg class="w-4 h-4 shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </summary>
-      <ul class="pb-3 space-y-1 list-none m-0 p-0">
-        <li><a href="/loans/business-bank-statement/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">Bank Statement Loans</a></li>
-        <li><a href="/loans/dscr/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">DSCR Loans</a></li>
-        <li><a href="/loans/reverse-mortgage/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">Reverse Mortgage</a></li>
-        <li><a href="/loans/non-qm-self-employed/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">Non-QM Loans</a></li>
-        <li><a href="/loans/conventional-government/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">Conventional / FHA / VA</a></li>
-        <li><a href="/loans/refinancing/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">Refinancing</a></li>
-        <li><a href="/loans/" class="block py-2 pl-3 text-sm text-[var(--color-accent)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] font-medium">All Loan Programs →</a></li>
-      </ul>
-    </details>
-
-    <a href="/loan-officers/" class="block py-3 font-medium text-[var(--color-ink)] no-underline border-b border-[var(--color-mist-gray)]">Find a Loan Officer</a>
-
-    <details class="group border-b border-[var(--color-mist-gray)]">
-      <summary class="flex items-center justify-between py-3 font-medium text-[var(--color-ink)] cursor-pointer list-none">
-        Resources
-        <svg class="w-4 h-4 shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </summary>
-      <ul class="pb-3 space-y-1 list-none m-0 p-0">
-        <li><a href="/mortgage-rates/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">Mortgage Rates</a></li>
-        <li><a href="/mortgage-guides/blog/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">Blog</a></li>
-        <li><a href="/mortgage-guides/calculators/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">Calculators</a></li>
-        <li><a href="/mortgage-guides/glossary/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">Mortgage Glossary</a></li>
-      </ul>
-    </details>
-
-    <details class="group border-b border-[var(--color-mist-gray)]">
-      <summary class="flex items-center justify-between py-3 font-medium text-[var(--color-ink)] cursor-pointer list-none">
-        About
-        <svg class="w-4 h-4 shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </summary>
-      <ul class="pb-3 space-y-1 list-none m-0 p-0">
-        <li><a href="/about/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">About Cliffco</a></li>
-        <li><a href="/why-cliffco/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">Why Cliffco</a></li>
-        <li><a href="/process/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">Our Process</a></li>
-        <li><a href="/reviews/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">Reviews</a></li>
-        <li><a href="/contact/" class="block py-2 pl-3 text-sm text-[var(--color-ink)] no-underline border-l-2 border-transparent hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">Contact</a></li>
-      </ul>
-    </details>
-
+    <a href="/loans/" class="block py-3 font-medium text-[var(--color-ink)] no-underline border-b border-black/10">Loan Programs</a>
+    <a href="/mortgage-guides/calculators/" class="block py-3 font-medium text-[var(--color-ink)] no-underline border-b border-black/10">Calculators</a>
+    <a href="/loan-officers/" class="block py-3 font-medium text-[var(--color-ink)] no-underline border-b border-black/10">Find a Loan Officer</a>
   </div>
 
   <!-- Drawer footer CTA -->

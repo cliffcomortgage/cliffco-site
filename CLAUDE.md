@@ -16,7 +16,7 @@ Both push to `main` directly. No branches/PRs needed for now.
 
 - **Vision:** To be the lender every family wishes they'd called first.
 - **Mission:** We get families home. Especially the ones other banks turned away. And we grow their net worth and self-worth along the way.
-- **Values:** Family · Integrity · Care · Possibility.
+- **Values:** Intentionality · Innovation · Accountability · Empowerment · Teamwork · Personalization · Growth · Security · Integrity · Achievement. These are the official company values (confirmed 2026-10-07); the website reads them from `website/src/data/company-values.ts`. The older "Family · Integrity · Care · Possibility" set in `brand/mission-vision-values.md` is superseded. Don't publish it.
 
 **Voice:** warm, human, scrappy. Explicitly anti-call-center, pro-second-chance-borrower — "yes when other banks say no." Avoid corporate/banky/cold language. When writing or reviewing any user-facing copy (site, marketing, taglines, error states, forms), check it against these pillars. Canonical text: `brand/mission-vision-values.md`.
 

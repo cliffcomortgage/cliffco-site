@@ -9,6 +9,7 @@ import { BRANCHES } from "../data/branches";
 import { LOAN_OFFICERS, loanOfficer, loanOfficersByBranch } from "../data/loan-officers";
 import { STATE_LICENSES } from "../data/state-licenses";
 import { LEADERSHIP_TEAM } from "../data/leadership-team";
+import { COMPANY_VALUES } from "../data/company-values";
 
 const yearsInBiz = COMPANY.yearsInBusiness();
 const president = loanOfficer("christopher-clifford")!;
@@ -66,23 +67,13 @@ const kathleenIdx = photoLeaders.findIndex((l) => l.slug === "samantha-cardinal"
         </div>
         <div class="border-t-2 border-[var(--color-ink)] pt-4">
           <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Values</p>
-          <ul class="mt-4 grid sm:grid-cols-2 gap-6 m-0 p-0 list-none">
-            <li>
-              <strong class="block text-[var(--color-ink)]">Family</strong>
-              <span class="text-sm text-[var(--color-text-muted)]">We treat every borrower like family, because we've been one for {yearsInBiz} years.</span>
-            </li>
-            <li>
-              <strong class="block text-[var(--color-ink)]">Integrity</strong>
-              <span class="text-sm text-[var(--color-text-muted)]">We do the right thing when it's hard, when it's slow, and when no one's watching.</span>
-            </li>
-            <li>
-              <strong class="block text-[var(--color-ink)]">Care</strong>
-              <span class="text-sm text-[var(--color-text-muted)]">Real hands on every file. No call centers, no handoffs, no shortcuts.</span>
-            </li>
-            <li>
-              <strong class="block text-[var(--color-ink)]">Possibility</strong>
-              <span class="text-sm text-[var(--color-text-muted)]">Other banks see a "no." We see a story worth working with.</span>
-            </li>
+          <ul class="mt-4 grid sm:grid-cols-2 gap-x-8 gap-y-5 m-0 p-0 list-none">
+            {COMPANY_VALUES.map((v) => (
+              <li>
+                <strong class="block text-[var(--color-ink)]">{v.name}</strong>
+                <span class="text-sm text-[var(--color-text-muted)]">{v.desc}</span>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

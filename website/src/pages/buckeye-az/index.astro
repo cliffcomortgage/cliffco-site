@@ -7,7 +7,8 @@ import { LOAN_OFFICERS } from "../../data/loan-officers";
 import { localBusinessSchema, breadcrumbSchema } from "../../lib/schema";
 
 const branch = BRANCHES.find((b) => b.slug === "buckeye-az")!;
-const los = LOAN_OFFICERS.filter((lo) => lo.branchSlug === "buckeye-az");
+// No loan officers are shown as based at Buckeye; list everyone licensed in Arizona instead.
+const los = LOAN_OFFICERS.filter((lo) => lo.states.includes("AZ"));
 
 const schema = [
   localBusinessSchema(branch),
@@ -49,8 +50,9 @@ import BranchPage from "../../components/asym/BranchPage.astro";
     about="Our Buckeye team is multilingual (fluent in English, Mandarin, and Spanish) and specializes in serving self-employed borrowers, real estate investors, and buyers with non-traditional income documentation across Arizona, California, and Texas."
     back={{ href: "/locations/arizona/", label: "← All Arizona offices" }}
     los={los}
-    teamEyebrow="Loan officers at this office"
-    teamTitle="Your Buckeye team."
+    teamEyebrow="Licensed in Arizona"
+    teamTitle="Arizona-licensed loan officers."
+    teamIntro="These loan officers are based at other Cliffco offices but are fully licensed to originate loans in Arizona."
     ctaTitle="Buying or investing in the Phoenix metro? We're here."
     formTitle="Buying or investing in the Phoenix metro?"
     formSub="Tell us your situation and the Buckeye team will be in touch within one business day."

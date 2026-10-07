@@ -39,8 +39,10 @@ const branchLOs = LOAN_OFFICERS.filter(
 );
 // LOs licensed in this state but based at a branch elsewhere
 const licensedOnlyLOs = LOAN_OFFICERS.filter(
-  (lo) => lo.states.includes(loc.state) && !stateBranchSlugs.has(lo.branchSlug) && !EXCLUDE_FROM_LOCATIONS.has(lo.slug),
+  (lo) => lo.states.includes(loc.state) && !stateBranchSlugs.has(lo.branchSlug),
 );
+// Show up to LIST_MAX people per grid (three full rows); a "View all" button only appears when there are more.
+const LIST_MAX = 9;
 // Total state-licensed LOs shown in the directory when filtered by state
 const totalStateLOs = LOAN_OFFICERS.filter((lo) => lo.states.includes(loc.state)).length;
 
@@ -106,64 +108,6 @@ const schema = [
     {loc.isFlorida && <Fragment slot="note">{COMPANY.floridaDba.disclosure}</Fragment>}
   </CityHero>
 
-  
-
-  <!-- FEATURED PRODUCTS -->
-  <Split eyebrow={`What we lead with in ${loc.name}`} title={`Built for ${loc.name} borrowers.`} wide>
-    <div class="grid sm:grid-cols-2 gap-4">
-      {loc.featuredProducts.map((slug) => {
-        const p = product(slug);
-        if (!p) return null;
-        return (
-          <a href={`/loans/${p.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
-            <h3 class="text-lg font-semibold group-hover:!text-white">{p.shortName}</h3>
-            <p class="mt-2 text-sm text-[var(--color-text-muted)] group-hover:text-white/75 flex-1 leading-relaxed">{p.oneLiner}</p>
-            <span class="mt-4 text-sm font-semibold">Learn more →</span>
-          </a>
-        );
-      })}
-    </div>
-  </Split>
-
-  {branchLOs.length > 0 && (
-    <Split
-      eyebrow={`Located at our ${loc.name} offices`}
-      title="Loan officers based here."
-      intro={`These loan officers are physically located at a Cliffco branch in ${loc.name}.`}
-      wide
-    >
-      <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
-        {branchLOs.slice(0, 9).map((lo) => <LoCard lo={lo} />)}
-      </div>
-    </Split>
-  )}
-
-  {licensedOnlyLOs.length > 0 && (
-    <Split
-      eyebrow={loc.state === "AZ" ? "Licensed in Arizona" : `Also licensed in ${loc.name}`}
-      title={loc.state === "AZ" ? "Arizona-licensed loan officers." : `Other ${loc.name}-licensed loan officers.`}
-      intro={`These loan officers are based at other Cliffco offices but are fully licensed to originate loans in ${loc.name}.`}
-      wide
-    >
-      <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 lo-shuffle-grid">
-        {licensedOnlyLOs.slice(0, 6).map((lo) => (
-          <LoCard lo={lo} note={`Based in ${BRANCHES.find((b) => b.slug === lo.branchSlug)?.city ?? "NY"}`} />
-        ))}
-      </div>
-      <a href={`/loan-officers/?state=${loc.state}`} class="mt-8 btn btn-primary">View all {totalStateLOs} {loc.name}-licensed loan officers →</a>
-    </Split>
-  )}
-
-  <!-- FAQ -->
-  <Split eyebrow={`${loc.name} FAQ`} title="Local borrower questions.">
-    <FaqList items={faq} />
-  </Split>
-
-  <CtaBand title={`${loc.name} borrowers - talk to a real Cliffco LO.`}>
-    <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
-    <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary">{COMPANY.hq.phone}</a>
-  </CtaBand>
-
   <!-- VISIT / CALL + FORM -->
   <section class="bg-white">
     <div class="container-wide py-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-start">
@@ -214,7 +158,68 @@ const schema = [
     </div>
   </section>
 
-  {loc.isFlorida && (
+
+  
+
+  <!-- FEATURED PRODUCTS -->
+  <Split eyebrow={`What we lead with in ${loc.name}`} title={`Built for ${loc.name} borrowers.`} wide>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {loc.featuredProducts.map((slug) => {
+        const p = product(slug);
+        if (!p) return null;
+        return (
+          <a href={`/loans/${p.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+            <h3 class="text-lg font-semibold group-hover:!text-white">{p.shortName}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] group-hover:text-white/75 flex-1 leading-relaxed">{p.oneLiner}</p>
+            <span class="mt-4 text-sm font-semibold">Learn more →</span>
+          </a>
+        );
+      })}
+    </div>
+  </Split>
+
+  {branchLOs.length > 0 && (
+    <Split
+      eyebrow={`Located at our ${loc.name} offices`}
+      title="Loan officers based here."
+      intro={`These loan officers are physically located at a Cliffco branch in ${loc.name}.`}
+      wide
+    >
+      <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
+        {branchLOs.slice(0, LIST_MAX).map((lo) => <LoCard lo={lo} />)}
+      </div>
+    </Split>
+  )}
+
+  {licensedOnlyLOs.length > 0 && (
+    <Split
+      eyebrow={loc.state === "AZ" ? "Licensed in Arizona" : `Also licensed in ${loc.name}`}
+      title={loc.state === "AZ" ? "Arizona-licensed loan officers." : `Other ${loc.name}-licensed loan officers.`}
+      intro={`These loan officers are based at other Cliffco offices but are fully licensed to originate loans in ${loc.name}.`}
+      wide
+    >
+      <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 lo-shuffle-grid">
+        {licensedOnlyLOs.slice(0, LIST_MAX).map((lo) => (
+          <LoCard lo={lo} note={`Based in ${BRANCHES.find((b) => b.slug === lo.branchSlug)?.city ?? "NY"}`} />
+        ))}
+      </div>
+      {licensedOnlyLOs.length > LIST_MAX && (
+        <a href={`/loan-officers/?state=${loc.state}`} class="mt-8 btn btn-primary">View all {totalStateLOs} {loc.name}-licensed loan officers →</a>
+      )}
+    </Split>
+  )}
+
+  <!-- FAQ -->
+  <Split eyebrow={`${loc.name} FAQ`} title="Local borrower questions.">
+    <FaqList items={faq} />
+  </Split>
+
+  <CtaBand title={`${loc.name} borrowers - talk to a real Cliffco LO.`}>
+    <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
+    <a href={`tel:${COMPANY.hq.phoneE164}`} class="btn btn-secondary">{COMPANY.hq.phone}</a>
+  </CtaBand>
+
+{loc.isFlorida && (
     <section class="bg-white py-8">
       <div class="container-wide">
         <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">{COMPANY.floridaDba.disclosure}</p>

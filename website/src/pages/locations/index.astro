@@ -51,7 +51,7 @@ const markets = LOCATIONS.filter((l) => !l.path.includes("/"));
                 ))}
               </div>
             )}
-            <p class="mt-4 text-sm text-[var(--color-text-muted)] group-hover:text-white/75 leading-relaxed flex-1">{l.blurb.split(".")[0]}.</p>
+            <p class="mt-4 text-sm text-[var(--color-text-muted)] group-hover:text-white/75 leading-relaxed flex-1 line-clamp-3">{l.blurb}</p>
             <span class="mt-5 text-sm font-semibold">View market →</span>
           </a>
         );

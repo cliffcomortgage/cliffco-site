@@ -150,21 +150,33 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
 
   <section class="bg-white pb-16">
     <div class="container-wide">
-      <ol class="list-none m-0 p-0" id="calc-grid">
-        {calculators.map((c, i) => (
-          <li class="calc-card border-b border-black/15" data-audience={c.audience}>
-            <a href={`/mortgage-guides/calculators/${c.slug}/`} class="group grid grid-cols-[2.5rem_1fr] md:grid-cols-[3rem_minmax(0,14rem)_1fr_auto] gap-x-6 gap-y-1 py-6 no-underline text-[var(--color-ink)] items-baseline">
-              <span class="font-mono text-sm text-[var(--color-text-muted)]">{String(i + 1).padStart(2, "0")}</span>
-              <h2 class="font-semibold leading-snug group-hover:underline" style="font-size: 1.1875rem;">{c.title}</h2>
-              <p class="col-start-2 md:col-start-auto text-sm text-[var(--color-text-muted)] leading-relaxed">
-                <span class="block font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--color-ink)] mb-1">{c.audience}</span>
-                {c.description}
-              </p>
-              <span class="col-start-2 md:col-start-auto text-sm font-semibold whitespace-nowrap">Use calculator →</span>
+      <div class="pt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3" id="calc-grid">
+        {calculators.map((c) => {
+          const colors = colorMap[c.color];
+          return (
+            <a
+              href={`/mortgage-guides/calculators/${c.slug}/`}
+              data-audience={c.audience}
+              class="calc-card group bg-white rounded-2xl border-2 border-black/15 p-6 no-underline flex flex-col h-full hover:border-[var(--color-ink)] hover:shadow-md transition-all duration-200"
+            >
+              <div class="flex items-start justify-between mb-4">
+                <div class={`w-11 h-11 rounded-xl ${colors.bg} flex items-center justify-center shrink-0`}>
+                  <svg class={`w-5 h-5 ${colors.icon}`} fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" set:html={c.icon} />
+                </div>
+                <span class="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--color-ink)] border border-[var(--color-ink)] px-2.5 py-1 rounded-full">{c.audience}</span>
+              </div>
+              <h2 class="font-semibold text-[var(--color-ink)] text-lg leading-snug">{c.title}</h2>
+              <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{c.description}</p>
+              <span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-ink)] group-hover:gap-2 transition-all">
+                Use calculator
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </span>
             </a>
-          </li>
-        ))}
-      </ol>
+          );
+        })}
+      </div>
 
       <div class="mt-14 grid gap-4 md:grid-cols-3">
         <div class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
