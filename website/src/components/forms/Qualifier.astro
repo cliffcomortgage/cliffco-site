@@ -133,20 +133,20 @@ const inputClass =
 
           <div class="grid sm:grid-cols-2 gap-4">
             <div>
-              <label for="q-fname" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">First name <span class="text-red-400">*</span></label>
+              <label for="q-fname" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">First name <span class="text-red-700">*</span></label>
               <input id="q-fname" name="first_name" type="text" required autocomplete="given-name" placeholder="Jane" class={inputClass} />
             </div>
             <div>
-              <label for="q-lname" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Last name <span class="text-red-400">*</span></label>
+              <label for="q-lname" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Last name <span class="text-red-700">*</span></label>
               <input id="q-lname" name="last_name" type="text" required autocomplete="family-name" placeholder="Smith" class={inputClass} />
             </div>
           </div>
           <div>
-            <label for="q-email" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Email <span class="text-red-400">*</span></label>
+            <label for="q-email" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Email <span class="text-red-700">*</span></label>
             <input id="q-email" name="email" type="email" required autocomplete="email" placeholder="jane@example.com" class={inputClass} />
           </div>
           <div>
-            <label for="q-phone" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Phone <span class="text-red-400">*</span></label>
+            <label for="q-phone" class="block text-xs font-medium text-[var(--color-text-muted)] mb-1">Phone <span class="text-red-700">*</span></label>
             <input id="q-phone" name="phone" type="tel" required autocomplete="tel" placeholder="(555) 000-0000" class={inputClass} />
           </div>
 
@@ -157,10 +157,14 @@ const inputClass =
             </label>
           </div>
 
-          <p class="q-error hidden text-sm text-red-500 font-medium"></p>
+          <p class="q-error hidden text-sm text-red-700 font-medium"></p>
           <button type="button" id="q-submit" class="btn btn-primary w-full disabled:opacity-60">See My Results</button>
         </div>
       </div>
+
+      <!-- Screen-reader announcements for errors and success. Outside the steps so it stays
+           in the accessibility tree when the steps are hidden on success. -->
+      <p class="q-live sr-only" role="status" aria-live="polite"></p>
 
       <!-- Success -->
       <div class="q-success" hidden>
@@ -410,6 +414,8 @@ const inputClass =
     // script can't auto-capture it as a duplicate. We post via the API below.
     const form = wrap.querySelector("#q-form");
     const submitBtn = wrap.querySelector("#q-submit");
+    const liveEl = wrap.querySelector(".q-live");
+    const announce = (msg) => { if (!liveEl) return; liveEl.textContent = ""; setTimeout(() => { liveEl.textContent = msg; }, 50); };
     async function submitForm() {
       const errEl = form.querySelector(".q-error");
       const btn = submitBtn;
@@ -420,9 +426,18 @@ const inputClass =
       const tcpa = form.querySelector("#q-tcpa").checked;
       errEl.classList.add("hidden");
 
-      if (!first || !last || !email || !phone || !tcpa) {
-        errEl.textContent = "Please fill in every field and agree to be contacted.";
+      // Name the missing fields and move focus to the first one
+      const missing = [["q-fname", "first name", first], ["q-lname", "last name", last], ["q-email", "email", email], ["q-phone", "phone", phone]]
+        .filter((m) => !m[2]);
+      if (missing.length || !tcpa) {
+        const names = missing.map((m) => m[1]);
+        const list = names.length < 3 ? names.join(" and ") : names.slice(0, -1).join(", ") + ", and " + names[names.length - 1];
+        errEl.textContent = names.length
+          ? "Please add your " + list + (tcpa ? "." : ", and check the box agreeing to be contacted.")
+          : "Please check the box agreeing to be contacted.";
         errEl.classList.remove("hidden");
+        announce(errEl.textContent);
+        form.querySelector("#" + (missing.length ? missing[0][0] : "q-tcpa")).focus();
         return;
       }
 
@@ -457,17 +472,19 @@ const inputClass =
           if (bar) bar.style.width = "100%";
           if (pct) pct.textContent = "100% complete";
           if (backBtn) backBtn.hidden = true;
-          if (successEl) successEl.hidden = false;
+          if (successEl) { successEl.hidden = false; announce(successEl.innerText.trim().split("\n")[0]); }
           window.scrollTo({ top: wrap.getBoundingClientRect().top + window.scrollY - 90, behavior: "smooth" });
         } else {
           errEl.textContent = json.error ?? "Something went wrong. Please try again or call (800) 834-4040.";
           errEl.classList.remove("hidden");
+          announce(errEl.textContent);
           btn.disabled = false;
           btn.textContent = "See My Results";
         }
       } catch {
         errEl.textContent = "Network error. Check your connection and try again, or call (800) 834-4040.";
         errEl.classList.remove("hidden");
+        announce(errEl.textContent);
         btn.disabled = false;
         btn.textContent = "See My Results";
       }
