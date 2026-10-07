@@ -54,7 +54,7 @@ import { COMPANY } from "../../../../data/company";
             </div>
           </div>
       </div>
-      <div class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
+      <div aria-live="polite" class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
             <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-5">Your results</p>
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
@@ -220,13 +220,13 @@ import { COMPANY } from "../../../../data/company";
     if (warningEl) {
       if (maxPayment < 800) {
         warningEl.textContent = "Your payment ceiling is tight. Consider whether your expense or savings estimates can flex before you shop.";
-        warningEl.style.color = "#d97706";
+        warningEl.style.color = "#b45309";
       } else if (maxPayment >= 800 && maxPayment < 2000) {
         warningEl.textContent = "Moderate budget. This ceiling works for many markets. Your Cliffco loan officer can show you what it qualifies for in your target area.";
-        warningEl.style.color = "#ca8a04";
+        warningEl.style.color = "#a16207";
       } else {
         warningEl.textContent = "Strong budget. You have meaningful room to shop. Keep in mind taxes and insurance will use part of this ceiling.";
-        warningEl.style.color = "#16a34a";
+        warningEl.style.color = "#15803d";
       }
     }
   }

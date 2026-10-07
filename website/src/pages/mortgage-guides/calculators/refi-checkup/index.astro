@@ -60,7 +60,7 @@ import { COMPANY } from "../../../../data/company";
             </div>
           </div>
       </div>
-      <div class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
+      <div aria-live="polite" class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
             <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-5">Your results</p>
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
@@ -239,7 +239,7 @@ import { COMPANY } from "../../../../data/company";
 
     // Net at 5 years
     net5El.textContent = net5yr >= 0 ? fmtDollar(net5yr) : "-" + fmtDollar(Math.abs(net5yr));
-    net5El.className = "result-num" + (net5yr >= 0 ? " text-green-600" : " text-red-600");
+    net5El.className = "result-num" + (net5yr >= 0 ? " text-green-700" : " text-red-600");
 
     // Verdict
     let verdict = "";
@@ -248,11 +248,11 @@ import { COMPANY } from "../../../../data/company";
       verdictEl.className = "mt-4 text-sm text-red-600";
     } else if (breakEvenMonths <= 24) {
       verdict = "Strong case for refinancing. You break even in under 2 years, and the savings compound from there.";
-      verdictEl.className = "mt-4 text-sm text-green-600";
+      verdictEl.className = "mt-4 text-sm text-green-700";
     } else if (breakEvenMonths <= 48) {
       const beYears = Math.ceil(breakEvenMonths / 12);
       verdict = `Moderate case. The math works if you plan to stay in the home at least ${beYears} years.`;
-      verdictEl.className = "mt-4 text-sm text-yellow-600";
+      verdictEl.className = "mt-4 text-sm text-yellow-700";
     } else {
       verdict = "Long break-even. Consider whether you plan to stay long enough to recover closing costs.";
       verdictEl.className = "mt-4 text-sm text-red-600";

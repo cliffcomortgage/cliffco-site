@@ -71,7 +71,7 @@ import { COMPANY } from "../../../../data/company";
             </div>
           </div>
       </div>
-      <div class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
+      <div aria-live="polite" class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
             <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-5">Your results</p>
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
@@ -245,7 +245,7 @@ import { COMPANY } from "../../../../data/company";
 
     if (savingsEl && hasData) {
       savingsEl.textContent = fmt(Math.abs(monthlySavings));
-      savingsEl.className = monthlySavings >= 0 ? "result-num text-green-600" : "result-num text-red-600";
+      savingsEl.className = monthlySavings >= 0 ? "result-num text-green-700" : "result-num text-red-600";
     } else if (savingsEl) {
       savingsEl.textContent = "-";
       savingsEl.className = "result-num";

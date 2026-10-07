@@ -95,12 +95,17 @@ import { COMPANY } from "../../data/company";
     opacity: 1;
     pointer-events: auto;
   }
+  /* Closed drawer is hidden (not just off-screen) so keyboard and screen-reader users
+     never land in it; visibility flips after the slide-out finishes. */
   #mobile-nav {
     transform: translateX(100%);
-    transition: transform 0.3s ease;
+    visibility: hidden;
+    transition: transform 0.3s ease, visibility 0s linear 0.3s;
   }
   #mobile-nav.open {
     transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.3s ease, visibility 0s;
   }
 </style>
 
@@ -109,31 +114,45 @@ import { COMPANY } from "../../data/company";
   const closeBtn = document.getElementById('mobile-close-btn')!;
   const nav = document.getElementById('mobile-nav')!;
   const overlay = document.getElementById('mobile-overlay')!;
+  const isOpen = () => nav.classList.contains('open');
 
   function openMenu() {
     nav.classList.add('open');
     overlay.classList.add('open');
     menuBtn.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+    closeBtn.focus();
   }
 
-  function closeMenu() {
+  function closeMenu(returnFocus = true) {
+    if (!isOpen()) return;
     nav.classList.remove('open');
     overlay.classList.remove('open');
     menuBtn.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    if (returnFocus) menuBtn.focus();
   }
 
   menuBtn.addEventListener('click', openMenu);
-  closeBtn.addEventListener('click', closeMenu);
-  overlay.addEventListener('click', closeMenu);
+  closeBtn.addEventListener('click', () => closeMenu());
+  overlay.addEventListener('click', () => closeMenu());
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeMenu();
   });
 
-  // Close drawer when a nav link is tapped
+  // Keep Tab inside the open drawer (it covers the page like a dialog)
+  nav.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || !isOpen()) return;
+    const items = Array.from(nav.querySelectorAll<HTMLElement>('a[href], button'));
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  // Close drawer when a nav link is tapped (the page is navigating away, so no focus return)
   nav.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeMenu);
+    link.addEventListener('click', () => closeMenu(false));
   });
 </script>

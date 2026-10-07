@@ -67,7 +67,7 @@ import { COMPANY } from "../../../../data/company";
             </div>
           </div>
       </div>
-      <div class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
+      <div aria-live="polite" class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
             <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-5">Your results</p>
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
@@ -267,9 +267,9 @@ import { COMPANY } from "../../../../data/company";
       if (breakEvenYear === -1) {
         breakevenEl.style.color = "#dc2626";
       } else if (breakEvenYear <= 5) {
-        breakevenEl.style.color = "#16a34a";
+        breakevenEl.style.color = "#15803d";
       } else if (breakEvenYear <= 9) {
-        breakevenEl.style.color = "#ca8a04";
+        breakevenEl.style.color = "#a16207";
       } else {
         breakevenEl.style.color = "#dc2626";
       }

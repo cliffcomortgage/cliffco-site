@@ -65,7 +65,7 @@ import { COMPANY } from "../../../../data/company";
             </div>
           </div>
       </div>
-      <div class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
+      <div aria-live="polite" class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
             <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-5">Your results</p>
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
@@ -220,7 +220,7 @@ import { COMPANY } from "../../../../data/company";
 
     if (winnerEl && hasData) {
       winnerEl.textContent = winner + " wins";
-      winnerEl.className = "mt-4 text-sm font-semibold text-green-600";
+      winnerEl.className = "mt-4 text-sm font-semibold text-green-700";
     } else if (winnerEl) {
       winnerEl.textContent = "";
     }

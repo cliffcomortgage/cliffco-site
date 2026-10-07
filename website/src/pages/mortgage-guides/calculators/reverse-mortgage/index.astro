@@ -47,7 +47,7 @@ import { COMPANY } from "../../../../data/company";
             </div>
           </div>
       </div>
-      <div class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
+      <div aria-live="polite" class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
             <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-5">Your results</p>
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
@@ -209,7 +209,7 @@ import { COMPANY } from "../../../../data/company";
       netEl.style.color = "var(--color-ink)";
     } else if (netAvailable >= 50000) {
       netEl.style.color = "";
-      netEl.classList.add("text-yellow-600");
+      netEl.classList.add("text-yellow-700");
       netEl.style.color = "";
     } else if (netAvailable > 0) {
       netEl.style.color = "";
@@ -226,7 +226,7 @@ import { COMPANY } from "../../../../data/company";
       verdictClass = "mt-4 text-sm text-red-600";
     } else if (netAvailable > 100000) {
       verdict = "Based on these inputs, you may be able to access significant equity without making monthly mortgage payments.";
-      verdictClass = "mt-4 text-sm text-green-600";
+      verdictClass = "mt-4 text-sm text-green-700";
       if (age < 70) {
         verdict += " Waiting until age 70 or older typically increases the principal limit. A loan officer can model both scenarios.";
       }

@@ -170,7 +170,7 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 
     const ratioEl = document.getElementById("art-dscr-ratio")!;
     ratioEl.textContent = dscr.toFixed(2);
-    ratioEl.className = "text-3xl font-bold mt-1 " + (dscr >= 1.25 ? "text-green-600" : dscr >= 1.0 ? "text-yellow-600" : "text-red-600");
+    ratioEl.className = "text-3xl font-bold mt-1 " + (dscr >= 1.25 ? "text-green-600" : dscr >= 1.0 ? "text-yellow-700" : "text-red-600");
 
     (document.getElementById("art-dscr-obligation") as HTMLElement).textContent = fmt(obligation);
 

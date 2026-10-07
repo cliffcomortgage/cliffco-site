@@ -16,10 +16,10 @@ const { label, title, intro, id } = Astro.props;
 <section id={id} class="bg-white scroll-mt-24">
   <div class="container-wide">
     <div class="grid lg:grid-cols-12 gap-6 lg:gap-10 py-12 lg:py-16 border-b border-black/20">
-      <div class="lg:col-span-3">
+      <div class="lg:col-span-3 min-w-0">
         <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">{label}</p>
       </div>
-      <div class="lg:col-span-9">
+      <div class="lg:col-span-9 min-w-0">
         {title && <h2 style="font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em;">{title}</h2>}
         {intro && <p class={`${title ? "mt-3" : ""} text-[var(--color-text-muted)] leading-relaxed max-w-3xl`}>{intro}</p>}
         <div class={title || intro ? "mt-8" : ""}><slot /></div>

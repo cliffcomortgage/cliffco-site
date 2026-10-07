@@ -67,12 +67,12 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
   <!-- Name row -->
   <div class="grid sm:grid-cols-2 gap-4">
     <div>
-      <label for={`${id}-fname`} class={labelClass}>First name <span class="text-red-400">*</span></label>
+      <label for={`${id}-fname`} class={labelClass}>First name <span class="text-red-700">*</span></label>
       <input id={`${id}-fname`} name="first_name" type="text" required autocomplete="given-name"
         placeholder="Jane" class={inputClass} />
     </div>
     <div>
-      <label for={`${id}-lname`} class={labelClass}>Last name <span class="text-red-400">*</span></label>
+      <label for={`${id}-lname`} class={labelClass}>Last name <span class="text-red-700">*</span></label>
       <input id={`${id}-lname`} name="last_name" type="text" required autocomplete="family-name"
         placeholder="Smith" class={inputClass} />
     </div>
@@ -80,14 +80,14 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
 
   <!-- Email -->
   <div>
-    <label for={`${id}-email`} class={labelClass}>Email <span class="text-red-400">*</span></label>
+    <label for={`${id}-email`} class={labelClass}>Email <span class="text-red-700">*</span></label>
     <input id={`${id}-email`} name="email" type="email" required autocomplete="email"
       placeholder="jane@example.com" class={inputClass} />
   </div>
 
   <!-- Phone -->
   <div>
-    <label for={`${id}-phone`} class={labelClass}>Phone <span class="text-red-400">*</span></label>
+    <label for={`${id}-phone`} class={labelClass}>Phone <span class="text-red-700">*</span></label>
     <input id={`${id}-phone`} name="phone" type="tel" required autocomplete="tel"
       placeholder="(555) 000-0000" class={inputClass} />
   </div>
@@ -95,7 +95,7 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
   <!-- Purpose -->
   {showPurpose && (
   <div>
-    <label for={`${id}-purpose`} class={labelClass}>I'm looking to <span class="text-red-400">*</span></label>
+    <label for={`${id}-purpose`} class={labelClass}>I'm looking to <span class="text-red-700">*</span></label>
     <select id={`${id}-purpose`} name="purpose" required
       class={dark
         ? 'w-full rounded-lg border border-white/20 bg-white/10 text-white px-4 py-2.5 text-sm focus:outline-none focus:border-white/60'
@@ -112,7 +112,7 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
   <!-- State -->
   {showState && (
   <div>
-    <label for={`${id}-state`} class={labelClass}>State <span class="text-red-400">*</span></label>
+    <label for={`${id}-state`} class={labelClass}>State <span class="text-red-700">*</span></label>
     <select id={`${id}-state`} name="state" required
       class={dark
         ? 'w-full rounded-lg border border-white/20 bg-white/10 text-white px-4 py-2.5 text-sm focus:outline-none focus:border-white/60'
@@ -130,7 +130,7 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
     <label for={`${id}-notes`} class={labelClass}>
       {notesLabel}
       {notesRequired
-        ? <span class="text-red-400"> *</span>
+        ? <span class="text-red-700"> *</span>
         : <span class={dark ? 'text-white/40' : 'text-[var(--color-text-muted)]'}> (optional)</span>
       }
     </label>
@@ -152,10 +152,12 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
   </div>
 
   <!-- Error / success messages -->
-  <p class="cf-error hidden text-sm text-red-500 font-medium"></p>
-  <p class="cf-success hidden text-sm text-green-600 font-medium">
+  <p class="cf-error hidden text-sm text-red-700 font-medium"></p>
+  <p class="cf-success hidden text-sm text-green-800 font-medium">
     Thank you! A loan officer will reach out within one business day.
   </p>
+  <!-- Screen-reader announcements for the messages above (always in the DOM so updates are read) -->
+  <p class="cf-live sr-only" role="status" aria-live="polite"></p>
 
   <button type="button"
     class={dark
@@ -186,7 +188,12 @@ document.querySelectorAll<HTMLFormElement>('.cf-contact-form').forEach((form) =>
     const btn    = submitBtn as HTMLButtonElement;
     const errEl  = form.querySelector('.cf-error') as HTMLParagraphElement;
     const okEl   = form.querySelector('.cf-success') as HTMLParagraphElement;
+    const liveEl = form.querySelector('.cf-live') as HTMLParagraphElement | null;
+    const announce = (msg: string) => { if (liveEl) { liveEl.textContent = ''; setTimeout(() => { liveEl.textContent = msg; }, 50); } };
     const origLabel = btn.textContent ?? 'Send Message';
+
+    // Native validation names and focuses the first missing or invalid field
+    if (!form.reportValidity()) return;
 
     errEl.classList.add('hidden');
     errEl.textContent = '';
@@ -210,11 +217,13 @@ document.querySelectorAll<HTMLFormElement>('.cf-contact-form').forEach((form) =>
       if (res.ok && json.success) {
         form.reset();
         okEl.classList.remove('hidden');
+        announce(okEl.textContent?.trim() ?? 'Message sent.');
         btn.textContent = 'Sent ✓';
         track('lead_form_submitted');
       } else {
         errEl.textContent = json.error ?? 'Something went wrong. Please try again or call us at (800) 834-4040.';
         errEl.classList.remove('hidden');
+        announce(errEl.textContent);
         btn.disabled = false;
         btn.textContent = origLabel;
         track('lead_form_failed', { reason: 'server' });
@@ -223,6 +232,7 @@ document.querySelectorAll<HTMLFormElement>('.cf-contact-form').forEach((form) =>
       track('lead_form_failed', { reason: 'network' });
       errEl.textContent = 'Network error. Check your connection and try again, or call us at (800) 834-4040.';
       errEl.classList.remove('hidden');
+      announce(errEl.textContent);
       btn.disabled = false;
       btn.textContent = origLabel;
     }

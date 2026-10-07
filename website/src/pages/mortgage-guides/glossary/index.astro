@@ -298,12 +298,12 @@ const termCount = sections.reduce((n, s) => n + s.entries.length, 0);
   </section>
 
   <!-- Alphabet jump nav -->
-  <nav class="bg-white sticky top-[4.5rem] z-30 border-y-2 border-[var(--color-ink)]" aria-label="Jump to letter">
-    <div class="container-wide py-2.5 flex gap-1 overflow-x-auto">
+  <nav class="bg-white sm:sticky sm:top-[4.5rem] z-30 border-y-2 border-[var(--color-ink)]" aria-label="Jump to letter">
+    <div class="container-wide py-2.5 flex flex-wrap gap-1">
       {["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","#"].map((letter) => (
         activeLetters.includes(letter)
           ? <a href={`#${letter.toLowerCase()}`} class="inline-flex items-center justify-center shrink-0 w-8 h-8 rounded-lg font-mono text-sm font-semibold no-underline text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white transition-colors">{letter}</a>
-          : <span class="inline-flex items-center justify-center shrink-0 w-8 h-8 font-mono text-sm text-black/20 cursor-default">{letter}</span>
+          : <span class="inline-flex items-center justify-center shrink-0 w-8 h-8 font-mono text-sm text-black/20 cursor-default" aria-hidden="true">{letter}</span>
       ))}
     </div>
   </nav>

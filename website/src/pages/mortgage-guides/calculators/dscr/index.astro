@@ -64,7 +64,7 @@ import { COMPANY } from "../../../../data/company";
             </div>
           </div>
       </div>
-      <div class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
+      <div aria-live="polite" class="calc-readout lg:col-span-7 lg:sticky lg:top-24 rounded-[1.75rem] border-2 border-[var(--color-ink)] p-6 sm:p-8">
             <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-5">Your results</p>
             <div class="grid gap-5 sm:grid-cols-3">
               <div>
@@ -209,8 +209,8 @@ import { COMPANY } from "../../../../data/company";
 
     // DSCR display and color
     let dscrColor = "text-red-600";
-    if (dscr >= 1.25) dscrColor = "text-green-600";
-    else if (dscr >= 1.0) dscrColor = "text-yellow-600";
+    if (dscr >= 1.25) dscrColor = "text-green-700";
+    else if (dscr >= 1.0) dscrColor = "text-yellow-700";
 
     if (dscrEl) {
       dscrEl.textContent = dscr > 0 ? dscr.toFixed(2) : "-";
@@ -222,20 +222,20 @@ import { COMPANY } from "../../../../data/company";
     if (cashflowEl) {
       const prefix = cashflow >= 0 ? "+" : "-";
       cashflowEl.textContent = prefix + fmtDollar(cashflow);
-      cashflowEl.className = `result-num ${cashflow >= 0 ? "text-green-600" : "text-red-600"}`;
+      cashflowEl.className = `result-num ${cashflow >= 0 ? "text-green-700" : "text-red-600"}`;
     }
 
     if (verdictEl) {
       let verdict = "";
       if (dscr >= 1.25) {
         verdict = "Strong coverage. This property should qualify at standard DSCR pricing with most lenders.";
-        verdictEl.className = "mt-4 text-sm font-medium text-green-600";
+        verdictEl.className = "mt-4 text-sm font-medium text-green-700";
       } else if (dscr >= 1.10) {
         verdict = "Good coverage. Most lenders approve at standard pricing at a 1.10 or higher ratio.";
-        verdictEl.className = "mt-4 text-sm font-medium text-green-600";
+        verdictEl.className = "mt-4 text-sm font-medium text-green-700";
       } else if (dscr >= 1.0) {
         verdict = "Marginal coverage. Some lenders will approve with a stronger credit profile or larger down payment.";
-        verdictEl.className = "mt-4 text-sm font-medium text-yellow-600";
+        verdictEl.className = "mt-4 text-sm font-medium text-yellow-700";
       } else {
         verdict = "Below breakeven. This property may not qualify for a standard DSCR loan. A larger down payment or lower purchase price may help.";
         verdictEl.className = "mt-4 text-sm font-medium text-red-600";

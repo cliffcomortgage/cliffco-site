@@ -83,7 +83,7 @@ import { COMPANY } from "../../../../data/company";
         <!-- Right: results -->
         <div class="space-y-4" id="bd-results">
           <!-- 3-2-1 Plan -->
-          <div class="calc-readout rounded-[1.5rem] border-2 border-[var(--color-ink)] overflow-hidden">
+          <div aria-live="polite" class="calc-readout rounded-[1.5rem] border-2 border-[var(--color-ink)] overflow-hidden">
             <div class="px-6 py-4 flex items-center justify-between" style="background: var(--color-ink);">
               <div>
                 <p class="text-white font-bold text-lg">3-2-1 Buydown</p>
@@ -112,7 +112,7 @@ import { COMPANY } from "../../../../data/company";
           </div>
 
           <!-- 2-1 Plan -->
-          <div class="calc-readout rounded-[1.5rem] border-2 border-[var(--color-ink)] overflow-hidden">
+          <div aria-live="polite" class="calc-readout rounded-[1.5rem] border-2 border-[var(--color-ink)] overflow-hidden">
             <div class="px-6 py-4 flex items-center justify-between bg-[var(--color-ink)]">
               <div>
                 <p class="text-white font-bold text-lg">2-1 Buydown</p>
@@ -141,7 +141,7 @@ import { COMPANY } from "../../../../data/company";
           </div>
 
           <!-- 1-0 Plan -->
-          <div class="calc-readout rounded-[1.5rem] border-2 border-[var(--color-ink)] overflow-hidden">
+          <div aria-live="polite" class="calc-readout rounded-[1.5rem] border-2 border-[var(--color-ink)] overflow-hidden">
             <div class="px-6 py-4 flex items-center justify-between" style="background-color: var(--color-ink);">
               <div>
                 <p class="text-white font-bold text-lg">1-0 Buydown</p>
@@ -254,8 +254,8 @@ import { COMPANY } from "../../../../data/company";
           </span>
         </td>
         <td class="px-5 py-3.5 text-right font-medium text-[var(--color-ink)]">${fmt(pmt)}</td>
-        <td class="px-5 py-3.5 text-right font-semibold text-green-600">+${fmt(moSavings)}</td>
-        <td class="px-5 py-3.5 text-right font-semibold text-green-600">${fmt(annualSubsidy)}</td>
+        <td class="px-5 py-3.5 text-right font-semibold text-green-700">+${fmt(moSavings)}</td>
+        <td class="px-5 py-3.5 text-right font-semibold text-green-700">${fmt(annualSubsidy)}</td>
       </tr>`;
     });
 
