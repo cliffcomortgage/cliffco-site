@@ -101,7 +101,10 @@ const calculators = [
   },
 ];
 
-const audiences = ["All", ...Array.from(new Set(calculators.map((c) => c.audience)))];
+const groups = Array.from(new Set(calculators.map((c) => c.audience))).map((audience) => ({
+  audience,
+  items: calculators.filter((c) => c.audience === audience),
+}));
 
 const colorMap: Record<string, { bg: string; icon: string }> = {
   blue:   { bg: "bg-blue-50",   icon: "text-blue-600" },
@@ -136,94 +139,42 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
     </div>
   </section>
 
-  <!-- Category filter -->
-  <section class="bg-white sticky top-[4.5rem] z-30 border-y-2 border-[var(--color-ink)]">
-    <div class="container-wide py-3 flex gap-2 overflow-x-auto" id="calc-filters">
-      {audiences.map((a) => (
-        <button
-          data-filter={a}
-          class={`calc-filter-btn shrink-0 whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-semibold border-2 border-[var(--color-ink)] transition-colors ${a === "All" ? "bg-[var(--color-ink)] text-white" : "bg-white text-[var(--color-ink)]"}`}
-        >{a}</button>
-      ))}
-    </div>
-  </section>
 
   <section class="bg-white pb-16">
     <div class="container-wide">
-      <div class="pt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3" id="calc-grid">
-        {calculators.map((c) => {
-          const colors = colorMap[c.color];
-          return (
-            <a
-              href={`/mortgage-guides/calculators/${c.slug}/`}
-              data-audience={c.audience}
-              class="calc-card group bg-white rounded-2xl border-2 border-black/15 p-6 no-underline flex flex-col h-full hover:border-[var(--color-ink)] hover:shadow-md transition-all duration-200"
-            >
-              <div class="flex items-start justify-between mb-4">
-                <div class={`w-11 h-11 rounded-xl ${colors.bg} flex items-center justify-center shrink-0`}>
-                  <svg class={`w-5 h-5 ${colors.icon}`} fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" set:html={c.icon} />
-                </div>
-                <span class="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--color-ink)] border border-[var(--color-ink)] px-2.5 py-1 rounded-full">{c.audience}</span>
-              </div>
-              <h2 class="font-semibold text-[var(--color-ink)] text-lg leading-snug">{c.title}</h2>
-              <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{c.description}</p>
-              <span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-ink)] group-hover:gap-2 transition-all">
-                Use calculator
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </span>
-            </a>
-          );
-        })}
+      <div class="border-t-2 border-[var(--color-ink)]">
+        {groups.map((g) => (
+          <section class="grid lg:grid-cols-12 gap-x-10 gap-y-5 py-10 border-b border-black/15">
+            <div class="lg:col-span-3">
+              <h2 class="text-[var(--color-ink)]" style="font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em;">{g.audience}</h2>
+              <p class="mt-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">{g.items.length} calculator{g.items.length === 1 ? "" : "s"}</p>
+            </div>
+            <div class="lg:col-span-9 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+              {g.items.map((c) => {
+                const colors = colorMap[c.color];
+                return (
+                  <a
+                    href={`/mortgage-guides/calculators/${c.slug}/`}
+                    class="group bg-white rounded-2xl border-2 border-black/15 p-6 no-underline flex flex-col h-full hover:border-[var(--color-ink)] hover:shadow-md transition-all duration-200"
+                  >
+                    <div class={`w-11 h-11 rounded-xl ${colors.bg} flex items-center justify-center shrink-0 mb-4`}>
+                      <svg class={`w-5 h-5 ${colors.icon}`} fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" set:html={c.icon} />
+                    </div>
+                    <h3 class="font-semibold text-[var(--color-ink)] text-lg leading-snug">{c.title}</h3>
+                    <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{c.description}</p>
+                    <span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-ink)] group-hover:gap-2 transition-all">
+                      Use calculator
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      </svg>
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          </section>
+        ))}
       </div>
-
-      <div class="mt-14 grid gap-4 md:grid-cols-3">
-        <div class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
-          <p class="eyebrow text-xs mb-2">ITIN loans</p>
-          <p class="font-semibold text-[var(--color-ink)]">Buying without a Social Security number?</p>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">ITIN mortgage qualification isn't something a calculator can fully model. Talk to a specialist.</p>
-          <a href="/get-started/" class="mt-4 inline-block text-sm font-semibold text-[var(--color-ink)]">Talk to a loan officer →</a>
-        </div>
-        <div class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
-          <p class="eyebrow text-xs mb-2">Foreign national loans</p>
-          <p class="font-semibold text-[var(--color-ink)]">Investing in US property from abroad?</p>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Qualification depends on your country of origin, visa status, and asset documentation.</p>
-          <a href="/get-started/" class="mt-4 inline-block text-sm font-semibold text-[var(--color-ink)]">Talk to a loan officer →</a>
-        </div>
-        <div class="rounded-2xl bg-[var(--color-ink)] text-white p-6">
-          <p class="eyebrow text-xs mb-2 !text-white/55">Not sure where to start?</p>
-          <p class="font-semibold text-white">Skip the calculator and talk to a real person.</p>
-          <p class="mt-2 text-sm text-white/70">A Cliffco loan officer can tell you exactly what you qualify for in 24 hours.</p>
-          <a href="/get-started/" class="mt-4 inline-block text-sm font-semibold !text-white">Get started →</a>
-        </div>
-      </div>
-    </div>
   </section>
 
-<script>
-  const btns = document.querySelectorAll<HTMLButtonElement>('.calc-filter-btn');
-  const cards = document.querySelectorAll<HTMLElement>('.calc-card');
-
-  const activeClass = ['bg-[var(--color-ink)]', 'text-white'];
-  const inactiveClass = ['bg-white', 'text-[var(--color-ink)]'];
-
-  btns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter ?? 'All';
-
-      btns.forEach(b => {
-        b.classList.remove(...activeClass);
-        b.classList.add(...inactiveClass);
-      });
-      btn.classList.remove(...inactiveClass);
-      btn.classList.add(...activeClass);
-
-      cards.forEach(card => {
-        const match = filter === 'All' || card.dataset.audience === filter;
-        card.style.display = match ? '' : 'none';
-      });
-    });
-  });
-</script>
 </Layout>
