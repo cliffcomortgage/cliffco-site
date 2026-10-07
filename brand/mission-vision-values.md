@@ -12,14 +12,32 @@ And we grow their net worth and self-worth along the way.
 
 ## Values
 
-### Family
-We treat every borrower like family — because we've been one for 36 years.
+### Intentionality
+We are present and aligned in our relationships.
+
+### Innovation
+We blaze the trail in a changing world.
+
+### Accountability
+We hold ourselves to a standard of predictable excellence.
+
+### Empowerment
+We ignite personal responsibility.
+
+### Teamwork
+We are stronger together.
+
+### Personalization
+We love to create WOW!
+
+### Growth
+We cultivate success for our clients and our team.
+
+### Security
+We protect everyone we work with.
 
 ### Integrity
-We do the right thing when it's hard, when it's slow, and when no one's watching.
+We act with unwavering honesty.
 
-### Care
-Real hands on every file. No call centers, no handoffs, no shortcuts.
-
-### Possibility
-Other banks see a "no." We see a story worth working with.
+### Achievement
+We celebrate the wins.
