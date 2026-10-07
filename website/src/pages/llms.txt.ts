@@ -38,12 +38,26 @@ export const GET: APIRoute = () => {
   lines.push("");
   lines.push(
     `> ${COMPANY.legalName} is a ${years}-year independent mortgage banker ` +
-      `(NMLS #${COMPANY.nmls}) headquartered in Uniondale, NY. Cliffco specializes in ` +
-      `Non-QM and self-employed loans, reverse mortgages, DSCR loans for real estate ` +
-      `investors, and business bank statement loans. Cliffco is licensed in ${stateCount} ` +
-      `states and operates ${branchCount} branches across New York, New Jersey, Arizona, ` +
-      `Minnesota, and Florida. In Florida, Cliffco operates as Clout Mortgage, Inc.`
+      `(NMLS #${COMPANY.nmls}) headquartered in Uniondale, NY. Cliffco helps first-time ` +
+      `homebuyers, move-up buyers, and homeowners refinancing with conventional, FHA, VA, ` +
+      `and USDA loans and down payment assistance programs. Cliffco also offers specialty ` +
+      `programs, including bank statement loans for the self-employed, reverse mortgages ` +
+      `for homeowners 62 and older, and DSCR loans for real estate investors. Cliffco is ` +
+      `licensed in ${stateCount} states and operates ${branchCount} branches across New York, ` +
+      `New Jersey, Arizona, Minnesota, and Florida. In Florida, Cliffco operates as Clout ` +
+      `Mortgage, Inc.`
   );
+  lines.push("");
+
+  lines.push("## Who We Help");
+  lines.push("");
+  lines.push(`- [First-time homebuyers](${abs("/first-time-homebuyer/")}): low-down-payment loans and step-by-step guidance for a first purchase`);
+  lines.push(`- [Buying or refinancing a home](${abs("/purchasing-refinancing/")}): conventional, FHA, and VA purchase and refinance loans`);
+  lines.push(`- [Down payment assistance](${abs("/down-payment-assistance/")}): programs that can cover the down payment, closing costs, or both`);
+  lines.push(`- [Self-employed borrowers](${abs("/self-employed-mortgage/")}): bank statement and 1099 loans`);
+  lines.push(`- [Real estate investors](${abs("/real-estate-investor-mortgage/")}): DSCR and investment property loans`);
+  lines.push(`- [Homeowners 62 and older](${abs("/reverse-mortgage/")}): reverse mortgages`);
+  lines.push(`- [Denied elsewhere](${abs("/denied-mortgage/")}): a second look after a denial`);
   lines.push("");
 
   lines.push("## About");

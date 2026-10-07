@@ -1,4 +1,4 @@
-﻿---
+---
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
@@ -7,35 +7,47 @@ import { faqPageSchema, articleSchema } from "../../lib/schema";
 
 const rateFactors = [
   {
-    factor: "Loan type",
-    impact: "Non-QM rates are typically 0.5% to 2% higher than conventional rates because these loans are not eligible for sale to Fannie Mae or Freddie Mac. The exact spread depends on the program.",
-  },
-  {
     factor: "Credit score",
-    impact: "The lower the credit score, the higher the rate adjustment. In Non-QM programs, the range spans from 500 to 800+, and pricing steps are more granular than in conventional lending.",
+    impact: "The higher your score, the better your rate. Conventional pricing improves in steps up to roughly 780, while FHA and VA are more forgiving of lower scores. In Non-QM programs, the range spans from 500 to 800+, with more granular pricing steps.",
   },
   {
-    factor: "Loan-to-value (LTV)",
-    impact: "A larger down payment reduces your LTV and typically lowers your rate. Most Non-QM programs have defined LTV tiers (65%, 70%, 75%, 80%) with different pricing at each level.",
+    factor: "Down payment (LTV)",
+    impact: "A larger down payment reduces your loan-to-value (LTV) and typically lowers your rate. On a conventional loan, 20% down also removes private mortgage insurance. Most Non-QM programs have defined LTV tiers (65%, 70%, 75%, 80%) with different pricing at each level.",
+  },
+  {
+    factor: "Loan type",
+    impact: "Conventional, FHA, and VA loans each price differently. Non-QM rates are typically 0.5% to 2% higher than conventional because those loans are not eligible for sale to Fannie Mae or Freddie Mac. The exact spread depends on the program.",
   },
   {
     factor: "Property type",
-    impact: "Non-owner-occupied properties, investment condos, multi-family, and short-term rental properties carry additional rate adjustments. Primary residences get the best pricing.",
+    impact: "Primary residences get the best pricing. Second homes, investment properties, multi-family, condos, and short-term rentals carry additional rate adjustments.",
+  },
+  {
+    factor: "Loan amount",
+    impact: "Loan amounts above the conforming limit (jumbo) carry their own pricing. Very high loan amounts on Non-QM programs can add additional adjustments.",
   },
   {
     factor: "Income documentation type",
     impact: "Full documentation (W-2, tax returns) gets the best rate. Bank statement programs and no-ratio DSCR programs carry a premium that reflects the additional lender risk.",
-  },
-  {
-    factor: "Loan amount",
-    impact: "Jumbo loan amounts (above conventional conforming limits) carry their own pricing. Very high loan amounts on Non-QM programs can add additional adjustments.",
   },
 ];
 
 const faq = [
   {
     question: "Why don't you post your current rates on this page?",
-    answer: "Non-QM rates are scenario-specific. Unlike conventional rates, which are set against a narrow range of borrower profiles, Non-QM rates adjust for 6 to 10 factors simultaneously: credit score, LTV, documentation type, property type, loan amount, and more. A rate quoted without knowing your scenario is meaningless at best and misleading at worst. Call us or start a conversation and you'll have a real number in one business day.",
+    answer: "Because the rate you'd actually get depends on your scenario. Advertised rates usually assume an ideal borrower, and real pricing adjusts for credit score, down payment, loan type, property type, loan amount, and lock period. A rate quoted without knowing your situation is meaningless at best and misleading at worst. Call us or start a conversation and you'll have a real number in one business day.",
+  },
+  {
+    question: "What's a rate lock, and how long does it last?",
+    answer: "A rate lock guarantees your interest rate for a set period, typically 30, 45, or 60 days. This protects you from rate increases while your loan is in underwriting. Locks typically require a property address and accepted contract. Extended locks are available for new construction or longer timelines but usually carry a cost.",
+  },
+  {
+    question: "What's the difference between the interest rate and the APR?",
+    answer: "The interest rate is what you pay to borrow the loan amount. The APR (annual percentage rate) adds lender fees, points, and mortgage insurance to show the total yearly cost of the loan, so it's usually higher than the rate. Comparing APRs is the best way to compare offers from different lenders.",
+  },
+  {
+    question: "Are mortgage rates fixed or adjustable?",
+    answer: "Both options exist. Most buyers choose a 30-year fixed rate for a payment that never changes, and 15-year fixed loans carry lower rates with higher monthly payments. ARM options (5/1, 7/1) can offer a lower initial rate if you plan to sell or refinance within the initial fixed period. The same choices are available on most Non-QM programs. Your loan officer will explain the trade-offs for your specific timeline.",
   },
   {
     question: "How much higher are Non-QM rates than conventional rates?",
@@ -45,24 +57,16 @@ const faq = [
     question: "Can I refinance out of a Non-QM loan into a conventional loan later?",
     answer: "Yes, and many borrowers plan to do exactly that. If a borrower's situation changes (for example, a self-employed borrower files two years of stronger tax returns, or a recent credit event clears the conventional waiting period), refinancing into a conventional loan at a lower rate is a straightforward path. Your Cliffco loan officer will help you understand what that transition looks like from day one.",
   },
-  {
-    question: "What's a rate lock, and how long does it last?",
-    answer: "A rate lock guarantees your interest rate for a set period, typically 30, 45, or 60 days. This protects you from rate increases while your loan is in underwriting. Locks typically require a property address and accepted contract. Extended locks are available for new construction or longer timelines but usually carry a cost.",
-  },
-  {
-    question: "Are Non-QM rates fixed or adjustable?",
-    answer: "Both options exist. Most Non-QM loans are offered as 30-year fixed rates, which are the most common choice. ARM options (5/1, 7/1) are available and can offer lower initial rates for borrowers who plan to sell or refinance within the initial fixed period. Your loan officer will explain the trade-offs for your specific timeline.",
-  },
 ];
 
 const schema = [
   faqPageSchema(faq),
   articleSchema({
-    headline: "Non-QM and Conventional Mortgage Rates: What Affects Your Rate",
-    description: "Mortgage rates are scenario-specific. Learn what factors affect your Non-QM, bank statement, or DSCR mortgage rate, and how to get a real number for your situation.",
+    headline: "Mortgage Rates: What Affects Your Rate",
+    description: "Mortgage rates are scenario-specific. Learn what affects your conventional, FHA, VA, or specialty loan rate, and how to get a real number for your situation.",
     url: "/mortgage-rates/",
     datePublished: "2026-04-15",
-    dateModified: "2026-07-15",
+    dateModified: "2026-10-07",
   }),
 ];
 import IndexHeader from "../../components/asym/IndexHeader.astro";
@@ -72,6 +76,7 @@ import FaqList from "../../components/asym/FaqList.astro";
 const rateContext = [
   { program: "Conventional (30-yr fixed)", context: "Best available pricing for W-2 borrowers with 620+ credit. Benchmark for comparison." },
   { program: "FHA (30-yr fixed)", context: "Slightly above conventional. Lower credit threshold. Mortgage insurance required." },
+  { program: "VA (30-yr fixed)", context: "Often priced at or below conventional for eligible veterans and service members. No monthly mortgage insurance." },
   { program: "Bank Statement Loans", context: "Typically 0.75% to 1.5% above conventional depending on credit and LTV." },
   { program: "DSCR Investment Loans", context: "Varies by property cash flow ratio, credit score, and LTV. Often competitive with conventional investor rates." },
   { program: "Non-QM (general)", context: "0.5% to 2% above conventional. Specific pricing depends heavily on the full scenario." },
@@ -79,8 +84,8 @@ const rateContext = [
 ---
 
 <Layout
-  title="Mortgage Rates | Non-QM, Bank Statement & DSCR Rates | Cliffco"
-  description="Non-QM mortgage rates depend on your specific scenario: loan type, credit, LTV, and documentation. Learn what factors affect your rate and how to get a real quote in one business day."
+  title="Mortgage Rates | Conventional, FHA, VA & Refinance Rates | Cliffco"
+  description="Your mortgage rate depends on your credit, down payment, loan type, and property. Learn what moves conventional, FHA, and VA rates, and get a real quote from Cliffco in one business day."
   schema={schema}
 >
   <Breadcrumbs trail={[
@@ -89,8 +94,8 @@ const rateContext = [
   ]} />
 
   <IndexHeader
-    eyebrow="Non-QM, Bank Statement, DSCR, and Conventional Rates"
-    lead="Non-QM rates aren't posted because they're specific. Tell us your scenario and we'll give you a real number in one business day."
+    eyebrow="Conventional, FHA, VA, and Refinance Rates"
+    lead="Rates change daily and depend on your credit, down payment, and loan type. Tell us what you're planning and we'll give you a real number in one business day."
   >
     Your Rate Depends On Your Situation.
     <Fragment slot="actions">
@@ -112,8 +117,8 @@ const rateContext = [
   <IndexSection label="Why we don't post a rate table" title="A rate without context is just a number.">
     <div class="grid xl:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] gap-10 items-start">
       <div class="space-y-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
-        <p>Conventional lenders can post a rate because their borrowers are largely the same: W-2 income, 720+ credit score, 20% down, primary residence. The rate for that profile on a given day is a meaningful data point.</p>
-        <p>Non-QM lending doesn't work that way. A bank statement loan for a self-employed borrower with 680 credit and 25% down is priced differently than a DSCR loan for an investor with an 800 score and a 75% LTV property generating strong cash flow. Posting a rate that covers neither accurately would mislead you.</p>
+        <p>The rates you see advertised usually assume a near-perfect borrower: top-tier credit, 20% or more down, a single-family primary residence, and sometimes points paid up front. If that isn't exactly you, the rate you'd actually get is different.</p>
+        <p>Your rate moves with your credit score, down payment, loan type, property, and how long you lock. A first-time buyer putting 3.5% down on an FHA loan and a move-up buyer putting 20% down on a conventional loan are priced differently on the same day. Posting one number that fits neither would mislead you.</p>
         <p>We'd rather give you a real number for your real situation. That takes one business day and requires no credit pull.</p>
       </div>
       <div class="rounded-2xl overflow-hidden aspect-[4/3] border-2 border-[var(--color-ink)]">
@@ -123,7 +128,7 @@ const rateContext = [
   </IndexSection>
 
   <!-- RATE CONTEXT -->
-  <IndexSection label="What you can expect" title="Non-QM rate context.">
+  <IndexSection label="What you can expect" title="Rate context by loan type.">
     <dl class="border-t-2 border-[var(--color-ink)]">
       {rateContext.map((item) => (
         <div class="grid md:grid-cols-[minmax(0,16rem)_1fr] gap-x-8 gap-y-1 py-4 border-b border-black/15">
@@ -136,7 +141,7 @@ const rateContext = [
   </IndexSection>
 
   <!-- RATE FACTORS -->
-  <IndexSection label="What affects your rate" title="Six factors that move your Non-QM rate.">
+  <IndexSection label="What affects your rate" title="Six factors that move your rate.">
     <ol class="list-none m-0 p-0 border-t-2 border-[var(--color-ink)]">
       {rateFactors.map((item, i) => (
         <li class="grid grid-cols-[3rem_1fr] md:grid-cols-[3rem_minmax(0,14rem)_1fr] gap-x-6 gap-y-1 py-5 border-b border-black/15">
@@ -157,7 +162,7 @@ const rateContext = [
   <IndexSection
     label="Get your rate"
     title="Get a real rate for your real situation."
-    intro="Tell us your scenario. A Cliffco loan officer responds with a real rate within one business day. No credit pull. No commitment."
+    intro="Tell us what you're planning. A Cliffco loan officer responds with a real rate within one business day. No credit pull. No commitment."
   >
     <div class="flex flex-wrap gap-3">
       <a href="/get-started/" class="btn btn-primary">Get My Rate</a>

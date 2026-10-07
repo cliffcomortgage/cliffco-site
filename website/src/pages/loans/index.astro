@@ -1,10 +1,20 @@
-﻿---
+---
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
-import { PRODUCTS, priorityProducts } from "../../data/products";
+import { PRODUCTS, pillarProducts } from "../../data/products";
 
-const priority = priorityProducts();
-const supporting = PRODUCTS.filter((p) => !p.isPriority);
+// Home purchase + refinance programs lead; specialty programs follow.
+const HOME_CARDS: Record<string, string> = {
+  conventional: "As little as 3% down",
+  fha: "3.5% down",
+  va: "0% down",
+  usda: "0% down",
+};
+const isHomeLoan = (p: (typeof PRODUCTS)[number]) => p.category === "Conventional / Government";
+const homeCards = PRODUCTS.filter((p) => p.slug in HOME_CARDS);
+const homeMore = PRODUCTS.filter((p) => isHomeLoan(p) && !(p.slug in HOME_CARDS));
+const specialty = pillarProducts();
+const specialtyMore = PRODUCTS.filter((p) => !isHomeLoan(p) && !p.hasPillar);
 import TermSheetHero from "../../components/asym/TermSheetHero.astro";
 import TermSheet from "../../components/asym/TermSheet.astro";
 import Chapter from "../../components/asym/Chapter.astro";
@@ -13,8 +23,8 @@ import { COMPANY } from "../../data/company";
 ---
 
 <Layout
-  title="Mortgage Loan Programs | Non-QM, DSCR, Reverse, FHA & More | Cliffco"
-  description="Cliffco's full loan menu: Non-QM and self-employed, reverse mortgage (HECM and proprietary), DSCR for investors, business bank statement loans, conventional, FHA, VA, USDA, and renovation."
+  title="Mortgage Loan Programs | Conventional, FHA, VA, USDA & More | Cliffco"
+  description="Cliffco's full loan menu: conventional, FHA, VA, and USDA loans for buying or refinancing a home, plus HELOCs, renovation loans, and specialty programs for self-employed borrowers, investors, and homeowners 62+."
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
@@ -23,30 +33,44 @@ import { COMPANY } from "../../data/company";
 
   <TermSheetHero
     eyebrow="Loans"
-    lead="Cliffco's specialty is non-traditional mortgage scenarios: the loans most banks don't know how to underwrite. We also do conventional, FHA, VA, USDA, and renovation. Pick a product to learn more."
-    facts={priority.map((p) => ({ label: p.category, value: p.shortName }))}
+    lead="Buying your first home, moving up, or refinancing? Start with the core programs below. And if your situation is less typical, we have specialty programs for that too."
+    facts={homeCards.map((p) => ({ label: HOME_CARDS[p.slug], value: p.shortName }))}
   >
     Every loan we lend on.
     <Fragment slot="actions">
-      <a href="#specialties" class="btn btn-primary">See our specialties</a>
+      <a href="#home-loans" class="btn btn-primary">See home loans</a>
       <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
     </Fragment>
   </TermSheetHero>
 
   <TermSheet>
 
-  <!-- SPECIALTIES -->
-  <Chapter id="specialties" eyebrow="Our specialties" title="The loans other banks turn away." wide>
+  <!-- HOME LOANS: buying or refinancing -->
+  <Chapter id="home-loans" eyebrow="Buying or refinancing" title="Home loans for first-time and move-up buyers." wide>
     <div class="grid sm:grid-cols-2 gap-4">
-      {priority.map((p, i) => (
+      {homeCards.map((p, i) => (
         <a href={`/loans/${p.slug}/`} class={`group rounded-2xl p-7 flex flex-col h-full no-underline transition-colors ${i === 0 ? "bg-[var(--color-ink)] text-white" : "border-2 border-[var(--color-ink)] text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white"}`}>
-          <p class={`font-mono text-[11px] uppercase tracking-[0.12em] ${i === 0 ? "text-white/55" : "text-[var(--color-text-muted)] group-hover:text-white/55"}`}>{p.category}</p>
+          <p class={`font-mono text-[11px] uppercase tracking-[0.12em] ${i === 0 ? "text-white/55" : "text-[var(--color-text-muted)] group-hover:text-white/55"}`}>{HOME_CARDS[p.slug]}</p>
           <h3 class={`mt-3 ${i === 0 ? "!text-white" : "group-hover:!text-white"}`} style="font-size: var(--text-h3); font-weight: 700;">{p.shortName}</h3>
           <p class={`mt-3 text-sm leading-relaxed flex-1 ${i === 0 ? "text-white/80" : "text-[var(--color-text-muted)] group-hover:text-white/80"}`}>{p.oneLiner}</p>
           <span class="mt-5 text-sm font-semibold">Learn more →</span>
         </a>
       ))}
     </div>
+    <p class="mt-5">
+      <a href="/loans/conventional-government/" class="text-sm font-semibold text-[var(--color-ink)]">Compare conventional, FHA, VA, and USDA side by side →</a>
+    </p>
+    <ul class="mt-8 list-none m-0 p-0 border-t border-[var(--color-ink)]">
+      {homeMore.map((p) => (
+        <li class="border-b border-black/15">
+          <a href={`/loans/${p.slug}/`} class="group grid sm:grid-cols-[minmax(0,13rem)_1fr_auto] gap-x-6 gap-y-1 py-5 no-underline text-[var(--color-ink)]">
+            <span class="font-semibold group-hover:underline">{p.shortName}</span>
+            <span class="text-sm text-[var(--color-text-muted)] leading-relaxed">{p.oneLiner}</span>
+            <span class="hidden sm:block text-sm font-semibold">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
   </Chapter>
 
   <!-- HELOC SPOTLIGHT (black band) -->
@@ -63,10 +87,20 @@ import { COMPANY } from "../../data/company";
     </p>
   </Chapter>
 
-  <!-- OTHER PROGRAMS -->
-  <Chapter rule={false} eyebrow="Everything else" title="Other loan programs.">
-    <ul class="list-none m-0 p-0 border-t border-[var(--color-ink)]">
-      {supporting.map((p) => (
+  <!-- SPECIALTY PROGRAMS -->
+  <Chapter id="specialty" rule={false} eyebrow="Specialty programs" title="When your situation is less typical." wide>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {specialty.map((p) => (
+        <a href={`/loans/${p.slug}/`} class="group rounded-2xl p-7 flex flex-col h-full no-underline transition-colors border-2 border-[var(--color-ink)] text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white">
+          <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/55">{p.category}</p>
+          <h3 class="mt-3 group-hover:!text-white" style="font-size: var(--text-h3); font-weight: 700;">{p.shortName}</h3>
+          <p class="mt-3 text-sm leading-relaxed flex-1 text-[var(--color-text-muted)] group-hover:text-white/80">{p.oneLiner}</p>
+          <span class="mt-5 text-sm font-semibold">Learn more →</span>
+        </a>
+      ))}
+    </div>
+    <ul class="mt-8 list-none m-0 p-0 border-t border-[var(--color-ink)]">
+      {specialtyMore.map((p) => (
         <li class="border-b border-black/15">
           <a href={`/loans/${p.slug}/`} class="group grid sm:grid-cols-[minmax(0,13rem)_1fr_auto] gap-x-6 gap-y-1 py-5 no-underline text-[var(--color-ink)]">
             <span class="font-semibold group-hover:underline">{p.shortName}</span>
@@ -80,7 +114,7 @@ import { COMPANY } from "../../data/company";
   </TermSheet>
 
 
-  <CtaBand title="Not sure which loan fits?" text="Tell us your situation. A licensed Cliffco loan officer responds in one business day.">
+  <CtaBand title="Not sure which loan fits?" text="Tell us what you're planning. A licensed Cliffco loan officer responds in one business day.">
     <a href="/get-started/" class="btn btn-primary">Get Started</a>
     <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
   </CtaBand>

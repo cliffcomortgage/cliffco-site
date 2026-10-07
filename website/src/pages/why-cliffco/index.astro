@@ -15,10 +15,10 @@ const branchCount = BRANCHES.length;
 const schema = [
   articleSchema({
     headline: "Why Cliffco Mortgage Bankers",
-    description: `${yearsInBiz} years of mortgage lending, ${STATE_LICENSES.length} states, ${branchCount} branches, and a specialty in loans conventional lenders won't touch. What makes Cliffco different.`,
+    description: `${yearsInBiz} years of mortgage lending, ${STATE_LICENSES.length} states, ${branchCount} branches, and loans for first-time buyers, move-up buyers, and refinances, plus the specialty programs many lenders don't offer. What makes Cliffco different.`,
     url: "/why-cliffco/",
     datePublished: "2026-04-15",
-    dateModified: "2026-10-05",
+    dateModified: "2026-10-07",
   }),
 ];
 
@@ -31,12 +31,16 @@ const stats = [
 
 const difference = [
   {
-    heading: "Non-QM Specialists",
-    body: "Most lenders have one answer for complex borrowers: no. We have 15+ alternative loan products, including bank statement programs, DSCR, asset depletion, and non-warrantable condo financing. Complex files are what we work on all day.",
+    heading: "Every Core Home Loan",
+    body: "Conventional with as little as 3% down, FHA, VA, USDA, and down payment assistance. First home or next home, we'll match you with the program that fits your budget and explain why it fits.",
   },
   {
     heading: "Transparent Process",
     body: "You'll know your options, your rate, and your timeline before you commit to anything. No bait-and-switch. No surprises at the closing table. Cliffco loan officers work for you, not for a quota.",
+  },
+  {
+    heading: "Expertise When It's Complicated",
+    body: "Self-employed, buying a rental, or 62 and older? We also offer 15+ alternative loan products, including bank statement programs, DSCR, reverse mortgages, and non-warrantable condo financing, so a less typical situation doesn't mean starting over somewhere else.",
   },
   {
     heading: "Licensed Coast to Coast",
@@ -45,20 +49,21 @@ const difference = [
 ];
 
 const serve = [
-  { label: "Self-employed borrowers", href: "/self-employed-mortgage/", desc: "Bank statement qualifying. No tax returns required." },
+  { label: "First-time homebuyers", href: "/first-time-homebuyer/", desc: "FHA, conventional with 3% down, VA, and guidance at every step from pre-approval to keys." },
+  { label: "Move-up buyers and refinances", href: "/purchasing-refinancing/", desc: "Buying your next home or refinancing the one you're in, with conventional, FHA, and VA loans." },
+  { label: "Down payment assistance", href: "/down-payment-assistance/", desc: "Programs that can cover your down payment, closing costs, or both." },
+  { label: "Self-employed and business owners", href: "/self-employed-mortgage/", desc: "Qualify with 12 months of bank statements instead of tax returns." },
   { label: "Real estate investors", href: "/real-estate-investor-mortgage/", desc: "DSCR loans based on property cash flow, not your salary." },
   { label: "Homeowners 62 and older", href: "/reverse-mortgage/", desc: "Tap your equity without selling or making monthly payments." },
-  { label: "Denied mortgage applicants", href: "/denied-mortgage/", desc: "Non-QM programs for credit issues, recent bankruptcy, or unusual income." },
-  { label: "First-time homebuyers", href: "/first-time-homebuyer/", desc: "FHA, conventional 3%, VA, and down payment assistance programs." },
-  { label: "Business owners", href: "/self-employed-mortgage/", desc: "12 months of bank deposits can replace 2 years of W-2s." },
+  { label: "Denied somewhere else", href: "/denied-mortgage/", desc: "Turned down by another lender? We'll take a second look." },
 ];
 
 const heroImg = "/images/content%20images/golden-hour-moving-boxes";
 ---
 
 <Layout
-  title="Why Cliffco Mortgage Bankers | Non-QM Specialists Since 1989"
-  description={`Cliffco has been getting families home since 1989 - especially the ones other banks turned away. ${STATE_LICENSES.length} states, ${branchCount} branches, $6B+ closed. What sets us apart.`}
+  title="Why Cliffco Mortgage Bankers | Independent Home Lender Since 1989"
+  description={`Buying your first home, your next one, or refinancing, Cliffco has been getting families home since 1989. ${STATE_LICENSES.length} states, ${branchCount} branches, $6B+ closed. What sets us apart.`}
   schema={schema}
 >
   <Breadcrumbs trail={[
@@ -75,7 +80,7 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
           {yearsInBiz} years.<br />One focus: you.
         </h1>
         <p class="mt-7 max-w-md text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">
-          We specialize in the loans conventional lenders won't touch: self-employed, denied, investor, 62 and older. These are the families we built Cliffco to serve.
+          Buying your first home, moving up, or refinancing, we keep the mortgage clear and simple from pre-approval to closing. And when your situation is less typical, we have the programs for that too.
         </p>
         <div class="mt-9 flex flex-wrap gap-3 items-center">
           <a href="/get-started/" class="btn btn-primary">Talk to a Loan Officer</a>
@@ -120,7 +125,7 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
     <div class="container-wide py-20 lg:py-28 grid lg:grid-cols-12 gap-10">
       <div class="lg:col-span-4 lg:sticky lg:top-28 self-start">
         <p class="eyebrow">The Cliffco difference</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">We close loans others call impossible.</h2>
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">Simple when it's simple. Skilled when it's not.</h2>
       </div>
       <ol class="lg:col-span-7 lg:col-start-6 list-none m-0 p-0 border-t border-[var(--color-ink)]">
         {difference.map((item, i) => (
@@ -171,9 +176,9 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
         <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">Founded on Long Island. Still here.</h2>
       </div>
       <div class="lg:col-span-6 lg:col-start-7 space-y-5 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
-        <p>Cliffco was founded in {COMPANY.founded} on Long Island, where we remain headquartered today. For {yearsInBiz} years, our core business has been the loans that don't fit the standard mold: self-employed borrowers, real estate investors, seniors who want to stay in their homes, and borrowers who walked in with a denial letter from somewhere else.</p>
-        <p>We grew into {STATE_LICENSES.length} states and {branchCount} offices by building a reputation for saying yes when everyone else said no. That reputation travels. About half our business today comes from referrals.</p>
-        <p>Christopher Clifford, our President (NMLS #65234), has been with Cliffco since the beginning. The company he leads today is built on the same conviction it started with: every family deserves a real chance at homeownership, regardless of whether their financial life fits a box.</p>
+        <p>Cliffco was founded in {COMPANY.founded} on Long Island, where we remain headquartered today. For {yearsInBiz} years, we've helped families buy their first homes, move up to their next ones, and refinance into better terms. Along the way, we built deep expertise in the loans that don't fit the standard mold: self-employed borrowers, real estate investors, and seniors who want to stay in their homes.</p>
+        <p>We grew into {STATE_LICENSES.length} states and {branchCount} offices by building a reputation for clear answers, honest advice, and loans that close. That reputation travels. About half our business today comes from referrals.</p>
+        <p>Christopher Clifford, our President (NMLS #65234), has been with Cliffco since the beginning. The company he leads today is built on the same conviction it started with: every family deserves a clear path to homeownership, whatever their financial life looks like.</p>
       </div>
     </div>
   </section>
@@ -182,8 +187,8 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
   <section class="bg-white border-t border-[var(--color-ink)]">
     <div class="container-wide py-20 lg:py-28 grid lg:grid-cols-12 gap-10">
       <div class="lg:col-span-4 lg:sticky lg:top-28 self-start">
-        <p class="eyebrow">Who we're built for</p>
-        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">The borrowers the system failed.</h2>
+        <p class="eyebrow">Who we help</p>
+        <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">First home, next home, and everything in between.</h2>
       </div>
       <ul class="lg:col-span-8 list-none m-0 p-0 border-t border-[var(--color-ink)]">
         {serve.map((item) => (
@@ -206,8 +211,8 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
     <div class="container-wide py-16 lg:py-20 grid lg:grid-cols-12 gap-8 items-end">
       <div class="lg:col-span-7">
         <p class="eyebrow !text-white/60">Get started</p>
-        <h2 class="mt-4 !text-white" style="font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.05; font-weight: 700;">See if we can help.</h2>
-        <p class="mt-4 text-white/75" style="font-size: 1.125rem;">Tell us your situation. A Cliffco loan officer responds within one business day.</p>
+        <h2 class="mt-4 !text-white" style="font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.05; font-weight: 700;">Let's get you home.</h2>
+        <p class="mt-4 text-white/75" style="font-size: 1.125rem;">Tell us what you're planning. A Cliffco loan officer responds within one business day.</p>
       </div>
       <div class="lg:col-span-4 lg:col-start-9 flex flex-wrap gap-3 lg:justify-end">
         <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-ink)] hover:!bg-white/85">Get Started</a>

@@ -101,7 +101,10 @@ const calculators = [
   },
 ];
 
-const groups = Array.from(new Set(calculators.map((c) => c.audience))).map((audience) => ({
+// Home buyers first; specialty audiences after. Unlisted audiences sort to the end.
+const AUDIENCE_ORDER = ["First-time buyers", "Buyers & Move-ups", "All buyers", "Buyers & sellers", "Veterans & service members", "Homeowners", "Self-employed & 1099", "Real estate investors", "Homeowners 62+"];
+const audienceRank = (a: string) => { const i = AUDIENCE_ORDER.indexOf(a); return i < 0 ? AUDIENCE_ORDER.length : i; };
+const groups = Array.from(new Set(calculators.map((c) => c.audience))).sort((a, b) => audienceRank(a) - audienceRank(b)).map((audience) => ({
   audience,
   items: calculators.filter((c) => c.audience === audience),
 }));
@@ -118,7 +121,7 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
 
 <Layout
   title="Mortgage Calculators | Cliffco Mortgage Bankers"
-  description="Twelve free mortgage calculators: payment estimator, DSCR, buydown, closing costs, self-employed income, refi break-even, VA loan, reverse mortgage, rent vs buy, and more."
+  description="Twelve free mortgage calculators: affordability, payment estimator, rent vs buy, closing costs, buydown, VA loan, refi break-even, DSCR, self-employed income, reverse mortgage, and more."
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },

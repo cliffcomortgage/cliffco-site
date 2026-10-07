@@ -18,7 +18,9 @@ Both push to `main` directly. No branches/PRs needed for now.
 - **Mission:** We exist to transform the dream of home ownership into reality while elevating the net worth and self worth of the families and team members we serve. (Vision + mission updated 2026-10-07.)
 - **Values:** Intentionality · Innovation · Accountability · Empowerment · Teamwork · Personalization · Growth · Security · Integrity · Achievement. These are the official company values (confirmed 2026-10-07); the website reads them from `website/src/data/company-values.ts`, and `brand/mission-vision-values.md` + the cliffcoinc About page match. The older "Family · Integrity · Care · Possibility" set is superseded. Don't publish it.
 
-**Voice:** warm, human, scrappy. Explicitly anti-call-center, pro-second-chance-borrower — "yes when other banks say no." Avoid corporate/banky/cold language. When writing or reviewing any user-facing copy (site, marketing, taglines, error states, forms), check it against these pillars. Canonical text: `brand/mission-vision-values.md`.
+**Voice:** warm, human, clear. Explicitly anti-call-center. Avoid corporate/banky/cold language. When writing or reviewing any user-facing copy (site, marketing, taglines, error states, forms), check it against these pillars. Canonical text: `brand/mission-vision-values.md`.
+
+**Positioning (decided 2026-10-07):** lead with first-time homebuyers, move-up/purchase buyers, and W-2 borrowers: conventional, FHA, VA, USDA, down payment assistance, and refinancing. Non-QM, bank statement, DSCR, and reverse expertise stays on the site but comes second everywhere order matters: page sections, lists, nav/footer, titles and meta descriptions, schema, and `llms.txt`. Don't frame Cliffco as a Non-QM shop or lead with "the loans other banks turn away." Second-chance borrowers are still welcome; that's a supporting message, not the headline. SEO/AEO targets the straightforward deals first. Pages about a specialty topic (a DSCR guide, a team page) keep their focus.
 
 ## Hard exclusion rule
 

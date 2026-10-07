@@ -28,6 +28,25 @@ export const organizationSchema = () => ({
   alternateName: ["Cliffco", "Cliffco Mortgage"],
   url: SITE_URL,
   logo: `${SITE_URL}/logo-black.png`,
+  description:
+    `Independent mortgage banker since ${COMPANY.founded}, helping first-time homebuyers, ` +
+    `move-up buyers, and homeowners refinancing with conventional, FHA, VA, and USDA loans ` +
+    `and down payment assistance, plus specialty programs for self-employed borrowers, ` +
+    `real estate investors, and homeowners 62 and older.`,
+  // Ordered by priority: home purchase and refinance first, specialty programs after.
+  knowsAbout: [
+    "First-time homebuyer mortgages",
+    "Home purchase loans",
+    "Mortgage refinancing",
+    "Conventional loans",
+    "FHA loans",
+    "VA loans",
+    "USDA loans",
+    "Down payment assistance",
+    "Bank statement loans",
+    "DSCR loans",
+    "Reverse mortgages",
+  ],
   foundingDate: String(COMPANY.founded),
   telephone: COMPANY.hq.phoneE164,
   address: {

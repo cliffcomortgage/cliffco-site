@@ -9,12 +9,12 @@ const articleImages = articleImagesRaw as Record<string, { url: string; alt: str
 const articles = BLOG_ARTICLES;
 const fmtDate = (iso?: string) =>
   iso ? new Date(iso + "T00:00:00").toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : null;
-const categories = ["All", "Investors", "First-Time Buyers", "Reverse Mortgage", "Self-Employed", "Freelancers", "Non-Citizens", "Veterans", "Move-Up Buyers", "Refinancing"];
+const categories = ["All", "First-Time Buyers", "Move-Up Buyers", "Refinancing", "Veterans", "Self-Employed", "Freelancers", "Investors", "Reverse Mortgage", "Non-Citizens"];
 ---
 
 <Layout
   title="Mortgage Guides | Cliffco Mortgage Bankers"
-  description="Clear, jargon-free mortgage guides and articles from Cliffco. Reverse mortgages, Non-QM loans, DSCR, down payment assistance, VA loans, and more, written for real people."
+  description="Clear, jargon-free mortgage guides and articles from Cliffco. First-time homebuying, down payment assistance, VA loans, refinancing, reverse mortgages, Non-QM, DSCR, and more, written for real people."
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
@@ -27,7 +27,7 @@ const categories = ["All", "Investors", "First-Time Buyers", "Reverse Mortgage",
         <p class="eyebrow">Mortgage Guides</p>
         <h1 class="mt-4 text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">Real answers to real mortgage questions.</h1>
         <p class="mt-5 max-w-2xl text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">
-          First-time buyer, real estate investor, retiree weighing a reverse mortgage: these guides give you the full picture, written by the people who actually close these loans every day.
+          First-time buyer, move-up buyer, investor, or retiree weighing a reverse mortgage: these guides give you the full picture, written by the people who actually close these loans every day.
         </p>
       </div>
       <p class="lg:col-span-3 lg:col-start-10 lg:text-right font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.04em;">{articles.length}<span class="block mt-2 font-mono text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Articles</span></p>

@@ -126,7 +126,7 @@ import { COMPANY } from "../../../../data/company";
       <div  class="mt-14 bg-[var(--color-ink)] rounded-lg p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
         <div>
           <p class="text-white font-semibold text-lg">Ready to find out where you really stand?</p>
-          <p class="text-white/70 text-sm mt-1">A Cliffco loan officer reviews your full picture, not just a score. We help borrowers other banks turned away.</p>
+          <p class="text-white/70 text-sm mt-1">A Cliffco loan officer reviews your full picture, not just a score, and maps out your path to buying.</p>
         </div>
         <a href="/get-started/" class="btn btn-primary !bg-white !text-[var(--color-ink)] shrink-0 whitespace-nowrap">Talk to a loan officer</a>
         <a href={`tel:${COMPANY.tollFreeE164}`} class="text-white/80 hover:text-white no-underline text-sm font-semibold whitespace-nowrap shrink-0">{COMPANY.tollFree}</a>
@@ -281,7 +281,7 @@ import { COMPANY } from "../../../../data/company";
         verdict = "Some work to do, but you're not far off. A Cliffco loan officer can help you identify which factors to address first to qualify faster.";
       }
     } else {
-      verdict = "Based on these numbers, you're not quite ready yet. That said, Cliffco specializes in helping borrowers other lenders turn away. A conversation with a loan officer is worth it.";
+      verdict = "Based on these numbers, you're not quite ready yet. A Cliffco loan officer can show you exactly what to work on, and whether a different program could get you there sooner. The conversation is free.";
     }
 
     if (verdictEl) verdictEl.textContent = verdict;

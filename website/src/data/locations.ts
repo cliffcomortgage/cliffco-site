@@ -26,11 +26,11 @@ export const LOCATIONS: readonly Location[] = [
     state: "NY",
     blurb:
       "Cliffco was founded on Long Island in 1989 and is still headquartered here. " +
-      "Two offices (Uniondale HQ and Bay Shore) and decades of hands-on " +
-      "experience with the jumbo, Non-QM, and reverse mortgage scenarios that Long Island " +
-      "borrowers actually face.",
+      "Two offices (Uniondale HQ and Bay Shore) helping Nassau and Suffolk families buy their " +
+      "first home, move up, or refinance, with SONYMA and down payment assistance programs, " +
+      "jumbo loans, and specialty options when you need them.",
     branchSlugs: ["uniondale-headquarters", "bay-shore-ny"],
-    featuredProducts: ["non-qm-self-employed", "reverse-mortgage", "dscr", "business-bank-statement"],
+    featuredProducts: ["conventional", "fha", "va", "refinancing", "non-qm-self-employed", "reverse-mortgage"],
   },
   {
     path: "new-york",
@@ -38,11 +38,11 @@ export const LOCATIONS: readonly Location[] = [
     state: "NY",
     blurb:
       "Cliffco has been headquartered on Long Island since 1989, with offices in " +
-      "Uniondale and Bay Shore. From jumbo loans and CEMA " +
-      "refinances to Non-QM, reverse mortgages, and DSCR financing, we handle the loan types " +
-      "New York borrowers actually need.",
+      "Uniondale and Bay Shore. We help New Yorkers buy their first home, move up, or " +
+      "refinance, from conventional, FHA, and SONYMA programs to jumbo loans and CEMA " +
+      "refinances, plus specialty programs when your situation calls for one.",
     branchSlugs: ["uniondale-headquarters", "bay-shore-ny"],
-    featuredProducts: ["non-qm-self-employed", "reverse-mortgage", "dscr", "business-bank-statement"],
+    featuredProducts: ["conventional", "fha", "va", "refinancing", "non-qm-self-employed", "reverse-mortgage"],
   },
   {
     path: "new-jersey",
@@ -50,23 +50,23 @@ export const LOCATIONS: readonly Location[] = [
     state: "NJ",
     blurb:
       "Our Branchburg branch covers Central Jersey, the Shore, and the North Jersey commuter " +
-      "belt: markets where self-employed borrowers, real estate investors, and buyers with " +
-      "complex financials often hit walls at conventional lenders. Our team includes bilingual " +
-      "English/Spanish loan officers.",
+      "belt, helping first-time buyers, move-up buyers, and homeowners refinancing, with " +
+      "specialty programs for self-employed borrowers and investors too. Our team includes " +
+      "bilingual English/Spanish loan officers.",
     branchSlugs: ["branchburg-nj"],
-    featuredProducts: ["non-qm-self-employed", "fha", "dscr", "reverse-mortgage"],
+    featuredProducts: ["conventional", "fha", "va", "refinancing", "non-qm-self-employed", "dscr"],
   },
   {
     path: "arizona",
     name: "Arizona",
     state: "AZ",
     blurb:
-      "Our Buckeye branch serves Phoenix metro homebuyers and investors, Tucson, and " +
-      "Arizona's retirement communities. Strong fit for reverse mortgages in Sun Belt " +
-      "retirement areas, DSCR loans for the state's active investor market, and Non-QM " +
-      "bank statement loans for the self-employed.",
+      "Our Buckeye branch serves homebuyers across the Phoenix metro, Tucson, and statewide, " +
+      "from first-time buyers and growing families to veterans using their VA benefit. We " +
+      "also offer reverse mortgages for Arizona's retirement communities and DSCR loans for " +
+      "investors.",
     branchSlugs: ["buckeye-az"],
-    featuredProducts: ["reverse-mortgage", "dscr", "non-qm-self-employed", "business-bank-statement"],
+    featuredProducts: ["conventional", "fha", "va", "refinancing", "reverse-mortgage", "dscr"],
   },
   {
     path: "minnesota",
@@ -74,10 +74,11 @@ export const LOCATIONS: readonly Location[] = [
     state: "MN",
     blurb:
       "Our Excelsior office sits on Lake Minnetonka in the Twin Cities metro and serves " +
-      "borrowers across Minnesota. Self-employed, investing in rental property, " +
-      "or approaching retirement, we have the full product lineup available.",
+      "borrowers across Minnesota. Buying your first home, moving up, or refinancing, we " +
+      "have the full product lineup available, including specialty programs for the " +
+      "self-employed, investors, and homeowners nearing retirement.",
     branchSlugs: ["excelsior-mn"],
-    featuredProducts: ["conventional", "non-qm-self-employed", "dscr", "reverse-mortgage"],
+    featuredProducts: ["conventional", "fha", "va", "refinancing", "non-qm-self-employed", "dscr"],
   },
   {
     path: "florida",
@@ -86,10 +87,10 @@ export const LOCATIONS: readonly Location[] = [
     isFlorida: true,
     blurb:
       "Our Ft. Lauderdale office anchors Cliffco's Florida presence, serving South Florida, " +
-      "the greater Miami area, and borrowers statewide: Disney-area short-term-rental " +
-      "investors, self-employed buyers, and out-of-state investors purchasing Florida property.",
+      "the greater Miami area, and borrowers statewide: first-time and move-up buyers, " +
+      "homeowners refinancing, and investors and second-home buyers purchasing Florida property.",
     branchSlugs: ["fort-lauderdale-fl"],
-    featuredProducts: ["dscr", "reverse-mortgage", "non-qm-self-employed", "business-bank-statement"],
+    featuredProducts: ["conventional", "fha", "va", "refinancing", "dscr", "reverse-mortgage"],
   },
   {
     path: "florida/fort-lauderdale",
@@ -97,12 +98,12 @@ export const LOCATIONS: readonly Location[] = [
     state: "FL",
     isFlorida: true,
     blurb:
-      "Cliffco's Ft. Lauderdale office serves Broward, Miami-Dade, and Palm Beach counties. " +
-      "South Florida's investor-dense market is a strong fit for DSCR, foreign national, ITIN, " +
-      "non-warrantable condo, and jumbo financing, loan types conventional lenders routinely " +
-      "decline. Operating as Clout Mortgage, Inc.",
+      "Cliffco's Ft. Lauderdale office serves Broward, Miami-Dade, and Palm Beach counties, " +
+      "helping buyers purchase their first home or next one and homeowners refinance. For " +
+      "South Florida's condo and investor market, we also offer DSCR, non-warrantable condo, " +
+      "foreign national, and jumbo financing. Operating as Clout Mortgage, Inc.",
     branchSlugs: ["fort-lauderdale-fl"],
-    featuredProducts: ["dscr", "non-qm-self-employed", "business-bank-statement", "reverse-mortgage"],
+    featuredProducts: ["conventional", "fha", "va", "refinancing", "dscr", "non-qm-self-employed"],
   },
 ];
 
