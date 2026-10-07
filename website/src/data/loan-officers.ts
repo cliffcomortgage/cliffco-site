@@ -73,6 +73,10 @@ export type LoanOfficer = {
 export const nmlsConsumerAccessUrl = (nmls: string): string =>
   `https://nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/${nmls}`;
 
+// Christopher Clifford is licensed in every state Cliffco is (confirmed 2026-10-05) except New
+// Hampshire: Cliffco was licensed there 2026-10-07 and he isn't yet. Drop the filter once he is.
+const PRESIDENT_STATES = STATE_LICENSES.map((s) => s.code).filter((c) => c !== "NH");
+
 export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   // ============================================================
   // LEADERSHIP
@@ -84,15 +88,17 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     displayName: "Christopher Clifford",
     nmls: "65234",
     title: "President",
-    // Licensed in every state Cliffco is (confirmed 2026-10-05)
-    states: STATE_LICENSES.map((s) => s.code),
+    states: PRESIDENT_STATES,
     branchSlug: "uniondale-headquarters",
     specialties: ["Non-QM & Self-Employed", "Reverse Mortgage (HECM)", "DSCR for Investors", "Business Bank Statement", "Jumbo"],
     bio:
       "Christopher Clifford leads Cliffco Mortgage Bankers as President, carrying forward a " + COMPANY.yearsInBusiness() + "-year " +
-      "family-built mortgage operation that's licensed in " + STATE_LICENSES.length + " states. He's licensed in every one of them personally, " +
-      "which means he can pick up the file directly when a complex scenario lands (Non-QM, reverse, DSCR, " +
-      "business bank statement) with the same hands-on approach Cliffco was founded on.",
+      "family-built mortgage operation that's licensed in " + STATE_LICENSES.length + " states. " +
+      (PRESIDENT_STATES.length === STATE_LICENSES.length
+        ? "He's licensed in every one of them personally, "
+        : "He's personally licensed in " + PRESIDENT_STATES.length + " of them, ") +
+      "which means he can pick up a file directly, from a first-time buyer's purchase to a complex " +
+      "Non-QM, reverse, or DSCR scenario, with the same hands-on approach Cliffco was founded on.",
     links: {
       email: "cclifford@cliffcomortgage.com",
       leadTo: "cliffcorpteam@cliffcomortgage.com",
@@ -959,7 +965,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     displayName: "Mario Argenzio",
     nmls: "1869384",
     title: "Loan Officer",
-    states: ["AZ", "CA", "CO", "CT", "FL", "GA", "IA", "MD", "MN", "MT", "NC", "NJ", "NY", "OK", "PA", "SC", "TN", "VA"],
+    states: ["AZ", "CA", "CO", "CT", "FL", "GA", "IA", "MD", "MN", "MT", "NC", "NH", "NJ", "NY", "OK", "PA", "SC", "TN", "VA"],
     branchSlug: "uniondale-headquarters",
     links: {
       email: "margenzio@cliffcomortgage.com",

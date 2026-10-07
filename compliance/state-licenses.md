@@ -2,7 +2,7 @@
 
 Every state license held by **Cliffco, Inc. (NMLS #65328)** as of the last NMLS audit (2025-07-23). Source: `loan-officer-disclosures.csv`.
 
-**Total: 35 licensed jurisdictions (34 states + DC)**, confirmed 2026-10-05. Iowa was added 2026-09-02; the MN row was missing from this table and was restored to match `website/src/data/state-licenses.ts`. The website reads its state count from that data file, so keep the two in sync.
+**Total: 36 licensed jurisdictions (35 states + DC)**, confirmed 2026-10-07. New Hampshire was added 2026-10-07 (NH Banking Department Mortgage Banker License 65328MB) and Iowa 2026-09-02. The website reads its state count from that data file, so keep the two in sync.
 
 This is the canonical list to use in: site footer state-license disclosure, `/licensing/` page, schema `areaServed`, GBP service areas, marketing collateral.
 
@@ -28,9 +28,9 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 | MD | Maryland Office of Financial Regulation | (no number cited in disclosure) |
 | MI | Michigan Department of Insurance and Financial Services 1st Mortgage Broker/Lender Registrant | FR0026300 |
 | MN | Minnesota Department of Commerce | MN-MO-65328 |
-| **MN** | **Minnesota Department of Commerce** | **MN-MO-65328** |
 | MT | Montana Department of Administration — Mortgage Broker, Lender, and Servicer | 65328 |
 | NC | North Carolina Commissioner of Banks | L-211081 |
+| NH | New Hampshire Banking Department — Mortgage Banker License | 65328MB |
 | NJ | New Jersey Department of Banking & Insurance | (no number cited in disclosure) |
 | NM | New Mexico Regulation & Licensing Department | (no number cited in disclosure) |
 | NY | NY Department of Financial Services — Licensed Mortgage Banker | LMBC109800 |
@@ -45,7 +45,7 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 | VT | Vermont Department of Financial Regulation | LL-65328 |
 | WA | Washington State Department of Financial Institutions | CL-65328 |
 
-**Total states: 35** (counting FL DBA registration).
+**Total states: 36** (counting FL DBA registration).
 
 ## Cliffco's stated priority territories — license status
 

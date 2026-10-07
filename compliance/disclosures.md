@@ -29,6 +29,7 @@ DC Department of Insurance, Securities, & Banking MLB65328
 DE Office of the State Bank Commissioner 040096
 [FL — see Block 2 above]
 GA Department of Banking & Finance 65328
+IA Mortgage Banker License 2026-0104, Iowa Division of Banking
 IL Department of Financial & Professional Regulation MB.6761824
 IN Licensed by the Indiana Department of Financial Institutions #70581
 KS State Bank Commissioner of Kansas MC.0026625
@@ -38,11 +39,14 @@ MA Mortgage Broker and Mortgage Lender License MC65328 MA Division of Banks
 MD Office of Financial Regulation
 MI Department of Insurance and Financial Services 1st Mortgage Broker/Lender Registrant License #FR0026300
 MN Department of Commerce #MN-MO-65328
+MT Mortgage Broker, Lender, and Servicer licenses 65328 MT Department of Administration
 NC Commissioner of Banks L-211081
+NH Banking Department Mortgage Banker License 65328MB
 NJ Department of Banking & Insurance
 NM New Mexico Regulation & Licensing Dept.
 NY Licensed Mortgage Banker by the NYS Department of Financial Services LMBC109800
 OH Department of Commerce Residential Mortgage Lending Act RM.805200.000
+OK Mortgage Lender License ML018351 Oklahoma Department of Consumer Credit
 OR Oregon Department of Consumer and Business Services 65328
 PA Department of Banking & Securities 45275
 SC State Board of Financial Institutions MLS-65328
@@ -65,7 +69,9 @@ This matches the existing CSV's compiled disclosures and should be the rule for 
 
 ## Site-wide footer disclosure (recommended)
 
-The corporate site footer should display the most comprehensive disclosure (all 32 states), since the site itself markets to all licensed states. Use Christopher Clifford's full disclosure (line 21 of CSV) as the template.
+The corporate site footer displays the full official disclosure covering all licensed states, since the site markets to all of them. Current text (provided 2026-10-07, adds New Hampshire; lives in `website/src/data/disclosures.ts` as `FOOTER_MAIN_DISCLOSURE`):
+
+> Cliffco, Inc. is not affiliated with or acting on behalf of the FHA or any government entity. Equal Housing Lender. Cliffco, Inc. Corporate NMLS#65328 (www.nmlsconsumeraccess.org) 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553 (516) 408-7300. Licensed Mortgage Lender by AK Division of Banking and Securities AK65328, AK65328-1; AL Mortgage Broker/Lender License #23581; AZ Mortgage Banker License 1045708; CA DFPI Financing Law License 60DBO-181882; CO Dept. of Regulatory Agencies Division of Banking; CT Department of Banking MCL-65328; DC Department of Insurance, Securities, & Banking MLB65328; DE Office of the State Bank Commissioner 040096; Cliffco, Inc. doing business in Florida as Clout Mortgage, Inc., is a New York corporation authorized to transact business in the State of Florida; GA Department of Banking & Finance 65328; IA Mortgage Banker License 2026-0104, Iowa Division of Banking; IL Department of Financial & Professional Regulation MB.6761824; IN Indiana Department of Financial Institutions 70581; KS State Bank Commissioner of Kansas MC.0026625; KY Department of Financial Institutions MC838985; LA Office of Financial Institutions 65328; MA Mortgage Broker and Mortgage Lender License MC65328 MA Division of Banks; MD Office of Financial Regulation; MI Department of Insurance and Financial Services 1st Mortgage Broker/Lender Registrant License #FR0026300; MN Department of Commerce #MN-MO-65328; MT Mortgage Broker, Lender, and Servicer licenses 65328 MT Department of Administration; NC Commissioner of Banks L-211081; NH Banking Department Mortgage Banker License 65328MB; NJ Department of Banking & Insurance; NM New Mexico Regulation & Licensing Dept.; Licensed Mortgage Banker by the NYS Department of Financial Services LMBC109800; OH Department of Commerce Residential Mortgage Lending Act RM.805200.000; OK Mortgage Lender License ML018351 Oklahoma Department of Consumer Credit; OR Oregon Department of Consumer and Business Services 65328; PA Department of Banking & Securities 45275; SC State Board of Financial Institutions MLS-65328; TN Department of Financial Institutions Mortgage License 65328; TX Department of Savings & Mortgage Lending; VA Bureau of Financial Institutions MC-7742; VT Department of Financial Regulation LL-65328; WA State Department of Financial Institutions CL-65328. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.
 
 ## LO bio page disclosure
 

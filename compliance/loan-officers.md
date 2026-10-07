@@ -2,11 +2,13 @@
 
 Active LOs from `loan-officer-disclosures.csv` (last NMLS audit 2025-07-23). Roster of 80+ active loan officers. Sortable references — for the rebuilt site each LO gets a bio page at `/loan-officers/{firstname-lastname-nmlsid}/` with full Person schema and NMLS Consumer Access verification link.
 
+**New Hampshire (2026-10-07):** Cliffco is now licensed in NH (NH Banking Department Mortgage Banker License 65328MB). Mario Argenzio (NMLS #1869384) is NH-licensed. Christopher Clifford is not yet.
+
 ## Leadership / Multi-state senior LOs
 
 | Name | NMLS # | Title | States | Branch |
 |---|---|---|---|---|
-| Christopher Clifford | 65234 | President | All 35 states, confirmed 2026-10-05 (AK, AL, AZ, CA, CO, CT, DC, DE, FL, GA, IA, IL, IN, KS, KY, LA, MA, MD, MI, MN, MT, NC, NJ, NM, NY, OH, OK, OR, PA, SC, TN, TX, VA, VT, WA) | Uniondale, NY (HQ) |
+| Christopher Clifford | 65234 | President | 35 of Cliffco's 36 states, confirmed 2026-10-07: every state except NH, where he isn't licensed yet (AK, AL, AZ, CA, CO, CT, DC, DE, FL, GA, IA, IL, IN, KS, KY, LA, MA, MD, MI, MN, MT, NC, NJ, NM, NY, OH, OK, OR, PA, SC, TN, TX, VA, VT, WA) | Uniondale, NY (HQ) |
 | Adam Turkewitz | 32900 | Senior VP of Sales | 24 states | Uniondale, NY (HQ) |
 | Ryan Dennis Riddle | 1730872 | Loan Officer | 27 states | Uniondale, NY (HQ) |
 | James Chen | 17991 | Senior Vice President of Sales | CT, FL, GA, MD, NC, NJ, NY, OR, PA, SC, VA, AZ, TX | Uniondale, NY (HQ) |

@@ -46,6 +46,7 @@ export const STATE_LICENSES: readonly StateLicense[] = [
   { code: "MN", name: "Minnesota",    regulator: "Minnesota Department of Commerce",                                    licenseNumber: "MN-MO-65328" },
   { code: "MT", name: "Montana",      regulator: "Montana Department of Administration - Mortgage Broker, Lender, and Servicer", licenseNumber: "65328" },
   { code: "NC", name: "North Carolina", regulator: "North Carolina Commissioner of Banks",                              licenseNumber: "L-211081" },
+  { code: "NH", name: "New Hampshire", regulator: "New Hampshire Banking Department - Mortgage Banker License",        licenseNumber: "65328MB" },
   { code: "NJ", name: "New Jersey",   regulator: "New Jersey Department of Banking & Insurance",                        licenseNumber: null },
   { code: "NM", name: "New Mexico",   regulator: "New Mexico Regulation & Licensing Department",                        licenseNumber: null },
   { code: "NY", name: "New York",     regulator: "New York Department of Financial Services - Licensed Mortgage Banker", licenseNumber: "LMBC109800" },

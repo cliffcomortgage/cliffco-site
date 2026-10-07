@@ -34,7 +34,7 @@ The `compliance/` directory holds source-of-truth disclosure data (state license
 Critical facts that must show up in the right places:
 
 1. **Florida DBA: "Clout Mortgage, Inc."** — every FL-targeted page, FL LO bio, Orlando GBP, and FL marketing piece must include this DBA disclosure.
-2. **35 licensed states** (34 states + DC, confirmed 2026-10-05; Iowa added 2026-09-02). Full list + license numbers in `compliance/state-licenses.md`. **MN is fully licensed** — treat it as a normal priority territory, not gated. Site copy must use `STATE_LICENSES.length` (from `website/src/data/state-licenses.ts`), never a typed-out number — hardcoded counts are how "32" went stale.
+2. **36 licensed states** (35 states + DC, confirmed 2026-10-07; New Hampshire added 2026-10-07, Iowa 2026-09-02). Full list + license numbers in `compliance/state-licenses.md`. **MN is fully licensed** — treat it as a normal priority territory, not gated. Site copy must use `STATE_LICENSES.length` (from `website/src/data/state-licenses.ts`), never a typed-out number — hardcoded counts are how "32" went stale.
 3. **6 physical branches** (as of 2026-07-15): Uniondale NY (HQ), Bay Shore NY, Branchburg NJ, Ft. Lauderdale FL, Buckeye AZ, Excelsior MN. The Jamaica NY, Wantagh NY, and Orlando FL branches closed in July 2026 — do not reference them as current offices.
 4. **80+ active LOs.** Each gets a bio page at `/loan-officers/{name-nmlsid}/` with Person schema + sameAs to NMLS Consumer Access. Roster: `compliance/loan-officers.md`.
 5. **Bilingual LO clusters** (basis for the Spanish-language site): Buckeye AZ, Branchburg, Uniondale. Detail in `compliance/loan-officers.md` (the Orlando cluster dissolved when that branch closed, July 2026).
@@ -45,6 +45,7 @@ Critical facts that must show up in the right places:
 The NMLS roster and `Leadership Bios.docx` are point-in-time snapshots. These corrections supersede them — do **not** publish the legacy versions:
 
 - **Fabian Roman** is no longer Head of Capital Markets. He is part of **Team Broder** (works with Adam Broder, VP). Don't publish the old title. Confirm his current title before publishing any bio.
+- **Christopher Clifford** is licensed in every Cliffco state except **New Hampshire** (as of 2026-10-07). `loan-officers.ts` filters NH out of his list (`PRESIDENT_STATES`); remove the filter once he's licensed there.
 - **Cynthia Cardona** is no longer with Cliffco. The current **Director of HR is Amanda Miller** — feature Amanda on the team page, not Cynthia.
 
 Always confirm leadership titles with Rafe before publishing.
