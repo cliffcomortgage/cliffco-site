@@ -152,6 +152,8 @@ export default defineConfig({
     '/buydown-calculator/': '/mortgage-guides/calculators/buydown/',
     '/closing-costs/': '/mortgage-guides/calculators/closing-costs/',
     '/jmarrero/': '/loan-officers/',
+    // NJ grant lander moved to the URL the ads use on the current site
+    '/nj-22k-grant/': '/nj-grant-program/',
     // Old audience landing pages with no direct equivalent - nearest match
     '/service-members/': '/loans/va/',
     '/rural-residents/': '/loans/usda/',
@@ -174,9 +176,9 @@ export default defineConfig({
   },
 
   integrations: [
-    // nj-22k-grant is an ads-only landing page, deliberately excluded here
+    // nj-grant-program is an ads-only landing page, deliberately excluded here
     // and noindexed - reached only via paid ads, never linked from the site.
-    sitemap({ filter: (page) => !page.includes('/thank-you/') && !page.includes('/nj-22k-grant/') && !page.includes('/dashboard') }),
+    sitemap({ filter: (page) => !page.includes('/thank-you/') && !page.includes('/nj-grant-program/') && !page.includes('/dashboard') }),
     // API routes must be serverless functions on Vercel (POST handlers) but
     // prerendered stubs on the static GitHub Pages preview. This is set here,
     // not via a `prerender` export in the route files, because Astro can only

@@ -9,6 +9,7 @@ import Meta from "../components/seo/Meta.astro";
 import JsonLd from "../components/seo/JsonLd.astro";
 import PostHog from "../components/posthog.astro";
 import { COMPANY } from "../data/company";
+import { FOOTER_MAIN_DISCLOSURE } from "../data/disclosures";
 
 interface Props {
   title: string;
@@ -37,6 +38,51 @@ const { title, description, schema, phone, phoneE164 } = Astro.props;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Montserrat:wght@600&display=optional" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Montserrat:wght@600&display=optional" /></noscript>
+    <!-- Google tag (Ads + GA4) and the phone-click conversion, matching the tracking on the
+         current WordPress site. Production domain only, so preview visits and test leads
+         aren't counted. -->
+    <script is:inline>
+      (function () {
+        if (!/(^|\.)cliffcomortgage\.com$/.test(location.hostname)) return;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17848823591';
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        gtag('js', new Date());
+        gtag('config', 'G-WV6SFC5W7P');
+        gtag('config', 'AW-17848823591');
+        document.addEventListener('click', function (e) {
+          var link = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
+          if (!link) return;
+          gtag('event', 'phone_click', { event_category: 'contact', event_label: link.href });
+          gtag('event', 'conversion', { send_to: 'AW-17848823591/O9SzCMj574scEKfe_b5C', value: 25.0, currency: 'USD' });
+        });
+      })();
+    </script>
+    <!-- HubSpot tracking: sets the hubspotutk cookie so form leads carry their ad source.
+         Deferred until idle/first interaction, same as the main layout. -->
+    <script is:inline>
+      (function () {
+        var loaded = false;
+        function loadHs() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.id = 'hs-script-loader';
+          s.async = true;
+          s.defer = true;
+          s.src = 'https://js.hs-scripts.com/21616430.js';
+          document.head.appendChild(s);
+        }
+        if ('requestIdleCallback' in window) requestIdleCallback(loadHs, { timeout: 8000 });
+        else setTimeout(loadHs, 8000);
+        ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (e) {
+          addEventListener(e, loadHs, { once: true, passive: true });
+        });
+      })();
+    </script>
   </head>
 
   <body class="min-h-screen flex flex-col">
@@ -76,17 +122,15 @@ const { title, description, schema, phone, phoneE164 } = Astro.props;
           <p class="font-semibold text-white/80">Cliffco Mortgage Bankers &middot; Branchburg, NJ</p>
           <p class="mt-1">3121 Route 22 East, 3rd Floor, Office 313</p>
           <p class="mt-0.5">Branchburg, NJ 08876 &middot; NMLS #2671359</p>
-          <p class="mt-0.5"><a href="tel:5164087300" class="hover:text-white no-underline">Office: 516-408-7300</a></p>
+          <p class="mt-0.5"><a href="tel:5164087300" class="text-white/70 hover:text-white no-underline">Office: 516-408-7300</a></p>
         </div>
 
-        <!-- Disclaimer -->
-        <div class="mt-6 text-xs text-white/40 leading-relaxed">
-          <p>
-            Cliffco, Inc. is not affiliated with or acting on behalf of the FHA or any government entity. Equal Housing Lender. Cliffco, Inc. Corporate NMLS#65328 (<a href="https://www.nmlsconsumeraccess.org/" class="text-white/50 hover:text-white underline" target="_blank" rel="noopener">www.nmlsconsumeraccess.org</a>) 70 Charles Lindbergh Blvd, Suite 200, Uniondale, NY 11553 (516) 408-7300. FL Office of Financial Regulation MLD1245; NJ Department of Banking &amp; Insurance; NC Commissioner of Banks L-211081; PA Department of Banking &amp; Securities 45275. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.
-          </p>
+        <!-- Disclaimer: the official corporate text, same as the live page and main site footer -->
+        <div class="mt-6 text-xs text-white/60 leading-relaxed">
+          <p>{FOOTER_MAIN_DISCLOSURE}</p>
         </div>
 
-        <p class="mt-6 text-xs text-white/30">&copy; 2026 Cliffco, Inc. &middot; NMLS #65328 &middot; Equal Housing Lender</p>
+        <p class="mt-6 text-xs text-white/60">&copy; 2026 Cliffco, Inc. &middot; NMLS #65328 &middot; Equal Housing Lender</p>
 
       </div>
     </footer>

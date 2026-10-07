@@ -19,10 +19,8 @@ Open items to clear before the new site replaces the live cliffcomortgage.com. C
 
 ## Accessibility (WCAG 2.2 AA)
 
-Audit on 2026-10-07: axe-core on all 197 pages, plus keyboard, phone-menu, and 320px-width checks. Everything passes except the items below.
+Audit on 2026-10-07: axe-core on all 197 pages, plus keyboard, phone-menu, and 320px-width checks. Every page passes, including the get-started qualifier and the new-site NJ grant lander (both fixed 2026-10-07). What automated checks can't cover:
 
-- [ ] **NJ grant lander** (`/nj-22k-grant/`, locked page). The office phone link is nearly invisible (dark gray on black, 1.3:1), and two light-gray footer lines fall short (3.8:1 and 2.6:1; 4.5:1 is required). Needs a go-ahead to edit.
-- [ ] **Get-started qualifier** (locked form). The red required-field asterisks (about 2.8:1) and red error text (about 3.8:1) are below 4.5:1. The fix is the same darker red used on the contact form. Needs a go-ahead to edit.
 - [ ] **Manual screen-reader pass** with NVDA on Windows and VoiceOver on iPhone: the get-started qualifier, contact form submit and error, one calculator, and the phone menu.
 - [ ] **Third-party widgets.** Get accessibility reports (VPAT/ACR) for the Elfsight reviews widget and HubSpot. The Encompass report is already requested, per the accessibility statement.
 - [ ] **Accessibility inbox.** Confirm accessibility@cliffcomortgage.com exists and someone monitors it. It's the contact listed on `/legal/accessibility/`.
@@ -30,6 +28,8 @@ Audit on 2026-10-07: axe-core on all 197 pages, plus keyboard, phone-menu, and 3
 
 ## Launch steps
 
+- [ ] **Analytics and conversion tracking (launch blocker).** The current WordPress site runs GA4 (G-WV6SFC5W7P), Google Tag Manager (GTM-T9P3MP96), and the "CliffCo site-wide tracker v3.1" (`scripts/hubspot-tracker-v3.1.js`), which fires Google Ads conversions (AW-17848823591) for leads, phone clicks, and Apply Now clicks. On the new site, HubSpot's tracking code already loads the base Google Ads tag and the Meta pixel, but GA4, Tag Manager, and those conversion events are missing everywhere except the NJ grant lander. Without them, Google Ads loses lead and call conversions, and the automated bidding that depends on them, the day the new site goes live. Decide what to carry over, then add it to `website/src/layouts/Layout.astro`, limited to the production domain.
+- [ ] **NJ grant lander.** The new site serves it at `/nj-grant-program/`, the same URL the Google Ads campaign and sitelinks use, so nothing needs re-pointing. Copy matches the live WordPress page as of 2026-10-07. After launch, submit a test lead and click a phone number, then confirm both register as conversions in Google Ads. Also decide whether it should be indexed: the live WordPress version is, but the new copy is noindexed as an ads-only page.
 - [ ] **IndexNow.** Set `INDEXNOW_SUBMIT=true` for the production build once the site is live on cliffcomortgage.com (see `website/astro.config.mjs`).
 - [ ] **Redirects.** Spot-check that the legacy WordPress redirects in `website/astro.config.mjs` resolve on the live domain.
 - [ ] **Elfsight widget.** Set the widget's Accent and Read More colors to black, and delete its Custom CSS. That CSS targets old class names, so it does nothing.

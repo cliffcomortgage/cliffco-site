@@ -5,7 +5,7 @@ _Generated 2026-08-18 from the current build. Production domain shown as cliffco
 ## Pages / Sitemap
 
 Total pages: 200
-(Note: `/nj-22k-grant/` and `/thank-you/` are live pages but intentionally excluded from the XML sitemap.)
+(Note: `/nj-grant-program/` and `/thank-you/` are live pages but intentionally excluded from the XML sitemap.)
 
 - https://cliffcomortgage.com/
 - https://cliffcomortgage.com/about/
@@ -189,7 +189,7 @@ Total pages: 200
 - https://cliffcomortgage.com/mortgage-guides/what-is-an-investment-mortgage/
 - https://cliffcomortgage.com/mortgage-rates/
 - https://cliffcomortgage.com/mortgages-for-freelancers-entrepreneurs-investors/
-- https://cliffcomortgage.com/nj-22k-grant/
+- https://cliffcomortgage.com/nj-grant-program/
 - https://cliffcomortgage.com/press/
 - https://cliffcomortgage.com/process/
 - https://cliffcomortgage.com/purchasing-refinancing/
