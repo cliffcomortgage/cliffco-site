@@ -109,6 +109,7 @@ export default defineConfig({
     '/lisa-zambelli/': '/loan-officers/lisa-zambelli/',
     '/llevy/': '/loan-officers/logan-levy/',
     '/margenzio/': '/loan-officers/mario-argenzio/',
+    '/mmontano/': '/loan-officers/marco-montano/',
     '/maziz/': '/loan-officers/michael-aziz/',
     '/mbisbee/': '/loan-officers/michael-bisbee/',
     '/mortgage-glossary/': '/mortgage-guides/glossary/',

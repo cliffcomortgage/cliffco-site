@@ -9,6 +9,7 @@ const OUT = join(__dirname, "../website/public/team");
 const MAP = [
   { file: "Sivon Collinge.jpg", slug: "sivon-collinge" },
   { file: "Amanda Miller.jpg",  slug: "amanda-miller" },
+  { file: "1080x1080_MarcoM.png", slug: "marco-montano" },
 ];
 
 for (const { file, slug } of MAP) {
