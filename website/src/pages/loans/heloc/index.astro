@@ -8,14 +8,16 @@ import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/s
 const p = product("heloc")!;
 
 const faq = [
-  { question: "What is a HELOC?", answer: "A home equity line of credit (HELOC) is a loan secured by the equity in your home. It sits behind your existing mortgage as a second lien, which means your first mortgage, and its rate, stays exactly as it is. You draw funds from the line and repay them over the loan term." },
-  { question: "How can a HELOC be approved in five minutes?", answer: "The application uses automated income, credit, and property verification instead of a manual underwriting queue. Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report." },
-  { question: "Does a HELOC replace my current mortgage?", answer: "No. A HELOC is a second lien, so your existing first mortgage and its rate are untouched. That makes a HELOC especially useful if you locked a low first-mortgage rate and don't want to give it up with a cash-out refinance." },
-  { question: "Is the rate fixed or variable?", answer: "Cliffco's HELOC is a variable-rate line tied to the Wall Street Journal Prime Rate plus a margin, so your rate can adjust monthly as Prime moves (with a 4% floor and an 18% lifetime cap). That's standard for a HELOC." },
-  { question: "How much can I borrow with a HELOC?", answer: "Lines range from $50,000 to $1,000,000. Your maximum depends on how much equity you have, your credit profile, and the combined loan-to-value ratio of your first mortgage plus the new line." },
-  { question: "Is there a minimum draw amount?", answer: "Yes. At closing you're required to draw at least 80% of your approved line, with a minimum initial draw of $50,000." },
-  { question: "What can I use HELOC funds for?", answer: "Common uses are home renovations, consolidating higher-interest debt, education costs, and major purchases. Because the line is secured by your home, the rate is typically far lower than credit cards or personal loans." },
-  { question: "How fast can I receive the funds?", answer: "Funding can happen in as few as five business days after approval, assuming the loan closes with our remote online notary. Funding timelines may be longer for properties in counties that do not permit recording of e-signatures or that otherwise require an in-person closing." },
+  { question: "What is a HELOC?", answer: "A home equity line of credit lets you borrow against the equity in your home, draw what you need, pay it back, and draw again. It usually sits behind your existing mortgage as a second lien, so your first mortgage and its rate stay exactly as they are. A first-lien option is also available if you own your home free and clear or want the line to replace your current mortgage." },
+  { question: "Does a HELOC replace my current mortgage?", answer: "Usually not. In second-lien position your existing first mortgage and its rate are untouched, which is the main reason to choose a HELOC over a cash-out refinance when you already have a low rate." },
+  { question: "Is the rate fixed or variable?", answer: "Variable. The rate is tied to the Wall Street Journal Prime Rate plus a margin, so it can change monthly as Prime moves, and it's subject to a floor and a lifetime cap that are set at closing. Your payment can go up or down over the life of the line." },
+  { question: "How does the draw period work?", answer: "You have an interest-only draw period at the start, followed by a repayment period during which the balance is paid down and no new draws are allowed. Draw periods and overall terms vary by program, and your loan officer will confirm the exact structure before you commit." },
+  { question: "How much do I have to draw at closing?", answer: "Most of the line. These programs require you to take a large initial draw when the loan closes, so you start paying interest on that amount right away. This isn't a line you open and leave sitting unused, so it's worth sizing it to what you actually plan to spend." },
+  { question: "Can I draw again later?", answer: "Yes, after an initial waiting period following closing, and each additional draw has a minimum amount. Your loan officer will confirm both for your program." },
+  { question: "How much can I borrow?", answer: "Lines start at $50,000. Your maximum depends on your equity, your credit profile, and the combined loan-to-value of your first mortgage plus the new line. There are also limits on the combined balance of all liens against the property." },
+  { question: "What can I use the funds for?", answer: "Home renovations, consolidating higher-interest debt, education costs, and major purchases are all common. Because the line is secured by your home, it generally costs less than credit cards or personal loans, and your home is the collateral." },
+  { question: "Are there prepayment penalties?", answer: "No. There is no prepayment penalty on our HELOC, so you can pay the balance down or off on your own schedule." },
+  { question: "What does the property have to look like?", answer: "The home needs to be in average or better condition, confirmed with a property condition report. We also verify your income and employment before closing." },
 ];
 
 const schema = [
@@ -38,12 +40,14 @@ import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
 
 const glance = [
-  ["Approval decision", "In as little as 5 minutes*"],
-  ["Funding", "In as few as 5 business days*"],
-  ["Line amounts", "$50,000–$1,000,000"],
-  ["Rate structure", "Variable"],
-  ["First mortgage", "Unchanged; the line is a second lien"],
-  ["Process", "Fully online, remote notary closing"],
+  ["Line amounts", "From $50,000"],
+  ["Rate structure", "Variable, tied to WSJ Prime"],
+  ["Lien position", "Second lien, or first lien if you prefer"],
+  ["Structure", "Interest-only draw period, then repayment"],
+  ["Initial draw", "A large draw is required at closing"],
+  ["Occupancy", "Primary home, second home, or investment property"],
+  ["Prepayment penalty", "None"],
+  ["Reserves", "Not required"],
 ];
 ---
 
@@ -58,9 +62,9 @@ const glance = [
     eyebrow={p.category}
     lead={p.oneLiner}
     facts={[
-      { label: "Approval decision", value: "As little as 5 minutes*" },
-      { label: "Funding", value: "As few as 5 business days*" },
-      { label: "Line amounts", value: "$50K–$1M" },
+      { label: "Line amounts", value: "From $50,000" },
+      { label: "Rate", value: "Variable, WSJ Prime" },
+      { label: "Prepayment penalty", value: "None" },
     ]}
   >
     {p.name}
@@ -68,7 +72,7 @@ const glance = [
       <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
       <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
     </Fragment>
-    <Fragment slot="note">*See terms below.</Fragment>
+    <Fragment slot="note">See important terms below.</Fragment>
   </TermSheetHero>
 
   <TermSheet>
@@ -99,7 +103,7 @@ const glance = [
   </TermSheet>
 
 
-  <CtaBand title="Tap your equity. Keep your rate." text="Apply online and get an approval decision in minutes.">
+  <CtaBand title="Tap your equity. Keep your rate." text="Tell us what your home is worth and what you owe, and we'll show you what a line could look like.">
     <a href="#contact" class="btn btn-primary">Get Pre-Qualified</a>
     <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
   </CtaBand>
@@ -107,7 +111,7 @@ const glance = [
   <section class="bg-white py-8" id="terms">
     <div class="container-wide">
       <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
-        *Approval may be granted in five minutes but is ultimately subject to verification of income and employment, as well as verification that the property is in at least average condition with a property condition report. Five business day funding timeline assumes closing the loan with our remote online notary. Funding timelines may be longer for loans secured by properties located in counties that do not permit recording of e-signatures or that otherwise require an in-person closing. The HELOC's interest rate is variable, tied to the Wall Street Journal Prime Rate plus a margin, subject to a 4% floor and an 18% lifetime cap (may vary by state); your rate and payment may increase or decrease over the life of the line.
+        The HELOC's interest rate is variable, tied to the Wall Street Journal Prime Rate plus a margin, and is subject to a floor and a lifetime cap disclosed to you at closing; your rate and payment may increase or decrease over the life of the line. Approval is subject to verification of income and employment, and to verification that the property is in average or better condition with a property condition report. A substantial initial draw is required at closing, and interest accrues on the amount drawn. Additional draws are available after an initial waiting period and are subject to a minimum amount. Line amounts, terms, and availability vary by program, property type, and state. This is not a commitment to lend or extend credit. All loans are subject to credit and underwriting approval.
       </p>
     </div>
   </section>

@@ -16,7 +16,7 @@ const rateFactors = [
   },
   {
     factor: "Loan type",
-    impact: "Conventional, FHA, and VA loans each price differently. Non-QM rates are typically 0.5% to 2% higher than conventional because those loans are not eligible for sale to Fannie Mae or Freddie Mac. The exact spread depends on the program.",
+    impact: "Conventional, FHA, and VA loans each price differently, and Non-QM runs higher than all of them because those loans are not eligible for sale to Fannie Mae or Freddie Mac.",
   },
   {
     factor: "Property type",
@@ -51,7 +51,7 @@ const faq = [
   },
   {
     question: "How much higher are Non-QM rates than conventional rates?",
-    answer: "Typically 0.5% to 2% higher, depending on the program and scenario. Bank statement loans usually run 0.75% to 1.5% above conventional. DSCR loans vary based on the property's cash flow ratio and LTV. Non-QM rates for borrowers with strong credit and significant equity can be competitive. The gap narrows the stronger the overall profile.",
+    answer: "Higher, but how much higher depends on the program and the scenario. Non-QM rates for borrowers with strong credit and significant equity can be competitive, and the gap narrows the stronger the overall profile. The only reliable number is a quote on your actual file.",
   },
   {
     question: "Can I refinance out of a Non-QM loan into a conventional loan later?",
@@ -74,12 +74,12 @@ import IndexSection from "../../components/asym/IndexSection.astro";
 import FaqList from "../../components/asym/FaqList.astro";
 
 const rateContext = [
-  { program: "Conventional (30-yr fixed)", context: "Best available pricing for W-2 borrowers with 620+ credit. Benchmark for comparison." },
+  { program: "Conventional (30-yr fixed)", context: "Usually the best available pricing, and the benchmark everything else is compared against." },
   { program: "FHA (30-yr fixed)", context: "Slightly above conventional. Lower credit threshold. Mortgage insurance required." },
   { program: "VA (30-yr fixed)", context: "Often priced at or below conventional for eligible veterans and service members. No monthly mortgage insurance." },
-  { program: "Bank Statement Loans", context: "Typically 0.75% to 1.5% above conventional depending on credit and LTV." },
+  { program: "Bank Statement Loans", context: "Higher than conventional. Priced on your credit, down payment, and the strength of the file." },
   { program: "DSCR Investment Loans", context: "Varies by property cash flow ratio, credit score, and LTV. Often competitive with conventional investor rates." },
-  { program: "Non-QM (general)", context: "0.5% to 2% above conventional. Specific pricing depends heavily on the full scenario." },
+  { program: "Non-QM (general)", context: "Higher than conventional, because these loans aren't sold to Fannie Mae or Freddie Mac. Pricing depends heavily on the full scenario." },
 ];
 ---
 

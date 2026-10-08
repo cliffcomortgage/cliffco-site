@@ -27,7 +27,7 @@ export const PRODUCTS: readonly Product[] = [
   { slug: "usda", name: "USDA Loans", shortName: "USDA", oneLiner: "Zero-down financing for eligible rural and suburban properties.", directAnswer: "USDA Rural Development loans offer 0% down for properties in eligible rural and many suburban areas, subject to income limits.", loanType: "USDA", hasPillar: false, category: "Conventional / Government" },
   { slug: "refinancing", name: "Refinancing", shortName: "Refinancing", oneLiner: "Rate-and-term, cash-out, CEMA, and Non-QM refinances for all borrower types.", directAnswer: "Cliffco refinances mortgages across all loan types: conventional rate-and-term, cash-out up to 80% LTV, Non-QM refinances for self-employed borrowers who can't qualify conventionally, CEMA refinances that eliminate New York mortgage recording tax on the existing principal balance, and HECM-to-HECM reverse mortgage refinances for better terms.", loanType: "Refinance", hasPillar: false, category: "Conventional / Government" },
   { slug: "renovation", name: "Renovation Loans", shortName: "Renovation", oneLiner: "Finance a home plus its renovation in a single loan.", directAnswer: "Renovation mortgages roll the purchase or refinance and the cost of renovations into a single mortgage based on the home's after-renovation value. Cliffco offers FHA 203(k) Standard and Limited, Fannie Mae HomeStyle, Freddie Mac CHOICERenovation, and VA renovation loans.", loanType: "Renovation", hasPillar: false, category: "Conventional / Government" },
-  { slug: "heloc", name: "HELOC (Home Equity Line of Credit)", shortName: "HELOC", oneLiner: "A variable-rate home equity line with an approval decision in five minutes and funding in as few as five days.", directAnswer: "A HELOC lets you borrow against your home equity without refinancing your existing mortgage, so the rate on your first mortgage stays untouched. Cliffco's HELOC program is fully online: an approval decision in five minutes, funding in as few as five business days, a variable rate tied to the WSJ Prime Rate, and lines from $50,000 to $1,000,000 depending on your equity and credit profile.", loanType: "HELOC", hasPillar: false, category: "Conventional / Government" },
+  { slug: "heloc", name: "HELOC (Home Equity Line of Credit)", shortName: "HELOC", oneLiner: "A variable-rate home equity line that leaves your first mortgage, and its rate, alone.", directAnswer: "A HELOC lets you borrow against your home equity without refinancing your existing mortgage, so the rate on your first mortgage stays untouched. Lines start at $50,000, carry a variable rate tied to the WSJ Prime Rate, and have no prepayment penalty. How much you can borrow depends on your equity, your credit profile, and the combined loan-to-value of all liens on the property.", loanType: "HELOC", hasPillar: false, category: "Conventional / Government" },
   // Specialty programs with full pillar pages
   {
     slug: "non-qm-self-employed",
@@ -39,7 +39,7 @@ export const PRODUCTS: readonly Product[] = [
       "freelancers, and small-business owners using bank statements, 1099s, profit-and-loss " +
       "statements, or asset utilization, instead of two years of tax returns. Programs include " +
       "12 / 24-month bank statement, P&L only, 1099 only, asset depletion, ITIN, and foreign " +
-      "national, with rates typically 1–2 points above conventional.",
+      "national.",
     loanType: "Non-QM Bank Statement",
     hasPillar: true,
     category: "Non-QM",
@@ -68,7 +68,7 @@ export const PRODUCTS: readonly Product[] = [
       "A DSCR (Debt-Service Coverage Ratio) loan qualifies real estate investors based on the " +
       "rental income of the subject property, not personal income. Cliffco's DSCR programs cover " +
       "long-term rentals and short-term rentals (Airbnb / Vrbo/1007 Market Rent Schedule), allow LLC vesting, fund out-of-state " +
-      "borrowers, and accept from no ratio to 0.75 (with strong reserves) up to 1.25+. Competitive pricing available for higher ratios.",
+      "borrowers, and and accept ratios from 0.75 on long-term rentals, with a larger down payment required below 1.00.",
     loanType: "DSCR",
     hasPillar: true,
     category: "Investor",

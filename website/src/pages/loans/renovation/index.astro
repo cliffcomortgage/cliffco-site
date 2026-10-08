@@ -9,13 +9,13 @@ const p = product("renovation")!;
 
 const faq = [
   { question: "What is a renovation loan?", answer: "A renovation mortgage rolls the cost of buying (or refinancing) a home and the cost of renovations into a single loan, based on what the home will be worth after the work is done. Cliffco offers five: FHA 203(k) Standard and FHA 203(k) Limited (government-insured, for primary residences), Fannie Mae HomeStyle and Freddie Mac CHOICERenovation (conventional, which also cover second homes and investment properties), and VA renovation loans for eligible veterans, service members, and surviving spouses." },
-  { question: "What is the difference between FHA 203(k) Standard and Limited?", answer: "Limited is for lighter, non-structural work, such as kitchens, baths, flooring, a new roof, or HVAC, up to $75,000 in repairs, with no HUD consultant required. Standard is for bigger projects, including structural repairs, room additions, and major remodels. It requires at least $5,000 in repairs and a HUD-approved 203(k) consultant who writes up the work and inspects it as it's done." },
-  { question: "What is the difference between HomeStyle and CHOICERenovation?", answer: "They're very similar. Both are conventional renovation loans that let renovation costs reach up to 75% of the home's after-renovation value, cover primary residences, second homes, and single-unit investment properties, and allow luxury upgrades. HomeStyle is backed by Fannie Mae and CHOICERenovation by Freddie Mac, which also highlights work that protects a home against natural disasters. Your loan officer can price both and recommend the better fit." },
-  { question: "Should I choose FHA 203(k) or a conventional renovation loan?", answer: "FHA 203(k) is often the better fit if your credit is still growing or you want a 3.5% down payment on a primary residence. HomeStyle and CHOICERenovation usually make more sense with stronger credit, for second homes or investment properties, or for upgrades FHA doesn't allow, like a pool. Conventional mortgage insurance can also be removed once you reach 20% equity, while FHA mortgage insurance usually can't." },
-  { question: "Can I use my VA benefit for a renovation loan?", answer: "Yes. A VA renovation loan lets eligible veterans, service members, and surviving spouses buy or refinance a home and finance the repairs in one VA-guaranteed loan, with as little as 0% down and no monthly mortgage insurance (the VA funding fee still applies). The loan amount is based on the VA appraiser's after-renovation value, and the home must be your primary residence." },
+  { question: "What is the difference between FHA 203(k) Standard and Limited?", answer: "Limited is for lighter, non-structural work, such as kitchens, baths, flooring, or HVAC. The cap is $75,000, and that figure includes fees and the required contingency reserve, so the budget for actual repairs is lower. No HUD consultant is required, though your lender can still ask for one depending on the scope. Standard is for bigger projects, including structural repairs, room additions, and major remodels. It requires at least $5,000 in repairs and a HUD-approved 203(k) consultant who writes up the work and inspects it as it's done." },
+  { question: "What is the difference between HomeStyle and CHOICERenovation?", answer: "They're close. Both are conventional renovation loans that cover primary residences, second homes, and single-unit investment properties, and both allow upgrades FHA won't, such as a pool. On HomeStyle, renovation costs are capped at the lesser of $200,000 or 75% of the home's after-renovation value. CHOICERenovation uses the same 75% test. HomeStyle is backed by Fannie Mae and CHOICERenovation by Freddie Mac. They differ on smaller points, including how long you have to finish the work, so your loan officer can price both and recommend the better fit." },
+  { question: "Should I choose FHA 203(k) or a conventional renovation loan?", answer: "FHA 203(k) is often the better fit if you want a 3.5% down payment on a primary residence, or if the project needs structural work. HomeStyle and CHOICERenovation usually make more sense for a second home or a rental, for a larger renovation budget, or for upgrades FHA doesn't allow, like a pool. Both start at the same 620 credit score, so credit alone doesn't decide it. Conventional mortgage insurance can also be removed once you reach 20% equity, while FHA mortgage insurance usually can't." },
+  { question: "Can I use my VA benefit for a renovation loan?", answer: "Yes. A VA renovation loan lets an eligible veteran buy or refinance a home and finance the repairs in one VA-guaranteed loan, with no monthly mortgage insurance (the VA funding fee still applies). Buying with 0% down is possible with full entitlement; refinances are capped at 90% of the home's value. The renovation budget is capped at $50,000 including fees and contingency, and the loan amount is based on the lesser of the after-renovation value or what the home costs you. The home must be your primary residence." },
   { question: "How does the renovation disbursement work?", answer: "At closing, the renovation funds are held in an escrow account. As work is completed, the contractor submits draw requests and an inspector verifies progress before funds are released. This protects both the borrower and the lender." },
-  { question: "Can I do the renovation work myself?", answer: "It depends on the program and your experience. FHA 203(k) loans generally require licensed contractors. Fannie Mae HomeStyle allows limited do-it-yourself work on single-family homes with lender approval. Talk to your loan officer before you plan to do any of the work yourself." },
-  { question: "What types of renovation work qualify?", answer: "All four programs cover kitchen and bath remodels, roof replacement, HVAC, plumbing, electrical, energy-efficiency upgrades, and accessibility modifications. FHA 203(k) Standard and the two conventional programs also cover structural repairs; FHA 203(k) Limited doesn't. HomeStyle and CHOICERenovation also allow luxury items, like a pool or outdoor kitchen, that FHA 203(k) and VA renovation loans don't." },
+  { question: "Can I do the renovation work myself?", answer: "Sometimes, and only on one program. FHA 203(k) Limited allows \"self-help\" work on projects up to $35,000, with a signed self-help agreement, a larger contingency reserve, and a six-month completion window. It isn't available in Texas. FHA 203(k) Standard does not allow it: you can't act as your own general contractor. HomeStyle does not allow it either. On a refinance, the value of your own labor can't be counted toward the home's value. Talk to your loan officer before you plan to do any of the work yourself." },
+  { question: "What types of renovation work qualify?", answer: "All five programs cover kitchen and bath remodels, HVAC, plumbing, electrical, energy-efficiency upgrades, and accessibility modifications. FHA 203(k) Standard, HomeStyle, and CHOICERenovation also cover structural work. FHA 203(k) Limited is non-structural only. VA renovation is mostly non-structural, with minor structural work and accessibility changes allowed. HomeStyle and CHOICERenovation are the two that allow a pool; FHA 203(k) and VA don't, though repairs to an existing pool are fine." },
   { question: "How long does a renovation loan take to close?", answer: "Renovation loans take longer than standard mortgages because of the additional documentation (contractor bids, work plans, appraisal of after-renovation value). Typical timeline is 45–60 days. Your Cliffco loan officer will coordinate with the appraiser and HUD consultant (if applicable) to keep the process moving." },
 ];
 
@@ -44,8 +44,9 @@ const programs = [
     backer: "Government-insured",
     bestFor: "Major remodels, structural repairs, and additions.",
     rows: [
-      ["Repair costs", "$5,000 minimum; total loan within FHA limits"],
-      ["Down payment", "3.5% (580+ FICO)"],
+      ["Repair costs", "$5,000 minimum"],
+      ["Down payment", "3.5%"],
+      ["Min credit score", "620"],
       ["HUD consultant", "Required"],
       ["Property types", "Primary residence, 1–4 units"],
       ["Luxury items", "Not eligible"],
@@ -57,8 +58,9 @@ const programs = [
     backer: "Government-insured",
     bestFor: "Lighter, non-structural updates like kitchens, baths, flooring, a roof, or HVAC.",
     rows: [
-      ["Repair costs", "Up to $75,000"],
-      ["Down payment", "3.5% (580+ FICO)"],
+      ["Repair costs", "Up to $75,000, including fees and contingency"],
+      ["Down payment", "3.5%"],
+      ["Min credit score", "620"],
       ["HUD consultant", "Not required"],
       ["Property types", "Primary residence, 1–4 units"],
       ["Structural work", "Not eligible"],
@@ -70,25 +72,27 @@ const programs = [
     backer: "Conventional",
     bestFor: "Any permanent improvement, including luxury upgrades, on a primary home, second home, or rental.",
     rows: [
-      ["Renovation costs", "Up to 75% of the after-renovation value"],
-      ["Down payment", "From 3% for eligible first-time buyers; 5% primary"],
+      ["Renovation costs", "Lesser of $200,000 or 75% of the after-renovation value"],
+      ["Down payment", "From 3% first-time buyers; 5% primary; 10% second home; 15% investment"],
+      ["Min credit score", "620"],
       ["Loan limit", "Conforming / high-balance"],
       ["Property types", "Primary, second home, 1-unit investment"],
-      ["Luxury items", "Eligible"],
-      ["Mortgage insurance", "PMI (removable at 80% LTV)"],
+      ["Luxury items", "Eligible, including pools"],
+      ["Mortgage insurance", "PMI"],
     ],
   },
   {
     name: "Freddie Mac CHOICERenovation",
     backer: "Conventional",
-    bestFor: "Remodels and repairs, including work that protects a home against natural disasters.",
+    bestFor: "Structural and non-structural remodels on a primary home, second home, or rental.",
     rows: [
       ["Renovation costs", "Up to 75% of the after-renovation value"],
-      ["Down payment", "From 3% for eligible first-time buyers; 5% primary"],
+      ["Down payment", "From 3% first-time buyers; 5% primary; 10% second home; 15% investment"],
+      ["Min credit score", "620"],
       ["Loan limit", "Conforming / high-balance"],
       ["Property types", "Primary, second home, 1-unit investment"],
-      ["Luxury items", "Eligible"],
-      ["Mortgage insurance", "PMI (removable at 80% LTV)"],
+      ["Luxury items", "Eligible, including pools"],
+      ["Mortgage insurance", "PMI"],
     ],
   },
   {
@@ -96,11 +100,12 @@ const programs = [
     backer: "VA-guaranteed",
     bestFor: "Eligible veterans, service members, and surviving spouses buying or refinancing a home that needs work.",
     rows: [
-      ["Down payment", "As little as 0%"],
-      ["Renovation costs", "Based on the VA after-renovation appraisal"],
-      ["Eligibility", "Veterans, service members, surviving spouses"],
+      ["Down payment", "0% on a purchase with full entitlement"],
+      ["Renovation costs", "Up to $50,000, including fees and contingency"],
+      ["Min credit score", "620"],
+      ["Refinance LTV", "Capped at 90%"],
+      ["Structural work", "Non-structural, plus accessibility work"],
       ["Property types", "Primary residence, 1–4 units"],
-      ["Luxury items", "Not eligible"],
       ["Mortgage insurance", "None (VA funding fee applies)"],
     ],
   },
@@ -109,10 +114,18 @@ const programs = [
 const fit = [
   { project: "Cosmetic updates under $75,000 on the home you'll live in", program: "FHA 203(k) Limited" },
   { project: "A fixer-upper that needs structural work or an addition", program: "FHA 203(k) Standard" },
-  { project: "Strong credit, or upgrades like a pool or outdoor kitchen", program: "HomeStyle or CHOICERenovation" },
+  { project: "Upgrades FHA won't cover, like a new pool", program: "HomeStyle or CHOICERenovation" },
   { project: "A second home or a single-unit rental property", program: "HomeStyle or CHOICERenovation" },
-  { project: "Hardening a home against storms, floods, or wildfire", program: "CHOICERenovation" },
-  { project: "A veteran or service member buying a home that needs work", program: "VA Renovation" },
+  { project: "An eligible veteran buying a home that needs work", program: "VA Renovation" },
+];
+
+const planFor = [
+  { label: "Start the work fast", body: "Renovation has to begin within 30 days of closing on FHA and conventional programs, and within 15 days on VA. If work stops for more than 30 days, the lender can treat the loan as in default." },
+  { label: "Finish on schedule", body: "FHA 203(k) Limited allows 9 months, FHA 203(k) Standard and HomeStyle 12 months, CHOICERenovation 450 days, and VA 120 days from the note date." },
+  { label: "Contingency reserve", body: "A reserve of 10% to 20% of the renovation cost is required and counts inside your renovation budget. It rises to at least 15% if the utilities are off or there's water, mold, or fire damage." },
+  { label: "Draws, not a lump sum", body: "Contractors are paid in stages after an inspector confirms the work is done. Each release holds back 10% until the final inspection, and funds are paid by a check made out to you and the contractor together." },
+  { label: "No cash back", body: "Renovation money can only be spent on the approved work. FHA and conventional programs allow no cash back at closing; VA allows a small incidental amount." },
+  { label: "Your contractor is vetted too", body: "Contractors must be licensed, bonded, and insured, and supply references. VA requires a VA builder ID number before the appraisal is issued." },
 ];
 
 const steps = [
@@ -136,7 +149,7 @@ const steps = [
     lead="Buy a home that needs work, or fix up the one you own, with one loan based on what the home will be worth when the work is done."
     facts={[
       { label: "Loan options", value: "5 programs" },
-      { label: "Down payment", value: "From 0% (VA)" },
+      { label: "Down payment", value: "From 0% (VA purchase)" },
       { label: "Based on", value: "After-renovation value" },
     ]}
   >
@@ -197,6 +210,22 @@ const steps = [
         </li>
       ))}
     </ol>
+  </Chapter>
+
+  <!-- WHAT TO PLAN FOR -->
+  <Chapter eyebrow="What to plan for" title="The rules that shape your project.">
+    <p class="text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">
+      Renovation loans come with deadlines and reserves that a standard mortgage doesn't have. These are
+      the ones that most often catch borrowers by surprise.
+    </p>
+    <dl class="mt-8 border-t border-[var(--color-ink)]">
+      {planFor.map((item) => (
+        <div class="grid sm:grid-cols-[minmax(0,13rem)_1fr] gap-x-6 gap-y-1 py-4 border-b border-black/15">
+          <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">{item.label}</dt>
+          <dd class="text-[var(--color-text)] leading-relaxed">{item.body}</dd>
+        </div>
+      ))}
+    </dl>
   </Chapter>
 
   <!-- FAQ -->

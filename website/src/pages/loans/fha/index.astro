@@ -16,7 +16,7 @@ const faq = [
   { question: "Can I refinance an FHA loan later?", answer: "Yes. An FHA Streamline Refinance can lower the rate on an existing FHA loan with reduced paperwork and, in many cases, no appraisal. Once you reach 20% equity, refinancing into a conventional loan can remove mortgage insurance altogether." },
   { question: "Does the home have to meet FHA standards?", answer: "Yes. The FHA appraisal checks that the home meets HUD's minimum property standards for safety, security, and soundness, such as a sound roof and working heat and electrical systems. Most move-in-ready homes pass without issue. For a home that needs work, an FHA 203(k) renovation loan can finance the repairs." },
   { question: "Can I use an FHA loan to buy a multi-family property?", answer: "Yes, up to 4 units, as long as the borrower occupies one unit as their primary residence. FHA allows multi-family purchases, which is a common strategy for first-time buyers who want rental income to help offset mortgage costs." },
-  { question: "What are the FHA loan limits for 2026?", answer: "FHA loan limits vary by county. The standard floor is $541,287 for a single-family home; the ceiling in high-cost areas (including parts of New York and New Jersey) is $1,249,125. Multi-family limits are higher. Your Cliffco loan officer can confirm the limit for your county." },
+  { question: "What are the FHA loan limits for 2026?", answer: "FHA sets its limits county by county, and they're higher in high-cost areas like much of the New York metro. Limits are also higher on 2-4 unit properties than on a single-family home. HUD publishes the current figures, and your Cliffco loan officer can confirm the limit for the county you're buying in before you write an offer." },
 ];
 
 const schema = [
@@ -42,12 +42,12 @@ import LoanCompare from "../../../components/asym/LoanCompare.astro";
 const glance = [
   ["Min down payment", "3.5% (580+ FICO); 10% (500–579 FICO)"],
   ["Min FICO", "500 (FHA min); 580 for 3.5% down"],
-  ["2026 loan limit (standard)", "$541,287 (SFR); up to $1,249,125 (high-cost)"],
+  ["2026 loan limit", "Set by HUD, county by county"],
   ["Mortgage insurance", "1.75% UFMIP + annual MIP (typically for life of loan)"],
   ["Gift funds", "Can cover the full down payment"],
   ["Seller credits", "Up to 6% of the price toward closing costs"],
   ["Property types", "Primary residence, 1–4 units"],
-  ["Max DTI", "Up to 57% with strong compensating factors"],
+  ["Max DTI", "Set by automated underwriting, with room for compensating factors"],
 ];
 
 const whoFor = [
@@ -73,7 +73,7 @@ const whoFor = [
     facts={[
       { label: "Down payment", value: "3.5% with 580+ FICO" },
       { label: "Gift funds", value: "Can cover all of it" },
-      { label: "Max DTI", value: "Up to 57%" },
+      { label: "Credit score", value: "From 580" },
     ]}
   >
     {p.name}

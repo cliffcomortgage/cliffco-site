@@ -26,7 +26,7 @@ const faq = [
   },
   {
     question: "Can I get a jumbo loan on a New York co-op?",
-    answer: "Yes. Cliffco has extensive experience with New York co-op financing including jumbo co-op loans, proprietary-lease review, and co-op board package guidance. Our Long Island offices in Uniondale and Bay Shore handle co-op files regularly.",
+    answer: "Often, yes, though every co-op goes through our Enterprise Co-Op Desk for review first, and the unit generally needs to be your primary residence. We have extensive experience with New York co-op financing, proprietary-lease review, and co-op board package guidance. Our Long Island offices in Uniondale and Bay Shore handle co-op files regularly.",
   },
   {
     question: "Does Cliffco finance Florida condo non-warrantable units?",
@@ -61,13 +61,13 @@ const propertyTypes = [
   },
   {
     name: "Co-op apartments",
-    body: "Share-based ownership in a cooperative corporation. Financing requires co-op board approval, proprietary lease review, and a lender experienced with co-op collateral. Common in New York City and the NYC suburbs.",
-    points: ["Long Island and NYC metro focus", "Conventional and jumbo co-op loans", "Co-op board package guidance"],
+    body: "Share-based ownership in a cooperative corporation. Co-op financing goes through our Enterprise Co-Op Desk for review before we commit, the unit generally needs to be owner-occupied, and the building has to meet eligibility standards. Common in New York City and the NYC suburbs.",
+    points: ["Long Island and NYC metro focus", "Reviewed case by case before we commit", "Co-op board package guidance"],
   },
   {
     name: "Condotels",
-    body: "Hotel-style buildings with mandatory rental pool programs, front-desk services, and short-term occupancy. Almost no conventional lender will touch them. Cliffco's Non-QM and portfolio programs can finance condotel units for investors.",
-    points: ["Non-QM / portfolio financing", "Investment property focus", "Florida and resort markets"],
+    body: "Resort and vacation-rental condo units that conventional lenders won't finance. We can place these on specific investor programs, usually for investors qualifying on the property's rental income, and each building is reviewed on its own merits. Projects run as a hotel, or with a mandatory rental pool that controls when owners can occupy, generally won't qualify.",
+    points: ["Specific investor programs only", "Investment property focus", "Building reviewed case by case"],
   },
 ];
 ---
@@ -84,8 +84,8 @@ const propertyTypes = [
     lead={p.oneLiner}
     facts={[
       { label: "Non-warrantable condos", value: "Portfolio & Non-QM" },
-      { label: "Co-op apartments", value: "Conventional & jumbo" },
-      { label: "Condotels", value: "Investor financing" },
+      { label: "Co-op apartments", value: "Reviewed case by case" },
+      { label: "Condotels", value: "Select investor programs" },
     ]}
   >
     {p.name}
@@ -107,7 +107,7 @@ const propertyTypes = [
           </article>
           <article class="rounded-2xl p-6 bg-[var(--color-ink)] text-white">
             <h3 class="font-semibold !text-white">Non-warrantable condos</h3>
-            <p class="mt-2 text-sm text-white/85 leading-relaxed">One or more Fannie/Freddie guidelines are not met. Standard conventional and FHA programs are unavailable. Rates are typically 0.25–0.75 points higher. Portfolio or Non-QM lending is required. Cliffco handles non-warrantable scenarios daily.</p>
+            <p class="mt-2 text-sm text-white/85 leading-relaxed">One or more Fannie/Freddie guidelines are not met. Standard conventional and FHA programs are unavailable, and pricing runs higher than a warrantable condo. Portfolio or Non-QM lending is required. Cliffco handles non-warrantable scenarios daily.</p>
           </article>
         </div>
       </Chapter>

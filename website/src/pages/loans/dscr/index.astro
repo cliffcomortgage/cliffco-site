@@ -10,15 +10,15 @@ const p = product("dscr")!;
 
 const faq = [
   { question: "What is a DSCR loan?", answer: "A DSCR (Debt-Service Coverage Ratio) loan is a mortgage for real estate investors that qualifies the borrower based on the rental income of the subject property, not the borrower's personal income. The qualifying ratio is monthly rent divided by monthly principal-and-interest, taxes, insurance, and HOA (PITIA). Most DSCR programs accept ratios from 0.75 (with strong reserves) up to 1.25+ for best pricing." },
-  { question: "How is DSCR calculated?", answer: "DSCR = Gross Monthly Rent ÷ Monthly PITIA. For a $2,500/mo rental with $2,000/mo PITIA, the DSCR is 1.25. Cliffco can use long-term lease income or short-term-rental projections (AirDNA-supported for STR markets like Orlando)." },
-  { question: "Are Airbnb / short-term rentals eligible?", answer: "Yes. Cliffco's DSCR program accepts short-term-rental income for properties in markets where STR is allowed (e.g., Disney-area Polk County, FL). For new STR purchases without operating history, we use market projections from sources like AirDNA. For existing STRs, we use trailing 12-month operating statements." },
+  { question: "How is DSCR calculated?", answer: "DSCR = Monthly Rent ÷ Monthly PITIA. For a $2,500/mo long-term rental with $2,000/mo PITIA, the DSCR is 1.25. On a short-term rental the gross rent is reduced by a 20% expense factor first, so plan on the deducted figure rather than your gross projection. Cliffco can use long-term lease income or short-term-rental projections (AirDNA-supported for STR markets like Orlando)." },
+  { question: "Are Airbnb / short-term rentals eligible?", answer: "Yes, with conditions. Gross short-term rental income is reduced by a 20% expense factor, minimums start at 1.00 and reach 1.25 on one program, and we need third-party evidence that the local municipality allows short-term rentals (New York City's five boroughs are not eligible). For an existing rental we use the trailing 12 months of operating statements or deposits. For a new purchase we can use market projections, though having under a year of operating experience is handled as an exception rather than a standard approval." },
   { question: "Can I close in an LLC?", answer: "Yes. Cliffco's DSCR loans allow vesting in an LLC (or in a personal name), a common preference among investors building portfolios. We provide the documentation requirements at the application stage." },
-  { question: "What's the minimum DSCR ratio?", answer: "Cliffco offers programs that go as low as 0.75 DSCR with compensating factors (higher down payment, stronger reserves, experienced investor profile). The most competitive pricing is at 1.25+ DSCR." },
-  { question: "Can I get a DSCR loan from out of state?", answer: "Yes. A large share of Cliffco's DSCR borrowers live out of state, particularly New Yorkers and New Jerseyans buying Florida or Arizona investment properties. Cliffco is licensed in " + STATE_LICENSES.length + " states; we can lend in any of them on the property and any of them on the borrower's residence." },
+  { question: "What's the minimum DSCR ratio?", answer: "It depends on the program and the property. On long-term rentals some programs go as low as 0.75, but below 1.00 you'll need a larger down payment, because the maximum loan-to-value drops. Short-term rentals start at 1.00 and one of our programs requires 1.25. First-time investors need at least 1.00. Smaller loan amounts and 5-9 unit properties carry their own higher minimums (higher down payment, experienced investor profile). The most competitive pricing is at 1.25+ DSCR." },
+  { question: "Can I get a DSCR loan from out of state?", answer: "Yes. A large share of Cliffco's DSCR borrowers live out of state, particularly New Yorkers and New Jerseyans buying Florida or Arizona investment properties. Cliffco is licensed in " + STATE_LICENSES.length + " states and lends on DSCR in nearly all of them, with a few exceptions your loan officer will confirm for the state you're buying in." },
 ];
 
 const schema = [
-  mortgageLoanSchema(p, { rateRange: { min: 7.0, max: 9.5 } }),
+  mortgageLoanSchema(p),
   faqPageSchema(faq),
   articleSchema({
     headline: p.name,
@@ -57,7 +57,7 @@ const fits = [
     lead={p.oneLiner}
     facts={[
       { label: "Qualifies on", value: "Rental income, not personal income" },
-      { label: "DSCR ratios accepted", value: "No ratio to 1.25+" },
+      { label: "Minimum DSCR", value: "From 0.75 on long-term rentals" },
       { label: "Vesting", value: "LLC or personal name" },
     ]}
   >
@@ -74,7 +74,7 @@ const fits = [
     <Chapter eyebrow="Quick math" title="DSCR is a one-line formula.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
         <div class="mt-8 rounded-2xl bg-[var(--color-ink)] text-white p-7 sm:p-8">
-          <p class="text-base sm:text-lg font-mono text-white leading-relaxed"><strong>DSCR</strong> = Gross Monthly Rent ÷ Monthly PITIA</p>
+          <p class="text-base sm:text-lg font-mono text-white leading-relaxed"><strong>DSCR</strong> = Monthly Rent ÷ Monthly PITIA</p>
           <p class="mt-4 text-white/75 leading-relaxed">
             PITIA = Principal + Interest + Property Taxes + Insurance + HOA dues. For a $2,500/mo
             rental with $2,000/mo PITIA, DSCR = <strong class="text-white">1.25</strong>.

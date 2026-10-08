@@ -11,7 +11,7 @@ const denialReasons = [
     label: "Credit Score Below 640",
     solution: {
       heading: "A low score narrows your options. It doesn't eliminate them.",
-      body: "Non-QM programs work with credit scores as low as 500. The lower the score, the larger the down payment typically required, but there is no hard floor that makes your situation automatic. With compensating factors such as strong cash reserves, low debt, or a larger down payment, scores in the 500s can qualify. Your Cliffco loan officer will review your full profile, not just the number.",
+      body: "A score below 640 doesn't rule you out. Our Non-QM programs set a 580 minimum credit score, though most program tiers start at 620 or above. The lower your score, the larger the down payment you can expect to need. Compensating factors such as strong cash reserves, low debt, or a larger down payment all help. Your Cliffco loan officer will review your full profile, not just the number.",
     },
   },
   {
@@ -27,7 +27,7 @@ const denialReasons = [
     label: "Recent Bankruptcy or Foreclosure",
     solution: {
       heading: "You may not have to wait as long as you think.",
-      body: "Conventional loans require 2 to 7 years after a bankruptcy or foreclosure before you can qualify again. Non-QM programs can approve borrowers as soon as 1 day after discharge (Chapter 7) or 1 day after a short sale, depending on the program and down payment. If the waiting period is the only thing between you and a home, let's talk.",
+      body: "Conventional loans can require up to 7 years after a bankruptcy or foreclosure. Our Non-QM programs generally look for 24 months from a bankruptcy discharge, a foreclosure, a short sale, or a deed in lieu, and some programs require 36. That's often years sooner than a conventional loan, and the exact wait depends on the program and your down payment. If the waiting period is the only thing between you and a home, let's talk.",
     },
   },
   {
@@ -71,11 +71,11 @@ const faq = [
   },
   {
     question: "Are Non-QM interest rates higher?",
-    answer: "Yes, typically. Non-QM rates are usually 0.5% to 2% above conventional rates depending on the scenario, because the loan doesn't qualify for sale to Fannie Mae or Freddie Mac. This is a known trade-off. Many borrowers refinance into a conventional loan once their income or credit profile meets standard guidelines.",
+    answer: "Yes, typically. Non-QM rates run higher than conventional, because the loan doesn't qualify for sale to Fannie Mae or Freddie Mac. How much higher depends on your scenario. This is a known trade-off. Many borrowers refinance into a conventional loan once their income or credit profile meets standard guidelines.",
   },
   {
     question: "How long after a bankruptcy can I qualify for a Non-QM loan?",
-    answer: "Some Non-QM programs allow borrowing as soon as 1 day after discharge (Chapter 7) with a larger down payment. Conventional loans require 2 to 4 years. FHA requires 2 years. Non-QM provides options for borrowers who cannot wait the standard period.",
+    answer: "Our Non-QM programs generally require 24 months from the discharge or dismissal date, and some require 36 months. Conventional loans typically require 2 to 4 years after a Chapter 7 discharge, and FHA 2 years, so Non-QM can be the faster path, but it is not a no-wait path. Your loan officer can tell you which programs your discharge date already clears.",
   },
   {
     question: "How do I know if I qualify for a Non-QM loan?",
@@ -181,9 +181,9 @@ import CtaBand from "../../components/asym/CtaBand.astro";
     <ol class="list-none m-0 p-0 border-t border-white/40">
       {[
         "Bank statement programs exist that don't require tax returns",
-        "Some Non-QM lenders work with credit scores as low as 500",
+        "Non-QM programs set a 580 minimum credit score",
         "DSCR loans for investment properties require no personal income verification",
-        "Some programs have no waiting period after bankruptcy or foreclosure",
+        "After a bankruptcy or foreclosure, Non-QM can qualify you years sooner than conventional",
         "Your denial was based on a formula, not a judgment of your ability to pay",
       ].map((item, i) => (
         <li class="grid grid-cols-[3rem_1fr] gap-4 py-5 border-b border-white/15">

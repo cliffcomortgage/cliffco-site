@@ -13,7 +13,7 @@ const faq = [
   },
   {
     question: "What DSCR ratio do I need to qualify?",
-    answer: "For long-term rentals, Cliffco goes as low as a 0.75 DSCR, with a larger down payment required below 1.0. Short-term rentals and first-time investors need at least a 1.0, meaning rent covers the full monthly payment. The best pricing typically starts at 1.25. Your Cliffco loan officer can run the numbers for your specific property.",
+    answer: "For long-term rentals, Cliffco goes as low as a 0.75 DSCR, with a larger down payment required below 1.0. First-time investors need at least a 1.0. Short-term rentals also start at 1.0, one program requires 1.25, and gross short-term rent is reduced by a 20% expense factor before the ratio is calculated, meaning rent covers the full monthly payment. The best pricing typically starts at 1.25. Your Cliffco loan officer can run the numbers for your specific property.",
   },
   {
     question: "Can I borrow through an LLC or corporation?",
@@ -50,10 +50,10 @@ import FaqList from "../../components/asym/FaqList.astro";
 import CtaBand from "../../components/asym/CtaBand.astro";
 
 const params = [
-  ["Min DSCR ratio", "0.75 (higher ratio = better pricing)"],
+  ["Min DSCR ratio", "From 0.75 on long-term rentals; higher on short-term"],
   ["Max LTV (purchase)", "Up to 80%"],
   ["Max LTV (cash-out refi)", "Up to 75%"],
-  ["Loan amount", "$100K to $3M+"],
+  ["Loan amount", "$100K to $3M"],
   ["Property types", "1 to 4 unit non-owner-occupied"],
   ["Entity borrowing", "Yes (LLC, S-Corp, C-Corp)"],
   ["Personal income verification", "Not required"],
@@ -88,7 +88,7 @@ const compare = [
       alt: "A real estate investor on a phone call outside a commercial building, holding a coffee",
       position: "60% 20%",
     }}
-    tag={{ stat: "$100K–$3M+", label: "DSCR loan amounts" }}
+    tag={{ stat: "$100K–$3M", label: "DSCR loan amounts" }}
   >
     Qualify With Your Property's Cash Flow.<br />Not Your Income.
     <Fragment slot="actions">

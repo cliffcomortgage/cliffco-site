@@ -27,7 +27,7 @@ const faq = [
   {
     question: "What rates do Non-QM mortgages have?",
     answer:
-      "Non-QM rates typically run 1-2 percentage points above conventional, depending on the program, FICO score, down payment, and documentation type. As of mid-2026, Cliffco's bank-statement Non-QM rates generally range from 6.75%-9.0%, with stronger borrower files (740+ FICO, 25%+ down) pricing toward the lower end.",
+      "Non-QM rates run higher than conventional, because these loans aren't eligible for sale to Fannie Mae or Freddie Mac. How much higher depends on the program, your credit, your down payment, and how you document income. Rates move daily, so the only number worth having is a quote for your actual scenario. A loan officer can price it the same day.",
   },
   {
     question: "How much down payment do I need for a Non-QM loan?",
@@ -42,7 +42,7 @@ const faq = [
 ];
 
 const schema = [
-  mortgageLoanSchema(p, { rateRange: { min: 6.75, max: 9.0 } }),
+  mortgageLoanSchema(p),
   faqPageSchema(faq),
   articleSchema({
     headline: p.name,
@@ -76,14 +76,12 @@ const programs = [
   { name: "Foreign national", href: "/loans/foreign-national-mortgage/", body: "For non-US-resident foreign nationals purchasing US real estate. Uses foreign-bank reference letters, foreign income documentation, and asset verification; no US credit history required." },
   { name: "VOE (Verification of Employment)", body: "For W-2 employees who can document their employment and income through a written or verbal employer verification rather than pay stubs or tax returns. Strong fit for borrowers who are recently hired, have complex pay structures, or can't easily obtain standard income documentation." },
 ];
-const rates = [
-  ["Bank statement loan", "6.75%-9.00%"],
-  ["P&L only", "7.00%-9.25%"],
-  ["1099 only", "6.75%-9.00%"],
-  ["Asset utilization", "6.50%-8.75%"],
-  ["ITIN", "7.50%-9.50%"],
-  ["Foreign national", "7.75%-9.75%"],
-  ["VOE", "6.75%-8.75%"],
+const pricingFactors = [
+  ["Which program you use", "A bank statement loan, a 1099 loan, and an asset utilization loan don't price the same."],
+  ["Your credit score", "The single biggest lever on a Non-QM file."],
+  ["Your down payment", "More money down means a lower loan-to-value, which prices better."],
+  ["The property", "A primary residence prices better than a second home or a rental."],
+  ["How you document income", "Full documentation prices best; alternative documentation carries a premium."],
 ];
 ---
 
@@ -117,18 +115,18 @@ const rates = [
   <TermSheet>
     <FormCard slot="form" title="Find the Non-QM program that fits how you earn." sub="Tell us how you document income and we'll match you to the right program." formSource="loan-non-qm" />
 
-    <Chapter eyebrow="Rates & terms" title="What to expect.">
+    <Chapter eyebrow="Pricing" title="What moves your rate.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
         <p class="mt-4 text-[var(--color-text-muted)]">Final pricing depends on program, FICO, LTV, occupancy, and documentation type.</p>
         <dl class="mt-8 border-t border-[var(--color-ink)]">
-          {rates.map(([k, v]) => (
-            <div class="flex justify-between gap-6 py-3.5 border-b border-black/15">
+          {pricingFactors.map(([k, v]) => (
+            <div class="grid sm:grid-cols-[minmax(0,13rem)_1fr] gap-x-6 gap-y-1 py-4 border-b border-black/15">
               <dt class="font-medium text-[var(--color-ink)]">{k}</dt>
-              <dd class="font-mono text-sm text-[var(--color-text)]">{v}</dd>
+              <dd class="text-sm text-[var(--color-text)] leading-relaxed">{v}</dd>
             </div>
           ))}
         </dl>
-        <p class="text-xs text-[var(--color-text-muted)] mt-4 leading-relaxed">The chart above is for illustrative purposes only. This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Rates may not be available at time of application. Information and/or data are subject to change without notice.</p>
+        <p class="text-xs text-[var(--color-text-muted)] mt-4 leading-relaxed">This is not a commitment to lend or extend credit. Restrictions may apply. All loans are subject to credit and underwriting approval. Not all loan products are available in all states. Information and/or data are subject to change without notice.</p>
       </Chapter>
 
   <!-- WHO QUALIFIES -->

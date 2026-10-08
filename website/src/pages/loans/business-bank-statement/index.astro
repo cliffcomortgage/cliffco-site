@@ -17,7 +17,7 @@ const faq = [
 ];
 
 const schema = [
-  mortgageLoanSchema(p, { rateRange: { min: 7.0, max: 9.5 } }),
+  mortgageLoanSchema(p),
   faqPageSchema(faq),
   articleSchema({
     headline: p.name,
@@ -36,7 +36,6 @@ import CtaBand from "../../../components/asym/CtaBand.astro";
 
 const numbers = [
   ["Statement period", "12 or 24 months"],
-  ["Rate range", "7.00%-9.50%"],
   ["Expense ratio", "typically 50% (varies by industry)"],
   ["Max LTV", "up to 90%"],
   ["Min FICO", "620 (best pricing 720+)"],

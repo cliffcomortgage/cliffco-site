@@ -39,7 +39,7 @@ const faq = [
 ];
 
 const schema = [
-  mortgageLoanSchema(p, { rateRange: { min: 7.5, max: 9.5 } }),
+  mortgageLoanSchema(p),
   faqPageSchema(faq),
   articleSchema({
     headline: p.name,
@@ -63,7 +63,6 @@ const whoQualifies = [
   { title: "Real estate investors", body: "Borrowers looking to purchase investment or rental properties using ITIN documentation. Multi-unit properties and condos are eligible." },
 ];
 const numbers = [
-  ["Rate range", "7.50%–9.50%"],
   ["Min down payment", "15%–20% (primary) / 20–25% (investment)"],
   ["Credit requirement", "660+ FICO or alternative credit"],
   ["Income documentation", "12–24 months bank statements or 1099s"],

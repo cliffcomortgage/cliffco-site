@@ -39,7 +39,7 @@ const faq = [
 ];
 
 const schema = [
-  mortgageLoanSchema(p, { rateRange: { min: 6.75, max: 9.0 } }),
+  mortgageLoanSchema(p),
   faqPageSchema(faq),
   articleSchema({
     headline: p.name,
@@ -64,7 +64,6 @@ const whoQualifies = [
   { title: "Physicians and medical professionals", body: "MDs, doctors, and other medical professionals who work on a contract or locum tenens basis and receive 1099 income rather than a traditional W-2 salary." },
 ];
 const numbers = [
-  ["Rate range", "6.75%–9.00%"],
   ["1099 history required", "12–24 months"],
   ["Max LTV", "up to 85%"],
   ["Min FICO", "660 (best pricing 720+)"],

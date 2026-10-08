@@ -39,7 +39,7 @@ const faq = [
 ];
 
 const schema = [
-  mortgageLoanSchema(p, { rateRange: { min: 6.5, max: 8.75 } }),
+  mortgageLoanSchema(p),
   faqPageSchema(faq),
   articleSchema({
     headline: p.name,
@@ -64,7 +64,6 @@ const whoQualifies = [
   { title: "Borrowers supplementing income", body: "Anyone who has savings, investments, or retirement accounts and needs extra qualifying power. Asset-derived income can be layered on top of W-2, rental, Social Security, or any other documented income to close a qualifying gap." },
 ];
 const numbers = [
-  ["Rate range", "6.50%–8.75%"],
   ["Min eligible assets (illustrative)", "$1M+"],
   ["Retirement account reduction", "30%"],
   ["Program term (divisor)", "60–84 months"],

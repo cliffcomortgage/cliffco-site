@@ -39,7 +39,7 @@ const faq = [
 ];
 
 const schema = [
-  mortgageLoanSchema(p, { rateRange: { min: 7.75, max: 9.75 } }),
+  mortgageLoanSchema(p),
   faqPageSchema(faq),
   articleSchema({
     headline: p.name,
@@ -63,7 +63,6 @@ const whoQualifies = [
   { title: "Self-employed foreign nationals", body: "Business owners outside the US can qualify using foreign tax documents, business bank statements, or income letters from their home country, with no US business registration required." },
 ];
 const numbers = [
-  ["Rate range", "7.75%–9.75%"],
   ["Min down payment", "25% and up, depending on loan size and documentation"],
   ["US credit required", "No"],
   ["US tax returns required", "No"],
