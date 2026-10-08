@@ -34,6 +34,11 @@ yarn-error.log*
 # Trial fonts — kept locally for design work, not redistributed
 brand/fonts/
 
+# Full-resolution Adobe Stock originals. Everything in website/public/ is published,
+# so commit only the resized web versions (e.g. *-hero-800/1600/2400.webp), never the
+# original downloads.
+website/public/**/AdobeStock_*
+
 # Claude Code local settings (personal permissions, not shared) —
 # but DO share project skills so the whole team gets them.
 .claude/*
