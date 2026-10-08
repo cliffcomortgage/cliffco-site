@@ -77,7 +77,12 @@ const details = [
   <AsymHero
     eyebrow="Non-QM Lending · Bank Statement Qualifying"
     lead="Conventional lenders require W-2s. We require 12 months of bank statements. If your tax returns don't tell the whole story, Cliffco has a path forward."
-    image={{ src: "/images/content%20images/Self%20Employed%20Hero.webp", cutout: true }}
+    image={{
+      src: "/images/content%20images/self-employed-hero-1600.webp",
+      srcset: "/images/content%20images/self-employed-hero-800.webp 800w, /images/content%20images/self-employed-hero-1600.webp 1600w, /images/content%20images/self-employed-hero-2400.webp 2400w",
+      alt: "A business owner working through paperwork at a laptop at an outdoor café table",
+      position: "75% 25%",
+    }}
     tag={{ stat: "12 mo.", label: "of bank statements" }}
   >
     You Built a Business.<br />Your Mortgage Should Reflect That.
