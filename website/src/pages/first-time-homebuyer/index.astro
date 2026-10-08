@@ -99,7 +99,12 @@ const concerns = [
   <AsymHero
     eyebrow="First-Time Homebuyer · FHA, Conventional, and VA Loans"
     lead="Low down payments. Flexible credit standards. A loan officer who makes the whole process make sense."
-    image={{ src: "/images/content%20images/First%20Time%20Homebuyer%20Hero.webp", cutout: true }}
+    image={{
+      src: "/images/content%20images/first-time-homebuyer-hero-1600.webp",
+      srcset: "/images/content%20images/first-time-homebuyer-hero-800.webp 800w, /images/content%20images/first-time-homebuyer-hero-1600.webp 1600w, /images/content%20images/first-time-homebuyer-hero-2400.webp 2400w",
+      alt: "A young couple relaxing on a couch in their new home, surrounded by moving boxes",
+      position: "40% 50%",
+    }}
     tag={{ stat: "3%", label: "Down, conventional" }}
   >
     Buying Your First Home<br />Should Be Simple.

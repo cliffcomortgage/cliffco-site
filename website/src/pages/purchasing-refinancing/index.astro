@@ -127,7 +127,12 @@ import CtaBand from "../../components/asym/CtaBand.astro";
   <AsymHero
     eyebrow="Purchase & Refinance"
     lead={`Buying your next home or refinancing the one you're in, Cliffco originates conventional, FHA, VA, and refinance loans across ${STATE_LICENSES.length} states. A real loan officer handles your file start to finish.`}
-    image={{ src: "/images/content%20images/Purchasing-Refinancing-2.webp", cutout: true }}
+    image={{
+      src: "/images/content%20images/purchasing-refinancing-hero-1600.webp",
+      srcset: "/images/content%20images/purchasing-refinancing-hero-800.webp 800w, /images/content%20images/purchasing-refinancing-hero-1600.webp 1600w, /images/content%20images/purchasing-refinancing-hero-2400.webp 2400w",
+      alt: "A couple smiling at a laptop at home while reviewing mortgage paperwork",
+      position: "35% 30%",
+    }}
     tag={{ stat: `${STATE_LICENSES.length} states`, label: "Licensed to lend" }}
   >
     Buying or Refinancing?<br />Let's Make It Happen.

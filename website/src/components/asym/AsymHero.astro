@@ -45,7 +45,7 @@ const decorative = !image?.alt;
     </div>
   </div>
 
-  <div class={`relative mx-6 mb-12 lg:m-0 lg:absolute lg:top-14 lg:bottom-0 lg:right-0 lg:w-[46vw] bg-[var(--color-ink)] rounded-2xl lg:rounded-none lg:rounded-tl-[2.5rem] ${!image ? "" : image.cutout || image.framed ? "h-[340px] lg:h-auto" : "aspect-[4/3] lg:aspect-auto overflow-hidden"}`}>
+  <div class={`relative mx-6 mb-12 lg:m-0 lg:absolute lg:top-14 lg:bottom-0 lg:right-0 lg:w-[46vw] bg-[var(--color-ink)] rounded-2xl lg:rounded-none lg:rounded-tl-[2.5rem] ${!image ? "" : image.cutout || image.framed ? "h-[340px] lg:h-auto" : "aspect-[4/3] lg:aspect-auto"}`}>
     {!image ? (
       <dl class="relative px-7 py-9 sm:px-10 lg:absolute lg:inset-0 lg:pl-[12%] lg:pr-[10%] lg:py-14 flex flex-col justify-center gap-6 lg:gap-8">
         {facts?.map((f) => (
@@ -83,7 +83,7 @@ const decorative = !image?.alt;
         sizes="(min-width: 1024px) 46vw, 100vw"
         alt={image.alt ?? ""}
         aria-hidden={decorative ? "true" : undefined}
-        class="w-full h-full object-cover lg:rounded-tl-[2.5rem]"
+        class="w-full h-full object-cover rounded-2xl lg:rounded-none lg:rounded-tl-[2.5rem]"
         style={image.position ? `object-position: ${image.position}` : undefined}
         loading="eager"
         fetchpriority="high"
