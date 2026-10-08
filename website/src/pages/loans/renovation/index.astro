@@ -8,11 +8,14 @@ import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/s
 const p = product("renovation")!;
 
 const faq = [
-  { question: "What is a renovation loan?", answer: "A renovation mortgage rolls the cost of buying (or refinancing) a home and the cost of renovations into a single loan, based on the home's after-renovation value. The two main programs are FHA 203(k) (government-insured, for primary residences) and Fannie Mae HomeStyle (conventional, also allows investment properties and luxury upgrades)." },
-  { question: "What is the difference between FHA 203(k) and HomeStyle?", answer: "FHA 203(k): Government-insured, 3.5% down (580+ FICO), maximum loan equals FHA county limit, requires a HUD-approved consultant for standard 203(k), allows 1–4 unit primary residences. Fannie Mae HomeStyle: Conventional, 5% down (primary) or 10–15% (investment), up to conforming/high-balance limits, allows all property types including investment properties, and allows luxury upgrades that FHA 203(k) prohibits." },
+  { question: "What is a renovation loan?", answer: "A renovation mortgage rolls the cost of buying (or refinancing) a home and the cost of renovations into a single loan, based on what the home will be worth after the work is done. Cliffco offers five: FHA 203(k) Standard and FHA 203(k) Limited (government-insured, for primary residences), Fannie Mae HomeStyle and Freddie Mac CHOICERenovation (conventional, which also cover second homes and investment properties), and VA renovation loans for eligible veterans, service members, and surviving spouses." },
+  { question: "What is the difference between FHA 203(k) Standard and Limited?", answer: "Limited is for lighter, non-structural work, such as kitchens, baths, flooring, a new roof, or HVAC, up to $75,000 in repairs, with no HUD consultant required. Standard is for bigger projects, including structural repairs, room additions, and major remodels. It requires at least $5,000 in repairs and a HUD-approved 203(k) consultant who writes up the work and inspects it as it's done." },
+  { question: "What is the difference between HomeStyle and CHOICERenovation?", answer: "They're very similar. Both are conventional renovation loans that let renovation costs reach up to 75% of the home's after-renovation value, cover primary residences, second homes, and single-unit investment properties, and allow luxury upgrades. HomeStyle is backed by Fannie Mae and CHOICERenovation by Freddie Mac, which also highlights work that protects a home against natural disasters. Your loan officer can price both and recommend the better fit." },
+  { question: "Should I choose FHA 203(k) or a conventional renovation loan?", answer: "FHA 203(k) is often the better fit if your credit is still growing or you want a 3.5% down payment on a primary residence. HomeStyle and CHOICERenovation usually make more sense with stronger credit, for second homes or investment properties, or for upgrades FHA doesn't allow, like a pool. Conventional mortgage insurance can also be removed once you reach 20% equity, while FHA mortgage insurance usually can't." },
+  { question: "Can I use my VA benefit for a renovation loan?", answer: "Yes. A VA renovation loan lets eligible veterans, service members, and surviving spouses buy or refinance a home and finance the repairs in one VA-guaranteed loan, with as little as 0% down and no monthly mortgage insurance (the VA funding fee still applies). The loan amount is based on the VA appraiser's after-renovation value, and the home must be your primary residence." },
   { question: "How does the renovation disbursement work?", answer: "At closing, the renovation funds are held in an escrow account. As work is completed, the contractor submits draw requests and an inspector verifies progress before funds are released. This protects both the borrower and the lender." },
-  { question: "Can I do the renovation work myself?", answer: "On FHA 203(k), owner-occupant borrowers can act as their own general contractor for a Limited 203(k) (up to $75,000 in repairs), but this requires demonstrated experience and lender approval. On HomeStyle, borrowers may self-perform work, but lenders typically require a licensed contractor for major structural or mechanical work." },
-  { question: "What types of renovation work qualify?", answer: "Both programs cover structural repairs, kitchen and bath remodels, roof replacement, HVAC, plumbing, electrical, energy-efficiency upgrades, and accessibility modifications. HomeStyle also allows luxury items (pools, outdoor kitchens) that FHA 203(k) does not. Luxury-only renovations without a structural component are not eligible for FHA 203(k)." },
+  { question: "Can I do the renovation work myself?", answer: "It depends on the program and your experience. FHA 203(k) loans generally require licensed contractors. Fannie Mae HomeStyle allows limited do-it-yourself work on single-family homes with lender approval. Talk to your loan officer before you plan to do any of the work yourself." },
+  { question: "What types of renovation work qualify?", answer: "All four programs cover kitchen and bath remodels, roof replacement, HVAC, plumbing, electrical, energy-efficiency upgrades, and accessibility modifications. FHA 203(k) Standard and the two conventional programs also cover structural repairs; FHA 203(k) Limited doesn't. HomeStyle and CHOICERenovation also allow luxury items, like a pool or outdoor kitchen, that FHA 203(k) and VA renovation loans don't." },
   { question: "How long does a renovation loan take to close?", answer: "Renovation loans take longer than standard mortgages because of the additional documentation (contractor bids, work plans, appraisal of after-renovation value). Typical timeline is 45–60 days. Your Cliffco loan officer will coordinate with the appraiser and HUD consultant (if applicable) to keep the process moving." },
 ];
 
@@ -24,7 +27,7 @@ const schema = [
     description: p.directAnswer,
     url: `/loans/${p.slug}/`,
     datePublished: "2026-04-15",
-    dateModified: "2026-07-15",
+    dateModified: "2026-10-08",
   }),
 ];
 
@@ -37,29 +40,91 @@ import CtaBand from "../../../components/asym/CtaBand.astro";
 
 const programs = [
   {
-    name: "FHA 203(k)",
+    name: "FHA 203(k) Standard",
+    backer: "Government-insured",
+    bestFor: "Major remodels, structural repairs, and additions.",
     rows: [
+      ["Repair costs", "$5,000 minimum; total loan within FHA limits"],
       ["Down payment", "3.5% (580+ FICO)"],
-      ["Loan limit", "FHA county limit"],
+      ["HUD consultant", "Required"],
       ["Property types", "Primary residence, 1–4 units"],
       ["Luxury items", "Not eligible"],
       ["Mortgage insurance", "FHA MIP (typically for life of loan)"],
     ],
   },
   {
-    name: "Fannie Mae HomeStyle",
+    name: "FHA 203(k) Limited",
+    backer: "Government-insured",
+    bestFor: "Lighter, non-structural updates like kitchens, baths, flooring, a roof, or HVAC.",
     rows: [
-      ["Down payment", "5% primary; 10–15% investment"],
+      ["Repair costs", "Up to $75,000"],
+      ["Down payment", "3.5% (580+ FICO)"],
+      ["HUD consultant", "Not required"],
+      ["Property types", "Primary residence, 1–4 units"],
+      ["Structural work", "Not eligible"],
+      ["Mortgage insurance", "FHA MIP (typically for life of loan)"],
+    ],
+  },
+  {
+    name: "Fannie Mae HomeStyle",
+    backer: "Conventional",
+    bestFor: "Any permanent improvement, including luxury upgrades, on a primary home, second home, or rental.",
+    rows: [
+      ["Renovation costs", "Up to 75% of the after-renovation value"],
+      ["Down payment", "From 3% for eligible first-time buyers; 5% primary"],
       ["Loan limit", "Conforming / high-balance"],
-      ["Property types", "Primary, second home, investment"],
+      ["Property types", "Primary, second home, 1-unit investment"],
       ["Luxury items", "Eligible"],
       ["Mortgage insurance", "PMI (removable at 80% LTV)"],
     ],
   },
+  {
+    name: "Freddie Mac CHOICERenovation",
+    backer: "Conventional",
+    bestFor: "Remodels and repairs, including work that protects a home against natural disasters.",
+    rows: [
+      ["Renovation costs", "Up to 75% of the after-renovation value"],
+      ["Down payment", "From 3% for eligible first-time buyers; 5% primary"],
+      ["Loan limit", "Conforming / high-balance"],
+      ["Property types", "Primary, second home, 1-unit investment"],
+      ["Luxury items", "Eligible"],
+      ["Mortgage insurance", "PMI (removable at 80% LTV)"],
+    ],
+  },
+  {
+    name: "VA Renovation",
+    backer: "VA-guaranteed",
+    bestFor: "Eligible veterans, service members, and surviving spouses buying or refinancing a home that needs work.",
+    rows: [
+      ["Down payment", "As little as 0%"],
+      ["Renovation costs", "Based on the VA after-renovation appraisal"],
+      ["Eligibility", "Veterans, service members, surviving spouses"],
+      ["Property types", "Primary residence, 1–4 units"],
+      ["Luxury items", "Not eligible"],
+      ["Mortgage insurance", "None (VA funding fee applies)"],
+    ],
+  },
+];
+
+const fit = [
+  { project: "Cosmetic updates under $75,000 on the home you'll live in", program: "FHA 203(k) Limited" },
+  { project: "A fixer-upper that needs structural work or an addition", program: "FHA 203(k) Standard" },
+  { project: "Strong credit, or upgrades like a pool or outdoor kitchen", program: "HomeStyle or CHOICERenovation" },
+  { project: "A second home or a single-unit rental property", program: "HomeStyle or CHOICERenovation" },
+  { project: "Hardening a home against storms, floods, or wildfire", program: "CHOICERenovation" },
+  { project: "A veteran or service member buying a home that needs work", program: "VA Renovation" },
+];
+
+const steps = [
+  { title: "Get pre-approved", body: "Your loan officer reviews your income, credit, and savings and points you to the program that fits your project." },
+  { title: "Line up bids and a work plan", body: "Your contractor prices the work. On FHA 203(k) Standard, a HUD-approved consultant writes up the plan and the budget." },
+  { title: "Appraise the after-renovation value", body: "The appraiser values the home as it will be when the work is finished, which sets how much you can borrow." },
+  { title: "Close on one loan", body: "You close on the home and the renovation together. The renovation money goes into an escrow account." },
+  { title: "Renovate in stages", body: "Your contractor is paid in draws as inspections confirm each stage of the work, through a final inspection." },
 ];
 ---
 
-<Layout title={`Renovation Loans (FHA 203k & HomeStyle) | Cliffco`} description={p.directAnswer} schema={schema}>
+<Layout title="Renovation Loans: FHA 203(k), HomeStyle, CHOICERenovation & VA | Cliffco" description={p.directAnswer} schema={schema}>
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
     { name: "Loans", href: "/loans/" },
@@ -68,10 +133,10 @@ const programs = [
 
   <TermSheetHero
     eyebrow={p.category}
-    lead={p.oneLiner}
+    lead="Buy a home that needs work, or fix up the one you own, with one loan based on what the home will be worth when the work is done."
     facts={[
-      { label: "Programs", value: "FHA 203(k) & HomeStyle" },
-      { label: "Down payment", value: "From 3.5%" },
+      { label: "Loan options", value: "5 programs" },
+      { label: "Down payment", value: "From 0% (VA)" },
       { label: "Based on", value: "After-renovation value" },
     ]}
   >
@@ -85,12 +150,14 @@ const programs = [
   <TermSheet>
     <FormCard slot="form" title="Price out your renovation with a loan officer." sub="Tell us the property and the scope of the project and we'll show you which program fits." formSource="loan-renovation" />
 
-    <Chapter eyebrow="Program comparison" title="FHA 203(k) vs. Fannie Mae HomeStyle.">
+    <Chapter eyebrow="The programs" title="Five ways to finance a renovation.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
         <div class="mt-8 grid gap-4">
           {programs.map((prog, i) => (
             <article class={`rounded-2xl p-6 ${i === 0 ? "bg-[var(--color-ink)] text-white" : "border-2 border-[var(--color-ink)]"}`}>
-              <h3 class={`text-lg font-semibold ${i === 0 ? "!text-white" : "text-[var(--color-ink)]"}`}>{prog.name}</h3>
+              <p class={`font-mono text-[11px] uppercase tracking-[0.12em] ${i === 0 ? "text-white/60" : "text-[var(--color-text-muted)]"}`}>{prog.backer}</p>
+              <h3 class={`mt-2 text-lg font-semibold ${i === 0 ? "!text-white" : "text-[var(--color-ink)]"}`}>{prog.name}</h3>
+              <p class={`mt-2 text-sm leading-relaxed ${i === 0 ? "text-white/80" : "text-[var(--color-text)]"}`}><strong>Best for:</strong> {prog.bestFor}</p>
               <dl class={`mt-4 border-t ${i === 0 ? "border-white/25" : "border-black/15"}`}>
                 {prog.rows.map(([k, v]) => (
                   <div class={`flex justify-between gap-4 py-2.5 border-b text-sm ${i === 0 ? "border-white/15" : "border-black/10"}`}>
@@ -103,6 +170,34 @@ const programs = [
           ))}
         </div>
       </Chapter>
+
+  <!-- WHICH ONE FITS -->
+  <Chapter eyebrow="Which one fits" title="Match the loan to the project.">
+    <dl class="border-t border-[var(--color-ink)]">
+      {fit.map((f) => (
+        <div class="grid sm:grid-cols-[1fr_minmax(0,14rem)] gap-x-6 gap-y-1 py-4 border-b border-black/15">
+          <dt class="text-[var(--color-text)]">{f.project}</dt>
+          <dd class="font-semibold text-[var(--color-ink)] sm:text-right">{f.program}</dd>
+        </div>
+      ))}
+    </dl>
+    <p class="mt-4 text-sm text-[var(--color-text-muted)]">Not sure where your project lands? A loan officer can price it more than one way and show you the difference.</p>
+  </Chapter>
+
+  <!-- HOW IT WORKS -->
+  <Chapter eyebrow="How it works" title="From bid to finished home.">
+    <ol class="list-none m-0 p-0 border-t border-[var(--color-ink)]">
+      {steps.map((s, i) => (
+        <li class="grid grid-cols-[3rem_1fr] gap-4 py-6 border-b border-black/15">
+          <span class="font-mono text-sm text-[var(--color-text-muted)] pt-1">0{i + 1}</span>
+          <div>
+            <h3 class="text-lg font-semibold text-[var(--color-ink)]">{s.title}</h3>
+            <p class="mt-2 text-[var(--color-text)] leading-relaxed">{s.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </Chapter>
 
   <!-- FAQ -->
   <Chapter eyebrow="FAQ" title="How renovation financing works.">

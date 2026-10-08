@@ -12,6 +12,12 @@ Open items to clear before the new site replaces the live cliffcomortgage.com. C
   - Debt-to-income: conventional up to 50% with automated approval, FHA up to about 57%
   - Down payments: second home 10%, investment property 15–25%; best conventional pricing at 780+
   - 2026 loan limits: $832,750 conforming, $1,249,125 high-cost ceiling, $541,287 FHA floor
+- [ ] **Renovation page figures** (`/loans/renovation/`, added 2026-10-08):
+  - FHA 203(k) Standard: $5,000 minimum repairs, HUD consultant required
+  - FHA 203(k) Limited: up to $75,000, no consultant, no structural work
+  - HomeStyle and CHOICERenovation: renovation costs up to 75% of the after-renovation value; 3% down for eligible first-time buyers; second homes and 1-unit investment properties eligible
+  - Do-it-yourself work: generally not allowed on FHA 203(k); limited, with lender approval, on HomeStyle
+  - VA Renovation: 0% down, no monthly mortgage insurance (funding fee applies), loan based on the VA after-renovation appraisal, primary residence only, no luxury items. Confirm Cliffco's cap on VA renovation costs if the page should state one.
 - [ ] **Mortgage Rates page ranges:** Non-QM 0.5–2% over conventional, bank statement 0.75–1.5%, VA "at or below conventional." (`/mortgage-rates/`)
 - [ ] **Non-QM rate table** on `/loans/non-qm-self-employed/` is labeled "as of mid-2026." Refresh or remove it so it isn't stale at launch.
 - [ ] **Glossary ARM entry** describes a 5/1 ARM that adjusts annually. Current conventional ARMs adjust every six months (5/6).
