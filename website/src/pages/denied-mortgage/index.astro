@@ -114,7 +114,12 @@ import CtaBand from "../../components/asym/CtaBand.astro";
   <AsymHero
     eyebrow="Non-QM Lending · Denial Recovery"
     lead="Most denial letters don't tell you what they could: that Non-QM lending exists, and it was built for exactly your situation."
-    image={{ src: "/images/content%20images/Denied%20Hero.webp", cutout: true }}
+    image={{
+      src: "/images/content%20images/denied-mortgage-hero-1600.webp",
+      srcset: "/images/content%20images/denied-mortgage-hero-800.webp 800w, /images/content%20images/denied-mortgage-hero-1600.webp 1600w, /images/content%20images/denied-mortgage-hero-2400.webp 2400w",
+      alt: "A two-story blue home with a front porch and a two-car garage on a sunny day",
+      position: "50% 50%",
+    }}
     tag={{ stat: "No judgment.", label: "Second opinions, free" }}
   >
     You Were Told No.<br />We Hear That a Lot.
