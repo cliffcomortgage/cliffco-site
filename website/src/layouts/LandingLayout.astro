@@ -38,8 +38,8 @@ const { title, description, schema, phone, phoneE164 } = Astro.props;
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Montserrat:wght@600&display=optional" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Montserrat:wght@600&display=optional" /></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Montserrat:wght@600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Montserrat:wght@600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" /></noscript>
     <!-- HubSpot tracking: sets the hubspotutk cookie so form leads carry their ad source.
          Deferred until idle/first interaction, same as the main layout. -->
     <script is:inline>
@@ -66,10 +66,10 @@ const { title, description, schema, phone, phoneE164 } = Astro.props;
 
   <body class="min-h-screen flex flex-col">
 
-    <header class="bg-white border-b border-[var(--color-mist-gray)] sticky top-0 z-40">
+    <header class="bg-white border-b border-[var(--color-ink)] sticky top-0 z-40">
       <div class="container-wide flex items-center justify-between gap-4 py-4">
         <span class="flex items-center no-underline shrink-0" aria-label={COMPANY.legalName}>
-          <img src="/images/content%20images/Cliffco%20Only@4x.png" alt={COMPANY.legalName} class="h-[20px] w-auto" loading="eager" />
+          <img src="/images/cliffco-logo.png" alt={COMPANY.legalName} width="1730" height="409" class="h-9 w-auto" loading="eager" />
         </span>
         <a href={`tel:${phoneE164}`} class="btn btn-primary text-sm !py-2 !px-5 shrink-0 hidden sm:inline-flex">Call {phone}</a>
         <a href={`tel:${phoneE164}`} class="btn btn-primary text-sm !py-2.5 !px-3 shrink-0 sm:hidden" aria-label={`Call ${phone}`}>
@@ -87,11 +87,14 @@ const { title, description, schema, phone, phoneE164 } = Astro.props;
 
         <!-- Top row: logo + links -->
         <div class="flex flex-wrap gap-4 justify-between items-center pb-6 border-b border-white/10">
-          <img src="/images/content%20images/Cliffco%20Only@4x.png" alt="Cliffco Mortgage Bankers" class="h-6 w-auto" style="filter: brightness(0) invert(1);" loading="lazy" />
+          <p class="font-[var(--font-logo)] font-semibold tracking-[0.18em] text-base">{COMPANY.legalName.toUpperCase()}</p>
           <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            <a href="https://cliffcomortgage.com/" class="text-white/60 hover:text-white no-underline" target="_blank" rel="noopener">Full Site</a>
-            <a href="https://cliffcomortgage.com/licensing/" class="text-white/60 hover:text-white no-underline" target="_blank" rel="noopener">Licensing</a>
-            <a href="https://cliffcomortgage.com/privacy-policy/" class="text-white/60 hover:text-white no-underline" target="_blank" rel="noopener">Privacy Policy</a>
+            <a href="/" class="text-white/60 hover:text-white no-underline">Full Site</a>
+            <a href="/loans/" class="text-white/60 hover:text-white no-underline">Loan Programs</a>
+            <a href="/loan-officers/" class="text-white/60 hover:text-white no-underline">Find a Loan Officer</a>
+            <a href="/licensing/" class="text-white/60 hover:text-white no-underline">State Licensing</a>
+            <a href="/legal/privacy/" class="text-white/60 hover:text-white no-underline">Privacy Policy</a>
+            <a href="/legal/accessibility/" class="text-white/60 hover:text-white no-underline">Accessibility</a>
             <a href="https://www.nmlsconsumeraccess.org/" class="text-white/60 hover:text-white no-underline" target="_blank" rel="noopener">NMLS Consumer Access</a>
           </div>
         </div>

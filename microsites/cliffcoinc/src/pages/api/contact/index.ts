@@ -110,7 +110,7 @@ async function sendViaEmail(lead: {
 
   const html = `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;">
-      <h2 style="color:#0d0d0d;border-bottom:2px solid #6633cc;padding-bottom:12px;">
+      <h2 style="color:#0d0d0d;border-bottom:2px solid #0d0d0d;padding-bottom:12px;">
         New Mortgage Inquiry
       </h2>
       <table style="width:100%;border-collapse:collapse;margin-top:16px;">

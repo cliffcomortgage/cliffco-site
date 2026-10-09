@@ -73,7 +73,22 @@ if (hasCredentials) {
         refresh_token: REFRESH_TOKEN, grant_type: "refresh_token",
       }),
     });
-    const { access_token } = await tokenResp.json() as { access_token: string };
+    // A failed refresh grant still returns JSON, just without access_token - so destructuring
+    // it blindly sent "Bearer undefined" to the Ads API and surfaced ITS 401 instead of the
+    // real cause. Google expires refresh tokens after 7 days while the OAuth consent screen
+    // is in "Testing"; that is what the generic UNAUTHENTICATED error was actually hiding.
+    const tokenJson = await tokenResp.json() as { access_token?: string; error?: string; error_description?: string };
+    if (!tokenResp.ok || !tokenJson.access_token) {
+      throw new Error(
+        "OAuth refresh failed (" + tokenResp.status + "): " +
+        (tokenJson.error ?? "unknown") + " - " + (tokenJson.error_description ?? "no description") +
+        ". If this reads invalid_grant, the refresh token has expired or been revoked. Google expires " +
+        "refresh tokens every 7 days while the OAuth consent screen is in Testing; publish the app " +
+        "(or set User type to Internal) so tokens stop expiring, then regenerate and update " +
+        "GOOGLE_ADS_REFRESH_TOKEN in the Vercel environment."
+      );
+    }
+    const access_token = tokenJson.access_token;
 
     const gh: Record<string, string> = {
       Authorization: "Bearer " + access_token,
