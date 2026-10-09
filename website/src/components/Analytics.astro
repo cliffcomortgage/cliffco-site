@@ -3,9 +3,9 @@
  * Google tag (GA4 + Google Ads) and the site's conversion events, carried over from the
  * current WordPress site's tracker (scripts/hubspot-tracker-v3.1.js) so campaigns keep
  * their conversion data after launch:
- *   - lead form success -> GA4 generate_lead + Ads conversion ($50) + Meta Lead
- *   - phone link click  -> GA4 phone_click + Ads conversion ($25) + Meta Contact
- *   - Apply Now click   -> GA4 apply_now_click + Ads conversion ($50) + Meta InitiateCheckout
+ *   - lead form success -> GA4 generate_lead + Ads "Lead · Form Submit" ($50) + Meta Lead
+ *   - phone link click  -> GA4 phone_click + Ads "Click to call" ($25) + Meta Contact
+ *   - Apply Now click   -> GA4 apply_now_click + Ads "Loan Application Started" ($50) + Meta InitiateCheckout
  * Production domain only, so preview visits and test leads aren't counted. The Meta pixel
  * itself (fbq) is loaded by HubSpot's tracking code from the portal's ads pixel settings.
  *
@@ -19,8 +19,9 @@
     var PROD = /(^|\.)cliffcomortgage\.com$/.test(location.hostname);
     var GA4 = 'G-WV6SFC5W7P';
     var ADS = 'AW-17848823591';
-    var LEAD = ADS + '/PI_xCMX574scEKfe_b5C';
-    var CALL = ADS + '/O9SzCMj574scEKfe_b5C';
+    var LEAD  = ADS + '/ulN2CMSi190cEKfe_b5C'; // "Lead · Form Submit"
+    var APPLY = ADS + '/PI_xCMX574scEKfe_b5C'; // "Loan Application Started"
+    var CALL  = ADS + '/O9SzCMj574scEKfe_b5C'; // "Click to call"
 
     window.dataLayer = window.dataLayer || [];
     if (PROD) {
@@ -89,7 +90,7 @@
           event_category: 'mortgage_application', event_label: lo || 'corporate', loan_officer: lo || 'corporate',
           page_path: location.pathname, value: 50.0, currency: 'USD',
         });
-        g('event', 'conversion', { send_to: LEAD, value: 50.0, currency: 'USD' });
+        g('event', 'conversion', { send_to: APPLY, value: 50.0, currency: 'USD' });
         fb('track', 'InitiateCheckout', { content_name: 'Apply Now - ' + (lo || 'Corporate'), content_category: 'mortgage_application', value: 50.0, currency: 'USD' });
       }
     }, true);
