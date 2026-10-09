@@ -6,3 +6,10 @@ email-campaigns/
 compliance/
 blog articles/
 scripts/
+
+# Full-resolution source headshots. scripts/import-headshots.mjs turns these into the
+# optimized website/public/team/{slug}.{avif,webp,jpg} files that pages actually use, and
+# that script runs locally, never on Vercel. Everything under website/public/ is published
+# verbatim, so leaving these in the deploy pushed 24MB of unreferenced full-res staff photos
+# to the public internet on every build. Kept in git (the team edits them); just not shipped.
+website/public/images/headshots/

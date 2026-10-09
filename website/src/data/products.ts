@@ -68,7 +68,7 @@ export const PRODUCTS: readonly Product[] = [
       "A DSCR (Debt-Service Coverage Ratio) loan qualifies real estate investors based on the " +
       "rental income of the subject property, not personal income. Cliffco's DSCR programs cover " +
       "long-term rentals and short-term rentals (Airbnb / Vrbo/1007 Market Rent Schedule), allow LLC vesting, fund out-of-state " +
-      "borrowers, and and accept ratios from 0.75 on long-term rentals, with a larger down payment required below 1.00.",
+      "borrowers, and accept ratios from 0.75 on long-term rentals, with a larger down payment required below 1.00.",
     loanType: "DSCR",
     hasPillar: true,
     category: "Investor",

@@ -19,7 +19,7 @@ interface Props {
   title: string;
   lead: string;
   addressName: string;
-  street: string;
+  street: string | null;
   cityLine: string;
   nmlsLabel: string;
   phone: { e164: string; display: string; label: string };
@@ -46,7 +46,7 @@ const p = Astro.props;
   sub={p.title}
   lead={p.lead}
   facts={[
-    { label: "Address", value: `${p.street}, ${p.cityLine}` },
+    { label: "Address", value: p.street ? `${p.street}, ${p.cityLine}` : p.cityLine },
     { label: p.phone.label, value: p.phone.display },
     { label: "NMLS", value: p.nmlsLabel },
   ]}
@@ -68,7 +68,7 @@ const p = Astro.props;
       <div class="mt-8 rounded-[1.75rem] bg-[var(--color-ink)] text-white p-8 sm:p-10">
         <address class="not-italic space-y-1" style="font-size: 1.125rem;">
           <p class="font-semibold text-white">{p.addressName}</p>
-          <p class="text-white/85">{p.street}</p>
+          {p.street && <p class="text-white/85">{p.street}</p>}
           <p class="text-white/85">{p.cityLine}</p>
         </address>
         <div class="mt-4 space-y-1 text-sm text-white/60 branch-info">

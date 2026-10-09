@@ -992,15 +992,17 @@ const currentYear = new Date().getFullYear();
   </script>
 
   <script>
-    document.querySelectorAll(".send-btn").forEach(function(btn) {
+    document.querySelectorAll(".send-btn").forEach(function(el) {
+      var btn = el as HTMLElement;
       btn.addEventListener("click", function() {
         var encoded = btn.dataset.prompt || "";
         var prompt = decodeURIComponent(encoded);
         navigator.clipboard.writeText(prompt).then(function() {
           var t = document.getElementById("toast");
           if (t) {
-            t.classList.add("show");
-            setTimeout(function() { t.classList.remove("show"); }, 2500);
+            var toast = t;
+            toast.classList.add("show");
+            setTimeout(function() { toast.classList.remove("show"); }, 2500);
           }
         });
       });

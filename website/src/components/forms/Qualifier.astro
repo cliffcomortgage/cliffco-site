@@ -93,7 +93,7 @@ const inputClass =
 
           {s.type === "select" && (
             <div class="mt-8 max-w-sm">
-              <select class={`q-select ${inputClass}`} data-qid={s.id}>
+              <select class={`q-select ${inputClass}`} data-qid={s.id} aria-label={s.title}>
                 <option value="">{s.placeholder}</option>
                 {s.options.map((o) => <option value={o.value}>{o.label}</option>)}
               </select>
@@ -106,6 +106,7 @@ const inputClass =
               <input
                 type="text"
                 class={`q-lo-input ${inputClass}`}
+                aria-label={s.title}
                 placeholder="Search by name or state (e.g. “Sarah” or “Texas”)"
                 autocomplete="off"
               />
