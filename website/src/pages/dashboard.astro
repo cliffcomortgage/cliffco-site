@@ -545,11 +545,11 @@ const currentYear = new Date().getFullYear();
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=optional"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Montserrat:wght@600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
     onload="this.onload=null;this.rel='stylesheet'"
   />
   <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@600&display=optional" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Montserrat:wght@600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
   </noscript>
 </head>
 
@@ -559,11 +559,11 @@ const currentYear = new Date().getFullYear();
   <header style="background:var(--color-rich-black);border-bottom:1px solid rgba(255,255,255,0.07);">
     <div class="container-wide flex items-center justify-between gap-6 py-4">
       <a href="/" aria-label="Cliffco Mortgage Bankers home">
-        <img src="/logo-black.png" alt="Cliffco Mortgage Bankers" width="160" height="32"
-          style="height:32px;width:auto;filter:invert(1) brightness(2);" />
+        <img src="/images/cliffco-logo.png" alt="Cliffco Mortgage Bankers" width="1730" height="409"
+          style="height:36px;width:auto;filter:invert(1) brightness(2);" />
       </a>
       <div style="display:flex;align-items:center;gap:1rem;">
-        <span style="font-size:0.75rem;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.1em;">Internal</span>
+        <span style="font-family:var(--font-mono);font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.12em;">Internal</span>
         <span style="color:rgba(255,255,255,0.2);">|</span>
         <span style="font-size:0.75rem;color:rgba(255,255,255,0.5);">Last 30 days · {updatedAt}</span>
       </div>
@@ -573,8 +573,8 @@ const currentYear = new Date().getFullYear();
   <!-- Page title bar -->
   <div style="background:var(--color-rich-black);padding-bottom:2rem;">
     <div class="container-wide">
-      <p style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-ice-blue);margin:0 0 0.3rem;">Google Ads</p>
-      <h1 style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#fff;margin:0;line-height:1.15;">Performance Dashboard</h1>
+      <p style="font-family:var(--font-mono);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.6);margin:0 0 0.5rem;">Google Ads</p>
+      <h1 style="font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;color:#fff;margin:0;line-height:1.1;letter-spacing:-0.02em;">Performance Dashboard</h1>
     </div>
   </div>
 
@@ -990,64 +990,6 @@ const currentYear = new Date().getFullYear();
   <!-- Toast -->
   <div id="toast">Copied to clipboard</div>
 
-  <!-- Custom cursor dot -->
-  <div id="cf-cursor" aria-hidden="true"></div>
-
-  <script>
-    (() => {
-      const dot = document.getElementById('cf-cursor');
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const isTouch = window.matchMedia('(pointer: coarse)').matches;
-      if (!dot || prefersReduced || isTouch) return;
-
-      const dotEl = dot as HTMLElement;
-      let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-      let cx = mx, cy = my, scale = 1, targetScale = 1;
-      const LERP_POS = 0.65, LERP_SCALE = 0.35;
-      const COLORS = {
-        default: '#6633cc', link: '#9966ee', button: '#4a1fa0',
-        card: '#bde8f1', dark: '#ffffff',
-      };
-      let targetColor = COLORS.default, lastColor = COLORS.default;
-
-      document.querySelectorAll('section, footer').forEach(el => {
-        const bg = getComputedStyle(el).backgroundColor;
-        if (bg === 'rgb(13, 13, 13)' || bg === 'rgb(26, 0, 64)')
-          (el as HTMLElement).dataset.cursorDark = '';
-      });
-
-      function getContext(el: Element | null): keyof typeof COLORS {
-        if (!el) return 'default';
-        if (el.closest('[data-cursor-dark]')) return 'dark';
-        if (el.closest('.btn, button, [role="button"]')) return 'button';
-        if (el.closest('a')) return 'link';
-        if (el.closest('.card, article')) return 'card';
-        return 'default';
-      }
-
-      const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-
-      document.addEventListener('mousemove', (e) => {
-        mx = e.clientX; my = e.clientY;
-        const hit = document.elementFromPoint(mx, my);
-        const ctx = getContext(hit);
-        targetColor = COLORS[ctx];
-        targetScale = ctx === 'default' ? 1 : 1.6;
-      });
-      document.addEventListener('mouseleave', () => { dotEl.style.opacity = '0'; });
-      document.addEventListener('mouseenter', () => { dotEl.style.opacity = '1'; });
-
-      function tick() {
-        cx = lerp(cx, mx, LERP_POS);
-        cy = lerp(cy, my, LERP_POS);
-        scale = lerp(scale, targetScale, LERP_SCALE);
-        dotEl.style.transform = `translate(${cx}px, ${cy}px) scale(${scale})`;
-        if (lastColor !== targetColor) { dotEl.style.background = targetColor; lastColor = targetColor; }
-        requestAnimationFrame(tick);
-      }
-      tick();
-    })();
-  </script>
 
   <script>
     document.querySelectorAll(".send-btn").forEach(function(el) {
@@ -1078,20 +1020,20 @@ const currentYear = new Date().getFullYear();
   }
   .stat-box { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; padding: 1.25rem 1rem; border-right: 1px solid #e5e7eb; }
   .stat-box:last-child { border-right: none; }
-  .stat-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
-  .stat-value { font-size: 1.875rem; font-weight: 800; color: var(--color-rich-black); line-height: 1.1; }
+  .stat-label { font-family: var(--font-mono); font-size: 0.66rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-text-muted); }
+  .stat-value { font-family: var(--font-display); font-size: 1.875rem; font-weight: 700; color: var(--color-rich-black); line-height: 1.1; letter-spacing: -0.02em; }
 
-  .section-title { font-size: 1.125rem; font-weight: 700; color: var(--color-rich-black); margin: 0 0 1rem; padding-bottom: 0.625rem; border-bottom: 2px solid #e5e7eb; }
+  .section-title { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; color: var(--color-rich-black); margin: 0 0 1rem; padding-bottom: 0.625rem; border-bottom: 2px solid var(--color-ink); }
 
   .campaign-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 
   .camp-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1rem; }
   .camp-metrics div { display: flex; flex-direction: column; gap: 1px; }
-  .camp-metrics span { font-size: 0.65rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .camp-metrics span { font-family: var(--font-mono); font-size: 0.64rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
   .camp-metrics strong { font-size: 0.875rem; font-weight: 700; color: var(--color-ink); }
 
   .rec-card { display: flex; gap: 1.25rem; align-items: flex-start; }
-  .rec-rank { font-size: 1.125rem; font-weight: 800; color: #d1d5db; min-width: 2rem; padding-top: 2px; flex-shrink: 0; }
+  .rec-rank { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600; color: var(--color-text-muted); min-width: 2rem; padding-top: 4px; flex-shrink: 0; }
   .rec-metrics { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; padding: 0.75rem 1rem; background: var(--color-mist-gray); border-radius: 8px; margin-bottom: 1rem; }
 
   .send-btn { display: inline-flex; align-items: center; padding: 0.5rem 1.25rem; background: var(--color-rich-black); color: #fff; font-size: 0.875rem; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; transition: background 0.15s; white-space: nowrap; font-family: inherit; }
