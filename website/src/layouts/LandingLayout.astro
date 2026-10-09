@@ -2,7 +2,9 @@
 /**
  * Minimal, distraction-free layout for ads-only landing pages: logo + phone
  * CTA header, no site nav, no footer link list. Unlisted by design - reached
- * only via paid ads, never linked from the main site. Always noindexed.
+ * only via paid ads, never linked from the main site. Noindexed by default; a page can
+ * opt in to indexing by passing index={true} (the NJ grant lander does, since it replaces
+ * an already-indexed WordPress page).
  */
 import "../styles/global.css";
 import Meta from "../components/seo/Meta.astro";
@@ -18,9 +20,11 @@ interface Props {
   schema?: object | object[];
   phone: string;
   phoneE164: string;
+  /** Opt this lander in to search indexing. Defaults to noindex. */
+  index?: boolean;
 }
 
-const { title, description, schema, phone, phoneE164 } = Astro.props;
+const { title, description, schema, phone, phoneE164, index = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -31,7 +35,7 @@ const { title, description, schema, phone, phoneE164 } = Astro.props;
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <Meta title={title} description={description} noindex={true} />
+    <Meta title={title} description={description} noindex={!index} />
     {schema && <JsonLd data={schema} />}
     <PostHog />
     <Analytics />

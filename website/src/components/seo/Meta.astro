@@ -27,22 +27,80 @@ const {
   type = "website",
 } = Astro.props;
 
-const fullTitle = title.includes("Cliffco")
-  ? title
-  : `${title} | ${COMPANY.brandName}`;
+/**
+ * Google shows roughly 60-65 characters of a title and 155-160 of a description, and
+ * rewrites titles it considers unwieldy. 122 titles and 79 descriptions were over those
+ * limits. Clamping here rather than in 200 page files keeps the on-page copy untouched -
+ * these functions only shape what the meta tags emit.
+ */
+const TITLE_MAX = 65;
+const DESC_MAX = 158;
+
+// Longest first, so the blog suffix matches before the plain brand one.
+const BRAND_SUFFIXES = [
+  " | 500:1 Blog | Cliffco Mortgage Bankers",
+  " | Cliffco Mortgage Bankers",
+  " | Cliffco Mortgage",
+];
+
+function clampTitle(raw: string): string {
+  let out = raw.includes("Cliffco") ? raw : `${raw} | ${COMPANY.brandName}`;
+  if (out.length <= TITLE_MAX) return out;
+
+  // Shorten the brand suffix before touching anything meaningful.
+  for (const suffix of BRAND_SUFFIXES) {
+    if (out.endsWith(suffix)) { out = out.slice(0, -suffix.length) + " | Cliffco"; break; }
+  }
+  if (out.length <= TITLE_MAX) return out;
+
+  const split = out.match(/^(.*?)( \| Cliffco.*)$/);
+  const head = split ? split[1] : out;
+  const tail = split ? split[2] : "";
+  const room = TITLE_MAX - tail.length;
+
+  // Editorial headlines usually carry the key phrase before a colon, dash or question
+  // mark, so cutting there reads as deliberate rather than truncated.
+  const atBreak = head.match(/^(.{18,}?[?!])\s/) ?? head.match(/^(.{18,}?)\s*[:—–]\s/);
+  if (atBreak && atBreak[1].length <= room) return atBreak[1] + tail;
+
+  if (room < 20) return out; // suffix alone is long; leave it rather than mangle
+  let trimmed = head.slice(0, room).replace(/[\s,;:—–-]+$/, "");
+  const lastSpace = trimmed.lastIndexOf(" ");
+  if (lastSpace > room * 0.6) trimmed = trimmed.slice(0, lastSpace);
+  // Ending on an article, preposition or conjunction reads like the title was cut off,
+  // so drop trailing filler words until it ends on something substantive.
+  const FILLER = /\s+(a|an|and|or|the|to|of|for|in|on|at|by|with|from|as|is|it|its|your|you|how|if|when|why|that|this|can|will|without|before|after|while|about)$/i;
+  while (FILLER.test(trimmed)) trimmed = trimmed.replace(FILLER, "");
+  return trimmed.replace(/[\s,;:—–-]+$/, "") + tail;
+}
+
+function clampDescription(raw: string): string {
+  const d = raw.trim();
+  if (d.length <= DESC_MAX) return d;
+  // Prefer ending on a full sentence.
+  const upToLimit = d.slice(0, DESC_MAX + 1);
+  const lastStop = Math.max(upToLimit.lastIndexOf(". "), upToLimit.lastIndexOf("? "), upToLimit.lastIndexOf("! "));
+  if (lastStop > DESC_MAX * 0.55) return d.slice(0, lastStop + 1);
+  const cut = d.slice(0, DESC_MAX);
+  const lastSpace = cut.lastIndexOf(" ");
+  return (lastSpace > DESC_MAX * 0.6 ? cut.slice(0, lastSpace) : cut).replace(/[\s,;:]+$/, "") + "…";
+}
+
+const fullTitle = clampTitle(title);
+const metaDescription = clampDescription(description);
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE_URL).toString();
 ---
 
 <title>{fullTitle}</title>
-<meta name="description" content={description} />
+<meta name="description" content={metaDescription} />
 <link rel="canonical" href={canonicalUrl} />
 
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 
 <meta property="og:type" content={type} />
 <meta property="og:title" content={fullTitle} />
-<meta property="og:description" content={description} />
+<meta property="og:description" content={metaDescription} />
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:site_name" content={COMPANY.brandName} />
 <meta property="og:image" content={image} />
@@ -50,7 +108,7 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE_URL).toString
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />
-<meta name="twitter:description" content={description} />
+<meta name="twitter:description" content={metaDescription} />
 <meta name="twitter:image" content={image} />
 
 <link rel="alternate" hreflang="x-default" href={canonicalUrl} />

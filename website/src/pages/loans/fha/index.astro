@@ -9,8 +9,8 @@ const p = product("fha")!;
 
 const faq = [
   { question: "What is an FHA loan?", answer: "An FHA loan is a mortgage insured by the Federal Housing Administration. Because FHA insures the lender against borrower default, lenders can offer more flexible qualification standards: lower credit scores, smaller down payments, and higher debt-to-income ratios than conventional programs allow. Cliffco is not affiliated with or acting on behalf of the FHA or any government entity." },
-  { question: "What is the minimum down payment for an FHA loan?", answer: "3.5% for borrowers with a 580+ credit score. Borrowers with scores between 500 and 579 may still qualify with a 10% down payment. Below 500, FHA is not available." },
-  { question: "What credit score do I need for an FHA loan?", answer: "The FHA program minimum is 500 (with 10% down). Most lenders, including Cliffco, require 580 for the 3.5% down option. Borrowers with 620+ FICO typically have a smoother path through underwriting." },
+  { question: "What is the minimum down payment for an FHA loan?", answer: "3.5% if your credit score is 580 or above. Between 500 and 579 you can still qualify, but the down payment rises to 10% and it has to come from your own funds, documented with two months of bank statements." },
+  { question: "What credit score do I need for an FHA loan?", answer: "There is no fixed credit score floor on an FHA purchase. The automated underwriting decision drives it, the same way it does on a conventional loan. What your score does change is the down payment: 3.5% at 580 and above, 10% from your own funds between 500 and 579. A streamline refinance is different and does require a 580 minimum." },
   { question: "Can my down payment be a gift?", answer: "Yes. FHA allows your entire 3.5% down payment to come from a gift from a family member, employer, close friend, or an approved down payment assistance program, documented with a gift letter." },
   { question: "Do FHA loans require mortgage insurance?", answer: "Yes. FHA loans require an upfront mortgage insurance premium (UFMIP) of 1.75% of the loan amount (typically financed into the loan) and an annual MIP collected monthly. Unlike PMI on conventional loans, FHA MIP generally remains for the life of the loan if the down payment is less than 10%." },
   { question: "Can I refinance an FHA loan later?", answer: "Yes. An FHA Streamline Refinance can lower the rate on an existing FHA loan with reduced paperwork and, in many cases, no appraisal. Once you reach 20% equity, refinancing into a conventional loan can remove mortgage insurance altogether." },
@@ -41,7 +41,7 @@ import LoanCompare from "../../../components/asym/LoanCompare.astro";
 
 const glance = [
   ["Min down payment", "3.5% (580+ FICO); 10% (500–579 FICO)"],
-  ["Min FICO", "500 (FHA min); 580 for 3.5% down"],
+  ["Min FICO", "No fixed minimum; set by the automated underwriting decision"],
   ["2026 loan limit", "Set by HUD, county by county"],
   ["Mortgage insurance", "1.75% UFMIP + annual MIP (typically for life of loan)"],
   ["Gift funds", "Can cover the full down payment"],
@@ -52,7 +52,7 @@ const glance = [
 
 const whoFor = [
   { title: "First-time buyers with smaller savings", body: "Put 3.5% down, and let a gift from family or a down payment assistance program cover all of it." },
-  { title: "Buyers whose credit is still growing", body: "FHA accepts lower credit scores than conventional loans, with 3.5% down available from a 580 score." },
+  { title: "Buyers whose credit is still growing", body: "FHA is more forgiving on credit than conventional. The 3.5% down payment is available from a 580 score, and below that you can still qualify with 10% down." },
   { title: "Buyers with student loans or car payments", body: "FHA allows higher debt-to-income ratios than most conventional loans, so monthly debts don't have to keep you renting." },
   { title: "Buyers who want rental income", body: "Buy a 2–4 unit home with 3.5% down, live in one unit, and let the rent from the others help cover the mortgage.", href: "/mortgage-guides/blog/house-hacking-fha-loan-multi-family-property/" },
   { title: "Buyers who need help with closing costs", body: "The seller can contribute up to 6% of the purchase price toward your closing costs and prepaid items." },
@@ -73,7 +73,7 @@ const whoFor = [
     facts={[
       { label: "Down payment", value: "3.5% with 580+ FICO" },
       { label: "Gift funds", value: "Can cover all of it" },
-      { label: "Credit score", value: "From 580" },
+      { label: "Credit score", value: "No fixed minimum" },
     ]}
   >
     {p.name}
