@@ -10,13 +10,24 @@ import "../styles/global.css";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import PostHog from "../components/posthog.astro";
+import { organizationSchema, websiteSchema } from "../lib/schema";
 
 interface Props {
   title: string;
   description: string;
+  /** Extra page-level structured data, on top of the sitewide Organization + WebSite. */
+  schema?: object | object[];
+  /** Social share image, absolute or root-relative. Defaults to the Anchorage hero. */
+  ogImage?: string;
+  /** Keep a page out of search results (used by 404). */
+  noindex?: boolean;
 }
-const { title, description } = Astro.props;
+const { title, description, schema, ogImage = "/hero-anchorage.webp", noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, "https://cliffcoinc.com").toString();
+const ogImageUrl = new URL(ogImage, "https://cliffcoinc.com").toString();
+
+// Organization + WebSite on every page, same as the main site; page extras appended.
+const allSchema = [organizationSchema(), websiteSchema(), ...(schema ? (Array.isArray(schema) ? schema : [schema]) : [])];
 
 const nav = [
   { label: "Home", href: "/" },
@@ -43,7 +54,16 @@ const disclaimer = "Cliffco, Inc. is not affiliated with or acting on behalf of 
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Cliffco, Inc." />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" type="image/png" href="/favicon.png" />
+    {allSchema.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
     <PostHog />
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/21616430.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
