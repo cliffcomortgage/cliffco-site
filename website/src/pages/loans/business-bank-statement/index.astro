@@ -8,9 +8,9 @@ import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/s
 const p = product("business-bank-statement")!;
 
 const faq = [
-  { question: "What is a business bank statement loan?", answer: "A business bank statement loan qualifies self-employed business owners using 12 or 24 months of business bank statements instead of tax returns or W-2s. The lender applies an expense ratio (typically 50%) to gross deposits to calculate qualifying income, making this ideal for profitable businesses whose tax returns understate actual cash flow." },
+  { question: "What is a business bank statement loan?", answer: "A business bank statement loan qualifies self-employed business owners using 12 or 24 months of business bank statements instead of tax returns or W-2s. The lender applies an expense factor to your gross deposits to arrive at qualifying income, which makes this a strong fit for profitable businesses whose tax returns understate actual cash flow." },
   { question: "Who qualifies for a business bank statement loan?", answer: "Business owners who file taxes as an LLC, S-Corp, sole proprietor, or partnership (and whose net income on tax returns is reduced by legitimate business deductions) are the ideal fit. If your business is profitable but your 1040 makes you look broke, this is your program." },
-  { question: "How is qualifying income calculated?", answer: "Cliffco takes 12 (or 24) months of business bank statement deposits, subtracts a standard expense ratio (typically 50% for most business types; lower ratios apply for certain industries), and uses the resulting figure as gross monthly income for qualification. LLCs and S-Corps with CPA-prepared P&L statements may qualify for a lower expense ratio." },
+  { question: "How is qualifying income calculated?", answer: "We start with 12 or 24 months of deposits from your business account and apply an expense factor to get qualifying income, then multiply by your documented ownership percentage. There is more than one way to set that factor. On some programs it is based on your business type and how many employees you have, so a solo service business is treated very differently from a restaurant with a payroll. On others it is a flat 50%. You can also qualify using a profit and loss statement or an expense statement prepared by a CPA, EA, or tax attorney, which often produces a better number for a low-overhead business. A borrower-prepared P&L is never accepted. Your loan officer will run all the available methods and use whichever qualifies you for the most." },
   { question: "What credit score do I need?", answer: "Most business bank statement programs start at a 620-640 minimum FICO, with best pricing above 700-720. Lower scores are possible with strong compensating factors: higher down payment, strong reserves, or a lower LTV." },
   { question: "How does this differ from the personal bank statement program?", answer: "Personal bank statement loans use a 12 or 24 month average of deposits from the business bank statements to qualify. Personal bank statement loans use business account transfers only and are more appropriate when your business and personal finances are clearly separated." },
   { question: "How fast can Cliffco close a business bank statement loan?", answer: "Cliffco typically closes business bank statement loans in 21-30 days with a complete file: business bank statements, CPA/Borrower Business Narrative, and the subject property appraisal. Rush closings are possible for purchase contracts with tight timelines." },
@@ -36,11 +36,11 @@ import CtaBand from "../../../components/asym/CtaBand.astro";
 
 const numbers = [
   ["Statement period", "12 or 24 months"],
-  ["Expense ratio", "typically 50% (varies by industry)"],
+  ["Expense factor", "Set by business type and employee count, or a flat 50%, depending on program"],
   ["Max LTV", "up to 90%"],
   ["Min FICO", "620 (best pricing 720+)"],
   ["Loan amounts", "$150K-$3M+"],
-  ["Property types", "SFR, 2-4 unit, condo, PUD, co-ops"],
+  ["Property types", "SFR, 2-4 unit, condo, PUD"],
 ];
 ---
 

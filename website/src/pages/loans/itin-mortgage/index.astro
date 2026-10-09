@@ -22,15 +22,15 @@ const faq = [
   },
   {
     question: "What property types are eligible?",
-    answer: "ITIN borrowers can purchase primary residences, second homes, and investment properties. Single-family homes, 2–4 unit properties, condos, and co-ops are all eligible property types.",
+    answer: "ITIN borrowers can purchase primary residences, second homes, and investment properties. Eligible property types are single-family homes, planned unit developments, townhomes, 2–4 unit properties, and condos, including some non-warrantable condos. Co-ops, condotels, rural properties, and manufactured or mobile homes are not eligible, and 2–4 unit properties cannot be used as a second home.",
   },
   {
     question: "What down payment do I need?",
-    answer: "Most ITIN programs require 15%–25% down depending on property type, FICO equivalent, and documentation strength. Primary residence purchases can qualify at 15% down with strong documentation; investment properties typically require 20%–25%.",
+    answer: "Plan on 20% down for a primary residence, and 25% if your credit score is in the 680s. Second homes and investment properties need 30% down. A cash-out refinance goes further still, and is capped at $500,000.",
   },
   {
     question: "What if I have no US credit history?",
-    answer: "Cliffco can build an alternative credit profile using 12 months of documented on-time payments across at least 3 recurring obligations, such as rent, utilities, phone, or internet. Your loan officer can confirm whether this option applies to your specific loan scenario.",
+    answer: "The ITIN program needs a usable U.S. credit score, so this is the one place where we cannot substitute rent and utility history. You will need a U.S. credit report with established tradelines and a 12-month housing history. If you do not have that yet, building U.S. credit is the first step, and a loan officer can tell you exactly what to work toward. If you live outside the U.S. and have no U.S. credit at all, our foreign national program is a different path that can use credit from your home country.",
   },
   {
     question: "What's the difference between an ITIN mortgage and a foreign national loan?",
@@ -58,16 +58,19 @@ import CtaBand from "../../../components/asym/CtaBand.astro";
 
 const whoQualifies = [
   { title: "Immigrants and non-residents", body: "Foreign-born borrowers living in the US who file taxes with an ITIN and have no Social Security number, regardless of immigration status." },
-  { title: "Self-employed ITIN holders", body: "Business owners and self-employed individuals who earn income in the US, file with an ITIN, and can document income through bank statements or 1099s." },
+  { title: "Self-employed ITIN holders", body: "Business owners and self-employed individuals who earn income in the US, file with an ITIN, and can document income through 12 months of bank statements, 1099s, or a profit and loss statement prepared by a tax professional." },
   { title: "First-time homebuyers", body: "Buyers purchasing a primary residence for the first time, regardless of immigration status. ITIN loans are available for primary homes, second homes, and investment properties." },
-  { title: "Real estate investors", body: "Borrowers looking to purchase investment or rental properties using ITIN documentation. Multi-unit properties and condos are eligible." },
+  { title: "Real estate investors", body: "Borrowers looking to purchase investment or rental properties using ITIN documentation. Multi-unit properties and condos are eligible, with 30% down on an investment property." },
 ];
 const numbers = [
-  ["Min down payment", "15%–20% (primary) / 20–25% (investment)"],
-  ["Credit requirement", "660+ FICO or alternative credit"],
-  ["Income documentation", "12–24 months bank statements or 1099s"],
-  ["Loan amounts", "$150K–$2.5M+"],
-  ["Property types", "SFR, 2–4 unit, condo"],
+  ["Min down payment", "20% primary (25% at 680 FICO) / 30% second home or investment"],
+  ["Credit requirement", "680+ FICO with a U.S. credit report and 12-month housing history"],
+  ["Income documentation", "12 months of bank statements, 1099s, W-2, tax return, or a third-party P&L"],
+  ["Loan amounts", "$100K–$1.5M"],
+  ["Max cash-out", "$500K"],
+  ["Max DTI", "50%"],
+  ["Reserves", "3 months PITIA; 6 months on cash-out, second home, or investment"],
+  ["Property types", "SFR, PUD, townhome, 2–4 unit, condo"],
   ["Occupancy", "Primary, second home, investment"],
 ];
 ---
@@ -83,8 +86,8 @@ const numbers = [
     eyebrow={p.category}
     lead={p.oneLiner}
     facts={[
-      { label: "Down payment", value: "From 15% (primary)" },
-      { label: "Credit", value: "660+ FICO or alternative credit" },
+      { label: "Down payment", value: "From 20% (primary)" },
+      { label: "Credit", value: "680+ FICO, U.S. credit report required" },
       { label: "Occupancy", value: "Primary, second home, investment" },
     ]}
   >

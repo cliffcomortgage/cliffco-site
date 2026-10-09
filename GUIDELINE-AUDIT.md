@@ -229,3 +229,94 @@ and unsupported):
 3. **Non-QM income calculations** — the bank statement expense ratio is a schedule (15%/30%/50% service by employee count, 25%/50%/85% product), not the flat 50% used on two pages and in the worked example. Asset utilization uses an 84-month divisor, not "60–84", and must exclude down payment and closing costs as well as reserves. The 1099 page's "10% standard expense factor" is a penalty in the guidelines, not a standard.
 4. **Agency items** from the table above: VA loan ceiling, VA funding fee first-use vs subsequent-use, the 10% disability exemption, PMI cancellation sourcing, conventional 3% down conditions, USDA manual-underwriting claim.
 5. **Blog and guide pages were out of scope** for this audit (it covered Who We Help + product pages). Several carry the same DSCR, HELOC and reverse figures and will need the same treatment.
+
+---
+
+## Round 3 — 2026-10-09: the three open items, applied from the guidelines
+
+Direction from the team: *"You should be going by the information that the guidelines are telling you. If the information on the site is wrong, it is probably because they were not compared to the guidelines before or they could have been from old guidelines."*
+
+So these were applied directly rather than asked about. Every figure below was read out of the guideline files, not recalled.
+
+### 1. Conventional minimum credit score — the 620 floor is gone
+
+"620" as a conventional floor is **not in our guidelines**. It appears exactly once in the 712-page seller guide, and it is an FHA rule: a first-time-buyer purchase using positive rental payment history needs "a minimum decision credit score is 620 or greater." Nothing to do with conventional. It appears **zero times in the overlays**.
+
+What the guide does say, twice: *"A minimum credit score is not required for DU loan casefiles. DU will assess a borrower's creditworthiness in..."*
+
+Changed on 9 surfaces to "no fixed minimum; set by the automated underwriting decision," keeping the pricing-tier language because that part is real:
+
+- `/loans/conventional/` — FAQ, glance table, hero fact
+- `/loans/conventional-government/` — program-choice FAQ, credit-minimums FAQ, conventional card
+- `/purchasing-refinancing/` — credit FAQ, conventional card, cash-out card
+- `/first-time-homebuyer/` — conventional card, credit FAQ
+- `/team-zambelli/` — credit FAQ, conventional card
+- `LoanCompare.astro` — credit row
+
+**Verified and left alone:** FHA 500 minimum / 580 for 3.5% down (guide: "Minimum credit score 500", "Minimum 580 FICO"), and VA 580 (guide: "A minimum credit score of 580 is required regardless of AUS Findings"). The site previously said VA had "no hard minimum" on the first-time-buyer page — corrected to 580, and the 600 floor on cash-out above 90% LTV added to the comparison FAQ.
+
+**USDA** went the same way: the site claimed "most lenders require at least 640 FICO for automated underwriting approval" and that "lower scores may be eligible through manual underwriting." The USDA chapter has no numeric floor at all — it is GUS-driven. The manual-underwriting path is real but the guide describes it as a Refer requiring "full file documentation and documented mitigating circumstances/compensating factors." Rewritten to match. *(This also closes the "manual requires 680+" note from Round 2, which did not hold up — there is no 680 in the USDA chapter.)*
+
+**Deliberately not changed:** the 620 figures on the down payment assistance pages and the SONYMA reference on `/team-zambelli/`. Those are state HFA program requirements with their own source documents, not our credit policy. They still need sourcing to the actual program sheets (carried forward below). The Non-QM 620s (bank statement, DSCR, Non-QM guides) are a separate product line and were not in scope here.
+
+### 2. Bank statement expense ratio — it was never a flat 50%
+
+Round 2 recorded this as a 15/30/50 and 25/50/85 schedule. That is right for one investor and wrong as a sitewide statement. Reading both sets:
+
+**Cliffco 1-6** sets the factor from business type and employee count:
+
+| Business type | 0 employees | 1–5 | >5 |
+|---|---|---|---|
+| Service (consulting, accounting, legal, IT, financial planning) | 15% | 30% | 50% |
+| Product (retail, food service, manufacturing, contracting, construction) | 25% | 50% | 85% |
+
+Its Option 2 is a third-party P&L, floored at a 15% expense ratio, with gross revenue required within ±10% of qualified deposits. "Borrower prepared P&L will not be permitted under any circumstances."
+
+**Cliffco 7 §8.4.4** instead gives three named options: a third-party P&L, a third-party expense statement, or — §8.4.4.3 verbatim — **"OPTION 3: FIXED EXPENSE RATIO OF 50%"**, calculated as `Net = Total Eligible Deposits × Borrower Ownership Percentage × 50%`.
+
+So a flat 50% is a legitimate documented method, not an error — but presenting it as *the* standard is wrong in both directions: a solo service business is treated far better than 50%, and a staffed product business far worse. The site now says the factor depends on the program, the business type and the employee count, names the CPA-prepared P&L or expense statement route, and notes the ownership-percentage multiplier. Worked figures stay at 50% because that number is defensible under either guideline set.
+
+Changed: `/loans/business-bank-statement/` (2 FAQs, glance row), `/loans/non-qm-self-employed/` (worked example + a new explanatory paragraph), `products.ts`, the self-employed income calculator, the glossary, and 3 blog pages.
+
+Two side fixes found while doing it:
+
+- **The self-employed income calculator had the relationship inverted** — it read "50% is common for service businesses; 30-40% for others," when the guidelines treat service businesses *more* favorably than product businesses, not less.
+- **Co-ops dropped from the bank statement page's eligible property types.** Co-ops appear in the Cliffco 7 matrix only once, on the ITIN *ineligible* list, and not at all in the Cliffco 1-6 Alt/Full Doc matrix. The co-op path we do have is the agency / Enterprise Co-Op Desk route already described on the condo page.
+
+*(A note on reading the schedule: the guide's own worked example is "$25,000 monthly average deposits multiplied by a 50% expense factor = $12.5k in qualifying income," which is self-consistent at 50% but ambiguous at every other value. That ambiguity is exactly why no derived figure other than 50% was published.)*
+
+### 3. ITIN and foreign national — down payments understated, ceilings overstated
+
+Both pages were wrong in the direction that costs a borrower at the closing table. Source: **Cliffco 7 ITIN Matrix eff. 08/01/2026** (the only ITIN program we have — Cliffco 1-6 carries ITIN only as "Foreign National [ITIN] (Exception Only)", which answers the Round 2 "exception-only?" question) and the **Cliffco 7 DSCR 1-4 Unit Matrix** plus **Cliffco 1-6 First Lien DSCR Guidelines**.
+
+**ITIN:**
+
+| Was | Now | Source |
+|---|---|---|
+| 15% down primary / 20–25% investment | 20% primary, 25% at 680 FICO, 30% second home or investment | Matrix: primary purchase 80% at 700–720, 75% at 680; second/investment 70%, N/A below 700 |
+| 660+ FICO or alternative credit | 680+ FICO with a U.S. credit report | Grid bottoms out at 680 |
+| "Alternative credit profile from 12 months of rent, utilities, phone or internet" | Removed entirely | §5.4.3: "Insufficient tradelines and non-traditional credit is not allowed. Each borrower must have a valid and usable score." §5.4.2: "ITIN borrowers are not allowed" on limited tradelines. §4.6.2: "Limited Tradeline are not allowed" |
+| $150K–$2.5M+ | $100K–$1.5M, max cash-out $500K | Matrix limits |
+| "12–24 months bank statements" | 12 months | Every ITIN doc type in the matrix is 12-month |
+| Co-ops listed as eligible | Removed; ineligible list added | Matrix: "Rural Properties, Condotels, Co-ops, Manufactured Homes, Mobile Homes, Geodomes, Unique Properties" |
+
+Added: max DTI 50%, reserves (3 months PITIA, 6 on cash-out / second home / investment), and that 2–4 units cannot be a second home.
+
+**Foreign national:**
+
+| Was | Now | Source |
+|---|---|---|
+| 25% down | 30% purchase, 40% cash-out | DSCR matrix Foreign National row: 70% purchase & R/T, 60% cash-out |
+| $150K–$3M+ | Up to $1.5M | "Foreign National Maximum Loan Amount $1,500,000" |
+| 12+ months PITIA reserves | 6 months | "Foreign Nationals - 6 Months PITIA" |
+| — | The rent must cover the payment | DSCR < 1.00 is N/A on the foreign national row |
+| "Most countries are eligible" | Venezuela named as ineligible | Stated in both guideline sets: "Citizens of Venezuela are ineligible for Cliffco Mortgage Bankers programs" |
+
+The "buyers from countries without credit bureaus" card was kept but given the real requirements, because foreign credit genuinely is allowed here (unlike ITIN): three open accounts with a two-year history and no lates, a 12-month 0x30 housing history, and bank reference letters where no formal report exists.
+
+### Still open after Round 3
+
+1. **Agency items** from the Round 1 table, unchanged: VA loan ceiling, VA funding fee first-use vs subsequent-use, the 10% disability exemption, PMI cancellation sourcing (cite the Homeowners Protection Act rather than implying investor policy), conventional 3% down conditions, VA cash-out at 90% vs 100%, the FHA 2–4 unit gift/reserve condition, and whether Cliffco actually originates FHA 500–579.
+2. **Remaining Non-QM income calculations**: asset utilization uses an 84-month divisor (not "60–84") and must exclude down payment and closing costs as well as reserves; the 1099 page's "10% standard expense factor" is a penalty in the guidelines, not a standard; the VOE product is marketed on the site but is not in the guideline set.
+3. **DPA credit floors and AMI bands** — not in our guidelines by design, since DPA is state and county level. Source them to the actual program sheets or soften.
+4. **Blog and guide pages** remain only partially covered. The bank statement pages were corrected this round; the DSCR, HELOC and reverse figures in `/mortgage-guides/` still carry Round 1 and 2 language.

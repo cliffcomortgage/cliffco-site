@@ -9,21 +9,21 @@ const loanOptions = [
   {
     name: "FHA Loan",
     downPayment: "3.5% down",
-    minFICO: "580+",
+    minFICO: "580+ FICO",
     highlight: true,
     description: "Government-backed, most flexible credit standards. The most common choice for first-time buyers. Mortgage insurance required.",
   },
   {
     name: "Conventional Loan",
     downPayment: "3% down",
-    minFICO: "620+",
+    minFICO: "No minimum FICO",
     highlight: false,
     description: "Conventional loan with just 3% down. No upfront mortgage insurance premium. PMI cancels once you reach 20% equity.",
   },
   {
     name: "VA Loan",
     downPayment: "0% down",
-    minFICO: "No hard minimum",
+    minFICO: "580+ FICO",
     highlight: false,
     description: "For active military, veterans, and eligible spouses. No down payment, no monthly mortgage insurance. One of the best programs available.",
   },
@@ -36,7 +36,7 @@ const faq = [
   },
   {
     question: "What credit score do I need to buy a house?",
-    answer: "FHA allows scores as low as 500 (with 10% down) or 580 for the standard 3.5% down option. Conventional loans typically require 620 or higher. VA loans don't have a government-mandated minimum, though lenders apply their own overlays. If your score is below 580, there are still paths forward depending on your full financial picture.",
+    answer: "FHA allows scores as low as 500 with 10% down, or 580 for the standard 3.5% down option. Conventional has no fixed minimum: the automated underwriting system looks at your full credit profile, and your score affects pricing rather than acting as a cutoff. VA loans don't have a government-mandated minimum, though Cliffco requires 580. If your score is below 580, there are still paths forward depending on your full financial picture.",
   },
   {
     question: "Should I get pre-qualified or pre-approved?",
@@ -157,7 +157,7 @@ const concerns = [
           <h3 class={`text-lg font-semibold ${opt.highlight ? "!text-white" : "text-[var(--color-ink)]"}`}>{opt.name}</h3>
           <div class="flex gap-4 text-sm">
             <span class="font-semibold">{opt.downPayment}</span>
-            <span class={opt.highlight ? "text-white/65" : "text-[var(--color-text-muted)]"}>{opt.minFICO} FICO</span>
+            <span class={opt.highlight ? "text-white/65" : "text-[var(--color-text-muted)]"}>{opt.minFICO}</span>
           </div>
           <p class={`text-sm leading-relaxed ${opt.highlight ? "text-white/85" : "text-[var(--color-text)]"}`}>{opt.description}</p>
         </div>

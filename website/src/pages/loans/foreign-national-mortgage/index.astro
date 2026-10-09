@@ -30,11 +30,11 @@ const faq = [
   },
   {
     question: "Which countries are eligible?",
-    answer: "Most countries are eligible. Cliffco may require additional documentation or decline applications from borrowers in OFAC-sanctioned countries or high-risk jurisdictions. Your loan officer can confirm eligibility for your specific country of residence.",
+    answer: "Most countries are eligible. Citizens of Venezuela are not eligible for Cliffco programs, and we cannot lend to borrowers in OFAC-sanctioned countries or on federal exclusion lists. Some jurisdictions call for additional documentation. Your loan officer can confirm eligibility for your specific country of residence before you go any further.",
   },
   {
     question: "What documentation do I need?",
-    answer: "Typically: a valid passport, visa documentation, 12–24 months of foreign bank statements or equivalent income documentation, a credit report from your home country if available, a letter of reference from your foreign bank, and documentation sourcing your down payment funds. Self-employed borrowers also need business ownership verification and income documentation from their home country. For investment properties, some borrowers qualify on a rental income basis using the property's projected rent rather than personal income documentation. Ask your loan officer if this applies to your situation.",
+    answer: "Typically: a valid passport, visa documentation, 12–24 months of foreign bank statements or equivalent income documentation, a credit report from your home country if available, a letter of reference from your foreign bank, and documentation sourcing your down payment funds. Self-employed borrowers also need business ownership verification and income documentation from their home country. Most foreign national purchases qualify on the property's rental income rather than personal income documentation, and on that path the rent needs to cover the full monthly payment. Ask your loan officer which route fits your situation.",
   },
 ];
 
@@ -59,15 +59,16 @@ import CtaBand from "../../../components/asym/CtaBand.astro";
 const whoQualifies = [
   { title: "International investors", body: "Foreign buyers purchasing US real estate as an investment or rental property. No US income, US credit history, or US residency required." },
   { title: "Vacation home buyers", body: "Non-resident buyers purchasing a second home in the US. Common in South Florida, New York, and Arizona, all markets where Cliffco is active." },
-  { title: "Buyers from countries without credit bureaus", body: "Cliffco can work with borrowers from countries that lack formal credit reporting systems, using alternative documentation of financial responsibility in place of a traditional credit report." },
+  { title: "Buyers from countries without credit bureaus", body: "No U.S. credit score is required. We can use credit from your home country instead: three open accounts with a two-year history and no late payments, a clean 12-month housing history, and reference letters from your bank where a formal credit report does not exist." },
   { title: "Self-employed foreign nationals", body: "Business owners outside the US can qualify using foreign tax documents, business bank statements, or income letters from their home country, with no US business registration required." },
 ];
 const numbers = [
-  ["Min down payment", "25% and up, depending on loan size and documentation"],
+  ["Min down payment", "30% on a purchase; 40% on a cash-out refinance"],
   ["US credit required", "No"],
   ["US tax returns required", "No"],
-  ["Reserves required", "12+ months PITIA"],
-  ["Loan amounts", "$150K–$3M+"],
+  ["Reserves required", "6 months PITIA"],
+  ["Loan amounts", "Up to $1.5M"],
+  ["Qualifying basis", "The property's rental income must cover the payment"],
   ["Occupancy", "Investment, second home"],
 ];
 ---
@@ -83,7 +84,7 @@ const numbers = [
     eyebrow={p.category}
     lead={p.oneLiner}
     facts={[
-      { label: "Down payment", value: "From 25%" },
+      { label: "Down payment", value: "From 30%" },
       { label: "US credit or tax returns", value: "Not required" },
       { label: "Occupancy", value: "Investment, second home" },
     ]}
