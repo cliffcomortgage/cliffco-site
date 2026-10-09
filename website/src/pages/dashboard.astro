@@ -583,6 +583,17 @@ const currentYear = new Date().getFullYear();
             LOGIN_CID first 4 chars: <code>{LOGIN_CID ? LOGIN_CID.slice(0, 4) : "none"}</code> |
             CID first 4 chars: <code>{CID ? CID.slice(0, 4) : "none"}</code>
           </p>
+          {/* Fingerprints, not values. invalid_grant also means "this refresh token was issued
+              by a different OAuth client", so the client id matters as much as the token. A
+              client id is public by design; the secret and token show only length and tail. */}
+          <p style="margin-top:0.25rem;font-size:0.75rem;color:#6b7280;">
+            CLIENT_ID: <code>{CLIENT_ID ? CLIENT_ID.slice(0, 24) : "none"}</code> (len {CLIENT_ID ? CLIENT_ID.length : 0}) |
+            CLIENT_SECRET: len <code>{CLIENT_SECRET ? CLIENT_SECRET.length : 0}</code> last4 <code>{CLIENT_SECRET ? CLIENT_SECRET.slice(-4) : "none"}</code>
+          </p>
+          <p style="margin-top:0.25rem;font-size:0.75rem;color:#6b7280;">
+            REFRESH_TOKEN: len <code>{REFRESH_TOKEN ? REFRESH_TOKEN.length : 0}</code> last8 <code>{REFRESH_TOKEN ? REFRESH_TOKEN.slice(-8) : "none"}</code> |
+            DEV_TOKEN: len <code>{DEV_TOKEN ? DEV_TOKEN.length : 0}</code>
+          </p>
         </div>
       )}
 
