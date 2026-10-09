@@ -55,7 +55,11 @@ async function submitToHubSpot(lead: {
       { name: 'message', value: message },
       { name: 'sms_consent', value: lead.tcpa ? 'true' : 'false' },
       { name: 'product_interest', value: lead.purpose || 'General Inquiry' },
-      { name: 'form_source', value: `Website 2.0 - ${lead.formSource}` },
+      // Bare slug, no prefix: the form is already named "Website 2.0 Lead Intake", so the
+      // prefix was redundant and forced every HubSpot filter to use "contains" instead of
+      // "is equal to". That matters - "contains loan-conventional" also matches
+      // loan-conventional-govt, which would silently merge two audiences.
+      { name: 'form_source', value: lead.formSource },
       { name: 'loan_officer', value: lead.loanOfficer },
       { name: 'website_page', value: lead.pageUri ? new URL(lead.pageUri).pathname : '' },
       { name: 'corporate_initiatives_name', value: 'corporate_lead_front_deskwebsite' },
