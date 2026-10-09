@@ -1,0 +1,209 @@
+---
+/**
+ * Terms of Use. Added 2026-10-09 because Google's OAuth consent screen requires a public
+ * terms-of-service URL before an app can leave "Testing" status, and the site had a privacy
+ * policy but no terms.
+ *
+ * NOT REVIEWED BY COUNSEL. This is standard website terms-of-use language adapted to a
+ * licensed mortgage banker; it is not legal advice. Have compliance or counsel review it
+ * before launch, particularly the arbitration, liability and governing-law sections.
+ */
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import LegalDoc from "../../components/asym/LegalDoc.astro";
+import { COMPANY } from "../../data/company";
+const lastUpdated = "2026-10-09";
+---
+
+<Layout
+  title="Terms of Use | Cliffco Mortgage Bankers"
+  description={`The terms that govern your use of the ${COMPANY.brandName} website, including eligibility, acceptable use, electronic communications, and limitations of liability.`}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "Legal", href: "/legal/" },
+    { name: "Terms of Use", href: "/legal/terms/" },
+  ]} />
+
+  <LegalDoc title="Terms of Use" updated={lastUpdated}>
+
+    <p class="mt-6">
+      These Terms of Use govern your access to and use of this website and any related pages,
+      forms, calculators, and tools operated by {COMPANY.legalName} (NMLS #{COMPANY.nmls}),
+      doing business as {COMPANY.brandName} (&ldquo;Cliffco,&rdquo; &ldquo;we,&rdquo;
+      &ldquo;us,&rdquo; or &ldquo;our&rdquo;). By using this site, you agree to these terms. If
+      you do not agree, please do not use the site.
+    </p>
+
+    <p class="mt-4">
+      These terms work alongside our <a href="/legal/privacy/">Privacy Policy</a>, which explains
+      what information we collect and how we use it.
+    </p>
+
+    <h2 class="mt-10">No offer, commitment, or advice</h2>
+    <p>
+      Nothing on this site is a commitment to lend or to extend credit, an offer to enter into an
+      interest rate lock agreement, or a guarantee of any particular loan term. All loans are
+      subject to credit approval, underwriting review, property appraisal, and program
+      eligibility. Program terms, availability, and guidelines may change without notice and are
+      not available in every state.
+    </p>
+    <p class="mt-4">
+      Content on this site, including guides, articles, glossary entries, and calculators, is
+      general information only. It is not financial, legal, tax, or accounting advice, and it does
+      not account for your individual circumstances. Speak with a licensed loan officer, and with
+      your own tax or legal advisor where appropriate, before making a decision.
+    </p>
+
+    <h2 class="mt-10">Calculators and estimates</h2>
+    <p>
+      Any payment, affordability, closing cost, or income figure produced by a tool on this site
+      is an illustrative estimate generated from the values you enter. Estimates do not include
+      every cost that may apply to your transaction, do not reflect your actual approved terms,
+      and are not quotes. Your actual terms are set in the disclosures you receive after you
+      apply.
+    </p>
+
+    <h2 class="mt-10">Eligibility and geographic limits</h2>
+    <p>
+      This site is intended for use by individuals who are at least 18 years old and located in
+      the United States. Cliffco is licensed in the states listed on our
+      <a href="/licensing/">State Licensing</a> page and does not solicit or originate loans in
+      states where it is not licensed. In Florida, Cliffco, Inc. does business as Clout Mortgage,
+      Inc.
+    </p>
+
+    <h2 class="mt-10">Information you provide</h2>
+    <p>
+      When you submit a form, request a pre-qualification, or otherwise contact us, you agree that
+      the information you provide is accurate and complete, and that you are authorized to provide
+      it. Do not submit information about another person without their permission. We may verify
+      any information you give us through third-party sources as part of evaluating a loan
+      request.
+    </p>
+    <p class="mt-4">
+      Please do not send sensitive personal information, such as a full Social Security number or
+      account numbers, through a web form or unencrypted email. Your loan officer will tell you
+      how to transmit those securely.
+    </p>
+
+    <h2 class="mt-10">Electronic communications and consent to contact</h2>
+    <p>
+      By submitting your contact information, you consent to be contacted by Cliffco by phone,
+      email, and text message at the number and address you provide, including through automated
+      dialing technology, about your inquiry and about products and services that may interest
+      you. Consent is not a condition of obtaining any loan or service. Message and data rates may
+      apply, and message frequency varies. You may opt out of text messages at any time by replying
+      STOP; see our <a href="/legal/sms-consent/">SMS Consent</a> page for details, and our
+      <a href="/legal/privacy/">Privacy Policy</a> for how to opt out of other communications.
+    </p>
+    <p class="mt-4">
+      You also agree that we may provide notices, disclosures, and other communications to you
+      electronically, and that electronic signatures and records satisfy any legal requirement
+      that such communications be in writing.
+    </p>
+
+    <h2 class="mt-10">Acceptable use</h2>
+    <p>You agree not to:</p>
+    <ul>
+      <li>Use the site for any unlawful purpose, or to submit false or fraudulent information.</li>
+      <li>Attempt to gain unauthorized access to any portion of the site, its systems, or any other user's data.</li>
+      <li>Interfere with or disrupt the site, including by introducing malware or by overloading our infrastructure.</li>
+      <li>Scrape, harvest, or systematically collect data from the site except as permitted by our <code>robots.txt</code>.</li>
+      <li>Copy, reproduce, or redistribute site content for commercial purposes without our written permission.</li>
+      <li>Use the site to send unsolicited commercial messages, or to impersonate any person or entity.</li>
+    </ul>
+
+    <h2 class="mt-10">Intellectual property</h2>
+    <p>
+      The site and its contents, including text, graphics, logos, photographs, and the arrangement
+      of them, are owned by Cliffco or its licensors and are protected by United States and
+      international copyright and trademark law. The Cliffco name and logo are our trademarks. You
+      may view and print pages for your own personal, non-commercial use. All other rights are
+      reserved.
+    </p>
+
+    <h2 class="mt-10">Third-party links and services</h2>
+    <p>
+      This site links to third-party websites and uses third-party services, including loan
+      application portals, servicing portals, review platforms, and analytics providers. We do not
+      control those sites or services and are not responsible for their content, security, or
+      privacy practices. A link is not an endorsement. When you leave our site, the terms and
+      privacy policy of the destination apply.
+    </p>
+
+    <h2 class="mt-10">Availability</h2>
+    <p>
+      We work to keep the site available and accurate, but we do not guarantee that it will be
+      uninterrupted, error-free, or current at any given moment. We may change, suspend, or
+      discontinue any part of the site at any time without notice.
+    </p>
+
+    <h2 class="mt-10">Disclaimer of warranties</h2>
+    <p>
+      The site is provided &ldquo;as is&rdquo; and &ldquo;as available,&rdquo; without warranties
+      of any kind, whether express or implied, including implied warranties of merchantability,
+      fitness for a particular purpose, title, and non-infringement, to the fullest extent
+      permitted by law. Some jurisdictions do not allow the exclusion of certain warranties, so
+      some of these exclusions may not apply to you.
+    </p>
+
+    <h2 class="mt-10">Limitation of liability</h2>
+    <p>
+      To the fullest extent permitted by law, Cliffco and its officers, employees, and agents will
+      not be liable for any indirect, incidental, special, consequential, or punitive damages, or
+      for any loss of profits, data, or goodwill, arising out of or relating to your use of this
+      site, even if advised of the possibility of such damages. Some jurisdictions do not allow
+      these limitations, so they may not apply to you.
+    </p>
+
+    <h2 class="mt-10">Indemnification</h2>
+    <p>
+      You agree to indemnify and hold Cliffco harmless from any claim, loss, or demand, including
+      reasonable attorneys' fees, arising from your misuse of the site, your violation of these
+      terms, or your violation of any law or the rights of a third party.
+    </p>
+
+    <h2 class="mt-10">Equal housing and fair lending</h2>
+    <p>
+      Cliffco is an Equal Housing Lender. We do not discriminate on the basis of race, color,
+      religion, national origin, sex, marital status, familial status, disability, age, because
+      all or part of your income derives from a public assistance program, or because you have in
+      good faith exercised a right under the Consumer Credit Protection Act.
+    </p>
+
+    <h2 class="mt-10">Accessibility</h2>
+    <p>
+      We are committed to making this site usable by everyone. See our
+      <a href="/legal/accessibility/">Accessibility Statement</a> for our current conformance
+      target and how to reach us if you encounter a barrier.
+    </p>
+
+    <h2 class="mt-10">Governing law</h2>
+    <p>
+      These terms are governed by the laws of the State of New York, without regard to its
+      conflict-of-law rules. Any dispute arising from these terms or your use of the site will be
+      brought in the state or federal courts located in Nassau County, New York, and you consent
+      to the jurisdiction of those courts. Nothing here limits any right you have to submit a
+      complaint to a regulator, including the complaint procedures described on our
+      <a href="/licensing/">State Licensing</a> page and our
+      <a href="/legal/texas-complaints/">Texas Consumer Complaint</a> page.
+    </p>
+
+    <h2 class="mt-10">Changes to these terms</h2>
+    <p>
+      We may update these terms from time to time. The &ldquo;last updated&rdquo; date at the top
+      of this page reflects the most recent version. Your continued use of the site after a change
+      means you accept the updated terms.
+    </p>
+
+    <h2 class="mt-10">Contact</h2>
+    <p>
+      Questions about these terms can go to {COMPANY.legalName}, {COMPANY.hq.street},
+      {COMPANY.hq.city}, {COMPANY.hq.region} {COMPANY.hq.postalCode}, or call
+      <a href={`tel:${COMPANY.tollFreeE164}`}>{COMPANY.tollFree}</a>. You can verify our licensing
+      at any time through <a href={COMPANY.nmlsConsumerAccessUrl} target="_blank" rel="noopener">NMLS Consumer Access</a>.
+    </p>
+
+  </LegalDoc>
+</Layout>

@@ -30,6 +30,8 @@ export default defineConfig({
     '/loan-officers/julia-jorge-delcarmen/': '/loan-officers/',
     '/loan-officers/adam-turkewitz/': '/loan-officers/',
     '/loan-officers/aturkewitz/': '/loan-officers/',
+    '/loan-officers/kendra-daniel/': '/loan-officers/',
+    '/loan-officers/kdaniel/': '/loan-officers/',
     '/loan-officers/samantha-roach/': '/loan-officers/',
     '/loan-officers/sroach/': '/loan-officers/',
     // --- Legacy WordPress URL map (from cliffco_sitemap_urls old.xlsx, validated against built routes) ---
@@ -100,7 +102,7 @@ export default defineConfig({
     '/karabian/': '/loan-officers/kyle-arabian/',
     '/kcruz/': '/loan-officers/',
     '/loan-officers/keyla-cruz/': '/loan-officers/',
-    '/kdaniel/': '/loan-officers/kendra-daniel/',
+    '/kdaniel/': '/loan-officers/',
     '/kscott/': '/loan-officers/kevan-scott/',
     '/larisa-zambelli/': '/loan-officers/larisa-zambelli/',
     '/lauren-zambelli/': '/loan-officers/lauren-zambelli/',

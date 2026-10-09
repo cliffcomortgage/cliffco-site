@@ -159,6 +159,26 @@
       "permanent": true
     },
     {
+      "source": "/loan-officers/kendra-daniel/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/kendra-daniel",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/kdaniel/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/kdaniel",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
       "source": "/loan-officers/samantha-roach/",
       "destination": "/loan-officers/",
       "permanent": true
@@ -850,12 +870,12 @@
     },
     {
       "source": "/kdaniel/",
-      "destination": "/loan-officers/kendra-daniel/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/kdaniel",
-      "destination": "/loan-officers/kendra-daniel/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {

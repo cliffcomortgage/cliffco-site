@@ -867,23 +867,6 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "kendra-daniel",
-    firstName: "Kendra",
-    lastName: "Daniel",
-    displayName: "Kendra Daniel",
-    nmls: "1313375",
-    title: "Loan Officer",
-    states: ["NY", "NJ"],
-    branchSlug: "uniondale-headquarters",
-    links: {
-      email: "kdaniel@cliffcomortgage.com",
-      directPhone: "347-737-2952",
-      applyNow: "https://fastapp.cliffcomortgage.com/#/milestones?referrerId=kdaniel%40cliffcomortgage.com&loanType=MORTGAGE",
-    },
-    bio: "Kendra has worked in the mortgage industry for the past twenty two years. She graduated with a Bachelor's Degree in Finance and earned a Masters Degree in Economics. Kendra found her passion helping first time home buyers when she first started her career as a Mortgage Consultant in 1999. She is a tremendous advocate for her clients and always prioritizes their interests. Kendra has served as a Senior Loan Officer for Cliffco Mortgage Bankers since 2012. Whether you are looking to purchase your first home, refinance your current home, or add to your portfolio of real estate as an investor, Kendra is committed to helping you achieve your home ownership dreams.",
-    hasPhoto: true,
-  },
-  {
     slug: "kevan-scott",
     firstName: "Kevan",
     lastName: "Scott",
