@@ -387,22 +387,40 @@ const faqSchema = {
       // Render the HubSpot form and fire the Google Ads conversion on submit.
       // hbspt.forms.create's onFormSubmitted is a reliable lifecycle callback,
       // unlike the new hs-form-frame embed's postMessage (which fires inconsistently).
+      // Fires once per submission, from whichever signal arrives first.
+      // onFormSubmitted is the classic hbspt.forms.create callback; it does not run on
+      // HubSpot's current embed. The postMessage below is what actually fires today, and
+      // works on both embeds. The guard keeps a double signal from double-counting.
+      function recordConversion() {
+        if (window.__helocMnConverted) return;
+        window.__helocMnConverted = true;
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {
+            send_to: 'AW-17848823591/8n2gCInJqIAdEKfe_b5C',
+            value: 0.0,
+            currency: 'USD'
+          });
+        }
+        if (window.posthog) window.posthog.capture('heloc_mn_form_submitted');
+      }
+
+      window.addEventListener('message', function (event) {
+        if (!event.data || typeof event.data !== 'object') return;
+        var d = event.data;
+        // Classic embed: { type: 'hsFormCallback', eventName: 'onFormSubmitted' }
+        // Current embed: { type: 'hs-form-event', eventName: 'onFormSubmitted' } and
+        // some builds send accepted names under data.data - match on eventName either way.
+        var name = d.eventName || (d.data && d.data.eventName);
+        if (name === 'onFormSubmitted' || name === 'onFormSubmit') recordConversion();
+      });
+
       if (window.hbspt && window.hbspt.forms) {
         window.hbspt.forms.create({
           region: 'na1',
           portalId: '21616430',
           formId: '92ae9b61-8e3f-4dba-9675-cd276ea8f20a',
           target: '#heloc-lead-form',
-          onFormSubmitted: function () {
-            if (typeof gtag === 'function') {
-              gtag('event', 'conversion', {
-                send_to: 'AW-17848823591/8n2gCInJqIAdEKfe_b5C',
-                value: 0.0,
-                currency: 'USD'
-              });
-            }
-            if (window.posthog) window.posthog.capture('heloc_mn_form_submitted');
-          }
+          onFormSubmitted: recordConversion
         });
       }
     </script>
