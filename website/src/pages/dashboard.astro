@@ -10,9 +10,18 @@ import { createHash } from "node:crypto";
 // a redeploy that reuses the build cache keeps serving the old secret. process.env is read
 // per request, so updating an env var and redeploying is enough. import.meta.env stays as
 // the fallback for local dev, where .env is loaded by Vite rather than the Node process.
-const readEnv = (key: string): string | undefined =>
-  (typeof process !== "undefined" ? process.env?.[key] : undefined) ??
-  (import.meta.env as Record<string, string | undefined>)[key];
+const envSource: Record<string, string> = {};
+const readEnv = (key: string): string | undefined => {
+  const fromProcess = typeof process !== "undefined" ? process.env?.[key] : undefined;
+  if (fromProcess !== undefined) { envSource[key] = "process.env"; return fromProcess; }
+  const fromMeta = (import.meta.env as Record<string, string | undefined>)[key];
+  envSource[key] = fromMeta !== undefined ? "import.meta.env (BAKED IN AT BUILD)" : "missing";
+  return fromMeta;
+};
+// Names only, never values - tells us whether Vercel is injecting these at all.
+const processKeys = typeof process !== "undefined" && process.env
+  ? Object.keys(process.env).filter((k) => k.startsWith("GOOGLE_ADS_")).sort().join(", ") || "(none)"
+  : "(process.env unavailable)";
 
 const DEV_TOKEN     = readEnv("GOOGLE_ADS_DEVELOPER_TOKEN");
 const CLIENT_ID     = readEnv("GOOGLE_ADS_CLIENT_ID");
@@ -610,6 +619,12 @@ const currentYear = new Date().getFullYear();
           <p style="margin-top:0.25rem;font-size:0.75rem;color:#6b7280;">
             REFRESH_TOKEN: len <code>{REFRESH_TOKEN ? REFRESH_TOKEN.length : 0}</code> sha <code>{fingerprint(REFRESH_TOKEN)}</code> |
             DEV_TOKEN: len <code>{DEV_TOKEN ? DEV_TOKEN.length : 0}</code>
+          </p>
+          <p style="margin-top:0.25rem;font-size:0.75rem;color:#6b7280;">
+            REFRESH_TOKEN came from: <code>{envSource["GOOGLE_ADS_REFRESH_TOKEN"] ?? "?"}</code>
+          </p>
+          <p style="margin-top:0.25rem;font-size:0.75rem;color:#6b7280;">
+            GOOGLE_ADS_* keys visible in process.env: <code>{processKeys}</code>
           </p>
         </div>
       )}
