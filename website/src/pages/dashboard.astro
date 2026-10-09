@@ -3,14 +3,31 @@
 // prerendered stub on the static GitHub Pages preview).
 import "../styles/global.css";
 import { COMPANY } from "../data/company";
+import { createHash } from "node:crypto";
 
-const DEV_TOKEN     = import.meta.env.GOOGLE_ADS_DEVELOPER_TOKEN;
-const CLIENT_ID     = import.meta.env.GOOGLE_ADS_CLIENT_ID;
-const CLIENT_SECRET = import.meta.env.GOOGLE_ADS_CLIENT_SECRET;
-const REFRESH_TOKEN = import.meta.env.GOOGLE_ADS_REFRESH_TOKEN;
-const LOGIN_CID     = import.meta.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID;
-const CID           = import.meta.env.GOOGLE_ADS_CUSTOMER_ID;
-const HUBSPOT_TOKEN = import.meta.env.HUBSPOT_TOKEN;
+// Read at RUNTIME, not build time. Vite statically inlines import.meta.env.X into the
+// bundle, so a value changed in the Vercel dashboard only takes effect on a fresh build -
+// a redeploy that reuses the build cache keeps serving the old secret. process.env is read
+// per request, so updating an env var and redeploying is enough. import.meta.env stays as
+// the fallback for local dev, where .env is loaded by Vite rather than the Node process.
+const readEnv = (key: string): string | undefined =>
+  (typeof process !== "undefined" ? process.env?.[key] : undefined) ??
+  (import.meta.env as Record<string, string | undefined>)[key];
+
+const DEV_TOKEN     = readEnv("GOOGLE_ADS_DEVELOPER_TOKEN");
+const CLIENT_ID     = readEnv("GOOGLE_ADS_CLIENT_ID");
+const CLIENT_SECRET = readEnv("GOOGLE_ADS_CLIENT_SECRET");
+const REFRESH_TOKEN = readEnv("GOOGLE_ADS_REFRESH_TOKEN");
+const LOGIN_CID     = readEnv("GOOGLE_ADS_LOGIN_CUSTOMER_ID");
+const CID           = readEnv("GOOGLE_ADS_CUSTOMER_ID");
+const HUBSPOT_TOKEN = readEnv("HUBSPOT_TOKEN");
+
+// Non-reversible fingerprint so the deployed secret can be compared against the known-good
+// one without ever printing it.
+const fingerprint = (v: string | undefined): string => {
+  if (!v) return "none";
+  return createHash("sha256").update(v).digest("hex").slice(0, 12);
+};
 
 // Expected value of one lead = revenue per funded loan x lead-to-funded rate.
 // Ballpark: $400k avg loan x 1.5% revenue x 8% close rate ≈ $480. Adjust as real
@@ -93,7 +110,7 @@ if (hasCredentials) {
     const gh: Record<string, string> = {
       Authorization: "Bearer " + access_token,
       "developer-token": DEV_TOKEN,
-      "login-customer-id": LOGIN_CID,
+      "login-customer-id": LOGIN_CID ?? "",
       "Content-Type": "application/json",
     };
 
@@ -591,7 +608,7 @@ const currentYear = new Date().getFullYear();
             CLIENT_SECRET: len <code>{CLIENT_SECRET ? CLIENT_SECRET.length : 0}</code> last4 <code>{CLIENT_SECRET ? CLIENT_SECRET.slice(-4) : "none"}</code>
           </p>
           <p style="margin-top:0.25rem;font-size:0.75rem;color:#6b7280;">
-            REFRESH_TOKEN: len <code>{REFRESH_TOKEN ? REFRESH_TOKEN.length : 0}</code> last8 <code>{REFRESH_TOKEN ? REFRESH_TOKEN.slice(-8) : "none"}</code> |
+            REFRESH_TOKEN: len <code>{REFRESH_TOKEN ? REFRESH_TOKEN.length : 0}</code> sha <code>{fingerprint(REFRESH_TOKEN)}</code> |
             DEV_TOKEN: len <code>{DEV_TOKEN ? DEV_TOKEN.length : 0}</code>
           </p>
         </div>
