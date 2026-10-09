@@ -31,8 +31,20 @@ type Lead = {
   creditRange: string; priceRange: string;
   tcpa: string; smsConsent: string;
   formSource: string; recipients: string[];
-  pageUri: string;
+  pageUri: string; loanOfficer: string;
 };
+
+/**
+ * The loan officer slug for a submission, or "" for a corporate lead.
+ * Explicit lo_slug wins (the qualifier posts it); otherwise the LO bio pages identify
+ * themselves through form_source = "lo-{slug}".
+ */
+function loanOfficerSlug(explicitSlug: string, formSource: string): string {
+  if (explicitSlug) return explicitSlug;
+  const m = formSource.match(/^lo-(.+)$/);
+  return m ? m[1] : '';
+}
+
 
 async function submitToHubSpot(lead: Lead): Promise<void> {
   const detailLines = [
@@ -63,6 +75,8 @@ async function submitToHubSpot(lead: Lead): Promise<void> {
       { name: 'website_page', value: lead.pageUri ? new URL(lead.pageUri).pathname : '' },
       { name: 'corporate_initiatives_name', value: 'corporate_lead_front_deskwebsite' },
       { name: 'notification_route', value: lead.recipients.join(',') },
+      // Empty for corporate leads, so a workflow can split LO-attributed from house leads.
+      { name: 'loan_officer', value: lead.loanOfficer },
       // Primary routed recipient (LO/team) for the HubSpot notification
       // workflow - empty when only the catch-all inboxes are on the form,
       // so the workflow can skip leads websiteleads@ already covers.
@@ -255,6 +269,7 @@ export const POST: APIRoute = async ({ request }) => {
       incomeType, purpose, creditRange, priceRange, tcpa, smsConsent,
       formSource, recipients,
       pageUri: request.headers.get('referer') ?? '',
+      loanOfficer: loanOfficerSlug(loSlug, formSource),
     };
 
     // Dual delivery: HubSpot for the CRM record + corporate notification,

@@ -23,11 +23,22 @@ function validateRecipients(raw: string): string[] {
     .filter((e) => e.endsWith(`@${ALLOWED_DOMAIN}`));
 }
 
+/**
+ * The loan officer slug for a submission, or "" for a corporate lead.
+ * The LO bio pages identify themselves through form_source = "lo-{slug}". Kept in step with
+ * the copy in /api/lead, which also accepts an explicit lo_slug from the qualifier.
+ */
+function loanOfficerSlug(explicitSlug: string, formSource: string): string {
+  if (explicitSlug) return explicitSlug;
+  const m = formSource.match(/^lo-(.+)$/);
+  return m ? m[1] : '';
+}
+
 async function submitToHubSpot(lead: {
   firstName: string; lastName: string; email: string; phone: string;
   purpose: string; state: string; notes: string; tcpa: string;
   formSource: string; recipients: string[];
-  hutk: string; pageUri: string; pageName: string;
+  hutk: string; pageUri: string; pageName: string; loanOfficer: string;
 }): Promise<void> {
   const message = [
     lead.notes,
@@ -45,6 +56,7 @@ async function submitToHubSpot(lead: {
       { name: 'sms_consent', value: lead.tcpa ? 'true' : 'false' },
       { name: 'product_interest', value: lead.purpose || 'General Inquiry' },
       { name: 'form_source', value: `Website 2.0 - ${lead.formSource}` },
+      { name: 'loan_officer', value: lead.loanOfficer },
       { name: 'website_page', value: lead.pageUri ? new URL(lead.pageUri).pathname : '' },
       { name: 'corporate_initiatives_name', value: 'corporate_lead_front_deskwebsite' },
       { name: 'notification_route', value: lead.recipients.join(',') },
@@ -202,6 +214,7 @@ export const POST: APIRoute = async ({ request }) => {
     const lead = {
       firstName, lastName, email, phone, purpose, state, notes, tcpa,
       formSource, recipients, hutk, pageUri, pageName,
+      loanOfficer: loanOfficerSlug('', formSource),
     };
 
     // Dual delivery:
