@@ -95,9 +95,12 @@ const schema = [
     { name: lo.displayName, href: `/loan-officers/${lo.slug}/` },
   ]} />
 
-  <!-- PINNED PROFILE: black column stays put on desktop while the right side scrolls -->
+  <!-- PROFILE: the black column and the right side scroll together as one page. It was
+       previously pinned full-height with its own overflow, which gave the page a second
+       scrollbar. self-start keeps the column at its content height - letting it stretch the
+       grid row instead left a tall empty black panel beside the rest of the page. -->
   <div class="lo-profile lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] border-t border-[var(--color-ink)]">
-    <aside class="lo-rail bg-[var(--color-ink)] text-white lg:sticky lg:top-[4.5rem] lg:h-[calc(100vh-4.5rem)] lg:overflow-y-auto self-start">
+    <aside class="lo-rail bg-[var(--color-ink)] text-white self-start">
       <div class="lo-rail-inner py-10 lg:py-12 flex flex-col">
         {lo.hasPhoto && (
           <div class="w-full max-w-[300px] aspect-square overflow-hidden rounded-2xl border-2 border-white/15">

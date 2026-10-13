@@ -1,8 +1,9 @@
 ---
 /**
- * Loan program body: numbered <Chapter>s scroll on the left while the contact
- * form (slot "form") stays pinned on the right, the mirror image of the Who We
- * Help pages. On phones the form comes first, right under the header.
+ * Loan program body: numbered <Chapter>s on the left, contact form (slot "form")
+ * on the right. Both columns scroll with the page as one - the form was previously
+ * pinned with its own max-height and overflow, which gave the page a second
+ * scrollbar. On phones the form comes first, right under the header.
  */
 const hasForm = Astro.slots.has("form");
 ---
@@ -10,7 +11,7 @@ const hasForm = Astro.slots.has("form");
 <section class="bg-white">
   <div class="container-wide py-12 lg:py-16 grid lg:grid-cols-12 gap-10 lg:gap-14">
     {hasForm && (
-      <div class="termsheet-form lg:col-span-5 xl:col-span-4 lg:col-start-8 xl:col-start-9 lg:row-start-1 lg:sticky lg:top-24 self-start">
+      <div class="termsheet-form lg:col-span-5 xl:col-span-4 lg:col-start-8 xl:col-start-9 lg:row-start-1 self-start">
         <slot name="form" />
       </div>
     )}
@@ -22,7 +23,4 @@ const hasForm = Astro.slots.has("form");
 
 <style>
   .termsheet-chapters { counter-reset: chapter; }
-  @media (min-width: 1024px) {
-    .termsheet-form { max-height: calc(100vh - 7rem); overflow-y: auto; scrollbar-width: thin; }
-  }
 </style>
