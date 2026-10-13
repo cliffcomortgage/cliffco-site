@@ -9,8 +9,9 @@
 
 ## 1. What you actually need to do
 
-Short version: **change two DNS records.** Everything else is already configured in the
-application or in Vercel.
+Short version: **change two DNS records**, after marketing has added the domain in Vercel.
+Everything else is already configured in the application or in Vercel. §5 says who does what,
+in order.
 
 The 144 old-URL redirects are **built into the application**, not into nginx, Apache or a
 DNS service. You do not need to build a redirect map, import a CSV, or configure rules
@@ -125,20 +126,28 @@ sending, or `/dashboard/` opens with no password. Confirm all are present before
 
 ## 5. Cutover sequence
 
-1. **48h before** — lower TTL on both A records to 300.
-2. **Day of** — add `cliffcomortgage.com` and `www.cliffcomortgage.com` in Vercel under
-   Project → Settings → Domains. Vercel will show "Invalid Configuration" until DNS points
-   at it; that is expected. **Copy the www CNAME value it displays — that is the only place
-   it exists.**
-3. Change the two DNS records to the values from §2.
-4. Wait for propagation (5–15 min at TTL 300). Check with
-   `nslookup cliffcomortgage.com 8.8.8.8`.
-5. Vercel issues the TLS certificate automatically once DNS resolves — usually under a
-   minute. No CSR, no manual certificate.
-6. Run the checks in §6.
-7. **Leave the old WordPress server running for 7 days.** It costs nothing and it is the
-   rollback.
-8. After 7 clean days, restore TTL to 3600.
+Two people are involved. **Marketing** holds the Vercel account; **IT** holds DNS at Network
+Solutions. The order matters: the domain goes into Vercel *before* DNS is repointed, because
+the www CNAME value does not exist until Vercel has been told about the domain, and because
+DNS pointed at a project that has not claimed the domain yet serves a Vercel error page
+instead of either site.
+
+| # | Who | Step |
+|---|---|---|
+| 1 | **IT** | 48h before: lower TTL on both records from 3600 to **300**. Nothing else changes yet, and the site stays on WordPress. |
+| 2 | **Marketing** | Add `cliffcomortgage.com` and `www.cliffcomortgage.com` in Vercel, under Project → Settings → Domains. Vercel shows "Invalid Configuration" — expected, DNS has not moved yet. |
+| 3 | **Marketing** | Copy the **www CNAME value** Vercel now displays and send it to IT. This is the only place that value exists. IT is blocked until they have it. |
+| 4 | **IT** | Change `cliffcomortgage.com` A to `216.198.79.1`. |
+| 5 | **IT** | Change `www.cliffcomortgage.com` from an A record to a **CNAME** pointing at the value from step 3. Note this changes the record *type*. |
+| 6 | **IT** | Wait 5–15 min at TTL 300, then confirm: `nslookup cliffcomortgage.com 8.8.8.8`. |
+| 7 | — | Vercel issues the TLS certificate by itself once DNS resolves, usually within a minute. No CSR, no manual certificate, nothing to install. |
+| 8 | **Both** | Run the checks in §6. Marketing separately submits a test lead. |
+| 9 | **IT** | Leave the old WordPress server running for **7 days**. It costs nothing and it is the rollback. |
+| 10 | **IT** | After 7 clean days, restore TTL to 3600. |
+
+If Vercel still reads "Invalid Configuration" more than 20 minutes after step 6 shows the new
+IP, the most likely cause is the www CNAME: either it is still an A record, or it carries
+another project's hostname.
 
 ---
 
