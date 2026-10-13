@@ -205,9 +205,15 @@ const schema = [
           )}
         </dl>
       </section>
+    </div>
+  </div>
 
+  <!-- Below the profile the two-column grid ends: the black rail is only as tall as its
+       own content, so keeping these sections in the right-hand column left a wide empty
+       gutter down the left. They run the full container width instead. -->
+  <div class="lo-rest bg-white border-t border-[var(--color-ink)]">
       <!-- LEAD FORM -->
-      <section class="lo-block">
+      <section class="lo-block lo-block-wide">
         <FormCard
           eyebrow={`Talk to ${first}`}
           title={`Talk to ${lo.displayName}`}
@@ -219,7 +225,7 @@ const schema = [
 
       <!-- SCENARIOS -->
       {lo.scenarios && lo.scenarios.length > 0 && (
-        <section class="lo-block">
+        <section class="lo-block lo-block-wide">
           <p class="eyebrow">Recent closings</p>
           <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 700;">Real scenarios. Anonymized.</h2>
           <ol class="mt-6 list-none m-0 p-0 border-t border-[var(--color-ink)]">
@@ -238,7 +244,7 @@ const schema = [
 
       <!-- BLOG -->
       {lo.blog && lo.blog.length > 0 && (
-        <section class="lo-block">
+        <section class="lo-block lo-block-wide">
           <p class="eyebrow">{lo.blog[0].section}</p>
           <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 700;">Written by {first}.</h2>
           <div class="mt-6 grid sm:grid-cols-2 gap-4">
@@ -259,7 +265,7 @@ const schema = [
       )}
 
       <!-- CALCULATORS -->
-      <section class="lo-block">
+      <section class="lo-block lo-block-wide">
         <p class="eyebrow">Free tools</p>
         <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 700;">Run the numbers before you apply.</h2>
         <p class="mt-3 text-[var(--color-text-muted)] leading-relaxed">Use these calculators to estimate your payment, buying power, and closing costs, then talk to {first} about the specifics.</p>
@@ -280,7 +286,7 @@ const schema = [
       </section>
 
       <!-- FAQ -->
-      <section class="lo-block">
+      <section class="lo-block lo-block-wide">
         <p class="eyebrow">Common questions</p>
         <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 700;">Answers before you reach out.</h2>
         <div class="mt-6"><FaqList items={faq} /></div>
@@ -294,13 +300,12 @@ const schema = [
       </section>
 
       <!-- DISCLOSURE -->
-      <section class="lo-block">
+      <section class="lo-block lo-block-wide">
         {isFloridaLicensed && (
           <p class="text-sm font-semibold text-[var(--color-ink)] mb-4">{COMPANY.floridaDba.disclosure}</p>
         )}
         <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">{disclosure}</p>
       </section>
-    </div>
   </div>
 </Layout>
 
@@ -312,5 +317,10 @@ const schema = [
   @media (min-width: 1024px) {
     .lo-rail-inner { padding-left: max(1.5rem, calc((100vw - 80rem) / 2 + 1.5rem)); padding-right: 3rem; }
     .lo-block { padding: 4rem max(1.5rem, calc((100vw - 80rem) / 2 + 1.5rem)) 4rem 4rem; }
+    /* Full-width sections below the profile: symmetric, centred on the 80rem container. */
+    .lo-block-wide { padding-left: max(1.5rem, calc((100vw - 80rem) / 2 + 1.5rem)); }
+  }
+  .lo-block-wide > * { max-width: 80rem; margin-inline: auto; }
+  @media (min-width: 1024px) {
   }
 </style>
