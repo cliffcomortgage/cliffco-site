@@ -27,7 +27,7 @@ export const organizationSchema = () => ({
   legalName: COMPANY.legalName,
   alternateName: ["Cliffco", "Cliffco Mortgage"],
   url: SITE_URL,
-  logo: `${SITE_URL}/logo-black.png`,
+  logo: `${SITE_URL}/images/cliffco-logo.png`,
   description:
     `Independent mortgage banker since ${COMPANY.founded}, helping first-time homebuyers, ` +
     `move-up buyers, and homeowners refinancing with conventional, FHA, VA, and USDA loans ` +
