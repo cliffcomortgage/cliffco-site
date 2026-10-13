@@ -43,16 +43,20 @@ anywhere. `launch/redirects.csv` is included only so you can verify them after c
 
 ### Target
 
-Use the exact values Vercel shows under **Project → Settings → Domains** after the domain
-is added there. As of writing Vercel's published targets are:
-
 | Host | Type | Value |
 |---|---|---|
-| `cliffcomortgage.com` | A | `76.76.21.21` |
-| `www.cliffcomortgage.com` | CNAME | `cname.vercel-dns.com` |
+| `cliffcomortgage.com` | A | `216.198.79.1` |
+| `www.cliffcomortgage.com` | CNAME | project-specific — read it from the Vercel dashboard |
 
-**Confirm against the Vercel dashboard before entering them** — Vercel has changed these in
-the past, and the dashboard is authoritative.
+The apex A record above is verified: it is what cliffcomn.com, already live on Vercel in
+this same account, resolves to today. Older Vercel documentation says `76.76.21.21` and
+many third-party guides still repeat it; that is not what this account is issued.
+
+**The www CNAME cannot be looked up or guessed.** Vercel issues a different one per project
+— cliffcomn.com's is `e9df9d2cb823d9d2.vercel-dns-017.com`, and cliffcomortgage.com will get
+its own distinct hostname. Add the domain in **Project → Settings → Domains** first and copy
+the CNAME value Vercel displays there. Using another project's CNAME will serve the wrong
+site.
 
 ### Do this first, 24–48h ahead
 
@@ -124,7 +128,8 @@ sending, or `/dashboard/` opens with no password. Confirm all are present before
 1. **48h before** — lower TTL on both A records to 300.
 2. **Day of** — add `cliffcomortgage.com` and `www.cliffcomortgage.com` in Vercel under
    Project → Settings → Domains. Vercel will show "Invalid Configuration" until DNS points
-   at it; that is expected.
+   at it; that is expected. **Copy the www CNAME value it displays — that is the only place
+   it exists.**
 3. Change the two DNS records to the values from §2.
 4. Wait for propagation (5–15 min at TTL 300). Check with
    `nslookup cliffcomortgage.com 8.8.8.8`.
