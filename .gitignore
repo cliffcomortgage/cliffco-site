@@ -46,3 +46,8 @@ website/public/**/AdobeStock_*
 Guidelines/SG Capital/Flex Connect Tutorial.mp4
 .vercel
 .env*
+
+# Renovation reference material (flyers, training deck, product matrix).
+# Kept locally only: ~45MB including a 30MB PPTX, which would bloat every clone
+# permanently. The authoritative product data lives in Guidelines/.
+Renovation Documents/
