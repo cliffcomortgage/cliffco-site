@@ -43,6 +43,7 @@ function loginPage(error: boolean): string {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Dashboard · Cliffco</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="icon" type="image/png" href="/favicon.png" sizes="180x180" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
