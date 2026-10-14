@@ -92,6 +92,20 @@ const schema = [faqPageSchema(faq)];
         <p class="mt-6 text-sm text-[var(--color-text-muted)]">
           Lending since 1989 &middot; NMLS #65328 &middot; A participating FHA 203(k) lender
         </p>
+        <picture class="hidden lg:block mt-8">
+          <source srcset="/images/fha-203k-hero.avif" type="image/avif" />
+          <source srcset="/images/fha-203k-hero.webp" type="image/webp" />
+          <img
+            src="/images/fha-203k-hero.jpg"
+            alt="A carpenter fitting timber framing to an interior doorway during a renovation"
+            width="1200"
+            height="675"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            class="w-full h-auto rounded-2xl border-2 border-[var(--color-ink)]"
+          />
+        </picture>
       </div>
 
       <div id="apply" class="scroll-mt-24">

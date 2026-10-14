@@ -93,6 +93,20 @@ const schema = [faqPageSchema(faq)];
         <p class="mt-6 text-sm text-[var(--color-text-muted)]">
           Lending since 1989 &middot; NMLS #65328 &middot; Fannie Mae and Freddie Mac approved
         </p>
+        <picture class="hidden lg:block mt-8">
+          <source srcset="/images/homestyle-hero.avif" type="image/avif" />
+          <source srcset="/images/homestyle-hero.webp" type="image/webp" />
+          <img
+            src="/images/homestyle-hero.jpg"
+            alt="A two-storey house mid-renovation, with scaffolding and paint buckets in the driveway"
+            width="1200"
+            height="675"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            class="w-full h-auto rounded-2xl border-2 border-[var(--color-ink)]"
+          />
+        </picture>
       </div>
 
       <div id="apply" class="scroll-mt-24">

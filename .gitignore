@@ -51,3 +51,8 @@ Guidelines/SG Capital/Flex Connect Tutorial.mp4
 # Kept locally only: ~45MB including a 30MB PPTX, which would bloat every clone
 # permanently. The authoritative product data lives in Guidelines/.
 Renovation Documents/
+
+# Stock photo originals. Kept locally only - these are 6-14MB each and the
+# web-sized versions in website/public/images are what actually ship.
+# Regenerate with the sharp snippet noted in the hero commits if a crop changes.
+brand/stock/
