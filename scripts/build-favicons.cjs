@@ -1,9 +1,10 @@
 /*
- * Build the favicon set for website/ from brand/logos/icon/Favicon.svg.
+ * Build a favicon set from brand/logos/icon/Favicon.svg.
  *
- *   node scripts/build-favicons.cjs
+ *   node scripts/build-favicons.cjs                          # website/public
+ *   node scripts/build-favicons.cjs microsites/cliffcoinc/public
  *
- * Outputs into website/public/:
+ * Outputs into the target directory:
  *   favicon.svg            the vector, with a dark-mode rule added
  *   favicon.ico            32x32, PNG payload in an ICO container
  *   favicon.png            180x180, transparent
@@ -11,13 +12,16 @@
  *
  * The rasters are rendered from the SVG at high density rather than downscaled from a PNG,
  * so the 32px tab icon stays crisp. Re-run this whenever the mark changes.
+ *
+ * Deliberately not run for microsites/cliffcomn: that site is being left as it is for now.
  */
 const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
 const SRC = path.join(ROOT, "brand/logos/icon/Favicon.svg");
-const OUT = path.join(ROOT, "website/public");
+const OUT = path.resolve(ROOT, process.argv[2] || "website/public");
+// sharp lives in website/node_modules; the microsites do not all carry it.
 const sharp = require(require.resolve("sharp", { paths: [path.join(ROOT, "website")] }));
 
 /** Minimal ICO container around a PNG. Supported by every current browser. */
@@ -82,7 +86,7 @@ function withDarkMode(svg) {
     .png({ compressionLevel: 9 })
     .toFile(path.join(OUT, "apple-touch-icon.png"));
 
-  console.log("\nwritten to website/public:");
+  console.log(`\nwritten to ${path.relative(ROOT, OUT).replace(/\\/g, "/")}:`);
   for (const f of ["favicon.svg", "favicon.ico", "favicon.png", "apple-touch-icon.png"]) {
     const p = path.join(OUT, f);
     const st = fs.statSync(p);
