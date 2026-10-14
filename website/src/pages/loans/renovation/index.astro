@@ -3,6 +3,7 @@ import Layout from "../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../data/company";
 import { product } from "../../../data/products";
+import { RENOVATION_PROGRAMS } from "../../../data/renovation-programs";
 import { mortgageLoanSchema, faqPageSchema, articleSchema } from "../../../lib/schema";
 
 const p = product("renovation")!;
@@ -38,85 +39,7 @@ import FormCard from "../../../components/asym/FormCard.astro";
 import FaqList from "../../../components/asym/FaqList.astro";
 import CtaBand from "../../../components/asym/CtaBand.astro";
 
-const programs = [
-  {
-    name: "FHA 203(k) Standard",
-    backer: "Government-insured",
-    bestFor: "Major remodels, structural repairs, and additions.",
-    rows: [
-      ["Repair costs", "$5,000 minimum"],
-      ["Down payment", "3.5%"],
-      ["Min credit score", "No fixed minimum; set by the automated underwriting decision"],
-      ["HUD consultant", "Required"],
-      ["Time to finish the work", "12 months from closing"],
-      ["Property types", "Primary residence, 1–4 units"],
-      ["Luxury items", "Not eligible"],
-      ["Mortgage insurance", "FHA MIP (typically for life of loan)"],
-    ],
-  },
-  {
-    name: "FHA 203(k) Limited",
-    backer: "Government-insured",
-    bestFor: "Lighter, non-structural updates like kitchens, baths, flooring, a roof, or HVAC.",
-    rows: [
-      ["Repair costs", "Up to $75,000, including fees and contingency"],
-      ["Down payment", "3.5%"],
-      ["Min credit score", "No fixed minimum; set by the automated underwriting decision"],
-      ["HUD consultant", "Not required"],
-      ["Time to finish the work", "9 months from closing"],
-      ["Property types", "Primary residence, 1–4 units"],
-      ["Structural work", "Not eligible"],
-      ["Mortgage insurance", "FHA MIP (typically for life of loan)"],
-    ],
-  },
-  {
-    name: "Fannie Mae HomeStyle",
-    backer: "Conventional",
-    bestFor: "Any permanent improvement, including luxury upgrades, on a primary home, second home, or rental.",
-    rows: [
-      ["Renovation costs", "Up to 75% of the as-improved appraised value"],
-      ["Down payment", "From 3% first-time buyers; 5% primary; 10% second home; 15% investment"],
-      ["Min credit score", "Per DU Approve/Eligible; manual underwriting not allowed"],
-      ["Loan limit", "Conforming / high-balance"],
-      ["Property types", "Primary, second home, 1-unit investment"],
-      ["Luxury items", "Eligible, including pools"],
-      ["HUD consultant", "Required above $75,000 of repairs, or for any structural work"],
-      ["Time to finish the work", "15 months from closing"],
-      ["Mortgage insurance", "PMI"],
-    ],
-  },
-  {
-    name: "Freddie Mac CHOICERenovation",
-    backer: "Conventional",
-    bestFor: "Structural and non-structural remodels on a primary home, second home, or rental.",
-    rows: [
-      ["Renovation costs", "Up to 75% of the as-improved appraised value"],
-      ["Down payment", "From 3% first-time buyers; 5% primary; 10% second home; 15% investment"],
-      ["Min credit score", "Per LP Accept; manual underwriting not allowed"],
-      ["Loan limit", "Conforming / high-balance"],
-      ["Property types", "Primary, second home, 1-unit investment"],
-      ["Luxury items", "Eligible, including pools"],
-      ["HUD consultant", "Required above $75,000 of repairs, or for any structural work"],
-      ["Time to finish the work", "450 days from closing; 180 days on ChoiceReno eXPress"],
-      ["Mortgage insurance", "PMI"],
-    ],
-  },
-  {
-    name: "VA Renovation",
-    backer: "VA-guaranteed",
-    bestFor: "Eligible veterans, service members, and surviving spouses buying or refinancing a home that needs work.",
-    rows: [
-      ["Down payment", "0% on a purchase with full entitlement"],
-      ["Renovation costs", "$75,000 or 35% of the after-renovation value, whichever is less, plus fees"],
-      ["Min credit score", "640 (1–2 units); 660 (3–4 units)"],
-      ["Refinance LTV", "Capped at 90%"],
-      ["Structural work", "Non-structural, except ADA and accessibility work"],
-      ["Time to finish the work", "120 days from closing"],
-      ["Property types", "Primary residence, 1–4 units"],
-      ["Mortgage insurance", "None (VA funding fee applies)"],
-    ],
-  },
-];
+const programs = RENOVATION_PROGRAMS;
 
 const fit = [
   { project: "Cosmetic updates under $75,000 on the home you'll live in", program: "FHA 203(k) Limited" },

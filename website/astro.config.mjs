@@ -10,6 +10,9 @@ import vercel from '@astrojs/vercel';
 //  - default            → production site at cliffcomortgage.com
 const isPages = process.env.DEPLOY_TARGET === 'pages';
 
+// Ads-only landing pages: unlisted, noindex, reached only from a paid campaign.
+const AD_LANDERS = ['fha-203k-loan', 'homestyle-choicerenovation-loan', 'va-renovation-loan'];
+
 // https://astro.build/config
 export default defineConfig({
   // Vercel adapter only for production — GitHub Pages preview uses static output
@@ -180,9 +183,15 @@ export default defineConfig({
 
   integrations: [
     // thank-you and dashboard stay out of the sitemap; nj-grant-program is now indexed,
-    // since it replaces an already-indexed WordPress page and is the live Ads destination
-    // and noindexed - reached only via paid ads, never linked from the site.
-    sitemap({ filter: (page) => !page.includes('/thank-you/') && !page.includes('/dashboard') }),
+    // since it replaces an already-indexed WordPress page and is the live Ads destination.
+    // The renovation ad landers are noindex by LandingLayout's default, so they are excluded
+    // here too - a noindex URL listed in a sitemap is a contradiction Search Console flags.
+    sitemap({
+      filter: (page) =>
+        !page.includes('/thank-you/') &&
+        !page.includes('/dashboard') &&
+        !AD_LANDERS.some((slug) => page.includes('/' + slug + '/')),
+    }),
     // API routes must be serverless functions on Vercel (POST handlers) but
     // prerendered stubs on the static GitHub Pages preview. This is set here,
     // not via a `prerender` export in the route files, because Astro can only

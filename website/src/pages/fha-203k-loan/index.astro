@@ -1,0 +1,204 @@
+---
+/**
+ * FHA 203(k) ad landing page — Standard and Limited on one page.
+ *
+ * Ads-only: not linked from the main site, noindex by default so it can't compete with
+ * /loans/renovation/ for the same queries. Flip index={true} if you'd rather it rank.
+ * All program facts come from src/data/renovation-programs.ts, which reads the guidelines
+ * matrix — don't restate figures inline here.
+ */
+import LandingLayout from "../../layouts/LandingLayout.astro";
+import FormCard from "../../components/asym/FormCard.astro";
+import { faqPageSchema } from "../../lib/schema";
+import { COMPANY } from "../../data/company";
+import { renovationProgram, RENOVATION_UNIVERSAL } from "../../data/renovation-programs";
+
+const STANDARD = renovationProgram("fha-203k-standard")!;
+const LIMITED = renovationProgram("fha-203k-limited")!;
+
+const whoItsFor = [
+  { title: "The house you want is the one nobody else will touch", body: "Dated kitchen, old roof, a layout that needs moving. Those homes sit longer and sell for less, and a 203(k) is how you buy one and fix it without a second loan." },
+  { title: "You have the down payment but not the renovation budget", body: "3.5% down covers the purchase. The repair money comes from the same mortgage, so you aren't paying for the work out of savings or on a credit card." },
+  { title: "The home won't pass an as-is appraisal", body: "A house that needs a roof or a furnace often can't close on a standard loan. A 203(k) finances the repair that makes it lendable." },
+  { title: "You're already a homeowner with work to do", body: "203(k) handles a refinance too, so you can roll the renovation into the mortgage you already have rather than taking a second lien." },
+];
+
+const steps = [
+  { step: "1", title: "Talk through the project", body: "Marco Montano, VP of Renovation Lending, NMLS 404303, will tell you in one call whether Standard or Limited fits and roughly what it costs. No cost, no obligation." },
+  { step: "2", title: "Get your bids together", body: "Your contractor prices the work. On Standard, a HUD-approved 203(k) consultant writes the plan and the budget and inspects as it's built." },
+  { step: "3", title: "The appraisal sets the ceiling", body: RENOVATION_UNIVERSAL.appraisal },
+  { step: "4", title: "Close once, on one loan", body: "The purchase and the renovation close together, with one monthly payment. " + RENOVATION_UNIVERSAL.escrow },
+];
+
+const faq = [
+  {
+    question: "What is the difference between FHA 203(k) Standard and Limited?",
+    answer: "Limited is for lighter, non-structural work: kitchens, baths, flooring, a roof, HVAC. It's capped at $75,000 and that figure includes fees and the required contingency reserve, so the budget for actual repairs is lower. No HUD consultant is required. Standard is for bigger projects, including structural repairs, room additions, and major remodels. It requires at least $5,000 in repairs and a HUD-approved 203(k) consultant who writes up the work and inspects it as it's done. Standard has no maximum repair budget.",
+  },
+  {
+    question: "What credit score do I need for a 203(k)?",
+    answer: "There's no fixed credit score floor on either 203(k). The automated underwriting decision drives it, the same way it does on a standard FHA loan. Checking costs nothing and doesn't affect your credit.",
+  },
+  {
+    question: "How much do I need for a down payment?",
+    answer: "3.5% on either 203(k), and it's calculated on the purchase price plus the renovation, not just the purchase. A gift or a down payment assistance program can cover it.",
+  },
+  {
+    question: "Can I do the work myself to save money?",
+    answer: RENOVATION_UNIVERSAL.selfHelp + " " + RENOVATION_UNIVERSAL.contractors + " If you have a trade background and were hoping to do some of the work, say so early, because it changes which program fits.",
+  },
+  {
+    question: "How long do I have to finish the renovation?",
+    answer: "12 months from closing on 203(k) Standard, 9 months on Limited. Your contractor's timeline has to fit inside that window, which is one of the things your loan officer will check against the bids.",
+  },
+  {
+    question: "Can I buy a 2–4 unit property with a 203(k)?",
+    answer: "Yes, as long as you'll live in one of the units as your primary residence. 203(k) covers 1–4 unit primary residences, including attached and detached homes, PUDs, condos, and manufactured homes.",
+  },
+  {
+    question: "What can the renovation money cover?",
+    answer: "Kitchen and bath remodels, HVAC, plumbing, electrical, roofing, energy-efficiency upgrades, and accessibility modifications on both. Structural work, room additions, and foundation work on Standard only. Luxury items like a new pool aren't eligible on either, though repairing or removing an existing pool is.",
+  },
+];
+
+const schema = [faqPageSchema(faq)];
+---
+
+<LandingLayout
+  title="FHA 203(k) Renovation Loans | Buy and Fix With One Loan | Cliffco"
+  description="An FHA 203(k) covers the home and the renovation in one loan with 3.5% down. Standard for structural work, Limited for lighter updates up to $75,000."
+  schema={schema}
+  phone={COMPANY.tollFree}
+  phoneE164={COMPANY.tollFreeE164}
+>
+  <!-- HERO -->
+  <section class="bg-white border-b border-[var(--color-ink)]">
+    <div class="container-wide py-12 lg:py-16 grid lg:grid-cols-2 gap-10 lg:gap-12 items-start">
+      <div>
+        <p class="eyebrow">FHA 203(k) renovation loans</p>
+        <h1 class="mt-4" style="font-family: var(--font-display); font-size: clamp(2.25rem, 4.4vw, 3.5rem); line-height: 1.06; font-weight: 700; letter-spacing: -0.02em;">
+          Buy the house that needs work. Fix it with the same loan.
+        </h1>
+        <p class="mt-5 max-w-xl text-[15px] leading-relaxed text-[var(--color-text)]">
+          An FHA 203(k) covers the purchase and the renovation together, with 3.5% down and one
+          monthly payment. The appraiser values the home as if the work were already finished,
+          so the house you can afford isn't limited to the condition it's in today.
+        </p>
+        <ul class="mt-6 max-w-xl space-y-2.5 text-[15px] text-[var(--color-text)]">
+          <li class="flex gap-2.5"><span aria-hidden="true" class="font-semibold">&rarr;</span><span><strong>Standard</strong> for structural work, additions, and major remodels. No cap on the repair budget.</span></li>
+          <li class="flex gap-2.5"><span aria-hidden="true" class="font-semibold">&rarr;</span><span><strong>Limited</strong> for kitchens, baths, flooring, a roof, or HVAC, up to $75,000.</span></li>
+          <li class="flex gap-2.5"><span aria-hidden="true" class="font-semibold">&rarr;</span><span>No fixed credit score minimum. Purchases and refinances both qualify.</span></li>
+        </ul>
+        <p class="mt-6 text-sm text-[var(--color-text-muted)]">
+          Lending since 1989 &middot; NMLS #65328 &middot; A participating FHA 203(k) lender
+        </p>
+      </div>
+
+      <div id="apply" class="scroll-mt-24">
+        <FormCard
+          eyebrow="No cost to check"
+          title="Price out your 203(k)."
+          sub="Tell us the property and what the project involves, and we'll tell you which 203(k) fits and what it costs."
+          formSource="lander-fha-203k"
+          ctaLabel="Check My Options"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- WHICH ONE -->
+  <section class="bg-white border-b border-[var(--color-ink)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide">
+      <p class="eyebrow">Standard or Limited</p>
+      <h2 class="mt-3 max-w-2xl" style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">The scope of the work decides which one you use.</h2>
+      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+        {[STANDARD, LIMITED].map((p) => (
+          <div class="rounded-2xl border-2 border-[var(--color-ink)] bg-white p-6 sm:p-7">
+            <p class="eyebrow">{p.backer}</p>
+            <h3 class="mt-2" style="font-family: var(--font-display); font-size: 1.375rem; font-weight: 700;">{p.name}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{p.bestFor}</p>
+            <dl class="mt-5 border-t border-black/15">
+              {p.rows.map(([k, v]) => (
+                <div class="grid sm:grid-cols-[minmax(0,10rem)_1fr] gap-x-5 gap-y-0.5 py-3 border-b border-black/15">
+                  <dt class="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] pt-0.5">{k}</dt>
+                  <dd class="text-sm text-[var(--color-ink)]">{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="bg-[var(--color-ink)] text-white" style="padding-block: var(--spacing-section);">
+    <div class="container-wide">
+      <p class="eyebrow !text-white/60">Who this is for</p>
+      <h2 class="mt-3 max-w-2xl !text-white" style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">Four situations where a 203(k) is the loan that works.</h2>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2">
+        {whoItsFor.map((w, i) => (
+          <div class="border-t border-white/20 pt-5">
+            <p class="font-mono text-[11px] text-white/50">{String(i + 1).padStart(2, "0")}</p>
+            <h3 class="mt-2 text-base font-semibold !text-white">{w.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/70">{w.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="bg-white border-b border-[var(--color-ink)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide max-w-4xl">
+      <p class="eyebrow">How it goes</p>
+      <h2 class="mt-3" style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">Four steps, one loan officer.</h2>
+      <ol class="mt-8 space-y-6">
+        {steps.map((s) => (
+          <li class="grid sm:grid-cols-[3rem_1fr] gap-4">
+            <span class="font-mono text-lg font-semibold text-[var(--color-text-muted)]">{s.step}</span>
+            <div>
+              <h3 class="text-base font-semibold text-[var(--color-ink)]">{s.title}</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-[var(--color-text)]">{s.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-white border-b border-[var(--color-ink)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide max-w-3xl">
+      <p class="eyebrow">Questions we get</p>
+      <h2 class="mt-3" style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">Answered directly.</h2>
+      <div class="mt-8 space-y-5">
+        {faq.map((f) => (
+          <details class="border-b border-black/15 pb-5">
+            <summary class="cursor-pointer list-none text-lg font-semibold text-[var(--color-ink)]">{f.question}</summary>
+            <p class="mt-3 text-[15px] leading-relaxed text-[var(--color-text)]">{f.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="bg-white" style="padding-block: var(--spacing-section);">
+    <div class="container-wide max-w-2xl text-center">
+      <h2 style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">Tell us about the house.</h2>
+      <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-text)]">
+        Send the address and a rough idea of the work. We'll tell you which 203(k) fits, what
+        the payment looks like, and what the appraisal is likely to support.
+      </p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#apply" class="btn btn-primary">Check My Options</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+
+  <a href="#apply" class="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-[var(--color-ink)] text-white text-center font-semibold py-4 no-underline" style="box-shadow: 0 -2px 16px rgba(0,0,0,0.18);">Check My Options</a>
+</LandingLayout>
+
+<style is:inline>@media (max-width: 1023px){ body { padding-bottom: 64px; } }</style>

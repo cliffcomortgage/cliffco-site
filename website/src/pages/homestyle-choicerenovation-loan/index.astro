@@ -1,0 +1,206 @@
+---
+/**
+ * HomeStyle / CHOICERenovation ad landing page — the two conventional programs together.
+ *
+ * Ads-only: not linked from the main site, noindex by default so it can't compete with
+ * /loans/renovation/. Program facts come from src/data/renovation-programs.ts.
+ *
+ * The angle that separates this from the 203(k) lander: these two are the only renovation
+ * programs that reach second homes and rentals, and the only ones that allow a pool.
+ */
+import LandingLayout from "../../layouts/LandingLayout.astro";
+import FormCard from "../../components/asym/FormCard.astro";
+import { faqPageSchema } from "../../lib/schema";
+import { COMPANY } from "../../data/company";
+import { renovationProgram, RENOVATION_UNIVERSAL } from "../../data/renovation-programs";
+
+const HOMESTYLE = renovationProgram("homestyle")!;
+const CHOICE = renovationProgram("choicerenovation")!;
+
+const whoItsFor = [
+  { title: "You're renovating a second home or a rental", body: "FHA renovation loans are primary-residence only. These two are the renovation programs that reach a second home or a single-unit investment property." },
+  { title: "The project includes something FHA calls a luxury", body: "A pool, an outdoor kitchen, landscaping. If it's permanently attached and adds value, these programs can finance it. FHA won't." },
+  { title: "You want to drop mortgage insurance later", body: "PMI on a conventional loan comes off once you reach 20% equity. FHA mortgage insurance usually stays for the life of the loan, which matters on a 30-year note." },
+  { title: "The renovation is substantial", body: "Both cap the renovation at 75% of the as-improved appraised value, which on most homes is a larger budget than FHA 203(k) Limited's $75,000 ceiling." },
+];
+
+const steps = [
+  { step: "1", title: "Price the project with a loan officer", body: "Marco Montano, VP of Renovation Lending, NMLS 404303, can price HomeStyle and CHOICERenovation side by side and tell you which one your file fits better." },
+  { step: "2", title: "Line up contractor bids", body: "Your contractor prices the work. Above $75,000 of repairs, or on any structural work, a HUD consultant writes up and inspects the project." },
+  { step: "3", title: "The appraisal sets the ceiling", body: RENOVATION_UNIVERSAL.appraisal },
+  { step: "4", title: "Close once, renovate in stages", body: RENOVATION_UNIVERSAL.escrow + " You have 15 months on HomeStyle, 450 days on CHOICERenovation." },
+];
+
+const faq = [
+  {
+    question: "What is the difference between HomeStyle and CHOICERenovation?",
+    answer: "They're close. Both are conventional renovation loans covering primary residences, second homes, and single-unit investment properties. Both cap renovation costs at 75% of the as-improved appraised value, both allow structural work and luxury items including pools, and both need a HUD consultant once repairs pass $75,000 or involve structural work. HomeStyle is backed by Fannie Mae and underwrites to a DU Approve/Eligible; CHOICERenovation is Freddie Mac and underwrites to an LP Accept. The practical difference is the clock: HomeStyle gives you 15 months from closing, CHOICERenovation 450 days. Your loan officer can price both.",
+  },
+  {
+    question: "Can I use one of these on a rental property?",
+    answer: "Yes, on a single-unit investment property, with 15% down on a purchase. That's one of the main reasons to choose these over an FHA 203(k), which is primary-residence only. A second home works too, at 10% down.",
+  },
+  {
+    question: "What credit score do I need?",
+    answer: "Neither sets a fixed score floor. HomeStyle needs a DU Approve/Eligible and CHOICERenovation an LP Accept, and manual underwriting isn't allowed on either, so the automated decision is what matters. Checking costs nothing and doesn't affect your credit.",
+  },
+  {
+    question: "Can I finance a pool?",
+    answer: "Yes. These are the two renovation programs that allow it, along with other permanent additions that increase the home's value. FHA 203(k) and VA renovation don't, though repairing or removing an existing pool is eligible on those.",
+  },
+  {
+    question: "How much can the renovation be?",
+    answer: "Up to 75% of the as-improved appraised value, which is the value once the work is finished. On a manufactured home the limit is the lesser of $50,000 or 50% of the as-completed value.",
+  },
+  {
+    question: "Can I do the work myself?",
+    answer: RENOVATION_UNIVERSAL.selfHelp + " " + RENOVATION_UNIVERSAL.contractors,
+  },
+  {
+    question: "Can I take cash out at the same time?",
+    answer: "No. Both are limited to purchases and a no-cash-out or limited-cash-out refinance, meaning no funds come back to you beyond the renovation escrow. If you want cash in hand, that's a different conversation, and a cash-out refinance or a HELOC may fit better.",
+  },
+];
+
+const schema = [faqPageSchema(faq)];
+---
+
+<LandingLayout
+  title="HomeStyle & CHOICERenovation Loans | Renovate Any Home | Cliffco"
+  description="Conventional renovation loans for a primary home, second home, or rental. Up to 75% of the as-improved value, pools eligible, PMI you can drop at 20% equity."
+  schema={schema}
+  phone={COMPANY.tollFree}
+  phoneE164={COMPANY.tollFreeE164}
+>
+  <!-- HERO -->
+  <section class="bg-white border-b border-[var(--color-ink)]">
+    <div class="container-wide py-12 lg:py-16 grid lg:grid-cols-2 gap-10 lg:gap-12 items-start">
+      <div>
+        <p class="eyebrow">HomeStyle &amp; CHOICERenovation</p>
+        <h1 class="mt-4" style="font-family: var(--font-display); font-size: clamp(2.25rem, 4.4vw, 3.5rem); line-height: 1.06; font-weight: 700; letter-spacing: -0.02em;">
+          The renovation loans that cover a rental, a second home, and a pool.
+        </h1>
+        <p class="mt-5 max-w-xl text-[15px] leading-relaxed text-[var(--color-text)]">
+          Fannie Mae HomeStyle and Freddie Mac CHOICERenovation finance the home and the work
+          in one conventional loan. The appraiser values the home as if the renovation were
+          already finished, and the budget can run to 75% of that value.
+        </p>
+        <ul class="mt-6 max-w-xl space-y-2.5 text-[15px] text-[var(--color-text)]">
+          <li class="flex gap-2.5"><span aria-hidden="true" class="font-semibold">&rarr;</span><span>Primary home, <strong>second home, or a single-unit rental</strong> — where FHA can't go.</span></li>
+          <li class="flex gap-2.5"><span aria-hidden="true" class="font-semibold">&rarr;</span><span>Pools and other permanent upgrades are <strong>eligible</strong>.</span></li>
+          <li class="flex gap-2.5"><span aria-hidden="true" class="font-semibold">&rarr;</span><span>PMI comes off at 20% equity, unlike FHA mortgage insurance.</span></li>
+        </ul>
+        <p class="mt-6 text-sm text-[var(--color-text-muted)]">
+          Lending since 1989 &middot; NMLS #65328 &middot; Fannie Mae and Freddie Mac approved
+        </p>
+      </div>
+
+      <div id="apply" class="scroll-mt-24">
+        <FormCard
+          eyebrow="No cost to check"
+          title="Price both programs."
+          sub="Tell us the property and the scope, and we'll show you HomeStyle and CHOICERenovation side by side."
+          formSource="lander-homestyle-choicerenovation"
+          ctaLabel="Compare My Options"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- SIDE BY SIDE -->
+  <section class="bg-white border-b border-[var(--color-ink)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide">
+      <p class="eyebrow">Side by side</p>
+      <h2 class="mt-3 max-w-2xl" style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">Nearly the same loan. The clock is the real difference.</h2>
+      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+        {[HOMESTYLE, CHOICE].map((p) => (
+          <div class="rounded-2xl border-2 border-[var(--color-ink)] bg-white p-6 sm:p-7">
+            <p class="eyebrow">{p.backer}</p>
+            <h3 class="mt-2" style="font-family: var(--font-display); font-size: 1.375rem; font-weight: 700;">{p.name}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{p.bestFor}</p>
+            <dl class="mt-5 border-t border-black/15">
+              {p.rows.map(([k, v]) => (
+                <div class="grid sm:grid-cols-[minmax(0,10rem)_1fr] gap-x-5 gap-y-0.5 py-3 border-b border-black/15">
+                  <dt class="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] pt-0.5">{k}</dt>
+                  <dd class="text-sm text-[var(--color-ink)]">{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="bg-[var(--color-ink)] text-white" style="padding-block: var(--spacing-section);">
+    <div class="container-wide">
+      <p class="eyebrow !text-white/60">Who this is for</p>
+      <h2 class="mt-3 max-w-2xl !text-white" style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">When conventional beats FHA on a renovation.</h2>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2">
+        {whoItsFor.map((w, i) => (
+          <div class="border-t border-white/20 pt-5">
+            <p class="font-mono text-[11px] text-white/50">{String(i + 1).padStart(2, "0")}</p>
+            <h3 class="mt-2 text-base font-semibold !text-white">{w.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/70">{w.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="bg-white border-b border-[var(--color-ink)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide max-w-4xl">
+      <p class="eyebrow">How it goes</p>
+      <h2 class="mt-3" style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">Four steps, one loan officer.</h2>
+      <ol class="mt-8 space-y-6">
+        {steps.map((s) => (
+          <li class="grid sm:grid-cols-[3rem_1fr] gap-4">
+            <span class="font-mono text-lg font-semibold text-[var(--color-text-muted)]">{s.step}</span>
+            <div>
+              <h3 class="text-base font-semibold text-[var(--color-ink)]">{s.title}</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-[var(--color-text)]">{s.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-white border-b border-[var(--color-ink)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide max-w-3xl">
+      <p class="eyebrow">Questions we get</p>
+      <h2 class="mt-3" style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">Answered directly.</h2>
+      <div class="mt-8 space-y-5">
+        {faq.map((f) => (
+          <details class="border-b border-black/15 pb-5">
+            <summary class="cursor-pointer list-none text-lg font-semibold text-[var(--color-ink)]">{f.question}</summary>
+            <p class="mt-3 text-[15px] leading-relaxed text-[var(--color-text)]">{f.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="bg-white" style="padding-block: var(--spacing-section);">
+    <div class="container-wide max-w-2xl text-center">
+      <h2 style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">Tell us about the project.</h2>
+      <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-text)]">
+        Send the address, whether it's a primary home, a second home or a rental, and a rough
+        scope. We'll price HomeStyle and CHOICERenovation against each other and tell you which
+        one your file fits.
+      </p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#apply" class="btn btn-primary">Compare My Options</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+
+  <a href="#apply" class="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-[var(--color-ink)] text-white text-center font-semibold py-4 no-underline" style="box-shadow: 0 -2px 16px rgba(0,0,0,0.18);">Compare My Options</a>
+</LandingLayout>
+
+<style is:inline>@media (max-width: 1023px){ body { padding-bottom: 64px; } }</style>

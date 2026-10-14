@@ -1,0 +1,225 @@
+---
+/**
+ * VA renovation ad landing page.
+ *
+ * Ads-only: not linked from the main site, noindex by default so it can't compete with
+ * /loans/renovation/ or /loans/va/. Program facts come from
+ * src/data/renovation-programs.ts.
+ *
+ * This one has to be honest about the trade-off rather than only selling 0% down: the VA
+ * renovation scope is the tightest of the five programs and the completion window is 120
+ * days, a quarter of CHOICERenovation's. A veteran who finds that out after applying is a
+ * worse outcome than one who self-selects out here.
+ */
+import LandingLayout from "../../layouts/LandingLayout.astro";
+import FormCard from "../../components/asym/FormCard.astro";
+import { faqPageSchema } from "../../lib/schema";
+import { COMPANY } from "../../data/company";
+import { renovationProgram, RENOVATION_UNIVERSAL } from "../../data/renovation-programs";
+
+const VA = renovationProgram("va-renovation")!;
+
+const benefits = [
+  { title: "0% down with full entitlement", body: "On a purchase, the home and the renovation can both be financed with nothing down. No other renovation program does that." },
+  { title: "No monthly mortgage insurance", body: "VA loans carry no monthly MI at any loan-to-value. The VA funding fee still applies, and it can be financed." },
+  { title: "One loan, one closing", body: "The purchase and the repairs close together. " + RENOVATION_UNIVERSAL.escrow },
+  { title: "Accessibility work is eligible", body: "VA renovation is otherwise non-structural, but ADA and accessibility modifications are covered, which matters for a service-connected disability." },
+];
+
+const honest = [
+  { title: "The budget is capped", body: "$75,000 or 35% of the after-renovation value, whichever is less, plus fees. A gut renovation usually doesn't fit." },
+  { title: "No structural work", body: "Apart from ADA and accessibility changes, the work has to be non-structural. No additions, no foundation work, no moving walls." },
+  { title: "120 days to finish", body: "The shortest window of any renovation program. HomeStyle gives 15 months and CHOICERenovation 450 days. Your contractor has to commit to four months." },
+  { title: "Primary residence only", body: "A second home or a rental isn't eligible. If that's the plan, HomeStyle or CHOICERenovation is the route." },
+];
+
+const steps = [
+  { step: "1", title: "Confirm entitlement and scope", body: "Marco Montano, VP of Renovation Lending, NMLS 404303, checks your entitlement and tells you honestly whether the project fits inside the VA caps or whether another program serves you better." },
+  { step: "2", title: "Get a contractor on a four-month timeline", body: "Bids have to show the work finishing within 120 days of closing. This is the step that decides most VA renovation files." },
+  { step: "3", title: "The appraisal sets the ceiling", body: RENOVATION_UNIVERSAL.appraisal + " On VA the loan is limited by whichever is lower: that value, or what the home actually costs you." },
+  { step: "4", title: "Close and start the work", body: "Repairs are paid in draws as inspections confirm each stage, with a VA guarantee on completion and a final 1004D/442 inspection." },
+];
+
+const faq = [
+  {
+    question: "How much renovation can a VA loan cover?",
+    answer: "$75,000 or 35% of the after-renovation value, whichever is less, plus fees and the required contingency. The contingency is a minimum of 10% of the alteration cost and can't exceed 15%.",
+  },
+  {
+    question: "Can I buy with nothing down?",
+    answer: "Yes, on a purchase with full entitlement, up to 100% of the lesser of the as-completed appraised value or the total cost of the home plus the renovation. A refinance is capped at 90%.",
+  },
+  {
+    question: "What credit score do I need?",
+    answer: "640 on a 1–2 unit home, 660 on 3–4 units. Checking costs nothing and doesn't affect your credit.",
+  },
+  {
+    question: "What kind of work qualifies?",
+    answer: "Non-structural repairs and updates: kitchens, baths, roofing, HVAC, plumbing, electrical, energy-efficiency work, and mold or lead paint removal. ADA and accessibility modifications are eligible too. Structural work, room additions, and foundation work are not. An existing pool can be repaired up to $1,500, but a new pool isn't eligible.",
+  },
+  {
+    question: "How long do I have to finish the renovation?",
+    answer: "120 days from closing. That's the tightest schedule of any renovation program we offer, so the contractor's timeline is something to settle before you apply rather than after.",
+  },
+  {
+    question: "Can I do the work myself?",
+    answer: RENOVATION_UNIVERSAL.selfHelp + " On VA renovation that's one general contractor, with specialty trades added as the job needs them.",
+  },
+  {
+    question: "What if the project is too big for the VA caps?",
+    answer: "Then it's worth looking at the alternatives rather than forcing it. A VA purchase plus a separate renovation path, or a conventional HomeStyle or CHOICERenovation loan, may finance the work you actually want. You'd give up 0% down and the no-MI benefit, so it's a real trade-off, and it's the kind of thing to price both ways before deciding.",
+  },
+];
+
+const schema = [faqPageSchema(faq)];
+---
+
+<LandingLayout
+  title="VA Renovation Loans | Buy and Repair With 0% Down | Cliffco"
+  description="A VA renovation loan finances the home and the repairs in one VA-guaranteed loan with 0% down and no monthly mortgage insurance. Up to $75,000 of non-structural work."
+  schema={schema}
+  phone={COMPANY.tollFree}
+  phoneE164={COMPANY.tollFreeE164}
+>
+  <!-- HERO -->
+  <section class="bg-white border-b border-[var(--color-ink)]">
+    <div class="container-wide py-12 lg:py-16 grid lg:grid-cols-2 gap-10 lg:gap-12 items-start">
+      <div>
+        <p class="eyebrow">VA renovation loans</p>
+        <h1 class="mt-4" style="font-family: var(--font-display); font-size: clamp(2.25rem, 4.4vw, 3.5rem); line-height: 1.06; font-weight: 700; letter-spacing: -0.02em;">
+          Buy a home that needs repairs, with nothing down.
+        </h1>
+        <p class="mt-5 max-w-xl text-[15px] leading-relaxed text-[var(--color-text)]">
+          A VA renovation loan lets an eligible veteran, service member, or surviving spouse
+          finance the home and the repairs in one VA-guaranteed loan. 0% down with full
+          entitlement, no monthly mortgage insurance, and one closing.
+        </p>
+        <ul class="mt-6 max-w-xl space-y-2.5 text-[15px] text-[var(--color-text)]">
+          <li class="flex gap-2.5"><span aria-hidden="true" class="font-semibold">&rarr;</span><span>Up to <strong>$75,000</strong> of non-structural work, or 35% of the after-renovation value.</span></li>
+          <li class="flex gap-2.5"><span aria-hidden="true" class="font-semibold">&rarr;</span><span>ADA and accessibility modifications are eligible.</span></li>
+          <li class="flex gap-2.5"><span aria-hidden="true" class="font-semibold">&rarr;</span><span>Work must finish within <strong>120 days</strong> of closing.</span></li>
+        </ul>
+        <p class="mt-6 text-sm text-[var(--color-text-muted)]">
+          Lending since 1989 &middot; NMLS #65328 &middot; VA-approved lender
+        </p>
+      </div>
+
+      <div id="apply" class="scroll-mt-24">
+        <FormCard
+          eyebrow="No cost to check"
+          title="See if your project fits."
+          sub="Tell us the property and the scope of the work, and we'll tell you honestly whether VA renovation is the right route."
+          formSource="lander-va-renovation"
+          ctaLabel="Check My Eligibility"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="bg-[var(--color-ink)] text-white" style="padding-block: var(--spacing-section);">
+    <div class="container-wide">
+      <p class="eyebrow !text-white/60">What the benefit gets you</p>
+      <h2 class="mt-3 max-w-2xl !text-white" style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">No other renovation loan starts at zero down.</h2>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2">
+        {benefits.map((b, i) => (
+          <div class="border-t border-white/20 pt-5">
+            <p class="font-mono text-[11px] text-white/50">{String(i + 1).padStart(2, "0")}</p>
+            <h3 class="mt-2 text-base font-semibold !text-white">{b.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/70">{b.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- THE LIMITS, SAID PLAINLY -->
+  <section class="bg-white border-b border-[var(--color-ink)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide">
+      <p class="eyebrow">Before you apply</p>
+      <h2 class="mt-3 max-w-2xl" style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">Four limits worth knowing up front.</h2>
+      <p class="mt-4 max-w-2xl text-[15px] leading-relaxed text-[var(--color-text)]">
+        VA renovation has the tightest scope of the five renovation programs we offer. Better to
+        find that out now than three weeks into an application.
+      </p>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2">
+        {honest.map((h) => (
+          <div class="rounded-2xl border-2 border-[var(--color-ink)] bg-white p-6">
+            <h3 class="text-base font-semibold text-[var(--color-ink)]">{h.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-[var(--color-text)]">{h.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEC -->
+  <section class="bg-white border-b border-[var(--color-ink)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide max-w-3xl">
+      <p class="eyebrow">{VA.backer}</p>
+      <h2 class="mt-3" style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">{VA.name} at a glance</h2>
+      <dl class="mt-7 border-t border-black/15">
+        {VA.rows.map(([k, v]) => (
+          <div class="grid sm:grid-cols-[minmax(0,12rem)_1fr] gap-x-6 gap-y-0.5 py-4 border-b border-black/15">
+            <dt class="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] pt-1">{k}</dt>
+            <dd class="text-[15px] text-[var(--color-ink)]">{v}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="bg-white border-b border-[var(--color-ink)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide max-w-4xl">
+      <p class="eyebrow">How it goes</p>
+      <h2 class="mt-3" style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">Four steps, one loan officer.</h2>
+      <ol class="mt-8 space-y-6">
+        {steps.map((s) => (
+          <li class="grid sm:grid-cols-[3rem_1fr] gap-4">
+            <span class="font-mono text-lg font-semibold text-[var(--color-text-muted)]">{s.step}</span>
+            <div>
+              <h3 class="text-base font-semibold text-[var(--color-ink)]">{s.title}</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-[var(--color-text)]">{s.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-white border-b border-[var(--color-ink)]" style="padding-block: var(--spacing-section);">
+    <div class="container-wide max-w-3xl">
+      <p class="eyebrow">Questions we get</p>
+      <h2 class="mt-3" style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">Answered directly.</h2>
+      <div class="mt-8 space-y-5">
+        {faq.map((f) => (
+          <details class="border-b border-black/15 pb-5">
+            <summary class="cursor-pointer list-none text-lg font-semibold text-[var(--color-ink)]">{f.question}</summary>
+            <p class="mt-3 text-[15px] leading-relaxed text-[var(--color-text)]">{f.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="bg-white" style="padding-block: var(--spacing-section);">
+    <div class="container-wide max-w-2xl text-center">
+      <h2 style="font-family: var(--font-display); font-size: var(--text-h2); font-weight: 700;">Thank you for your service. Let's see if this fits.</h2>
+      <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-text)]">
+        Send the address and a rough scope of the work. If VA renovation fits, we'll price it.
+        If it doesn't, we'll tell you that and show you what does.
+      </p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#apply" class="btn btn-primary">Check My Eligibility</a>
+        <a href={`tel:${COMPANY.tollFreeE164}`} class="btn btn-secondary">{COMPANY.tollFree}</a>
+      </div>
+    </div>
+  </section>
+
+  <a href="#apply" class="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-[var(--color-ink)] text-white text-center font-semibold py-4 no-underline" style="box-shadow: 0 -2px 16px rgba(0,0,0,0.18);">Check My Eligibility</a>
+</LandingLayout>
+
+<style is:inline>@media (max-width: 1023px){ body { padding-bottom: 64px; } }</style>
