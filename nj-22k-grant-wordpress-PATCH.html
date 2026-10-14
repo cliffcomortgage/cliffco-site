@@ -1,0 +1,125 @@
+<!--
+  NJ $22K grant lander — copy patch for the LIVE WordPress page.
+
+  Why this file exists: the Google Ads campaign points at
+  https://cliffcomortgage.com/nj-grant-program/, which WordPress still serves. The Astro
+  version of this page has the same copy changes, but it does not go live until the site
+  cuts over, so this patch is what actually stops the mismatched leads now.
+
+  Problem it fixes: people already mid-mortgage with another lender are filling in the form.
+  The page did say the assistance pairs with an NJHMFA first mortgage, but only in the FAQ,
+  and worded as a convenience rather than as a condition.
+
+  Everything below uses inline styles only, so it does not depend on the page's stylesheet
+  and will render the same wherever it is pasted.
+-->
+
+<!-- ===================================================================
+     BLOCK 1 — paste directly BELOW the hero paragraph that ends
+     "...and the loan has not been refinanced in that time."
+     =================================================================== -->
+
+<div style="margin:20px 0;max-width:36rem;border:2px solid #0d0d0d;border-radius:12px;background:#faf9f7;padding:16px;">
+  <p style="margin:0;font-family:ui-monospace,'IBM Plex Mono',monospace;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#0d0d0d;">
+    Worth knowing up front
+  </p>
+  <p style="margin:8px 0 0;font-size:15px;line-height:1.6;color:#3d4040;">
+    The assistance and the mortgage are one package. The money comes with an NJHMFA mortgage
+    that Cliffco originates, so it isn't a standalone grant you can bring to a loan you've
+    already started somewhere else.
+    <strong style="color:#0d0d0d;">If you already have a mortgage in process with another lender, this program can't be added to it.</strong>
+    Haven't closed yet? Talk to us before you go further &mdash; switching is often simpler
+    than people expect, and we'll tell you honestly whether it's worth it.
+  </p>
+</div>
+
+<!-- ===================================================================
+     BLOCK 2 — paste directly BELOW the form heading
+     "See if you qualify. It takes 2 minutes."
+     =================================================================== -->
+
+<p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:#5a5d5d;">
+  For buyers getting a mortgage with Cliffco. The assistance can't be applied to a loan
+  already in process elsewhere.
+</p>
+
+<!-- ===================================================================
+     BLOCK 3 — REPLACE the existing FAQ answer for
+     "What exactly is the NJHMFA First Generation Homebuyer Program?"
+     =================================================================== -->
+
+It's a New Jersey state program that provides $7,000 toward a down payment or closing costs,
+on top of NJHMFA's Smart Start Down Payment Assistance Program. Combined, qualified buyers
+can receive up to $22,000, depending on the county. It is not a standalone grant: it only
+exists paired with an NJHMFA first mortgage, originated together as one application by a
+participating lender.
+
+<!-- ===================================================================
+     BLOCK 4 — ADD as a NEW FAQ entry. Put it SECOND, right after the
+     "What exactly is..." question, so it is seen before the form.
+     =================================================================== -->
+
+Question:
+Can I use this if I already have a mortgage in process with another company?
+
+Answer:
+No. The First Generation assistance has to be paired with an NJHMFA first mortgage and
+originated as a single application by a participating lender. It can't be added to a loan
+another lender has already started, and it can't be applied to a mortgage that has already
+closed. If you're early in the process with someone else, talk to a Cliffco loan officer
+before you go further — there may still be time to switch.
+
+<!-- ===================================================================
+     BLOCK 5 — ADD as a NEW question in the objections / "common
+     questions" section. Put it FIRST in that list.
+     =================================================================== -->
+
+Question:
+I'm already working with another lender. Can I still get the $22,000?
+
+Answer:
+Not on that loan, no. The assistance isn't a standalone grant you can take to any lender —
+it's part of an NJHMFA mortgage package, and it has to be originated alongside your mortgage
+by a participating lender like Cliffco. If you've applied elsewhere but haven't closed yet,
+it's worth a quick conversation: moving your file is usually less work than people assume,
+and we'll be straight with you about whether the assistance outweighs starting over. If
+you've already closed, this program won't apply.
+
+<!-- ===================================================================
+     BLOCK 6 — REPLACE the "How it works" step 3.
+     =================================================================== -->
+
+Title:
+It's one loan package, not an add-on
+
+Body:
+Your mortgage, the Down Payment Assistance loan, and the First Generation assistance are one
+NJHMFA application that we originate together. That also means the assistance only exists as
+part of this package — it can't be attached to a mortgage you've started with another lender.
+
+<!-- ===================================================================
+     BLOCK 7 — REPLACE the answer to
+     "Will I have to deal with multiple lenders or agencies?"
+     The old answer sold this as a convenience. It is also the reason
+     the program cannot be split off, so say both.
+     =================================================================== -->
+
+No — and that's also why the program works the way it does. One participating lender
+originates the NJHMFA first mortgage and handles the Down Payment Assistance and First
+Generation paperwork as a single application. Your Cliffco loan officer does all of it. It's
+the same reason the assistance can't be split off and attached to a loan from somewhere else.
+
+<!-- ===================================================================
+     NOT A PAGE EDIT — the strongest filter is on the form itself.
+
+     In HubSpot, open form d614cef1-1fd7-4a16-bce3-a3832c5be61c and add a
+     required question:
+
+       "Do you already have a mortgage application in process with
+        another lender?"   Yes / No
+
+     A page can only tell people the rule. A required field on the form
+     makes them answer it, gives the loan officer the answer before they
+     call, and makes the mismatched leads countable so you can see
+     whether this copy actually worked.
+     =================================================================== -->

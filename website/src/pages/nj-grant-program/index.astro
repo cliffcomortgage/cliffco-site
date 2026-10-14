@@ -23,11 +23,15 @@ const benefits = [
 const howItWorks = [
   { step: "1", title: "See if you qualify", body: "A first-generation homebuyer is a first-time buyer whose parents don't currently own a home, or someone who was in foster care or experienced youth homelessness. Takes 2 minutes to check." },
   { step: "2", title: "Talk to a real loan officer", body: "Eddie Morais, NMLS 243926, and Gary Johansen, NMLS 339278, are both licensed in NJ and will walk you through exactly what you qualify for. No cost, no obligation." },
-  { step: "3", title: "One combined application", body: "Your mortgage, the Down Payment Assistance loan, and the First Generation grant are all part of the same NJHMFA application, not three separate processes." },
+  { step: "3", title: "It's one loan package, not an add-on", body: "Your mortgage, the Down Payment Assistance loan, and the First Generation assistance are one NJHMFA application that we originate together. That also means the assistance only exists as part of this package - it can't be attached to a mortgage you've started with another lender." },
   { step: "4", title: "Close and move in", body: "Occupy the home as your primary residence within 60 days of closing, and the 5-year forgiveness clock starts." },
 ];
 
 const objections = [
+  {
+    q: "I'm already working with another lender. Can I still get the $22,000?",
+    a: "Not on that loan, no. The assistance isn't a standalone grant you can take to any lender - it's part of an NJHMFA mortgage package, and it has to be originated alongside your mortgage by a participating lender like Cliffco. If you've applied elsewhere but haven't closed yet, it's worth a quick conversation: moving your file is usually less work than people assume, and we'll be straight with you about whether the assistance outweighs starting over. If you've already closed, this program won't apply.",
+  },
   {
     q: "My parents used to own a home. Doesn't that disqualify me?",
     a: "Not necessarily. The rule is about present ownership, not history. If your parents don't currently own any residential real estate, anywhere, you can still qualify even if they owned a home in the past and sold it. A Cliffco loan officer can confirm your specific situation.",
@@ -46,14 +50,18 @@ const objections = [
   },
   {
     q: "Will I have to deal with multiple lenders or agencies?",
-    a: "No. Your Cliffco loan officer originates the NJHMFA first mortgage and handles the Down Payment Assistance and First Generation Homebuyer paperwork as one combined application.",
+    a: "No - and that's also why the program works the way it does. One participating lender originates the NJHMFA first mortgage and handles the Down Payment Assistance and First Generation paperwork as a single application. Your Cliffco loan officer does all of it. It's the same reason the assistance can't be split off and attached to a loan from somewhere else.",
   },
 ];
 
 const faq = [
   {
     question: "What exactly is the NJHMFA First Generation Homebuyer Program?",
-    answer: "It's a New Jersey state program that provides $7,000 toward a down payment or closing costs, on top of NJHMFA's Smart Start Down Payment Assistance Program. Combined, qualified buyers can receive up to $22,000, depending on the county. It must be paired with an NJHMFA first mortgage.",
+    answer: "It's a New Jersey state program that provides $7,000 toward a down payment or closing costs, on top of NJHMFA's Smart Start Down Payment Assistance Program. Combined, qualified buyers can receive up to $22,000, depending on the county. It is not a standalone grant: it only exists paired with an NJHMFA first mortgage, originated together as one application by a participating lender.",
+  },
+  {
+    question: "Can I use this if I already have a mortgage in process with another company?",
+    answer: "No. The First Generation assistance has to be paired with an NJHMFA first mortgage and originated as a single application by a participating lender. It can't be added to a loan another lender has already started, and it can't be applied to a mortgage that has already closed. If you're early in the process with someone else, talk to a Cliffco loan officer before you go further - there may still be time to switch.",
   },
   {
     question: "Is it a loan or a grant?",
@@ -85,7 +93,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
 
 <LandingLayout
   title="Up to $22,000 for First-Gen NJ Homebuyers | Cliffco"
-  description="NJHMFA's First Generation Homebuyer Program offers up to $22,000 toward your down payment or closing costs. No monthly payments, forgiven after 5 years."
+  description="Up to $22,000 toward your down payment or closing costs, paired with an NJHMFA mortgage from Cliffco. No monthly payments, forgiven after 5 years. Not available on a loan already in process elsewhere."
   schema={schema}
   phone="(908) 370-1575"
   phoneE164="+19083701575"
@@ -107,6 +115,17 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
           payment and is forgiven if you live in the property for 5 years and the loan has not been refinanced
           in that time.
         </p>
+        <div class="mt-5 max-w-xl rounded-xl border-2 border-[var(--color-ink)] bg-[var(--color-bone,#faf9f7)] p-4">
+          <p class="text-[13px] font-semibold uppercase tracking-[0.1em] text-[var(--color-ink)]" style="font-family: var(--font-mono);">Worth knowing up front</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-[var(--color-text)]">
+            The assistance and the mortgage are one package. The money comes with an NJHMFA
+            mortgage that Cliffco originates, so it isn't a standalone grant you can bring to a
+            loan you've already started somewhere else.
+            <strong class="text-[var(--color-ink)]">If you already have a mortgage in process with another lender, this program can't be added to it.</strong>
+            Haven't closed yet? Talk to us before you go further - switching is often simpler
+            than people expect, and we'll tell you honestly whether it's worth it.
+          </p>
+        </div>
         <div class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[var(--color-text-muted)]">
           <span class="font-semibold text-[var(--color-ink)]">4.9<span class="text-[var(--color-ink)]" aria-hidden="true">★</span></span>
           <span>3,617 verified reviews on Experience.com</span>
@@ -120,6 +139,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
       <div id="apply" class="rounded-2xl border-2 border-[var(--color-ink)] bg-white p-6 scroll-mt-24">
         <p class="eyebrow">Check your eligibility</p>
         <p class="mt-3 text-lg font-semibold text-[var(--color-ink)]">See if you qualify. It takes 2 minutes.</p>
+        <p class="mt-2 text-[13px] leading-relaxed text-[var(--color-text-muted)]">For buyers getting a mortgage with Cliffco. The assistance can't be applied to a loan already in process elsewhere.</p>
         <div id="nj-lead-form" class="mt-4"></div>
         <p class="mt-3 text-xs text-[var(--color-text-muted)]">Prefer to talk? <a href="tel:+19083701575" class="font-semibold text-[var(--color-ink)] no-underline hover:underline">Call (908) 370-1575</a></p>
       </div>
@@ -358,9 +378,25 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
 <style is:inline>@media (max-width: 1023px){ body { padding-bottom: 64px; } }</style>
 <script is:inline charset="utf-8" src="//js.hsforms.net/forms/embed/v2.js"></script>
 <script is:inline>
-  // Render the HubSpot form via hbspt.forms.create for a reliable submit
-  // callback (the new hs-form-frame embed's postMessage fires inconsistently).
+  // Fires the Ads conversion once per submission, from whichever signal arrives first.
+  // onFormSubmitted is the classic hbspt.forms.create callback and does NOT run on HubSpot's
+  // current ui-forms-embed-components-app iframe, which is what forms.create now renders -
+  // the same gap that left the Minnesota landers with zero recorded conversions all year.
+  // The postMessage listener works on both embeds; the guard stops a double count.
   (function () {
+    function recordConversion() {
+      if (window.__njGrantConverted) return;
+      window.__njGrantConverted = true;
+      if (window.cliffcoTrack) window.cliffcoTrack.conversion('AW-17848823591/ulN2CMSi190cEKfe_b5C', 0);
+    }
+
+    window.addEventListener('message', function (event) {
+      if (!event.data || typeof event.data !== 'object') return;
+      var d = event.data;
+      var name = d.eventName || (d.data && d.data.eventName);
+      if (name === 'onFormSubmitted' || name === 'onFormSubmit') recordConversion();
+    });
+
     function createForm() {
       if (!(window.hbspt && window.hbspt.forms)) { return setTimeout(createForm, 200); }
       window.hbspt.forms.create({
@@ -368,9 +404,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
         portalId: '21616430',
         formId: 'd614cef1-1fd7-4a16-bce3-a3832c5be61c',
         target: '#nj-lead-form',
-        onFormSubmitted: function () {
-          if (window.cliffcoTrack) window.cliffcoTrack.conversion('AW-17848823591/ulN2CMSi190cEKfe_b5C', 0);
-        }
+        onFormSubmitted: recordConversion
       });
     }
     createForm();
