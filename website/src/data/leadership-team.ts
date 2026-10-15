@@ -65,7 +65,7 @@ export const LEADERSHIP_TEAM: readonly LeaderRole[] = [
   {
     slug: "michele-sclafani",
     name: "Michele Sclafani",
-    title: "Assistant VP Closing",
+    title: "VP Closing/Post-Closing",
   },
   {
     slug: "paul-jacobs",
