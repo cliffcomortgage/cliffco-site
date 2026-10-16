@@ -70,6 +70,12 @@ export const LEADERSHIP_TEAM: readonly LeaderRole[] = [
   {
     slug: "paul-jacobs",
     name: "Paul Jacobs",
-    title: "VP of Quality Control",
+    title: "VP Non-QM & UW",
+  },
+  {
+    slug: "kelly-karaman",
+    name: "Kelly Karaman",
+    title: "QC Manager",
+    hasPhoto: true,
   },
 ];
