@@ -948,7 +948,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     displayName: "Marco Montano",
     nmls: "404303",
     title: "VP of Renovation Lending",
-    states: ["CO"],
+    states: ["CO", "NM", "NY"],
     branchSlug: "uniondale-headquarters",
     links: {
       email: "mmontano@cliffcomortgage.com",
