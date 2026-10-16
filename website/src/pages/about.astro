@@ -125,7 +125,7 @@ const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
     title="The people who keep Cliffco running."
     intro="Cliffco runs on long-tenured operations leaders in compliance, underwriting, and marketing. Their collective experience is what makes the brand promise stick."
   >
-    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {photoLeaders.map((leader) => (
         <article class="rounded-2xl border-2 border-[var(--color-ink)] overflow-hidden flex flex-col h-full bg-white">
           <div class="border-b-2 border-[var(--color-ink)]">
@@ -139,7 +139,7 @@ const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
       ))}
     </div>
     {compactLeaders.length > 0 && (
-      <div class="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {compactLeaders.map((leader) => (
           <article class="rounded-2xl bg-[var(--color-ink)] text-white p-5">
             <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/55">{leader.title}</p>
