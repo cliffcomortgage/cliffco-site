@@ -5,7 +5,6 @@ import { COMPANY } from "../../data/company";
 import { LOAN_OFFICERS, type LoanOfficer, nmlsConsumerAccessUrl } from "../../data/loan-officers";
 import { BRANCHES } from "../../data/branches";
 import { STATE_LICENSES } from "../../data/state-licenses";
-import { fullDisclosureBlock } from "../../data/disclosures";
 import { telHref } from "../../lib/phone";
 import { personSchema, breadcrumbSchema } from "../../lib/schema";
 import Headshot from "../../components/ui/Headshot.astro";
@@ -28,7 +27,6 @@ const stateNames = lo.states
   .map((code) => STATE_LICENSES.find((s) => s.code === code)?.name ?? code)
   .join(", ");
 const isFloridaLicensed = lo.states.includes("FL");
-const disclosure = fullDisclosureBlock(lo.states);
 // Banner tagline per team, shown on each member's bio
 const TEAM_TAGLINES: Record<string, string> = {
   "the-fallarino-group": "Jumbo · Alt-A · DSCR · Non-QM specialists",
@@ -299,13 +297,12 @@ const schema = [
         </p>
       </section>
 
-      <!-- DISCLOSURE -->
-      <section class="lo-block lo-block-wide">
-        {isFloridaLicensed && (
-          <p class="text-sm font-semibold text-[var(--color-ink)] mb-4">{COMPANY.floridaDba.disclosure}</p>
-        )}
-        <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">{disclosure}</p>
-      </section>
+      <!-- FLORIDA DBA — required on FL bios; the general disclosure lives in the footer -->
+      {isFloridaLicensed && (
+        <section class="lo-block lo-block-wide">
+          <p class="text-sm font-semibold text-[var(--color-ink)]">{COMPANY.floridaDba.disclosure}</p>
+        </section>
+      )}
   </div>
 </Layout>
 
