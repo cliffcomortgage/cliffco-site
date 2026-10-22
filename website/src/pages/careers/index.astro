@@ -3,6 +3,8 @@ import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../data/company";
 import { COMPANY_VALUES } from "../../data/company-values";
+import { STATE_LICENSES } from "../../data/state-licenses";
+import { PRODUCTION, GROWTH, REPUTATION, PRODUCT_MIX, SUPPORT, BENEFITS, SPEAKERS } from "../../data/recruiting";
 import StoryHero from "../../components/asym/StoryHero.astro";
 import TimelineItem from "../../components/asym/TimelineItem.astro";
 
@@ -11,7 +13,7 @@ const values = COMPANY_VALUES;
 const loBenefits = [
   {
     title: "Modern Marketing",
-    desc: "In-house marketing support with fast turnaround. Access to a dedicated studio for photos, video, podcasting, and live events, all designed to make you stand out in your market.",
+    desc: "In-house marketing and design with fast turnaround, plus The Influence Studio for photos, video, podcasting and live events. Once you're onboarded you also get your own page on cliffcomortgage.com for marketing and lead capture, and there's a merch store at cliffcomerch.com.",
   },
   {
     title: "Technology & AI",
@@ -19,11 +21,11 @@ const loBenefits = [
   },
   {
     title: "Mentorship & Training",
-    desc: "The Cliffco Circle training portal gives you on-demand access to resources and coaching. Mentorship from leaders who have built books of business from the ground up.",
+    desc: "Cliffco University is our library of past training sessions for sales, operations and marketing, available whenever you need it. Mentorship comes from leaders who built their own books of business, and our mindset sessions have featured names like " + SPEAKERS.slice(0, 3).join(", ") + ".",
   },
   {
     title: "Wide Product Selection",
-    desc: "Conventional, FHA, VA, USDA, jumbo, DSCR, Non-QM, reverse, renovation: a full product stack so you never have to turn a borrower away.",
+    desc: "Conventional, FHA, VA, USDA, DSCR, Non-QM, reverse, renovation, HELOC: a full stack so you rarely have to turn a borrower away. Non-QM is " + PRODUCT_MIX[1].share + " of our closed volume, so the specialists coaching you on it do this every day.",
   },
   {
     title: "Smart Partnerships",
@@ -79,8 +81,9 @@ const corporateRoles = [
         <li class="py-5 border-b border-black/15">
           <h3 class="font-semibold text-lg text-[var(--color-ink)]">Collaborative by design</h3>
           <p class="mt-2 text-[var(--color-text)] leading-relaxed">
-            Loan officers share strategies, not just leads. Leadership is accessible. The people
-            at the top built their books the same way you will.
+            Loan officers share strategies, not just leads. Our executive team are licensed loan
+            officers who built their own books of business, so they understand what you're working
+            through because they have done it themselves.
           </p>
         </li>
         <li class="py-5 border-b border-black/15">
@@ -100,6 +103,51 @@ const corporateRoles = [
       <div class="rounded-[1.75rem] overflow-hidden aspect-[4/3]">
         <img src="/images/content%20images/Careers.jpg" alt="Cliffco team" class="w-full h-full object-cover" loading="lazy" />
       </div>
+    </div>
+  </TimelineItem>
+
+  <!-- GROWTH -->
+  <TimelineItem
+    marker="Growth"
+    eyebrow="By the numbers"
+    title="The platform is growing. So are the people on it."
+    intro="The question behind every move is whether you will write more business than you do now. These are the numbers behind our answer."
+  >
+    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div class="rounded-2xl bg-[var(--color-ink)] text-white p-6">
+        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/55">Average LO growth</p>
+        <p class="mt-2 !text-white" style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; line-height: 1.1;">{GROWTH.loGrowth}</p>
+        <p class="mt-2 text-sm text-white/70">Year over year, 2025 to 2026.</p>
+      </div>
+      <div class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
+        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">Closed volume</p>
+        <p class="mt-2" style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; line-height: 1.1;">{GROWTH.volumeGrowth}</p>
+        <p class="mt-2 text-sm text-[var(--color-text-muted)]">{PRODUCTION[0].volume} in {PRODUCTION[0].year} to {PRODUCTION[2].volume} in {PRODUCTION[2].year}.</p>
+      </div>
+      <div class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
+        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">Loans closed</p>
+        <p class="mt-2" style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; line-height: 1.1;">{PRODUCTION[2].units.toLocaleString()}</p>
+        <p class="mt-2 text-sm text-[var(--color-text-muted)]">In {PRODUCTION[2].year}, up from {PRODUCTION[0].units} in {PRODUCTION[0].year}.</p>
+      </div>
+      <div class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
+        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">Licensed states</p>
+        <p class="mt-2" style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; line-height: 1.1;">{STATE_LICENSES.length}</p>
+        <p class="mt-2 text-sm text-[var(--color-text-muted)]">Up from {GROWTH.statesByYear[0].count} in {GROWTH.statesByYear[0].year}. More markets to build a referral base in.</p>
+      </div>
+    </div>
+    <p class="mt-6 text-[var(--color-text)] leading-relaxed max-w-3xl" style="font-size: 1.0625rem;">
+      The team has grown from {GROWTH.team[0].count} people in {GROWTH.team[0].year} to {GROWTH.team[3].count} in {GROWTH.team[3].year}, and we have been deliberate
+      about who we add, especially in sales, where the quality of each hire matters more than the
+      size of the roster.
+    </p>
+    <div class="mt-6 rounded-2xl border-2 border-[var(--color-ink)] p-6 flex flex-wrap items-center gap-x-8 gap-y-3">
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">Borrower reviews</p>
+        <p class="mt-1" style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;">{REPUTATION.average}<span aria-hidden="true">★</span> <span class="text-[var(--color-text-muted)] font-normal" style="font-size: 1rem;">across {REPUTATION.totalReviews} reviews</span></p>
+      </div>
+      <ul class="list-none m-0 p-0 flex flex-wrap gap-x-6 gap-y-1 text-sm text-[var(--color-text-muted)]">
+        {REPUTATION.platforms.map((pl) => <li>{pl.name} &middot; {pl.detail}</li>)}
+      </ul>
     </div>
   </TimelineItem>
 
@@ -139,6 +187,48 @@ const corporateRoles = [
       </div>
       <a href="mailto:employment@cliffcomortgage.com" class="btn btn-primary !bg-white !text-[var(--color-ink)] hover:!bg-white/85 whitespace-nowrap shrink-0">Apply Now</a>
     </div>
+  </TimelineItem>
+
+  <!-- SUPPORT -->
+  <TimelineItem
+    marker="Support"
+    eyebrow="Behind your pipeline"
+    title="Support that protects your time."
+    intro="From your first day through every file you close, you have people around you who answer quickly and keep loans moving, which leaves more time for the relationships that build your business."
+  >
+    <ol class="list-none m-0 p-0 border-t-2 border-[var(--color-ink)]">
+      {SUPPORT.map((item, i) => (
+        <li class="grid sm:grid-cols-[3rem_1fr] gap-x-4 py-5 border-b border-black/15">
+          <span class="font-mono text-sm text-[var(--color-text-muted)] pt-1">0{i + 1}</span>
+          <div>
+            <h3 class="font-semibold text-lg text-[var(--color-ink)]">{item.title}</h3>
+            <p class="mt-2 text-[var(--color-text)] leading-relaxed">{item.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </TimelineItem>
+
+  <!-- TOTAL REWARDS -->
+  <TimelineItem
+    marker="Benefits"
+    eyebrow="Total rewards"
+    title="Taking care of our people goes beyond the paycheck."
+    intro="Our benefits package is built to protect your health, your income, and your family."
+  >
+    <div class="grid gap-4 sm:grid-cols-2">
+      {BENEFITS.map((b) => (
+        <div class="rounded-2xl border-2 border-[var(--color-ink)] p-6">
+          <h3 class="font-semibold text-lg text-[var(--color-ink)]">{b.title}</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+    <p class="mt-5 text-xs text-[var(--color-text-muted)] leading-relaxed max-w-3xl">
+      Eligibility, plan options, and availability may vary and are subject to change. Programs
+      offered through PrestigePEO and its partners vary by program. Refer to plan documents for
+      complete details.
+    </p>
   </TimelineItem>
 
   <!-- CORPORATE ROLES -->
