@@ -26,6 +26,7 @@ export type StateLicense = {
 export const STATE_LICENSES: readonly StateLicense[] = [
   { code: "AK", name: "Alaska",       regulator: "Alaska Division of Banking and Securities - Mortgage Broker/Lender", licenseNumber: "AK65328" },
   { code: "AL", name: "Alabama",      regulator: "Alabama Mortgage Broker/Lender License",                              licenseNumber: "23581" },
+  { code: "AR", name: "Arkansas",     regulator: "Arkansas Securities Department",                                     licenseNumber: "65328" },
   { code: "AZ", name: "Arizona",      regulator: "Arizona Mortgage Banker License",                                     licenseNumber: "1045708" },
   { code: "CA", name: "California",   regulator: "California DFPI Financing Law License",                               licenseNumber: "60DBO-181882" },
   { code: "CO", name: "Colorado",     regulator: "Colorado Department of Regulatory Agencies, Division of Banking",     licenseNumber: null },

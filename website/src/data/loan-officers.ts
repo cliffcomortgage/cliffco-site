@@ -967,7 +967,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     displayName: "Mario Argenzio",
     nmls: "1869384",
     title: "Loan Officer",
-    states: ["AZ", "CA", "CO", "CT", "FL", "GA", "IA", "MD", "MN", "MT", "NC", "NH", "NJ", "NY", "OK", "PA", "SC", "TN", "VA"],
+    states: ["AR", "AZ", "CA", "CO", "CT", "FL", "GA", "IA", "MD", "MN", "MT", "NC", "NH", "NJ", "NY", "OK", "PA", "SC", "TN", "VA"],
     branchSlug: "uniondale-headquarters",
     links: {
       email: "margenzio@cliffcomortgage.com",

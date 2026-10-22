@@ -2,7 +2,7 @@
 
 Every state license held by **Cliffco, Inc. (NMLS #65328)** as of the last NMLS audit (2025-07-23). Source: `loan-officer-disclosures.csv`.
 
-**Total: 36 licensed jurisdictions (35 states + DC)**, confirmed 2026-10-07. New Hampshire was added 2026-10-07 (NH Banking Department Mortgage Banker License 65328MB) and Iowa 2026-09-02. The website reads its state count from that data file, so keep the two in sync.
+**Total: 37 licensed jurisdictions (36 states + DC)**, confirmed 2026-10-22. Arkansas was added 2026-10-22 (Arkansas Securities Department #65328), New Hampshire 2026-10-07 (NH Banking Department Mortgage Banker License 65328MB) and Iowa 2026-09-02. The website reads its state count from that data file, so keep the two in sync.
 
 This is the canonical list to use in: site footer state-license disclosure, `/licensing/` page, schema `areaServed`, GBP service areas, marketing collateral.
 
@@ -10,6 +10,7 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 |---|---|---|
 | AK | Alaska Division of Banking and Securities | AK65328 |
 | AL | Alabama Mortgage Broker/Lender License | 23581 |
+| AR | Arkansas Securities Department | 65328 |
 | AZ | Arizona Mortgage Banker License | 1045708 |
 | CA | California DFPI Financing Law License | 60DBO-181882 |
 | CO | Colorado Department of Regulatory Agencies, Division of Banking | (no number cited in disclosure) |
@@ -45,7 +46,7 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 | VT | Vermont Department of Financial Regulation | LL-65328 |
 | WA | Washington State Department of Financial Institutions | CL-65328 |
 
-**Total states: 36** (counting FL DBA registration).
+**Total states: 37** (counting FL DBA registration).
 
 ## Cliffco's stated priority territories — license status
 
