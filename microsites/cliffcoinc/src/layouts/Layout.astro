@@ -60,10 +60,10 @@ const disclaimer = "Cliffco, Inc. is not affiliated with or acting on behalf of 
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
-    <link rel="icon" type="image/png" href="/favicon.png" sizes="180x180" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2026" />
+    <link rel="icon" href="/favicon.ico?v=2026" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=2026" sizes="512x512" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2026" />
     {allSchema.map((s) => (
       <script type="application/ld+json" set:html={JSON.stringify(s)} />
     ))}
@@ -71,17 +71,17 @@ const disclaimer = "Cliffco, Inc. is not affiliated with or acting on behalf of 
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/21616430.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Montserrat:wght@600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Montserrat:wght@600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" /></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" /></noscript>
   </head>
 
   <body class="min-h-screen flex flex-col">
 
     <!-- HEADER -->
-    <header class="bg-white border-b border-[var(--color-mist-gray)] sticky top-0 z-40">
+    <header class="bg-white border-b border-[var(--color-airy-gray)] sticky top-0 z-40">
       <div class="container-wide flex items-center justify-between gap-4 py-4">
         <a href="/" class="no-underline shrink-0" aria-label="Cliffco, Inc. home">
-          <img src="/cliffco-logo.png" alt="Cliffco, Inc." width="1730" height="409" class="h-9 w-auto" loading="eager" />
+          <img src="/cliffco-plate.svg" alt="Cliffco, Inc." width="848" height="224" class="h-10 w-auto" loading="eager" />
         </a>
         <nav aria-label="Main" class="hidden md:flex items-center gap-6">
           {nav.map((item) => (
@@ -113,7 +113,7 @@ const disclaimer = "Cliffco, Inc. is not affiliated with or acting on behalf of 
       <div class="container-wide py-12">
         <div class="grid gap-10 md:grid-cols-3">
           <div>
-            <span style="font-family: var(--font-logo); font-weight: 600; letter-spacing: 0.2em; font-size: 1.1rem; color: #fff;">CLIFFCO, INC.</span>
+            <img src="/cliffco-logo-white.svg" alt="Cliffco, Inc." width="848" height="316" class="h-[60px] w-auto" loading="lazy" />
             <p class="mt-3 text-sm text-white/60">Getting families home since 1989.<br />NMLS #65328</p>
             <p class="mt-3 text-sm text-white/60">
               70 Charles Lindbergh Blvd, Suite 200<br />
