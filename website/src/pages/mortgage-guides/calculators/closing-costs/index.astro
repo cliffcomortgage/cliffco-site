@@ -29,7 +29,7 @@ import { COMPANY } from "../../../../data/company";
 
         <!-- Left: inputs -->
         <div class="mb-10 lg:mb-0 lg:sticky lg:top-8 space-y-5">
-          <div class="calc-controls rounded-[1.75rem] bg-[var(--color-ink)] text-white overflow-hidden">
+          <div class="calc-controls bg-[var(--color-ink)] text-white overflow-hidden">
             <div class="calc-head px-6 sm:px-8 pt-7 pb-2">
               <h2 class="text-lg font-semibold text-white">Your purchase details</h2>
               <p class="text-sm text-white/60 mt-1">Results update as you type</p>
@@ -93,7 +93,7 @@ import { COMPANY } from "../../../../data/company";
             </div>
           </div>
 
-          <div class="rounded-lg border border-black/15 p-5">
+          <div class="border border-black/15 p-5">
             <p class="text-xs text-[var(--color-text-muted)] leading-relaxed">
               This is an estimate. Actual closing costs vary by lender, property, and negotiated terms. A Cliffco loan officer will provide a Loan Estimate within 3 business days of your application. That document itemizes every cost to the cent.
             </p>
@@ -103,7 +103,7 @@ import { COMPANY } from "../../../../data/company";
         <!-- Right: results -->
         <div>
           <!-- Summary card -->
-          <div class="rounded-lg overflow-hidden border border-black/15 mb-5">
+          <div class="overflow-hidden border border-black/15 mb-5">
             <div class="px-6 py-5 flex items-center justify-between" style="background: var(--color-ink);">
               <div>
                 <p class="text-white/70 text-sm">Estimated closing costs</p>
@@ -135,7 +135,7 @@ import { COMPANY } from "../../../../data/company";
           </div>
 
           <!-- Itemized breakdown -->
-          <div aria-live="polite" class="calc-readout rounded-[1.5rem] border-2 border-[var(--color-ink)] overflow-hidden">
+          <div aria-live="polite" class="calc-readout border-2 border-[var(--color-ink)] overflow-hidden">
             <div class="px-6 py-4 border-b border-black/15 border border-black/15/40">
               <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)]">Itemized cost estimate</p>
             </div>
@@ -185,11 +185,11 @@ import { COMPANY } from "../../../../data/company";
             </div>
           </div>
 
-          <p id="cc-state-note" class="mt-4 text-xs text-[var(--color-text-muted)] leading-relaxed p-4 border border-black/15 rounded-lg"></p>
+          <p id="cc-state-note" class="mt-4 text-xs text-[var(--color-text-muted)] leading-relaxed p-4 border border-black/15 "></p>
         </div>
       </div>
 
-      <div class="mt-14 bg-[var(--color-ink)] rounded-lg p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
+      <div class="mt-14 bg-[var(--color-ink)] p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
         <div>
           <p class="text-white font-semibold text-lg">Get a real Loan Estimate in 3 business days.</p>
           <p class="text-white/70 text-sm mt-1">Your official Loan Estimate itemizes every closing cost to the cent and is legally required within 3 days of your application.</p>

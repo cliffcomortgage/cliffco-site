@@ -108,8 +108,8 @@ const promises = [
   <TeamBlock eyebrow="Non-QM programs" title="Most lenders stop at your tax return.<br/>We start there." intro="Non-QM loans use alternative documentation methods to capture what your tax returns don't. Here are the programs Team Cordeira originates most frequently.">
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {programs.map((spec) => (
-        <a href={spec.href} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col gap-3 h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
-          <span class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/60">{spec.range}</span>
+        <a href={spec.href} class="group border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col gap-3 h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+          <span class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/60">{spec.range}</span>
           <h3 class="font-semibold group-hover:!text-white" style="font-size: 1.125rem;">{spec.name}</h3>
           <p class="text-sm text-[var(--color-text-muted)] group-hover:text-white/75 leading-relaxed flex-1">{spec.body}</p>
           <span class="text-sm font-semibold mt-auto">Learn more →</span>

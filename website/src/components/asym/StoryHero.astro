@@ -22,7 +22,7 @@ const { eyebrow, marker, lead } = Astro.props;
   </div>
   <div class="container-wide mt-10 lg:mt-14 grid grid-cols-[5.5rem_1fr] sm:grid-cols-[8rem_1fr] lg:grid-cols-[11rem_1fr]">
     <div class="pt-1 pr-4 text-right">
-      {marker && <span class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">{marker}</span>}
+      {marker && <span class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">{marker}</span>}
     </div>
     <div class="border-l-2 border-[var(--color-ink)] pl-6 sm:pl-10 pb-14 lg:pb-20">
       {lead && <p class="max-w-3xl text-[var(--color-text)]" style="font-size: 1.1875rem; line-height: 1.65;">{lead}</p>}

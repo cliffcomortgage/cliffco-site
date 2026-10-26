@@ -96,13 +96,13 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
         sizes="(min-width: 1024px) 50vw, 100vw"
         width="1536" height="1024"
         alt="A young couple laughing on the floor of their new home, surrounded by moving boxes"
-        class="w-full h-full object-cover rounded-2xl lg:rounded-none lg:rounded-tl-[2.5rem]"
+        class="w-full h-full object-cover "
         loading="eager"
         fetchpriority="high"
       />
-      <div class="absolute left-4 -bottom-6 lg:-left-10 lg:bottom-16 bg-[var(--color-ink)] text-white px-6 py-5 rounded-xl shadow-xl">
+      <div class="absolute left-4 -bottom-6 lg:-left-10 lg:bottom-16 bg-[var(--color-ink)] text-white px-6 py-5 shadow-xl">
         <p class="text-3xl font-bold leading-none" style="font-family: var(--font-display);">$6B+</p>
-        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/70 mt-2">in mortgages closed</p>
+        <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/70 mt-2">in mortgages closed</p>
       </div>
     </div>
   </section>
@@ -114,7 +114,7 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
       {stats.map((item) => (
         <div class="lg:col-span-2">
           <p class="text-5xl font-bold leading-none text-[var(--color-ink)]" style="font-family: var(--font-display); letter-spacing: -0.02em;">{item.stat}</p>
-          <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] mt-3">{item.label}</p>
+          <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] mt-3">{item.label}</p>
         </div>
       ))}
     </div>
@@ -145,9 +145,9 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
   <section class="bg-[var(--color-ink)]">
     <div class="container-wide py-20 lg:py-28 grid lg:grid-cols-12 gap-8 items-center">
       <div class="lg:col-span-7">
-        <img src="/images/content%20images/Uniondale_Why%20Cliffco.jpg" alt="Cliffco Mortgage Bankers Uniondale headquarters" class="w-full aspect-[4/3] object-cover rounded-2xl" loading="lazy" />
+        <img src="/images/content%20images/Uniondale_Why%20Cliffco.jpg" alt="Cliffco Mortgage Bankers Uniondale headquarters" class="w-full aspect-[4/3] object-cover " loading="lazy" />
       </div>
-      <div class="lg:col-span-5 lg:-ml-28 relative z-10 bg-white rounded-2xl p-8 lg:p-10 -mt-20 mx-4 lg:m-0">
+      <div class="lg:col-span-5 lg:-ml-28 relative z-10 bg-white p-8 lg:p-10 -mt-20 mx-4 lg:m-0">
         <p class="eyebrow">Reviews</p>
         <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">3,617 reviews. 4.9 stars.</h2>
         <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
@@ -156,10 +156,10 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
         <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
           Most reviews mention the same things: a loan officer who answered the phone, explained what was happening, and delivered what they promised. That's the standard we hold ourselves to.
         </p>
-        <dl class="mt-6 grid grid-cols-3 border border-[var(--color-ink)] rounded-xl divide-x divide-[var(--color-ink)]">
-          <div class="px-1 py-3 text-center"><dd class="text-2xl font-bold" style="font-family: var(--font-display);">4.9★</dd><dt class="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] mt-1 [overflow-wrap:anywhere]">Experience<wbr />.com</dt></div>
-          <div class="px-1 py-3 text-center"><dd class="text-2xl font-bold" style="font-family: var(--font-display);">A+</dd><dt class="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] mt-1 [overflow-wrap:anywhere]">BBB</dt></div>
-          <div class="px-1 py-3 text-center"><dd class="text-2xl font-bold" style="font-family: var(--font-display);">5.0★</dd><dt class="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] mt-1 [overflow-wrap:anywhere]">Zillow</dt></div>
+        <dl class="mt-6 grid grid-cols-3 border border-[var(--color-ink)] divide-x divide-[var(--color-ink)]">
+          <div class="px-1 py-3 text-center"><dd class="text-2xl font-bold" style="font-family: var(--font-display);">4.9★</dd><dt class="font-sans font-medium text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] mt-1 [overflow-wrap:anywhere]">Experience<wbr />.com</dt></div>
+          <div class="px-1 py-3 text-center"><dd class="text-2xl font-bold" style="font-family: var(--font-display);">A+</dd><dt class="font-sans font-medium text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] mt-1 [overflow-wrap:anywhere]">BBB</dt></div>
+          <div class="px-1 py-3 text-center"><dd class="text-2xl font-bold" style="font-family: var(--font-display);">5.0★</dd><dt class="font-sans font-medium text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] mt-1 [overflow-wrap:anywhere]">Zillow</dt></div>
         </dl>
         <p class="mt-6">
           <a href="/reviews/" class="text-sm font-semibold text-[var(--color-ink)]">Read borrower reviews →</a>

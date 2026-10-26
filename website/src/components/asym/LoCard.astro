@@ -14,8 +14,8 @@ const { lo, note } = Astro.props;
 const extra = (lo.languages ?? []).filter((l) => l !== "English");
 ---
 
-<a href={`/loan-officers/${lo.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col bg-white hover:bg-[var(--color-ink)] hover:text-white transition-colors">
-  <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/60">{lo.title}</p>
+<a href={`/loan-officers/${lo.slug}/`} class="group border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col bg-white hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+  <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/60">{lo.title}</p>
   <h3 class="mt-2 text-lg font-semibold group-hover:!text-white">{lo.displayName}</h3>
   <p class="text-xs text-[var(--color-text-muted)] group-hover:text-white/70 mt-1">NMLS #{lo.nmls}{note && ` · ${note}`}</p>
   <p class="text-xs text-[var(--color-text-muted)] group-hover:text-white/70 mt-0.5">Licensed in {lo.states.join(", ")}</p>

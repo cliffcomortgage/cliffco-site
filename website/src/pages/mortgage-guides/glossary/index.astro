@@ -293,7 +293,7 @@ const termCount = sections.reduce((n, s) => n + s.entries.length, 0);
           DSCR, and reverse mortgages, where most glossaries fall short.
         </p>
       </div>
-      <p class="lg:col-span-3 lg:col-start-10 lg:text-right font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.04em;">{termCount}<span class="block mt-2 font-mono text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Terms</span></p>
+      <p class="lg:col-span-3 lg:col-start-10 lg:text-right font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.04em;">{termCount}<span class="block mt-2 font-sans font-medium text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Terms</span></p>
     </div>
   </section>
 
@@ -302,7 +302,7 @@ const termCount = sections.reduce((n, s) => n + s.entries.length, 0);
     <div class="container-wide py-2.5 flex flex-wrap gap-1">
       {["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","#"].map((letter) => (
         activeLetters.includes(letter)
-          ? <a href={`#${letter.toLowerCase()}`} class="inline-flex items-center justify-center shrink-0 w-8 h-8 rounded-lg font-mono text-sm font-semibold no-underline text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white transition-colors">{letter}</a>
+          ? <a href={`#${letter.toLowerCase()}`} class="inline-flex items-center justify-center shrink-0 w-8 h-8 font-mono text-sm font-semibold no-underline text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white transition-colors">{letter}</a>
           : <span class="inline-flex items-center justify-center shrink-0 w-8 h-8 font-mono text-sm text-black/20 cursor-default" aria-hidden="true">{letter}</span>
       ))}
     </div>

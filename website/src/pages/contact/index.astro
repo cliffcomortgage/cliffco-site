@@ -29,11 +29,11 @@ const branchStates = new Set(BRANCHES.map((b) => b.region)).size;
     </Fragment>
     <Fragment slot="meta">
       <div>
-        <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Toll Free</dt>
+        <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Toll Free</dt>
         <dd class="mt-1 text-2xl font-bold"><a href={`tel:${COMPANY.tollFreeE164}`} class="text-[var(--color-ink)] no-underline">{COMPANY.tollFree}</a></dd>
       </div>
       <div>
-        <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Response time</dt>
+        <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Response time</dt>
         <dd class="mt-1 text-lg font-semibold">One business day</dd>
       </div>
     </Fragment>
@@ -44,14 +44,14 @@ const branchStates = new Set(BRANCHES.map((b) => b.region)).size;
     <div class="grid xl:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-12 items-start">
       <dl class="border-t border-[var(--color-ink)]">
         <div class="py-5 border-b border-black/15">
-          <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Call Us · Toll Free</dt>
+          <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Call Us · Toll Free</dt>
           <dd class="mt-1">
             <a href={`tel:${COMPANY.tollFreeE164}`} class="text-[var(--color-ink)] font-semibold no-underline text-lg">{COMPANY.tollFree}</a>
             <p class="text-sm text-[var(--color-text-muted)] mt-1">Mon–Fri 9am–6pm ET. Leave a voicemail anytime.</p>
           </dd>
         </div>
         <div class="py-5 border-b border-black/15">
-          <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Headquarters</dt>
+          <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Headquarters</dt>
           <dd class="mt-1">
             <address class="not-italic text-[var(--color-text)] leading-relaxed">
               {COMPANY.hq.street}<br/>
@@ -61,11 +61,11 @@ const branchStates = new Set(BRANCHES.map((b) => b.region)).size;
           </dd>
         </div>
         <div class="py-5 border-b border-black/15">
-          <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Response time</dt>
+          <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Response time</dt>
           <dd class="mt-1 text-[var(--color-text)]">We respond to all online inquiries within one business day. Usually much faster.</dd>
         </div>
         <div class="py-5">
-          <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Ready to apply?</dt>
+          <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Ready to apply?</dt>
           <dd class="mt-1">
             <p class="text-[var(--color-text)]">If you're ready to start the mortgage process, use our guided intake instead.</p>
             <a href="/get-started/" class="btn btn-primary text-sm mt-4 inline-block">Start Your Application →</a>
@@ -73,7 +73,7 @@ const branchStates = new Set(BRANCHES.map((b) => b.region)).size;
         </div>
       </dl>
 
-      <div id="contact" class="scroll-mt-24 rounded-2xl border-2 border-[var(--color-ink)] p-6 sm:p-8">
+      <div id="contact" class="scroll-mt-24 border-2 border-[var(--color-ink)] p-6 sm:p-8">
         <p class="eyebrow">Send a message</p>
         <h2 class="mt-3" style="font-size: clamp(1.5rem, 2.2vw, 1.875rem); font-weight: 700;">General inquiry form.</h2>
         <p class="mt-3 text-sm text-[var(--color-text-muted)]">For mortgage applications, use the <a href="/get-started/" class="text-[var(--color-ink)] underline underline-offset-2">guided intake</a> instead. This form is for general questions and non-application inquiries.</p>
@@ -98,10 +98,10 @@ const branchStates = new Set(BRANCHES.map((b) => b.region)).size;
       <table class="w-full text-sm">
         <thead class="text-left">
           <tr class="border-b-2 border-[var(--color-ink)]">
-            <th class="py-3 pr-4 font-mono text-[11px] uppercase tracking-[0.14em] font-normal">Office</th>
-            <th class="py-3 pr-4 font-mono text-[11px] uppercase tracking-[0.14em] font-normal">Address</th>
-            <th class="py-3 pr-4 font-mono text-[11px] uppercase tracking-[0.14em] font-normal">Phone</th>
-            <th class="py-3 font-mono text-[11px] uppercase tracking-[0.14em] font-normal">Branch NMLS</th>
+            <th class="py-3 pr-4 font-sans font-medium text-[11px] uppercase tracking-[0.14em] font-normal">Office</th>
+            <th class="py-3 pr-4 font-sans font-medium text-[11px] uppercase tracking-[0.14em] font-normal">Address</th>
+            <th class="py-3 pr-4 font-sans font-medium text-[11px] uppercase tracking-[0.14em] font-normal">Phone</th>
+            <th class="py-3 font-sans font-medium text-[11px] uppercase tracking-[0.14em] font-normal">Branch NMLS</th>
           </tr>
         </thead>
         <tbody>
@@ -110,7 +110,7 @@ const branchStates = new Set(BRANCHES.map((b) => b.region)).size;
               <td class="py-4 pr-4">
                 <span class="font-semibold text-[var(--color-ink)]">{b.displayCity ?? b.city}{b.isHeadquarters ? " (HQ)" : ""}</span>
                 {b.metro && <span class="block text-xs text-[var(--color-text-muted)] mt-0.5">{b.metro}</span>}
-                {b.isFloridaDba && <span class="block font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--color-ink)] mt-1">Clout Mortgage</span>}
+                {b.isFloridaDba && <span class="block font-sans font-medium text-[10px] uppercase tracking-[0.12em] text-[var(--color-ink)] mt-1">Clout Mortgage</span>}
               </td>
               <td class="py-4 pr-4 text-[var(--color-text)]">
                 {b.street && <address class="not-italic leading-relaxed">{b.street}<br/>{b.city}, {b.region} {b.postalCode}</address>}

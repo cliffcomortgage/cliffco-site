@@ -52,20 +52,72 @@ The NMLS roster and `Leadership Bios.docx` are point-in-time snapshots. These co
 
 Always confirm leadership titles with Rafe before publishing.
 
+## Brand (2026 guide)
+
+Source of truth: `brand/Cliffco_Brand_Guidelines_2026.pdf`, applied to the site on 2026-10-26.
+The pre-2026 guide (purple/blue palette, the power-button mark, Outfit/Montserrat) is retired —
+don't reintroduce any of it.
+
+**Colour — black, white and one blue.** Roughly 80% white / 12% black / 4% airy gray / 2% Sky
+by area. Tokens live in `website/src/styles/global.css`.
+
+| Name | Hex | Token | Used for |
+|---|---|---|---|
+| Black | `#0D0D0D` | `--color-ink` | Headlines, body, the plate |
+| White | `#FFFFFF` | `--color-surface` | Every page background |
+| Sky | `#BDE8F1` | `--color-sky` | **The caption box only** |
+| Graphite | `#3D4040` | `--color-graphite`, `--color-text` | Body on white, caption panels |
+| Soft Gray | `#B3B2B4` | `--color-soft-gray` | Body and labels **on black only** |
+| Airy Gray | `#F0EEF1` | `--color-airy-gray` | Document panels, light surfaces |
+
+- **Sky is reserved for the Sky box.** Never a text colour on white, and never on buttons,
+  icons, charts, borders or the logo. Buttons are black and white only. The site carries
+  exactly one Sky box, on the homepage hero (`.caption` + `.sky-box`); the guide allows one
+  per surface.
+- Soft Gray only reaches 2.1:1 on white, so it is a dark-surface colour. Secondary text on
+  white uses `--color-text-muted` (`#5a5d5d`, a graphite tint at 7.1:1). The guide names no
+  on-white secondary colour; this is the documented stand-in.
+
+**Logo — the name, in a plate. Cliffco has no symbol.** Artwork lives in `brand/logos/`; place
+the supplied files, never re-set the type. In those filenames `_Black` means a black plate
+(so it goes on white) and `_White` means a white plate (so it goes on black).
+
+- Site header → `Click. Funded.` lockup (`/images/cliffco-logo.svg`).
+- Footer, and anything formal or regulatory → `Mortgage Bankers` lockup
+  (`/images/cliffco-logo-white.svg`).
+- Favicon, avatars, anything under 96px → the **CMB** icon (`/favicon.svg`).
+- Minimum widths: wordmark/plate 96px, lockups 160px, icon 32px, favicon 16px. Clear space of
+  one cap height on every side. Never stretch, re-track, re-weight, outline, rotate, shadow,
+  tint it Sky, or set it inside the Sky box.
+
+**Square corners throughout**, to match the plate and the Sky box. There are no `rounded-*`
+classes in `website/src` and the `--radius-*` tokens are all `0`; keep it that way. The one
+exception is the Qualifier's 20px selection indicator, which stays circular so a single-choice
+control still reads as one.
+
 ## Fonts
 
-**Two typefaces** (decided 2026-10-05; both chosen 2026-10-02 to match `cliffco-pos`):
+**Three typefaces**, all OFL, all loaded from Google Fonts in `website/src/layouts/Layout.astro`
+(and again in `LandingLayout.astro`, `dashboard.astro` and the login gate in `middleware.ts`,
+which render their own `<head>`):
 
 | Role | Font | Token in `website/src/styles/global.css` |
 |---|---|---|
-| Body text + headings | **Outfit** | `--font-sans` (body), `--font-display` (h1–h6) |
-| Eyebrows + small uppercase labels (e.g. "Who qualifies") | **IBM Plex Mono** | `--font-mono` (the `.eyebrow` class uses it) |
+| Everything you read — headlines, captions, body, labels, buttons, the wordmark | **Archivo** (400–800) | `--font-sans`, `--font-display`, `--font-logo` |
+| The data voice — rates, payments, figures, name tags, footers | **IBM Plex Mono** (400–700) | `--font-mono` |
+| The display accent, and the brand's only italic | **Instrument Serif** (400 + italic) | `--font-accent`, `--font-serif` |
 
-- **Helvetica is not used.** It was tried for body text on 2026-10-05 and dropped the same day. Don't reintroduce it — and never self-host it: it's a commercial font with no web license on file.
-- **Font files:** Helvetica, Outfit, and IBM Plex Mono `.ttf` files were added to `brand/fonts/` on 2026-10-05. That folder is **gitignored** — the files live only on the machine they were copied to, not in git, so the other collaborator needs their own copy (or grab Outfit/Plex Mono from Google Fonts).
-- Outfit + IBM Plex Mono are free (OFL) and load from Google Fonts in `website/src/layouts/Layout.astro`, not from `brand/fonts/`.
-- Never commit anything from `brand/fonts/` to git, and never reference those files via `@font-face` in `website/` (Vite bundles them into public build output). The brand guide's Graphik trial OTFs remain unlicensed for web use.
-- `--font-logo` (Montserrat, for the wordmark) is unchanged — confirm with Rafe before touching it.
+- **Labels and eyebrows are Archivo 500 CAPS at +0.2em, not mono.** Mono sets numbers, not
+  words. The `.eyebrow` class already does this; don't reach for `font-mono` on a label.
+- Headlines are Archivo 700–800, sentence case, −0.02em. `h1`–`h4` default to 700.
+- **No Archivo italics.** The brand's only italic is Instrument Serif.
+- **Outfit, Montserrat and Helvetica are retired.** Helvetica must never be self-hosted either:
+  it's commercial with no web licence on file.
+- **Font files:** Archivo, IBM Plex Mono and Instrument Serif `.ttf` files are in
+  `brand/fonts/`. That folder is **gitignored** — the files live only on the machine they were
+  copied to, so the other collaborator needs their own copy (all three are on Google Fonts).
+- Never commit anything from `brand/fonts/`, and never reference those files via `@font-face`
+  in `website/` (Vite bundles them into public build output).
 
 ## Where things live
 

@@ -48,25 +48,25 @@ function loginPage(error: boolean): string {
   <link rel="icon" type="image/png" href="/favicon.png" sizes="180x180" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: "Outfit", system-ui, -apple-system, sans-serif; background: #0d0d0d; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; }
-    .card { background: #fff; border: 2px solid #0d0d0d; border-radius: 16px; padding: 2.5rem; width: 100%; max-width: 380px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
-    .eyebrow { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #5a5d5d; margin-bottom: 1.25rem; }
+    body { font-family: "Archivo", system-ui, -apple-system, sans-serif; background: #0d0d0d; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    .card { background: #fff; border: 2px solid #0d0d0d; padding: 2.5rem; width: 100%; max-width: 380px; }
+    .eyebrow { font-family: "Archivo", system-ui, sans-serif; font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: #5a5d5d; margin-bottom: 1.25rem; }
     h1 { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.02em; color: #0d0d0d; margin-bottom: 0.35rem; }
     .sub { font-size: 0.85rem; color: #6b7280; margin-bottom: 1.75rem; }
     label { display: block; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #3d4040; margin-bottom: 0.4rem; }
-    input[type=password] { width: 100%; padding: 0.65rem 0.875rem; border: 1.5px solid #e5e7eb; border-radius: 8px; font-size: 0.95rem; color: #0d0d0d; outline: none; }
+    input[type=password] { width: 100%; padding: 0.65rem 0.875rem; border: 1.5px solid #e5e7eb;  font-size: 0.95rem; color: #0d0d0d; outline: none; }
     input[type=password]:focus { border-color: #0d0d0d; box-shadow: 0 0 0 3px rgba(13,13,13,0.12); }
-    button { margin-top: 1rem; width: 100%; padding: 0.75rem; background: #0d0d0d; color: #fff; font-family: inherit; font-size: 0.9rem; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; }
+    button { margin-top: 1rem; width: 100%; padding: 0.75rem; background: #0d0d0d; color: #fff; font-family: inherit; font-size: 0.9rem; font-weight: 600; border: none;  cursor: pointer; }
     button:hover { background: #262626; }
     .error { margin-top: 0.875rem; font-size: 0.8rem; color: #dc2626; text-align: center; font-weight: 500; }
   </style>
 </head>
 <body>
   <div class="card">
-    <img src="/images/cliffco-logo.png" alt="Cliffco Mortgage Bankers" width="1730" height="409" style="height:26px;width:auto;display:block;margin-bottom:1.5rem;" />
+    <img src="/images/cliffco-logo.svg" alt="Cliffco Mortgage Bankers" width="848" height="316" style="height:60px;width:auto;display:block;margin-bottom:1.5rem;" />
     <div class="eyebrow">Internal</div>
     <h1>Performance Dashboard</h1>
     <p class="sub">Enter the password to access campaign data.</p>

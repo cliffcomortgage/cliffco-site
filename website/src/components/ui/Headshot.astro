@@ -10,8 +10,6 @@
 interface Props {
   slug: string;
   name: string;
-  /** "rounded" (default) or "square" */
-  shape?: "rounded" | "square" | "circle";
   /** Pixel size - defaults to 320px display. Ignored when fluid=true. */
   size?: number;
   priority?: boolean;
@@ -20,14 +18,13 @@ interface Props {
   /** Tailwind class overrides */
   class?: string;
 }
-const { slug, name, shape = "rounded", size = 320, priority = false, fluid = false, class: className = "" } = Astro.props;
-const radius = shape === "circle" ? "rounded-full" : shape === "rounded" ? "rounded-lg" : "";
+const { slug, name, size = 320, priority = false, fluid = false, class: className = "" } = Astro.props;
 const loading = priority ? "eager" : "lazy";
 const fetchpriority = priority ? "high" : "auto";
 const sizeStyle = fluid ? "aspect-ratio: 1 / 1; width: 100%;" : `aspect-ratio: 1 / 1; width: ${size}px;`;
 ---
 
-<picture class={`block overflow-hidden ${radius} ${className}`} style={sizeStyle}>
+<picture class={`block overflow-hidden ${className}`} style={sizeStyle}>
   <source srcset={`/team/${slug}.avif`} type="image/avif" />
   <source srcset={`/team/${slug}.webp`} type="image/webp" />
   <img

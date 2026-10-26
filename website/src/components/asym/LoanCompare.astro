@@ -63,7 +63,7 @@ const names = { conventional: "Conventional", fha: "FHA" } as const;
   </div>
   {ROWS.map((r) => (
     <div class="grid sm:grid-cols-[minmax(0,9rem)_1fr_1fr] gap-x-6 gap-y-2 py-4 border-b border-black/15">
-      <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">{r.label}</p>
+      <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">{r.label}</p>
       {cols.map((c) => (
         <p class="text-sm text-[var(--color-text)] leading-relaxed">
           <span class="sm:hidden font-semibold text-[var(--color-ink)]">{names[c]}: </span>{r[c]}

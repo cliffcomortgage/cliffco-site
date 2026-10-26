@@ -91,8 +91,8 @@ const schema = [faqPageSchema(faq)];
   <!-- PROGRAMS -->
   <TeamBlock eyebrow="Loan programs" title="What we offer STR investors.">
     <div class="grid gap-4 md:grid-cols-3">
-      <div class="rounded-2xl bg-[var(--color-ink)] text-white p-6 flex flex-col">
-        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/55">Most popular for STR</p>
+      <div class="bg-[var(--color-ink)] text-white p-6 flex flex-col">
+        <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">Most popular for STR</p>
         <h3 class="mt-2 font-bold !text-white" style="font-size: var(--text-h3);">DSCR Loans</h3>
         <p class="mt-3 text-sm text-white/80 leading-relaxed flex-1">Qualify on property income only. No W-2, no tax returns. STR income from AirDNA or booking history accepted. LLC vesting. Out-of-state buyers welcome.</p>
         <dl class="mt-4 pt-4 border-t border-white/25 space-y-2 text-sm">
@@ -104,8 +104,8 @@ const schema = [faqPageSchema(faq)];
         <a href="/loans/dscr/" class="mt-4 text-sm font-semibold !text-white no-underline hover:underline">Full DSCR details →</a>
       </div>
 
-      <div class="rounded-2xl border-2 border-[var(--color-ink)] p-6 flex flex-col">
-        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">For self-employed operators</p>
+      <div class="border-2 border-[var(--color-ink)] p-6 flex flex-col">
+        <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">For self-employed operators</p>
         <h3 class="mt-2 font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">Bank Statement Loans</h3>
         <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">Qualify on 12 to 24 months of personal or business bank statements. Ideal for STR operators who manage their portfolio as a business and whose tax returns understate actual cash flow.</p>
         <dl class="mt-4 pt-4 border-t border-black/15 space-y-2 text-sm">
@@ -116,8 +116,8 @@ const schema = [faqPageSchema(faq)];
         <a href="/loans/business-bank-statement/" class="mt-4 text-sm font-semibold text-[var(--color-ink)] no-underline hover:underline">Full program details →</a>
       </div>
 
-      <div class="rounded-2xl border-2 border-[var(--color-ink)] p-6 flex flex-col">
-        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">Vacation home + STR</p>
+      <div class="border-2 border-[var(--color-ink)] p-6 flex flex-col">
+        <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">Vacation home + STR</p>
         <h3 class="mt-2 font-bold text-[var(--color-ink)]" style="font-size: var(--text-h3);">Second Home / Conventional</h3>
         <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">If you plan to use the property personally as well as rent it short-term, a conventional second home loan may offer the best rate. Requires personal income documentation but avoids investment property pricing.</p>
         <dl class="mt-4 pt-4 border-t border-black/15 space-y-2 text-sm">
@@ -150,14 +150,14 @@ const schema = [faqPageSchema(faq)];
             </li>
           ))}
         </ul>
-        <div class="mt-8 rounded-2xl bg-[var(--color-ink)] text-white p-6">
+        <div class="mt-8 bg-[var(--color-ink)] text-white p-6">
           <p class="text-sm font-semibold">Prefer to call?</p>
           <a href={`tel:${COMPANY.tollFreeE164}`} class="!text-white font-semibold no-underline text-lg mt-1 block">{COMPANY.tollFree}</a>
           <p class="text-xs text-white/60 mt-1">Mon–Fri 9am–6pm ET. Leave a voicemail anytime.</p>
         </div>
       </div>
 
-      <div class="lg:col-span-6 lg:col-start-7 rounded-2xl border-2 border-[var(--color-ink)] p-6 sm:p-8">
+      <div class="lg:col-span-6 lg:col-start-7 border-2 border-[var(--color-ink)] p-6 sm:p-8">
         <form id="str-form" action="/api/lead/" method="POST" class="space-y-4">
           <input type="hidden" name="form_source" value="team-str" />
           <input type="hidden" name="form_to" value="margenzio@cliffcomortgage.com,websiteleads@cliffcomortgage.com" />
@@ -170,13 +170,13 @@ const schema = [faqPageSchema(faq)];
             <div>
               <label for="str-name" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Full name</label>
               <input id="str-name" name="name" type="text" required autocomplete="name"
-                class="w-full border border-black/25 rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-ink)]"
+                class="w-full border border-black/25 px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-ink)]"
                 placeholder="Jane Smith" />
             </div>
             <div>
               <label for="str-phone" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Phone number</label>
               <input id="str-phone" name="phone" type="tel" autocomplete="tel"
-                class="w-full border border-black/25 rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-ink)]"
+                class="w-full border border-black/25 px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-ink)]"
                 placeholder="(555) 000-0000" />
             </div>
           </div>
@@ -184,14 +184,14 @@ const schema = [faqPageSchema(faq)];
           <div>
             <label for="str-email" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Email address</label>
             <input id="str-email" name="email" type="email" required autocomplete="email"
-              class="w-full border border-black/25 rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-ink)]"
+              class="w-full border border-black/25 px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-ink)]"
               placeholder="jane@example.com" />
           </div>
 
           <div>
             <label for="str-program" class="block text-sm font-medium text-[var(--color-ink)] mb-1">I'm interested in</label>
             <select id="str-program" name="program"
-              class="w-full border border-black/25 rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-ink)] bg-white">
+              class="w-full border border-black/25 px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-ink)] bg-white">
               <option value="">Select a program</option>
               <option value="dscr">DSCR loan (qualify on rental income)</option>
               <option value="bank-statement">Bank statement loan (self-employed)</option>
@@ -203,7 +203,7 @@ const schema = [faqPageSchema(faq)];
           <div>
             <label for="str-message" class="block text-sm font-medium text-[var(--color-ink)] mb-1">Tell us about your situation</label>
             <textarea id="str-message" name="message" rows={4}
-              class="w-full border border-black/25 rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-ink)] resize-none"
+              class="w-full border border-black/25 px-4 py-2.5 text-sm text-[var(--color-ink)] focus:outline-none focus:border-[var(--color-ink)] resize-none"
               placeholder="Target market, property type, purchase price estimate, where you are in the process..."></textarea>
           </div>
 

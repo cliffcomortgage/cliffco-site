@@ -2,53 +2,82 @@
 
 /*
  * Cliffco design tokens (Tailwind CSS v4 - CSS-first config).
- * Source of truth: brand/brand-guide.pdf (Colors + Typography + Voice) - note
- * the brand guide's Graphik/purple-blue palette is being phased out; see below.
+ * Source of truth: brand/Cliffco_Brand_Guidelines_2026.pdf.
  *
- * Typography (decision 2026-10-05): Outfit for all body text and headings
- * (--font-sans / --font-display), IBM Plex Mono for eyebrows and small
- * uppercase labels (--font-mono). Both load from Google Fonts in Layout.astro.
- * Helvetica was tried for body text and dropped. The brand guide's Graphik
- * trial OTFs remain unlicensed for web use.
+ * Colour: black, white and one blue. Sky (#BDE8F1) is reserved for the caption
+ * box and nothing else - never a text colour on white, and never on buttons,
+ * icons, charts, borders or the logo (guide p13). Roughly 80% white / 12% black
+ * / 4% airy / 2% sky by area; if a layout looks like it has more blue than
+ * that, it does.
+ *
+ * Typography: Archivo sets the logo and everything you read - headlines,
+ * captions, body, labels and buttons (400-800, no italics). IBM Plex Mono is
+ * the data voice only: rates, payments, figures, name tags, footers. Instrument
+ * Serif is the display accent and the brand's only italic. All three are OFL
+ * and load from Google Fonts in Layout.astro. Outfit and Montserrat were the
+ * 2026-10 pairing and are retired.
+ *
+ * Square corners throughout, to match the plate and the Sky box (guide p23).
  */
 
 @theme {
-  /* ---------- Brand colors (from brand guide) ---------- */
-  --color-rich-black: #0d0d0d;       /* primary - headers, design elements */
-  --color-bright-plum: #262626;      /* accent - gradients, emphasis (was purple #6633cc; black/white direction, 2026-10-02) */
-  --color-ice-blue: #d4d4d4;         /* accent - backgrounds, overlays (was light blue #bde8f1) */
-  --color-soft-gray: #b3b2b4;        /* neutral - backgrounds */
-  --color-mist-gray: #f0eef1;        /* neutral - surfaces */
-  --color-body: #3d4040;             /* body copy */
+  /* ---------- Brand colours (guide pp10-11) ---------- */
+  --color-rich-black: #0d0d0d;       /* Black - primary. Headlines, body, the plate */
+  --color-sky: #bde8f1;              /* Sky - accent. The caption box, and nothing else */
+  --color-graphite: #3d4040;         /* Graphite - caption panels, cards on black */
+  --color-soft-gray: #b3b2b4;        /* Soft Gray - body copy and labels ON BLACK */
+  --color-airy-gray: #f0eef1;        /* Airy Gray - document panels, light surfaces */
 
   /* Semantic aliases */
   --color-ink: #0d0d0d;
-  --color-text: #3d4040;
+  --color-text: #3d4040;             /* Graphite on white, 10.5:1 */
+  /* The guide names no secondary colour for light surfaces: Soft Gray is a
+     dark-surface colour and only reaches 2.1:1 on white. This is a graphite
+     tint at 7.1:1, used where text on white needs to sit back. */
   --color-text-muted: #5a5d5d;
   --color-surface: #ffffff;
   --color-surface-soft: #f0eef1;
-  --color-accent: #262626;
-  --color-accent-soft: #d4d4d4;
+  --color-accent: #0d0d0d;           /* Links, rules, focus. Black - never Sky */
+  --color-accent-soft: #f0eef1;
+
+  /* Retired aliases, kept so older markup keeps resolving to a brand colour */
+  --color-bright-plum: #0d0d0d;
+  --color-ice-blue: #f0eef1;
+  --color-mist-gray: #f0eef1;
+  --color-body: #3d4040;
 
   /* ---------- Typography ---------- */
-  /* Body */
-  --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system,
+  /* Everything you read */
+  --font-sans: "Archivo", ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  /* Headings */
-  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
-  --font-logo: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  --font-accent: "Outfit", ui-sans-serif, system-ui, sans-serif;
-  /* Eyebrows and small uppercase labels (e.g. "Who qualifies") */
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-logo: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  /* The display accent and the brand's only italic */
+  --font-accent: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
+  /* The data voice: figures, name tags, footers */
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 
-  /* Tracking - per brand guide:
-     headers/subheaders: 75-100 InDesign units ≈ 0.075em-0.1em
-     body: 0-75 InDesign units ≈ 0-0.075em */
-  --tracking-tight: 0;
-  --tracking-normal: 0;
+  /* Tracking (guide p22) */
+  --tracking-tight: -0.02em;         /* Headline */
+  --tracking-normal: 0;              /* Body */
   --tracking-body: 0;
-  --tracking-display: 0;
-  --tracking-logo: 0.2em;
+  --tracking-caption: -0.025em;      /* Caption */
+  --tracking-display: -0.02em;
+  --tracking-label: 0.2em;           /* Label - CAPS */
+  --tracking-logo: 0.2em;            /* Wordmark */
+
+  /* ---------- Radius: square throughout ---------- */
+  --radius-none: 0;
+  --radius-xs: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --radius-3xl: 0;
+  --radius-4xl: 0;
+  --radius-full: 0;
 
   /* ---------- Type scale ---------- */
   --text-display-2xl: clamp(3rem, 6vw + 1rem, 5.5rem);
@@ -76,21 +105,11 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Brand cursor: the arrow from the logo (white outline so it shows on
-       dark sections), mirrored to point up-left like a standard pointer. 24px (48px retina), sized down from 32px on 2026-10-07. Hotspot 3 4 = the arrow's tip. Second declaration adds
-       the retina image where image-set() is supported; the first is the
-       fallback. */
-    cursor: url("/images/cursor.png") 3 4, auto;
-    cursor: image-set(url("/images/cursor.png") 1x, url("/images/cursor@2x.png") 2x) 3 4, auto;
   }
 
-  /* Keep the standard hand on clickable things and the I-beam in text fields */
+  /* Keep the standard hand on clickable things */
   a[href], button:not(:disabled), summary, select, label[for], [role="button"] {
     cursor: pointer;
-  }
-  input:not([type="checkbox"], [type="radio"], [type="button"], [type="submit"], [type="reset"], [type="range"], [type="color"], [type="file"]),
-  textarea, [contenteditable="true"] {
-    cursor: text;
   }
 
   body {
@@ -103,16 +122,17 @@
     font-family: var(--font-display);
   }
 
+  /* Headline: Archivo 700-800, sentence case, -0.02em (guide p22). */
   h1, h2, h3, h4 {
     color: var(--color-ink);
-    font-weight: 500;
-    line-height: 1.15;
+    font-weight: 700;
+    line-height: 1.12;
     letter-spacing: -0.02em;
   }
 
-  h1 { font-size: var(--text-h1); font-weight: 400; letter-spacing: -0.02em; }
-  h2 { font-size: var(--text-h2); font-weight: 300; letter-spacing: -0.02em; }
-  h3 { font-size: var(--text-h3); font-weight: 500; letter-spacing: -0.01em; }
+  h1 { font-size: var(--text-h1); }
+  h2 { font-size: var(--text-h2); }
+  h3 { font-size: var(--text-h3); }
 
   a {
     color: var(--color-accent);
@@ -131,7 +151,7 @@
   :focus-visible {
     outline: 3px solid var(--color-accent);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 0;
   }
 
   /* Reduced motion */
@@ -174,14 +194,39 @@
     padding-inline: 1.5rem;
   }
 
+  /* Label role (guide p22): Archivo 500, CAPS, +0.2em. Eyebrows, sublines,
+     footers. Mono is the data voice and does not set labels. */
   .eyebrow {
     display: inline-block;
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-eyebrow);
     text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    color: var(--color-accent);
+    font-weight: 500;
+    letter-spacing: var(--tracking-label);
+    color: var(--color-text-muted);
+  }
+  /* On black, labels take Soft Gray (9.2:1). */
+  .accent-gradient .eyebrow,
+  .on-black .eyebrow { color: var(--color-soft-gray); }
+
+  /* The Sky box (guide p13). The caption is the brand's signature: bold
+     Archivo, two to six words, with exactly ONE word set in black on Sky.
+     One box per cover, post, poster or slide. Text inside the box is always
+     black; Sky is never a text colour and never appears on anything else. */
+  .caption {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: var(--tracking-caption);
+    line-height: 1.15;
+  }
+  .sky-box {
+    display: inline-block;
+    background: var(--color-sky);
+    color: var(--color-rich-black);
+    padding: 0 0.175em;
+    line-height: 1.1;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
   }
 
   .lead {
@@ -197,7 +242,7 @@
     border-left: 4px solid var(--color-accent);
     padding: 1.25rem 1.5rem;
     margin-block: 1.5rem;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0;
     font-size: var(--text-lead);
   }
 
@@ -208,24 +253,25 @@
     gap: 0.25rem;
     padding: 1rem 1.25rem;
     background: #f8f7f9;
-    border: 1px solid var(--color-mist-gray);
-    border-radius: 8px;
+    border: 1px solid var(--color-airy-gray);
+    border-radius: 0;
     font-size: var(--text-small);
     color: var(--color-text-muted);
   }
   .reviewed-by strong { color: var(--color-ink); font-weight: 600; }
 
-  /* Buttons */
+  /* Buttons (guide p23). Black and white only - Sky stays in the caption box
+     so it never competes with the call to action. Square corners. */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
     padding: 0.875rem 1.75rem;
-    border-radius: 8px;
-    font-weight: 600;
+    border-radius: 0;
+    font-weight: 700;
     font-size: var(--text-body);
-    letter-spacing: 0.01em;
+    letter-spacing: 0;
     line-height: 1;
     text-decoration: none;
     transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
@@ -237,29 +283,38 @@
     color: #fff;
   }
   .btn-primary:hover {
-    background: var(--color-bright-plum);
+    background: var(--color-graphite);
   }
   .btn-secondary {
     background: transparent;
     color: var(--color-ink);
-    border: 2px solid var(--color-ink);
+    border: 1.5px solid var(--color-ink);
   }
   .btn-secondary:hover {
     background: var(--color-ink);
     color: #fff;
   }
+  /* On black: the primary flips to a white field, the secondary to a white rule. */
+  .accent-gradient .btn-primary,
+  .on-black .btn-primary { background: #fff; color: var(--color-rich-black); }
+  .accent-gradient .btn-primary:hover,
+  .on-black .btn-primary:hover { background: var(--color-airy-gray); }
+  .accent-gradient .btn-secondary,
+  .on-black .btn-secondary { color: #fff; border-color: #fff; }
+  .accent-gradient .btn-secondary:hover,
+  .on-black .btn-secondary:hover { background: #fff; color: var(--color-rich-black); }
 
-  /* Cards */
+  /* Cards. Square corners, a hairline rule, no shadow - the guide's cards are
+     flat panels, not floating objects. */
   .card {
     background: #fff;
-    border: 1px solid rgba(13, 13, 13, 0.08);
-    border-radius: 8px;
+    border: 1px solid rgba(13, 13, 13, 0.14);
+    border-radius: 0;
     padding: 1.5rem;
-    box-shadow: 0 1px 2px rgba(13, 13, 13, 0.04), 0 4px 16px rgba(13, 13, 13, 0.06);
     transition: border-color 200ms ease;
   }
   .card:hover {
-    border-color: rgba(13, 13, 13, 0.3);
+    border-color: var(--color-ink);
   }
 
   /* Dark background for hero / accent panels — grain texture added via ::before */
@@ -302,11 +357,11 @@
 
   /* Category filter pills - used on Mortgage Guides and FAQ pages */
   .filter-pill {
-    border-radius: 8px;
+    border-radius: 0;
     padding: 0.375rem 1.125rem;
     font-size: var(--text-small);
     font-weight: 500;
-    border: 1px solid var(--color-mist-gray);
+    border: 1px solid var(--color-airy-gray);
     background: white;
     color: var(--color-text-muted);
     cursor: pointer;
@@ -368,7 +423,7 @@ header nav ul + div div,
 header li > div > div {
   box-shadow: 0 8px 40px rgba(13, 13, 13, 0.12), 0 2px 8px rgba(13, 13, 13, 0.06);
   border-color: rgba(13, 13, 13, 0.08);
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 /* ---------- link hover transition ---------- */
@@ -380,7 +435,7 @@ a:not(.btn):not(.card):not(.no-underline) {
 :focus-visible {
   outline: 2.5px solid var(--color-accent);
   outline-offset: 3px;
-  border-radius: 6px;
+  border-radius: 0;
   box-shadow: 0 0 0 4px rgba(13, 13, 13, 0.15);
 }
 

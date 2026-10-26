@@ -101,11 +101,11 @@ const schema = [
     <aside class="lo-rail bg-[var(--color-ink)] text-white self-start">
       <div class="lo-rail-inner py-10 lg:py-12 flex flex-col">
         {lo.hasPhoto && (
-          <div class="w-full max-w-[300px] aspect-square overflow-hidden rounded-2xl border-2 border-white/15">
-            <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" priority />
+          <div class="w-full max-w-[300px] aspect-square overflow-hidden border-2 border-white/15">
+            <Headshot slug={lo.slug} name={lo.displayName} fluid priority />
           </div>
         )}
-        <p class="mt-7 font-mono text-[11px] uppercase tracking-[0.14em] text-white/55">{lo.title}</p>
+        <p class="mt-7 font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-white/55">{lo.title}</p>
         <h1 class="mt-2 !text-white" style="font-size: clamp(2rem, 3vw, 2.75rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">
           {lo.displayName}
         </h1>
@@ -117,24 +117,24 @@ const schema = [
 
         <dl class="mt-7 border-t border-white/25">
           <div class="py-3 border-b border-white/15">
-            <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/55">{branchCount > 1 ? "Branches" : "Branch"}</dt>
+            <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">{branchCount > 1 ? "Branches" : "Branch"}</dt>
             <dd class="mt-1 text-white">{branchNames}</dd>
           </div>
           {lo.links?.directPhone && (
             <div class="py-3 border-b border-white/15">
-              <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/55">Office</dt>
+              <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">Office</dt>
               <dd class="mt-1"><a href={telHref(lo.links.directPhone)} class="!text-white no-underline hover:underline">{lo.links.directPhone}</a></dd>
             </div>
           )}
           {lo.links?.cellPhone && (
             <div class="py-3 border-b border-white/15">
-              <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/55">Cell</dt>
+              <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">Cell</dt>
               <dd class="mt-1"><a href={telHref(lo.links.cellPhone)} class="!text-white no-underline hover:underline">{lo.links.cellPhone}</a></dd>
             </div>
           )}
           {lo.links?.email && (
             <div class="py-3 border-b border-white/15">
-              <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/55">Email</dt>
+              <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">Email</dt>
               <dd class="mt-1 break-all"><a href={`mailto:${lo.links.email}`} class="!text-white no-underline hover:underline">{lo.links.email}</a></dd>
             </div>
           )}
@@ -153,7 +153,7 @@ const schema = [
           <a href={`/${lo.team.slug}/`} class="mt-8 flex items-center gap-4 border-t border-white/25 pt-6 no-underline group">
             <img src={lo.team.logoUrl} alt={lo.team.name} class={`${lo.team.bannerLogoHeight ?? 'h-12'} select-none`} loading="lazy" />
             <span>
-              {TEAM_TAGLINES[lo.team.slug] && <span class="block font-mono text-[10px] uppercase tracking-[0.12em] text-white/55">{TEAM_TAGLINES[lo.team.slug]}</span>}
+              {TEAM_TAGLINES[lo.team.slug] && <span class="block font-sans font-medium text-[10px] uppercase tracking-[0.12em] text-white/55">{TEAM_TAGLINES[lo.team.slug]}</span>}
               <span class="block mt-1 text-sm font-semibold text-white group-hover:underline">View {lo.team.name} →</span>
             </span>
           </a>
@@ -179,24 +179,24 @@ const schema = [
         <p class="eyebrow">At a glance</p>
         <dl class="mt-6 border-t border-[var(--color-ink)]">
           <div class="grid sm:grid-cols-[minmax(0,11rem)_1fr] gap-x-6 gap-y-1 py-4 border-b border-black/15">
-            <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">States licensed in</dt>
+            <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">States licensed in</dt>
             <dd class="text-[var(--color-text)]">{lo.states.join(" · ")}</dd>
           </div>
           {extraLanguages.length > 0 && (
             <div class="grid sm:grid-cols-[minmax(0,11rem)_1fr] gap-x-6 gap-y-1 py-4 border-b border-black/15">
-              <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">Additional Languages</dt>
+              <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">Additional Languages</dt>
               <dd class="text-[var(--color-text)]">{extraLanguages.join(", ")}</dd>
             </div>
           )}
           {(lo.featuredSpecialties?.length || otherSpecialties.length > 0) && (
             <div class="grid sm:grid-cols-[minmax(0,11rem)_1fr] gap-x-6 gap-y-2 py-4 border-b border-black/15">
-              <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">Specialties</dt>
+              <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">Specialties</dt>
               <dd class="flex flex-wrap gap-2">
                 {lo.featuredSpecialties?.map((s) => (
-                  <span class="text-xs font-semibold px-3 py-1.5 rounded-full bg-[var(--color-ink)] text-white">{s}</span>
+                  <span class="text-xs font-semibold px-3 py-1.5 bg-[var(--color-ink)] text-white">{s}</span>
                 ))}
                 {otherSpecialties.map((s) => (
-                  <span class="text-xs font-medium px-3 py-1.5 rounded-full border border-[var(--color-ink)] text-[var(--color-ink)]">{s}</span>
+                  <span class="text-xs font-medium px-3 py-1.5 border border-[var(--color-ink)] text-[var(--color-ink)]">{s}</span>
                 ))}
               </dd>
             </div>
@@ -247,7 +247,7 @@ const schema = [
           <h2 class="mt-3" style="font-size: var(--text-h2); font-weight: 700;">Written by {first}.</h2>
           <div class="mt-6 grid sm:grid-cols-2 gap-4">
             {lo.blog.map((post) => (
-              <a href={`/${post.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] overflow-hidden no-underline flex flex-col bg-white">
+              <a href={`/${post.slug}/`} class="group border-2 border-[var(--color-ink)] overflow-hidden no-underline flex flex-col bg-white">
                 <div class="aspect-[16/9] overflow-hidden border-b-2 border-[var(--color-ink)]">
                   <img src={post.image} alt={post.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 </div>

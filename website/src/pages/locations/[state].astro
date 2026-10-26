@@ -131,7 +131,7 @@ const schema = [
                 const inner = (
                   <>
                     <h3 class="text-lg font-semibold !text-white">{b.name}</h3>
-                    {b.metro && <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/55 mt-1">{b.metro}</p>}
+                    {b.metro && <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/55 mt-1">{b.metro}</p>}
                     {b.street && <p class="text-sm text-white/80 mt-3">{b.street}<br/>{b.city}, {b.region} {b.postalCode}</p>}
                     {b.phone && <p class="text-sm mt-1 font-medium text-white">{b.phone}</p>}
                     {b.nmls && <p class="text-xs text-white/55 mt-2">Branch NMLS #{b.nmls}</p>}
@@ -140,9 +140,9 @@ const schema = [
                   </>
                 );
                 return landingUrl ? (
-                  <a href={landingUrl} class="block rounded-2xl bg-[var(--color-ink)] p-7 no-underline">{inner}</a>
+                  <a href={landingUrl} class="block bg-[var(--color-ink)] p-7 no-underline">{inner}</a>
                 ) : (
-                  <article class="rounded-2xl bg-[var(--color-ink)] p-7">{inner}</article>
+                  <article class="bg-[var(--color-ink)] p-7">{inner}</article>
                 );
               })}
             </div>
@@ -168,7 +168,7 @@ const schema = [
         const p = product(slug);
         if (!p) return null;
         return (
-          <a href={`/loans/${p.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+          <a href={`/loans/${p.slug}/`} class="group border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
             <h3 class="text-lg font-semibold group-hover:!text-white">{p.shortName}</h3>
             <p class="mt-2 text-sm text-[var(--color-text-muted)] group-hover:text-white/75 flex-1 leading-relaxed">{p.oneLiner}</p>
             <span class="mt-4 text-sm font-semibold">Learn more →</span>

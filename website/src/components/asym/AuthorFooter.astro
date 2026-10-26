@@ -24,13 +24,13 @@ const { author, bio, formTitle, formSub, formTo, formSource } = Astro.props;
       <p class="eyebrow !text-white/55">Written by</p>
       <div class="mt-5 flex gap-5 items-start">
         {author.hasPhoto && (
-          <div class="w-28 shrink-0 rounded-xl overflow-hidden border-2 border-white/20">
-            <Headshot slug={author.slug} name={author.displayName} fluid shape="square" />
+          <div class="w-28 shrink-0 overflow-hidden border-2 border-white/20">
+            <Headshot slug={author.slug} name={author.displayName} fluid />
           </div>
         )}
         <div>
           <h2 class="!text-white" style="font-size: var(--text-h3); font-weight: 700;">{author.displayName}</h2>
-          <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/60 mt-1">{author.title} · NMLS #{author.nmls}</p>
+          <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/60 mt-1">{author.title} · NMLS #{author.nmls}</p>
         </div>
       </div>
       <p class="mt-6 text-white/80 leading-relaxed">{bio}</p>

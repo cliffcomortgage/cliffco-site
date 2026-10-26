@@ -159,7 +159,7 @@ const details = [
     <dl class="mt-6 border-t border-[var(--color-ink)]">
       {details.map(([dt, dd]) => (
         <div class="grid sm:grid-cols-[minmax(0,12rem)_1fr] gap-x-6 gap-y-1 py-4 border-b border-black/15">
-          <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] pt-1">{dt}</dt>
+          <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] pt-1">{dt}</dt>
           <dd class="font-medium text-[var(--color-ink)]">{dd}</dd>
         </div>
       ))}
@@ -168,7 +168,7 @@ const details = [
 
   <!-- FAQ (picture left, questions right) -->
   <Split eyebrow="FAQ" title="How bank statement qualifying works.">
-    <img slot="aside" src="/images/content%20images/Self%20Employed%20Mortgage.jpg" alt="Self-employed business owner reviewing bank statement mortgage qualification with Cliffco" class="mt-10 rounded-2xl w-full aspect-[4/3] object-cover" loading="lazy" />
+    <img slot="aside" src="/images/content%20images/Self%20Employed%20Mortgage.jpg" alt="Self-employed business owner reviewing bank statement mortgage qualification with Cliffco" class="mt-10 w-full aspect-[4/3] object-cover" loading="lazy" />
     <FaqList items={faq} />
   </Split>
 

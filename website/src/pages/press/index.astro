@@ -27,12 +27,12 @@ import { PRESS, formatPressDate } from "../../data/press";
     </p>
     <Fragment slot="meta">
       <div>
-        <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Mentions</dt>
+        <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Mentions</dt>
         <dd class="mt-1 text-2xl font-bold">{PRESS.length}</dd>
       </div>
       {PRESS.length > 0 && (
         <div>
-          <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Latest</dt>
+          <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Latest</dt>
           <dd class="mt-1 text-lg font-semibold">{formatPressDate(PRESS[0].date)}</dd>
         </div>
       )}
@@ -48,7 +48,7 @@ import { PRESS, formatPressDate } from "../../data/press";
         <ol class="list-none m-0 p-0">
           {PRESS.map((item) => (
             <li class="grid md:grid-cols-12 gap-x-8 gap-y-2 py-7 border-b border-black/15">
-              <p class="md:col-span-3 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] md:pt-1.5">
+              <p class="md:col-span-3 font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] md:pt-1.5">
                 {formatPressDate(item.date)}<br class="hidden md:block" /><span class="md:hidden"> &middot; </span>{item.publication}
               </p>
               <div class="md:col-span-9 min-w-0">
@@ -85,7 +85,7 @@ import { PRESS, formatPressDate } from "../../data/press";
         </div>
       </div>
       <div>
-        <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">Quick facts</p>
+        <p class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">Quick facts</p>
         <ul class="mt-3 list-none m-0 p-0 border-t border-[var(--color-ink)] text-sm text-[var(--color-text)]">
           <li class="py-3 border-b border-black/15">Founded 1989, headquartered in Uniondale, NY (Long Island)</li>
           <li class="py-3 border-b border-black/15">Licensed in {STATE_LICENSES.length} states</li>

@@ -89,11 +89,11 @@ import LoCard from "../../../../components/asym/LoCard.astro";
       <div class="lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:pt-8">
         <p class="eyebrow">Our Ft. Lauderdale office</p>
         <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">Where we are.</h2>
-        <article class="mt-8 rounded-2xl bg-[var(--color-ink)] text-white p-7">
+        <article class="mt-8 bg-[var(--color-ink)] text-white p-7">
           <h3 class="text-lg font-semibold !text-white">{ftlBranch.name}</h3>
           {ftlBranch.street && <p class="text-white/80 mt-3">{ftlBranch.street}<br/>{ftlBranch.city}, {ftlBranch.region} {ftlBranch.postalCode}</p>}
           {ftlBranch.nmls && <p class="text-xs text-white/55 mt-3">Branch NMLS #{ftlBranch.nmls}</p>}
-          <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-white mt-4">Operates as Clout Mortgage, Inc.</p>
+          <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white mt-4">Operates as Clout Mortgage, Inc.</p>
         </article>
       </div>
     </div>
@@ -109,7 +109,7 @@ import LoCard from "../../../../components/asym/LoCard.astro";
         const p = product(slug);
         if (!p) return null;
         return (
-          <a href={`/loans/${p.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+          <a href={`/loans/${p.slug}/`} class="group border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
             <h3 class="text-lg font-semibold group-hover:!text-white">{p.shortName}</h3>
             <p class="mt-2 text-sm text-[var(--color-text-muted)] group-hover:text-white/75 flex-1 leading-relaxed">{p.oneLiner}</p>
             <span class="mt-4 text-sm font-semibold">Learn more →</span>

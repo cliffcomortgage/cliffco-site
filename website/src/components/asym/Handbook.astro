@@ -34,14 +34,14 @@ const image = images[pathname];
 <div class="bg-white">
   <div class="container-wide py-10 lg:py-14 grid lg:grid-cols-12 gap-10 lg:gap-12">
     <aside class="lg:col-span-3 lg:sticky lg:top-28 self-start">
-      <details class="hb-mobile lg:hidden border-2 border-[var(--color-ink)] rounded-xl">
-        <summary class="px-4 py-3 font-mono text-[11px] uppercase tracking-[0.14em] cursor-pointer list-none">Contents</summary>
+      <details class="hb-mobile lg:hidden border-2 border-[var(--color-ink)] ">
+        <summary class="px-4 py-3 font-sans font-medium text-[11px] uppercase tracking-[0.14em] cursor-pointer list-none">Contents</summary>
         <ol class="hb-toc list-none m-0 px-4 pb-3"></ol>
       </details>
       <div class="hidden lg:block">
-        <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">Contents</p>
+        <p class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">Contents</p>
         <ol class="hb-toc mt-4 list-none m-0 p-0 border-l-2 border-black/15"></ol>
-        <div class="mt-8 rounded-2xl bg-[var(--color-ink)] text-white p-5">
+        <div class="mt-8 bg-[var(--color-ink)] text-white p-5">
           <p class="text-sm text-white/85 leading-relaxed">Questions about your situation? A licensed Cliffco loan officer can help.</p>
           <a href="/get-started/" class="mt-4 btn btn-primary !bg-white !text-[var(--color-ink)] hover:!bg-white/85 text-sm w-full justify-center">Get Started</a>
         </div>
@@ -50,7 +50,7 @@ const image = images[pathname];
 
     <article class="hb-body container-prose lg:col-span-8 lg:col-start-5">
       {image && (
-        <div class="mb-10 rounded-[1.5rem] overflow-hidden aspect-[16/9]">
+        <div class="mb-10 overflow-hidden aspect-[16/9]">
           <img src={image.url} alt={image.alt} class="w-full h-full object-cover" style={image.objectPosition ? `object-position: ${image.objectPosition}` : undefined} loading="eager" fetchpriority="high" />
         </div>
       )}

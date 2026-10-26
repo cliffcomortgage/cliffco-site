@@ -73,7 +73,7 @@ const fits = [
 
     <Chapter eyebrow="Quick math" title="DSCR is a one-line formula.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
-        <div class="mt-8 rounded-2xl bg-[var(--color-ink)] text-white p-7 sm:p-8">
+        <div class="mt-8 bg-[var(--color-ink)] text-white p-7 sm:p-8">
           <p class="text-base sm:text-lg font-mono text-white leading-relaxed"><strong>DSCR</strong> = Monthly Rent ÷ Monthly PITIA</p>
           <p class="mt-4 text-white/75 leading-relaxed">
             PITIA = Principal + Interest + Property Taxes + Insurance + HOA dues. For a $2,500/mo
@@ -87,7 +87,7 @@ const fits = [
   <Chapter eyebrow="Where Cliffco lends DSCR" title="Strong fits." wide>
     <div class="grid sm:grid-cols-2 gap-4">
       {fits.map((f) => (
-        <a href={f.href} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+        <a href={f.href} class="group border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white transition-colors">
           <h3 class="text-lg font-semibold group-hover:!text-white">{f.title}</h3>
           <p class="mt-2 text-sm text-[var(--color-text-muted)] group-hover:text-white/75 leading-relaxed">{f.body}</p>
         </a>

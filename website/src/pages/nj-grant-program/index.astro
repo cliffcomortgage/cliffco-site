@@ -115,8 +115,8 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
           payment and is forgiven if you live in the property for 5 years and the loan has not been refinanced
           in that time.
         </p>
-        <div class="mt-5 max-w-xl rounded-xl border-2 border-[var(--color-ink)] bg-[var(--color-bone,#faf9f7)] p-4">
-          <p class="text-[13px] font-semibold uppercase tracking-[0.1em] text-[var(--color-ink)]" style="font-family: var(--font-mono);">Worth knowing up front</p>
+        <div class="mt-5 max-w-xl border-2 border-[var(--color-ink)] bg-[var(--color-bone,#faf9f7)] p-4">
+          <p class="text-[13px] font-semibold uppercase tracking-[0.1em] text-[var(--color-ink)]" style="font-family: var(--font-sans);">Worth knowing up front</p>
           <p class="mt-2 text-[15px] leading-relaxed text-[var(--color-text)]">
             The assistance and the mortgage are one package. The money comes with an NJHMFA
             mortgage that Cliffco originates, so it isn't a standalone grant you can bring to a
@@ -136,7 +136,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
       </div>
 
       <!-- Primary conversion: form in the hero -->
-      <div id="apply" class="rounded-2xl border-2 border-[var(--color-ink)] bg-white p-6 scroll-mt-24">
+      <div id="apply" class="border-2 border-[var(--color-ink)] bg-white p-6 scroll-mt-24">
         <p class="eyebrow">Check your eligibility</p>
         <p class="mt-3 text-lg font-semibold text-[var(--color-ink)]">See if you qualify. It takes 2 minutes.</p>
         <p class="mt-2 text-[13px] leading-relaxed text-[var(--color-text-muted)]">For buyers getting a mortgage with Cliffco. The assistance can't be applied to a loan already in process elsewhere.</p>
@@ -186,15 +186,15 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
       <p class="eyebrow">Who you'll talk to</p>
       <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2); font-weight: 700;">Two licensed New Jersey loan officers, not a call center.</h2>
       <div class="mt-8 grid gap-6 sm:grid-cols-2 max-w-2xl">
-        <div class="rounded-2xl border-2 border-[var(--color-ink)] bg-white p-6 flex flex-col">
-          <img src="/team/edward-morais.webp" alt="Eddie Morais" class="w-24 h-24 rounded-xl object-cover" loading="lazy" />
+        <div class="border-2 border-[var(--color-ink)] bg-white p-6 flex flex-col">
+          <img src="/team/edward-morais.webp" alt="Eddie Morais" class="w-24 h-24 object-cover" loading="lazy" />
           <h3 class="mt-4 text-base font-semibold text-[var(--color-ink)]">Eddie Morais</h3>
           <p class="text-sm text-[var(--color-text-muted)]">Branch Manager &middot; NMLS #243926</p>
           <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">23 years in mortgage lending. Speaks English, Spanish, and Portuguese.</p>
           <a href="tel:+19083701575" class="mt-4 text-sm font-semibold text-[var(--color-ink)] no-underline hover:underline">(908) 370-1575</a>
         </div>
-        <div class="rounded-2xl border-2 border-[var(--color-ink)] bg-white p-6 flex flex-col">
-          <img src="/team/gary-johansen.webp" alt="Gary Johansen" class="w-24 h-24 rounded-xl object-cover" loading="lazy" />
+        <div class="border-2 border-[var(--color-ink)] bg-white p-6 flex flex-col">
+          <img src="/team/gary-johansen.webp" alt="Gary Johansen" class="w-24 h-24 object-cover" loading="lazy" />
           <h3 class="mt-4 text-base font-semibold text-[var(--color-ink)]">Gary Johansen</h3>
           <p class="text-sm text-[var(--color-text-muted)]">Regional Sales Director &middot; NMLS #339278</p>
           <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">Over 30 years in mortgage lending, more than $15 billion closed.</p>
@@ -253,7 +253,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
           <p class="mt-1 text-xl font-bold text-[var(--color-ink)]">up to $15,000</p>
         </div>
         <div class="text-center text-2xl font-bold text-[var(--color-text-muted)]">=</div>
-        <div class="rounded-lg text-center p-4" style="background: var(--color-ink); color: #fff;">
+        <div class="text-center p-4" style="background: var(--color-ink); color: #fff;">
           <p class="text-xs uppercase tracking-wide text-white/80">Total assistance</p>
           <p class="mt-1 text-xl font-bold">up to $22,000</p>
         </div>
@@ -264,7 +264,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
           <p class="text-sm font-semibold text-[var(--color-ink)]">$22,000 counties <span class="text-[var(--color-text-muted)] font-normal">(12)</span></p>
           <div class="mt-3 flex flex-wrap gap-2">
             {TIER_22K.map((c) => (
-              <span class="inline-block rounded-full bg-[var(--color-ink)] px-3 py-1 text-xs font-medium text-white">{c}</span>
+              <span class="inline-block bg-[var(--color-ink)] px-3 py-1 text-xs font-medium text-white">{c}</span>
             ))}
           </div>
         </div>
@@ -272,7 +272,7 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
           <p class="text-sm font-semibold text-[var(--color-ink)]">$17,000 counties <span class="text-[var(--color-text-muted)] font-normal">(9)</span></p>
           <div class="mt-3 flex flex-wrap gap-2">
             {TIER_17K.map((c) => (
-              <span class="inline-block rounded-full bg-white border border-[var(--color-ink)] px-3 py-1 text-xs text-[var(--color-ink)]">{c}</span>
+              <span class="inline-block bg-white border border-[var(--color-ink)] px-3 py-1 text-xs text-[var(--color-ink)]">{c}</span>
             ))}
           </div>
         </div>

@@ -101,11 +101,11 @@ const propertyTypes = [
     <Chapter eyebrow="Why this matters" title="Warrantable vs. non-warrantable: the key distinction.">
         <p class="mt-4 text-[var(--color-text)] leading-relaxed" style="font-size: 1.0625rem;">{p.directAnswer}</p>
         <div class="mt-8 grid gap-4">
-          <article class="rounded-2xl p-6 border-2 border-[var(--color-ink)]">
+          <article class="p-6 border-2 border-[var(--color-ink)]">
             <h3 class="font-semibold text-[var(--color-ink)]">Warrantable condos</h3>
             <p class="mt-2 text-sm text-[var(--color-text)] leading-relaxed">The project meets Fannie Mae and Freddie Mac requirements: owner-occupant majority, no significant litigation, limited commercial space, no single entity owning too many units. These can use conventional, FHA, and VA financing at standard rates.</p>
           </article>
-          <article class="rounded-2xl p-6 bg-[var(--color-ink)] text-white">
+          <article class="p-6 bg-[var(--color-ink)] text-white">
             <h3 class="font-semibold !text-white">Non-warrantable condos</h3>
             <p class="mt-2 text-sm text-white/85 leading-relaxed">One or more Fannie/Freddie guidelines are not met. Standard conventional and FHA programs are unavailable, and pricing runs higher than a warrantable condo. Portfolio or Non-QM lending is required. Cliffco handles non-warrantable scenarios daily.</p>
           </article>
@@ -123,7 +123,7 @@ const propertyTypes = [
             <p class="mt-3 text-[var(--color-text)] leading-relaxed">{t.body}</p>
             <ul class="mt-4 flex flex-wrap gap-2 list-none m-0 p-0">
               {t.points.map((pt) => (
-                <li class="font-mono text-[11px] uppercase tracking-[0.08em] border border-[var(--color-ink)] rounded-full px-3 py-1.5">{pt}</li>
+                <li class="font-sans font-medium text-[11px] uppercase tracking-[0.08em] border border-[var(--color-ink)] px-3 py-1.5">{pt}</li>
               ))}
             </ul>
           </div>

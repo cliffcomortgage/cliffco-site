@@ -150,9 +150,9 @@ const concerns = [
   <Split eyebrow="Your options" title="The most common first-time buyer loan programs." intro={`There is no single "best" program. The right fit depends on your credit, down payment, and whether you have military service.`}>
     <div class="grid sm:grid-cols-2 gap-4">
       {loanOptions.map((opt) => (
-        <div class={`rounded-2xl p-6 flex flex-col gap-3 ${opt.highlight ? "bg-[var(--color-ink)] text-white" : "border-2 border-[var(--color-ink)]"}`}>
+        <div class={`p-6 flex flex-col gap-3 ${opt.highlight ? "bg-[var(--color-ink)] text-white" : "border-2 border-[var(--color-ink)]"}`}>
           {opt.highlight && (
-            <span class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/60">Most Common</span>
+            <span class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/60">Most Common</span>
           )}
           <h3 class={`text-lg font-semibold ${opt.highlight ? "!text-white" : "text-[var(--color-ink)]"}`}>{opt.name}</h3>
           <div class="flex gap-4 text-sm">

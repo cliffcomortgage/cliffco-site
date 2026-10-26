@@ -49,8 +49,8 @@ import { COMPANY } from "../../data/company";
   <Chapter id="home-loans" eyebrow="Buying or refinancing" title="Home loans for first-time and move-up buyers." wide>
     <div class="grid sm:grid-cols-2 gap-4">
       {homeCards.map((p, i) => (
-        <a href={`/loans/${p.slug}/`} class={`group rounded-2xl p-7 flex flex-col h-full no-underline transition-colors ${i === 0 ? "bg-[var(--color-ink)] text-white" : "border-2 border-[var(--color-ink)] text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white"}`}>
-          <p class={`font-mono text-[11px] uppercase tracking-[0.12em] ${i === 0 ? "text-white/55" : "text-[var(--color-text-muted)] group-hover:text-white/55"}`}>{HOME_CARDS[p.slug]}</p>
+        <a href={`/loans/${p.slug}/`} class={`group p-7 flex flex-col h-full no-underline transition-colors ${i === 0 ? "bg-[var(--color-ink)] text-white" : "border-2 border-[var(--color-ink)] text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white"}`}>
+          <p class={`font-sans font-medium text-[11px] uppercase tracking-[0.12em] ${i === 0 ? "text-white/55" : "text-[var(--color-text-muted)] group-hover:text-white/55"}`}>{HOME_CARDS[p.slug]}</p>
           <h3 class={`mt-3 ${i === 0 ? "!text-white" : "group-hover:!text-white"}`} style="font-size: var(--text-h3); font-weight: 700;">{p.shortName}</h3>
           <p class={`mt-3 text-sm leading-relaxed flex-1 ${i === 0 ? "text-white/80" : "text-[var(--color-text-muted)] group-hover:text-white/80"}`}>{p.oneLiner}</p>
           <span class="mt-5 text-sm font-semibold">Learn more →</span>
@@ -91,8 +91,8 @@ import { COMPANY } from "../../data/company";
   <Chapter id="specialty" rule={false} eyebrow="Specialty programs" title="When your situation is less typical." wide>
     <div class="grid sm:grid-cols-2 gap-4">
       {specialty.map((p) => (
-        <a href={`/loans/${p.slug}/`} class="group rounded-2xl p-7 flex flex-col h-full no-underline transition-colors border-2 border-[var(--color-ink)] text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white">
-          <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/55">{p.category}</p>
+        <a href={`/loans/${p.slug}/`} class="group p-7 flex flex-col h-full no-underline transition-colors border-2 border-[var(--color-ink)] text-[var(--color-ink)] hover:bg-[var(--color-ink)] hover:text-white">
+          <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/55">{p.category}</p>
           <h3 class="mt-3 group-hover:!text-white" style="font-size: var(--text-h3); font-weight: 700;">{p.shortName}</h3>
           <p class="mt-3 text-sm leading-relaxed flex-1 text-[var(--color-text-muted)] group-hover:text-white/80">{p.oneLiner}</p>
           <span class="mt-5 text-sm font-semibold">Learn more →</span>

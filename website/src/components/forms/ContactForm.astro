@@ -38,8 +38,8 @@ const {
 const licensedStates = [...STATE_LICENSES].map((s) => s.name).sort();
 
 const inputClass = dark
-  ? 'w-full rounded-lg border border-white/20 bg-white/10 text-white placeholder-white/40 px-4 py-2.5 text-sm focus:outline-none focus:border-white/60'
-  : 'w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]';
+  ? 'w-full border border-white/20 bg-white/10 text-white placeholder-white/40 px-4 py-2.5 text-sm focus:outline-none focus:border-white/60'
+  : 'w-full border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]';
 
 const labelClass = dark
   ? 'block text-xs font-medium text-white/70 mb-1'
@@ -98,8 +98,8 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
     <label for={`${id}-purpose`} class={labelClass}>I'm looking to <span class="text-red-700">*</span></label>
     <select id={`${id}-purpose`} name="purpose" required
       class={dark
-        ? 'w-full rounded-lg border border-white/20 bg-white/10 text-white px-4 py-2.5 text-sm focus:outline-none focus:border-white/60'
-        : 'w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]'}>
+        ? 'w-full border border-white/20 bg-white/10 text-white px-4 py-2.5 text-sm focus:outline-none focus:border-white/60'
+        : 'w-full border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]'}>
       <option value="">Select one…</option>
       <option value="Purchase">Purchase a home</option>
       <option value="Refinance">Refinance</option>
@@ -115,8 +115,8 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
     <label for={`${id}-state`} class={labelClass}>State <span class="text-red-700">*</span></label>
     <select id={`${id}-state`} name="state" required
       class={dark
-        ? 'w-full rounded-lg border border-white/20 bg-white/10 text-white px-4 py-2.5 text-sm focus:outline-none focus:border-white/60'
-        : 'w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]'}>
+        ? 'w-full border border-white/20 bg-white/10 text-white px-4 py-2.5 text-sm focus:outline-none focus:border-white/60'
+        : 'w-full border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]'}>
       <option value="">Select a state…</option>
       {licensedStates.map(s => (
         <option value={s}>{s}</option>
@@ -138,8 +138,8 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
       required={notesRequired}
       placeholder="Tell us about your situation…"
       class={dark
-        ? 'w-full rounded-lg border border-white/20 bg-white/10 text-white placeholder-white/40 px-4 py-2.5 text-sm focus:outline-none focus:border-white/60 resize-none'
-        : 'w-full rounded-lg border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)] resize-none'}></textarea>
+        ? 'w-full border border-white/20 bg-white/10 text-white placeholder-white/40 px-4 py-2.5 text-sm focus:outline-none focus:border-white/60 resize-none'
+        : 'w-full border border-[var(--color-soft-gray)] bg-white text-[var(--color-ink)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)] resize-none'}></textarea>
   </div>
 
   <!-- TCPA -->
@@ -161,7 +161,7 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
 
   <button type="button"
     class={dark
-      ? 'w-full rounded-lg py-3 text-sm font-semibold bg-white text-[var(--color-rich-black)] hover:bg-[var(--color-ice-blue)] transition-colors disabled:opacity-60'
+      ? 'w-full py-3 text-sm font-semibold bg-white text-[var(--color-rich-black)] hover:bg-[var(--color-ice-blue)] transition-colors disabled:opacity-60'
       : 'btn btn-primary w-full disabled:opacity-60'}>
     {ctaLabel}
   </button>

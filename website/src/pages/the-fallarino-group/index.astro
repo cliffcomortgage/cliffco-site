@@ -123,10 +123,10 @@ const calculators = [
         <li class="border-b border-black/15">
           <a href={`/loan-officers/${m.slug}/`} class="group grid md:grid-cols-12 gap-x-6 gap-y-2 py-5 no-underline text-[var(--color-ink)] items-center">
             <span class="md:col-span-3 font-semibold text-lg group-hover:underline">{m.name}</span>
-            <span class="md:col-span-3 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">{m.role}</span>
+            <span class="md:col-span-3 font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">{m.role}</span>
             <span class="md:col-span-5 flex flex-wrap gap-1.5">
               {m.tags.map((tag) => (
-                <span class="text-xs font-medium px-2.5 py-1 rounded-full border border-[var(--color-ink)]">{tag}</span>
+                <span class="text-xs font-medium px-2.5 py-1 border border-[var(--color-ink)]">{tag}</span>
               ))}
             </span>
             <span class="md:col-span-1 text-sm font-semibold md:text-right">→</span>
@@ -140,8 +140,8 @@ const calculators = [
   <TeamBlock eyebrow="What we do best" title="Built for complexity.<br/>Optimized for performance.">
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {specialties.map((spec) => (
-        <a href={spec.href} class="group rounded-2xl border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col gap-3 h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
-          <span class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/60">{spec.range}</span>
+        <a href={spec.href} class="group border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col gap-3 h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+          <span class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/60">{spec.range}</span>
           <h3 class="font-semibold group-hover:!text-white" style="font-size: 1.125rem;">{spec.name}</h3>
           <p class="text-sm text-[var(--color-text-muted)] group-hover:text-white/75 leading-relaxed flex-1">{spec.body}</p>
           <span class="text-sm font-semibold mt-auto">Learn more →</span>
@@ -167,7 +167,7 @@ const calculators = [
           <div class="p-5 border-r-2 border-b-2 border-[var(--color-ink)]">
             <dd class="font-bold text-[var(--color-ink)]" style="font-family: var(--font-display); font-size: clamp(1.5rem, 2.6vw, 2rem); letter-spacing: -0.02em;">{s.value}</dd>
             <dt class="text-xs font-medium text-[var(--color-ink)] mt-2 leading-snug">{s.label}</dt>
-            <dt class="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] mt-1">{s.note}</dt>
+            <dt class="font-sans font-medium text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] mt-1">{s.note}</dt>
           </div>
         ))}
       </dl>
@@ -179,7 +179,7 @@ const calculators = [
     <TeamBlock eyebrow="500:1 Blog" title="Written by David Fallarino." intro="Insights on Alt-A, DSCR, jumbo, and Non-QM from someone who has structured $3 billion worth of these transactions.">
       <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {david.blog.map((post) => (
-          <a href={`/${post.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] overflow-hidden no-underline flex flex-col bg-white">
+          <a href={`/${post.slug}/`} class="group border-2 border-[var(--color-ink)] overflow-hidden no-underline flex flex-col bg-white">
             <div class="aspect-[16/9] overflow-hidden border-b-2 border-[var(--color-ink)]">
               <img src={post.image} alt={post.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
             </div>
@@ -199,7 +199,7 @@ const calculators = [
       {calculators.map((c) => (
         <li class="border-b border-black/15">
           <a href={c.href} class="group grid md:grid-cols-12 gap-x-6 gap-y-1 py-5 no-underline text-[var(--color-ink)] items-baseline">
-            <span class="md:col-span-2 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">{c.badge}</span>
+            <span class="md:col-span-2 font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">{c.badge}</span>
             <span class="md:col-span-3 font-semibold text-lg group-hover:underline">{c.title}</span>
             <span class="md:col-span-5 text-sm text-[var(--color-text-muted)] leading-relaxed">{c.desc}</span>
             <span class="md:col-span-2 text-sm font-semibold md:text-right">Use calculator →</span>

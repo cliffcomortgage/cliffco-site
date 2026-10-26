@@ -65,7 +65,7 @@ const p = Astro.props;
     <div class="lg:col-span-6">
       <p class="eyebrow">Branch information</p>
       <h2 class="mt-4" style="font-size: var(--text-h2); font-weight: 700;">{p.findTitle}</h2>
-      <div class="mt-8 rounded-[1.75rem] bg-[var(--color-ink)] text-white p-8 sm:p-10">
+      <div class="mt-8 bg-[var(--color-ink)] text-white p-8 sm:p-10">
         <address class="not-italic space-y-1" style="font-size: 1.125rem;">
           <p class="font-semibold text-white">{p.addressName}</p>
           {p.street && <p class="text-white/85">{p.street}</p>}

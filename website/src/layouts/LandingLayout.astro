@@ -32,10 +32,10 @@ const { title, description, schema, phone, phoneE164, index = false } = Astro.pr
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
-    <link rel="icon" type="image/png" href="/favicon.png" sizes="180x180" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2026" />
+    <link rel="icon" href="/favicon.ico?v=2026" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=2026" sizes="512x512" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2026" />
 
     <Meta title={title} description={description} noindex={!index} />
     {schema && <JsonLd data={schema} />}
@@ -44,8 +44,8 @@ const { title, description, schema, phone, phoneE164, index = false } = Astro.pr
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Montserrat:wght@600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Montserrat:wght@600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" /></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" /></noscript>
     <!-- HubSpot tracking: sets the hubspotutk cookie so form leads carry their ad source.
          Deferred until idle/first interaction, same as the main layout. -->
     <script is:inline>
@@ -75,7 +75,7 @@ const { title, description, schema, phone, phoneE164, index = false } = Astro.pr
     <header class="bg-white border-b border-[var(--color-ink)] sticky top-0 z-40">
       <div class="container-wide flex items-center justify-between gap-4 py-4">
         <span class="flex items-center no-underline shrink-0" aria-label={COMPANY.legalName}>
-          <img src="/images/cliffco-logo.png" alt={COMPANY.legalName} width="1730" height="409" class="h-9 w-auto" loading="eager" />
+          <img src="/images/cliffco-logo.svg" alt={COMPANY.legalName} width="848" height="316" class="h-[60px] w-auto" loading="eager" />
         </span>
         <a href={`tel:${phoneE164}`} class="btn btn-primary text-sm !py-2 !px-5 shrink-0 hidden sm:inline-flex">Call {phone}</a>
         <a href={`tel:${phoneE164}`} class="btn btn-primary text-sm !py-2.5 !px-3 shrink-0 sm:hidden" aria-label={`Call ${phone}`}>
@@ -93,7 +93,7 @@ const { title, description, schema, phone, phoneE164, index = false } = Astro.pr
 
         <!-- Top row: logo + links -->
         <div class="flex flex-wrap gap-4 justify-between items-center pb-6 border-b border-white/10">
-          <p class="font-[var(--font-logo)] font-semibold tracking-[0.18em] text-base">{COMPANY.legalName.toUpperCase()}</p>
+          <img src="/images/cliffco-logo-white.svg" alt={COMPANY.legalName} width="848" height="316" class="h-[60px] w-auto" loading="lazy" />
           <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
             <a href="/" class="text-white/60 hover:text-white no-underline">Full Site</a>
             <a href="/loans/" class="text-white/60 hover:text-white no-underline">Loan Programs</a>

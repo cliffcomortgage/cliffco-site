@@ -138,7 +138,7 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
           borrowers to investors, veterans, and homeowners considering a refinance, buydown, or reverse mortgage.
         </p>
       </div>
-      <p class="lg:col-span-3 lg:col-start-10 lg:text-right font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.04em;">{calculators.length}<span class="block mt-2 font-mono text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Calculators</span></p>
+      <p class="lg:col-span-3 lg:col-start-10 lg:text-right font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.04em;">{calculators.length}<span class="block mt-2 font-sans font-medium text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Calculators</span></p>
     </div>
   </section>
 
@@ -150,7 +150,7 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
           <section class="grid lg:grid-cols-12 gap-x-10 gap-y-5 py-10 border-b border-black/15">
             <div class="lg:col-span-3">
               <h2 class="text-[var(--color-ink)]" style="font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em;">{g.audience}</h2>
-              <p class="mt-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">{g.items.length} calculator{g.items.length === 1 ? "" : "s"}</p>
+              <p class="mt-2 font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">{g.items.length} calculator{g.items.length === 1 ? "" : "s"}</p>
             </div>
             <div class="lg:col-span-9 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
               {g.items.map((c) => {
@@ -158,9 +158,9 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
                 return (
                   <a
                     href={`/mortgage-guides/calculators/${c.slug}/`}
-                    class="group bg-white rounded-2xl border-2 border-black/15 p-6 no-underline flex flex-col h-full hover:border-[var(--color-ink)] hover:shadow-md transition-all duration-200"
+                    class="group bg-white border-2 border-black/15 p-6 no-underline flex flex-col h-full hover:border-[var(--color-ink)] hover:shadow-md transition-all duration-200"
                   >
-                    <div class={`w-11 h-11 rounded-xl ${colors.bg} flex items-center justify-center shrink-0 mb-4`}>
+                    <div class={`w-11 h-11 ${colors.bg} flex items-center justify-center shrink-0 mb-4`}>
                       <svg class={`w-5 h-5 ${colors.icon}`} fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" set:html={c.icon} />
                     </div>
                     <h3 class="font-semibold text-[var(--color-ink)] text-lg leading-snug">{c.title}</h3>

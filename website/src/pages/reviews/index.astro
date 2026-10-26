@@ -35,11 +35,11 @@ const writeReviewPlatforms = REVIEW_PLATFORMS.filter((p) => p.writeUrl);
     </p>
     <Fragment slot="meta">
       <div>
-        <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Average rating</dt>
+        <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Average rating</dt>
         <dd class="mt-1 text-2xl font-bold">{avgRating.toFixed(1)} / 5</dd>
       </div>
       <div>
-        <dt class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Reviews</dt>
+        <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Reviews</dt>
         <dd class="mt-1 text-2xl font-bold">{totalReviews.toLocaleString()}+</dd>
       </div>
     </Fragment>
@@ -51,10 +51,10 @@ const writeReviewPlatforms = REVIEW_PLATFORMS.filter((p) => p.writeUrl);
       <table class="w-full text-sm">
         <thead class="text-left">
           <tr class="border-b-2 border-[var(--color-ink)]">
-            <th class="py-3 pr-4 font-mono text-[11px] uppercase tracking-[0.14em] font-normal">Platform</th>
-            <th class="py-3 pr-4 font-mono text-[11px] uppercase tracking-[0.14em] font-normal">Rating</th>
-            <th class="py-3 pr-4 font-mono text-[11px] uppercase tracking-[0.14em] font-normal">Reviews</th>
-            <th class="py-3 font-mono text-[11px] uppercase tracking-[0.14em] font-normal"><span class="sr-only">Link</span></th>
+            <th class="py-3 pr-4 font-sans font-medium text-[11px] uppercase tracking-[0.14em] font-normal">Platform</th>
+            <th class="py-3 pr-4 font-sans font-medium text-[11px] uppercase tracking-[0.14em] font-normal">Rating</th>
+            <th class="py-3 pr-4 font-sans font-medium text-[11px] uppercase tracking-[0.14em] font-normal">Reviews</th>
+            <th class="py-3 font-sans font-medium text-[11px] uppercase tracking-[0.14em] font-normal"><span class="sr-only">Link</span></th>
           </tr>
         </thead>
         <tbody>

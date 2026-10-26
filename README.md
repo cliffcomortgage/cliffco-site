@@ -10,13 +10,12 @@ for the eventual rebuild of [cliffcomortgage.com](https://cliffcomortgage.com/).
 ├── brand/
 │   ├── mission-vision-values.md   ← canonical, plain-text version
 │   ├── mission-vision-values.docx ← original Word doc
-│   ├── brand-guide.pdf            ← full brand guide (typography, color, usage)
-│   ├── fonts/                     ← Graphik OTFs (gitignored, not in repo)
-│   └── logos/
-│       ├── full/                  ← horizontal lockup, PNG (black + white)
-│       ├── icon/                  ← icon-only, PNG (black + white)
-│       ├── favicon/               ← SVG + PNG
-│       └── source-ai/             ← Adobe Illustrator source files
+│   ├── Cliffco_Brand_Guidelines_2026.pdf  ← the brand guide (colour, type, logo, voice)
+│   ├── fonts/                     ← Archivo, IBM Plex Mono, Instrument Serif (gitignored)
+│   └── logos/                     ← wordmark, plate, three lockups, CMB icon, favicons
+│                                     SVG + PNG, each in a Black and a White version.
+│                                     _Black = black plate (use on white)
+│                                     _White = white plate (use on black)
 └── website/                       ← future: code for the rebuilt site
 ```
 

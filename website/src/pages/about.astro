@@ -58,19 +58,19 @@ const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
     <div class="grid xl:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] gap-10 items-start">
       <div class="space-y-8">
         <div class="border-t-2 border-[var(--color-ink)] pt-4">
-          <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Vision</p>
+          <p class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Vision</p>
           <p class="mt-2 text-2xl leading-snug text-[var(--color-ink)] font-semibold">
             We believe the mortgage industry can do better. Our vision is to lead as the nation’s most innovative and talent-nurturing firm, setting the benchmark for simplicity and collaboration in every partnership.
           </p>
         </div>
         <div class="border-t-2 border-[var(--color-ink)] pt-4">
-          <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Mission</p>
+          <p class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Mission</p>
           <p class="mt-2 text-2xl leading-snug text-[var(--color-ink)] font-semibold">
             We exist to transform the dream of home ownership into reality while elevating the net worth and self worth of the families and team members we serve.
           </p>
         </div>
         <div class="border-t-2 border-[var(--color-ink)] pt-4">
-          <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Values</p>
+          <p class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Values</p>
           <ul class="mt-4 grid sm:grid-cols-2 gap-x-8 gap-y-5 m-0 p-0 list-none">
             {COMPANY_VALUES.map((v) => (
               <li>
@@ -81,7 +81,7 @@ const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
           </ul>
         </div>
       </div>
-      <div class="rounded-[1.75rem] overflow-hidden aspect-[3/4] max-w-[26.5rem]">
+      <div class="overflow-hidden aspect-[3/4] max-w-[26.5rem]">
         <img
           src="/images/content%20images/about-us.jpg"
           alt="Cliffco team"
@@ -100,14 +100,14 @@ const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
     </p>
     <div class="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
       {seniorLeadership.map((lo) => (
-        <a href={`/loan-officers/${lo.slug}/`} class="group rounded-2xl border-2 border-[var(--color-ink)] overflow-hidden no-underline text-[var(--color-ink)] flex flex-col h-full bg-white">
+        <a href={`/loan-officers/${lo.slug}/`} class="group border-2 border-[var(--color-ink)] overflow-hidden no-underline text-[var(--color-ink)] flex flex-col h-full bg-white">
           {lo.hasPhoto && (
             <div class="border-b-2 border-[var(--color-ink)]">
-              <Headshot slug={lo.slug} name={lo.displayName} fluid shape="square" />
+              <Headshot slug={lo.slug} name={lo.displayName} fluid />
             </div>
           )}
           <div class="p-5 flex flex-col flex-1">
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">{lo.title}</p>
+            <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">{lo.title}</p>
             <h3 class="mt-2 text-xl font-bold group-hover:underline">{lo.displayName}</h3>
             <p class="text-sm text-[var(--color-text-muted)]">NMLS #{lo.nmls}</p>
             <p class="text-sm text-[var(--color-text-muted)] mt-1">Licensed in {lo.states.length} state{lo.states.length === 1 ? "" : "s"}.</p>
@@ -127,12 +127,12 @@ const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
   >
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {photoLeaders.map((leader) => (
-        <article class="rounded-2xl border-2 border-[var(--color-ink)] overflow-hidden flex flex-col h-full bg-white">
+        <article class="border-2 border-[var(--color-ink)] overflow-hidden flex flex-col h-full bg-white">
           <div class="border-b-2 border-[var(--color-ink)]">
-            <Headshot slug={leader.slug} name={leader.name} fluid shape="square" />
+            <Headshot slug={leader.slug} name={leader.name} fluid />
           </div>
           <div class="p-5">
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">{leader.title}</p>
+            <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">{leader.title}</p>
             <h3 class="mt-2 text-lg font-bold">{leader.name}</h3>
           </div>
         </article>
@@ -141,8 +141,8 @@ const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
     {compactLeaders.length > 0 && (
       <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {compactLeaders.map((leader) => (
-          <article class="rounded-2xl bg-[var(--color-ink)] text-white p-5">
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-white/55">{leader.title}</p>
+          <article class="bg-[var(--color-ink)] text-white p-5">
+            <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">{leader.title}</p>
             <h3 class="mt-1 text-lg font-bold !text-white">{leader.name}</h3>
           </article>
         ))}
@@ -156,7 +156,7 @@ const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
       {BRANCHES.map((b) => (
         <div class="py-5 border-b border-white/15">
           <h3 class="text-base font-semibold !text-white">{b.name}</h3>
-          {b.metro && <p class="font-mono text-[10px] uppercase tracking-[0.12em] text-white/55 mt-1">{b.metro}</p>}
+          {b.metro && <p class="font-sans font-medium text-[10px] uppercase tracking-[0.12em] text-white/55 mt-1">{b.metro}</p>}
           {b.street && (
             <address class="not-italic text-sm text-white/75 mt-2 leading-snug">
               {b.street}<br/>{b.city}, {b.region} {b.postalCode}
@@ -185,7 +185,7 @@ const compactLeaders = LEADERSHIP_TEAM.filter((l) => !l.hasPhoto);
       Cliffco, Inc. is a Licensed Mortgage Banker by the New York State Department of Financial
       Services (LMBC109800), with active licenses in {STATE_LICENSES.length} states across the U.S.
     </p>
-    <p class="mt-6 max-w-4xl font-mono text-xs uppercase tracking-[0.08em] leading-loose text-[var(--color-text)]">
+    <p class="mt-6 max-w-4xl font-sans font-medium text-xs uppercase tracking-[0.08em] leading-loose text-[var(--color-text)]">
       {STATE_LICENSES.map((s) => s.name).join(" · ")}
     </p>
     <a href="/licensing/" class="btn btn-secondary mt-8">See full state license details</a>

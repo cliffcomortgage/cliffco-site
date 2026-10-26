@@ -27,7 +27,7 @@ const readMore = [
 >
   <section class="bg-white">
     <div class="container-wide pt-20 pb-14 lg:pt-28 lg:pb-16 text-center">
-      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--color-ink)] mb-6">
+      <div class="inline-flex items-center justify-center w-16 h-16 bg-[var(--color-ink)] mb-6">
         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
         </svg>
@@ -68,7 +68,7 @@ const readMore = [
       <h2 class="mt-3 !text-white" style="font-size: var(--text-h2); font-weight: 700;">Learn more about your options.</h2>
       <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {readMore.map((item) => (
-          <a href={item.href} class="group rounded-2xl border-2 border-white/40 hover:border-white p-6 no-underline flex flex-col gap-2 transition-colors">
+          <a href={item.href} class="group border-2 border-white/40 hover:border-white p-6 no-underline flex flex-col gap-2 transition-colors">
             <h3 class="font-semibold !text-white" style="font-size: 1.0625rem;">{item.label}</h3>
             <p class="text-sm text-white/70">{item.desc}</p>
             <span class="text-sm font-semibold text-white mt-auto pt-2">Read more →</span>

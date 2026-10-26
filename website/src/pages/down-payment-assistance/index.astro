@@ -145,7 +145,7 @@ const states = [
     <ul class="list-none m-0 p-0 border-t border-[var(--color-ink)]">
       {assistanceTypes.map((t) => (
         <li class="flex gap-5 items-start py-6 border-b border-black/15">
-          <div class="w-11 h-11 rounded-xl bg-[var(--color-ink)] flex items-center justify-center text-white shrink-0">
+          <div class="w-11 h-11 bg-[var(--color-ink)] flex items-center justify-center text-white shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="w-5 h-5" aria-hidden="true">
               <Fragment set:html={t.icon} />
             </svg>
@@ -164,7 +164,7 @@ const states = [
     <dl class="border-t border-[var(--color-ink)]">
       {eligibility.map((item) => (
         <div class="grid sm:grid-cols-[minmax(0,11rem)_1fr] gap-x-6 gap-y-1 py-5 border-b border-black/15">
-          <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">{item.label}</dt>
+          <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">{item.label}</dt>
           <dd class="text-[var(--color-text)] leading-relaxed">{item.body}</dd>
         </div>
       ))}
@@ -175,7 +175,7 @@ const states = [
   <Split eyebrow="Where we work" title="DPA programs across the states we serve." intro={`Cliffco actively originates in ${STATE_LICENSES.length} states and works with DPA programs in every market where we have a presence. Programs vary significantly by state. What's available in New York is very different from Florida or Arizona.`}>
     <div class="grid sm:grid-cols-2 gap-3">
       {states.map((item) => (
-        <div class="p-5 rounded-xl border-2 border-black/15">
+        <div class="p-5 border-2 border-black/15">
           <p class="font-semibold text-[var(--color-ink)]">{item.state}</p>
           <p class="text-sm text-[var(--color-text-muted)] mt-1 leading-relaxed">{item.note}</p>
         </div>
@@ -184,7 +184,7 @@ const states = [
     <p class="mt-5 text-sm text-[var(--color-text-muted)]">
       Program availability changes. A Cliffco loan officer will confirm what's currently funded and open in your specific county.
     </p>
-    <div class="mt-8 bg-[var(--color-ink)] rounded-2xl p-8 text-white">
+    <div class="mt-8 bg-[var(--color-ink)] p-8 text-white">
       <p class="eyebrow !text-white/60">The honest answer</p>
       <h3 class="mt-3 !text-white text-xl font-semibold leading-snug">DPA programs change too fast to publish a list. Talk to a real person instead.</h3>
       <p class="mt-4 text-white/75 text-sm leading-relaxed">
@@ -192,7 +192,7 @@ const states = [
       </p>
       <a href="#contact" class="mt-6 inline-flex btn btn-primary !bg-white !text-[var(--color-ink)] hover:!bg-white/85">Find my options →</a>
     </div>
-    <div class="mt-4 rounded-2xl border-2 border-[var(--color-ink)] p-6">
+    <div class="mt-4 border-2 border-[var(--color-ink)] p-6">
       <p class="font-semibold text-[var(--color-ink)]">Already working with a Cliffco loan officer?</p>
       <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">Ask them directly - they have access to current program availability for your county and can run a side-by-side comparison of DPA options against a standard low-down-payment loan.</p>
       <a href="/loan-officers/" class="mt-4 inline-block text-sm font-semibold text-[var(--color-ink)]">Find a loan officer →</a>
