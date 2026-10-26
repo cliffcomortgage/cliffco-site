@@ -4,7 +4,9 @@
  * Cliffco design tokens (Tailwind CSS v4 - CSS-first config).
  * Source of truth: brand/Cliffco_Brand_Guidelines_2026.pdf.
  *
- * Colour: black, white and one blue. Sky (#BDE8F1) is reserved for the caption
+ * Colour: black, white and one blue. Headlines, subheaders and the structural black are
+ * pure #000000 and body copy is #0d0d0d (Rafe, 2026-10-26) - the guide sets Black at
+ * #0D0D0D and body-on-white at Graphite, so both are deliberate departures. Sky (#BDE8F1) is reserved for the caption
  * box and nothing else - never a text colour on white, and never on buttons,
  * icons, charts, borders or the logo (guide p13). Roughly 80% white / 12% black
  * / 4% airy / 2% sky by area; if a layout looks like it has more blue than
@@ -22,26 +24,26 @@
 
 @theme {
   /* ---------- Brand colours (guide pp10-11) ---------- */
-  --color-rich-black: #0d0d0d;       /* Black - primary. Headlines, body, the plate */
+  --color-rich-black: #000000;       /* Black - primary. Headlines, panels, the plate */
   --color-sky: #bde8f1;              /* Sky - accent. The caption box, and nothing else */
   --color-graphite: #3d4040;         /* Graphite - caption panels, cards on black */
   --color-soft-gray: #b3b2b4;        /* Soft Gray - body copy and labels ON BLACK */
   --color-airy-gray: #f0eef1;        /* Airy Gray - document panels, light surfaces */
 
   /* Semantic aliases */
-  --color-ink: #0d0d0d;
-  --color-text: #3d4040;             /* Graphite on white, 10.5:1 */
+  --color-ink: #000000;              /* Headlines, subheaders, panels, borders, emphasis */
+  --color-text: #0d0d0d;             /* Body copy. A shade back from the headline black */
   /* The guide names no secondary colour for light surfaces: Soft Gray is a
      dark-surface colour and only reaches 2.1:1 on white. This is a graphite
      tint at 7.1:1, used where text on white needs to sit back. */
   --color-text-muted: #5a5d5d;
   --color-surface: #ffffff;
   --color-surface-soft: #f0eef1;
-  --color-accent: #0d0d0d;           /* Links, rules, focus. Black - never Sky */
+  --color-accent: #000000;           /* Links, rules, focus. Black - never Sky */
   --color-accent-soft: #f0eef1;
 
   /* Retired aliases, kept so older markup keeps resolving to a brand colour */
-  --color-bright-plum: #0d0d0d;
+  --color-bright-plum: #000000;
   --color-ice-blue: #f0eef1;
   --color-mist-gray: #f0eef1;
   --color-body: #3d4040;
@@ -319,7 +321,7 @@
 
   /* Dark background for hero / accent panels — grain texture added via ::before */
   .accent-gradient {
-    background: linear-gradient(135deg, #0d0d0d 0%, #1c1a20 100%);
+    background: linear-gradient(135deg, #000000 0%, #1c1a20 100%);
     color: #fff;
     position: relative;
     isolation: isolate;

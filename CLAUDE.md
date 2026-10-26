@@ -63,10 +63,11 @@ by area. Tokens live in `website/src/styles/global.css`.
 
 | Name | Hex | Token | Used for |
 |---|---|---|---|
-| Black | `#0D0D0D` | `--color-ink` | Headlines, body, the plate |
+| Black | `#000000` | `--color-ink` | Headlines, subheaders, panels, borders, emphasis |
+| Body black | `#0D0D0D` | `--color-text` | Body copy |
 | White | `#FFFFFF` | `--color-surface` | Every page background |
 | Sky | `#BDE8F1` | `--color-sky` | **The caption box only** |
-| Graphite | `#3D4040` | `--color-graphite`, `--color-text` | Body on white, caption panels |
+| Graphite | `#3D4040` | `--color-graphite` | Caption panels, cards on black |
 | Soft Gray | `#B3B2B4` | `--color-soft-gray` | Body and labels **on black only** |
 | Airy Gray | `#F0EEF1` | `--color-airy-gray` | Document panels, light surfaces |
 
@@ -74,6 +75,11 @@ by area. Tokens live in `website/src/styles/global.css`.
   icons, charts, borders or the logo. Buttons are black and white only. The site carries
   exactly one Sky box, on the homepage hero (`.caption` + `.sky-box`); the guide allows one
   per surface.
+- **Pure black, not the guide's #0D0D0D** (Rafe, 2026-10-26). Headlines, subheaders and every
+  structural black are `#000000`; body copy sits one shade back at `#0D0D0D`. The guide sets
+  Black at `#0D0D0D` and body-on-white at Graphite, so both are deliberate departures. Keep
+  the two in step: a hardcoded panel black has to move with `--color-ink` or it will sit a
+  shade off the panel beside it.
 - Soft Gray only reaches 2.1:1 on white, so it is a dark-surface colour. Secondary text on
   white uses `--color-text-muted` (`#5a5d5d`, a graphite tint at 7.1:1). The guide names no
   on-white secondary colour; this is the documented stand-in.

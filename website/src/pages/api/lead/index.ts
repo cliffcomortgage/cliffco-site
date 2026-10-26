@@ -155,7 +155,7 @@ async function sendViaEmail(lead: Lead, isFallback: boolean): Promise<void> {
 
   const html = `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;">
-      <h2 style="color:#0d0d0d;border-bottom:2px solid #6633cc;padding-bottom:12px;">
+      <h2 style="color:#000000;border-bottom:2px solid #000000;padding-bottom:12px;">
         New Mortgage Inquiry
       </h2>
       <table style="width:100%;border-collapse:collapse;margin-top:16px;">
@@ -179,15 +179,15 @@ async function sendViaEmail(lead: Lead, isFallback: boolean): Promise<void> {
   // Confirmation to the borrower
   const confirmHtml = `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;">
-      <div style="border-top:4px solid #6633cc;padding-top:20px;">
-        <h2 style="color:#0d0d0d;margin-top:0;">We received your message.</h2>
+      <div style="border-top:4px solid #000000;padding-top:20px;">
+        <h2 style="color:#000000;margin-top:0;">We received your message.</h2>
         <p style="color:#444;line-height:1.6;">
           Hi ${lead.name}, thanks for reaching out to Cliffco. A loan officer will review your
           inquiry and follow up within <strong>1 business day</strong>.
         </p>
         <p style="color:#444;line-height:1.6;">
           If you'd like to speak with someone sooner, call us at
-          <a href="tel:+18008344040" style="color:#6633cc;font-weight:600;">(800) 834-4040</a>
+          <a href="tel:+18008344040" style="color:#000000;font-weight:600;">(800) 834-4040</a>
           Mon–Fri 9am–6pm ET.
         </p>
         <hr style="border:none;border-top:1px solid #eee;margin:24px 0;" />
