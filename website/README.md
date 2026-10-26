@@ -97,7 +97,6 @@ Things scaffolded but not completable autonomously:
 1. **Real LO photos** — every bio currently has a `[ photo placeholder ]` block. Need professional headshots for at least the leadership wave + branch managers to launch.
 2. **Branch street addresses** — only the Uniondale HQ has a full address. Newark, Jamaica, Wantagh, Bay Shore, Orlando, Scottsdale, Excelsior need street + ZIP + direct branch phone before the location-page LocalBusiness schema is fully accurate.
 3. **LO long-form bios** — Wave 1 (Christopher Clifford) has a sample bio drafted; the others need LO-confirmed narratives, years of experience, scenarios, languages, LinkedIn URLs.
-4. **Licensed Graphik web font kit** from Commercial Type — the design tokens currently fall back to Open Sans (the brand-guide-published web fallback). Replace `--font-sans` declaration in `src/styles/global.css` with the licensed @font-face once the kit is procured.
 5. **Real customer testimonials** — both for individual LO bios and any review widget on product/location pages.
 6. **Encompass borrower portal integration** — `/get-started/` form posts to a `/api/lead` placeholder. Wire it to the actual CRM/Encompass endpoint and add reCAPTCHA Enterprise or Cloudflare Turnstile.
 7. **Logo SVGs** — currently referenced as `/brand/full-logo.svg` etc.; copy from `../brand/logos/` into `public/brand/` and verify schema `logo` paths.

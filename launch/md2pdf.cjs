@@ -99,15 +99,20 @@ const md = fs.readFileSync(IN, "utf8");
  * Fonts are inlined as data URIs rather than pulled from Google Fonts. Loading them over the
  * network passed document.fonts.check() but Chrome still embedded Segoe UI in the printed
  * PDF, so the first two attempts came out in a fallback face. Inlining removes the race.
- * Outfit and IBM Plex Mono are both OFL, so embedding them in a PDF is permitted. These
+ * Archivo and IBM Plex Mono are both OFL, so embedding them in a PDF is permitted. These
  * files are read from brand/fonts, which is gitignored - the PDF carries its own subset, and
  * nothing from that folder is committed or referenced by the website build.
  */
-const FONT_DIR = path.resolve(__dirname, "../../../../../Cliffco Mortgage Bank/FILESHARE - MARKETING/1. Creative/6. Github Projects/cliffco-site/brand/fonts");
+// This file lives in launch/, so the repo root is one level up. The old relative chain
+// climbed out of the repo and back in by absolute-ish path, which broke the moment it was
+// run from a different working directory.
+const FONT_DIR = path.resolve(__dirname, "../brand/fonts");
+// Archivo shipped nested inside the IBM_Plex_Mono folder in the 2026 font drop; that is
+// how it is on disk, so that is the path used here.
 const FACES = [
-  ["Outfit", 400, "Outfit/static/Outfit-Regular.ttf"],
-  ["Outfit", 600, "Outfit/static/Outfit-SemiBold.ttf"],
-  ["Outfit", 700, "Outfit/static/Outfit-Bold.ttf"],
+  ["Archivo", 400, "IBM_Plex_Mono/Archivo/Archivo-Regular.ttf"],
+  ["Archivo", 500, "IBM_Plex_Mono/Archivo/Archivo-Medium.ttf"],
+  ["Archivo", 700, "IBM_Plex_Mono/Archivo/Archivo-Bold.ttf"],
   ["IBM Plex Mono", 400, "IBM_Plex_Mono/IBMPlexMono-Regular.ttf"],
   ["IBM Plex Mono", 600, "IBM_Plex_Mono/IBMPlexMono-SemiBold.ttf"],
 ];
@@ -127,12 +132,12 @@ ${fontCss}
 <style>
   @page { size: Letter; margin: 16mm 14mm 18mm; }
   * { box-sizing: border-box; }
-  body { font-family: "Outfit", system-ui, sans-serif; color: #0d0d0d; font-size: 10.5pt; line-height: 1.55; margin: 0; }
+  body { font-family: "Archivo", system-ui, sans-serif; color: #0d0d0d; font-size: 10.5pt; line-height: 1.55; margin: 0; }
   h1 { font-size: 21pt; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 4pt; }
   h2 { font-size: 13.5pt; font-weight: 700; letter-spacing: -0.01em; margin: 20pt 0 6pt; padding-bottom: 4pt;
        border-bottom: 1.5pt solid #0d0d0d; break-after: avoid; }
-  h3 { font-size: 11.5pt; font-weight: 600; margin: 14pt 0 4pt; break-after: avoid; }
-  h4 { font-size: 10.5pt; font-weight: 600; margin: 12pt 0 3pt; break-after: avoid; }
+  h3 { font-size: 11.5pt; font-weight: 700; margin: 14pt 0 4pt; break-after: avoid; }
+  h4 { font-size: 10.5pt; font-weight: 700; margin: 12pt 0 3pt; break-after: avoid; }
   p { margin: 0 0 7pt; }
   ul, ol { margin: 0 0 8pt; padding-left: 16pt; }
   li { margin-bottom: 3pt; }
@@ -165,10 +170,10 @@ fs.writeFileSync(tmp, html);
   const p = await b.newPage();
   await p.goto("file:///" + tmp.replace(/\\/g, "/"), { waitUntil: "networkidle0", timeout: 60000 });
   // networkidle0 alone is not enough: the first run printed before the webfonts were applied
-  // and Chrome embedded Segoe UI in place of Outfit. Wait for the font set, then confirm.
+  // and Chrome embedded Segoe UI in place of Archivo. Wait for the font set, then confirm.
   await p.evaluate(() => document.fonts.ready);
   const fontsOk = await p.evaluate(() =>
-    document.fonts.check('700 21pt "Outfit"') && document.fonts.check('600 8pt "IBM Plex Mono"'));
+    document.fonts.check('700 21pt "Archivo"') && document.fonts.check('600 8pt "IBM Plex Mono"'));
   if (!fontsOk) throw new Error("brand fonts did not load - refusing to print a fallback-font PDF");
   await new Promise((r) => setTimeout(r, 600));
   await p.pdf({

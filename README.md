@@ -41,12 +41,18 @@ Full text in [`brand/mission-vision-values.md`](brand/mission-vision-values.md).
 
 ## Fonts
 
-Primary typeface is **Graphik** (Regular + Medium). The OTFs are kept locally
-in `brand/fonts/` for design work but **gitignored** — they're trial cuts that
-ship with the brand guide and aren't licensed for redistribution. A licensed
-web font kit from
-[Commercial Type](https://commercialtype.com/catalog/graphik) is required
-before the rebuilt site can ship.
+Three typefaces, all OFL and all on Google Fonts, so nothing needs licensing:
+
+- **Archivo** — the logo and everything you read: headlines, captions, body, labels, buttons.
+- **IBM Plex Mono** — the data voice only: rates, payments, figures, name tags, footers.
+- **Instrument Serif** — the display accent, and the brand's only italic.
+
+The `.ttf` files are kept in `brand/fonts/` for design work but that folder is
+**gitignored**, so each machine needs its own copy. The website loads all three from
+Google Fonts, never from `brand/fonts/`.
+
+Graphik was the pre-2026 primary face and Outfit/Montserrat the 2026-10 pairing. Both are
+retired; see `CLAUDE.md` for the full brand rules.
 
 ## Current website
 

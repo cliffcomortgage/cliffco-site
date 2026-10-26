@@ -113,11 +113,9 @@ a static crawler (`crawl.cjs`), a visible-text pass (`text.cjs`), a runtime cons
    Mortgage Bankers"` is 38 characters of overhead on every post. The long descriptions come
    from product pages reusing `directAnswer`, which is deliberately long-form for AEO; worth
    deciding whether SERP display or answer-engine extraction wins there. Not launch-blocking.
-3. **The NJ lander still loads Open Sans** (`LandingLayout.astro`), a font the brand dropped
-   in favour of Outfit + IBM Plex Mono. It also links to `/privacy-policy/`, the old
-   WordPress path, which 301s correctly but costs a hop. Both are lander design, which I
-   don't change without asking — say the word and they're one-line fixes. The internal
-   dashboard loads Open Sans too; harmless, not customer-facing.
+3. **The NJ lander links to `/privacy-policy/`**, the old WordPress path, which 301s
+   correctly but costs a hop. One-line fix. (The font half of this item is done: the landers,
+   the dashboard and the login gate all run Archivo as of 2026-10-26.)
 4. **Image weight.** 110MB in `public/images`, of which ~85MB is the gitignored Adobe Stock
    originals — those never reach production because they aren't in git, but it does mean a
    local build and a Vercel build produce different output. Among images pages *do* serve,
