@@ -42,6 +42,37 @@ Critical facts that must show up in the right places:
 5. **Bilingual LO clusters** (basis for the Spanish-language site): Buckeye AZ, Branchburg, Uniondale. Detail in `compliance/loan-officers.md` (the Orlando cluster dissolved when that branch closed, July 2026).
 6. **AZ license number is #1045708.** (A past discrepancy traced to Julian Giaquinto's disclosure; he was offboarded July 2026, resolving it.)
 
+## Product facts — Guidelines/ is the source, investor matrices included
+
+Every product figure on the site — LTV, down payment, loan ceilings, credit minimums,
+reserves, qualifying basis — comes from `Guidelines/`. Never publish one that isn't in there,
+and never carry one over from memory or from the live WordPress site.
+
+**Cliffco does not write a matrix for every product.** Where there is no Cliffco matrix, the
+programme runs on an investor's and the investor matrix is the source. Foreign National is the
+worked example (confirmed by Rafe 2026-11-02): there is no Cliffco Foreign National matrix,
+and `Cliffco 1-6 - DSCR MATRIX.pdf` just says "Please see Foreign national Matrix", so the
+two investor documents govern:
+
+| Investor | File | Covers |
+|---|---|---|
+| **Verus** (VMC) | `VMC Correspondent Non-Agency Loan LTV Matrix 10.19.2026 Final.pdf`, pp17–18 | Foreign National DSCR, **investment only**, $150k–$2.5M, 6 mo PITIA. LTV by loan size: 25% down to $1.5M, 30% to $2M, 35% to $2.5M |
+| **Onslow Bay** | `Onslow Bay Guidelines V9.0.pdf`, p73 §16.5 | Foreign National Plus. **2nd home and investment**, and the only **foreign-income** path (DTI to 45%). 35% down, $150k–$1.0mm, 12 mo PITIA |
+
+Two habits that came out of getting this wrong:
+
+- **A figure can be true in isolation and misleading in a row.** "25% down" and "up to $2.5M"
+  are both in the Verus matrix but never together — LTV is priced by loan size. When a matrix
+  tiers a number, publish the tiers.
+- **Check which lane a figure belongs to before putting it in a shared table.** Down payment,
+  reserves, loan amount and qualifying basis all differ between the two Foreign National
+  investors; one spec table covering both has to say which is which.
+
+Eligibility can also turn on **country and state together**, not country alone — e.g. the
+Cliffco DSCR matrix makes Foreign Nationals from the Republic of China ineligible in FL, and
+HI ineligible outright. Don't list restrictions in page copy, but don't write copy that
+implies citizenship is the only test either.
+
 ## Personnel corrections (override the static docs)
 
 The NMLS roster and `Leadership Bios.docx` are point-in-time snapshots. These corrections supersede them — do **not** publish the legacy versions:
