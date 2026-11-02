@@ -63,12 +63,12 @@ const whoQualifies = [
   { title: "Self-employed foreign nationals", body: "Business owners outside the US can qualify using foreign tax documents, business bank statements, or income letters from their home country, with no US business registration required." },
 ];
 const numbers = [
-  ["Min down payment", "30% on a purchase; 40% on a cash-out refinance"],
+  ["Min down payment", "25% on a purchase; 40% on a cash-out refinance"],
   ["US credit required", "No"],
   ["US tax returns required", "No"],
   ["Reserves required", "6 months PITIA"],
-  ["Loan amounts", "Up to $1.5M"],
-  ["Qualifying basis", "The property's rental income must cover the payment"],
+  ["Loan amounts", "Up to $2.5M"],
+  ["Qualifying basis", "The property's rental income must cover the payment, or documented foreign income"],
   ["Occupancy", "Investment, second home"],
 ];
 ---
@@ -84,7 +84,7 @@ const numbers = [
     eyebrow={p.category}
     lead={p.oneLiner}
     facts={[
-      { label: "Down payment", value: "From 30%" },
+      { label: "Down payment", value: "From 25%" },
       { label: "US credit or tax returns", value: "Not required" },
       { label: "Occupancy", value: "Investment, second home" },
     ]}
