@@ -36,14 +36,14 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 
     <h2 class="mt-10">How the DSCR Calculation Works for Investment Property</h2>
 
-    <p class="mt-4">DSCR is calculated by dividing the property's monthly gross rental income by its total monthly payment including principal, interest, taxes, insurance, and any HOA dues. A ratio of 1.0 means the rental income exactly covers the payment. Most lenders require a ratio of 1.10 to 1.25 for standard pricing. Properties with ratios below that threshold may still qualify at adjusted pricing or with a larger down payment.</p>
+    <p class="mt-4">DSCR is calculated by dividing the property's monthly gross rental income by its total monthly payment including principal, interest, taxes, insurance, and any HOA dues. A ratio of 1.00 means the rental income exactly covers the payment, and that is the line Cliffco's matrix splits on: at or above it you reach our highest loan-to-values. Properties below 1.00 still qualify, at a lower loan-to-value that means a larger down payment.</p>
 
     <p class="mt-4">For foreign national borrowers specifically, down payment requirements on DSCR loans are typically higher than for US-based borrowers, often 25 to 40% depending on the lender and the property. That higher equity position reduces the lender's risk in the absence of full US borrower documentation.</p>
 
     <h2 class="mt-10">What to Do, In Order</h2>
 
     <ol class="mt-4 list-decimal list-inside space-y-2">
-      <li><strong>Identify the target property and calculate its DSCR before you choose a lender.</strong> Divide the monthly market rent by the estimated total monthly payment at current rates. If the ratio is 1.10 or higher, standard DSCR pricing is likely available. If it's below that, understand how the lender handles lower-ratio properties before you proceed.</li>
+      <li><strong>Identify the target property and calculate its DSCR before you choose a lender.</strong> Divide the monthly market rent by the estimated total monthly payment at current rates. If the ratio is 1.00 or higher you reach Cliffco's top loan-to-value tier. If it's below that, ask how the lender handles lower-ratio properties before you proceed; we lend there at a lower loan-to-value.</li>
       <li><strong>Confirm your down payment capacity.</strong> Foreign national DSCR loans typically require 25 to 40% down. Know that number before you finalize a purchase price.</li>
       <li><strong>Document your down payment funds clearly.</strong> As with all foreign national programs, lenders will want to see the source and history of the funds you're bringing to closing. Bank statements showing the funds held over a period of time are the standard requirement.</li>
       <li><strong>Ask lenders specifically whether they offer DSCR loans to foreign nationals.</strong> Not all DSCR lenders extend the product to international buyers. Finding one who does before you invest time in the process is the right first step.</li>
@@ -157,7 +157,8 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 
     const ratioEl = document.getElementById("art-dscr-ratio")!;
     ratioEl.textContent = dscr.toFixed(2);
-    ratioEl.className = "text-3xl font-bold mt-1 " + (dscr >= 1.25 ? "text-green-600" : dscr >= 1.0 ? "text-yellow-700" : "text-red-600");
+    // Cliffco's matrix splits at 1.00, so that is a pass. Below it is a priced tier, not a decline.
+    ratioEl.className = "text-3xl font-bold mt-1 " + (dscr >= 1.0 ? "text-green-600" : "text-yellow-700");
 
     (document.getElementById("art-dscr-obligation") as HTMLElement).textContent = fmt(obligation);
 
@@ -166,10 +167,9 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     cfEl.className = "text-2xl font-bold mt-1 " + (cashflow >= 0 ? "text-green-600" : "text-red-600");
 
     let verdict = "";
-    if (dscr >= 1.25)      verdict = "Strong cash flow. This property should qualify at standard DSCR pricing with most lenders.";
-    else if (dscr >= 1.10) verdict = "Good coverage. Most lenders approve at standard pricing at a 1.10+ ratio.";
-    else if (dscr >= 1.0)  verdict = "Breakeven coverage. Some lenders will approve, but you may need a stronger down payment or credit profile.";
-    else                   verdict = "Below breakeven. This property may not qualify for a standard DSCR loan. A larger down payment or lower rate may help.";
+    if (dscr >= 1.25)     verdict = "Strong cash flow. This clears every tier on Cliffco's DSCR matrix, including the 1.25 minimum on loans between $100,000 and $150,000.";
+    else if (dscr >= 1.0) verdict = "This qualifies in Cliffco's top DSCR tier. At 1.00 or better you reach the highest loan-to-values on our matrix.";
+    else                  verdict = "Under 1.00, which is still eligible. Cliffco prices a tier specifically for DSCR below 1.00, at a lower loan-to-value - a larger down payment, not a decline.";
 
     (document.getElementById("art-dscr-verdict") as HTMLElement).textContent = verdict;
     (document.getElementById("art-dscr-result") as HTMLElement).classList.remove("hidden");

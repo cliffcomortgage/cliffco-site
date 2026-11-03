@@ -40,7 +40,7 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 
     <p class="mt-4">DSCR is calculated as: <strong>Gross Rental Income ÷ Monthly PITIA (principal, interest, taxes, insurance, and any HOA).</strong></p>
 
-    <p class="mt-4">A ratio of 1.0 means the property exactly breaks even. Most DSCR lenders want 1.10 to 1.25 to approve the loan at standard pricing. Some will go to 0.75 or even no-ratio for strong borrowers, but you'll pay for it in rate.</p>
+    <p class="mt-4">A ratio of 1.00 means the property exactly breaks even, and that is the line Cliffco's matrix splits on: at or above it you reach our highest loan-to-values. Below 1.00 we still lend, at a lower loan-to-value, and there is a No Ratio tier below that where the rent is not measured at all. The lower the ratio, the larger the down payment.</p>
 
     <p class="mt-4">The key comparison is this: under a DSCR loan, the lender uses the property's actual market rent to evaluate the deal. Under a conventional loan, the underwriter uses your documented net income, which for most investors is significantly lower than what the property actually produces. The same deal can be denied under one framework and approved under the other, with the same borrower and the same property.</p>
 
@@ -49,7 +49,7 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     <h2 class="mt-10">What Real Estate Investors Should Do Before Applying for a DSCR Loan</h2>
 
     <ol class="mt-4 list-decimal list-inside space-y-2">
-      <li><strong>Pull the rent schedule on any target property first.</strong> If the market rent doesn't produce a DSCR of at least 1.10 at your expected purchase price and down payment, the loan will be priced up or declined.</li>
+      <li><strong>Pull the rent schedule on any target property first.</strong> If the market rent doesn't produce a DSCR of at least 1.00 at your expected purchase price and down payment, expect a lower maximum loan-to-value, which means putting more down.</li>
       <li><strong>Check your credit before you apply.</strong> DSCR lenders are credit-sensitive. A higher credit score gets you the best pricing, while a lower score will likely require a larger down payment or result in a higher rate.</li>
       <li><strong>Plan for 20 to 25% down.</strong> Most DSCR programs cap at 75 to 80% LTV. This isn't negotiable at most lenders. Build that into your acquisition math before you make an offer.</li>
       <li><strong>Don't use DSCR for your primary residence.</strong> These are investment property loans only. Trying to use one for an owner-occupied property is a disqualifying condition.</li>
@@ -170,7 +170,8 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 
     const ratioEl = document.getElementById("art-dscr-ratio")!;
     ratioEl.textContent = dscr.toFixed(2);
-    ratioEl.className = "text-3xl font-bold mt-1 " + (dscr >= 1.25 ? "text-green-600" : dscr >= 1.0 ? "text-yellow-700" : "text-red-600");
+    // Cliffco's matrix splits at 1.00, so that is a pass. Below it is a priced tier, not a decline.
+    ratioEl.className = "text-3xl font-bold mt-1 " + (dscr >= 1.0 ? "text-green-600" : "text-yellow-700");
 
     (document.getElementById("art-dscr-obligation") as HTMLElement).textContent = fmt(obligation);
 
@@ -179,10 +180,9 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     cfEl.className = "text-2xl font-bold mt-1 " + (cashflow >= 0 ? "text-green-600" : "text-red-600");
 
     let verdict = "";
-    if (dscr >= 1.25)      verdict = "Strong cash flow. This property should qualify at standard DSCR pricing with most lenders.";
-    else if (dscr >= 1.10) verdict = "Good coverage. Most lenders approve at standard pricing at a 1.10+ ratio.";
-    else if (dscr >= 1.0)  verdict = "Breakeven coverage. Some lenders will approve, but you may need a stronger down payment or credit profile.";
-    else                   verdict = "Below breakeven. This property may not qualify for a standard DSCR loan. A larger down payment or lower rate may help.";
+    if (dscr >= 1.25)     verdict = "Strong cash flow. This clears every tier on Cliffco's DSCR matrix, including the 1.25 minimum on loans between $100,000 and $150,000.";
+    else if (dscr >= 1.0) verdict = "This qualifies in Cliffco's top DSCR tier. At 1.00 or better you reach the highest loan-to-values on our matrix.";
+    else                  verdict = "Under 1.00, which is still eligible. Cliffco prices a tier specifically for DSCR below 1.00, at a lower loan-to-value - a larger down payment, not a decline.";
 
     (document.getElementById("art-dscr-verdict") as HTMLElement).textContent = verdict;
     (document.getElementById("art-dscr-result") as HTMLElement).classList.remove("hidden");

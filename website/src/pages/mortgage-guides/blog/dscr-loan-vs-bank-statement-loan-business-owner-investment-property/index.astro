@@ -43,7 +43,7 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     <h2 class="mt-10">What to Do, In Order</h2>
 
     <ol class="mt-4 list-decimal list-inside space-y-2">
-      <li><strong>Calculate the target property's DSCR at current Non-QM rates before you choose a product.</strong> Divide estimated monthly gross rent by the projected PITIA. If the result is 1.10 or higher, DSCR is available at standard pricing. If it's below that, bank statement is likely your path.</li>
+      <li><strong>Calculate the target property's DSCR at current Non-QM rates before you choose a product.</strong> Divide estimated monthly gross rent by the projected PITIA. If the result is 1.00 or higher you reach Cliffco's top DSCR loan-to-value tier. Below that we still write DSCR at a lower loan-to-value, so weigh that larger down payment against what bank statement would qualify you for.</li>
       <li><strong>Calculate your bank statement qualifying income as a baseline.</strong> Even if DSCR works for this property, knowing your bank statement number tells you what your borrowing capacity looks like on the income-based side.</li>
       <li><strong>Consider your portfolio growth plans before you choose.</strong> If you intend to acquire multiple properties over the next several years, DSCR preserves your income-based borrowing capacity for other needs. Bank statement loans consume it with each acquisition.</li>
       <li><strong>Check whether LLC ownership matters to your strategy.</strong> DSCR lenders are generally more flexible about entity vesting. If acquiring investment properties in an LLC is part of your plan, DSCR accommodates that more cleanly than most bank statement programs.</li>
@@ -157,7 +157,8 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 
     const ratioEl = document.getElementById("art-dscr-ratio")!;
     ratioEl.textContent = dscr.toFixed(2);
-    ratioEl.className = "text-3xl font-bold mt-1 " + (dscr >= 1.25 ? "text-green-600" : dscr >= 1.0 ? "text-yellow-700" : "text-red-600");
+    // Cliffco's matrix splits at 1.00, so that is a pass. Below it is a priced tier, not a decline.
+    ratioEl.className = "text-3xl font-bold mt-1 " + (dscr >= 1.0 ? "text-green-600" : "text-yellow-700");
 
     (document.getElementById("art-dscr-obligation") as HTMLElement).textContent = fmt(obligation);
 
@@ -166,10 +167,9 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     cfEl.className = "text-2xl font-bold mt-1 " + (cashflow >= 0 ? "text-green-600" : "text-red-600");
 
     let verdict = "";
-    if (dscr >= 1.25)      verdict = "Strong cash flow. This property should qualify at standard DSCR pricing with most lenders.";
-    else if (dscr >= 1.10) verdict = "Good coverage. Most lenders approve at standard pricing at a 1.10+ ratio.";
-    else if (dscr >= 1.0)  verdict = "Breakeven coverage. Some lenders will approve, but you may need a stronger down payment or credit profile.";
-    else                   verdict = "Below breakeven. This property may not qualify for a standard DSCR loan. A larger down payment or lower rate may help.";
+    if (dscr >= 1.25)     verdict = "Strong cash flow. This clears every tier on Cliffco's DSCR matrix, including the 1.25 minimum on loans between $100,000 and $150,000.";
+    else if (dscr >= 1.0) verdict = "This qualifies in Cliffco's top DSCR tier. At 1.00 or better you reach the highest loan-to-values on our matrix.";
+    else                  verdict = "Under 1.00, which is still eligible. Cliffco prices a tier specifically for DSCR below 1.00, at a lower loan-to-value - a larger down payment, not a decline.";
 
     (document.getElementById("art-dscr-verdict") as HTMLElement).textContent = verdict;
     (document.getElementById("art-dscr-result") as HTMLElement).classList.remove("hidden");
