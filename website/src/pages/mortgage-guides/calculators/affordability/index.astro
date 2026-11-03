@@ -5,7 +5,7 @@ import CalcAssumptions from "../../../../components/ui/CalcAssumptions.astro";
 import { COMPANY } from "../../../../data/company";
 import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumptions";
 const CALC_ASSUMPTIONS = [
-  "Maximum debt-to-income ratio of <strong>43%</strong>, measured on all monthly debt including the new housing payment",
+  "Maximum debt-to-income ratio of <strong>43%</strong>, measured on all monthly debt including the new housing payment. Our conventional guidelines allow up to 50%, so this is a conservative floor rather than the limit",
   `${RATE_ASSUMPTIONS.conventional30}% interest rate on a <strong>30-year fixed</strong> loan`,
   "Minimum down payment of <strong>3.5%</strong>, the FHA floor",
   "Your entire savings figure goes in as the down payment - nothing is held back",
@@ -113,7 +113,7 @@ const CALC_OMITS = [
             </li>
             <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
               <span class="mt-0.5 text-[var(--color-ink)] font-bold shrink-0">&#10003;</span>
-              Conventional lenders want your total monthly debt including the new mortgage below 43% of gross income
+              This calculator caps total monthly debt, including the new mortgage, at 43% of gross income. That is deliberately conservative: our conventional guidelines allow up to 50%, so a loan officer may qualify you for more than this shows
             </li>
             <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
               <span class="mt-0.5 text-[var(--color-ink)] font-bold shrink-0">&#10003;</span>
