@@ -2,6 +2,7 @@
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
+import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumptions";
 ---
 
 <Layout
@@ -44,11 +45,11 @@ import { COMPANY } from "../../../../data/company";
             </div>
             <div>
               <label for="va-rate" class="block text-sm font-medium text-[var(--color-ink)]">VA loan interest rate (%)</label>
-              <input id="va-rate" type="number" class="calc-input mt-1.5" value="6.75" min="2" max="15" step="0.125" />
+              <input id="va-rate" type="number" class="calc-input mt-1.5" value={RATE_ASSUMPTIONS.va30} min="2" max="15" step="0.125" />
             </div>
             <div>
               <label for="va-convrate" class="block text-sm font-medium text-[var(--color-ink)]">Conventional loan rate for comparison (%)</label>
-              <input id="va-convrate" type="number" class="calc-input mt-1.5" value="7.25" min="2" max="15" step="0.125" />
+              <input id="va-convrate" type="number" class="calc-input mt-1.5" value={RATE_ASSUMPTIONS.conventional30} min="2" max="15" step="0.125" />
             </div>
             <div>
               <label for="va-use" class="block text-sm font-medium text-[var(--color-ink)]">Loan use</label>
@@ -121,7 +122,12 @@ import { COMPANY } from "../../../../data/company";
             </li>
           </ul>
           <p class="mt-6 text-xs text-[var(--color-text-muted)] leading-relaxed border-t border-black/15 pt-4">
-            Estimate only. Funding fee percentages reflect 2024 VA guidelines for regular military (not National Guard or Reserves, which differ). Exempt if you have a service-connected disability rating. Confirm with a loan officer.
+            Estimate only. Both rate boxes start at Cliffco's current illustrative assumptions
+            ({RATE_ASSUMPTIONS.va30}% VA, {RATE_ASSUMPTIONS.conventional30}% conventional) and you can
+            change them; a rate of zero shows no result rather than a principal-only payment. The
+            conventional comparison assumes 20% down so no mortgage insurance applies, and both
+            columns use the same taxes and insurance. {RATE_DISCLOSURE} Funding fee percentages
+            reflect 2024 VA guidelines for regular military (not National Guard or Reserves, which differ). Exempt if you have a service-connected disability rating. Confirm with a loan officer.
           </p>
         </div>
       </div>
@@ -233,7 +239,12 @@ import { COMPANY } from "../../../../data/company";
     const convTotal = pi_conv + ti;
     const monthlySavings = convTotal - vaTotal;
 
-    const hasData = price > 0;
+    /*
+     * A rate of zero, or a cleared rate box, used to fall through to the loan/360 branch and
+     * print a principal-only payment that reads like a real quote - the $1,761 compliance
+     * flagged was $400,000/360 plus taxes and insurance, not a hidden rate. Suppress instead.
+     */
+    const hasData = price > 0 && vaRate > 0 && convRate > 0;
 
     const monthlyEl = document.getElementById("va-monthly");
     const convEl = document.getElementById("va-conv");

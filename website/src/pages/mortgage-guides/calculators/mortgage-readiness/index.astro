@@ -2,6 +2,7 @@
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
+import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumptions";
 ---
 
 <Layout
@@ -113,7 +114,15 @@ import { COMPANY } from "../../../../data/company";
             </li>
           </ul>
           <p class="mt-6 text-xs text-[var(--color-text-muted)] leading-relaxed border-t border-black/15 pt-4">
-            Estimate only. Readiness scores are directional, not a credit decision. Actual qualification depends on full underwriting review.
+            Estimate only, and the score is Cliffco's own 0&ndash;100 readiness measure &mdash; not a
+            credit score, not a lender decision, and not reported to anyone. It starts at 100 and
+            deducts for three things: credit band (up to &minus;40 below 580), back-end
+            debt-to-income (&minus;10 over 36%, &minus;20 over 43%, &minus;30 over 50%), and cash
+            reserves (&minus;20 under two months of housing payments, &minus;10 under three,
+            &minus;5 under six). To turn your target price into a payment it assumes 5% down, a
+            {RATE_ASSUMPTIONS.conventional30}% rate on a 30-year fixed, and taxes plus insurance at
+            1.5% of the price a year. No APR is calculated anywhere.
+            {RATE_DISCLOSURE} Actual qualification depends on a full underwriting review.
           </p>
         </div>
       </div>
@@ -180,6 +189,8 @@ import { COMPANY } from "../../../../data/company";
 </style>
 
 <script>
+  import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
+
   function calc() {
     const creditScores: Record<string, number> = {
       "below580": 550,
@@ -214,7 +225,7 @@ import { COMPANY } from "../../../../data/company";
     }
 
     const downEst = price * 0.05;
-    const r = 0.07 / 12;
+    const r = RATE_ASSUMPTIONS.conventional30 / 100 / 12;
     const n = 360;
     const piEst = (price - downEst) * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     const tiEst = price * 0.015 / 12;

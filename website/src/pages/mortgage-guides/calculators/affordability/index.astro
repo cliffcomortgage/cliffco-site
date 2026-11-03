@@ -2,6 +2,7 @@
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
+import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumptions";
 ---
 
 <Layout
@@ -106,7 +107,12 @@ import { COMPANY } from "../../../../data/company";
             </li>
           </ul>
           <p class="mt-6 text-xs text-[var(--color-text-muted)] leading-relaxed border-t border-black/15 pt-4">
-            Estimate only. Assumes 7% rate, 30-year term, and no HOA. Actual qualification confirmed at pre-approval with full income and credit review.
+            Estimate only, not a pre-approval. Assumes a {RATE_ASSUMPTIONS.conventional30}% rate on a
+            30-year fixed, a 43% maximum debt-to-income ratio, two months of housing payments
+            held back as reserves, a 3.5% minimum down payment, and no HOA or mortgage
+            insurance. Your range is set by whichever limit binds first: income through DTI,
+            or savings through the down payment. {RATE_DISCLOSURE} Actual qualification is
+            confirmed at pre-approval with a full income and credit review.
           </p>
         </div>
       </div>
@@ -165,6 +171,8 @@ import { COMPANY } from "../../../../data/company";
 </style>
 
 <script>
+  import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
+
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("en-US");
   }
@@ -189,7 +197,7 @@ import { COMPANY } from "../../../../data/company";
       return;
     }
 
-    const rate = 0.07;
+    const rate = RATE_ASSUMPTIONS.conventional30 / 100;
     const r = rate / 12;
     const n = 360;
     const tiMonthly = (taxes + ins) / 12;
@@ -200,26 +208,28 @@ import { COMPANY } from "../../../../data/company";
     const factor = r > 0 ? (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1) : 1 / n;
     const maxLoanByIncome = maxPI / factor;
 
-    // Savings-based limit
+    // Savings-based limit. Hold back two months of housing payment as reserves; the rest
+    // is available for the down payment.
     const reserves = 2 * maxHousingPayment;
     const availableForDown = Math.max(0, savings - reserves);
 
-    let maxPriceBySavings = 0;
-    for (const pct of [0.20, 0.10, 0.05, 0.035]) {
-      const priceAtPct = availableForDown / pct;
-      const loanAtPct = priceAtPct * (1 - pct);
-      if (loanAtPct <= maxLoanByIncome) {
-        maxPriceBySavings = priceAtPct;
-        break;
-      }
-    }
-    if (maxPriceBySavings === 0) {
-      maxPriceBySavings = maxLoanByIncome + availableForDown;
-    }
-
-    const maxPriceByIncome = maxLoanByIncome / 0.80;
+    /*
+     * Highest price that satisfies both limits at once:
+     *   loan <= maxLoanByIncome      and      down >= MIN_DOWN x price
+     * Put the whole down payment in and borrow the most income allows, which gives
+     * availableForDown + maxLoanByIncome. If that price would need a smaller percentage
+     * down than the minimum, savings bind instead at availableForDown / MIN_DOWN.
+     *
+     * The earlier version walked [20%, 10%, 5%, 3.5%] and stopped at the first percentage
+     * whose loan fitted under the income limit. A small down payment always fits at 20%,
+     * so it stopped immediately and reported savings/20% as the ceiling.
+     */
+    const MIN_DOWN = 0.035;
+    const maxPriceByIncome = availableForDown + maxLoanByIncome;
+    const maxPriceBySavings = availableForDown / MIN_DOWN;
     const maxPrice = Math.min(maxPriceByIncome, maxPriceBySavings);
-    const downDollars = Math.min(savings * 0.8, maxPrice * 0.20);
+
+    const downDollars = Math.min(availableForDown, maxPrice);
     const loanAmount = maxPrice - downDollars;
     const pi = loanAmount * factor;
     const totalPayment = pi + tiMonthly;

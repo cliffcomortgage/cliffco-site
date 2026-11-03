@@ -2,6 +2,7 @@
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 import { COMPANY } from "../../../../data/company";
+import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
 ---
 
 <Layout
@@ -44,7 +45,7 @@ import { COMPANY } from "../../../../data/company";
             </div>
             <div>
               <label for="pe-rate" class="block text-sm font-medium text-[var(--color-ink)]">Interest rate (%)</label>
-              <input id="pe-rate" type="number" class="calc-input mt-1.5" value="7.0" min="2" max="15" step="0.125" />
+              <input id="pe-rate" type="number" class="calc-input mt-1.5" value={RATE_ASSUMPTIONS.conventional30} min="2" max="15" step="0.125" />
             </div>
             <div>
               <label for="pe-term" class="block text-sm font-medium text-[var(--color-ink)]">Loan term</label>
