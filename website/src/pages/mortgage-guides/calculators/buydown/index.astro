@@ -230,6 +230,24 @@ const CALC_OMITS = [
 </style>
 
 <script>
+
+  /**
+   * Read a number box, honouring the max the markup already declares.
+   *
+   * Values past that bound used to flow straight into the maths: a rate of 1e9 overflowed the
+   * amortisation factor to NaN, and a down payment over 100% produced negative payments. Only
+   * the maximum is enforced - the minimum is left alone on purpose, because several
+   * calculators rely on seeing a zero, or an age under 62, to suppress their result.
+   */
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return 0;
+    const raw = parseFloat(el.value);
+    if (!Number.isFinite(raw)) return 0;
+    const max = parseFloat(el.max);
+    return Number.isFinite(max) ? Math.min(raw, max) : raw;
+  }
+
   const fmt = (n: number) => "$" + Math.round(Math.abs(n)).toLocaleString("en-US");
   const fmtRate = (r: number) => r.toFixed(3).replace(/\.?0+$/, "") + "%";
 
@@ -293,8 +311,8 @@ const CALC_OMITS = [
   }
 
   function calc() {
-    const loan = parseFloat((document.getElementById("bd-loan") as HTMLInputElement).value) || 0;
-    const rate = parseFloat((document.getElementById("bd-rate") as HTMLInputElement).value) || 0;
+    const loan = num("bd-loan");
+    const rate = num("bd-rate");
     if (loan <= 0 || rate <= 0) {
       // Clear rather than return: the old version left the previous tables up, so a cleared
       // rate box still showed real-looking payments and subsidy totals.

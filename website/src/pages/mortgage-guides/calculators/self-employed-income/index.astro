@@ -200,16 +200,35 @@ const CALC_OMITS = [
 </style>
 
 <script>
+
+  /**
+   * Read a number box, honouring the max the markup already declares.
+   *
+   * Values past that bound used to flow straight into the maths: a rate of 1e9 overflowed the
+   * amortisation factor to NaN, and a down payment over 100% produced negative payments. Only
+   * the maximum is enforced - the minimum is left alone on purpose, because several
+   * calculators rely on seeing a zero, or an age under 62, to suppress their result.
+   */
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return 0;
+    const raw = parseFloat(el.value);
+    if (!Number.isFinite(raw)) return 0;
+    const max = parseFloat(el.max);
+    return Number.isFinite(max) ? Math.min(raw, max) : raw;
+  }
+
   function fmt(n: number): string {
-    return "$" + Math.round(n).toLocaleString("en-US");
+    // The minus belongs before the dollar sign; this used to print "$-1,234".
+    return (n < 0 ? "-$" : "$") + Math.round(Math.abs(n)).toLocaleString("en-US");
   }
 
   function calc() {
-    const y1net = parseFloat((document.getElementById("se-y1net") as HTMLInputElement).value) || 0;
-    const y2net = parseFloat((document.getElementById("se-y2net") as HTMLInputElement).value) || 0;
-    const addbacks = parseFloat((document.getElementById("se-addbacks") as HTMLInputElement).value) || 0;
-    const deposits12 = parseFloat((document.getElementById("se-deposits12") as HTMLInputElement).value) || 0;
-    const expratio = parseFloat((document.getElementById("se-expratio") as HTMLInputElement).value) || 0;
+    const y1net = num("se-y1net");
+    const y2net = num("se-y2net");
+    const addbacks = num("se-addbacks");
+    const deposits12 = num("se-deposits12");
+    const expratio = num("se-expratio");
 
     // Tax return method
     const avgNetIncome = (y1net + y2net) / 2;

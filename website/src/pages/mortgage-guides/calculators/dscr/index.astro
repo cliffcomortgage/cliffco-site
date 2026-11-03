@@ -196,18 +196,36 @@ const CALC_OMITS = [
 </style>
 
 <script>
+
+  /**
+   * Read a number box, honouring the max the markup already declares.
+   *
+   * Values past that bound used to flow straight into the maths: a rate of 1e9 overflowed the
+   * amortisation factor to NaN, and a down payment over 100% produced negative payments. Only
+   * the maximum is enforced - the minimum is left alone on purpose, because several
+   * calculators rely on seeing a zero, or an age under 62, to suppress their result.
+   */
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return 0;
+    const raw = parseFloat(el.value);
+    if (!Number.isFinite(raw)) return 0;
+    const max = parseFloat(el.max);
+    return Number.isFinite(max) ? Math.min(raw, max) : raw;
+  }
+
   function fmtDollar(n: number): string {
     return "$" + Math.round(Math.abs(n)).toLocaleString("en-US");
   }
 
   function calc() {
-    const rent = parseFloat((document.getElementById("dc-rent") as HTMLInputElement).value) || 0;
-    const price = parseFloat((document.getElementById("dc-price") as HTMLInputElement).value) || 0;
-    const down = parseFloat((document.getElementById("dc-down") as HTMLInputElement).value) || 0;
-    const rate = parseFloat((document.getElementById("dc-rate") as HTMLInputElement).value) || 0;
-    const taxes = parseFloat((document.getElementById("dc-taxes") as HTMLInputElement).value) || 0;
-    const ins = parseFloat((document.getElementById("dc-ins") as HTMLInputElement).value) || 0;
-    const hoa = parseFloat((document.getElementById("dc-hoa") as HTMLInputElement).value) || 0;
+    const rent = num("dc-rent");
+    const price = num("dc-price");
+    const down = num("dc-down");
+    const rate = num("dc-rate");
+    const taxes = num("dc-taxes");
+    const ins = num("dc-ins");
+    const hoa = num("dc-hoa");
 
     const dscrEl = document.getElementById("dc-dscr");
     const obligationEl = document.getElementById("dc-obligation");

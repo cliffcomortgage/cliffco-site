@@ -195,16 +195,34 @@ const CALC_OMITS = [
 </style>
 
 <script>
+
+  /**
+   * Read a number box, honouring the max the markup already declares.
+   *
+   * Values past that bound used to flow straight into the maths: a rate of 1e9 overflowed the
+   * amortisation factor to NaN, and a down payment over 100% produced negative payments. Only
+   * the maximum is enforced - the minimum is left alone on purpose, because several
+   * calculators rely on seeing a zero, or an age under 62, to suppress their result.
+   */
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return 0;
+    const raw = parseFloat(el.value);
+    if (!Number.isFinite(raw)) return 0;
+    const max = parseFloat(el.max);
+    return Number.isFinite(max) ? Math.min(raw, max) : raw;
+  }
+
   function fmtDollar(n: number): string {
     return "$" + Math.round(Math.abs(n)).toLocaleString("en-US");
   }
 
   function calc() {
-    const currentPI = parseFloat((document.getElementById("rc-current") as HTMLInputElement).value) || 0;
-    const balance = parseFloat((document.getElementById("rc-balance") as HTMLInputElement).value) || 0;
-    const newRate = parseFloat((document.getElementById("rc-newrate") as HTMLInputElement).value) || 0;
+    const currentPI = num("rc-current");
+    const balance = num("rc-balance");
+    const newRate = num("rc-newrate");
     const term = parseInt((document.getElementById("rc-term") as HTMLSelectElement).value) || 30;
-    const closingCosts = parseFloat((document.getElementById("rc-closing") as HTMLInputElement).value) || 0;
+    const closingCosts = num("rc-closing");
 
     const r = newRate / 100 / 12;
     const n = term * 12;

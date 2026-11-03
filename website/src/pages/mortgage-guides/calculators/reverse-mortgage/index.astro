@@ -198,6 +198,24 @@ const CALC_OMITS = [
   import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
   import { principalLimitFactor, PLF_MIN_RATE, PLF_MAX_RATE } from "../../../../data/hecm-plf";
 
+  /**
+   * Read a number box, honouring the max the markup already declares.
+   *
+   * Values past that bound used to flow straight into the maths: a rate of 1e9 overflowed the
+   * amortisation factor to NaN, and a down payment over 100% produced negative payments. Only
+   * the maximum is enforced - the minimum is left alone on purpose, because several
+   * calculators rely on seeing a zero, or an age under 62, to suppress their result.
+   */
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return 0;
+    const raw = parseFloat(el.value);
+    if (!Number.isFinite(raw)) return 0;
+    const max = parseFloat(el.max);
+    return Number.isFinite(max) ? Math.min(raw, max) : raw;
+  }
+
+
   /** 2026 HECM nationwide maximum claim amount, ML 2025-22, case numbers 1/1/26 - 12/31/26. */
   const MAX_CLAIM_2026 = 1249125;
 
@@ -214,7 +232,8 @@ const CALC_OMITS = [
   const ROUND_TO = 5000;
 
   function fmt(n: number): string {
-    return "$" + Math.round(n).toLocaleString("en-US");
+    // The minus belongs before the dollar sign; this used to print "$-1,234".
+    return (n < 0 ? "-$" : "$") + Math.round(Math.abs(n)).toLocaleString("en-US");
   }
 
   function round5(n: number): string {
@@ -222,10 +241,10 @@ const CALC_OMITS = [
   }
 
   function calc() {
-    const age = parseInt((document.getElementById("rm-age") as HTMLInputElement).value) || 0;
-    const homeValue = parseFloat((document.getElementById("rm-value") as HTMLInputElement).value) || 0;
-    const balance = parseFloat((document.getElementById("rm-balance") as HTMLInputElement).value) || 0;
-    const expectedRate = parseFloat((document.getElementById("rm-rate") as HTMLInputElement).value) || 0;
+    const age = Math.round(num("rm-age"));
+    const homeValue = num("rm-value");
+    const balance = num("rm-balance");
+    const expectedRate = num("rm-rate");
 
     const netEl = document.getElementById("rm-net");
     const grossEl = document.getElementById("rm-gross");

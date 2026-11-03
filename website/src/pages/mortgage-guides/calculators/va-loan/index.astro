@@ -17,7 +17,7 @@ const CALC_OMITS = [
   "PMI on the conventional side, avoided only because the comparison forces 20% down",
   "Closing costs other than the VA funding fee",
   "HOA dues, and VA occupancy, entitlement and property requirements",
-  "Funding fee percentages are the 2024 VA schedule",
+  "Funding fee percentages are the VA purchase schedule in effect since April 2023, and the tier is taken from your down payment rather than chosen separately",
 ];
 
 ---
@@ -71,13 +71,11 @@ const CALC_OMITS = [
             <div>
               <label for="va-use" class="block text-sm font-medium text-[var(--color-ink)]">Loan use</label>
               <select id="va-use" class="calc-input mt-1.5">
-                <option value="first_0" selected>First use, 0% down (fee 2.15%)</option>
-                <option value="first_5">First use, 5-9.9% down (fee 1.5%)</option>
-                <option value="first_10">First use, 10%+ down (fee 1.25%)</option>
-                <option value="sub_0">Subsequent use, 0% down (fee 3.3%)</option>
-                <option value="sub_5">Subsequent use, 5%+ down (fee 1.25%)</option>
-                <option value="exempt">Exempt (disability rating 10%+) (fee 0%)</option>
+                <option value="first" selected>First use</option>
+                <option value="subsequent">Subsequent use</option>
+                <option value="exempt">Exempt (VA disability compensation, Purple Heart)</option>
               </select>
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">The fee tier follows the down payment you entered: 2.15% under 5% down on a first use, 3.3% under 5% on a subsequent use, 1.5% from 5% to 9.99%, and 1.25% at 10% or more.</p>
             </div>
             <div>
               <label for="va-taxes" class="block text-sm font-medium text-[var(--color-ink)]">Annual property taxes ($)</label>
@@ -105,7 +103,13 @@ const CALC_OMITS = [
                 <p id="va-savings" class="result-num">-</p>
               </div>
             </div>
-            <p id="va-verdict" class="mt-4 text-sm text-[var(--color-text-muted)]"></p>
+            <!--
+              The funding fee is what this page is named for, but it used to appear only in
+              the verdict, and only on the branch where VA came out ahead. It belongs on
+              screen either way.
+            -->
+            <p id="va-fee" class="mt-5 border-t border-black/15 pt-4 text-sm text-[var(--color-text-muted)] leading-relaxed"></p>
+            <p id="va-verdict" class="mt-3 text-sm text-[var(--color-text-muted)]"></p>
           </div>
     </div>
   </section>
@@ -146,7 +150,7 @@ const CALC_OMITS = [
             change them; a rate of zero shows no result rather than a principal-only payment. The
             conventional comparison assumes 20% down so no mortgage insurance applies, and both
             columns use the same taxes and insurance. {RATE_DISCLOSURE} Funding fee percentages
-            reflect 2024 VA guidelines for regular military (not National Guard or Reserves, which differ). Exempt if you have a service-connected disability rating. Confirm with a loan officer.
+            reflect the VA purchase schedule in effect since April 2023 for regular military (not National Guard or Reserves, which differ). Exempt if you have a service-connected disability rating. Confirm with a loan officer.
           </p>
         </div>
       </div>
@@ -213,31 +217,54 @@ const CALC_OMITS = [
 </style>
 
 <script>
+
+  /**
+   * Read a number box, honouring the max the markup already declares.
+   *
+   * Values past that bound used to flow straight into the maths: a rate of 1e9 overflowed the
+   * amortisation factor to NaN, and a down payment over 100% produced negative payments. Only
+   * the maximum is enforced - the minimum is left alone on purpose, because several
+   * calculators rely on seeing a zero, or an age under 62, to suppress their result.
+   */
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return 0;
+    const raw = parseFloat(el.value);
+    if (!Number.isFinite(raw)) return 0;
+    const max = parseFloat(el.max);
+    return Number.isFinite(max) ? Math.min(raw, max) : raw;
+  }
+
   function fmt(n: number): string {
-    return "$" + Math.round(n).toLocaleString("en-US");
+    // The minus belongs before the dollar sign; this used to print "$-1,234".
+    return (n < 0 ? "-$" : "$") + Math.round(Math.abs(n)).toLocaleString("en-US");
+  }
+
+  /*
+    * VA funding fee on a purchase. The tier follows the down payment, so it is derived rather
+    * than picked from a list: the old dropdown let you select "first use, 0% down" while
+    * entering 10% down, and its "subsequent use, 5%+" option charged 1.25% where 5% to 9.99%
+    * down is really 1.5%.
+    */
+  function fundingFeeRate(use: string, downPct: number): number {
+    if (use === "exempt") return 0;
+    if (downPct >= 10) return 0.0125;
+    if (downPct >= 5) return 0.015;
+    return use === "subsequent" ? 0.033 : 0.0215;
   }
 
   function calc() {
-    const price = parseFloat((document.getElementById("va-price") as HTMLInputElement).value) || 0;
-    const vaDown = parseFloat((document.getElementById("va-down") as HTMLInputElement).value) || 0;
-    const vaRate = parseFloat((document.getElementById("va-rate") as HTMLInputElement).value) || 0;
-    const convRate = parseFloat((document.getElementById("va-convrate") as HTMLInputElement).value) || 0;
+    const price = num("va-price");
+    const vaDown = num("va-down");
+    const vaRate = num("va-rate");
+    const convRate = num("va-convrate");
     const vaUseVal = (document.getElementById("va-use") as HTMLSelectElement).value;
-    const taxes = parseFloat((document.getElementById("va-taxes") as HTMLInputElement).value) || 0;
-    const ins = parseFloat((document.getElementById("va-ins") as HTMLInputElement).value) || 0;
-
-    const feeMap: Record<string, number> = {
-      "first_0": 0.0215,
-      "first_5": 0.015,
-      "first_10": 0.0125,
-      "sub_0": 0.033,
-      "sub_5": 0.0125,
-      "exempt": 0
-    };
+    const taxes = num("va-taxes");
+    const ins = num("va-ins");
 
     const downDollars = price * (vaDown / 100);
     const baseLoan = price - downDollars;
-    const fundingFee = baseLoan * (feeMap[vaUseVal] ?? 0.0215);
+    const fundingFee = baseLoan * fundingFeeRate(vaUseVal, vaDown);
     const vaLoan = baseLoan + fundingFee; // fee rolled into loan
 
     const r_va = vaRate / 100 / 12;
@@ -269,12 +296,30 @@ const CALC_OMITS = [
     const convEl = document.getElementById("va-conv");
     const savingsEl = document.getElementById("va-savings");
     const verdictEl = document.getElementById("va-verdict");
+    const feeEl = document.getElementById("va-fee");
+
+    if (feeEl) {
+      const pct = (fundingFeeRate(vaUseVal, vaDown) * 100).toFixed(2).replace(/\.?0+$/, "");
+      feeEl.textContent = hasData
+        ? (fundingFee > 0
+            ? "VA funding fee of " + fmt(fundingFee) + " at " + pct + "% of the " + fmt(baseLoan) +
+              " base loan, rolled into the balance rather than paid at closing, so you finance " +
+              fmt(vaLoan) + ". The conventional column opposite assumes 20% down, so the two are not the same transaction."
+            : "No VA funding fee applies, so you finance the full " + fmt(vaLoan) +
+              ". The conventional column opposite assumes 20% down, so the two are not the same transaction.")
+        : "";
+    }
 
     if (monthlyEl) monthlyEl.textContent = hasData ? fmt(vaTotal) : "-";
     if (convEl) convEl.textContent = hasData ? fmt(convTotal) : "-";
 
     if (savingsEl && hasData) {
-      savingsEl.textContent = fmt(Math.abs(monthlySavings));
+      /*
+       * The sign used to be carried by colour alone, so when conventional came out cheaper a
+       * red "$652" sat under a label reading "Monthly Savings" and read as $652 of savings to
+       * anyone skimming, or not seeing colour at all. fmt() puts the minus in front.
+       */
+      savingsEl.textContent = fmt(monthlySavings);
       savingsEl.className = monthlySavings >= 0 ? "result-num text-green-700" : "result-num text-red-600";
     } else if (savingsEl) {
       savingsEl.textContent = "-";

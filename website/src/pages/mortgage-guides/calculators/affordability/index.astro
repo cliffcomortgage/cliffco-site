@@ -189,16 +189,35 @@ const CALC_OMITS = [
 <script>
   import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
 
+  /**
+   * Read a number box, honouring the max the markup already declares.
+   *
+   * Values past that bound used to flow straight into the maths: a rate of 1e9 overflowed the
+   * amortisation factor to NaN, and a down payment over 100% produced negative payments. Only
+   * the maximum is enforced - the minimum is left alone on purpose, because several
+   * calculators rely on seeing a zero, or an age under 62, to suppress their result.
+   */
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return 0;
+    const raw = parseFloat(el.value);
+    if (!Number.isFinite(raw)) return 0;
+    const max = parseFloat(el.max);
+    return Number.isFinite(max) ? Math.min(raw, max) : raw;
+  }
+
+
   function fmt(n: number): string {
-    return "$" + Math.round(n).toLocaleString("en-US");
+    // The minus belongs before the dollar sign; this used to print "$-1,234".
+    return (n < 0 ? "-$" : "$") + Math.round(Math.abs(n)).toLocaleString("en-US");
   }
 
   function calc() {
-    const income = parseFloat((document.getElementById("af-income") as HTMLInputElement).value) || 0;
-    const debts = parseFloat((document.getElementById("af-debts") as HTMLInputElement).value) || 0;
-    const savings = parseFloat((document.getElementById("af-savings") as HTMLInputElement).value) || 0;
-    const taxes = parseFloat((document.getElementById("af-taxes") as HTMLInputElement).value) || 0;
-    const ins = parseFloat((document.getElementById("af-ins") as HTMLInputElement).value) || 0;
+    const income = num("af-income");
+    const debts = num("af-debts");
+    const savings = num("af-savings");
+    const taxes = num("af-taxes");
+    const ins = num("af-ins");
 
     const maxPriceEl = document.getElementById("af-maxprice");
     const downScenEl = document.getElementById("af-downscen");
@@ -254,12 +273,21 @@ const CALC_OMITS = [
     const totalPayment = pi + tiMonthly;
     const bindingConstraint = maxPriceBySavings < maxPriceByIncome ? "savings" : "income";
 
-    if (maxPriceEl) maxPriceEl.textContent = fmt(maxPrice);
-    if (downScenEl) downScenEl.textContent = fmt(downDollars);
-    if (paymentEl) paymentEl.textContent = fmt(totalPayment);
+    /*
+     * With nothing saved there is no down payment and so no purchase. The page used to print
+     * a monthly payment made of taxes and insurance beside a $0 maximum price, which reads as
+     * a contradiction.
+     */
+    const noPurchase = maxPrice <= 0;
+
+    if (maxPriceEl) maxPriceEl.textContent = noPurchase ? "$0" : fmt(maxPrice);
+    if (downScenEl) downScenEl.textContent = noPurchase ? "-" : fmt(downDollars);
+    if (paymentEl) paymentEl.textContent = noPurchase ? "-" : fmt(totalPayment);
 
     if (verdictEl) {
-      verdictEl.textContent = `Your ${bindingConstraint} is the binding constraint at these numbers.`;
+      verdictEl.textContent = noPurchase
+        ? "With nothing saved towards a down payment there is no price range to show. Even the lowest-down-payment loans need 3.5% down, though down payment assistance can cover part of that."
+        : `Your ${bindingConstraint} is the binding constraint at these numbers.`;
       verdictEl.className = "mt-4 text-sm font-medium text-[var(--color-text-muted)]";
     }
   }

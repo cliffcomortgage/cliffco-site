@@ -181,15 +181,34 @@ const CALC_OMITS = [
 </style>
 
 <script>
+
+  /**
+   * Read a number box, honouring the max the markup already declares.
+   *
+   * Values past that bound used to flow straight into the maths: a rate of 1e9 overflowed the
+   * amortisation factor to NaN, and a down payment over 100% produced negative payments. Only
+   * the maximum is enforced - the minimum is left alone on purpose, because several
+   * calculators rely on seeing a zero, or an age under 62, to suppress their result.
+   */
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return 0;
+    const raw = parseFloat(el.value);
+    if (!Number.isFinite(raw)) return 0;
+    const max = parseFloat(el.max);
+    return Number.isFinite(max) ? Math.min(raw, max) : raw;
+  }
+
   function fmt(n: number): string {
-    return "$" + Math.round(n).toLocaleString("en-US");
+    // The minus belongs before the dollar sign; this used to print "$-1,234".
+    return (n < 0 ? "-$" : "$") + Math.round(Math.abs(n)).toLocaleString("en-US");
   }
 
   function calc() {
-    const income = parseFloat((document.getElementById("bb-income") as HTMLInputElement).value) || 0;
-    const expenses = parseFloat((document.getElementById("bb-expenses") as HTMLInputElement).value) || 0;
-    const savings = parseFloat((document.getElementById("bb-savings") as HTMLInputElement).value) || 0;
-    const rate = parseFloat((document.getElementById("bb-rate") as HTMLInputElement).value) || 0;
+    const income = num("bb-income");
+    const expenses = num("bb-expenses");
+    const savings = num("bb-savings");
+    const rate = num("bb-rate");
 
     const ceilingEl = document.getElementById("bb-ceiling");
     const priceEl = document.getElementById("bb-price");

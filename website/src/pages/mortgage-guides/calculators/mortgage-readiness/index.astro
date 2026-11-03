@@ -208,6 +208,24 @@ const CALC_OMITS = [
 <script>
   import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
 
+  /**
+   * Read a number box, honouring the max the markup already declares.
+   *
+   * Values past that bound used to flow straight into the maths: a rate of 1e9 overflowed the
+   * amortisation factor to NaN, and a down payment over 100% produced negative payments. Only
+   * the maximum is enforced - the minimum is left alone on purpose, because several
+   * calculators rely on seeing a zero, or an age under 62, to suppress their result.
+   */
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return 0;
+    const raw = parseFloat(el.value);
+    if (!Number.isFinite(raw)) return 0;
+    const max = parseFloat(el.max);
+    return Number.isFinite(max) ? Math.min(raw, max) : raw;
+  }
+
+
   function calc() {
     const creditScores: Record<string, number> = {
       "below580": 550,
@@ -219,10 +237,10 @@ const CALC_OMITS = [
     };
 
     const mrCreditSelect = document.getElementById("mr-credit") as HTMLSelectElement;
-    const income = parseFloat((document.getElementById("mr-income") as HTMLInputElement).value) || 0;
-    const debts = parseFloat((document.getElementById("mr-debts") as HTMLInputElement).value) || 0;
-    const savings = parseFloat((document.getElementById("mr-savings") as HTMLInputElement).value) || 0;
-    const price = parseFloat((document.getElementById("mr-price") as HTMLInputElement).value) || 0;
+    const income = num("mr-income");
+    const debts = num("mr-debts");
+    const savings = num("mr-savings");
+    const price = num("mr-price");
 
     const creditScore = creditScores[mrCreditSelect?.value] ?? 719;
 
@@ -292,13 +310,23 @@ const CALC_OMITS = [
       labelEl.className = `text-sm font-semibold mt-1 ${colorClass}`;
     }
 
-    if (dtiEl) dtiEl.textContent = backDTI < 999 ? backDTI.toFixed(1) + "%" : "-";
+    // Income is already guaranteed above zero here, so the ratio is always real. It used to
+    // hide behind "-" past 999% while still being scored, which left the readout contradicting
+    // the score beside it.
+    if (dtiEl) dtiEl.textContent = backDTI.toFixed(1) + "%";
     if (reservesEl) reservesEl.textContent = reserveMonths.toFixed(1) + " mo";
 
     // Verdict: explain the biggest limiting factor
     let verdict = "";
     if (score >= 80) {
-      verdict = "You're in strong shape. Your credit, debt load, and reserves all check out at conventional loan standards. Talk to a loan officer to confirm your pre-approval range.";
+      /*
+       * A score of exactly 80 is what perfect credit and low debt give you with under two
+       * months of reserves, so the old blanket "reserves all check out" was wrong in the one
+       * case that mattered.
+       */
+      verdict = reserveMonths < 2
+        ? `Your credit and debt load are in strong shape. The gap is cash: after a 5% down payment you would have about ${reserveMonths.toFixed(1)} months of reserves left, and lenders like to see two or more. A loan officer can tell you whether that is a problem for your programme.`
+        : "You're in strong shape. Your credit, debt load, and reserves all check out at conventional loan standards. Talk to a loan officer to confirm your pre-approval range.";
     } else if (score >= 60) {
       if (backDTI > 43) {
         verdict = `Your back-end DTI of ${backDTI.toFixed(1)}% is above the 43% conventional threshold. Paying down existing debts or targeting a lower purchase price will improve your position.`;
