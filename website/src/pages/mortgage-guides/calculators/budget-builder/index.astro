@@ -1,8 +1,22 @@
 ﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import CalcAssumptions from "../../../../components/ui/CalcAssumptions.astro";
 import { COMPANY } from "../../../../data/company";
 import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
+const CALC_ASSUMPTIONS = [
+  "<strong>15%</strong> of your payment ceiling is set aside for taxes and insurance, leaving 85% for principal and interest",
+  `${RATE_ASSUMPTIONS.conventional30}% starting rate on a <strong>30-year fixed</strong> loan`,
+  "The purchase price shown assumes a <strong>20% down payment</strong> you have not entered anywhere",
+  "Built on take-home pay, so this is your own budget test, not a lender's debt-to-income test",
+];
+
+const CALC_OMITS = [
+  "Any check against a lender's 43% debt-to-income limit - a budget that works for you can still fail underwriting",
+  "PMI, HOA dues and closing costs",
+  "Maintenance and repairs",
+];
+
 ---
 
 <Layout
@@ -76,6 +90,8 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
           </div>
     </div>
   </section>
+
+  <CalcAssumptions items={CALC_ASSUMPTIONS} omits={CALC_OMITS} usesRate />
 
   <!-- How to use it -->
   <section class="bg-white">
@@ -201,12 +217,10 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
     const r = rate / 100 / 12;
     const n = 360; // 30-year term
 
-    let loanAmount: number;
-    if (r === 0) {
-      loanAmount = piCeiling * n;
-    } else {
-      loanAmount = piCeiling / ((r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1));
-    }
+    // A cleared or zero rate has no loan behind it; show no price rather than a 0% loan.
+    const loanAmount = r > 0
+      ? piCeiling / ((r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1))
+      : 0;
 
     // Purchase price assumes 20% down (loan = 80% of price)
     const purchasePrice = loanAmount / 0.80;

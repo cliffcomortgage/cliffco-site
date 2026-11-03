@@ -1,7 +1,22 @@
 ﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import CalcAssumptions from "../../../../components/ui/CalcAssumptions.astro";
 import { COMPANY } from "../../../../data/company";
+const CALC_ASSUMPTIONS = [
+  "Tax return method = the <strong>two-year average</strong> of the net incomes you enter, plus add-backs",
+  "Bank statement method = total deposits &times; (100% &minus; your expense ratio), divided by twelve",
+  "Add-backs are applied once, as an annual figure",
+  "Both methods are run on the same screen so you can see which produces more",
+];
+
+const CALC_OMITS = [
+  "Declining income: when the most recent year is lower than the prior year, underwriting often uses the lower year alone rather than the average, so the figure here can be optimistic",
+  "Business ownership percentage on a K-1, which can cut usable income",
+  "Lender overlays, and the pricing gap between agency and bank-statement programs",
+  "Business funds verification and any required CPA letter",
+];
+
 ---
 
 <Layout
@@ -38,11 +53,11 @@ import { COMPANY } from "../../../../data/company";
             <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)]">Tax Return Method</p>
 
             <div>
-              <label for="se-y1net" class="block text-sm font-medium text-[var(--color-ink)]">Year 1 net income from Schedule C or K-1 ($)</label>
+              <label for="se-y1net" class="block text-sm font-medium text-[var(--color-ink)]">Most recent year net income from Schedule C or K-1 ($)</label>
               <input id="se-y1net" type="number" class="calc-input mt-1.5" value="60000" min="0" step="1000" />
             </div>
             <div>
-              <label for="se-y2net" class="block text-sm font-medium text-[var(--color-ink)]">Year 2 net income ($)</label>
+              <label for="se-y2net" class="block text-sm font-medium text-[var(--color-ink)]">Prior year net income ($)</label>
               <input id="se-y2net" type="number" class="calc-input mt-1.5" value="55000" min="0" step="1000" />
             </div>
             <div>
@@ -86,6 +101,8 @@ import { COMPANY } from "../../../../data/company";
           </div>
     </div>
   </section>
+
+  <CalcAssumptions items={CALC_ASSUMPTIONS} omits={CALC_OMITS} />
 
   <!-- How to use it -->
   <section class="bg-white">

@@ -1,8 +1,22 @@
 ﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import CalcAssumptions from "../../../../components/ui/CalcAssumptions.astro";
 import { COMPANY } from "../../../../data/company";
 import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
+const CALC_ASSUMPTIONS = [
+  "Principal and interest amortized over the full term you pick, at the rate you enter",
+  `The rate box starts at Cliffco's illustrative ${RATE_ASSUMPTIONS.conventional30}%; replace it with your own quote`,
+  "Taxes and insurance divided evenly across twelve months",
+];
+
+const CALC_OMITS = [
+  "Private mortgage insurance, which applies on conventional loans under 20% down - at the 3% minimum this box allows, that is a real monthly cost missing from the total",
+  "HOA or condo dues",
+  "Flood insurance and special assessments",
+  "Closing costs and prepaid escrows",
+];
+
 ---
 
 <Layout
@@ -86,6 +100,8 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
           </div>
     </div>
   </section>
+
+  <CalcAssumptions items={CALC_ASSUMPTIONS} omits={CALC_OMITS} usesRate />
 
   <!-- How to use it -->
   <section class="bg-white">
@@ -210,15 +226,18 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
     const ti = (taxes + ins) / 12;
     const total = pi + ti;
 
+    // A cleared or zero rate fell through to loan/n and printed a real-looking payment.
+    const hasData = price > 0 && rate > 0;
+
     const totalEl = document.getElementById("pe-total");
     const piEl = document.getElementById("pe-pi");
     const tiEl = document.getElementById("pe-ti");
     const noteEl = document.getElementById("pe-note");
 
-    if (totalEl) totalEl.textContent = price > 0 ? fmt(total) : "-";
-    if (piEl) piEl.textContent = price > 0 ? fmt(pi) : "-";
-    if (tiEl) tiEl.textContent = price > 0 ? fmt(ti) : "-";
-    if (noteEl && price > 0) {
+    if (totalEl) totalEl.textContent = hasData ? fmt(total) : "-";
+    if (piEl) piEl.textContent = hasData ? fmt(pi) : "-";
+    if (tiEl) tiEl.textContent = hasData ? fmt(ti) : "-";
+    if (noteEl && hasData) {
       noteEl.textContent = `Loan amount: ${fmt(loanAmount)} | Down payment: ${fmt(downDollars)}`;
     } else if (noteEl) {
       noteEl.textContent = "";

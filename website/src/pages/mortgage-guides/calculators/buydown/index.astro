@@ -1,8 +1,22 @@
 ﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import CalcAssumptions from "../../../../components/ui/CalcAssumptions.astro";
 import { COMPANY } from "../../../../data/company";
 import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
+const CALC_ASSUMPTIONS = [
+  "Principal and interest only, on a <strong>30-year fixed</strong> loan",
+  "The note rate is what you pay from the year after the buydown ends, for the rest of the loan",
+  "The subsidy is the full gap between the bought-down payment and the note-rate payment, for every month of the buydown",
+  "The seller or builder funds the whole subsidy at closing, into an escrow account",
+];
+
+const CALC_OMITS = [
+  "Taxes, insurance, HOA dues and PMI - the payments shown are principal and interest alone",
+  "Points, lender credits and the cost of a rate lock",
+  "What happens to unused subsidy if you refinance or sell early",
+];
+
 ---
 
 <Layout
@@ -183,6 +197,8 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
     </div>
   </section>
 
+  <CalcAssumptions items={CALC_ASSUMPTIONS} omits={CALC_OMITS} />
+
   <div class="border-t border-black/15 py-6 text-center">
     <a href="/mortgage-guides/calculators/" class="text-sm font-medium text-[var(--color-ink)]">← See all calculators</a>
   </div>
@@ -218,8 +234,11 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
   const fmtRate = (r: number) => r.toFixed(3).replace(/\.?0+$/, "") + "%";
 
   function monthlyPmt(principal: number, annualRatePct: number, months: number): number {
+    if (principal <= 0 || months <= 0) return 0;
     const r = annualRatePct / 100 / 12;
-    if (r <= 0 || principal <= 0) return 0;
+    // A 3-2-1 off a 2% note floors the first year at 0%. That is a real principal-only
+    // payment, not a free one; returning 0 overstated the subsidy by a whole payment.
+    if (r <= 0) return principal / months;
     return principal * (r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
   }
 
@@ -276,7 +295,19 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
   function calc() {
     const loan = parseFloat((document.getElementById("bd-loan") as HTMLInputElement).value) || 0;
     const rate = parseFloat((document.getElementById("bd-rate") as HTMLInputElement).value) || 0;
-    if (loan <= 0 || rate <= 0) return;
+    if (loan <= 0 || rate <= 0) {
+      // Clear rather than return: the old version left the previous tables up, so a cleared
+      // rate box still showed real-looking payments and subsidy totals.
+      ["bd-321-body", "bd-21-body", "bd-10-body"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = "";
+      });
+      ["bd-321-total", "bd-21-total", "bd-10-total"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = "-";
+      });
+      return;
+    }
     buildTable("bd-321-body", "bd-321-total", loan, rate, [3, 2, 1]);
     buildTable("bd-21-body",  "bd-21-total",  loan, rate, [2, 1]);
     buildTable("bd-10-body",  "bd-10-total",  loan, rate, [1]);

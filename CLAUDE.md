@@ -73,6 +73,29 @@ Cliffco DSCR matrix makes Foreign Nationals from the Republic of China ineligibl
 HI ineligible outright. Don't list restrictions in page copy, but don't write copy that
 implies citizenship is the only test either.
 
+## Calculators — no invisible figures
+
+Rule set by Rafe on 2026-11-03, after a compliance review: **a calculator may not use a
+figure the visitor cannot see.** Any constant in the maths — a rate, a term, a down payment,
+a DTI ceiling, an expense factor, a scoring deduction — goes in the `CalcAssumptions` panel
+(`website/src/components/ui/CalcAssumptions.astro`), in plain words, next to the result
+rather than buried in fine print. The panel's second column lists what the result *leaves
+out*, which is the half people misread.
+
+- Rate figures interpolate `RATE_ASSUMPTIONS` (`website/src/data/rate-assumptions.ts`), never
+  typed into the panel, so one edit still moves every number on the site. Those are
+  illustrative and dated, **not a live feed** — Cliffco has no licensed rate source wired in.
+- **No calculator uses the whole savings balance and a reserve holdback at once.** Affordability
+  puts every dollar of savings into the down payment; the reserves test lives in the Readiness
+  checkup, where it is scored and shown. Readiness takes the down payment out of savings before
+  counting reserve months.
+- **A rate of zero is not a 0% loan.** Every amortisation here used to fall through to
+  `loan / n` on an empty rate box and print a real-looking payment. Guard the input and show
+  nothing instead.
+- Two habits for comparison calculators: say when the two sides aren't the same transaction
+  (the VA page's conventional column is forced to 20% down), and charge the costs that decide
+  the answer (Rent vs Buy broke even in Year 1 until maintenance and selling costs went in).
+
 ## Personnel corrections (override the static docs)
 
 The NMLS roster and `Leadership Bios.docx` are point-in-time snapshots. These corrections supersede them — do **not** publish the legacy versions:

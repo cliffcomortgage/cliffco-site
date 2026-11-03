@@ -1,8 +1,24 @@
 ﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import CalcAssumptions from "../../../../components/ui/CalcAssumptions.astro";
 import { COMPANY } from "../../../../data/company";
 import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
+const CALC_ASSUMPTIONS = [
+  `<strong>30-year fixed</strong> mortgage at the rate you enter, starting at ${RATE_ASSUMPTIONS.conventional30}%`,
+  "Equity = home value minus loan balance, with the home growing at the appreciation rate you set",
+  "Break-even is the first year that the cost of buying, after subtracting the equity you could walk away with, falls below total rent paid",
+  "Maintenance is charged on the home's current value each year, so it rises with the home",
+  "Selling costs come out of your equity before it offsets anything - you are compared as if you sold that year",
+  "Rent rises every year at the rate you set; the comparison runs 30 years",
+];
+
+const CALC_OMITS = [
+  "PMI, which applies at the 10% down this page starts with",
+  "What a renter could earn by investing the down payment instead",
+  "Mortgage interest and property tax deductions",
+];
+
 ---
 
 <Layout
@@ -66,6 +82,16 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
               <label for="rvb-ins" class="block text-sm font-medium text-[var(--color-ink)]">Annual homeowners insurance ($)</label>
               <input id="rvb-ins" type="number" class="calc-input mt-1.5" value="1800" min="0" step="100" />
             </div>
+            <div>
+              <label for="rvb-maint" class="block text-sm font-medium text-[var(--color-ink)]">Annual maintenance (% of home value)</label>
+              <input id="rvb-maint" type="number" class="calc-input mt-1.5" value="1" min="0" max="5" step="0.25" />
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">Repairs and upkeep a renter never pays. 1% a year is the common rule of thumb.</p>
+            </div>
+            <div>
+              <label for="rvb-sell" class="block text-sm font-medium text-[var(--color-ink)]">Selling costs (% of sale price)</label>
+              <input id="rvb-sell" type="number" class="calc-input mt-1.5" value="6" min="0" max="15" step="0.5" />
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">Agent commission, transfer taxes and concessions, taken out of your equity when you sell.</p>
+            </div>
           </div>
       </div>
       <div aria-live="polite" class="calc-readout lg:col-span-7 lg:sticky lg:top-24 border-2 border-[var(--color-ink)] p-6 sm:p-8">
@@ -76,7 +102,7 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
                 <p id="rvb-breakeven" class="result-num primary">-</p>
               </div>
               <div>
-                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Equity at Year 5</p>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Equity at Year 5, After Selling Costs</p>
                 <p id="rvb-equity5" class="result-num">-</p>
               </div>
               <div>
@@ -88,6 +114,8 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
           </div>
     </div>
   </section>
+
+  <CalcAssumptions items={CALC_ASSUMPTIONS} omits={CALC_OMITS} usesRate />
 
   <!-- How to use it -->
   <section class="bg-white">
@@ -198,13 +226,15 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
     const rentGrowth = parseFloat((document.getElementById("rvb-rentgrowth") as HTMLInputElement).value) || 0;
     const taxes = parseFloat((document.getElementById("rvb-taxes") as HTMLInputElement).value) || 0;
     const ins = parseFloat((document.getElementById("rvb-ins") as HTMLInputElement).value) || 0;
+    const maintPct = parseFloat((document.getElementById("rvb-maint") as HTMLInputElement).value) || 0;
+    const sellPct = parseFloat((document.getElementById("rvb-sell") as HTMLInputElement).value) || 0;
 
     const breakevenEl = document.getElementById("rvb-breakeven");
     const equity5El = document.getElementById("rvb-equity5");
     const netbuy5El = document.getElementById("rvb-netbuy5");
     const verdictEl = document.getElementById("rvb-verdict");
 
-    if (!price || !monthlyRent) {
+    if (!price || !monthlyRent || rate <= 0) {
       if (breakevenEl) { breakevenEl.textContent = "-"; breakevenEl.style.color = ""; }
       if (equity5El) equity5El.textContent = "-";
       if (netbuy5El) netbuy5El.textContent = "-";
@@ -232,12 +262,13 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
     let cumulRentCost5 = 0;
 
     for (let year = 1; year <= 30; year++) {
-      // Buy costs this year
+      // Buy costs this year. Maintenance tracks the home's current value, like taxes do.
+      const monthlyMaint = homeValue * (maintPct / 100) / 12;
       for (let m = 0; m < 12; m++) {
         const interest = balance * (rate / 100 / 12);
         const principal = pi - interest;
         balance -= principal;
-        cumulBuyCost += pi + monthlyTI;
+        cumulBuyCost += pi + monthlyTI + monthlyMaint;
       }
       homeValue *= (1 + appr / 100);
 
@@ -247,7 +278,12 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
       }
       currentRent *= (1 + rentGrowth / 100);
 
-      const equity = homeValue - balance;
+      /*
+       * Equity is only worth what you can walk away with, so selling costs come off before
+       * it offsets the cost of buying. Without this the model let the buyer cash out for
+       * free and broke even in Year 1 at its own default inputs.
+       */
+      const equity = Math.max(0, homeValue - balance - homeValue * (sellPct / 100));
       const netBuyCost = cumulBuyCost - equity;
 
       if (year === 5) {
@@ -281,7 +317,9 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
     // Net buy vs. rent at year 5: positive means renting was cheaper so far, negative means buying was cheaper
     const diff5 = netBuyCost5 - cumulRentCost5;
     if (netbuy5El) {
-      netbuy5El.textContent = (diff5 > 0 ? "+" : "") + fmt(diff5) + " vs. rent";
+      // fmt() prefixes the dollar sign, so a negative came out as "$-96,000".
+      const sign = diff5 > 0 ? "+" : diff5 < 0 ? "−" : "";
+      netbuy5El.textContent = sign + fmt(Math.abs(diff5)) + " vs. rent";
     }
 
     // Verdict
@@ -300,7 +338,7 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
   }
 
   function init() {
-    ["rvb-price", "rvb-down", "rvb-rate", "rvb-rent", "rvb-appr", "rvb-rentgrowth", "rvb-taxes", "rvb-ins"].forEach((id) => {
+    ["rvb-price", "rvb-down", "rvb-rate", "rvb-rent", "rvb-appr", "rvb-rentgrowth", "rvb-taxes", "rvb-ins", "rvb-maint", "rvb-sell"].forEach((id) => {
       document.getElementById(id)?.addEventListener("input", calc);
       document.getElementById(id)?.addEventListener("change", calc);
     });

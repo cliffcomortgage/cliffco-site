@@ -1,8 +1,25 @@
 ﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import CalcAssumptions from "../../../../components/ui/CalcAssumptions.astro";
 import { COMPANY } from "../../../../data/company";
 import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumptions";
+const CALC_ASSUMPTIONS = [
+  "A <strong>5% down payment</strong> on the target price you enter",
+  `${RATE_ASSUMPTIONS.conventional30}% interest rate on a <strong>30-year fixed</strong> loan`,
+  "Property taxes plus insurance estimated at <strong>1.5% of the purchase price a year</strong>, the same in every state",
+  "Your credit band becomes one representative score for scoring",
+  "Reserves are what is left <em>after</em> the down payment comes out of your savings",
+  "The score starts at <strong>100</strong> and deducts: credit band up to &minus;40, debt-to-income up to &minus;30, reserves up to &minus;20",
+];
+
+const CALC_OMITS = [
+  "An APR - none is calculated anywhere on this page",
+  "PMI, HOA dues and closing costs",
+  "Employment history and loan-to-value, which lenders weigh but this score does not",
+  "Any credit bureau - nothing here is pulled, scored or reported",
+];
+
 ---
 
 <Layout
@@ -76,7 +93,7 @@ import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumpt
                 <p id="mr-dti" class="result-num">-</p>
               </div>
               <div>
-                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Months of Reserves</p>
+                <p class="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-1">Reserves After Down Payment</p>
                 <p id="mr-reserves" class="result-num">-</p>
               </div>
             </div>
@@ -84,6 +101,8 @@ import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumpt
           </div>
     </div>
   </section>
+
+  <CalcAssumptions items={CALC_ASSUMPTIONS} omits={CALC_OMITS} usesRate />
 
   <!-- How to use it -->
   <section class="bg-white">
@@ -93,12 +112,15 @@ import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumpt
         <div class="lg:col-span-8 lg:col-start-5">
           <h2 class="text-xl font-semibold text-[var(--color-ink)]">What lenders look at</h2>
           <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
-            Before you walk into a lender's office, it helps to know how you look on paper. This checkup scores you on the same four factors underwriters use: credit, debt-to-income, reserves, and loan-to-value. See where you're strong and where you have room to improve.
+            Before you walk into a lender's office, it helps to know how you look on paper. This
+            checkup scores three of the things underwriters weigh most heavily: your credit band,
+            your back-end debt-to-income ratio, and the cash reserves you would have left after
+            the down payment. See where you're strong and where you have room to improve.
           </p>
           <ul class="mt-5 space-y-3">
             <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
               <span class="mt-0.5 text-[var(--color-ink)] font-bold shrink-0">&#10003;</span>
-              Lenders look at four things: credit score, DTI ratio, employment history, and cash reserves
+              This score weighs three factors: credit band, back-end DTI, and the reserves left after your down payment
             </li>
             <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
               <span class="mt-0.5 text-[var(--color-ink)] font-bold shrink-0">&#10003;</span>
@@ -110,19 +132,14 @@ import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumpt
             </li>
             <li class="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
               <span class="mt-0.5 text-[var(--color-ink)] font-bold shrink-0">&#10003;</span>
-              Your score here is directional; a loan officer will give you the definitive read
+              Employment history and loan-to-value matter to a lender too, but are not scored here; a loan officer gives you the definitive read
             </li>
           </ul>
           <p class="mt-6 text-xs text-[var(--color-text-muted)] leading-relaxed border-t border-black/15 pt-4">
             Estimate only, and the score is Cliffco's own 0&ndash;100 readiness measure &mdash; not a
-            credit score, not a lender decision, and not reported to anyone. It starts at 100 and
-            deducts for three things: credit band (up to &minus;40 below 580), back-end
-            debt-to-income (&minus;10 over 36%, &minus;20 over 43%, &minus;30 over 50%), and cash
-            reserves (&minus;20 under two months of housing payments, &minus;10 under three,
-            &minus;5 under six). To turn your target price into a payment it assumes 5% down, a
-            {RATE_ASSUMPTIONS.conventional30}% rate on a 30-year fixed, and taxes plus insurance at
-            1.5% of the price a year. No APR is calculated anywhere.
-            {RATE_DISCLOSURE} Actual qualification depends on a full underwriting review.
+            credit score, not a lender decision, and not reported to anyone. The assumptions panel
+            above lists every deduction and every figure behind the payment. Actual qualification
+            depends on a full underwriting review.
           </p>
         </div>
       </div>
@@ -231,8 +248,15 @@ import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumpt
     const tiEst = price * 0.015 / 12;
     const housingPayment = piEst + tiEst;
 
+    /*
+     * Reserves are what survives closing, so the down payment comes out of savings first.
+     * The earlier version divided the full savings balance by the payment, which credited a
+     * buyer whose entire balance was committed to the down payment with months of reserves
+     * they would not actually have (flagged 2026-11-03).
+     */
+    const savingsAfterDown = Math.max(0, savings - downEst);
     const backDTI = income > 0 ? (housingPayment + debts) / income * 100 : 999;
-    const reserveMonths = housingPayment > 0 ? savings / housingPayment : 0;
+    const reserveMonths = housingPayment > 0 ? savingsAfterDown / housingPayment : 0;
 
     let score = 100;
 

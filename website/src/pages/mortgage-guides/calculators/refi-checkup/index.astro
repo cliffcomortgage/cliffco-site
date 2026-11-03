@@ -1,8 +1,23 @@
 ﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import CalcAssumptions from "../../../../components/ui/CalcAssumptions.astro";
 import { COMPANY } from "../../../../data/company";
 import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
+const CALC_ASSUMPTIONS = [
+  "The new loan starts a <strong>fresh full term</strong> from today, at whichever term you pick",
+  `${RATE_ASSUMPTIONS.conventional30}% starting rate; replace it with your own quote`,
+  "Break-even = closing costs &divide; monthly savings",
+  "Net at five years = sixty months of savings, minus closing costs",
+  "Closing costs are paid out of pocket, not rolled into the new balance",
+];
+
+const CALC_OMITS = [
+  "The catch in restarting the clock: a lower payment on a fresh 30-year term can still mean more total interest than finishing your current loan",
+  "Taxes, insurance, PMI and escrow - this compares principal and interest only",
+  "Cash-out proceeds and any change to your loan balance",
+];
+
 ---
 
 <Layout
@@ -81,6 +96,8 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
           </div>
     </div>
   </section>
+
+  <CalcAssumptions items={CALC_ASSUMPTIONS} omits={CALC_OMITS} usesRate />
 
   <!-- How to use it -->
   <section class="bg-white">
@@ -197,7 +214,12 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
 
     const monthlySavings = currentPI - newPI;
     const breakEvenMonths = monthlySavings > 0 ? Math.ceil(closingCosts / monthlySavings) : 9999;
-    const net5yr = monthlySavings > 0 ? (monthlySavings * 60) - closingCosts : -(closingCosts);
+    /*
+     * The old form dropped the ongoing monthly loss whenever the new payment was higher, so
+     * a refinance costing $200 a month more reported a five-year net of just the closing
+     * costs instead of the closing costs plus $12,000 of extra payments.
+     */
+    const net5yr = (monthlySavings * 60) - closingCosts;
 
     const breakevenEl = document.getElementById("rc-breakeven");
     const savingsEl = document.getElementById("rc-savings");
@@ -206,7 +228,8 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
 
     if (!breakevenEl || !savingsEl || !net5El || !verdictEl) return;
 
-    if (balance === 0 && currentPI === 0) {
+    // A zero balance with a payment still filled in produced a break-even month out of nothing.
+    if (balance <= 0 || currentPI <= 0 || newRate <= 0) {
       breakevenEl.textContent = "-";
       savingsEl.textContent = "-";
       net5El.textContent = "-";

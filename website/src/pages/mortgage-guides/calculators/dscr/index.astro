@@ -1,8 +1,22 @@
 ﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import CalcAssumptions from "../../../../components/ui/CalcAssumptions.astro";
 import { COMPANY } from "../../../../data/company";
 import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
+const CALC_ASSUMPTIONS = [
+  "Principal and interest amortized over <strong>30 years</strong>",
+  `${RATE_ASSUMPTIONS.dscr30}% starting rate, higher than owner-occupied pricing`,
+  "DSCR = monthly rent &divide; (principal + interest + taxes + insurance + HOA)",
+  "Taxes, insurance and HOA are entered as <strong>monthly</strong> figures, not annual",
+];
+
+const CALC_OMITS = [
+  "Vacancy, repairs, property management and capital expenses - real cash flow is lower than the figure shown",
+  "Interest-only and ARM structures, which change the ratio",
+  "Cliffco's own DSCR program limits, including minimum ratio, loan size and state eligibility",
+];
+
 ---
 
 <Layout
@@ -85,6 +99,8 @@ import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
           </div>
     </div>
   </section>
+
+  <CalcAssumptions items={CALC_ASSUMPTIONS} omits={CALC_OMITS} usesRate />
 
   <!-- How to use it -->
   <section class="bg-white">

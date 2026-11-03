@@ -1,8 +1,24 @@
 ﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import CalcAssumptions from "../../../../components/ui/CalcAssumptions.astro";
 import { COMPANY } from "../../../../data/company";
 import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumptions";
+const CALC_ASSUMPTIONS = [
+  "Maximum debt-to-income ratio of <strong>43%</strong>, measured on all monthly debt including the new housing payment",
+  `${RATE_ASSUMPTIONS.conventional30}% interest rate on a <strong>30-year fixed</strong> loan`,
+  "Minimum down payment of <strong>3.5%</strong>, the FHA floor",
+  "Your entire savings figure goes in as the down payment - nothing is held back",
+  "The result is the lower of two ceilings: what your income supports, and what your savings support",
+];
+
+const CALC_OMITS = [
+  "Private mortgage insurance, which applies on most loans under 20% down",
+  "HOA or condo dues",
+  "Closing costs, which are on top of the down payment",
+  "Any cash left over after closing - this calculator spends all of it",
+];
+
 ---
 
 <Layout
@@ -78,6 +94,8 @@ import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumpt
     </div>
   </section>
 
+  <CalcAssumptions items={CALC_ASSUMPTIONS} omits={CALC_OMITS} usesRate />
+
   <!-- How to use it -->
   <section class="bg-white">
     <div class="container-wide pb-14 lg:pb-20">
@@ -107,12 +125,10 @@ import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumpt
             </li>
           </ul>
           <p class="mt-6 text-xs text-[var(--color-text-muted)] leading-relaxed border-t border-black/15 pt-4">
-            Estimate only, not a pre-approval. Assumes a {RATE_ASSUMPTIONS.conventional30}% rate on a
-            30-year fixed, a 43% maximum debt-to-income ratio, two months of housing payments
-            held back as reserves, a 3.5% minimum down payment, and no HOA or mortgage
-            insurance. Your range is set by whichever limit binds first: income through DTI,
-            or savings through the down payment. {RATE_DISCLOSURE} Actual qualification is
-            confirmed at pre-approval with a full income and credit review.
+            Estimate only, not a pre-approval. The assumptions panel above lists every figure
+            this calculator uses. Your range is set by whichever limit binds first: income
+            through debt-to-income, or savings through the down payment. Actual qualification
+            is confirmed at pre-approval with a full income and credit review.
           </p>
         </div>
       </div>
@@ -208,10 +224,13 @@ import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumpt
     const factor = r > 0 ? (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1) : 1 / n;
     const maxLoanByIncome = maxPI / factor;
 
-    // Savings-based limit. Hold back two months of housing payment as reserves; the rest
-    // is available for the down payment.
-    const reserves = 2 * maxHousingPayment;
-    const availableForDown = Math.max(0, savings - reserves);
+    /*
+     * The whole savings figure is the down payment. An earlier version held back two months
+     * of housing payment as reserves, which quietly shrank the budget with nothing on screen
+     * to explain it (Rafe, 2026-11-03). Affordability calculators generally do not do this,
+     * and the reserves test belongs in the Readiness checkup, where it is scored and shown.
+     */
+    const availableForDown = Math.max(0, savings);
 
     /*
      * Highest price that satisfies both limits at once:

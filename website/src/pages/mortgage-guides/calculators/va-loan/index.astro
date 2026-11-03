@@ -1,8 +1,25 @@
 ﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import CalcAssumptions from "../../../../components/ui/CalcAssumptions.astro";
 import { COMPANY } from "../../../../data/company";
 import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumptions";
+const CALC_ASSUMPTIONS = [
+  "The funding fee is calculated on the base loan and <strong>rolled into the loan</strong>, not paid at closing",
+  "<strong>30-year fixed</strong> term on both sides of the comparison",
+  "The conventional column uses a <strong>minimum 20% down payment</strong>, so no PMI applies to it - at 0% down on the VA side the two columns are not the same transaction",
+  "Both columns carry the same taxes and insurance",
+  `Rate boxes start at ${RATE_ASSUMPTIONS.va30}% VA and ${RATE_ASSUMPTIONS.conventional30}% conventional; replace them with your own quotes`,
+  "Five-year savings = the monthly difference &times; 60",
+];
+
+const CALC_OMITS = [
+  "PMI on the conventional side, avoided only because the comparison forces 20% down",
+  "Closing costs other than the VA funding fee",
+  "HOA dues, and VA occupancy, entitlement and property requirements",
+  "Funding fee percentages are the 2024 VA schedule",
+];
+
 ---
 
 <Layout
@@ -92,6 +109,8 @@ import { RATE_ASSUMPTIONS, RATE_DISCLOSURE } from "../../../../data/rate-assumpt
           </div>
     </div>
   </section>
+
+  <CalcAssumptions items={CALC_ASSUMPTIONS} omits={CALC_OMITS} usesRate />
 
   <!-- How to use it -->
   <section class="bg-white">

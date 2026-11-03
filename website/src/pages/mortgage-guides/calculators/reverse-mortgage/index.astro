@@ -1,7 +1,21 @@
 ﻿---
 import Layout from "../../../../layouts/Layout.astro";
 import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
+import CalcAssumptions from "../../../../components/ui/CalcAssumptions.astro";
 import { COMPANY } from "../../../../data/company";
+const CALC_ASSUMPTIONS = [
+  "A simplified age factor: <strong>40% at age 62, rising one point a year, capped at 75%</strong>",
+  "HUD maximum claim amount capped at <strong>$1,249,125</strong>",
+  "Proceeds pay off any existing mortgage first; what remains is shown as available",
+];
+
+const CALC_OMITS = [
+  "The expected-interest-rate half of HUD's real principal limit table, which moves the factor substantially - this page uses age alone, so treat the result as a rough ceiling and not a quote",
+  "FHA mortgage insurance premium, origination fee and closing costs, all of which reduce proceeds",
+  "Any set-aside for taxes and insurance required by the financial assessment",
+  "Counselling, occupancy and property requirements that determine whether you qualify at all",
+];
+
 ---
 
 <Layout
@@ -67,6 +81,8 @@ import { COMPANY } from "../../../../data/company";
           </div>
     </div>
   </section>
+
+  <CalcAssumptions items={CALC_ASSUMPTIONS} omits={CALC_OMITS} />
 
   <!-- How to use it -->
   <section class="bg-white">

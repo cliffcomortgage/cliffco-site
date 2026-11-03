@@ -1,0 +1,72 @@
+---
+/**
+ * The assumptions panel every calculator carries.
+ *
+ * Compliance review, 2026-11-03: a calculator may not use a figure the visitor cannot see.
+ * Anything hardcoded in a calculator's maths - a rate, a term, a down payment, a ratio
+ * ceiling, an expense factor, something deliberately left out - belongs in this panel, in
+ * plain words, above the fold-adjacent fine print rather than buried in it.
+ *
+ * Keep `items` in the same order the maths uses them, and keep each line short enough to
+ * read at a glance. `omits` lists the costs the result does NOT include, which is the half
+ * people misread most often.
+ */
+import { RATE_DISCLOSURE } from "../../data/rate-assumptions";
+
+interface Props {
+  /** Figures the calculator uses but never shows in an input box. */
+  items: string[];
+  /** Real costs the result leaves out entirely. */
+  omits?: string[];
+  /** True when any of the figures above is an illustrative rate, which adds the dated rate disclosure. */
+  usesRate?: boolean;
+}
+
+const { items, omits = [], usesRate = false } = Astro.props;
+---
+
+<section class="bg-white">
+  <div class="container-wide pb-10">
+    <div class="border-2 border-[var(--color-ink)] p-6 sm:p-8">
+      <p class="eyebrow">What this calculator assumes</p>
+      <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed max-w-3xl">
+        Every figure below is built into the math but has no input box, so it is listed here
+        rather than left for you to guess at.
+      </p>
+
+      <div class="mt-6 grid gap-8 md:grid-cols-2">
+        <div>
+          <p class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">Figures used</p>
+          <ul class="mt-3 space-y-2">
+            {items.map((item) => (
+              <li class="flex items-start gap-2.5 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                <span class="mt-[7px] h-1.5 w-1.5 shrink-0 bg-[var(--color-ink)]"></span>
+                <span set:html={item} />
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {omits.length > 0 && (
+          <div>
+            <p class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">Not included in the result</p>
+            <ul class="mt-3 space-y-2">
+              {omits.map((item) => (
+                <li class="flex items-start gap-2.5 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                  <span class="mt-[7px] h-1.5 w-1.5 shrink-0 border border-[var(--color-ink)]"></span>
+                  <span set:html={item} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      {usesRate && (
+        <p class="mt-6 border-t border-black/15 pt-4 text-xs text-[var(--color-text-muted)] leading-relaxed">
+          {RATE_DISCLOSURE}
+        </p>
+      )}
+    </div>
+  </div>
+</section>
