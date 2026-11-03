@@ -27,6 +27,16 @@ export const RATE_ASSUMPTIONS = {
 
   /** 30-year fixed DSCR / investor. Prices above owner-occupied paper. */
   dscr30: 7.5,
+
+  /**
+   * HECM "expected average mortgage interest rate" - the figure HUD's principal limit factor
+   * table is keyed to, alongside the borrower's age. On an adjustable HECM it is the 10-year
+   * CMT plus the lender's margin; on a fixed HECM it is the note rate. With the 10-year CMT
+   * near 5% and margins commonly 1.5-2.75 points, 7% sits mid-range. Needs the same sign-off
+   * as every other figure here, and it moves proceeds a lot: a point costs an age-68 borrower
+   * about four points of principal limit factor.
+   */
+  hecmExpected: 7.0,
 } as const;
 
 /** The sentence every calculator appends to its fine print. */

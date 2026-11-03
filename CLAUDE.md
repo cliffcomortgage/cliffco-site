@@ -96,6 +96,22 @@ out*, which is the half people misread.
   (the VA page's conventional column is forced to 20% down), and charge the costs that decide
   the answer (Rent vs Buy broke even in Year 1 until maintenance and selling costs went in).
 
+**Where a figure comes from when `Guidelines/` has nothing.** Two calculators needed numbers
+that aren't Cliffco product specs, so `Guidelines/` was never going to hold them. The rule
+that replaces it: find the **primary publisher** and store the real data, never a formula
+someone derived from it.
+
+| Figure | Source | Lives in |
+|---|---|---|
+| HECM principal limit factors | HUD's own workbook, from the PLF set listed on [hud.gov](https://www.hud.gov/stat/sfh/hecm) | `website/src/data/hecm-plf.ts` |
+| HECM maximum claim amount | FHA Mortgagee Letter (ML 2025-22 for 2026) | the reverse calculator |
+| DSCR ratio tiers | `Cliffco 1-6 - DSCR MATRIX.pdf` | the DSCR calculator |
+
+The reverse calculator is the cautionary tale: its factor was a made-up rule of thumb ("40%
+at 62, +1% a year") that ran about a third high. A principal limit factor depends on age
+**and** the expected interest rate — a figure keyed to two things cannot be approximated
+from one. Where a published table exists, ship the table.
+
 ## Personnel corrections (override the static docs)
 
 The NMLS roster and `Leadership Bios.docx` are point-in-time snapshots. These corrections supersede them — do **not** publish the legacy versions:
