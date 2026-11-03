@@ -1370,12 +1370,12 @@
     },
     {
       "source": "/closing-costs/",
-      "destination": "/mortgage-guides/calculators/closing-costs/",
+      "destination": "/mortgage-guides/calculators/",
       "permanent": true
     },
     {
       "source": "/closing-costs",
-      "destination": "/mortgage-guides/calculators/closing-costs/",
+      "destination": "/mortgage-guides/calculators/",
       "permanent": true
     },
     {

@@ -91,14 +91,6 @@ const calculators = [
     icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6L9 12.75l4.286-4.286a11.948 11.948 0 014.306 6.43l.776 2.898m0 0 3.182-5.511m-3.182 5.51-5.511-3.181" />`,
     color: "purple",
   },
-  {
-    slug: "closing-costs",
-    title: "Closing Costs Calculator",
-    audience: "All buyers",
-    description: "Get an itemized closing cost estimate by state, property type, and purchase price, including taxes, title, lender fees, and prepaids.",
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185zM9.75 9h.008v.008H9.75V9zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm4.125 4.5h.008v.008h-.008V13.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />`,
-    color: "green",
-  },
 ];
 
 // Home buyers first; specialty audiences after. Unlisted audiences sort to the end.
@@ -121,7 +113,7 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
 
 <Layout
   title="Mortgage Calculators | Cliffco Mortgage Bankers"
-  description="Twelve free mortgage calculators: affordability, payment estimator, rent vs buy, closing costs, buydown, VA loan, refi break-even, DSCR, self-employed income, reverse mortgage, and more."
+  description={`${calculators.length} free mortgage calculators: affordability, payment estimator, rent vs buy, buydown, VA loan, refi break-even, DSCR, self-employed income, reverse mortgage, and more.`}
 >
   <Breadcrumbs trail={[
     { name: "Home", href: "/" },
@@ -134,7 +126,7 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
         <p class="eyebrow">Free tools</p>
         <h1 class="mt-4 text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">Run the numbers before you apply.</h1>
         <p class="mt-5 max-w-2xl text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">
-          Twelve calculators covering every common mortgage scenario: from first-time buyers and self-employed
+          {calculators.length} calculators covering every common mortgage scenario: from first-time buyers and self-employed
           borrowers to investors, veterans, and homeowners considering a refinance, buydown, or reverse mortgage.
         </p>
       </div>

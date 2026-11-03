@@ -156,7 +156,7 @@ export default defineConfig({
     '/loan-officers/wenceslao-romero/': '/loan-officers/',
     '/team-veras/': '/locations/florida/',
     '/buydown-calculator/': '/mortgage-guides/calculators/buydown/',
-    '/closing-costs/': '/mortgage-guides/calculators/closing-costs/',
+    '/closing-costs/': '/mortgage-guides/calculators/',
     '/jmarrero/': '/loan-officers/',
     // NJ grant lander moved to the URL the ads use on the current site
     '/nj-22k-grant/': '/nj-grant-program/',

@@ -9,7 +9,7 @@ const p = product("conventional")!;
 
 const faq = [
   { question: "What is a conventional loan?", answer: "A conventional mortgage is a home loan that meets Fannie Mae or Freddie Mac guidelines and is not insured by a government agency (FHA, VA, or USDA). Conforming conventional loans fall within the annual loan limits set by the FHFA; high-balance loans allow higher amounts in designated high-cost counties." },
-  { question: "How much down payment do I need for a conventional loan?", answer: "As little as 3% for first-time homebuyers (including programs like HomeReady and Home Possible), 5% for repeat buyers, and 20% to skip private mortgage insurance (PMI) entirely. Second homes typically need 10% down and investment properties 15% to 25%." },
+  { question: "How much down payment do I need for a conventional loan?", answer: "As little as 3% for first-time homebuyers (including programs like HomeReady and Home Possible), 5% for non-first-time homebuyers, and 20% to skip private mortgage insurance (PMI) entirely. Second homes typically need 10% down and investment properties 15% to 25%." },
   { question: "What credit score do I need?", answer: "There is no fixed minimum credit score on a conventional loan. The automated underwriting system reviews your whole credit profile, not just the number, so the decision comes from your payment history, how much credit you're using, and how the rest of the file looks together. Your score does affect pricing, and it improves at each tier, with the best pricing at 780 and above. A lower score may mean a larger down payment. If you're not sure where you stand, a loan officer can run it and tell you before you apply." },
   { question: "What is PMI and when can I remove it?", answer: "Private mortgage insurance (PMI) is required on conventional loans when the down payment is less than 20%. You can ask to cancel it once your balance reaches 80% of the home's original value, and it ends automatically at 78%. If your home's value rises, a new appraisal may let you remove it sooner." },
   { question: "Can my down payment be a gift?", answer: "Yes. For a single-family primary residence, your entire down payment can be a gift from an eligible donor, such as a family member, documented with a signed gift letter. Different rules apply to multi-unit homes and second homes, so talk to your loan officer before the money moves." },
@@ -39,10 +39,10 @@ import CtaBand from "../../../components/asym/CtaBand.astro";
 import LoanCompare from "../../../components/asym/LoanCompare.astro";
 
 const glance = [
-  ["Min down payment", "3% (first-time buyers), 5% (repeat buyers)"],
+  ["Min down payment", "3% (first-time buyers), 5% (non-first-time homebuyers)"],
   ["Min FICO", "No fixed minimum; set by the automated underwriting decision"],
   ["2026 conforming limit", "$832,750 (standard); up to $1,249,125 (high-cost)"],
-  ["PMI required", "Under 20% down; removable at 80% LTV"],
+  ["PMI required", "Under 20% down; removable at 80% LTV under certain circumstances*"],
   ["Terms", "10, 15, 20, 25, and 30-year fixed; 5, 7, and 10-year ARMs"],
   ["Property types", "Primary, second home, investment (1–4 units)"],
 ];
@@ -93,6 +93,11 @@ const whoFor = [
             </div>
           ))}
         </dl>
+        <p class="mt-4 text-sm text-[var(--color-text-muted)] leading-relaxed">
+          * Removing PMI also requires a single-family primary residence or second home, an
+          acceptable payment history on the mortgage, and a current property value no less
+          than the original value.
+        </p>
       </Chapter>
 
   <!-- WHO IT'S FOR -->
