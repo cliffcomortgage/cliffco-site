@@ -314,9 +314,79 @@ Added: max DTI 50%, reserves (3 months PITIA, 6 on cash-out / second home / inve
 
 The "buyers from countries without credit bureaus" card was kept but given the real requirements, because foreign credit genuinely is allowed here (unlike ITIN): three open accounts with a two-year history and no lates, a 12-month 0x30 housing history, and bank reference letters where no formal report exists.
 
-### Still open after Round 3
+### Still open after Round 3 *(superseded — see Round 4 below)*
 
 1. **Agency items** from the Round 1 table, unchanged: VA loan ceiling, VA funding fee first-use vs subsequent-use, the 10% disability exemption, PMI cancellation sourcing (cite the Homeowners Protection Act rather than implying investor policy), conventional 3% down conditions, VA cash-out at 90% vs 100%, the FHA 2–4 unit gift/reserve condition, and whether Cliffco actually originates FHA 500–579.
 2. **Remaining Non-QM income calculations**: asset utilization uses an 84-month divisor (not "60–84") and must exclude down payment and closing costs as well as reserves; the 1099 page's "10% standard expense factor" is a penalty in the guidelines, not a standard; the VOE product is marketed on the site but is not in the guideline set.
 3. **DPA credit floors and AMI bands** — not in our guidelines by design, since DPA is state and county level. Source them to the actual program sheets or soften.
 4. **Blog and guide pages** remain only partially covered. The bank statement pages were corrected this round; the DSCR, HELOC and reverse figures in `/mortgage-guides/` still carry Round 1 and 2 language.
+
+---
+
+## Round 4 — 2026-11-04: reconciling the open list
+
+This round found no new guideline breaches. It found that the Round 3 open list had gone
+stale, and that is the finding.
+
+Several items on it were closed during the calculator work of 2026-11-03 by someone who had
+not read this document. The same defects were therefore discovered twice — once here in
+October, once from scratch in November — and the list kept claiming they were open. Before
+auditing any surface, read this file first.
+
+A site-wide extraction run on 2026-11-04 pulled every numeric product claim out of all 223
+page, data and microsite source files and deduplicated them to 247 distinct claims. Those
+were checked against this document and `Guidelines/`. Nothing new surfaced, which is the
+first time that has been true.
+
+### Closed since Round 3
+
+- **VA funding fee, first use vs subsequent use.** `/loans/va/` said the fee is "typically
+  2.15%–3.3% for first use". 3.3% is not a first-use rate; it is subsequent use under 5%
+  down. All four tiers are now stated, and the VA calculator derives the tier from the down
+  payment rather than a dropdown that could contradict it — that dropdown also charged 1.25%
+  where 5% to 9.99% down is 1.5%. (2026-11-03)
+- **The 10% disability exemption.** Corrected on `/loans/va/`, the VA calculator and the
+  `how-does-a-va-loan-work` explainer to the test the VA actually applies: receiving
+  disability compensation, entitled but taking retirement or active-duty pay, surviving
+  spouses receiving DIC, and Purple Heart recipients. The old shorthand would have told a
+  surviving spouse they owed a fee they do not owe. (2026-11-03)
+- **Whether Cliffco originates FHA 500–579.** Yes — 10% down from the borrower's own funds,
+  two months of bank statements. The score sets the down payment, not approval; the FHA grid
+  reads "Per AUS" with no numeric floor. Answered in `e4dfc58` and confirmed 2026-11-04.
+  `/loans/fha/` already states it correctly.
+- **VA cash-out at 90% vs 100%.** No longer claimed anywhere.
+- **PMI cancellation.** The unconditional "removable at 80% LTV" was qualified across four
+  pages on 2026-11-03. Still not cited to the Homeowners Protection Act — see below.
+- **DSCR figures in `/mortgage-guides/`.** The published 1.10 threshold appears nowhere in
+  `Cliffco 1-6 - DSCR MATRIX.pdf`, which splits at **1.00** and carries three side-by-side
+  LTV grids: DSCR ≥ 1.00, DSCR < 1.00, and No Ratio. A ratio under 1.00 is a priced tier at
+  a lower LTV, not the near-decline the site described, and No Ratio was never mentioned.
+  Fixed in the calculator and four blog posts, three of which embed their own copy of that
+  calculator. (2026-11-03)
+- **Reverse figures in `/mortgage-guides/`.** The reverse calculator's principal limit
+  factor was invented ("40% at 62, +1% a year") and ran about a third high. Rebuilt on HUD's
+  published PLF table, now stored in `website/src/data/hecm-plf.ts`. (2026-11-03)
+
+### Still open after Round 4 — each verified present on 2026-11-04
+
+1. **Asset utilization** (`/loans/asset-utilization-mortgage/`): divisor published as
+   "60–84 months"; guidelines say **84 months only**, and require excluding the down payment
+   and closing costs as well as reserves. The page's "up to 85% primary / 80% investment"
+   against an actual **80% maximum, purchase and rate/term only**, not cash-out, not ITIN.
+2. **1099** (`/loans/1099-mortgage/`): the "10% standard expense factor" is a **penalty** in
+   the guidelines, applied when the borrower cannot confirm they have no job-related
+   expenses. The page also says multiple clients are fine, where the guidelines expect the
+   same 1099 provider for two years.
+3. **VOE** is marketed as a Non-QM program across 6 files. No VOE-only product exists in the
+   guideline set; WVOE (Form 1005) is a verification method inside Full Doc.
+4. **DPA credit floors and AMI bands** (3 files): 620 and similar figures are state and
+   county programme rules, not ours. Source them to the programme sheets or soften.
+5. **Remaining agency items**: the VA loan ceiling claim, conventional 3% down conditions,
+   and the FHA 2–4 unit gift/reserve condition.
+6. **PMI cancellation sourcing**: now qualified, but cite the Homeowners Protection Act
+   rather than implying it is investor policy.
+7. **HELOC figures** in `/mortgage-guides/` still carry Round 1 and 2 language.
+8. **Minor, cosmetic**: "disability rating of 10% or higher" survives in two places — the
+   calculator instruction in `how-does-a-va-loan-work` and throughout
+   `va-disability-income-mortgage-qualification`, where it reads correctly for an article
+   about disability ratings but no longer matches the corrected rule elsewhere.
