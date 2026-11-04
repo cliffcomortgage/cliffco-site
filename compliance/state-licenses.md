@@ -2,7 +2,7 @@
 
 Every state license held by **Cliffco, Inc. (NMLS #65328)** as of the last NMLS audit (2025-07-23). Source: `loan-officer-disclosures.csv`.
 
-**Total: 37 licensed jurisdictions (36 states + DC)**, confirmed 2026-10-22. Arkansas was added 2026-10-22 (Arkansas Securities Department #65328), New Hampshire 2026-10-07 (NH Banking Department Mortgage Banker License 65328MB) and Iowa 2026-09-02. The website reads its state count from that data file, so keep the two in sync.
+**Total: 38 licensed jurisdictions (37 states + DC)**, confirmed 2026-11-04. Idaho was added 2026-11-04 (ID Mortgage Broker/ Lender License MBL-2080065328 ID Department of Finance), Arkansas 2026-10-22 (Arkansas Securities Department #65328), New Hampshire 2026-10-07 (NH Banking Department Mortgage Banker License 65328MB) and Iowa 2026-09-02. The website reads its state count from that data file, so keep the two in sync.
 
 This is the canonical list to use in: site footer state-license disclosure, `/licensing/` page, schema `areaServed`, GBP service areas, marketing collateral.
 
@@ -20,6 +20,7 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 | FL | Florida — operating as **Clout Mortgage, Inc.** (NY corporation authorized to transact in FL) | DBA registration |
 | GA | Georgia Department of Banking & Finance | 65328 |
 | IA | Iowa Division of Banking — Mortgage Banker License | 2026-0104 |
+| ID | Idaho Department of Finance — Mortgage Broker/Lender License | MBL-2080065328 |
 | IL | Illinois Department of Financial & Professional Regulation | MB.6761824 |
 | IN | Indiana Department of Financial Institutions | 70581 |
 | KS | Kansas State Bank Commissioner | MC.0026625 |
@@ -46,7 +47,7 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 | VT | Vermont Department of Financial Regulation | LL-65328 |
 | WA | Washington State Department of Financial Institutions | CL-65328 |
 
-**Total states: 37** (counting FL DBA registration).
+**Total states: 38** (counting FL DBA registration).
 
 ## Cliffco's stated priority territories — license status
 

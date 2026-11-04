@@ -71,6 +71,7 @@ export default defineConfig({
     '/emorais/': '/loan-officers/edward-morais/',
     '/emueller/': '/loan-officers/eric-mueller/',
     '/falosa/': '/loan-officers/fabrizio-alosa/',
+    '/froman/': '/loan-officers/fabian-roman/',
     '/faqs/': '/mortgage-rates/',
     '/fha-loans/': '/loans/fha/',
     '/find-a-branch/': '/locations/',

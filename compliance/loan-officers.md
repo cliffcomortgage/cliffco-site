@@ -2,13 +2,15 @@
 
 Active LOs from `loan-officer-disclosures.csv` (last NMLS audit 2025-07-23). Roster of 80+ active loan officers. Sortable references — for the rebuilt site each LO gets a bio page at `/loan-officers/{firstname-lastname-nmlsid}/` with full Person schema and NMLS Consumer Access verification link.
 
-**New Hampshire (2026-10-07):** Cliffco is now licensed in NH (NH Banking Department Mortgage Banker License 65328MB). Mario Argenzio (NMLS #1869384) is NH-licensed. Christopher Clifford is not yet.
+**Idaho (2026-11-04):** Cliffco is now licensed in ID (ID Mortgage Broker/ Lender License MBL-2080065328 ID Department of Finance). Mario Argenzio (NMLS #1869384) and Christopher Clifford (NMLS #65234) are both ID-licensed.
+
+**New Hampshire (2026-10-07; Clifford added 2026-11-04):** Cliffco is licensed in NH (NH Banking Department Mortgage Banker License 65328MB). Mario Argenzio and Christopher Clifford are both NH-licensed.
 
 ## Leadership / Multi-state senior LOs
 
 | Name | NMLS # | Title | States | Branch |
 |---|---|---|---|---|
-| Christopher Clifford | 65234 | President | 36 of Cliffco's 37 states, confirmed 2026-10-22: every state except NH, where he isn't licensed yet (AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, IA, IL, IN, KS, KY, LA, MA, MD, MI, MN, MT, NC, NJ, NM, NY, OH, OK, OR, PA, SC, TN, TX, VA, VT, WA) | Uniondale, NY (HQ) |
+| Christopher Clifford | 65234 | President | All 38 of Cliffco's states, confirmed 2026-11-04 (AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, IA, ID, IL, IN, KS, KY, LA, MA, MD, MI, MN, MT, NC, NH, NJ, NM, NY, OH, OK, OR, PA, SC, TN, TX, VA, VT, WA) | Uniondale, NY (HQ) |
 | Adam Turkewitz | 32900 | Senior VP of Sales | 24 states | Uniondale, NY (HQ) |
 | Ryan Dennis Riddle | 1730872 | Loan Officer | 27 states | Uniondale, NY (HQ) |
 | James Chen | 17991 | Senior Vice President of Sales | CT, FL, GA, MD, NC, NJ, NY, OR, PA, SC, VA, AZ, TX | Uniondale, NY (HQ) |
@@ -36,7 +38,7 @@ Active LOs from `loan-officer-disclosures.csv` (last NMLS audit 2025-07-23). Ros
 
 ### Uniondale, NY (HQ) — corporate
 
-Adam Broder, Adam Turkewitz, Anastasios Zervas, Brandon Kenney, Christopher Clifford, Daniel Ebbecke, David Fallarino, David Illouz, David Mizrahi, Dick Lee, Donna Hemberger, Emily Nicole Cordeira, Emmanuel Estinvil, Eric Mueller, Fabrizio Alosa, Frances Ortiz, George Diamantakis, James Chen, James P. Perrone, Johana Amaya, Joseph Cordeira, Joshua Miguel Borrero, Justin Hu, Katherine Chiang, Kathie Adler, Kendra Daniel, Kevan Scott, Khadijah Muwwakkil, Lee Horen, Leah Silvestri, Lisa A. Hartman, Logan Reese Levy, Marco Montano, Mario Argenzio, Michael Aziz, Michael Bisbee, Michael Chang, Moses Youssef, Paul J. Montesano, Queeny Duong, Rafael Rojas, Raymond Garcia, Renald Appo, Richard Alvarez, Ryan Dennis Riddle, Steve Wei, Steven Rivera, Thomas Whalen
+Adam Broder, Adam Turkewitz, Anastasios Zervas, Brandon Kenney, Christopher Clifford, Daniel Ebbecke, David Fallarino, David Illouz, David Mizrahi, Dick Lee, Donna Hemberger, Emily Nicole Cordeira, Emmanuel Estinvil, Eric Mueller, Fabian Roman, Fabrizio Alosa, Frances Ortiz, George Diamantakis, James Chen, James P. Perrone, Johana Amaya, Joseph Cordeira, Joshua Miguel Borrero, Justin Hu, Katherine Chiang, Kathie Adler, Kendra Daniel, Kevan Scott, Khadijah Muwwakkil, Lee Horen, Leah Silvestri, Lisa A. Hartman, Logan Reese Levy, Marco Montano, Mario Argenzio, Michael Aziz, Michael Bisbee, Michael Chang, Moses Youssef, Paul J. Montesano, Queeny Duong, Rafael Rojas, Raymond Garcia, Renald Appo, Richard Alvarez, Ryan Dennis Riddle, Steve Wei, Steven Rivera, Thomas Whalen
 
 ### Newark, NJ
 

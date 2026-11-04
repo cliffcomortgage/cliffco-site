@@ -75,7 +75,9 @@ export const nmlsConsumerAccessUrl = (nmls: string): string =>
 
 // Christopher Clifford is licensed in every state Cliffco is (confirmed 2026-10-05) except New
 // Hampshire: Cliffco was licensed there 2026-10-07 and he isn't yet. Drop the filter once he is.
-const PRESIDENT_STATES = STATE_LICENSES.map((s) => s.code).filter((c) => c !== "NH");
+// Licensed in every Cliffco state. The NH exclusion that used to sit here was retired on
+// 2026-11-04 when his New Hampshire licence came through.
+const PRESIDENT_STATES = STATE_LICENSES.map((s) => s.code);
 
 export const LOAN_OFFICERS: readonly LoanOfficer[] = [
   // ============================================================
@@ -702,6 +704,24 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
+    slug: "fabian-roman",
+    firstName: "Fabian",
+    lastName: "Roman",
+    displayName: "Fabian Roman",
+    nmls: "173714",
+    title: "Business Development Manager",
+    states: ["NJ", "NY"],
+    branchSlug: "uniondale-headquarters",
+    links: {
+      email: "froman@cliffcomortgage.com",
+      directPhone: "516-350-5305",
+      cellPhone: "516-998-8146",
+      applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=fabian&workFlowId=33774",
+    },
+    bio: "With 22+ years in the mortgage industry, Fabian Roman brings a unique combination of lending, capital markets, secondary market, and executive leadership experience. Since 2004, he has worked across virtually every sector of mortgage lending, including back-office operations and TBA trading.\n\nA proud U.S. Navy veteran, Fabian brings discipline, accountability, and a mission-focused approach to every transaction. His extensive industry experience allows him to anticipate challenges, find solutions, and keep deals moving toward the closing table.\n\nFabian believes every client deserves white-glove service, clear communication, and someone who takes ownership from start to finish.\n\nHis philosophy is simple: Find the solution. Solve the problem. Get the job done.",
+    hasPhoto: true,
+  },
+  {
     slug: "fabrizio-alosa",
     firstName: "Fabrizio",
     lastName: "Alosa",
@@ -967,7 +987,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     displayName: "Mario Argenzio",
     nmls: "1869384",
     title: "Loan Officer",
-    states: ["AR", "AZ", "CA", "CO", "CT", "FL", "GA", "IA", "MD", "MN", "MT", "NC", "NH", "NJ", "NY", "OK", "PA", "SC", "TN", "VA"],
+    states: ["AR", "AZ", "CA", "CO", "CT", "FL", "GA", "IA", "ID", "MD", "MN", "MT", "NC", "NH", "NJ", "NY", "OK", "PA", "SC", "TN", "VA"],
     branchSlug: "uniondale-headquarters",
     links: {
       email: "margenzio@cliffcomortgage.com",

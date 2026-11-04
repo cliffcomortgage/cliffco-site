@@ -36,6 +36,7 @@ export const STATE_LICENSES: readonly StateLicense[] = [
   { code: "FL", name: "Florida",      regulator: "Florida Office of Financial Regulation", licenseNumber: "MLD1245", notes: "DBA: Clout Mortgage, Inc." },
   { code: "GA", name: "Georgia",      regulator: "Georgia Department of Banking & Finance",                             licenseNumber: "65328" },
   { code: "IA", name: "Iowa",         regulator: "Iowa Division of Banking - Mortgage Banker License",                  licenseNumber: "2026-0104" },
+  { code: "ID", name: "Idaho",        regulator: "Idaho Department of Finance",                                        licenseNumber: "MBL-2080065328" },
   { code: "IL", name: "Illinois",     regulator: "Illinois Department of Financial & Professional Regulation",          licenseNumber: "MB.6761824" },
   { code: "IN", name: "Indiana",      regulator: "Indiana Department of Financial Institutions",                        licenseNumber: "70581" },
   { code: "KS", name: "Kansas",       regulator: "Kansas State Bank Commissioner",                                      licenseNumber: "MC.0026625" },

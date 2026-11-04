@@ -524,6 +524,11 @@
       "permanent": true
     },
     {
+      "source": "/froman/",
+      "destination": "/loan-officers/fabian-roman/",
+      "permanent": true
+    },
+    {
       "source": "/falosa",
       "destination": "/loan-officers/fabrizio-alosa/",
       "permanent": true
