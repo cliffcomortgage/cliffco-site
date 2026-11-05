@@ -1,15 +1,24 @@
-brand/
-Guidelines/
-seo-aeo-dtc-research/
-presentations/
-email-campaigns/
-compliance/
-blog articles/
-scripts/
+# Kept in git, not shipped to Vercel.
+#
+# Every pattern below is ANCHORED with a leading slash so it matches only the repository
+# root. Unanchored, a bare `compliance/` also matches `website/src/components/compliance/`,
+# which is exactly what happened on 2026-11-05: a new component folder of that name was
+# silently stripped from the deploy and the build died on
+# "Could not resolve ../components/compliance/TriggerDisclaimers.astro".
+# If you add a pattern here, anchor it.
+
+/brand/
+/Guidelines/
+/seo-aeo-dtc-research/
+/presentations/
+/email-campaigns/
+/compliance/
+/blog articles/
+/scripts/
 
 # Full-resolution source headshots. scripts/import-headshots.mjs turns these into the
 # optimized website/public/team/{slug}.{avif,webp,jpg} files that pages actually use, and
 # that script runs locally, never on Vercel. Everything under website/public/ is published
 # verbatim, so leaving these in the deploy pushed 24MB of unreferenced full-res staff photos
 # to the public internet on every build. Kept in git (the team edits them); just not shipped.
-website/public/images/headshots/
+/website/public/images/headshots/
