@@ -73,6 +73,30 @@ Cliffco DSCR matrix makes Foreign Nationals from the Republic of China ineligibl
 HI ineligible outright. Don't list restrictions in page copy, but don't write copy that
 implies citizenship is the only test either.
 
+## Calculators — there are 61, and they are tested
+
+**Before auditing or changing a calculator, read `scripts/calculator-tests/README.md` and run
+the suite. Do not start a fresh search.** The calculators were audited five times between
+2026-11-03 and 2026-11-05, and every pass found more, because every pass drew its own
+boundary and none started from what was already known.
+
+```bash
+cd website && npm run build
+cd ../scripts/calculator-tests && node run-all.cjs
+```
+
+Two facts that caused most of the rework:
+
+- **There are 61 calculators, not 11.** Eleven live under `/mortgage-guides/calculators/`.
+  The other **50 are embedded in blog posts**, and they are *copies* — 10 archetypes keyed by
+  an `art-<prefix>-` input id. A figure corrected in a main calculator does **not** reach
+  them. That is how the invented reverse mortgage factor and the pre-2023 VA funding fee
+  schedule stayed live after both were fixed. **When a product figure changes, grep the
+  `art-` prefix for it.**
+- **A green test can be green because it tested nothing.** One sweep reported "61 calculators,
+  NO DEFECTS FOUND" over zero combinations — Windows backslashes had broken a path, so every
+  page 404'd. Check the combination count, not just the verdict.
+
 ## Calculators — no invisible figures
 
 Rule set by Rafe on 2026-11-03, after a compliance review: **a calculator may not use a

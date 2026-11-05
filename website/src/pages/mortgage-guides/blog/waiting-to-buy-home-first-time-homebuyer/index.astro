@@ -225,11 +225,11 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
       breakEvenYr > 0 ? `Year ${breakEvenYr}` : "After 30 yrs";
 
     const a5El = document.getElementById("art-rvb-5yr") as HTMLElement;
-    a5El.textContent = (adv5 >= 0 ? "+" : "") + fmt(adv5);
+    a5El.textContent = (adv5 >= 0 ? "+" : "-") + fmt(adv5);
     a5El.className = "text-2xl font-bold mt-1 " + (adv5 >= 0 ? "text-green-600" : "text-red-600");
 
     const a10El = document.getElementById("art-rvb-10yr") as HTMLElement;
-    a10El.textContent = (adv10 >= 0 ? "+" : "") + fmt(adv10);
+    a10El.textContent = (adv10 >= 0 ? "+" : "-") + fmt(adv10);
     a10El.className = "text-2xl font-bold mt-1 " + (adv10 >= 0 ? "text-green-600" : "text-red-600");
 
     (document.getElementById("art-rvb-result") as HTMLElement).classList.remove("hidden");

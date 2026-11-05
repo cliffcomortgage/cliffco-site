@@ -191,11 +191,11 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
       monthlySavings > 0 ? `${breakEvenMonths} months` : "No savings";
 
     const n2El = document.getElementById("art-rc-2yr") as HTMLElement;
-    n2El.textContent = (net2yr >= 0 ? "+" : "") + fmt(net2yr);
+    n2El.textContent = (net2yr >= 0 ? "+" : "-") + fmt(net2yr);
     n2El.className = "text-2xl font-bold mt-1 " + (net2yr >= 0 ? "text-green-600" : "text-red-600");
 
     const n5El = document.getElementById("art-rc-5yr") as HTMLElement;
-    n5El.textContent = (net5yr >= 0 ? "+" : "") + fmt(net5yr);
+    n5El.textContent = (net5yr >= 0 ? "+" : "-") + fmt(net5yr);
     n5El.className = "text-2xl font-bold mt-1 " + (net5yr >= 0 ? "text-green-600" : "text-red-600");
 
     let verdict = "";
