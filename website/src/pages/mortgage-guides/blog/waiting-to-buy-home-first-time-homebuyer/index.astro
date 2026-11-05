@@ -183,11 +183,25 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     const closingCosts = price * 0.03;
     const r = rate / 100 / 12;
     const n = 30 * 12;
-    const pi = r === 0 ? loan / n : loan * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    // A cleared rate box used to fall through to loan/n and price a 0% mortgage.
+    const pi = r > 0 ? loan * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1) : 0;
+
+    /*
+     * Upkeep and the cost of selling decide this comparison, and leaving both out is what
+     * made the full calculator break even in Year 1 before it was corrected. Same defaults
+     * as that one: 1% of the home's value a year in maintenance, 6% of the sale price to
+     * sell. Taxes and insurance still aren't modelled here - this tool doesn't ask for them -
+     * so the buy side remains optimistic and the note below says so.
+     */
+    const MAINTENANCE = 0.01;
+    const SELLING_COSTS = 0.06;
 
     function yearBuyCost(yr: number): number {
-      let total = downAmt + closingCosts + pi * yr * 12;
-      const equity = downAmt + (price * Math.pow(1 + appreciation, yr) - price);
+      let maintenance = 0;
+      for (let y = 1; y <= yr; y++) maintenance += price * Math.pow(1 + appreciation, y) * MAINTENANCE;
+      const total = downAmt + closingCosts + pi * yr * 12 + maintenance;
+      const homeValue = price * Math.pow(1 + appreciation, yr);
+      const equity = Math.max(0, downAmt + (homeValue - price) - homeValue * SELLING_COSTS);
       return total - equity;
     }
 
@@ -211,11 +225,11 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
       breakEvenYr > 0 ? `Year ${breakEvenYr}` : "After 30 yrs";
 
     const a5El = document.getElementById("art-rvb-5yr") as HTMLElement;
-    a5El.textContent = (adv5 >= 0 ? "+" : "-") + fmt(adv5);
+    a5El.textContent = (adv5 >= 0 ? "+" : "") + fmt(adv5);
     a5El.className = "text-2xl font-bold mt-1 " + (adv5 >= 0 ? "text-green-600" : "text-red-600");
 
     const a10El = document.getElementById("art-rvb-10yr") as HTMLElement;
-    a10El.textContent = (adv10 >= 0 ? "+" : "-") + fmt(adv10);
+    a10El.textContent = (adv10 >= 0 ? "+" : "") + fmt(adv10);
     a10El.className = "text-2xl font-bold mt-1 " + (adv10 >= 0 ? "text-green-600" : "text-red-600");
 
     (document.getElementById("art-rvb-result") as HTMLElement).classList.remove("hidden");

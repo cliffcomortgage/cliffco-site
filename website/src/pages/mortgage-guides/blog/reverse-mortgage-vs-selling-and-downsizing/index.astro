@@ -138,6 +138,9 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 </style>
 
 <script>
+  import { principalLimitFactor } from "../../../../data/hecm-plf";
+  import { RATE_ASSUMPTIONS } from "../../../../data/rate-assumptions";
+
 
   /**
    * Read a number box, honouring the bounds the markup declares.
@@ -163,16 +166,29 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 
     const hecmLimit = 1249125;
     const lendingLimit = Math.min(value, hecmLimit);
-    const ageFactor = Math.min(0.75, 0.40 + (age - 62) * 0.01);
-    const grossProceeds = lendingLimit * ageFactor;
+    /*
+     * HUD's published principal limit factor, keyed to age AND the expected interest rate.
+     * This in-article version has no rate box, so it uses the documented default and says so
+     * below; the full calculator lets you change it. The factor it replaced was invented and
+     * ran about a third high.
+     */
+    const plf = principalLimitFactor(age, RATE_ASSUMPTIONS.hecmExpected);
+    const grossProceeds = plf === null ? 0 : lendingLimit * plf;
     const netProceeds = Math.max(0, grossProceeds - balance);
     const fmt = (v: number) => (v < 0 ? "-$" : "$") + Math.abs(Math.round(v)).toLocaleString("en-US");
 
     (document.getElementById("art-rm-gross") as HTMLElement).textContent = fmt(grossProceeds);
     (document.getElementById("art-rm-net") as HTMLElement).textContent = fmt(netProceeds);
 
-    let note = "";
-    if (value > hecmLimit) {
+    let note = plf === null
+      ? "A HECM borrower must be at least 62, so there is no estimate to show at this age."
+      : "Based on HUD's principal limit factor of " + (plf * 100).toFixed(1) + "% for age " +
+        Math.min(99, Math.round(age)) + " at an assumed " + RATE_ASSUMPTIONS.hecmExpected +
+        "% expected rate. FHA mortgage insurance and closing costs come out of this. The full " +
+        "reverse mortgage calculator lets you change the rate.";
+    if (plf === null) {
+      // nothing further to add
+    } else if (value > hecmLimit) {
       note = "Note: HECM loans are limited to the 2026 FHA lending limit of $1,249,125. Your home value above that limit is not factored into HECM proceeds. A proprietary (jumbo) reverse mortgage may be available for higher-value homes.";
     } else if (balance > grossProceeds * 0.6) {
       note = "Your existing mortgage balance is substantial relative to estimated proceeds. You may still qualify, but less equity will remain after payoff.";

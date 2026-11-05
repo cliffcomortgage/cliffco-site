@@ -180,7 +180,7 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     (document.getElementById("art-dscr-obligation") as HTMLElement).textContent = fmt(obligation);
 
     const cfEl = document.getElementById("art-dscr-cashflow")!;
-    cfEl.textContent = (cashflow >= 0 ? "+" : "-") + fmt(cashflow);
+    cfEl.textContent = (cashflow >= 0 ? "+" : "") + fmt(cashflow);
     cfEl.className = "text-2xl font-bold mt-1 " + (cashflow >= 0 ? "text-green-600" : "text-red-600");
 
     let verdict = "";

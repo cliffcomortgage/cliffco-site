@@ -183,9 +183,9 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     if (use === "exempt") {
       feeRate = 0;
     } else if (use === "first") {
-      feeRate = downPct >= 10 ? 0.014 : downPct >= 5 ? 0.015 : 0.023;
+      feeRate = downPct >= 10 ? 0.0125 : downPct >= 5 ? 0.015 : 0.0215;
     } else {
-      feeRate = downPct >= 10 ? 0.014 : downPct >= 5 ? 0.015 : 0.036;
+      feeRate = downPct >= 10 ? 0.0125 : downPct >= 5 ? 0.015 : 0.033;
     }
 
     const fundingFee = baseLoan * feeRate;

@@ -179,7 +179,8 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
     const loanAmount = price * (1 - downPct / 100);
     const r = rate / 100 / 12;
     const n = term * 12;
-    const pi = r === 0 ? loanAmount / n : loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    // A cleared rate box used to fall through here and print a principal-only payment.
+    const pi = r > 0 ? loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1) : 0;
     const ti = (taxes + ins) / 12;
     const total = pi + ti;
     const fmt = (v: number) => (v < 0 ? "-$" : "$") + Math.abs(Math.round(v)).toLocaleString("en-US");
