@@ -24,6 +24,12 @@ export type LoanOfficer = {
   title: string;
   /** ISO state codes the LO is licensed in */
   states: readonly string[];
+  /**
+   * Individual state originator licence numbers, keyed by state code. Some states issue the
+   * LO their own licence on top of the company's and require it displayed alongside the
+   * NMLS id - Arizona is the first, and the shape allows for the next without a change here.
+   */
+  stateLicenses?: Readonly<Record<string, string>>;
   /** Primary office (branch slug) */
   branchSlug: string;
   /** Other branches the LO also works out of (listed under each in the directory) */
@@ -89,6 +95,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     lastName: "Clifford",
     displayName: "Christopher Clifford",
     nmls: "65234",
+    stateLicenses: { AZ: "LO-1046374" },
     title: "President",
     states: PRESIDENT_STATES,
     branchSlug: "uniondale-headquarters",
@@ -113,6 +120,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     lastName: "Riddle",
     displayName: "Ryan Riddle",
     nmls: "1730872",
+    stateLicenses: { AZ: "LO-1049022" },
     title: "Vice President / COO",
     states: ["AL", "AZ", "CA", "CT", "DC", "DE", "FL", "GA", "IL", "IN", "KS", "KY", "LA", "MD", "MI", "NC", "NJ", "NM", "NY", "OH", "OR", "PA", "SC", "TN", "TX", "VA", "WA"],
     branchSlug: "uniondale-headquarters",
@@ -149,6 +157,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     lastName: "Chen",
     displayName: "James Chen",
     nmls: "17991",
+    stateLicenses: { AZ: "LO-2015356" },
     title: "Senior Vice President of Sales",
     states: ["AZ", "CT", "FL", "GA", "MD", "NC", "NJ", "NY", "OR", "PA", "SC", "TX", "VA"],
     branchSlug: "uniondale-headquarters",
@@ -168,6 +177,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     lastName: "Fallarino",
     displayName: "David Fallarino",
     nmls: "673167",
+    stateLicenses: { AZ: "LO-1051349" },
     title: "Senior Vice President",
     states: ["AZ", "CA", "CT", "FL", "MD", "NC", "NJ", "NY", "PA", "SC", "TX", "VA", "WA"],
     branchSlug: "uniondale-headquarters",
@@ -950,6 +960,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     lastName: "Levy",
     displayName: "Logan Levy",
     nmls: "2502088",
+    stateLicenses: { AZ: "LO-2011339" },
     title: "Loan Officer",
     states: ["AZ", "CA", "FL", "MN", "NC", "NJ", "NY", "PA", "TN", "VT"],
     branchSlug: "uniondale-headquarters",
@@ -986,6 +997,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     lastName: "Argenzio",
     displayName: "Mario Argenzio",
     nmls: "1869384",
+    stateLicenses: { AZ: "LO-2011101" },
     title: "Loan Officer",
     states: ["AR", "AZ", "CA", "CO", "CT", "FL", "GA", "IA", "ID", "MD", "MN", "MT", "NC", "NH", "NJ", "NY", "OK", "PA", "SC", "TN", "VA"],
     branchSlug: "uniondale-headquarters",

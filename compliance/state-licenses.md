@@ -11,7 +11,7 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 | AK | Alaska Division of Banking and Securities | AK65328 |
 | AL | Alabama Mortgage Broker/Lender License | 23581 |
 | AR | Arkansas Securities Department | 65328 |
-| AZ | Arizona Mortgage Banker License | 1045708 |
+| AZ | Arizona Mortgage Banker License | BK-1045708 |
 | CA | California DFPI Financing Law License | 60DBO-181882 |
 | CO | Colorado Department of Regulatory Agencies, Division of Banking | (no number cited in disclosure) |
 | CT | Connecticut Department of Banking | MCL-65328 |
@@ -55,7 +55,7 @@ This is the canonical list to use in: site footer state-license disclosure, `/li
 |---|---|
 | New York (incl. Long Island) | ✅ NY LMBC109800 |
 | New Jersey | ✅ NJ DOBI |
-| Arizona | ✅ AZ #1045708 |
+| Arizona | ✅ AZ #BK-1045708 |
 | **Minnesota** | ✅ **MN-MO-65328** (corrects earlier strategy-doc gating) |
 | Florida (incl. Orlando) | ✅ FL — operating as **Clout Mortgage, Inc.** |
 

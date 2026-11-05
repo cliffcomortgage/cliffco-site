@@ -27,6 +27,16 @@ const stateNames = lo.states
   .map((code) => STATE_LICENSES.find((s) => s.code === code)?.name ?? code)
   .join(", ");
 const isFloridaLicensed = lo.states.includes("FL");
+/*
+ * States that issue the originator their own licence require it shown with the NMLS id.
+ * Listed in the same order as lo.states so a bio with several reads predictably.
+ */
+const stateLicenses = Object.entries(lo.stateLicenses ?? {})
+  .sort((a, b) => lo.states.indexOf(a[0]) - lo.states.indexOf(b[0]))
+  .map(([code, number]) => ({
+    name: STATE_LICENSES.find((s) => s.code === code)?.name ?? code,
+    number,
+  }));
 // Banner tagline per team, shown on each member's bio
 const TEAM_TAGLINES: Record<string, string> = {
   "the-fallarino-group": "Jumbo · Alt-A · DSCR · Non-QM specialists",
@@ -295,6 +305,22 @@ const schema = [
           }
         </p>
       </section>
+
+      <!-- STATE ORIGINATOR LICENCES — shown wherever the state issues the LO their own -->
+      {stateLicenses.length > 0 && (
+        <section class="lo-block lo-block-wide">
+          <p class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">
+            State licence numbers
+          </p>
+          <ul class="mt-2 space-y-1">
+            {stateLicenses.map((l) => (
+              <li class="text-sm text-[var(--color-text)]">
+                {l.name} Loan Originator License #{l.number}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <!-- FLORIDA DBA — required on FL bios; the general disclosure lives in the footer -->
       {isFloridaLicensed && (

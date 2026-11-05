@@ -40,7 +40,7 @@ Critical facts that must show up in the right places:
 3. **6 physical branches** (as of 2026-07-15): Uniondale NY (HQ), Bay Shore NY, Branchburg NJ, Ft. Lauderdale FL, Buckeye AZ, Excelsior MN. The Jamaica NY, Wantagh NY, and Orlando FL branches closed in July 2026 — do not reference them as current offices.
 4. **80+ active LOs.** Each gets a bio page at `/loan-officers/{name-nmlsid}/` with Person schema + sameAs to NMLS Consumer Access. Roster: `compliance/loan-officers.md`.
 5. **Bilingual LO clusters** (basis for the Spanish-language site): Buckeye AZ, Branchburg, Uniondale. Detail in `compliance/loan-officers.md` (the Orlando cluster dissolved when that branch closed, July 2026).
-6. **AZ license number is #1045708.** (A past discrepancy traced to Julian Giaquinto's disclosure; he was offboarded July 2026, resolving it.)
+6. **Arizona has three licence layers, all of which must show.** Company: `Arizona Mortgage Banker License License/Registration #: BK-1045708` (footer + `/licensing/`, from `state-licenses.ts`). Buckeye branch: `Arizona Mortgage Banker Branch License License/Registration #: BK-BR-1045709`, at the bottom of `/buckeye-az/`. And each AZ-licensed originator shows their own `LO-` number, held in `stateLicenses` on their `loan-officers.ts` record and rendered on their bio. **Timothy Alan King II (NMLS #1458438, AZ #LO-0950923) has no Cliffco LO record and no bio page** - he appears only in the Arizona licensing block on the Buckeye page, with the note that he does not originate for Cliffco, Inc. (A past number discrepancy traced to Julian Giaquinto's disclosure; he was offboarded July 2026, resolving it.)
 
 ## Product facts — Guidelines/ is the source, investor matrices included
 

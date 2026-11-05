@@ -10,6 +10,20 @@ const branch = BRANCHES.find((b) => b.slug === "buckeye-az")!;
 // No loan officers are shown as based at Buckeye; list everyone licensed in Arizona instead.
 const los = LOAN_OFFICERS.filter((lo) => lo.states.includes("AZ"));
 
+/*
+ * Arizona issues originators their own licence on top of the company's, and it has to be
+ * displayed. The six with bio pages come from the data so this block cannot drift from
+ * them. Timothy Alan King II has no Cliffco loan-officer record and no page of his own, so
+ * he is listed only here, with the note compliance requires.
+ */
+const AZ_BRANCH_LICENSE = "Arizona Mortgage Banker Branch License License/Registration #: BK-BR-1045709";
+const azOriginators = [
+  ...los
+    .filter((lo) => lo.stateLicenses?.AZ)
+    .map((lo) => ({ name: lo.displayName, nmls: lo.nmls, license: lo.stateLicenses!.AZ, note: null as string | null })),
+  { name: "Timothy Alan King II", nmls: "1458438", license: "LO-0950923", note: "does not originate for Cliffco, Inc." },
+].sort((a, b) => a.name.localeCompare(b.name));
+
 const schema = [
   localBusinessSchema(branch),
   breadcrumbSchema([
@@ -60,7 +74,35 @@ import BranchPage from "../../components/asym/BranchPage.astro";
   >
     <Fragment slot="info">
       {branch.nmls && <p>Branch NMLS #{branch.nmls}</p>}
-      <p>Arizona Mortgage Banker License #1045708.</p>
+      <p>Arizona Mortgage Banker License License/Registration #: BK-1045708</p>
     </Fragment>
   </BranchPage>
+
+  <!--
+    ARIZONA LICENSING — the branch licence, and every originator licensed in Arizona with
+    their individual AZ licence number. Required on this page; the company licence sits in
+    the footer as well.
+  -->
+  <section class="bg-white border-t border-black/15" aria-label="Arizona licensing">
+    <div class="container-wide py-10">
+      <p class="eyebrow">Arizona licensing</p>
+
+      <p class="mt-3 text-sm text-[var(--color-text)]">{AZ_BRANCH_LICENSE}</p>
+
+      <p class="mt-6 font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">
+        Arizona-licensed loan originators
+      </p>
+      <ul class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {azOriginators.map((o) => (
+          <li class="border-l-2 border-[var(--color-ink)] pl-3">
+            <p class="text-sm font-semibold text-[var(--color-ink)]">{o.name}</p>
+            <p class="text-xs text-[var(--color-text-muted)]">NMLS #{o.nmls}</p>
+            <p class="text-xs text-[var(--color-text-muted)]">
+              AZ Loan Originator License #{o.license}{o.note && <span> ({o.note})</span>}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
 </Layout>
