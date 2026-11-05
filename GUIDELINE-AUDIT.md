@@ -367,7 +367,7 @@ first time that has been true.
   factor was invented ("40% at 62, +1% a year") and ran about a third high. Rebuilt on HUD's
   published PLF table, now stored in `website/src/data/hecm-plf.ts`. (2026-11-03)
 
-### Still open after Round 4 — each verified present on 2026-11-04
+### Still open after Round 4 *(closed in Round 5 — see below)*
 
 1. **Asset utilization** (`/loans/asset-utilization-mortgage/`): divisor published as
    "60–84 months"; guidelines say **84 months only**, and require excluding the down payment
@@ -390,3 +390,64 @@ first time that has been true.
    calculator instruction in `how-does-a-va-loan-work` and throughout
    `va-disability-income-mortgage-qualification`, where it reads correctly for an article
    about disability ratings but no longer matches the corrected rule elsewhere.
+
+---
+
+## Round 5 — 2026-11-05: the open items, closed against the guidelines
+
+Rafe asked for #1–4 fixed, VOE removed if it is not a product, DPA softened, and — for
+anything the guidelines do not answer — the copy generalised rather than left specific.
+
+Three PDFs were extracted to text to settle these rather than relying on this document's
+own summaries: the Alt/Full Doc guidelines (53pp), the Alt/Full Doc matrix (1-1-2026), and
+the Correspondent Seller Guide (764pp).
+
+### Closed
+
+- **Asset utilization divisor.** Guidelines p34: "Assets to be divided by 84 months". Not a
+  range. The page said 60–84, which implied a borrower might get the 60-month divisor and
+  40% more qualifying income than they will actually get.
+- **Asset utilization minimum.** Now states the guideline in full: M **or 125% of the loan
+  amount**.
+- **Asset utilization reserve step.** The page said the calculation subtracts post-closing
+  reserves. No such step appears anywhere in the section, so it is softened rather than
+  asserted. The 80% securities haircut and 30% retirement reduction both check out.
+- **1099 expense factor.** Guidelines: "If a borrower is not able to provide confirmation of
+  no job-related expenses, a 10% Expense Factor will be applied." It is a fallback, not a
+  standard, and presenting it as standard understated what a borrower who can confirm would
+  qualify for.
+- **1099 multiple payers.** Allowed, but "the borrower must be in an industry where this is a
+  common occurrence (entertainment, medical contractor, etc.)" — the page said multiple
+  clients are simply fine and common.
+- **LTV, FICO and loan-amount rows** on both Non-QM pages now read as tiers, because the
+  matrix prices LTV against loan amount and credit score together. "Best pricing 720+" was
+  dropped: the matrix is an LTV grid, not a pricing sheet, so it had no source either way.
+- **VOE.** The guidelines list five documentation programmes — Full Doc, Full Doc Streamline,
+  Bank Statement, 12-Month P&L, Asset Utilization. There is no VOE product. WVOE (FNMA Form
+  1005) and VVOE are verification steps inside Full Doc. Removed from the Non-QM programme
+  list (seven → six), and the glossary and Non-QM guide now describe it as a verification
+  method.
+- **DPA credit floors.** Softened on both pages to say the programme's own agency sets them.
+- **PMI cancellation** now cites the Homeowners Protection Act, including the automatic 78%
+  cancellation, rather than reading like Cliffco policy.
+- **Conventional 3% down** now carries its condition: seller guide p47 requires at least one
+  first-time home buyer on a standard 97% LTV purchase, defined as no ownership interest in
+  the previous 3 years.
+- **FHA 2–4 units.** The 3.5%-down pitch now states the 3 months PITI reserve requirement
+  that applies on 3–4 unit properties.
+- **VA loan ceiling — checked, no change needed.** "No loan limit with full entitlement" is
+  correct; the seller guide confirms full entitlement is not subject to conforming limit
+  consideration.
+- **HELOC figures in /mortgage-guides/ — checked, nothing to fix.** Those pages carry no
+  numeric HELOC claims.
+
+### Still open after Round 5
+
+1. **`/mortgage-guides/blog/pl-loan-vs-wvoe-loan-small-business-owner-mortgage/`** is a whole
+   article built on "WVOE loans" as a product alongside P&L loans. P&L is a real programme;
+   WVOE is not. The article also says a WVOE lets "a business owner self-verify their income
+   and employment" — a WVOE is completed by an employer, so that is wrong twice over.
+   Left alone deliberately: it is an indexed SEO asset targeting that keyword, and changing
+   what it ranks for is a marketing decision, not a factual correction. Needs a call on
+   whether to retarget it (P&L vs Bank Statement are the two real programmes for that
+   audience) or retire it.
