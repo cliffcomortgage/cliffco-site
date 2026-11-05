@@ -441,7 +441,7 @@ the Correspondent Seller Guide (764pp).
 - **HELOC figures in /mortgage-guides/ — checked, nothing to fix.** Those pages carry no
   numeric HELOC claims.
 
-### Still open after Round 5
+### Still open after Round 5 — none
 
 1. **`/mortgage-guides/blog/pl-loan-vs-wvoe-loan-small-business-owner-mortgage/`** is a whole
    article built on "WVOE loans" as a product alongside P&L loans. P&L is a real programme;
@@ -451,3 +451,16 @@ the Correspondent Seller Guide (764pp).
    what it ranks for is a marketing decision, not a factual correction. Needs a call on
    whether to retarget it (P&L vs Bank Statement are the two real programmes for that
    audience) or retire it.
+
+**Closed 2026-11-05.** Rafe asked for the article to be fixed rather than retired, and
+confirmed it is company content (byline "By the Cliffco editorial team", as all 50 blog
+posts are) with no loan-officer attribution. Rewritten in place at the same URL: the two
+real programmes for that reader, 12-Month P&L and Bank Statement, are now the comparison,
+both written from the guidelines rather than the old copy. A WVOE is explained for what it
+is — FNMA Form 1005, completed by an employer — with the reason it cannot help a business
+owner. The keyword is kept throughout so the page still answers the search that brings
+people to it. The embedded calculator and the URL are untouched.
+
+The old copy also had the P&L window wrong ("12 to 24 months"; the programme is 12-month
+only) and named only CPAs, where the guidelines accept a CPA, IRS Enrolled Agent or CTEC
+preparer — and require that it be the same person who filed the business returns.

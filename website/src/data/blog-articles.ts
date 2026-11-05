@@ -164,8 +164,8 @@ export const BLOG_ARTICLES: readonly BlogArticle[] = [
   },
   {
     category: "Self-Employed",
-    title: "P&L Loans vs WVOE Loans: The Two Fastest Documentation Paths for Small Business Owners",
-    description: "P&L loans and WVOE loans offer small business owners a faster path to mortgage qualification with lighter documentation. How they differ and when each fits.",
+    title: "P&L vs Bank Statement Loans, and What a \"WVOE Loan\" Really Is",
+    description: "A WVOE is a form your employer fills in, not a loan. The two real lighter-documentation paths for a business owner are a 12-month P&L loan and a bank statement loan.",
     href: "/mortgage-guides/blog/pl-loan-vs-wvoe-loan-small-business-owner-mortgage/",
   },
   {
