@@ -152,14 +152,31 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 </style>
 
 <script>
+
+  /**
+   * Read a number box, honouring the bounds the markup declares.
+   *
+   * Without this, a rate of 1e9 overflowed the amortisation factor to NaN, a ratio past its
+   * maximum produced negative qualifying income, and a negative price printed "$-0". Money
+   * boxes declare no maximum, which is correct - a large number in gives a large number out.
+   */
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return 0;
+    const raw = parseFloat(el.value);
+    if (!Number.isFinite(raw)) return 0;
+    const max = parseFloat(el.max);
+    return Math.min(Math.max(raw, 0), Number.isFinite(max) ? max : Infinity);
+  }
+
   const rvbBtn = document.getElementById("art-rvb-btn")!;
   rvbBtn.addEventListener("click", () => {
-    const rent = +(document.getElementById("art-rvb-rent") as HTMLInputElement).value;
-    const price = +(document.getElementById("art-rvb-price") as HTMLInputElement).value;
-    const downPct = +(document.getElementById("art-rvb-down") as HTMLInputElement).value;
-    const rate = +(document.getElementById("art-rvb-rate") as HTMLInputElement).value;
-    const appreciation = +(document.getElementById("art-rvb-appr") as HTMLInputElement).value / 100;
-    const rentGrowth = +(document.getElementById("art-rvb-growth") as HTMLInputElement).value / 100;
+    const rent = num("art-rvb-rent");
+    const price = num("art-rvb-price");
+    const downPct = num("art-rvb-down");
+    const rate = num("art-rvb-rate");
+    const appreciation = num("art-rvb-appr") / 100;
+    const rentGrowth = num("art-rvb-growth") / 100;
 
     const downAmt = price * downPct / 100;
     const loan = price - downAmt;

@@ -151,21 +151,38 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 </style>
 
 <script>
+
+  /**
+   * Read a number box, honouring the bounds the markup declares.
+   *
+   * Without this, a rate of 1e9 overflowed the amortisation factor to NaN, a ratio past its
+   * maximum produced negative qualifying income, and a negative price printed "$-0". Money
+   * boxes declare no maximum, which is correct - a large number in gives a large number out.
+   */
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return 0;
+    const raw = parseFloat(el.value);
+    if (!Number.isFinite(raw)) return 0;
+    const max = parseFloat(el.max);
+    return Math.min(Math.max(raw, 0), Number.isFinite(max) ? max : Infinity);
+  }
+
   const seBtn = document.getElementById("art-se-btn")!;
   seBtn.addEventListener("click", () => {
-    const y1 = +(document.getElementById("art-se-y1") as HTMLInputElement).value;
-    const y2 = +(document.getElementById("art-se-y2") as HTMLInputElement).value;
-    const dep = +(document.getElementById("art-se-dep") as HTMLInputElement).value;
-    const add = +(document.getElementById("art-se-add") as HTMLInputElement).value;
-    const deposits = +(document.getElementById("art-se-dep2") as HTMLInputElement).value;
-    const ratio = +(document.getElementById("art-se-ratio") as HTMLInputElement).value;
+    const y1 = num("art-se-y1");
+    const y2 = num("art-se-y2");
+    const dep = num("art-se-dep");
+    const add = num("art-se-add");
+    const deposits = num("art-se-dep2");
+    const ratio = num("art-se-ratio");
 
     const convAnnual = y2 < y1
       ? y2 + dep + add
       : ((y1 + y2) / 2) + dep + add;
     const convMonthly = convAnnual / 12;
     const bankMonthly = (deposits * (1 - ratio / 100)) / 12;
-    const fmt = (v: number) => "$" + Math.round(v).toLocaleString("en-US");
+    const fmt = (v: number) => (v < 0 ? "-$" : "$") + Math.abs(Math.round(v)).toLocaleString("en-US");
 
     (document.getElementById("art-se-conv") as HTMLElement).textContent = fmt(convMonthly);
     (document.getElementById("art-se-bank") as HTMLElement).textContent = fmt(bankMonthly);

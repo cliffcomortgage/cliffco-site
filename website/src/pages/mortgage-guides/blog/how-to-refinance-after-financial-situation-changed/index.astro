@@ -144,12 +144,29 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 </style>
 
 <script>
+
+  /**
+   * Read a number box, honouring the bounds the markup declares.
+   *
+   * Without this, a rate of 1e9 overflowed the amortisation factor to NaN, a ratio past its
+   * maximum produced negative qualifying income, and a negative price printed "$-0". Money
+   * boxes declare no maximum, which is correct - a large number in gives a large number out.
+   */
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return 0;
+    const raw = parseFloat(el.value);
+    if (!Number.isFinite(raw)) return 0;
+    const max = parseFloat(el.max);
+    return Math.min(Math.max(raw, 0), Number.isFinite(max) ? max : Infinity);
+  }
+
   const rcBtn = document.getElementById("art-rc-btn")!;
   rcBtn.addEventListener("click", () => {
-    const balance = +(document.getElementById("art-rc-bal") as HTMLInputElement).value;
-    const curRate = +(document.getElementById("art-rc-cur") as HTMLInputElement).value;
-    const newRate = +(document.getElementById("art-rc-new") as HTMLInputElement).value;
-    const costs = +(document.getElementById("art-rc-costs") as HTMLInputElement).value;
+    const balance = num("art-rc-bal");
+    const curRate = num("art-rc-cur");
+    const newRate = num("art-rc-new");
+    const costs = num("art-rc-costs");
 
     function monthlyPI(principal: number, annualRate: number, termYears: number): number {
       const r = annualRate / 100 / 12;

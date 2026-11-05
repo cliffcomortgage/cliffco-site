@@ -155,11 +155,28 @@ import Breadcrumbs from "../../../../components/layout/Breadcrumbs.astro";
 </style>
 
 <script>
+
+  /**
+   * Read a number box, honouring the bounds the markup declares.
+   *
+   * Without this, a rate of 1e9 overflowed the amortisation factor to NaN, a ratio past its
+   * maximum produced negative qualifying income, and a negative price printed "$-0". Money
+   * boxes declare no maximum, which is correct - a large number in gives a large number out.
+   */
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return 0;
+    const raw = parseFloat(el.value);
+    if (!Number.isFinite(raw)) return 0;
+    const max = parseFloat(el.max);
+    return Math.min(Math.max(raw, 0), Number.isFinite(max) ? max : Infinity);
+  }
+
   const btn = document.getElementById("art-dscr-btn")!;
   btn.addEventListener("click", () => {
-    const rent = +(document.getElementById("art-dscr-rent") as HTMLInputElement).value;
+    const rent = num("art-dscr-rent");
     const pi   = +(document.getElementById("art-dscr-pi")   as HTMLInputElement).value;
-    const tax  = +(document.getElementById("art-dscr-taxes") as HTMLInputElement).value;
+    const tax  = num("art-dscr-taxes");
     const ins  = +(document.getElementById("art-dscr-ins")  as HTMLInputElement).value;
     const hoa  = +(document.getElementById("art-dscr-hoa")  as HTMLInputElement).value;
 
