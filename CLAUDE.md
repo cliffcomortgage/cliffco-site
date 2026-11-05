@@ -73,6 +73,40 @@ Cliffco DSCR matrix makes Foreign Nationals from the Republic of China ineligibl
 HI ineligible outright. Don't list restrictions in page copy, but don't write copy that
 implies citizenship is the only test either.
 
+## Trigger terms — a down payment on a page means a disclaimer on that page
+
+Stating a down payment in advertising is a **trigger term**: the page has to show the worked
+example behind the figure. The eight examples and their exact wording come from
+`compliance/Trigger Terms Disclaimers (2).xlsx` and are reproduced **verbatim** in
+`website/src/data/trigger-disclaimers.ts`. **The figures inside them are fixed examples, not
+live rates — never edit or recalculate them.** If compliance reissues the sheet, regenerate
+that file from it rather than hand-editing.
+
+The eight: VA 0%, USDA 0%, FHA 3.5%, FHA 10%, Conventional 3%, 5%, 10% and 20%.
+
+Rendering is automatic. `TriggerDisclaimers.astro` sits above the footer in both
+`Layout.astro` and `LandingLayout.astro` and looks the current path up in `TRIGGER_ROUTES`.
+It is keyed on the route rather than a prop each page sets, because figures reach pages
+through shared data modules (`products.ts`) and components (`LoanCompare.astro`) — so no
+page author knows they triggered it — and because some affected routes are dynamic
+(`locations/[state].astro`), where there is no per-page file to edit.
+
+**After changing page copy, run the check:**
+
+```bash
+cd website && npm run build
+node ../scripts/verify-trigger-disclaimers.cjs           # fails on drift
+node ../scripts/verify-trigger-disclaimers.cjs --write   # absorb a legitimate change
+```
+
+It rederives the map from the **built** HTML and fails if a page gained or lost a figure, or
+owes a disclaimer it does not show. Two things it handles that are easy to get wrong: it
+strips the disclosure block before scanning, or every disclosed page re-triggers on its own
+disclosure; and a figure only counts when its **percentage and loan type both** match a
+scenario, so the VA page quoting funding-fee tiers at "5% or 10% down" does not pull in a
+Conventional example. Where no loan type sits beside the figure, every scenario at that
+percentage is attached — one disclosure too many is safe, one too few is not.
+
 ## Calculators — there are 61, and they are tested
 
 **Before auditing or changing a calculator, read `scripts/calculator-tests/README.md` and run

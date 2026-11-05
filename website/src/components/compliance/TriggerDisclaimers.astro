@@ -1,0 +1,44 @@
+---
+/**
+ * The trigger-term disclaimers a page owes, rendered above the footer.
+ *
+ * Stating a down payment in advertising is a trigger term, so the page has to show the
+ * worked example behind the figure. Which pages owe which comes from TRIGGER_ROUTES, keyed
+ * on the current path — rather than a prop each page sets — for two reasons: the figures
+ * often arrive through shared data modules and components, so no single page author knows
+ * they triggered it; and several affected routes are dynamic (`locations/[state].astro`),
+ * where there is no per-page file to edit.
+ *
+ * The wording is verbatim from compliance and must not be edited here. See
+ * `website/src/data/trigger-disclaimers.ts`.
+ */
+import { TRIGGER_DISCLAIMERS, triggerScenariosFor } from "../../data/trigger-disclaimers";
+
+const scenarios = triggerScenariosFor(Astro.url.pathname);
+---
+
+{scenarios.length > 0 && (
+  <section class="bg-white border-t border-black/15" aria-label="Mortgage example disclosures">
+    <div class="container-wide py-8">
+      <p class="eyebrow">Representative examples</p>
+      <p class="mt-3 max-w-3xl text-xs text-[var(--color-text-muted)] leading-relaxed">
+        This page refers to a down payment, so the full example behind that figure is set out
+        below. {scenarios.length > 1 ? "Each example is" : "The example is"} illustrative only
+        and not an offer of credit.
+      </p>
+
+      <div class="mt-5 grid gap-5 md:grid-cols-2">
+        {scenarios.map((key) => (
+          <div class="border-l-2 border-[var(--color-ink)] pl-4">
+            <p class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">
+              {TRIGGER_DISCLAIMERS[key].label}
+            </p>
+            <p class="mt-2 text-xs text-[var(--color-text-muted)] leading-relaxed">
+              {TRIGGER_DISCLAIMERS[key].text}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

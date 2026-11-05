@@ -6,6 +6,7 @@ import PostHog from "../components/posthog.astro";
 import Analytics from "../components/Analytics.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
+import TriggerDisclaimers from "../components/compliance/TriggerDisclaimers.astro";
 import { organizationSchema, websiteSchema, articleSchema } from "../lib/schema";
 import { LOAN_OFFICERS } from "../data/loan-officers";
 import { telHref } from "../lib/phone";
@@ -135,6 +136,13 @@ const allSchema = schema
     <main id="main" class="flex-1">
       <slot />
     </main>
+    <!--
+      Renders nothing unless this route states a down payment figure, in which case it shows
+      the worked example compliance requires for it. Keyed on the path rather than a prop,
+      because the figures often arrive via shared data modules and some affected routes are
+      dynamic. See website/src/data/trigger-disclaimers.ts.
+    -->
+    <TriggerDisclaimers />
     <Footer />
 
     <script>
