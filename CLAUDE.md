@@ -276,9 +276,11 @@ which render their own `<head>`. Tokens live in `website/src/styles/global.css`:
   on the machine they were copied to, so the other collaborator needs their own copy. All
   three are on Google Fonts. Never commit anything from there, and never reference those
   files via `@font-face` in `website/` (Vite bundles them into public build output).
-- **Figures are still not all mono.** Some stat strips set their numbers in the body face.
-  That predates this reissue — the previous guide also put figures in mono — so it was left
-  alone rather than folded into a typography swap. Worth a pass of its own.
+- **Stat strips are not mono, and that is correct.** The spec rows on loan pages pass
+  label/value pairs where the values are mostly phrases — "As little as 3%", "Set by
+  underwriting" — not figures. Mono would break the guide's own rule that it "never sets a
+  sentence". Real figures already follow the Figure role: a calculator readout computes to
+  IBM Plex Mono 600.
 ## Where things live
 
 - `brand/` — mission-vision-values, brand guide, logos. Originals in OneDrive at `~/Library/CloudStorage/OneDrive-CliffcoMortgageBank/Creative/2. Cliffco New Brand/Assets & Logos/`. If you update an asset, update both places.

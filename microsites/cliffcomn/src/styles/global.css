@@ -19,10 +19,14 @@
   --color-accent-soft: #bde8f1;
 
   /* Typography */
-  --font-sans: "Open Sans", ui-sans-serif, system-ui, -apple-system,
+  --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display: "Open Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-logo: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  /* The label and data voice, and the display accent. This site had neither before it was
+     brought onto the brand on 2026-11-06; the wordmark is placed artwork, so no --font-logo. */
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-accent: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
 
   /* Type scale */
   --text-display-xl: clamp(2.5rem, 5vw + 1rem, 4.25rem);
@@ -53,16 +57,18 @@
     line-height: 1.6;
   }
 
+  /* Headline: Outfit 700, sentence case, -0.015em (guide p22). This site previously set
+     headings light - h1 400, h2 300 - which was its own look rather than the brand's. */
   h1, h2, h3, h4 {
     color: var(--color-ink);
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.12;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
   }
 
-  h1 { font-size: var(--text-h1); font-weight: 400; letter-spacing: -0.03em; }
-  h2 { font-size: var(--text-h2); font-weight: 300; letter-spacing: -0.025em; }
-  h3 { font-size: var(--text-h3); letter-spacing: -0.015em; }
+  h1 { font-size: var(--text-h1); }
+  h2 { font-size: var(--text-h2); }
+  h3 { font-size: var(--text-h3); }
 
   a {
     color: var(--color-accent);
@@ -96,11 +102,13 @@
     padding-inline: 1.5rem;
   }
 
+  /* Label role (guide p22): IBM Plex Mono 500, CAPS, +0.2em. */
   .eyebrow {
     display: inline-block;
+    font-family: var(--font-mono);
     font-size: var(--text-eyebrow);
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.2em;
     color: var(--color-accent);
   }
