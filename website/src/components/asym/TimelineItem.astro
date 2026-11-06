@@ -21,9 +21,9 @@ const { marker, eyebrow, title, intro, id, dark = false, last = false } = Astro.
   <div class="container-wide grid grid-cols-[5.5rem_minmax(0,1fr)] sm:grid-cols-[8rem_minmax(0,1fr)] lg:grid-cols-[11rem_minmax(0,1fr)]">
     <div class="pr-4 text-right">
       {marker.length <= 5 ? (
-        <span class="block font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(1.125rem, 2vw, 1.75rem); letter-spacing: -0.02em;">{marker}</span>
+        <span class="block font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(1.125rem, 2vw, 1.75rem); letter-spacing: -0.015em;">{marker}</span>
       ) : (
-        <span class="block pt-1 font-sans font-medium text-[10px] sm:text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] leading-snug">{marker}</span>
+        <span class="block pt-1 font-mono font-medium text-[10px] sm:text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] leading-snug">{marker}</span>
       )}
     </div>
     <div class={`relative pl-6 sm:pl-10 ${last ? "pb-16 lg:pb-24" : "pb-16 lg:pb-24 border-l-2 border-[var(--color-ink)]"}`}>

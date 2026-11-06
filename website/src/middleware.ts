@@ -48,12 +48,12 @@ function loginPage(error: boolean): string {
   <link rel="icon" type="image/png" href="/favicon.png" sizes="180x180" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: "Archivo", system-ui, -apple-system, sans-serif; background: #000000; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    body { font-family: "Outfit", system-ui, -apple-system, sans-serif; background: #000000; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; }
     .card { background: #fff; border: 2px solid #000000; padding: 2.5rem; width: 100%; max-width: 380px; }
-    .eyebrow { font-family: "Archivo", system-ui, sans-serif; font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: #5a5d5d; margin-bottom: 1.25rem; }
+    .eyebrow { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: #5a5d5d; margin-bottom: 1.25rem; }
     h1 { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.02em; color: #000000; margin-bottom: 0.35rem; }
     .sub { font-size: 0.85rem; color: #6b7280; margin-bottom: 1.75rem; }
     label { display: block; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #3d4040; margin-bottom: 0.4rem; }

@@ -182,7 +182,9 @@ Always confirm leadership titles with Rafe before publishing.
 
 ## Brand (2026 guide)
 
-Source of truth: `brand/Cliffco_Brand_Guidelines_2026.pdf`, applied to the site on 2026-10-26.
+Source of truth: `brand/Cliffco_Brand_Guidelines.pdf`. Colour, logo and layout applied
+2026-10-26; the typography was reissued and applied 2026-11-06 (see Fonts). The pre-2026
+guide is retired, and so is the `..._2026.pdf` that preceded this file.
 The pre-2026 guide (purple/blue palette, the power-button mark, Outfit/Montserrat) is retired —
 don't reintroduce any of it.
 
@@ -231,28 +233,52 @@ control still reads as one.
 
 ## Fonts
 
-**Three typefaces**, all OFL, all loaded from Google Fonts in `website/src/layouts/Layout.astro`
-(and again in `LandingLayout.astro`, `dashboard.astro` and the login gate in `middleware.ts`,
-which render their own `<head>`):
+**Reissued 2026-11-06.** The typography changed and two rules from the previous guide were
+reversed. Colour, proportions and the logo rules did not move.
 
-| Role | Font | Token in `website/src/styles/global.css` |
-|---|---|---|
-| Everything you read — headlines, captions, body, labels, buttons, the wordmark | **Archivo** (400–800) | `--font-sans`, `--font-display`, `--font-logo` |
-| The data voice — rates, payments, figures, name tags, footers | **IBM Plex Mono** (400–700) | `--font-mono` |
-| The display accent, and the brand's only italic | **Instrument Serif** (400 + italic) | `--font-accent`, `--font-serif` |
+| Role | Face · weight | Case · tracking | Notes |
+|---|---|---|---|
+| Headline | **Outfit 700** | sentence · −0.015em | Leading 1.1–1.2 |
+| Caption (Sky box) | **Outfit 700** | sentence · −0.02em | 2–6 words |
+| Body | **Outfit 400**, Light 300 at large sizes | sentence · 0 | Leading 1.5–1.7, max 66 characters a line |
+| Button | **Outfit 600–700** | title case · 0 | |
+| Label · eyebrow | **IBM Plex Mono 500** | CAPS · +0.2em | |
+| Figure · tag | **IBM Plex Mono 600–700** | as written or CAPS | Rates, payments, name tags, the tagline |
+| Display | **Instrument Serif 400** | CAPS or italic | The brand's only italic |
+| Wordmark | Archivo 700 · 112.5% | CAPS · +0.2em | **Artwork only, never typed** |
 
-- **Labels and eyebrows are Archivo 500 CAPS at +0.2em, not mono.** Mono sets numbers, not
-  words. The `.eyebrow` class already does this; don't reach for `font-mono` on a label.
-- Headlines are Archivo 700–800, sentence case, −0.02em. `h1`–`h4` default to 700.
-- **No Archivo italics.** The brand's only italic is Instrument Serif.
-- **Outfit, Montserrat and Helvetica are retired.** Helvetica must never be self-hosted either:
-  it's commercial with no web licence on file.
-- **Font files:** Archivo, IBM Plex Mono and Instrument Serif `.ttf` files are in
-  `brand/fonts/`. That folder is **gitignored** — the files live only on the machine they were
-  copied to, so the other collaborator needs their own copy (all three are on Google Fonts).
-- Never commit anything from `brand/fonts/`, and never reference those files via `@font-face`
-  in `website/` (Vite bundles them into public build output).
+What changed, and what it reverses:
 
+- **Outfit is the primary face again**, setting everything you read. It **stops at Bold (700)**
+  — there is no 800 anywhere — and is **never set in all caps**. The previous guide retired
+  Outfit in favour of Archivo; that is undone.
+- **Labels and eyebrows are IBM Plex Mono**, not Archivo. The previous guide said the
+  opposite in as many words ("mono is the data voice and does not set labels"). Mono is now
+  the label voice *and* the data voice.
+- **Archivo is not loaded at all.** It sets only the wordmark, and the guide places that as
+  supplied artwork that is "never typed", so the site ships the SVGs from `brand/logos/` and
+  no Archivo webfont. The `--font-logo` token was removed with it.
+- Headline tracking relaxed from −0.02em to **−0.015em**, caption from −0.025em to **−0.02em**.
+
+Because Outfit is never set in all caps, **any element carrying `uppercase` must be mono**
+(or Instrument Serif, for display capitals). That is the rule when adding a label — 356
+ad-hoc labels were converted on 2026-11-06 and none should drift back.
+
+Three faces, all OFL, loaded from Google Fonts in `website/src/layouts/Layout.astro` and
+again in `LandingLayout.astro`, `dashboard.astro` and the login gate in `middleware.ts`,
+which render their own `<head>`. Tokens live in `website/src/styles/global.css`:
+`--font-sans` / `--font-display` (Outfit), `--font-mono` (IBM Plex Mono),
+`--font-accent` / `--font-serif` (Instrument Serif).
+
+- **Montserrat and Helvetica stay retired.** Helvetica must never be self-hosted: it is
+  commercial with no web licence on file.
+- **Font files:** the `.ttf`s are in `brand/fonts/`, which is **gitignored** — they live only
+  on the machine they were copied to, so the other collaborator needs their own copy. All
+  three are on Google Fonts. Never commit anything from there, and never reference those
+  files via `@font-face` in `website/` (Vite bundles them into public build output).
+- **Figures are still not all mono.** Some stat strips set their numbers in the body face.
+  That predates this reissue — the previous guide also put figures in mono — so it was left
+  alone rather than folded into a typography swap. Worth a pass of its own.
 ## Where things live
 
 - `brand/` — mission-vision-values, brand guide, logos. Originals in OneDrive at `~/Library/CloudStorage/OneDrive-CliffcoMortgageBank/Creative/2. Cliffco New Brand/Assets & Logos/`. If you update an asset, update both places.

@@ -59,7 +59,7 @@ const stateNames: Record<string, string> = {
     <div class="container-wide py-10 lg:py-12">
       <div class="flex flex-wrap items-center gap-4">
         <div class="flex items-center gap-3 flex-1 min-w-[220px]">
-          <label for="lo-search" class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] whitespace-nowrap">Search</label>
+          <label for="lo-search" class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] whitespace-nowrap">Search</label>
           <div class="relative flex-1">
             <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-text-muted)] pointer-events-none" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803 7.5 7.5 0 0015.803 15.803z" /></svg>
             <input
@@ -72,7 +72,7 @@ const stateNames: Record<string, string> = {
           </div>
         </div>
         <div class="flex items-center gap-3">
-          <label for="state-filter" class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] whitespace-nowrap">State</label>
+          <label for="state-filter" class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] whitespace-nowrap">State</label>
           <select
             id="state-filter"
             class="border-2 border-[var(--color-ink)] px-4 py-2.5 text-sm font-medium text-[var(--color-ink)] bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-ink)]/30 min-w-[200px] cursor-pointer"
@@ -83,7 +83,7 @@ const stateNames: Record<string, string> = {
             ))}
           </select>
         </div>
-        <span id="filter-count" class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] hidden"></span>
+        <span id="filter-count" class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] hidden"></span>
       </div>
     </div>
   </section>
@@ -101,7 +101,7 @@ const stateNames: Record<string, string> = {
           <div class="lg:col-span-9 grid gap-4 sm:grid-cols-2 xl:grid-cols-3 lo-shuffle-grid">
             {g.officers.map((lo) => (
               <a href={`/loan-officers/${lo.slug}/`} class="group border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col bg-white hover:bg-[var(--color-ink)] hover:text-white transition-colors">
-                <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/60">{lo.title}</p>
+                <p class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/60">{lo.title}</p>
                 <h3 class="mt-2 text-lg font-semibold group-hover:!text-white">{lo.displayName}</h3>
                 <p class="text-xs text-[var(--color-text-muted)] group-hover:text-white/70 mt-1">NMLS #{lo.nmls}</p>
                 <p class="text-xs text-[var(--color-text-muted)] group-hover:text-white/70 mt-0.5">Licensed in {lo.states.join(", ")}</p>
@@ -155,7 +155,7 @@ const stateNames: Record<string, string> = {
     const extra = lo.languages.filter((l) => l !== "English");
     return `
       <a href="/loan-officers/${lo.slug}/" class="group border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col bg-white hover:bg-[var(--color-ink)] hover:text-white transition-colors">
-        <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/60">${lo.title}</p>
+        <p class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/60">${lo.title}</p>
         <h3 class="mt-2 text-lg font-semibold group-hover:!text-white">${lo.displayName}</h3>
         <p class="text-xs text-[var(--color-text-muted)] group-hover:text-white/70 mt-1">NMLS #${lo.nmls}</p>
         <p class="text-xs text-[var(--color-text-muted)] group-hover:text-white/70 mt-0.5">${lo.states.join(", ")}</p>

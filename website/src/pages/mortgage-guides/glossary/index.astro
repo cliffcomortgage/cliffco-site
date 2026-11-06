@@ -286,14 +286,14 @@ const termCount = sections.reduce((n, s) => n + s.entries.length, 0);
     <div class="container-wide pt-12 lg:pt-16 pb-8 grid lg:grid-cols-12 gap-8 items-end">
       <div class="lg:col-span-8">
         <p class="eyebrow">Mortgage Glossary</p>
-        <h1 class="mt-4 text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">Plain-English mortgage terms.</h1>
+        <h1 class="mt-4 text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.06; font-weight: 700; letter-spacing: -0.015em; font-family: var(--font-display);">Plain-English mortgage terms.</h1>
         <p class="mt-5 max-w-2xl text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">
           Definitions for the terms you'll encounter during the mortgage process, written for borrowers,
           not bankers. From pre-approval and closing costs to the specialty language around Non-QM,
           DSCR, and reverse mortgages, where most glossaries fall short.
         </p>
       </div>
-      <p class="lg:col-span-3 lg:col-start-10 lg:text-right font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.04em;">{termCount}<span class="block mt-2 font-sans font-medium text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Terms</span></p>
+      <p class="lg:col-span-3 lg:col-start-10 lg:text-right font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.015em;">{termCount}<span class="block mt-2 font-mono font-medium text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Terms</span></p>
     </div>
   </section>
 
@@ -313,7 +313,7 @@ const termCount = sections.reduce((n, s) => n + s.entries.length, 0);
     <div class="container-wide">
       {sections.map((section) => (
         <div id={section.letter.toLowerCase()} class="scroll-mt-32 grid grid-cols-[3.5rem_1fr] sm:grid-cols-[6rem_1fr] lg:grid-cols-[10rem_1fr] gap-x-6 border-b border-black/15 py-10">
-          <h2 class="sm:sticky sm:top-36 self-start text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(2.25rem, 4vw, 3.5rem); font-weight: 700; letter-spacing: -0.03em;">
+          <h2 class="sm:sticky sm:top-36 self-start text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(2.25rem, 4vw, 3.5rem); font-weight: 700; letter-spacing: -0.015em;">
             {section.letter}
           </h2>
           <dl class="max-w-3xl">

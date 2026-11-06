@@ -30,7 +30,7 @@ const decorative = !image?.alt;
   <div class="container-wide relative z-10 pt-10 pb-12 lg:pt-20 lg:pb-28 lg:min-h-[600px]">
     <div class="lg:w-[48%]">
       <p class="eyebrow">{eyebrow}</p>
-      <h1 class="mt-5 text-[var(--color-ink)]" style={`font-size: ${h1Size}; line-height: ${size === "md" ? 1.1 : 1.04}; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);`}>
+      <h1 class="mt-5 text-[var(--color-ink)]" style={`font-size: ${h1Size}; line-height: ${size === "md" ? 1.1 : 1.04}; font-weight: 700; letter-spacing: -0.015em; font-family: var(--font-display);`}>
         <slot />
       </h1>
       {lead && (
@@ -50,8 +50,8 @@ const decorative = !image?.alt;
       <dl class="relative px-7 py-9 sm:px-10 lg:absolute lg:inset-0 lg:pl-[12%] lg:pr-[10%] lg:py-14 flex flex-col justify-center gap-6 lg:gap-8">
         {facts?.map((f) => (
           <div class="border-t border-white/25 pt-4">
-            <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-white/55">{f.label}</dt>
-            <dd class="mt-2 text-white font-bold leading-tight" style="font-family: var(--font-display); font-size: clamp(1.375rem, 2.1vw, 2rem); letter-spacing: -0.02em;">{f.value}</dd>
+            <dt class="font-mono font-medium text-[11px] uppercase tracking-[0.14em] text-white/55">{f.label}</dt>
+            <dd class="mt-2 text-white font-bold leading-tight" style="font-family: var(--font-display); font-size: clamp(1.375rem, 2.1vw, 2rem); letter-spacing: -0.015em;">{f.value}</dd>
           </div>
         ))}
       </dl>
@@ -92,7 +92,7 @@ const decorative = !image?.alt;
     {tag && (
       <div class="absolute left-4 -bottom-6 lg:-left-10 lg:bottom-16 bg-white text-[var(--color-ink)] border-2 border-[var(--color-ink)] px-6 py-5 shadow-xl">
         <p class="text-3xl font-bold leading-none" style="font-family: var(--font-display);">{tag.stat}</p>
-        <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] mt-2">{tag.label}</p>
+        <p class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] mt-2">{tag.label}</p>
       </div>
     )}
   </div>

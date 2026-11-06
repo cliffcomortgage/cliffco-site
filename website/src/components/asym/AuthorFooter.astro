@@ -30,7 +30,7 @@ const { author, bio, formTitle, formSub, formTo, formSource } = Astro.props;
         )}
         <div>
           <h2 class="!text-white" style="font-size: var(--text-h3); font-weight: 700;">{author.displayName}</h2>
-          <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/60 mt-1">{author.title} · NMLS #{author.nmls}</p>
+          <p class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-white/60 mt-1">{author.title} · NMLS #{author.nmls}</p>
         </div>
       </div>
       <p class="mt-6 text-white/80 leading-relaxed">{bio}</p>

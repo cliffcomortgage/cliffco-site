@@ -76,7 +76,7 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
     <div class="container-wide relative z-10 pt-10 pb-12 lg:pt-20 lg:pb-28 lg:min-h-[620px]">
       <div class="lg:w-[46%]">
         <p class="eyebrow">About Cliffco · Since {COMPANY.founded}</p>
-        <h1 class="mt-5 text-[var(--color-ink)]" style="font-size: clamp(2.5rem, 5.4vw, 4.75rem); line-height: 1.02; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">
+        <h1 class="mt-5 text-[var(--color-ink)]" style="font-size: clamp(2.5rem, 5.4vw, 4.75rem); line-height: 1.02; font-weight: 700; letter-spacing: -0.015em; font-family: var(--font-display);">
           {yearsInBiz} years.<br />One focus: you.
         </h1>
         <p class="mt-7 max-w-md text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">
@@ -102,7 +102,7 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
       />
       <div class="absolute left-4 -bottom-6 lg:-left-10 lg:bottom-16 bg-[var(--color-ink)] text-white px-6 py-5 shadow-xl">
         <p class="text-3xl font-bold leading-none" style="font-family: var(--font-display);">$6B+</p>
-        <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/70 mt-2">in mortgages closed</p>
+        <p class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-white/70 mt-2">in mortgages closed</p>
       </div>
     </div>
   </section>
@@ -113,8 +113,8 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
       <p class="eyebrow col-span-2 lg:col-span-3 self-start">By the numbers</p>
       {stats.map((item) => (
         <div class="lg:col-span-2">
-          <p class="text-5xl font-bold leading-none text-[var(--color-ink)]" style="font-family: var(--font-display); letter-spacing: -0.02em;">{item.stat}</p>
-          <p class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] mt-3">{item.label}</p>
+          <p class="text-5xl font-bold leading-none text-[var(--color-ink)]" style="font-family: var(--font-display); letter-spacing: -0.015em;">{item.stat}</p>
+          <p class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] mt-3">{item.label}</p>
         </div>
       ))}
     </div>
@@ -157,9 +157,9 @@ const heroImg = "/images/content%20images/golden-hour-moving-boxes";
           Most reviews mention the same things: a loan officer who answered the phone, explained what was happening, and delivered what they promised. That's the standard we hold ourselves to.
         </p>
         <dl class="mt-6 grid grid-cols-3 border border-[var(--color-ink)] divide-x divide-[var(--color-ink)]">
-          <div class="px-1 py-3 text-center"><dd class="text-2xl font-bold" style="font-family: var(--font-display);">4.9★</dd><dt class="font-sans font-medium text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] mt-1 [overflow-wrap:anywhere]">Experience<wbr />.com</dt></div>
-          <div class="px-1 py-3 text-center"><dd class="text-2xl font-bold" style="font-family: var(--font-display);">A+</dd><dt class="font-sans font-medium text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] mt-1 [overflow-wrap:anywhere]">BBB</dt></div>
-          <div class="px-1 py-3 text-center"><dd class="text-2xl font-bold" style="font-family: var(--font-display);">5.0★</dd><dt class="font-sans font-medium text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] mt-1 [overflow-wrap:anywhere]">Zillow</dt></div>
+          <div class="px-1 py-3 text-center"><dd class="text-2xl font-bold" style="font-family: var(--font-display);">4.9★</dd><dt class="font-mono font-medium text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] mt-1 [overflow-wrap:anywhere]">Experience<wbr />.com</dt></div>
+          <div class="px-1 py-3 text-center"><dd class="text-2xl font-bold" style="font-family: var(--font-display);">A+</dd><dt class="font-mono font-medium text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] mt-1 [overflow-wrap:anywhere]">BBB</dt></div>
+          <div class="px-1 py-3 text-center"><dd class="text-2xl font-bold" style="font-family: var(--font-display);">5.0★</dd><dt class="font-mono font-medium text-[10px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] mt-1 [overflow-wrap:anywhere]">Zillow</dt></div>
         </dl>
         <p class="mt-6">
           <a href="/reviews/" class="text-sm font-semibold text-[var(--color-ink)]">Read borrower reviews →</a>

@@ -124,13 +124,13 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
     <div class="container-wide pt-12 lg:pt-16 pb-8 grid lg:grid-cols-12 gap-8 items-end">
       <div class="lg:col-span-8">
         <p class="eyebrow">Free tools</p>
-        <h1 class="mt-4 text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.06; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">Run the numbers before you apply.</h1>
+        <h1 class="mt-4 text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.06; font-weight: 700; letter-spacing: -0.015em; font-family: var(--font-display);">Run the numbers before you apply.</h1>
         <p class="mt-5 max-w-2xl text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">
           {calculators.length} calculators covering every common mortgage scenario: from first-time buyers and self-employed
           borrowers to investors, veterans, and homeowners considering a refinance, buydown, or reverse mortgage.
         </p>
       </div>
-      <p class="lg:col-span-3 lg:col-start-10 lg:text-right font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.04em;">{calculators.length}<span class="block mt-2 font-sans font-medium text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Calculators</span></p>
+      <p class="lg:col-span-3 lg:col-start-10 lg:text-right font-bold text-[var(--color-ink)] leading-none" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.015em;">{calculators.length}<span class="block mt-2 font-mono font-medium text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--color-text-muted)]">Calculators</span></p>
     </div>
   </section>
 
@@ -142,7 +142,7 @@ const colorMap: Record<string, { bg: string; icon: string }> = {
           <section class="grid lg:grid-cols-12 gap-x-10 gap-y-5 py-10 border-b border-black/15">
             <div class="lg:col-span-3">
               <h2 class="text-[var(--color-ink)]" style="font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em;">{g.audience}</h2>
-              <p class="mt-2 font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">{g.items.length} calculator{g.items.length === 1 ? "" : "s"}</p>
+              <p class="mt-2 font-mono font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)]">{g.items.length} calculator{g.items.length === 1 ? "" : "s"}</p>
             </div>
             <div class="lg:col-span-9 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
               {g.items.map((c) => {

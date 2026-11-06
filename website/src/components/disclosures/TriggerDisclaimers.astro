@@ -30,7 +30,7 @@ const scenarios = triggerScenariosFor(Astro.url.pathname);
       <div class="mt-5 grid gap-5 md:grid-cols-2">
         {scenarios.map((key) => (
           <div class="border-l-2 border-[var(--color-ink)] pl-4">
-            <p class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">
+            <p class="font-mono font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">
               {TRIGGER_DISCLAIMERS[key].label}
             </p>
             <p class="mt-2 text-xs text-[var(--color-text-muted)] leading-relaxed">

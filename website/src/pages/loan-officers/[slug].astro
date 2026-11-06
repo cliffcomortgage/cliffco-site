@@ -114,8 +114,8 @@ const schema = [
             <Headshot slug={lo.slug} name={lo.displayName} fluid priority />
           </div>
         )}
-        <p class="mt-7 font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-white/55">{lo.title}</p>
-        <h1 class="mt-2 !text-white" style="font-size: clamp(2rem, 3vw, 2.75rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">
+        <p class="mt-7 font-mono font-medium text-[11px] uppercase tracking-[0.14em] text-white/55">{lo.title}</p>
+        <h1 class="mt-2 !text-white" style="font-size: clamp(2rem, 3vw, 2.75rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.015em; font-family: var(--font-display);">
           {lo.displayName}
         </h1>
         <p class="mt-4 text-sm text-white/80">
@@ -126,24 +126,24 @@ const schema = [
 
         <dl class="mt-7 border-t border-white/25">
           <div class="py-3 border-b border-white/15">
-            <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">{branchCount > 1 ? "Branches" : "Branch"}</dt>
+            <dt class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">{branchCount > 1 ? "Branches" : "Branch"}</dt>
             <dd class="mt-1 text-white">{branchNames}</dd>
           </div>
           {lo.links?.directPhone && (
             <div class="py-3 border-b border-white/15">
-              <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">Office</dt>
+              <dt class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">Office</dt>
               <dd class="mt-1"><a href={telHref(lo.links.directPhone)} class="!text-white no-underline hover:underline">{lo.links.directPhone}</a></dd>
             </div>
           )}
           {lo.links?.cellPhone && (
             <div class="py-3 border-b border-white/15">
-              <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">Cell</dt>
+              <dt class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">Cell</dt>
               <dd class="mt-1"><a href={telHref(lo.links.cellPhone)} class="!text-white no-underline hover:underline">{lo.links.cellPhone}</a></dd>
             </div>
           )}
           {lo.links?.email && (
             <div class="py-3 border-b border-white/15">
-              <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">Email</dt>
+              <dt class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">Email</dt>
               <dd class="mt-1 break-all"><a href={`mailto:${lo.links.email}`} class="!text-white no-underline hover:underline">{lo.links.email}</a></dd>
             </div>
           )}
@@ -162,7 +162,7 @@ const schema = [
           <a href={`/${lo.team.slug}/`} class="mt-8 flex items-center gap-4 border-t border-white/25 pt-6 no-underline group">
             <img src={lo.team.logoUrl} alt={lo.team.name} class={`${lo.team.bannerLogoHeight ?? 'h-12'} select-none`} loading="lazy" />
             <span>
-              {TEAM_TAGLINES[lo.team.slug] && <span class="block font-sans font-medium text-[10px] uppercase tracking-[0.12em] text-white/55">{TEAM_TAGLINES[lo.team.slug]}</span>}
+              {TEAM_TAGLINES[lo.team.slug] && <span class="block font-mono font-medium text-[10px] uppercase tracking-[0.12em] text-white/55">{TEAM_TAGLINES[lo.team.slug]}</span>}
               <span class="block mt-1 text-sm font-semibold text-white group-hover:underline">View {lo.team.name} →</span>
             </span>
           </a>
@@ -188,18 +188,18 @@ const schema = [
         <p class="eyebrow">At a glance</p>
         <dl class="mt-6 border-t border-[var(--color-ink)]">
           <div class="grid sm:grid-cols-[minmax(0,11rem)_1fr] gap-x-6 gap-y-1 py-4 border-b border-black/15">
-            <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">States licensed in</dt>
+            <dt class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">States licensed in</dt>
             <dd class="text-[var(--color-text)]">{lo.states.join(" · ")}</dd>
           </div>
           {extraLanguages.length > 0 && (
             <div class="grid sm:grid-cols-[minmax(0,11rem)_1fr] gap-x-6 gap-y-1 py-4 border-b border-black/15">
-              <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">Additional Languages</dt>
+              <dt class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">Additional Languages</dt>
               <dd class="text-[var(--color-text)]">{extraLanguages.join(", ")}</dd>
             </div>
           )}
           {(lo.featuredSpecialties?.length || otherSpecialties.length > 0) && (
             <div class="grid sm:grid-cols-[minmax(0,11rem)_1fr] gap-x-6 gap-y-2 py-4 border-b border-black/15">
-              <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">Specialties</dt>
+              <dt class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-ink)] pt-1">Specialties</dt>
               <dd class="flex flex-wrap gap-2">
                 {lo.featuredSpecialties?.map((s) => (
                   <span class="text-xs font-semibold px-3 py-1.5 bg-[var(--color-ink)] text-white">{s}</span>
@@ -309,7 +309,7 @@ const schema = [
       <!-- STATE ORIGINATOR LICENCES — shown wherever the state issues the LO their own -->
       {stateLicenses.length > 0 && (
         <section class="lo-block lo-block-wide">
-          <p class="font-sans font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">
+          <p class="font-mono font-medium text-[11px] uppercase tracking-[0.14em] text-[var(--color-ink)]">
             State licence numbers
           </p>
           <ul class="mt-2 space-y-1">

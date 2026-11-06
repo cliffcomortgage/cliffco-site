@@ -86,7 +86,7 @@ const schema = [faqPageSchema(faq)];
     <div class="container-wide py-12 lg:py-16 grid lg:grid-cols-2 gap-10 lg:gap-12 items-start">
       <div>
         <p class="eyebrow">VA renovation loans</p>
-        <h1 class="mt-4" style="font-family: var(--font-display); font-size: clamp(2.25rem, 4.4vw, 3.5rem); line-height: 1.06; font-weight: 700; letter-spacing: -0.02em;">
+        <h1 class="mt-4" style="font-family: var(--font-display); font-size: clamp(2.25rem, 4.4vw, 3.5rem); line-height: 1.06; font-weight: 700; letter-spacing: -0.015em;">
           Buy a home that needs repairs, with nothing down.
         </h1>
         <p class="mt-5 max-w-xl text-[15px] leading-relaxed text-[var(--color-text)]">
@@ -175,7 +175,7 @@ const schema = [faqPageSchema(faq)];
       <dl class="mt-7 border-t border-black/15">
         {VA.rows.map(([k, v]) => (
           <div class="grid sm:grid-cols-[minmax(0,12rem)_1fr] gap-x-6 gap-y-0.5 py-4 border-b border-black/15">
-            <dt class="font-sans font-medium text-[11px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] pt-1">{k}</dt>
+            <dt class="font-mono font-medium text-[11px] uppercase tracking-[0.1em] text-[var(--color-text-muted)] pt-1">{k}</dt>
             <dd class="text-[15px] text-[var(--color-ink)]">{v}</dd>
           </div>
         ))}

@@ -16,7 +16,7 @@ const { eyebrow, lead } = Astro.props;
   <div class="container-wide pt-12 lg:pt-16 pb-8 lg:pb-10 grid lg:grid-cols-12 gap-8 items-end">
     <div class="lg:col-span-8">
       <p class="eyebrow">{eyebrow}</p>
-      <h1 class="mt-4 text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.03em; font-family: var(--font-display);">
+      <h1 class="mt-4 text-[var(--color-ink)]" style="font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.015em; font-family: var(--font-display);">
         <slot />
       </h1>
       {lead && <p class="mt-5 max-w-2xl text-[var(--color-text-muted)]" style="font-size: 1.125rem; line-height: 1.6;">{lead}</p>}

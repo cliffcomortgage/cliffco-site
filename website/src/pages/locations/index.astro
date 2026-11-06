@@ -47,7 +47,7 @@ const markets = LOCATIONS.filter((l) => !l.path.includes("/"));
             {branches.length > 0 && (
               <div class="mt-4 flex flex-wrap gap-2">
                 {branches.map((b) => (
-                  <span class="font-sans font-medium text-[11px] uppercase tracking-[0.1em] px-3 py-1 border border-current">{b.displayCity ?? b.city}</span>
+                  <span class="font-mono font-medium text-[11px] uppercase tracking-[0.1em] px-3 py-1 border border-current">{b.displayCity ?? b.city}</span>
                 ))}
               </div>
             )}

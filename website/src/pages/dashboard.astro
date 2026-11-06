@@ -545,11 +545,11 @@ const currentYear = new Date().getFullYear();
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
     onload="this.onload=null;this.rel='stylesheet'"
   />
   <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" />
   </noscript>
 </head>
 
@@ -574,7 +574,7 @@ const currentYear = new Date().getFullYear();
   <div style="background:var(--color-rich-black);padding-bottom:2rem;">
     <div class="container-wide">
       <p style="font-family:var(--font-sans);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.6);margin:0 0 0.5rem;">Google Ads</p>
-      <h1 style="font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;color:#fff;margin:0;line-height:1.1;letter-spacing:-0.02em;">Performance Dashboard</h1>
+      <h1 style="font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;color:#fff;margin:0;line-height:1.1;letter-spacing: -0.015em;">Performance Dashboard</h1>
     </div>
   </div>
 
@@ -668,7 +668,7 @@ const currentYear = new Date().getFullYear();
                   <span style="font-size:0.8rem;font-weight:600;color:var(--color-ink);line-height:1.35;">{c.name}</span>
                   <span style={"width:8px;height:8px;flex-shrink:0;margin-top:3px;background:" + (c.status === "ENABLED" ? "#22c55e" : "#94a3b8")} title={c.status} />
                 </div>
-                <div style={"font-size:2rem;font-weight:800;padding:0.4rem 0.75rem;margin-bottom:0.75rem;text-align:center;line-height:1;background:" + c.roasBg + ";color:" + c.roasFg}>{c.roasLabel}</div>
+                <div style={"font-size:2rem;font-weight:700;padding:0.4rem 0.75rem;margin-bottom:0.75rem;text-align:center;line-height:1;background:" + c.roasBg + ";color:" + c.roasFg}>{c.roasLabel}</div>
                 <div class="camp-metrics">
                   <div><span>Spend</span><strong>{c.spend}</strong></div>
                   <div><span>Conv.</span><strong>{c.conversions}</strong></div>
@@ -723,7 +723,7 @@ const currentYear = new Date().getFullYear();
                   <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
                     <div style="display:flex;align-items:baseline;gap:0.4rem;">
                       <span style="font-size:0.7rem;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.07em;font-weight:600;">Recoverable</span>
-                      <span style="font-size:1.375rem;font-weight:800;color:var(--color-accent);">{rv.dollarsFormatted}</span>
+                      <span style="font-size:1.375rem;font-weight:700;color:var(--color-accent);">{rv.dollarsFormatted}</span>
                     </div>
                     <button class="send-btn" data-prompt={rv.promptEncoded}>
                       Copy details
@@ -761,7 +761,7 @@ const currentYear = new Date().getFullYear();
             {funnelRows.map(row => (
               <div class="card" style={"padding:1.25rem;text-align:center;" + (row.isWon ? "border-top:3px solid #22c55e;" : "border-top:3px solid #e5e7eb;")}>
                 <div style={"font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;margin-bottom:0.5rem;color:" + (row.isWon ? "#166534" : "var(--color-text-muted)")}>{row.label}</div>
-                <div style={"font-size:2.25rem;font-weight:800;line-height:1;color:" + (row.isWon ? "#166534" : "var(--color-ink)")}>{row.count}</div>
+                <div style={"font-size:2.25rem;font-weight:700;line-height:1;color:" + (row.isWon ? "#166534" : "var(--color-ink)")}>{row.count}</div>
                 {row.value > 0 && (
                   <div style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.35rem;">{fmtUSD(row.value)}</div>
                 )}
@@ -784,7 +784,7 @@ const currentYear = new Date().getFullYear();
             {encompassFunnelRows.map(row => (
               <div class="card" style={"padding:1.25rem;text-align:center;" + (row.isWon ? "border-top:3px solid #22c55e;" : "border-top:3px solid #e5e7eb;")}>
                 <div style={"font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;margin-bottom:0.5rem;color:" + (row.isWon ? "#166534" : "var(--color-text-muted)")}>{row.label}</div>
-                <div style={"font-size:2.25rem;font-weight:800;line-height:1;color:" + (row.isWon ? "#166534" : "var(--color-ink)")}>{row.count}</div>
+                <div style={"font-size:2.25rem;font-weight:700;line-height:1;color:" + (row.isWon ? "#166534" : "var(--color-ink)")}>{row.count}</div>
                 {row.value > 0 && (
                   <div style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.35rem;">{fmtUSD(row.value)}</div>
                 )}
