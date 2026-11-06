@@ -185,7 +185,10 @@ Always confirm leadership titles with Rafe before publishing.
 Source of truth: `brand/Cliffco_Brand_Guidelines.pdf`. Colour, logo and layout applied
 2026-10-26; the typography was reissued and applied 2026-11-06 (see Fonts). The pre-2026
 guide is retired, and so is the `..._2026.pdf` that preceded this file.
-The pre-2026 guide (purple/blue palette, the power-button mark, Outfit/Montserrat) is retired —
+**Both microsites are on this brand as of 2026-11-06.** `cliffcomn` was the last holdout:
+it had skipped the October rollout entirely and was still on the retired palette (#6633cc
+plum as its accent), the power-button logo and rounded corners. The pre-2026 guide
+(purple/blue palette, the power-button mark, Montserrat) is retired —
 don't reintroduce any of it.
 
 **Colour — black, white and one blue.** Roughly 80% white / 12% black / 4% airy gray / 2% Sky

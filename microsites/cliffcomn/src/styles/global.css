@@ -2,21 +2,26 @@
 
 @theme {
   /* Brand colors */
-  --color-rich-black: #0d0d0d;
-  --color-bright-plum: #6633cc;
-  --color-ice-blue: #bde8f1;
-  --color-soft-gray: #b3b2b4;
+  /* 2026 palette. The legacy names are kept and remapped, so any markup still naming
+     --color-bright-plum renders black instead of the retired #6633cc plum. */
+  --color-rich-black: #000000;       /* Black - headlines, panels, the plate */
+  --color-sky: #bde8f1;              /* Sky - the caption box, and nothing else */
+  --color-graphite: #3d4040;
+  --color-soft-gray: #b3b2b4;        /* Body and labels ON BLACK only */
+  --color-airy-gray: #f0eef1;
+  --color-bright-plum: #000000;      /* retired plum, remapped */
+  --color-ice-blue: #f0eef1;         /* was Sky; Sky is the caption box only */
   --color-mist-gray: #f0eef1;
   --color-body: #3d4040;
 
   /* Semantic aliases */
-  --color-ink: #0d0d0d;
-  --color-text: #3d4040;
+  --color-ink: #000000;              /* Pure black, per Rafe 2026-10-26 */
+  --color-text: #0d0d0d;             /* Body sits one shade back from the headline */
   --color-text-muted: #5a5d5d;
   --color-surface: #ffffff;
   --color-surface-soft: #f0eef1;
-  --color-accent: #6633cc;
-  --color-accent-soft: #bde8f1;
+  --color-accent: #000000;           /* Links, rules, focus. Black - never Sky */
+  --color-accent-soft: #f0eef1;
 
   /* Typography */
   --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system,
@@ -83,7 +88,7 @@
   :focus-visible {
     outline: 3px solid var(--color-accent);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 0;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -126,7 +131,7 @@
     justify-content: center;
     gap: 0.5rem;
     padding: 0.875rem 1.75rem;
-    border-radius: 8px;
+    border-radius: 0;
     font-weight: 600;
     font-size: var(--text-body);
     letter-spacing: 0.01em;
@@ -175,7 +180,7 @@
   .card {
     background: #fff;
     border: 1px solid rgba(102, 51, 204, 0.1);
-    border-radius: 8px;
+    border-radius: 0;
     padding: 1.5rem;
     box-shadow: 0 1px 2px rgba(13, 13, 13, 0.04), 0 4px 16px rgba(102, 51, 204, 0.06);
     transition: box-shadow 280ms ease,
