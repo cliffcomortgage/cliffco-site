@@ -7,23 +7,23 @@
 
 @theme {
   /* Brand colours (guide pp10-11) */
-  --color-rich-black: #0d0d0d;       /* Black - primary */
+  --color-rich-black: #000000;       /* Black - primary. Pure black per Rafe 2026-10-26 */
   --color-sky: #bde8f1;              /* Sky - the caption box, and nothing else */
   --color-graphite: #3d4040;         /* Graphite - caption panels, cards on black */
   --color-soft-gray: #b3b2b4;        /* Soft Gray - body and labels ON BLACK */
   --color-airy-gray: #f0eef1;        /* Airy Gray - document panels, light surfaces */
 
   /* Semantic aliases */
-  --color-ink: #0d0d0d;
-  --color-text: #3d4040;             /* Graphite on white, 10.5:1 */
+  --color-ink: #000000;              /* Headlines, subheaders, panels, borders */
+  --color-text: #0d0d0d;             /* Body copy, one shade back from the headline */
   --color-text-muted: #5a5d5d;       /* graphite tint, 7.1:1 - see CLAUDE.md */
   --color-surface: #ffffff;
   --color-surface-soft: #f0eef1;
-  --color-accent: #0d0d0d;           /* Links, rules, focus. Black - never Sky */
+  --color-accent: #000000;           /* Links, rules, focus. Black - never Sky */
   --color-accent-soft: #f0eef1;
 
   /* Retired aliases, kept so older markup resolves to a brand colour */
-  --color-bright-plum: #0d0d0d;
+  --color-bright-plum: #000000;
   --color-ice-blue: #f0eef1;
   --color-mist-gray: #f0eef1;
   --color-body: #3d4040;
@@ -126,8 +126,8 @@
     padding-inline: 1.5rem;
   }
 
-  /* Label role (guide p22): Archivo 500, CAPS, +0.2em. Mono is the data voice and
-     does not set labels. */
+  /* Label role (guide p22): IBM Plex Mono 500, CAPS, +0.2em. The reissued guide makes mono
+     the label voice as well as the data voice, reversing the previous Archivo rule. */
   .eyebrow {
     display: inline-block;
     font-family: var(--font-mono);
@@ -230,7 +230,7 @@
   .card:hover { border-color: var(--color-ink); }
 
   .accent-gradient {
-    background: linear-gradient(135deg, #0d0d0d 0%, #1c1a20 100%);
+    background: linear-gradient(135deg, #000000 0%, #1c1a20 100%);
     color: #fff;
     position: relative;
     isolation: isolate;

@@ -596,7 +596,7 @@ const currentYear = new Date().getFullYear();
         <div style="background:#fef2f2;border:1px solid #fca5a5;padding:1.25rem;margin-bottom:2rem;">
           <strong style="color:#b91c1c;font-size:0.875rem;">API error</strong>
           <code style="display:block;margin-top:0.5rem;font-size:0.78rem;color:#7f1d1d;background:#fee2e2;padding:0.75rem;overflow-x:auto;white-space:pre-wrap;">{fetchError}</code>
-          <p style="margin-top:0.75rem;font-size:0.75rem;color:#6b7280;">
+          <p style="margin-top:0.75rem;font-size:0.75rem;color:#5a5d5d;">
             Env vars present at build time:
             DEV_TOKEN={DEV_TOKEN ? "✓" : "✗"} |
             CLIENT_ID={CLIENT_ID ? "✓" : "✗"} |
@@ -605,25 +605,25 @@ const currentYear = new Date().getFullYear();
             LOGIN_CID={LOGIN_CID ? "✓" : "✗"} |
             CID={CID ? "✓" : "✗"}
           </p>
-          <p style="margin-top:0.25rem;font-size:0.75rem;color:#6b7280;">
+          <p style="margin-top:0.25rem;font-size:0.75rem;color:#5a5d5d;">
             LOGIN_CID first 4 chars: <code>{LOGIN_CID ? LOGIN_CID.slice(0, 4) : "none"}</code> |
             CID first 4 chars: <code>{CID ? CID.slice(0, 4) : "none"}</code>
           </p>
           {/* Fingerprints, not values. invalid_grant also means "this refresh token was issued
               by a different OAuth client", so the client id matters as much as the token. A
               client id is public by design; the secret and token show only length and tail. */}
-          <p style="margin-top:0.25rem;font-size:0.75rem;color:#6b7280;">
+          <p style="margin-top:0.25rem;font-size:0.75rem;color:#5a5d5d;">
             CLIENT_ID: <code>{CLIENT_ID ? CLIENT_ID.slice(0, 24) : "none"}</code> (len {CLIENT_ID ? CLIENT_ID.length : 0}) |
             CLIENT_SECRET: len <code>{CLIENT_SECRET ? CLIENT_SECRET.length : 0}</code> last4 <code>{CLIENT_SECRET ? CLIENT_SECRET.slice(-4) : "none"}</code>
           </p>
-          <p style="margin-top:0.25rem;font-size:0.75rem;color:#6b7280;">
+          <p style="margin-top:0.25rem;font-size:0.75rem;color:#5a5d5d;">
             REFRESH_TOKEN: len <code>{REFRESH_TOKEN ? REFRESH_TOKEN.length : 0}</code> sha <code>{fingerprint(REFRESH_TOKEN)}</code> |
             DEV_TOKEN: len <code>{DEV_TOKEN ? DEV_TOKEN.length : 0}</code>
           </p>
-          <p style="margin-top:0.25rem;font-size:0.75rem;color:#6b7280;">
+          <p style="margin-top:0.25rem;font-size:0.75rem;color:#5a5d5d;">
             REFRESH_TOKEN came from: <code>{envSource["GOOGLE_ADS_REFRESH_TOKEN"] ?? "?"}</code>
           </p>
-          <p style="margin-top:0.25rem;font-size:0.75rem;color:#6b7280;">
+          <p style="margin-top:0.25rem;font-size:0.75rem;color:#5a5d5d;">
             GOOGLE_ADS_* keys visible in process.env: <code>{processKeys}</code>
           </p>
         </div>

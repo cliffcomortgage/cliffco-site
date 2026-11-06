@@ -145,7 +145,7 @@ const id = `cf-${Math.random().toString(36).slice(2, 8)}`;
   <!-- TCPA -->
   <div class="flex items-start gap-3">
     <input type="checkbox" id={`${id}-tcpa`} name="tcpa_consent" value="yes" required
-      class="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 accent-[var(--color-accent)]" />
+      class="mt-0.5 h-4 w-4 shrink-0 border-[var(--color-text-muted)] accent-[var(--color-accent)]" />
     <label for={`${id}-tcpa`} class={`text-xs leading-relaxed ${dark ? 'text-white/50' : 'text-[var(--color-text-muted)]'}`}>
       By submitting this form I consent to be contacted by Cliffco, Inc. (NMLS #65328) regarding my inquiry via calls, texts, and emails, including via automated technology. Consent is not required to obtain credit. Reply STOP to opt out of texts.
     </label>

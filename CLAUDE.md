@@ -37,6 +37,11 @@ Critical facts that must show up in the right places:
 
 1. **Florida DBA: "Clout Mortgage, Inc."** — every FL-targeted page, FL LO bio, Orlando GBP, and FL marketing piece must include this DBA disclosure.
 2. **38 licensed states** (37 states + DC, confirmed 2026-11-04; Idaho added 2026-11-04, Arkansas 2026-10-22, New Hampshire 2026-10-07, Iowa 2026-09-02). Full list + license numbers in `compliance/state-licenses.md`. **MN is fully licensed** — treat it as a normal priority territory, not gated. Site copy must use `STATE_LICENSES.length` (from `website/src/data/state-licenses.ts`), never a typed-out number — hardcoded counts are how "32" went stale.
+   **The microsites cannot import that array** — they are separate Astro projects — so their
+   counts are typed and go stale silently. On 2026-11-06 cliffcomn was carrying three
+   different wrong numbers at once ("36" on the homepage stat bar, "32" on two others, and
+   "37" in DSCR body copy and an FAQ answer). All six now read 38. **Whenever a state is
+   added, grep the microsites too:** `grep -rnE "licensed in [0-9]+ states|Licensed states" microsites/*/src`.
 3. **6 physical branches** (as of 2026-07-15): Uniondale NY (HQ), Bay Shore NY, Branchburg NJ, Ft. Lauderdale FL, Buckeye AZ, Excelsior MN. The Jamaica NY, Wantagh NY, and Orlando FL branches closed in July 2026 — do not reference them as current offices.
 4. **80+ active LOs.** Each gets a bio page at `/loan-officers/{name-nmlsid}/` with Person schema + sameAs to NMLS Consumer Access. Roster: `compliance/loan-officers.md`.
 5. **Bilingual LO clusters** (basis for the Spanish-language site): Buckeye AZ, Branchburg, Uniondale. Detail in `compliance/loan-officers.md` (the Orlando cluster dissolved when that branch closed, July 2026).
@@ -127,9 +132,28 @@ Two facts that caused most of the rework:
   them. That is how the invented reverse mortgage factor and the pre-2023 VA funding fee
   schedule stayed live after both were fixed. **When a product figure changes, grep the
   `art-` prefix for it.**
+- **Styling drifts the same way, and no test catches it.** The copies carry no `.calc-readout`
+  wrapper, so the global rule that puts a readout in IBM Plex Mono 600 never reached them and
+  all 50 printed their figures in Outfit bold until 2026-11-06. `global.css` now styles them
+  by id instead: `p[id^="art-"].font-bold`, which deliberately skips the verdict and note
+  paragraphs because those are sentences and mono never sets a sentence. **A brand rule keyed
+  on a wrapper class will miss the copies — key it on the `art-` id.**
 - **A green test can be green because it tested nothing.** One sweep reported "61 calculators,
   NO DEFECTS FOUND" over zero combinations — Windows backslashes had broken a path, so every
   page 404'd. Check the combination count, not just the verdict.
+
+  **It came back, and it is subtle.** On 2026-11-06 the edge sweep was again passing over
+  **0 combinations**. The earlier fix normalised the page path to forward slashes but left
+  `SRC` as `path.join` built it — with backslashes — so `.replace(SRC, "")` matched nothing,
+  every slug stayed an absolute path and every URL 404'd. `01-edge-sweep.cjs` now strips
+  `SRC_URL` (`SRC.split(path.sep).join("/")`) instead. **`run-all.cjs` hides this: it only
+  regex-matches a sub-suite's output, so a vacuous sweep still prints PASS.** A healthy edge
+  sweep reports roughly **1370 combinations** over the 61 calculators — if that number is 0,
+  or far below it, the suite is not testing anything no matter what the summary says:
+
+  ```bash
+  cd scripts/calculator-tests && node 01-edge-sweep.cjs | tail -3
+  ```
 
 ## Calculators — no invisible figures
 
@@ -229,10 +253,26 @@ the supplied files, never re-set the type. In those filenames `_Black` means a b
   one cap height on every side. Never stretch, re-track, re-weight, outline, rotate, shadow,
   tint it Sky, or set it inside the Sky box.
 
-**Square corners throughout**, to match the plate and the Sky box. There are no `rounded-*`
-classes in `website/src` and the `--radius-*` tokens are all `0`; keep it that way. The one
-exception is the Qualifier's 20px selection indicator, which stays circular so a single-choice
-control still reads as one.
+**Square corners throughout**, to match the plate and the Sky box. The `--radius-*` tokens are
+all `0` on all three sites; keep it that way. The one exception is the Qualifier's 20px selection
+indicator, which stays circular so a single-choice control still reads as one.
+
+Zeroing the tokens is **not** sufficient on its own, and a grep for `rounded-` will not find
+the two ways a corner got back in (both were live until 2026-11-06):
+
+- **A bare `rounded` has no dash.** It is a static Tailwind utility that compiles to
+  `border-radius:.25rem` and ignores the `--radius-*` tokens entirely. Four checkboxes carried
+  it. Grep for the whole word `rounded`, not the prefix `rounded-`.
+- **Raw CSS in a page's `<style>` block never sees the tokens.** Every one of the 61
+  calculators set its own `border-radius` on `.calc-input` / `.art-calc-input` and so had
+  rounded inputs through the whole October rollout.
+
+Check the **built** output, where both show up and dead utilities do not:
+
+```bash
+cd website && npm run build
+grep -rhoE "border-radius:[^;}]+" dist/client --include=*.html --include=*.css | sort | uniq -c
+```
 
 ## Fonts
 

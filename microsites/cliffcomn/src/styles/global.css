@@ -33,6 +33,20 @@
   --font-accent: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
 
+  /* Radius: square throughout (guide p23). This site shipped without these tokens, so any
+     Tailwind rounded-* utility still rendered a real corner here while the other two sites
+     flattened it. */
+  --radius-none: 0;
+  --radius-xs: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --radius-3xl: 0;
+  --radius-4xl: 0;
+  --radius-full: 0;
+
   /* Type scale */
   --text-display-xl: clamp(2.5rem, 5vw + 1rem, 4.25rem);
   --text-display-lg: clamp(2rem, 4vw + 0.5rem, 3.25rem);
@@ -134,7 +148,7 @@
     border-radius: 0;
     font-weight: 600;
     font-size: var(--text-body);
-    letter-spacing: 0.01em;
+    letter-spacing: 0;
     line-height: 1;
     text-decoration: none;
     transition: box-shadow 200ms ease,
@@ -162,8 +176,7 @@
     color: #fff;
   }
   .btn-primary:hover {
-    background: var(--color-bright-plum);
-    box-shadow: 0 0 0 3px rgba(102, 51, 204, 0.22), 0 8px 24px rgba(102, 51, 204, 0.32);
+    background: var(--color-graphite);
   }
 
   .btn-secondary {
@@ -174,21 +187,18 @@
   .btn-secondary:hover {
     background: var(--color-ink);
     color: #fff;
-    box-shadow: 0 0 0 3px rgba(13, 13, 13, 0.12), 0 8px 24px rgba(13, 13, 13, 0.18);
   }
 
   .card {
     background: #fff;
-    border: 1px solid rgba(102, 51, 204, 0.1);
+    border: 1px solid rgba(13, 13, 13, 0.14);
     border-radius: 0;
     padding: 1.5rem;
-    box-shadow: 0 1px 2px rgba(13, 13, 13, 0.04), 0 4px 16px rgba(102, 51, 204, 0.06);
-    transition: box-shadow 280ms ease,
-                border-color 200ms ease;
+    transition: border-color 200ms ease;
   }
 
   .accent-gradient {
-    background: linear-gradient(135deg, #0d0d0d 0%, #1c1a20 100%);
+    background: linear-gradient(135deg, #000000 0%, #1c1a20 100%);
     color: #fff;
     position: relative;
     isolation: isolate;

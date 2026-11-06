@@ -505,3 +505,18 @@ a:not(.btn):not(.card):not(.no-underline) {
 .calc-controls span:not(input):not(select),
 .calc-controls .text-\[var\(--color-ink\)\]:not(input):not(select) { color: #fff; }
 .calc-controls .relative > span { color: var(--color-text-muted); }
+
+/* ---------- Blog-embedded calculator readouts ----------
+   The 50 calculators embedded in blog posts are copies of 10 archetypes, keyed by an
+   "art-" id prefix. They carry no .calc-readout wrapper, so the instrument-panel rule
+   above never reached them and their figures stayed in Outfit bold while the eleven
+   main calculators moved to mono. The Figure role is mono, so match the copies the
+   only way they identify themselves - the art- id - and only where the paragraph is a
+   figure. The verdict, note and steps paragraphs are text-sm/text-xs rather than
+   font-bold and are deliberately left out: they are sentences, and mono never sets a
+   sentence. */
+p[id^="art-"].font-bold {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}

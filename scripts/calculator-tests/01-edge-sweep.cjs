@@ -17,6 +17,9 @@ const PUP = path.join(__dirname, "../../website/node_modules/puppeteer-core");
 const puppeteer = require(PUP);
 
 const SRC = path.join(__dirname, "../../website/src/pages/");
+// Compare against a forward-slash copy: path.join returns BACKSLASHES on Windows, so
+// stripping SRC itself never matched and every slug stayed absolute. See the note below.
+const SRC_URL = SRC.split(path.sep).join("/");
 const ROOT = path.join(__dirname, "../../website/dist/client");
 const T = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml",
   ".png": "image/png", ".jpg": "image/jpeg", ".webp": "image/webp", ".avif": "image/avif", ".ico": "image/x-icon" };
@@ -42,7 +45,7 @@ function inventory() {
           // Normalise separators BEFORE stripping the prefix: on Windows path.join returns
           // backslashes, so stripping a forward-slash SRC silently left the absolute path
           // and every URL 404'd - which looked like a clean pass over zero combinations.
-          out.push(path.dirname(p).replace(/\\/g, "/").replace(SRC, ""));
+          out.push(path.dirname(p).replace(/\\/g, "/").replace(SRC_URL, ""));
         }
       }
     }

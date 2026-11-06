@@ -13,6 +13,20 @@ cd ../scripts/calculator-tests && node run-all.cjs
 Needs Chrome at `C:/Program Files/Google/Chrome/Application/chrome.exe` and
 `puppeteer-core`, which `website/node_modules` already provides. Nothing else to install.
 
+### Do not trust the summary alone
+
+`run-all.cjs` decides PASS by regex-matching each sub-suite's output, so a suite that
+exercised **nothing** still prints PASS. Twice now the edge sweep has passed over zero
+combinations because a Windows path broke and every URL 404'd. After any run that matters,
+confirm the work actually happened:
+
+```bash
+node 01-edge-sweep.cjs | tail -3            # expect ~1370 combinations over 61 calculators
+node 02-differential-embedded.cjs | tail -3 # expect a non-zero case/field count
+```
+
+A count of 0 means the suite is broken, not that the calculators are clean.
+
 ## Why this exists
 
 The calculators were audited five times between 2026-11-03 and 2026-11-05, and each pass

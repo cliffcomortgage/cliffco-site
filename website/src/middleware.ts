@@ -55,12 +55,12 @@ function loginPage(error: boolean): string {
     .card { background: #fff; border: 2px solid #000000; padding: 2.5rem; width: 100%; max-width: 380px; }
     .eyebrow { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: #5a5d5d; margin-bottom: 1.25rem; }
     h1 { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.02em; color: #000000; margin-bottom: 0.35rem; }
-    .sub { font-size: 0.85rem; color: #6b7280; margin-bottom: 1.75rem; }
+    .sub { font-size: 0.85rem; color: #5a5d5d; margin-bottom: 1.75rem; }
     label { display: block; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #3d4040; margin-bottom: 0.4rem; }
     input[type=password] { width: 100%; padding: 0.65rem 0.875rem; border: 1.5px solid #e5e7eb;  font-size: 0.95rem; color: #0d0d0d; outline: none; }
     input[type=password]:focus { border-color: #000000; box-shadow: 0 0 0 3px rgba(13,13,13,0.12); }
     button { margin-top: 1rem; width: 100%; padding: 0.75rem; background: #000000; color: #fff; font-family: inherit; font-size: 0.9rem; font-weight: 600; border: none;  cursor: pointer; }
-    button:hover { background: #262626; }
+    button:hover { background: #3d4040; }
     .error { margin-top: 0.875rem; font-size: 0.8rem; color: #dc2626; text-align: center; font-weight: 500; }
   </style>
 </head>

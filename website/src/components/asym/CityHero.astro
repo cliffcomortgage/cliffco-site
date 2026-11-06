@@ -23,7 +23,7 @@ const cols = facts.length >= 4 ? "md:grid-cols-4" : facts.length === 3 ? "md:gri
   <div class="container-wide pt-12 lg:pt-16">
     <p class="eyebrow">{eyebrow}</p>
     <h1 class="mt-4 text-[var(--color-ink)]" style="font-family: var(--font-display);">
-      <span class="block font-extrabold" style={`font-size: ${size}; line-height: 0.9; letter-spacing: -0.05em;`}>{word}</span>
+      <span class="block font-bold" style={`font-size: ${size}; line-height: 0.9; letter-spacing: -0.05em;`}>{word}</span>
       {sub && <span class="block mt-6 lg:mt-8 font-semibold" style="font-size: clamp(1.25rem, 2vw, 1.75rem); letter-spacing: -0.01em;">{sub}</span>}
     </h1>
   </div>

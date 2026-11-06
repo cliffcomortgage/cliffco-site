@@ -62,11 +62,11 @@ import PostHog from "../components/posthog.astro";
           <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(13,13,13,0.98) 25%, rgba(13,13,13,0.7) 55%, rgba(13,13,13,0.25) 100%);"></div>
         </div>
         <div class="container-wide py-20 lg:py-28">
-          <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
             <!-- Left: headline + CTA -->
             <div>
-              <p class="eyebrow !text-[var(--color-ice-blue)]">Minnesota Mortgage Lender · Cliffco</p>
+              <p class="eyebrow !text-[var(--color-soft-gray)]">Minnesota Mortgage Lender · Cliffco</p>
               <h1 class="mt-4 text-white max-w-xl" style="font-size: var(--text-display-xl); line-height: 1.08; font-weight: 700;">
                 Fast Mortgage Approval for Minnesota Homebuyers.
               </h1>
@@ -127,7 +127,7 @@ import PostHog from "../components/posthog.astro";
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
               { stat: "37+", label: "Years in business" },
-              { stat: "36", label: "Licensed states" },
+              { stat: "38", label: "Licensed states" },
               { stat: "$6B+", label: "Mortgages closed" },
               { stat: "4.9★", label: "Average rating" },
             ].map((item) => (
@@ -242,7 +242,9 @@ import PostHog from "../components/posthog.astro";
           <img
             src="/images/cliffco-logo-white.svg"
             alt="Cliffco Mortgage Bankers"
-            class="h-8 w-auto"
+            width="848"
+            height="316"
+            class="h-[60px] w-auto"
             loading="lazy"
           />
           <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">

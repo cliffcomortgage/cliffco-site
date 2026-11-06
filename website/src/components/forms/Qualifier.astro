@@ -152,7 +152,7 @@ const inputClass =
           </div>
 
           <div class="flex items-start gap-3">
-            <input type="checkbox" id="q-tcpa" name="tcpa_consent" value="yes" required class="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 accent-[var(--color-ink)]" />
+            <input type="checkbox" id="q-tcpa" name="tcpa_consent" value="yes" required class="mt-0.5 h-4 w-4 shrink-0 border-[var(--color-text-muted)] accent-[var(--color-ink)]" />
             <label for="q-tcpa" class="text-xs leading-relaxed text-[var(--color-text-muted)]">
               By submitting this form I consent to be contacted by Cliffco, Inc. (NMLS #65328) regarding my inquiry via calls, texts, and emails, including via automated technology. Consent is not required to obtain credit. Reply STOP to opt out of texts.
             </label>
@@ -540,9 +540,4 @@ const inputClass =
     color: var(--color-text-muted);
   }
 
-  /* Monochrome overrides for this form - the shared .btn-primary hover is
-     purple sitewide; this component is black/white only. */
-  .q-panel .btn-primary:hover {
-    background: #262626;
-  }
 </style>
