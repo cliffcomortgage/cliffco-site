@@ -75,8 +75,9 @@ const URL = process.argv[2] || "https://cliffcomn.com/heloc-minnesota/";
     console.log("  Tags are fine but no form rendered, so there is nothing to submit.");
   } else {
     console.log("  Tags present and the form rendered. The plumbing looks correct on load;");
-    console.log("  the remaining unknown is whether onFormSubmitted actually fires on submit,");
-    console.log("  which only a real submission can prove.");
+    console.log("  the remaining unknown is whether the page listens for the event HubSpot fires on");
+    console.log("  submit: \"hs-form-event:on-submission:success\". onFormSubmitted and postMessage");
+    console.log("  listeners never fire on the current embed. Only a real submission proves it end to end.");
   }
   await browser.close();
 })();

@@ -36,6 +36,7 @@ const RANGE = DAYS === 30 ? "LAST_30_DAYS" : DAYS === 7 ? "LAST_7_DAYS" : "LAST_
 // Conversion labels compiled into the Minnesota landing pages. Keep in step with
 // microsites/cliffcomn/src/pages/*/index.astro.
 const PAGE_LABELS = [
+  { page: "cliffcomn.com/ (homepage)", label: "pK6iCOimrO4cEKfe_b5C" },
   { page: "cliffcomn.com/heloc-minnesota/", label: "8n2gCInJqIAdEKfe_b5C" },
   { page: "cliffcomn.com/dscr-loans-minnesota/", label: "jWcrCIr7yvwcEKfe_b5C" },
 ];
@@ -205,12 +206,16 @@ console.log(`  Whether gtag actually fires when someone submits the HubSpot form
   sees conversions that arrived. If section 3 is clean and section 4 shows the action has
   never fired, the gap is in the browser, and the checks are:
 
+    - Check the page listens for "hs-form-event:on-submission:success". HubSpot's current
+      embed (the hs-form-frame iframe hbspt.forms.create now renders) announces a submission
+      ONLY as that DOM event. It never runs onFormSubmitted and sends no postMessage, so a
+      page wired to either records nothing - the cause of every MN and NJ form conversion
+      missing in 2026 (found 2026-11-06).
     - Open the landing page, submit the form with a real email, and watch the Network tab
       for a request to googleads.g.doubleclick.net or google.com/pagead. No request means
-      the HubSpot onFormSubmitted callback never ran.
-    - HubSpot renders its form in an iframe. onFormSubmitted fires on the parent, but only
-      if the embed is the standard v2 script - confirm it is not a redirect-after-submit
-      form, which navigates away before the callback can run.
+      the conversion code never ran.
+    - Confirm it is not a redirect-after-submit form, which navigates away before any
+      listener can run.
     - Check the Ads UI conversion action for "Tag inactive" or "No recent conversions".
     - Confirm the click actually carried a gclid: the dashboard's lead table has a gclid
       column, and a lead without one never gets attributed.`);

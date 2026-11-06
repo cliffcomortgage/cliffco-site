@@ -80,10 +80,12 @@ Tell us a little about your situation and a licensed New Jersey loan officer wil
   gtag('js', new Date());
   gtag('config', 'G-WV6SFC5W7P');
   gtag('config', 'AW-17848823591');
-  // Fires the Ads conversion once per submission, from whichever signal arrives first.
-  // onFormSubmitted is the classic hbspt.forms.create callback and does NOT run on
-  // HubSpot's current ui-forms-embed iframe, which is what forms.create now renders. The
-  // postMessage listener works on both embeds; the guard stops a double count.
+  // Fires the Ads conversion once per submission. HubSpot's current embed announces a
+  // submission as the DOM event "hs-form-event:on-submission:success" (bubbling to window,
+  // form GUID in event.detail.formId). It sends no postMessage and never runs
+  // onFormSubmitted, which is why this page recorded no form conversions in 2026
+  // (confirmed 2026-11-06). onFormSubmitted stays as the classic-embed fallback; the guard
+  // stops a double count.
   (function () {
     function recordConversion() {
       if (window.__njGrantConverted) return;
@@ -96,12 +98,11 @@ Tell us a little about your situation and a licensed New Jersey loan officer wil
         });
       }
     }
-    window.addEventListener('message', function (event) {
-      if (!event.data || typeof event.data !== 'object') return;
-      var d = event.data;
-      var name = d.eventName || (d.data && d.data.eventName);
-      if (name === 'onFormSubmitted' || name === 'onFormSubmit') recordConversion();
-    });
+    window.addEventListener('hs-form-event:on-submission:success', function (event) {
+      var id = event.detail && event.detail.formId;
+      if (id && id !== 'd614cef1-1fd7-4a16-bce3-a3832c5be61c') return;
+      recordConversion();
+    }, true);
     function createForm() {
       if (!(window.hbspt && window.hbspt.forms)) { return setTimeout(createForm, 200); }
       window.hbspt.forms.create({

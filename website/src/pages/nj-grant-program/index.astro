@@ -378,31 +378,37 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
 <style is:inline>@media (max-width: 1023px){ body { padding-bottom: 64px; } }</style>
 <script is:inline charset="utf-8" src="//js.hsforms.net/forms/embed/v2.js"></script>
 <script is:inline>
-  // Fires the Ads conversion once per submission, from whichever signal arrives first.
-  // onFormSubmitted is the classic hbspt.forms.create callback and does NOT run on HubSpot's
-  // current ui-forms-embed-components-app iframe, which is what forms.create now renders -
-  // the same gap that left the Minnesota landers with zero recorded conversions all year.
-  // The postMessage listener works on both embeds; the guard stops a double count.
+  // Fire the Google Ads conversion once per submission.
+  //
+  // HubSpot's current embed - the hs-form-frame iframe that hbspt.forms.create now renders -
+  // announces a submission as a DOM event, "hs-form-event:on-submission:success", dispatched
+  // on the form container and bubbling to window, with this form's GUID in event.detail.formId.
+  // It sends no postMessage and never runs onFormSubmitted. Listening only for those two is why
+  // no Minnesota or NJ form conversion reached Google Ads in 2026 while HubSpot logged every
+  // lead (confirmed 2026-11-06 against HubSpot's own embed script for portal 21616430).
+  // onFormSubmitted stays as the fallback for the classic embed; the guard stops a browser that
+  // delivers both from counting one submission twice.
   (function () {
+    var FORM_ID = 'd614cef1-1fd7-4a16-bce3-a3832c5be61c';
+
     function recordConversion() {
       if (window.__njGrantConverted) return;
       window.__njGrantConverted = true;
       if (window.cliffcoTrack) window.cliffcoTrack.conversion('AW-17848823591/ulN2CMSi190cEKfe_b5C', 0);
     }
 
-    window.addEventListener('message', function (event) {
-      if (!event.data || typeof event.data !== 'object') return;
-      var d = event.data;
-      var name = d.eventName || (d.data && d.data.eventName);
-      if (name === 'onFormSubmitted' || name === 'onFormSubmit') recordConversion();
-    });
+    window.addEventListener('hs-form-event:on-submission:success', function (event) {
+      var id = event.detail && event.detail.formId;
+      if (id && id !== FORM_ID) return;
+      recordConversion();
+    }, true);
 
     function createForm() {
       if (!(window.hbspt && window.hbspt.forms)) { return setTimeout(createForm, 200); }
       window.hbspt.forms.create({
         region: 'na1',
         portalId: '21616430',
-        formId: 'd614cef1-1fd7-4a16-bce3-a3832c5be61c',
+        formId: FORM_ID,
         target: '#nj-lead-form',
         onFormSubmitted: recordConversion
       });

@@ -350,25 +350,44 @@ import PostHog from "../components/posthog.astro";
         });
       });
 
-      // Render the HubSpot form and fire the Google Ads conversion on submit.
-      // hbspt.forms.create's onFormSubmitted is a reliable lifecycle callback,
-      // unlike the new hs-form-frame embed's postMessage (which fires inconsistently).
+      // Fire the Google Ads conversion once per submission.
+      //
+      // HubSpot's current embed - the hs-form-frame iframe that hbspt.forms.create now renders -
+      // announces a submission as a DOM event, "hs-form-event:on-submission:success", dispatched
+      // on the form container and bubbling to window, with this form's GUID in event.detail.formId.
+      // It sends no postMessage and never runs onFormSubmitted. Listening only for those two is why
+      // no Minnesota or NJ form conversion reached Google Ads in 2026 while HubSpot logged every
+      // lead (confirmed 2026-11-06 against HubSpot's own embed script for portal 21616430).
+      // onFormSubmitted stays as the fallback for the classic embed; the guard stops a browser that
+      // delivers both from counting one submission twice.
+      var FORM_ID = 'e42a309d-1520-473c-8bd2-777240aacfbc';
+
+      function recordConversion() {
+        if (window.__mnConverted) return;
+        window.__mnConverted = true;
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {
+            send_to: 'AW-17848823591/pK6iCOimrO4cEKfe_b5C',
+            value: 0.0,
+            currency: 'USD'
+          });
+        }
+        if (window.posthog) window.posthog.capture('mn_form_submitted');
+      }
+
+      window.addEventListener('hs-form-event:on-submission:success', function (event) {
+        var id = event.detail && event.detail.formId;
+        if (id && id !== FORM_ID) return;
+        recordConversion();
+      }, true);
+
       if (window.hbspt && window.hbspt.forms) {
         window.hbspt.forms.create({
           region: 'na1',
           portalId: '21616430',
-          formId: 'e42a309d-1520-473c-8bd2-777240aacfbc',
+          formId: FORM_ID,
           target: '#mn-lead-form',
-          onFormSubmitted: function () {
-            if (typeof gtag === 'function') {
-              gtag('event', 'conversion', {
-                send_to: 'AW-17848823591/pK6iCOimrO4cEKfe_b5C',
-                value: 0.0,
-                currency: 'USD'
-              });
-            }
-            if (window.posthog) window.posthog.capture('mn_form_submitted');
-          }
+          onFormSubmitted: recordConversion
         });
       }
     </script>
