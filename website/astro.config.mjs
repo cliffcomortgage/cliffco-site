@@ -12,6 +12,9 @@ const isPages = process.env.DEPLOY_TARGET === 'pages';
 
 // Ads-only landing pages: unlisted, noindex, reached only from a paid campaign.
 const AD_LANDERS = ['fha-203k-loan', 'homestyle-choicerenovation-loan', 'va-renovation-loan'];
+// Other noindex pages kept out of the sitemap. The Homebuyer Advantage page is an employee
+// benefit reached through partner links, not a public offer, so it must not rank.
+const UNLISTED = ['homebuyer-advantage'];
 
 // https://astro.build/config
 export default defineConfig({
@@ -191,7 +194,8 @@ export default defineConfig({
       filter: (page) =>
         !page.includes('/thank-you/') &&
         !page.includes('/dashboard') &&
-        !AD_LANDERS.some((slug) => page.includes('/' + slug + '/')),
+        !AD_LANDERS.some((slug) => page.includes('/' + slug + '/')) &&
+        !UNLISTED.some((slug) => page.includes('/' + slug + '/')),
     }),
     // API routes must be serverless functions on Vercel (POST handlers) but
     // prerendered stubs on the static GitHub Pages preview. This is set here,

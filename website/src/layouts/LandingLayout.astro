@@ -23,9 +23,27 @@ interface Props {
   phoneE164: string;
   /** Opt this lander in to search indexing. Defaults to noindex. */
   index?: boolean;
+  /**
+   * Replace the header's call button with a single on-page CTA (e.g. "Get started" scrolling to
+   * the form). It carries data-cta="header" so the page can track it.
+   */
+  headerCta?: { label: string; href: string };
+  /**
+   * The office shown in the footer. Defaults to the Branchburg, NJ branch the NJ and renovation
+   * ad landers were built for; a page aimed elsewhere passes its own (or HQ).
+   */
+  office?: { label: string; street: string; cityLine: string; phone: string; phoneE164: string };
 }
 
-const { title, description, schema, phone, phoneE164, index = false } = Astro.props;
+const BRANCHBURG = {
+  label: "Cliffco Mortgage Bankers · Branchburg, NJ",
+  street: "3121 Route 22 East, 3rd Floor, Office 313",
+  cityLine: "Branchburg, NJ 08876 · NMLS #2671359",
+  phone: "516-408-7300",
+  phoneE164: "+15164087300",
+};
+
+const { title, description, schema, phone, phoneE164, index = false, headerCta, office = BRANCHBURG } = Astro.props;
 ---
 
 <!doctype html>
@@ -78,10 +96,16 @@ const { title, description, schema, phone, phoneE164, index = false } = Astro.pr
         <span class="flex items-center no-underline shrink-0" aria-label={COMPANY.legalName}>
           <img src="/images/cliffco-plate.svg" alt={COMPANY.legalName} width="848" height="224" class="h-10 w-auto" loading="eager" />
         </span>
-        <a href={`tel:${phoneE164}`} class="btn btn-primary text-sm !py-2 !px-5 shrink-0 hidden sm:inline-flex">Call {phone}</a>
-        <a href={`tel:${phoneE164}`} class="btn btn-primary text-sm !py-2.5 !px-3 shrink-0 sm:hidden" aria-label={`Call ${phone}`}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" /></svg>
-        </a>
+        {headerCta ? (
+          <a href={headerCta.href} data-cta="header" class="btn btn-primary text-sm !py-2.5 !px-5 shrink-0">{headerCta.label}</a>
+        ) : (
+          <>
+            <a href={`tel:${phoneE164}`} class="btn btn-primary text-sm !py-2 !px-5 shrink-0 hidden sm:inline-flex">Call {phone}</a>
+            <a href={`tel:${phoneE164}`} class="btn btn-primary text-sm !py-2.5 !px-3 shrink-0 sm:hidden" aria-label={`Call ${phone}`}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" /></svg>
+            </a>
+          </>
+        )}
       </div>
     </header>
 
@@ -109,12 +133,12 @@ const { title, description, schema, phone, phoneE164, index = false } = Astro.pr
           </div>
         </div>
 
-        <!-- Branch info -->
+        <!-- Office info -->
         <div class="mt-6 pb-6 border-b border-white/10 text-sm text-white/60">
-          <p class="font-semibold text-white/80">Cliffco Mortgage Bankers &middot; Branchburg, NJ</p>
-          <p class="mt-1">3121 Route 22 East, 3rd Floor, Office 313</p>
-          <p class="mt-0.5">Branchburg, NJ 08876 &middot; NMLS #2671359</p>
-          <p class="mt-0.5"><a href="tel:5164087300" class="text-white/70 hover:text-white no-underline">Office: 516-408-7300</a></p>
+          <p class="font-semibold text-white/80">{office.label}</p>
+          <p class="mt-1">{office.street}</p>
+          <p class="mt-0.5">{office.cityLine}</p>
+          <p class="mt-0.5"><a href={`tel:${office.phoneE164}`} class="text-white/70 hover:text-white no-underline">Office: {office.phone}</a></p>
         </div>
 
         <!-- Disclaimer: the official corporate text, same as the live page and main site footer -->
@@ -122,7 +146,11 @@ const { title, description, schema, phone, phoneE164, index = false } = Astro.pr
           <p>{FOOTER_MAIN_DISCLOSURE}</p>
         </div>
 
-        <p class="mt-6 text-xs text-white/60">&copy; 2026 Cliffco, Inc. &middot; NMLS #65328 &middot; Equal Housing Lender</p>
+        <!-- Same logo and wording as the main site footer. The EHO mark was missing here. -->
+        <div class="mt-6 flex items-center gap-3 text-xs text-white/60">
+          <img src="/eho-white.png" alt="Equal Housing Lender" width="40" height="40" class="w-10 h-10 object-contain" loading="lazy" />
+          <p>&copy; 2026 Cliffco, Inc. &middot; NMLS #65328 &middot; Equal Housing Lender</p>
+        </div>
 
       </div>
     </footer>

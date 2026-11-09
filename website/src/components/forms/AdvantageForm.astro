@@ -1,0 +1,179 @@
+---
+/**
+ * Homebuyer Advantage Program lead forms (spec section 4). Markup only: the submit, inline
+ * validation, UTM capture and tracking live in the page script on /homebuyer-advantage/, which
+ * handles every `.adv-form` on the page.
+ *
+ *   variant="employee" - the primary form for employees and union members
+ *   variant="employer" - the partnership inquiry for HR and union leaders
+ *
+ * Posts to /api/contact/ like the site's other lead forms (honeypot + time check, HubSpot then
+ * email). form_source separates the two lead types in HubSpot. Employer inquiries are routed to
+ * the partnership contact server-side, so no address ships in page source.
+ *
+ * The submit control is a plain button, not a form submit, so HubSpot's collected-forms script
+ * can't capture a duplicate - the same choice ContactForm makes.
+ */
+import {
+  ADVANTAGE_CONSENT_PLACEHOLDER,
+  ADVANTAGE_FORM_SOURCE,
+  ADVANTAGE_PHONE,
+} from "../../data/homebuyer-advantage";
+
+interface Props {
+  variant: "employee" | "employer";
+}
+
+const { variant } = Astro.props;
+const id = variant === "employee" ? "adv-employee" : "adv-employer";
+const isEmployee = variant === "employee";
+
+const input =
+  "w-full border border-[var(--color-text-muted)] bg-white text-[var(--color-ink)] px-4 py-3 text-base focus:outline-none focus:border-[var(--color-ink)] focus:ring-2 focus:ring-[var(--color-ink)] aria-[invalid=true]:border-red-700";
+const label = "block text-sm font-semibold text-[var(--color-ink)] mb-1.5";
+const optional = "font-normal text-[var(--color-text-muted)]";
+const err = "adv-err hidden mt-1.5 text-sm font-medium text-red-700";
+
+const PURPOSES = ["Buy my first home", "Buy my next home", "Relocating for work", "Just learning for now"];
+const TIMELINES = ["Within 3 months", "3 to 6 months", "6 to 12 months", "Over a year", "Not sure yet"];
+---
+
+<form
+  id={id}
+  class="adv-form"
+  data-variant={variant}
+  data-form-source={isEmployee ? ADVANTAGE_FORM_SOURCE.employee : ADVANTAGE_FORM_SOURCE.employer}
+  data-phone={ADVANTAGE_PHONE.display}
+  novalidate
+>
+  <!-- Honeypot: hidden from people, filled by bots -->
+  <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+    <label for={`${id}-website`}>Website</label>
+    <input type="text" id={`${id}-website`} name="website" tabindex="-1" autocomplete="off" />
+  </div>
+  <input type="hidden" name="_loaded" value="" />
+  <input type="hidden" name="form_to" value="websiteleads@cliffcomortgage.com" />
+  <input type="hidden" name="utm_source" value="" />
+  <input type="hidden" name="utm_medium" value="" />
+  <input type="hidden" name="utm_campaign" value="" />
+  <input type="hidden" name="utm_content" value="" />
+  <input type="hidden" name="landing_url" value="" />
+  <input type="hidden" name="referrer" value="" />
+  {!isEmployee && <input type="hidden" name="purpose" value="Homebuyer Advantage partnership" />}
+
+  <div class="adv-fields grid sm:grid-cols-2 gap-x-5 gap-y-5">
+    <div>
+      <label for={`${id}-first`} class={label}>First name</label>
+      <input id={`${id}-first`} name="first_name" type="text" autocomplete="given-name" required class={input} aria-describedby={`${id}-first-err`} />
+      <p id={`${id}-first-err`} class={err}></p>
+    </div>
+    <div>
+      <label for={`${id}-last`} class={label}>Last name</label>
+      <input id={`${id}-last`} name="last_name" type="text" autocomplete="family-name" required class={input} aria-describedby={`${id}-last-err`} />
+      <p id={`${id}-last-err`} class={err}></p>
+    </div>
+
+    {!isEmployee && (
+      <>
+        <div>
+          <label for={`${id}-title`} class={label}>Title</label>
+          <input id={`${id}-title`} name="job_title" type="text" autocomplete="organization-title" required class={input} aria-describedby={`${id}-title-err`} />
+          <p id={`${id}-title-err`} class={err}></p>
+        </div>
+        <div>
+          <label for={`${id}-org`} class={label}>Organization</label>
+          <input id={`${id}-org`} name="organization" type="text" autocomplete="organization" required class={input} aria-describedby={`${id}-org-err`} />
+          <p id={`${id}-org-err`} class={err}></p>
+        </div>
+      </>
+    )}
+
+    <div>
+      <label for={`${id}-email`} class={label}>Email</label>
+      <input id={`${id}-email`} name="email" type="email" autocomplete="email" required class={input} aria-describedby={`${id}-email-err`} />
+      <p id={`${id}-email-err`} class={err}></p>
+    </div>
+    <div>
+      <label for={`${id}-phone`} class={label}>{isEmployee ? "Mobile phone" : "Phone"}</label>
+      <input id={`${id}-phone`} name="phone" type="tel" autocomplete="tel" inputmode="tel" required data-phone class={input} aria-describedby={`${id}-phone-err`} />
+      <p id={`${id}-phone-err`} class={err}></p>
+    </div>
+
+    {isEmployee ? (
+      <>
+        <div class="sm:col-span-2">
+          <label for={`${id}-employer`} class={label}>Employer or union</label>
+          <input id={`${id}-employer`} name="employer" type="text" autocomplete="organization" required class={input} aria-describedby={`${id}-employer-err`} />
+          <p id={`${id}-employer-err`} class={err}></p>
+        </div>
+        <div>
+          <label for={`${id}-purpose`} class={label}>What are you looking to do?</label>
+          <select id={`${id}-purpose`} name="purpose" required class={input} aria-describedby={`${id}-purpose-err`}>
+            <option value="">Select one</option>
+            {PURPOSES.map((p) => <option value={p}>{p}</option>)}
+          </select>
+          <p id={`${id}-purpose-err`} class={err}></p>
+        </div>
+        <div>
+          <label for={`${id}-timeline`} class={label}>When are you hoping to buy?</label>
+          <select id={`${id}-timeline`} name="timeline" required class={input} aria-describedby={`${id}-timeline-err`}>
+            <option value="">Select one</option>
+            {TIMELINES.map((t) => <option value={t}>{t}</option>)}
+          </select>
+          <p id={`${id}-timeline-err`} class={err}></p>
+        </div>
+        <div class="sm:col-span-2">
+          <label for={`${id}-location`} class={label}>Where are you looking to buy? <span class={optional}>(optional)</span></label>
+          <input id={`${id}-location`} name="location" type="text" autocomplete="address-level2" placeholder="Town or state" class={input} />
+        </div>
+      </>
+    ) : (
+      <>
+        <div class="sm:col-span-2">
+          <label for={`${id}-headcount`} class={label}>Approximate number of employees</label>
+          <input id={`${id}-headcount`} name="headcount" type="text" inputmode="numeric" required class={input} aria-describedby={`${id}-headcount-err`} />
+          <p id={`${id}-headcount-err`} class={err}></p>
+        </div>
+        <div class="sm:col-span-2">
+          <label for={`${id}-message`} class={label}>Message <span class={optional}>(optional)</span></label>
+          <textarea id={`${id}-message`} name="notes" rows={4} class={`${input} resize-y`}></textarea>
+        </div>
+      </>
+    )}
+
+    <!-- COMPLIANCE REVIEW: consent language is a placeholder until compliance supplies it -->
+    <div class="sm:col-span-2">
+      <div class="flex items-start gap-3">
+        <input id={`${id}-consent`} name="tcpa_consent" type="checkbox" value="yes" required
+          class="mt-1 h-5 w-5 shrink-0 border-[var(--color-text-muted)] accent-[var(--color-ink)]"
+          aria-describedby={`${id}-consent-err`} />
+        <label for={`${id}-consent`} class="text-sm leading-relaxed text-[var(--color-text)]">{ADVANTAGE_CONSENT_PLACEHOLDER}</label>
+      </div>
+      <p id={`${id}-consent-err`} class={err}></p>
+    </div>
+
+    <div class="sm:col-span-2">
+      <p class="adv-error hidden mb-3 text-sm font-medium text-red-700" role="alert"></p>
+      <button type="button" class="adv-submit btn btn-primary w-full sm:w-auto disabled:opacity-60">
+        {isEmployee ? "See where I stand" : "Talk to us about partnering"}
+      </button>
+    </div>
+  </div>
+
+  <!-- COMPLIANCE REVIEW: success copy (no response time is promised, per spec 4.3) -->
+  <div class="adv-success hidden border-l-4 border-[var(--color-ink)] bg-[var(--color-airy-gray)] p-6" tabindex="-1">
+    <p class="text-lg font-bold text-[var(--color-ink)]">Thank you, your request is in.</p>
+    {isEmployee ? (
+      <p class="mt-2 text-[var(--color-text)]">
+        A Cliffco loan officer will reach out to set up your Financial Discovery Call. If you'd like to talk
+        sooner, you can call the program team at
+        <a href={`tel:${ADVANTAGE_PHONE.e164}`} data-call="form-success" class="font-semibold">{ADVANTAGE_PHONE.display}</a>.
+      </p>
+    ) : (
+      <p class="mt-2 text-[var(--color-text)]">
+        Our team will be in touch about offering the Homebuyer Advantage Program to your organization.
+      </p>
+    )}
+  </div>
+  <p class="adv-live sr-only" role="status" aria-live="polite"></p>
+</form>

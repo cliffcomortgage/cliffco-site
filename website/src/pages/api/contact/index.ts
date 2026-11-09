@@ -24,6 +24,42 @@ function validateRecipients(raw: string): string[] {
 }
 
 /**
+ * Recipients added server-side by form_source, so an address that shouldn't be published
+ * never ships in page source. Homebuyer Advantage employer inquiries route to the
+ * partnership contact; whether his details also appear on the page is still open (spec 4.2).
+ */
+const SERVER_ROUTES: Record<string, string[]> = {
+  'homebuyer-advantage-employer': ['rriddle@cliffcomortgage.com'],
+};
+
+/**
+ * Optional context fields a page can send. Each one that arrives is added as a labelled line
+ * to the HubSpot `message` and as a row in the notification email - never as its own HubSpot
+ * field, because a field missing from the HubSpot form's definition can make HubSpot reject
+ * the whole submission. Mapping them to real properties (utm_source, jobtitle, ...) means
+ * adding them as hidden fields on the HubSpot form first.
+ */
+const EXTRA_FIELDS: { name: string; label: string }[] = [
+  { name: 'employer', label: 'Employer or union' },
+  { name: 'job_title', label: 'Title' },
+  { name: 'organization', label: 'Organization' },
+  { name: 'headcount', label: 'Approx. employees' },
+  { name: 'timeline', label: 'Hoping to buy' },
+  { name: 'location', label: 'Looking to buy in' },
+  { name: 'utm_source', label: 'utm_source' },
+  { name: 'utm_medium', label: 'utm_medium' },
+  { name: 'utm_campaign', label: 'utm_campaign' },
+  { name: 'utm_content', label: 'utm_content' },
+  { name: 'landing_url', label: 'Landing URL' },
+  { name: 'referrer', label: 'Referrer' },
+];
+
+type Extra = { label: string; value: string };
+
+const escapeHtml = (s: string) =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+/**
  * The loan officer slug for a submission, or "" for a corporate lead.
  * The LO bio pages identify themselves through form_source = "lo-{slug}". Kept in step with
  * the copy in /api/lead, which also accepts an explicit lo_slug from the qualifier.
@@ -39,11 +75,13 @@ async function submitToHubSpot(lead: {
   purpose: string; state: string; notes: string; tcpa: string;
   formSource: string; recipients: string[];
   hutk: string; pageUri: string; pageName: string; loanOfficer: string;
+  extras: Extra[];
 }): Promise<void> {
   const message = [
     lead.notes,
     lead.state ? `State: ${lead.state}` : '',
     lead.purpose ? `Looking to: ${lead.purpose}` : '',
+    ...lead.extras.map((x) => `${x.label}: ${x.value}`),
   ].filter(Boolean).join('\n');
 
   const payload = {
@@ -119,6 +157,7 @@ async function sendViaEmail(lead: {
   firstName: string; lastName: string; email: string; phone: string;
   purpose: string; state: string; notes: string;
   formSource: string; recipients: string[];
+  extras: Extra[];
 }, isFallback: boolean): Promise<void> {
   const fromEmail = import.meta.env.EMAIL_FROM ?? 'websiteleads@cliffcomortgage.com';
 
@@ -142,6 +181,8 @@ async function sendViaEmail(lead: {
             <td style="padding:8px 0;">${lead.state}</td></tr>
         ${lead.notes ? `<tr style="background:#f9f8fa;"><td style="padding:8px 4px;color:#5a5d5d;font-size:13px;vertical-align:top;">Notes</td>
             <td style="padding:8px 4px;">${lead.notes}</td></tr>` : ''}
+        ${lead.extras.map((x) => `<tr><td style="padding:8px 0;color:#5a5d5d;font-size:13px;vertical-align:top;">${escapeHtml(x.label)}</td>
+            <td style="padding:8px 0;word-break:break-all;">${escapeHtml(x.value)}</td></tr>`).join('')}
         <tr><td style="padding:8px 0;color:#5a5d5d;font-size:13px;">Form source</td>
             <td style="padding:8px 0;font-size:12px;color:#888;">${lead.formSource}</td></tr>
         <tr style="background:#f9f8fa;"><td style="padding:8px 4px;color:#5a5d5d;font-size:13px;">TCPA consent</td>
@@ -206,8 +247,11 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    // Validate recipients
+    // Validate recipients, then add any server-side route for this form_source
     const recipients = validateRecipients(formTo);
+    for (const r of validateRecipients((SERVER_ROUTES[formSource] ?? []).join(','))) {
+      if (!recipients.includes(r)) recipients.push(r);
+    }
     if (!recipients.length) {
       return new Response(
         JSON.stringify({ error: 'Invalid form configuration.' }),
@@ -215,10 +259,16 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
+    // Optional context fields (absent on every form except the ones that send them)
+    const extras: Extra[] = EXTRA_FIELDS
+      .map(({ name, label }) => ({ label, value: ((data.get(name) as string | null) ?? '').trim().slice(0, 500) }))
+      .filter((x) => x.value);
+
     const lead = {
       firstName, lastName, email, phone, purpose, state, notes, tcpa,
       formSource, recipients, hutk, pageUri, pageName,
       loanOfficer: loanOfficerSlug('', formSource),
+      extras,
     };
 
     // Dual delivery:

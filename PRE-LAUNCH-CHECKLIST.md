@@ -45,6 +45,42 @@ Audit on 2026-10-07: axe-core on all 197 pages, plus keyboard, phone-menu, and 3
 - [ ] **Elfsight widget.** Set the widget's Accent and Read More colors to black, and delete its Custom CSS. That CSS targets old class names, so it does nothing.
 - [ ] **Research checklists.** Work through the trust-signal checklist (`seo-aeo-dtc-research/03-ymyl-eeat-trust.md`, section 12) and the technical SEO final pass (`seo-aeo-dtc-research/01-technical-seo.md`, Days 61–90).
 
+## Homebuyer Advantage Program page (`/homebuyer-advantage/`, built 2026-11-09)
+
+Built from `Homebuyer_Advantage_Landing_Page_Spec (1).md`. Every item below is marked
+`COMPLIANCE REVIEW` in the source (`website/src/pages/homebuyer-advantage/index.astro`,
+`website/src/components/forms/AdvantageForm.astro`, `website/src/data/homebuyer-advantage.ts`);
+remove each marker once its copy is approved.
+
+**Compliance review, all launch-blocking:**
+
+- [ ] Page title and meta description.
+- [ ] Hero: eyebrow, H1, subhead, CTA labels.
+- [ ] "How the credit works" copy beside the $10,000.
+- [ ] "Two ways to use it" cards and the licensed-states line.
+- [ ] "What's included" cards.
+- [ ] "Your path" six steps.
+- [ ] Homebuyer Certified headline and body, including the claim **"helps your offers get accepted faster"** (flagged in the spec).
+- [ ] Annual Mortgage Review items.
+- [ ] Homebuyer education headline, body and the "no dates yet" line.
+- [ ] FAQ, especially **"Who is eligible?"** (eligibility details flagged in the spec).
+- [ ] About Cliffco copy and stats row.
+- [ ] For-employers band and its three points.
+- [ ] Form headings, intro lines and success messages. These were **added during the build** and are not in the spec draft.
+- [ ] **Consent language**: both forms show the placeholder `[CONSENT LANGUAGE — needs compliance review]`. The page must not go live with it.
+- [ ] **Generic lender credit disclaimer** (spec 6.1 variant). The approved text was written for a named partner.
+- [ ] Equal Housing wording: the page uses the site's standard "Equal Housing Lender" logo and text; the spec says "Equal Housing Opportunity". Confirm which is required.
+
+**Open questions from the spec (section 9), built on these assumptions:**
+
+- [ ] URL `/homebuyer-advantage/` (assumed).
+- [ ] `noindex`, and kept out of the sitemap (assumed).
+- [ ] HubSpot: both forms post through `/api/contact` to the existing "Website 2.0 Lead Intake" form, separated by `form_source` (`homebuyer-advantage` / `homebuyer-advantage-employer`). Employer, timeline, location and the UTMs reach HubSpot as lines in the **message** field. To report by partner company in HubSpot, add `utm_source`, `utm_medium`, `utm_campaign`, `utm_content` (the properties already exist) as hidden fields on that HubSpot form, then map them in `src/pages/api/contact/index.ts`. Until they're on the form, sending them could make HubSpot reject the whole lead.
+- [ ] Program phone: not assigned, so every call button uses the main toll-free (800) 834-4040. Set `PROGRAM_PHONE` in `src/data/homebuyer-advantage.ts` when the line exists.
+- [ ] Employer inquiries route server-side to Ryan Riddle (`SERVER_ROUTES` in the contact API). His contact details are **not** shown on the page.
+- [ ] Webinar dates come from `ADVANTAGE_WEBINARS` in `src/data/homebuyer-advantage.ts` (empty for now).
+- [ ] Response time: nothing on the page promises one.
+
 ## Not launch-blocking
 
 - [ ] **Christopher Clifford's NH license.** Once he's licensed, remove the NH filter (`PRESIDENT_STATES` in `website/src/data/loan-officers.ts`).

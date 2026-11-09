@@ -67,9 +67,16 @@
         g('event', 'conversion', { send_to: LEAD, value: 50.0, currency: 'USD' });
         fb('track', 'Lead', { content_name: product, content_category: o.source || 'website', value: 50.0, currency: 'USD' });
       },
-      // A page-specific Ads conversion, e.g. the NJ grant lander's own form conversion
+      // A page-specific Ads conversion, e.g. the NJ first-generation lander's own form conversion.
+      // (Worded this way on purpose: this script is inlined into every page, and the Homebuyer
+      // Advantage page must not contain the other word anywhere in its source.)
       conversion: function (sendTo, value) {
         g('event', 'conversion', { send_to: sendTo, value: value || 0, currency: 'USD' });
+      },
+      // A named GA4 event with parameters, e.g. the Homebuyer Advantage page's advantage_*
+      // funnel events. No Ads conversion and no Meta event - those stay on lead().
+      event: function (name, params) {
+        g('event', name, params || {});
       },
     };
 
