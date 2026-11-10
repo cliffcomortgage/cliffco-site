@@ -194,6 +194,13 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
     blog: [
       {
+        title: "Short-Term Rental Mortgage Options for Investors",
+        slug: "short-term-rental-mortgage-options",
+        description: "How Cliffco finances Airbnb and VRBO properties: the 20% expense factor, DSCR minimums, and the proof we need that your town allows short-term rentals.",
+        image: "/images/DFallarino%20Blog/Short%20Term%20Rental%20Blog.jpg",
+        section: "500:1 Blog",
+      },
+      {
         title: "Mortgage Options for Borrowers with Multiple LLCs",
         slug: "mortgage-options-multiple-llcs",
         description: "Own several LLCs for real estate, operations, or asset protection? How lenders evaluate income across multiple entities, and the loan programs that fit layered business structures.",

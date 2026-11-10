@@ -1,0 +1,123 @@
+---
+/**
+ * 500:1 Blog - David Fallarino. Ported from the live WordPress post at the same URL
+ * (cliffcomortgage.com/short-term-rental-mortgage-options/, published 2026-11-10), so the link
+ * keeps working when this site replaces WordPress.
+ *
+ * Copy is the live post verbatim, with three deliberate differences:
+ *   1. Dropped "Our best pricing lands at 1.25 and up." Pricing tiers are not in Guidelines/ - the
+ *      DSCR matrix splits only at 1.00 - so the figure can't be published (CLAUDE.md).
+ *   2. Dropped the live post's closing "Why Borrowers with Multiple LLCs Choose Us" section, which
+ *      was carried over from the LLC article by mistake. AuthorFooter is the closing here.
+ *   3. Added the Florida DBA line: the post names Florida markets and "our Florida team".
+ *
+ * Every product figure checks out against Guidelines/ (2026-11-11):
+ *   - 20% STR expense factor ........ Overlays.xlsx: "Gross rents to be reduced by 20% expense factor"
+ *   - Min DSCR 1.00 ................. Cliffco 1-6 DSCR Guidelines (6/1/2026) p21: "Min DSCR 1.0"
+ *   - One program at 1.25 ........... Overlays.xlsx: "STR minimum requirement of 1.25x DSCR"
+ *   - Refi: trailing 12 months ...... p21: "12-month lookback ... or ... most recent 12 months bank statements"
+ *   - Purchase: AirDNA projections .. p21: purchase options include "AirDNA"
+ *   - <1 year experience = exception  p21: "Less than 1 year experience operating a short-term rental is an exception"
+ *   - Municipality evidence; NYC's five boroughs ineligible .. p21
+ *   - First investment property, DSCR at least 1.00 .......... DSCR Guidelines, First-Time Investor: "<1.0 DSCR not permitted"
+ *   - Higher minimums for small loans and 5-9 units .......... DSCR matrix ($100K-$150K: 1.25) and Cliffco 7 5-9 unit (1.15)
+ */
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { loanOfficer } from "../../data/loan-officers";
+import { COMPANY, SITE_URL } from "../../data/company";
+import AuthorHero from "../../components/asym/AuthorHero.astro";
+import ArticleBody from "../../components/asym/ArticleBody.astro";
+import AuthorFooter from "../../components/asym/AuthorFooter.astro";
+import { articleSchema } from "../../lib/schema";
+
+const david = loanOfficer("david-fallarino")!;
+
+const title = "Short-Term Rental Mortgage Options for Investors";
+const description =
+  "How Cliffco finances Airbnb and VRBO properties: the 20% expense factor, DSCR minimums, and the proof we need that your town allows short-term rentals.";
+const image = "/images/DFallarino%20Blog/Short%20Term%20Rental%20Blog.jpg";
+
+const schema = articleSchema({
+  headline: title,
+  description,
+  url: "/short-term-rental-mortgage-options/",
+  datePublished: "2026-11-10",
+  dateModified: "2026-11-10",
+  authorSlug: david.slug,
+  image: `${SITE_URL}${image}`,
+});
+---
+
+<Layout title={`${title} | 500:1 Blog`} description={description} schema={schema}>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "500:1 Blog", href: `/loan-officers/${david.slug}/` },
+    { name: title, href: "/short-term-rental-mortgage-options/" },
+  ]} />
+
+  <AuthorHero eyebrow="500:1 Blog · David Fallarino" published="Published November 10, 2026" image={{ src: image, alt: "Couple relaxing poolside at a short-term vacation rental, with The Fallarino Group logo" }} author={david}>{title}</AuthorHero>
+
+  <ArticleBody>
+      <p class="lead mt-4">A short-term rental doesn't have a lease, which is the whole reason it gets financed differently than a regular rental. There's no signed document saying someone pays you a fixed amount every month, so lenders have to look at the income another way.</p>
+
+      <p>Most short-term rental mortgage financing runs through a DSCR loan, which qualifies you on the property's rental income instead of your personal income. What follows is how Cliffco handles these. Guidelines vary quite a bit from one lender to the next, and short-term rentals are where that gap shows up most, since some lenders won't finance them at all and others will only count long-term market rent. We underwrite them as short-term rentals and work with projections, which is usually what decides whether these deals happen.</p>
+
+      <h2>How We Count Airbnb Income</h2>
+      <p>The formula is monthly rent divided by monthly PITIA, meaning principal, interest, taxes, insurance, and HOA dues.</p>
+      <p>For short-term rentals, we reduce your gross income by a 20% expense factor before running that calculation. If your property brings in $6,000 a month gross, we work with $4,800.</p>
+      <p>That 20% haircut catches a lot of people off guard, so build it into your numbers early. Run your own math on the reduced figure rather than the gross projection, and your expectations will line up with what the file actually shows.</p>
+
+      <h2>If The Property Already Rents</h2>
+      <p>This is the easier path. When there's an operating history, we use the trailing 12 months of operating statements or deposits.</p>
+      <p>Real numbers from a real property are the strongest documentation available. Pull those statements before you start the application, and have them ready from whatever platform you use.</p>
+
+      <h2>If You're Buying One Fresh</h2>
+      <p>No history means no statements, so we use market projections instead. For short-term rental markets, those are typically AirDNA-supported.</p>
+      <p>One thing to know going in. If you have under a year of operating experience as a short-term rental owner, we can still work with you, though it's handled as an exception rather than a standard approval. That means a bit more scrutiny on the rest of the file, so strong reserves and a clean credit profile matter more than they otherwise would.</p>
+      <p>If this is your first investment property, plan on a DSCR of at least 1.00.</p>
+
+      <h2>Your Town Has to Allow It</h2>
+      <p>This is the piece most borrowers don't think about until it's a problem.</p>
+      <p>We need third-party evidence that the local municipality permits short-term rentals. A local ban changes what the property can earn, which changes the loan, so we verify it rather than take it on faith.</p>
+      <p>New York City's five boroughs aren't eligible. The city's own short-term rental rules don't permit the kind of use these loans are built around, so that one comes down to local law rather than a lending preference.</p>
+      <p>Outside the city, New York opens up considerably. Long Island, Westchester, the Hudson Valley, and upstate markets can all work. Short-term rental rules here are set town by town, so a property in one village may qualify while a similar one a few miles away doesn't, and that's exactly what the verification step sorts out.</p>
+      <p>Plenty of other markets work well too. The Orlando area is one of our strongest, particularly Polk County, which covers Reunion, ChampionsGate, and Davenport, along with parts of Osceola. Our Florida team runs DSCR files with short-term rental projections every day. Florida more broadly works too, including Tampa, Jacksonville, Miami-Dade, Naples, and the Panhandle.</p>
+      <p>Check the municipality's rules before you make an offer. It takes an afternoon, and it's considerably cheaper to find out now than after you're under contract.</p>
+
+      <h2>The Ratio You Need</h2>
+      <p>Short-term rental minimums with us start at 1.00. One of our programs requires 1.25.</p>
+      <p>A DSCR of 1.00 means the property's income covers its payment exactly. Above that, you're cash-flow positive on paper, and the pricing improves.</p>
+      <p>Smaller loan amounts and properties with five to nine units carry their own higher minimums, which usually means a larger down payment and a more experienced investor profile.</p>
+      <p>Remember that the ratio gets calculated after the 20% reduction. A property that looks like it clears 1.25 on gross income may land closer to 1.00 once the expense factor comes off.</p>
+
+      <h2>A Few Other Things Worth Knowing</h2>
+      <p>You can close in an LLC or in your personal name. Investors building a portfolio often prefer the LLC, and we'll give you the documentation requirements at application.</p>
+      <p>Living out of state is fine. A large share of our DSCR borrowers are New Yorkers and New Jerseyans buying in Florida, Arizona, or Colorado, and that's routine for us.</p>
+      <p>You don't need personal income documentation. No tax returns, no W-2s, no profit and loss statements. The property qualifies itself, which is why these loans work so well for self-employed borrowers and business owners whose returns don't reflect what they actually earn.</p>
+
+      <h2>What to Have Ready</h2>
+      <p>Before you reach out, gather:</p>
+      <ul>
+        <li>The property address</li>
+        <li>Your projected monthly rent, or the trailing 12 months of statements if it already operates</li>
+        <li>Your planned down payment</li>
+        <li>Documentation that the municipality allows short-term rentals</li>
+        <li>A rough picture of your reserves and credit profile</li>
+      </ul>
+      <p>With those five things, we can usually tell you within a day whether the deal works and what it looks like.</p>
+      <p>Have a property in mind? Send over the address, the projected rent, and your down payment, and we'll tell you what we can do with it.</p>
+
+      <!-- Florida DBA (CLAUDE.md): this post names Florida markets and the Florida team -->
+      <p class="mt-10 text-sm text-[var(--color-text-muted)]">{COMPANY.floridaDba.disclosure}</p>
+    </ArticleBody>
+
+  <AuthorFooter
+    author={david}
+    bio="Over $3 billion in closed loan volume across a 20+ year career. David leads The Fallarino Group at Cliffco, specializing in Alt-A, jumbo, Non-QM, and DSCR financing for entrepreneurs and investors."
+    formTitle="Have a short-term rental in mind? Let's run the numbers."
+    formSub="Send the address, the projected rent, and your planned down payment, and David will tell you what the deal looks like."
+    formTo="dfallarino@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
+    formSource="blog-short-term-rental"
+  />
+</Layout>
