@@ -1,0 +1,49 @@
+---
+/**
+ * "About Cliffco" (spec 3.10) - shared by the employee and company pages. Reviews come from
+ * src/data/reviews.ts, so this block moves with the /reviews/ page; those counts are updated
+ * quarterly (see the note in that file). The state count is STATE_LICENSES.length.
+ */
+import { COMPANY } from "../../data/company";
+import { STATE_LICENSES } from "../../data/state-licenses";
+import { REVIEW_PLATFORMS, averageRating } from "../../data/reviews";
+
+const STATES = STATE_LICENSES.length;
+const BREAKDOWN = ["Experience.com", "Zillow", "Google", "Facebook", "BBB"];
+const breakdown = BREAKDOWN.map((n) => REVIEW_PLATFORMS.find((p) => p.name === n)).filter((p) => p !== undefined);
+const totalReviews = REVIEW_PLATFORMS.reduce((sum, p) => sum + p.reviewCount, 0);
+const avg = averageRating().toFixed(1);
+---
+
+<!-- COMPLIANCE REVIEW: about copy and stats row -->
+<section class="bg-white border-t border-[var(--color-airy-gray)]" style="padding-block: var(--spacing-section);" aria-labelledby="adv-about-h">
+  <div class="container-wide grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-7">
+      <h2 id="adv-about-h">About Cliffco</h2>
+      <p class="mt-5 text-lg text-[var(--color-text)] leading-relaxed max-w-[62ch]">
+        Cliffco Mortgage Bankers is a direct mortgage lender headquartered in Uniondale and licensed in {STATES} states. We've been helping families buy homes since {COMPANY.founded}, and our team knows the Long Island market and the local closing process.
+      </p>
+      <ul class="mt-8 flex flex-wrap gap-3 list-none p-0">
+        {[`Since ${COMPANY.founded}`, `Licensed in ${STATES} states`, `NMLS #${COMPANY.nmls}`].map((s) => (
+          <li class="border-2 border-[var(--color-ink)] px-4 py-2 text-sm text-[var(--color-ink)]" style="font-family: var(--font-mono); font-weight: 600;">{s}</li>
+        ))}
+      </ul>
+    </div>
+    <div class="lg:col-span-5">
+      <div class="bg-[var(--color-airy-gray)] p-7">
+        <p class="text-[var(--color-ink)]" style="font-family: var(--font-mono); font-weight: 600; font-size: clamp(2.5rem, 4vw, 3.25rem); line-height: 1; letter-spacing: -0.03em;">{avg} / 5</p>
+        <p class="mt-2 text-[var(--color-text)]">average across {totalReviews.toLocaleString("en-US")}+ reviews</p>
+        <ul class="mt-6 list-none p-0 divide-y divide-[var(--color-ink)]/10">
+          {breakdown.map((p) => (
+            <li class="flex items-baseline justify-between gap-4 py-2.5">
+              <span class="text-[var(--color-ink)]">{p.name}</span>
+              <span class="text-sm text-[var(--color-ink)]" style="font-family: var(--font-mono); font-weight: 600;">
+                {p.rating !== null ? p.rating.toFixed(1) : p.ratingDisplay}{p.reviewCount > 0 && ` (${p.reviewCount.toLocaleString("en-US")}+)`}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

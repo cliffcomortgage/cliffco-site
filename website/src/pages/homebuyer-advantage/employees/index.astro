@@ -1,0 +1,323 @@
+---
+/**
+ * Homebuyer Advantage Program - employee page, /homebuyer-advantage/employees/
+ *
+ * One of three pages (see ../index.astro for the splash and ../companies/ for employers).
+ * This is where flyers, QR codes and internal emails should link, with UTM tags identifying the
+ * partner, e.g. /homebuyer-advantage/employees/?utm_campaign=homebuyer-advantage&utm_content=
+ * <company>. No partner names or logos. Noindex (LandingLayout's default), out of the sitemap.
+ *
+ * The Financial Discovery Call form sits in the hero (beside the headline on desktop, directly
+ * under it on phones) so it is the first thing an employee can act on (Sivon, 2026-11-10).
+ *
+ * ALL COPY IS DRAFT and marked COMPLIANCE REVIEW; the list is in PRE-LAUNCH-CHECKLIST.md. The
+ * spec copy is kept as written, with one edit: the FAQ's "fill out the form below" now reads "on
+ * this page", because the form moved above the FAQ.
+ *
+ * Departures from the spec, following the codebase (the spec allows this): the state count is
+ * STATE_LICENSES.length, not a typed "37"; type is Outfit, since Archivo is not loaded after the
+ * 2026-11-06 reissue; Sky appears once (the $10,000), so the highlighted Certified stage is black.
+ */
+import LandingLayout from "../../../layouts/LandingLayout.astro";
+import AdvantageForm from "../../../components/forms/AdvantageForm.astro";
+import AdvantageIcon from "../../../components/advantage/AdvantageIcon.astro";
+import AdvantageAbout from "../../../components/advantage/AdvantageAbout.astro";
+import AdvantageFaq from "../../../components/advantage/AdvantageFaq.astro";
+import AdvantageDisclaimer from "../../../components/advantage/AdvantageDisclaimer.astro";
+import AdvantageStickyBar from "../../../components/advantage/AdvantageStickyBar.astro";
+import { STATE_LICENSES } from "../../../data/state-licenses";
+import {
+  ADVANTAGE_PHONE,
+  ADVANTAGE_OFFICE,
+  ADVANTAGE_WEBINARS,
+  ADVANTAGE_WEBINAR_TOPICS,
+  ADVANTAGE_COMMITMENT_DISCLAIMER,
+} from "../../../data/homebuyer-advantage";
+
+const STATES = STATE_LICENSES.length;
+
+// COMPLIANCE REVIEW: page title and meta description
+const title = "Homebuyer Advantage Program for Employees | Cliffco Mortgage Bankers";
+const description =
+  "A $10,000 lender credit toward closing costs for employees and members of participating partner organizations, plus free homebuyer education and a dedicated Cliffco team.";
+
+// Webinars: past dates drop out at build time, and again in the browser (advantage-client).
+const today = new Date().toISOString().slice(0, 10);
+const upcoming = [...ADVANTAGE_WEBINARS].filter((w) => w.date >= today).sort((a, b) => a.date.localeCompare(b.date));
+const fmtDate = (iso: string) =>
+  new Date(`${iso}T12:00:00`).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+
+// COMPLIANCE REVIEW: section 3.4 cards
+const included = [
+  { icon: "credit", title: "The $10,000 credit", body: "A lender credit toward closing costs on your home purchase, on any Cliffco loan program." },
+  { icon: "education", title: "Quarterly homebuyer education", body: "Live webinars four times a year, open to every employee whether you plan to buy this year or a few years from now." },
+  { icon: "phone", title: "A dedicated team and phone line", body: "One number that reaches a Cliffco team set up specifically for program members." },
+  { icon: "concierge", title: "Homebuyer Concierge", body: "Our referral network of Realtors, attorneys, insurance agents, title companies and more, plus a team you can call with questions whether or not you get your mortgage with Cliffco." },
+] as const;
+
+// COMPLIANCE REVIEW: section 3.5 steps
+const steps = [
+  { title: "Learn about the program", body: "Through your employer's communications, this page, or one of our quarterly webinars." },
+  { title: "Financial Discovery Call", body: "A Cliffco loan officer walks through where you stand and your full financial picture for buying." },
+  { title: "Meet the Homebuyer Concierge", body: "Review our network of partners, including attorneys, insurance agents and Realtors." },
+  { title: "Get Homebuyer Certified", body: "Pre-approval and an initial commitment, followed by a fully underwritten commitment." },
+  { title: "Close with $10,000", body: "The credit is applied toward your closing costs at the closing table." },
+  { title: "Annual Mortgage Review", body: "A yearly check-in on your rate, insurance, taxes and equity after you move in." },
+];
+
+// COMPLIANCE REVIEW: section 3.7 items
+const review = [
+  { title: "Rate check", body: "your current rate compared with today's market" },
+  { title: "Insurance check", body: "your homeowners insurance compared with current market pricing" },
+  { title: "Taxes and escrow", body: "whether your property taxes or insurance costs have gone up" },
+  { title: "Home equity", body: "whether you're able to tap into your equity, and whether it makes sense to" },
+];
+
+// COMPLIANCE REVIEW: section 3.9 FAQ. The eligibility answer is called out for review in the spec.
+const faqs = [
+  { q: "Who is eligible?", a: "Employees and members of organizations that partner with Cliffco on the Homebuyer Advantage Program, whether they're buying a home or relocating for work." },
+  { q: "How do I know if my employer participates?", a: "Your employer or union will share the program with you directly. If you're not sure, fill out the form on this page with your employer's name and we'll confirm." },
+  { q: "Do I have to use Cliffco?", a: "No. The program is voluntary and you're free to work with any lender. The $10,000 credit applies only to loans that close with Cliffco." },
+  { q: "Can I use the Homebuyer Concierge if I don't get my mortgage with Cliffco?", a: "Yes. The Concierge team is a resource for every program member, and you can call with questions at any point." },
+  { q: "Will my employer see my financial information?", a: "No. Your application and loan details stay between you and Cliffco." },
+  { q: "Does the credit have a cash value?", a: "No. It's applied toward closing costs at closing and can't be taken as cash." },
+  { q: "Can I combine it with other offers?", a: "The credit can't be combined with other offers." },
+  { q: "How do I get started?", a: "Fill out the form on this page or call the program team, and a loan officer will set up your Financial Discovery Call." },
+];
+
+const telHref = `tel:${ADVANTAGE_PHONE.e164}`;
+---
+
+<LandingLayout
+  title={title}
+  description={description}
+  phone={ADVANTAGE_PHONE.display}
+  phoneE164={ADVANTAGE_PHONE.e164}
+  headerCta={{ label: "Get started", href: "#get-started" }}
+  office={ADVANTAGE_OFFICE}
+>
+
+  <!-- ============ 3.1 HERO + FORM ============ -->
+  <!-- COMPLIANCE REVIEW: hero eyebrow, H1, subhead, CTA labels, form heading and intro -->
+  <section class="bg-white" style="padding-block: clamp(2.5rem, 5vw, 4.5rem);">
+    <div class="container-wide grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+      <div class="lg:col-span-6 lg:pt-4">
+        <p class="eyebrow">An employee benefit through participating employers</p>
+        <h1 class="mt-5" style="font-size: clamp(2.125rem, 2.2vw + 1.25rem, 3rem); line-height: 1.1;">
+          $10,000 toward your closing costs when you buy a home with Cliffco
+        </h1>
+        <p class="lead mt-6 max-w-[62ch]">
+          If your employer or union partners with Cliffco, you have access to the Homebuyer Advantage Program, which includes a $10,000 lender credit at closing, free homebuyer education, and a dedicated team to help you from your first call to the closing table.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+          <a href={telHref} data-call="hero" class="btn btn-secondary">Call the program team</a>
+          <a href="#disclaimer" class="text-sm text-[var(--color-text-muted)]">See disclaimer</a>
+        </div>
+      </div>
+
+      <div id="get-started" class="lg:col-span-6 scroll-mt-24">
+        <div class="bg-[var(--color-airy-gray)] p-6 sm:p-8">
+          <h2 style="font-size: var(--text-h3);">See where you stand</h2>
+          <p class="mt-2 mb-6 text-[var(--color-text)] leading-relaxed">
+            Tell us a little about what you're planning, and a Cliffco loan officer will reach out to set up your Financial Discovery Call.
+          </p>
+          <AdvantageForm variant="employee" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3.2 HOW THE CREDIT WORKS ============ -->
+  <!-- COMPLIANCE REVIEW: supporting copy for the $10,000 -->
+  <section class="bg-white border-y border-[var(--color-ink)]" aria-labelledby="adv-credit-h">
+    <div class="container-wide py-12 lg:py-16 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <div class="lg:col-span-6">
+        <h2 id="adv-credit-h" class="eyebrow">How the credit works</h2>
+        <!-- The page's one Sky box (guide: one per surface) -->
+        <p class="caption mt-4 leading-none" style="font-size: clamp(4rem, 13vw, 8.5rem);">
+          <span class="sky-box">$10,000</span>
+        </p>
+      </div>
+      <div class="lg:col-span-6">
+        <p style="font-family: var(--font-accent); font-style: italic; font-size: clamp(1.375rem, 1.2vw + 1rem, 1.875rem); line-height: 1.35; color: var(--color-ink);">
+          The credit is applied at closing and lowers the cash you need to bring to the table. It works with any Cliffco loan program, so you and your loan officer choose the right loan first and the $10,000 is applied on top of it.
+        </p>
+        <p class="mt-5 text-sm"><a href="#disclaimer" class="text-[var(--color-text-muted)]">See disclaimer</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3.3 TWO WAYS TO USE IT ============ -->
+  <!-- COMPLIANCE REVIEW: the two cards and the states line -->
+  <section class="bg-white" style="padding-block: var(--spacing-section);" aria-labelledby="adv-ways-h">
+    <div class="container-wide">
+      <h2 id="adv-ways-h">Two ways to use it</h2>
+      <div class="mt-8 grid md:grid-cols-2 gap-5">
+        <div class="bg-[var(--color-airy-gray)] p-7 lg:p-9">
+          <h3 style="font-size: var(--text-h3);">Buying a home</h3>
+          <p class="mt-3 text-[var(--color-text)] leading-relaxed">Whether it's your first home or your next one, eligible employees receive $10,000 toward closing costs when they finance the purchase with Cliffco.</p>
+        </div>
+        <div class="bg-[var(--color-airy-gray)] p-7 lg:p-9">
+          <h3 style="font-size: var(--text-h3);">Relocating for work</h3>
+          <p class="mt-3 text-[var(--color-text)] leading-relaxed">If your employer moves you to a new area, the credit applies to the home you buy there, which makes the move easier and more affordable.</p>
+        </div>
+      </div>
+      <p class="mt-6 text-[var(--color-text-muted)]">Available in any of the {STATES} states where Cliffco is licensed.</p>
+    </div>
+  </section>
+
+  <!-- ============ 3.4 WHAT'S INCLUDED ============ -->
+  <section class="bg-white border-t border-[var(--color-airy-gray)]" style="padding-block: var(--spacing-section);" aria-labelledby="adv-incl-h">
+    <div class="container-wide">
+      <h2 id="adv-incl-h">What's included</h2>
+      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {included.map((c) => (
+          <div class="bg-[var(--color-airy-gray)] p-6 flex flex-col">
+            <AdvantageIcon name={c.icon} />
+            <h3 class="mt-5 text-lg">{c.title}</h3>
+            <p class="mt-2 text-[var(--color-text)] leading-relaxed">{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3.5 YOUR PATH ============ -->
+  <section class="bg-white border-t border-[var(--color-airy-gray)]" style="padding-block: var(--spacing-section);" aria-labelledby="adv-path-h">
+    <div class="container-wide">
+      <h2 id="adv-path-h">Your path from first call to closing</h2>
+      <ol class="mt-10 grid lg:grid-cols-6 gap-0 lg:gap-5 list-none p-0">
+        {steps.map((s, i) => (
+          <li class="relative pl-14 pb-8 lg:pl-0 lg:pb-0 lg:pt-14 border-l-2 lg:border-l-0 lg:border-t-2 border-[var(--color-ink)] last:border-l-transparent lg:last:border-t-[var(--color-ink)] ml-4 lg:ml-0">
+            <span class="absolute -left-[17px] top-0 lg:left-0 lg:-top-[17px] flex items-center justify-center w-8 h-8 bg-[var(--color-ink)] text-white text-sm" style="font-family: var(--font-mono); font-weight: 600;" aria-hidden="true">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <h3 class="text-base lg:text-lg leading-snug"><span class="sr-only">Step {i + 1}: </span>{s.title}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text)] leading-relaxed">{s.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 3.6 HOMEBUYER CERTIFIED ============ -->
+  <!-- COMPLIANCE REVIEW: headline and body; "helps your offers get accepted faster" is flagged in the spec -->
+  <section class="bg-white border-t border-[var(--color-airy-gray)]" style="padding-block: var(--spacing-section);" aria-labelledby="adv-cert-h">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <p class="eyebrow">Homebuyer Certified</p>
+        <h2 id="adv-cert-h" class="mt-3">A written commitment before you make an offer</h2>
+        <p class="mt-5 text-lg text-[var(--color-text)] leading-relaxed">
+          After your initial commitment, your file is fully underwritten and you receive a written commitment, so sellers see a buyer whose financing is already in place, which helps your offers get accepted faster.
+        </p>
+      </div>
+
+      <ol class="mt-10 flex flex-col lg:flex-row lg:items-stretch gap-0 list-none p-0" aria-label="The three stages of Homebuyer Certified">
+        {["Pre-approval", "Initial commitment", "Homebuyer Certified"].map((stage, i, all) => (
+          <>
+            <li class={`flex-1 p-6 lg:p-8 border-2 border-[var(--color-ink)] ${i === all.length - 1 ? "bg-[var(--color-ink)] text-white on-black" : "bg-white"}`}>
+              <p class="eyebrow">Stage {i + 1}</p>
+              <p class={`mt-2 text-xl font-bold ${i === all.length - 1 ? "text-white" : "text-[var(--color-ink)]"}`}>{stage}</p>
+            </li>
+            {i < all.length - 1 && (
+              <li aria-hidden="true" class="flex items-center justify-center py-2 lg:py-0 lg:px-3 text-[var(--color-ink)]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7 rotate-90 lg:rotate-0"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+              </li>
+            )}
+          </>
+        ))}
+      </ol>
+
+      <!-- Spec 6.2: commitment disclaimer, verbatim, directly below -->
+      <p class="mt-6 max-w-4xl text-xs leading-relaxed text-[var(--color-text-muted)]">{ADVANTAGE_COMMITMENT_DISCLAIMER}</p>
+    </div>
+  </section>
+
+  <!-- ============ 3.7 ANNUAL MORTGAGE REVIEW ============ -->
+  <section class="bg-white border-t border-[var(--color-airy-gray)]" style="padding-block: var(--spacing-section);" aria-labelledby="adv-review-h">
+    <div class="container-wide">
+      <p class="eyebrow">Annual Mortgage Review</p>
+      <h2 id="adv-review-h" class="mt-3">We keep checking in after you move in</h2>
+      <dl class="mt-8 grid sm:grid-cols-2 gap-x-10 gap-y-6 max-w-4xl">
+        {review.map((r) => (
+          <div class="border-t-2 border-[var(--color-ink)] pt-4">
+            <dt class="text-lg font-bold text-[var(--color-ink)]">{r.title}</dt>
+            <dd class="mt-1 text-[var(--color-text)] leading-relaxed">{r.body.charAt(0).toUpperCase() + r.body.slice(1)}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ 3.8 HOMEBUYER EDUCATION ============ -->
+  <!-- COMPLIANCE REVIEW: headline, body and the no-dates line -->
+  <section class="bg-white border-t border-[var(--color-airy-gray)]" style="padding-block: var(--spacing-section);" aria-labelledby="adv-edu-h">
+    <div class="container-wide grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-5">
+        <p class="eyebrow">Homebuyer education</p>
+        <h2 id="adv-edu-h" class="mt-3">Free quarterly webinars for program members</h2>
+        <p class="mt-5 text-lg text-[var(--color-text)] leading-relaxed">
+          Four live sessions a year, open to every employee at a participating organization, covering the parts of buying a home that people ask us about most.
+        </p>
+
+        <div class="mt-8 bg-[var(--color-airy-gray)] p-6">
+          <h3 class="eyebrow !text-[var(--color-ink)]">Upcoming sessions</h3>
+          {upcoming.length > 0 && (
+            <ul id="adv-webinars" class="mt-4 space-y-4 list-none p-0">
+              {upcoming.map((w) => (
+                <li data-date={w.date} class="border-t border-[var(--color-ink)]/15 pt-3 first:border-t-0 first:pt-0">
+                  <p class="text-sm text-[var(--color-ink)]" style="font-family: var(--font-mono); font-weight: 600;">{fmtDate(w.date)}{w.time && ` · ${w.time}`}</p>
+                  <p class="mt-1 font-semibold text-[var(--color-ink)]">{w.topic}</p>
+                  {w.registerUrl && <a href={w.registerUrl} class="mt-1 inline-block text-sm" data-cta="webinar-register">Register</a>}
+                </li>
+              ))}
+            </ul>
+          )}
+          <p id="adv-webinars-empty" class={`mt-3 text-[var(--color-text)] ${upcoming.length > 0 ? "hidden" : ""}`}>
+            Upcoming dates are shared through your employer and posted here.
+          </p>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7">
+        <h3 class="eyebrow !text-[var(--color-ink)]">Topics we cover</h3>
+        <ol class="mt-4 grid sm:grid-cols-2 gap-x-8 list-none p-0">
+          {ADVANTAGE_WEBINAR_TOPICS.map((t, i) => (
+            <li class="flex items-baseline gap-4 border-b border-[var(--color-airy-gray)] py-4">
+              <span class="text-sm text-[var(--color-text-muted)]" style="font-family: var(--font-mono); font-weight: 600;" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+              <span class="text-lg text-[var(--color-ink)]">{t}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3.9 FAQ ============ -->
+  <AdvantageFaq heading="Common questions" faqs={faqs} />
+
+  <!-- ============ 3.10 ABOUT CLIFFCO ============ -->
+  <AdvantageAbout />
+
+  <!-- ============ For HR leaders who landed here ============ -->
+  <!-- COMPLIANCE REVIEW: cross-link copy (not in the spec draft) -->
+  <section class="bg-[var(--color-airy-gray)]" aria-labelledby="adv-cross-h">
+    <div class="container-wide py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+      <div>
+        <p class="eyebrow">For HR and union leaders</p>
+        <h2 id="adv-cross-h" class="mt-2" style="font-size: var(--text-h3);">Learn about offering the program to your employees or members.</h2>
+      </div>
+      <a href="/homebuyer-advantage/companies/" data-cta="cross-link-companies" class="btn btn-secondary shrink-0">See how partnering works</a>
+    </div>
+  </section>
+
+  <!-- ============ 3.13 DISCLAIMER BLOCK ============ -->
+  <AdvantageDisclaimer />
+
+  <AdvantageStickyBar ctaLabel="Get started" ctaHref="#get-started" />
+</LandingLayout>
+
+<script>
+  import { initAdvantage } from "../../../lib/advantage-client";
+  initAdvantage();
+</script>

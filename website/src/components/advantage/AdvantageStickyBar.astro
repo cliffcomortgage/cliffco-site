@@ -1,0 +1,25 @@
+---
+/** Mobile sticky bar (spec 5): Call + the page's form CTA, always within thumb reach. */
+import AdvantageIcon from "./AdvantageIcon.astro";
+import { ADVANTAGE_PHONE } from "../../data/homebuyer-advantage";
+
+interface Props {
+  ctaLabel: string;
+  ctaHref: string;
+}
+const { ctaLabel, ctaHref } = Astro.props;
+---
+
+<div class="adv-sticky fixed bottom-0 inset-x-0 z-50 lg:hidden grid grid-cols-2 bg-white border-t border-[var(--color-ink)]">
+  <a href={`tel:${ADVANTAGE_PHONE.e164}`} data-call="sticky-bar" class="flex items-center justify-center gap-2 py-4 font-semibold text-[var(--color-ink)] no-underline" aria-label={`Call the program team at ${ADVANTAGE_PHONE.display}`}>
+    <AdvantageIcon name="phone" class="w-5 h-5" />
+    Call
+  </a>
+  <a href={ctaHref} data-cta="sticky-bar" class="flex items-center justify-center py-4 font-semibold bg-[var(--color-ink)] text-white no-underline">{ctaLabel}</a>
+</div>
+
+<style is:global>
+  /* Room for the sticky bar, and smooth in-page jumps for the CTAs */
+  @media (max-width: 1023px) { body { padding-bottom: 60px; } }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>

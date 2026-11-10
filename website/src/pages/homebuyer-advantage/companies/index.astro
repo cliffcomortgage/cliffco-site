@@ -1,0 +1,150 @@
+---
+/**
+ * Homebuyer Advantage Program - company page, /homebuyer-advantage/companies/
+ *
+ * For HR and union leaders at organizations Cliffco is pitching. One of three pages (see
+ * ../index.astro for the splash and ../employees/ for employees). The partnership inquiry form
+ * sits in the hero so it is the first thing a decision-maker can act on (Sivon, 2026-11-10).
+ * The hero is black so the two audiences read as different pages at a glance; the employee page
+ * is white. Noindex (LandingLayout's default), out of the sitemap.
+ *
+ * ALL COPY IS DRAFT and marked COMPLIANCE REVIEW. The hero is the spec's section 3.11 copy
+ * verbatim. Everything else on this page is NEW (the spec had one employer band, not a page):
+ * it restates only facts the spec gives (section 1, 3.11, 6.3) for an employer reader, and adds
+ * no new claims, figures or commitments.
+ *
+ * Employer inquiries route to the partnership contact server-side (SERVER_ROUTES in
+ * /api/contact); his details are not shown on the page (spec 4.2 is still open).
+ */
+import LandingLayout from "../../../layouts/LandingLayout.astro";
+import AdvantageForm from "../../../components/forms/AdvantageForm.astro";
+import AdvantageIcon from "../../../components/advantage/AdvantageIcon.astro";
+import AdvantageAbout from "../../../components/advantage/AdvantageAbout.astro";
+import AdvantageFaq from "../../../components/advantage/AdvantageFaq.astro";
+import AdvantageDisclaimer from "../../../components/advantage/AdvantageDisclaimer.astro";
+import AdvantageStickyBar from "../../../components/advantage/AdvantageStickyBar.astro";
+import { STATE_LICENSES } from "../../../data/state-licenses";
+import { ADVANTAGE_PHONE, ADVANTAGE_OFFICE } from "../../../data/homebuyer-advantage";
+
+const STATES = STATE_LICENSES.length;
+
+// COMPLIANCE REVIEW: page title and meta description (new)
+const title = "Offer the Homebuyer Advantage Program | Cliffco Mortgage Bankers";
+const description =
+  "Offer your employees or members a $10,000 lender credit toward closing costs, free homebuyer education and a dedicated Cliffco team, at no cost to your organization.";
+
+// COMPLIANCE REVIEW: new copy - the spec's section 1 benefits, restated for an employer reader
+const benefits = [
+  { icon: "credit", title: "A $10,000 lender credit", body: `Applied toward closing costs when an employee buys a home or relocates for work and finances the purchase with Cliffco, on any Cliffco loan program and in any of the ${STATES} states where Cliffco is licensed.` },
+  { icon: "education", title: "Quarterly homebuyer education", body: "Four live webinars a year, open to every employee, covering the parts of buying a home that people ask us about most." },
+  { icon: "phone", title: "A dedicated team and phone line", body: "One number that reaches a Cliffco team set up specifically for program members." },
+  { icon: "concierge", title: "Homebuyer Concierge", body: "A referral network of Realtors, attorneys, insurance agents, title companies and more, plus a team employees can call with questions whether or not they get their mortgage with Cliffco." },
+  { icon: "certified", title: "Homebuyer Certified", body: "Pre-approval, then an initial commitment, then a fully underwritten written commitment that employees can bring to every offer." },
+  { icon: "review", title: "Annual Mortgage Review", body: "A yearly check-in after closing on each homeowner's rate, insurance, taxes and equity." },
+] as const;
+
+// COMPLIANCE REVIEW: new employer FAQ. "Does our organization receive anything" restates spec
+// 1 and 6.3 (no payment, no endorsement) and is the one to read most closely.
+const faqs = [
+  { q: "What does it cost our organization?", a: "Nothing. Cliffco funds the $10,000 credit and provides the flyers, the webinars, and the dedicated team and phone line, along with everything your HR team needs to share the program with employees." },
+  { q: "Do employees have to use Cliffco?", a: "No. Participation is voluntary for employees, and they're free to work with any lender. The $10,000 credit applies only to loans that close with Cliffco." },
+  { q: "Does our organization receive anything for offering the program?", a: "No. Your organization doesn't pay anything or receive anything, and offering the program to employees isn't an endorsement of Cliffco over other lenders." },
+  { q: "Will we see employees' financial information?", a: "No. Each employee's application and loan details stay between them and Cliffco." },
+  { q: "Can we offer the program under our own name?", a: "Yes. Organizations can offer the program under their own name and branding." },
+  { q: "Who is eligible?", a: "Employees and members of organizations that partner with Cliffco on the Homebuyer Advantage Program, whether they're buying a home or relocating for work." },
+  { q: "How do we get started?", a: "Fill out the form on this page, and our team will follow up about offering the program to your employees or members." },
+];
+---
+
+<LandingLayout
+  title={title}
+  description={description}
+  phone={ADVANTAGE_PHONE.display}
+  phoneE164={ADVANTAGE_PHONE.e164}
+  headerCta={{ label: "Get started", href: "#employer-inquiry" }}
+  office={ADVANTAGE_OFFICE}
+>
+
+  <!-- ============ HERO + FORM (black, so it never reads as the employee page) ============ -->
+  <!-- COMPLIANCE REVIEW: spec 3.11 headline, body and three points; form heading and intro are new -->
+  <section class="bg-[var(--color-ink)] text-white" style="padding-block: clamp(2.5rem, 5vw, 4.5rem);">
+    <div class="container-wide grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+      <!-- on-black is scoped to this column: on the section it would turn the form's submit
+           button white inside the light form card -->
+      <div class="lg:col-span-6 lg:pt-4 on-black">
+        <p class="eyebrow">For HR and union leaders</p>
+        <h1 class="mt-5 !text-white" style="font-size: clamp(2.125rem, 2.2vw + 1.25rem, 3rem); line-height: 1.1;">
+          Offer the Homebuyer Advantage Program to your team
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-[var(--color-soft-gray)] max-w-[62ch]">
+          The program costs your organization nothing to offer. Cliffco funds the $10,000 credit and provides the flyers, the webinars, the dedicated team and phone line, and everything your HR team needs to share it with employees. Participation is voluntary for employees, and organizations can also offer the program under their own name and branding.
+        </p>
+        <ul class="mt-8 list-none p-0">
+          {["$0 cost to your organization", "Light lift for HR", "White-label option available"].map((pt) => (
+            <li class="border-t border-white/25 py-4 text-lg font-bold text-white">{pt}</li>
+          ))}
+        </ul>
+        <p class="mt-2 text-sm"><a href="#disclaimer" class="text-[var(--color-soft-gray)]">See disclaimer</a></p>
+      </div>
+
+      <div id="employer-inquiry" class="lg:col-span-6 scroll-mt-24">
+        <div class="bg-[var(--color-airy-gray)] p-6 sm:p-8 text-[var(--color-text)]">
+          <h2 style="font-size: var(--text-h3);">Talk to us about partnering</h2>
+          <p class="mt-2 mb-6 leading-relaxed">
+            Tell us about your organization, and our team will follow up about offering the program to your employees or members.
+          </p>
+          <AdvantageForm variant="employer" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT YOUR EMPLOYEES RECEIVE ============ -->
+  <!-- COMPLIANCE REVIEW: new section intro -->
+  <section class="bg-white" style="padding-block: var(--spacing-section);" aria-labelledby="adv-benefits-h">
+    <div class="container-wide">
+      <h2 id="adv-benefits-h">What your employees receive</h2>
+      <p class="mt-4 text-lg text-[var(--color-text)] leading-relaxed max-w-[62ch]">
+        Every employee or member at a participating organization has access to the same benefits, whether they plan to buy this year or a few years from now.
+      </p>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {benefits.map((c) => (
+          <div class="bg-[var(--color-airy-gray)] p-6 flex flex-col">
+            <AdvantageIcon name={c.icon} />
+            <h3 class="mt-5 text-lg">{c.title}</h3>
+            <p class="mt-2 text-[var(--color-text)] leading-relaxed">{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EMPLOYER FAQ ============ -->
+  <AdvantageFaq heading="Questions from HR and union leaders" faqs={faqs} />
+
+  <!-- ============ ABOUT CLIFFCO ============ -->
+  <AdvantageAbout />
+
+  <!-- ============ For employees who landed here ============ -->
+  <!-- COMPLIANCE REVIEW: cross-link copy (new) -->
+  <section class="bg-[var(--color-airy-gray)]" aria-labelledby="adv-cross-h">
+    <div class="container-wide py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+      <div>
+        <p class="eyebrow">For employees and members</p>
+        <h2 id="adv-cross-h" class="mt-2" style="font-size: var(--text-h3);">See the benefits and set up your Financial Discovery Call.</h2>
+      </div>
+      <a href="/homebuyer-advantage/employees/" data-cta="cross-link-employees" class="btn btn-secondary shrink-0">Go to the employee page</a>
+    </div>
+  </section>
+
+  <!-- ============ DISCLAIMER BLOCK ============ -->
+  <!-- Includes the commitment disclaimer, since this page describes Homebuyer Certified -->
+  <AdvantageDisclaimer commitment />
+
+  <AdvantageStickyBar ctaLabel="Get started" ctaHref="#employer-inquiry" />
+</LandingLayout>
+
+<script>
+  import { initAdvantage } from "../../../lib/advantage-client";
+  initAdvantage();
+</script>

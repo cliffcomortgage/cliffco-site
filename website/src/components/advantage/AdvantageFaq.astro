@@ -1,0 +1,31 @@
+---
+/** Accordion FAQ for the Homebuyer Advantage pages. Native <details>, so it works without JS. */
+interface Props {
+  heading: string;
+  faqs: { q: string; a: string }[];
+}
+const { heading, faqs } = Astro.props;
+---
+
+<section class="bg-white border-t border-[var(--color-airy-gray)]" style="padding-block: var(--spacing-section);" aria-labelledby="adv-faq-h">
+  <div class="container-wide">
+    <h2 id="adv-faq-h">{heading}</h2>
+    <div class="mt-8 max-w-4xl border-t-2 border-[var(--color-ink)]">
+      {faqs.map((f) => (
+        <details class="adv-faq border-b border-[var(--color-ink)]/15">
+          <summary class="flex items-start justify-between gap-6 py-5 cursor-pointer list-none text-lg font-semibold text-[var(--color-ink)]">
+            <span>{f.q}</span>
+            <span class="adv-faq-icon shrink-0 w-6 h-6 flex items-center justify-center" aria-hidden="true"></span>
+          </summary>
+          <p class="pb-6 pr-10 text-[var(--color-text)] leading-relaxed">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .adv-faq summary::-webkit-details-marker { display: none; }
+  .adv-faq-icon::before { content: "+"; font-family: var(--font-mono); font-weight: 600; font-size: 1.25rem; line-height: 1; }
+  .adv-faq[open] .adv-faq-icon::before { content: "\2013"; }
+</style>

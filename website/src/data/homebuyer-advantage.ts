@@ -1,10 +1,15 @@
 /**
- * Cliffco Homebuyer Advantage Program - data for /homebuyer-advantage/.
+ * Cliffco Homebuyer Advantage Program - data for the three program pages:
+ *   /homebuyer-advantage/            splash: "I'm an employee" or "I'm a company"
+ *   /homebuyer-advantage/employees/  employee page + Financial Discovery Call form
+ *   /homebuyer-advantage/companies/  partnership page + employer inquiry form
  *
- * Source: Homebuyer_Advantage_Landing_Page_Spec (1).md (repo root). One generic page for every
- * partner organization: no partner names or logos anywhere, and leads are attributed to a
- * company through UTM tags on the links Cliffco sends out (e.g. ?utm_campaign=homebuyer-
- * advantage&utm_content=<company>), which the page's forms carry through to HubSpot.
+ * Source: Homebuyer_Advantage_Landing_Page_Spec (1).md (repo root), restructured into the
+ * splash + two audience pages at Sivon's request (2026-11-10). Generic for every partner: no
+ * partner names or logos anywhere, and leads are attributed to a company through UTM tags on
+ * the links Cliffco sends out (e.g. /homebuyer-advantage/employees/?utm_campaign=homebuyer-
+ * advantage&utm_content=<company>), which the forms carry through to HubSpot. Flyers and QR
+ * codes should link to /employees/ directly, so employees skip the splash.
  *
  * Terminology: always "credit" or "lender credit toward closing costs". The program must
  * never be described with the other word for free money, anywhere that renders.
@@ -23,6 +28,15 @@ const PROGRAM_PHONE: { display: string; e164: string } | null = null;
 export const ADVANTAGE_PHONE = PROGRAM_PHONE ?? {
   display: COMPANY.tollFree,
   e164: COMPANY.tollFreeE164,
+};
+
+/** The office in the landing-layout footer: HQ, not the Branchburg branch the layout defaults to. */
+export const ADVANTAGE_OFFICE = {
+  label: "Cliffco Mortgage Bankers · Uniondale, NY (Headquarters)",
+  street: COMPANY.hq.street,
+  cityLine: `${COMPANY.hq.city}, ${COMPANY.hq.region} ${COMPANY.hq.postalCode} · NMLS #${COMPANY.nmls}`,
+  phone: COMPANY.hq.phone,
+  phoneE164: COMPANY.hq.phoneE164,
 };
 
 /**

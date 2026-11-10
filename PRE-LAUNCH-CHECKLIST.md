@@ -45,14 +45,27 @@ Audit on 2026-10-07: axe-core on all 197 pages, plus keyboard, phone-menu, and 3
 - [ ] **Elfsight widget.** Set the widget's Accent and Read More colors to black, and delete its Custom CSS. That CSS targets old class names, so it does nothing.
 - [ ] **Research checklists.** Work through the trust-signal checklist (`seo-aeo-dtc-research/03-ymyl-eeat-trust.md`, section 12) and the technical SEO final pass (`seo-aeo-dtc-research/01-technical-seo.md`, Days 61–90).
 
-## Homebuyer Advantage Program page (`/homebuyer-advantage/`, built 2026-11-09)
+## Homebuyer Advantage Program pages (built 2026-11-09, split into three 2026-11-10)
 
-Built from `Homebuyer_Advantage_Landing_Page_Spec (1).md`. Every item below is marked
-`COMPLIANCE REVIEW` in the source (`website/src/pages/homebuyer-advantage/index.astro`,
-`website/src/components/forms/AdvantageForm.astro`, `website/src/data/homebuyer-advantage.ts`);
-remove each marker once its copy is approved.
+Built from `Homebuyer_Advantage_Landing_Page_Spec (1).md`, then restructured at Sivon's request
+into a splash and two audience pages, each with its form at the top:
 
-**Compliance review, all launch-blocking:**
+| URL | Who | Form |
+|---|---|---|
+| `/homebuyer-advantage/` | Anyone on the main URL: "I'm an employee" or "I'm a company" | none |
+| `/homebuyer-advantage/employees/` | Employees and union members | Financial Discovery Call, in the hero |
+| `/homebuyer-advantage/companies/` | HR and union leaders | Partnership inquiry, in the hero |
+
+**Flyers, QR codes and employee emails should link to `/employees/` directly**, with the partner
+in the UTMs (e.g. `/homebuyer-advantage/employees/?utm_campaign=homebuyer-advantage&utm_content=acme`),
+so employees skip the splash. Pitch emails to HR go to `/companies/`. UTMs on a splash link are
+carried onto whichever page the visitor picks.
+
+Every item below is marked `COMPLIANCE REVIEW` in the source (`website/src/pages/homebuyer-advantage/`,
+`website/src/components/advantage/`, `website/src/components/forms/AdvantageForm.astro`,
+`website/src/data/homebuyer-advantage.ts`); remove each marker once its copy is approved.
+
+**Compliance review, all launch-blocking. Employee page (spec copy):**
 
 - [ ] Page title and meta description.
 - [ ] Hero: eyebrow, H1, subhead, CTA labels.
@@ -63,9 +76,19 @@ remove each marker once its copy is approved.
 - [ ] Homebuyer Certified headline and body, including the claim **"helps your offers get accepted faster"** (flagged in the spec).
 - [ ] Annual Mortgage Review items.
 - [ ] Homebuyer education headline, body and the "no dates yet" line.
-- [ ] FAQ, especially **"Who is eligible?"** (eligibility details flagged in the spec).
-- [ ] About Cliffco copy and stats row.
-- [ ] For-employers band and its three points.
+- [ ] FAQ, especially **"Who is eligible?"** (eligibility details flagged in the spec). One edit from the spec: "fill out the form below" now reads "on this page", since the form moved above the FAQ.
+- [ ] About Cliffco copy and stats row (shared with the company page).
+
+**Company page (hero is spec 3.11; everything else is new, restating spec facts only):**
+
+- [ ] Title, meta description, hero, three points.
+- [ ] "What your employees receive" — the six spec benefits, rewritten for an employer reader.
+- [ ] Employer FAQ, especially **"Does our organization receive anything for offering the program?"** It says the organization pays and receives nothing and that offering the program isn't an endorsement of Cliffco (spec 1 and 6.3).
+
+**Splash and shared (all new):**
+
+- [ ] Splash title, meta, headline, intro and both choice cards.
+- [ ] Cross-links between the two audience pages.
 - [ ] Form headings, intro lines and success messages. These were **added during the build** and are not in the spec draft.
 - [ ] **Consent language**: both forms show the placeholder `[CONSENT LANGUAGE — needs compliance review]`. The page must not go live with it.
 - [ ] **Generic lender credit disclaimer** (spec 6.1 variant). The approved text was written for a named partner.
@@ -73,8 +96,8 @@ remove each marker once its copy is approved.
 
 **Open questions from the spec (section 9), built on these assumptions:**
 
-- [ ] URL `/homebuyer-advantage/` (assumed).
-- [ ] `noindex`, and kept out of the sitemap (assumed).
+- [ ] URLs: `/homebuyer-advantage/` (splash), `/employees/` and `/companies/` beneath it (assumed).
+- [ ] `noindex` on all three, and all three kept out of the sitemap (assumed).
 - [ ] HubSpot: both forms post through `/api/contact` to the existing "Website 2.0 Lead Intake" form, separated by `form_source` (`homebuyer-advantage` / `homebuyer-advantage-employer`). Employer, timeline, location and the UTMs reach HubSpot as lines in the **message** field. To report by partner company in HubSpot, add `utm_source`, `utm_medium`, `utm_campaign`, `utm_content` (the properties already exist) as hidden fields on that HubSpot form, then map them in `src/pages/api/contact/index.ts`. Until they're on the form, sending them could make HubSpot reject the whole lead.
 - [ ] Program phone: not assigned, so every call button uses the main toll-free (800) 834-4040. Set `PROGRAM_PHONE` in `src/data/homebuyer-advantage.ts` when the line exists.
 - [ ] Employer inquiries route server-side to Ryan Riddle (`SERVER_ROUTES` in the contact API). His contact details are **not** shown on the page.

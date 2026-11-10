@@ -1,0 +1,31 @@
+---
+/**
+ * Disclaimer block (spec 3.13) - the lender credit disclaimer, optionally the commitment
+ * disclaimer, then the legal line. Anchored at #disclaimer so every "See disclaimer" link lands
+ * here. Rendered on all three Homebuyer Advantage pages, because each one names the $10,000.
+ */
+import { COMPANY } from "../../data/company";
+import { ADVANTAGE_CREDIT_DISCLAIMER, ADVANTAGE_COMMITMENT_DISCLAIMER } from "../../data/homebuyer-advantage";
+
+interface Props {
+  /** Also show the commitment disclaimer (pages that describe Homebuyer Certified). */
+  commitment?: boolean;
+}
+const { commitment = false } = Astro.props;
+---
+
+<!-- COMPLIANCE REVIEW: generic lender credit disclaimer (spec 6.1 variant; the approved text was written for a named partner) -->
+<section id="disclaimer" class="bg-white border-t border-[var(--color-ink)] scroll-mt-24" aria-labelledby="adv-disclaimer-h">
+  <div class="container-wide py-10">
+    <h2 id="adv-disclaimer-h" class="eyebrow !text-[var(--color-ink)]">Program disclaimer</h2>
+    <p class="mt-3 max-w-5xl text-sm leading-relaxed text-[var(--color-text)]">{ADVANTAGE_CREDIT_DISCLAIMER}</p>
+    {commitment && <p class="mt-3 max-w-5xl text-sm leading-relaxed text-[var(--color-text)]">{ADVANTAGE_COMMITMENT_DISCLAIMER}</p>}
+    <p class="mt-4 text-sm text-[var(--color-text-muted)]">
+      {COMPANY.legalName} · NMLS #{COMPANY.nmls} ·
+      <a href={COMPANY.nmlsConsumerAccessUrl} target="_blank" rel="noopener noreferrer" class="text-[var(--color-text-muted)]">NMLS Consumer Access</a> ·
+      <a href="/licensing/" class="text-[var(--color-text-muted)]">State licensing</a> ·
+      <a href="/legal/privacy/" class="text-[var(--color-text-muted)]">Privacy policy</a> ·
+      Equal Housing Lender
+    </p>
+  </div>
+</section>

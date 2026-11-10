@@ -1,11 +1,11 @@
 ---
 /**
  * Homebuyer Advantage Program lead forms (spec section 4). Markup only: the submit, inline
- * validation, UTM capture and tracking live in the page script on /homebuyer-advantage/, which
- * handles every `.adv-form` on the page.
+ * validation, UTM capture and tracking live in src/lib/advantage-client.ts, which handles every
+ * `.adv-form` on the page.
  *
- *   variant="employee" - the primary form for employees and union members
- *   variant="employer" - the partnership inquiry for HR and union leaders
+ *   variant="employee" - on /homebuyer-advantage/employees/, for employees and union members
+ *   variant="employer" - on /homebuyer-advantage/companies/, for HR and union leaders
  *
  * Posts to /api/contact/ like the site's other lead forms (honeypot + time check, HubSpot then
  * email). form_source separates the two lead types in HubSpot. Employer inquiries are routed to
