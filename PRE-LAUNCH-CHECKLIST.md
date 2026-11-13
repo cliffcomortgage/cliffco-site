@@ -106,7 +106,12 @@ Every item below is marked `COMPLIANCE REVIEW` in the source (`website/src/pages
 
 ## Not launch-blocking
 
-- [ ] **Christopher Clifford's NH license.** Once he's licensed, remove the NH filter (`PRESIDENT_STATES` in `website/src/data/loan-officers.ts`).
+- [x] **Christopher Clifford's NH license.** Licensed 2026-11-04, and the NH filter is gone. The opposite risk remains: his state list copies the company's, so a new company state shows on his bio before his own licence exists (CLAUDE.md, Personnel corrections).
+- [ ] **Check two licences on NMLS.** Both were reported 2026-11-12 and are already live on the new site. NMLS blocks automated lookups, so a person has to check: Christopher Clifford (#65234) in IA, plus a look at whether all 38 company states are active for him, and Shahraj Khan (#1209249) in NJ and PA.
+- [ ] **Same licences, outside this repo.** The WordPress LO posts (tags and the Elementor "Licensed In" list) and the two SharePoint sheets (Compliance Disclaimers, LO List) still need Chris's IA and Shahraj's NJ and PA. The `lo-state-license-update` workflow covers all four.
+- [ ] **Stale roster files.** `compliance/loan-officer-disclosures.csv` still lists Shahraj Khan as NY only. The branch lists in `compliance/loan-officers.md` still show the closed Jamaica, Wantagh and Orlando branches. The site's own data (`website/src/data/loan-officers.ts`) is current. Refresh both at the next NMLS audit.
+- [ ] **Renovation ad campaigns, after launch.** The three renovation landers (`/fha-203k-loan/`, `/homestyle-choicerenovation-loan/`, `/va-renovation-loan/`) were built 2026-10-14 so Google Ads campaigns can point at them once the site is live. They are noindex and unlinked on purpose.
+- [ ] **Fix the `launch-ad-landing-page` skill.** It still teaches the HubSpot `onFormSubmitted` / `postMessage` listener, which recorded zero conversions all year (CLAUDE.md, "HubSpot form embeds"). A campaign built from it today would repeat the bug. The skill lives in the user's `~/.claude/skills/`, not this repo. Offered 2026-11-06, not yet approved.
 - [ ] **OneDrive values doc.** `Mission, Vision, Values.docx` in OneDrive still has the old vision, mission, and values.
 
 ---
