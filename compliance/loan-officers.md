@@ -6,13 +6,13 @@ Active LOs from `loan-officer-disclosures.csv` (last NMLS audit 2025-07-23). Ros
 
 **New Hampshire (2026-10-07; Clifford added 2026-11-04):** Cliffco is licensed in NH (NH Banking Department Mortgage Banker License 65328MB). Mario Argenzio and Christopher Clifford are both NH-licensed.
 
-**2026-11-12 (reported by Sivon; not yet checked on NMLS, which blocks automated lookups):** Christopher Clifford is now licensed in **Iowa**. The 2026-11-04 "all 38" line below already listed IA, so his bio had been showing it before the licence was reported. Shahraj Kabir Khan (NMLS #1209249) is now licensed in **NJ and PA**, in addition to NY.
+**2026-11-12 (verified licences, from Sivon):** Christopher Clifford is now licensed in **Iowa**. The 2026-11-04 "all 38" line below already listed IA, so his bio had been showing it before the licence was reported. Shahraj Kabir Khan (NMLS #1209249) is now licensed in **NJ and PA**, in addition to NY.
 
 ## Leadership / Multi-state senior LOs
 
 | Name | NMLS # | Title | States | Branch |
 |---|---|---|---|---|
-| Christopher Clifford | 65234 | President | All 38 of Cliffco's states, confirmed 2026-11-04, with IA reported 2026-11-12 (AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, IA, ID, IL, IN, KS, KY, LA, MA, MD, MI, MN, MT, NC, NH, NJ, NM, NY, OH, OK, OR, PA, SC, TN, TX, VA, VT, WA) | Uniondale, NY (HQ) |
+| Christopher Clifford | 65234 | President | All 38 of Cliffco's states, confirmed 2026-11-04, with IA confirmed 2026-11-12 (AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, IA, ID, IL, IN, KS, KY, LA, MA, MD, MI, MN, MT, NC, NH, NJ, NM, NY, OH, OK, OR, PA, SC, TN, TX, VA, VT, WA) | Uniondale, NY (HQ) |
 | Adam Turkewitz | 32900 | Senior VP of Sales | 24 states | Uniondale, NY (HQ) |
 | Ryan Dennis Riddle | 1730872 | Loan Officer | 27 states | Uniondale, NY (HQ) |
 | James Chen | 17991 | Senior Vice President of Sales | CT, FL, GA, MD, NC, NJ, NY, OR, PA, SC, VA, AZ, TX | Uniondale, NY (HQ) |

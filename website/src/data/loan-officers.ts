@@ -80,10 +80,10 @@ export const nmlsConsumerAccessUrl = (nmls: string): string =>
   `https://nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/${nmls}`;
 
 // Christopher Clifford is licensed in every Cliffco state: NH came through 2026-11-04 and IA was
-// reported 2026-11-12. CAUTION: this copies the company's state list, so any state Cliffco adds
+// confirmed 2026-11-12. CAUTION: this copies the company's state list, so any state Cliffco adds
 // shows on his bio immediately, whether or not his own licence exists yet - that is how IA was
-// listed for him before it was issued. When Cliffco adds a state, confirm his licence on NMLS
-// first, and filter the state out here until it's active.
+// listed for him before it was issued. When Cliffco adds a state, ask whether he holds it too;
+// if not yet, filter the state out here until his licence update comes through.
 const PRESIDENT_STATES = STATE_LICENSES.map((s) => s.code);
 
 export const LOAN_OFFICERS: readonly LoanOfficer[] = [
@@ -481,7 +481,7 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     displayName: "Shahraj Khan",
     nmls: "1209249",
     title: "Loan Officer",
-    // NJ and PA added 2026-11-12 (reported by Sivon)
+    // NJ and PA added 2026-11-12 (verified licences, from Sivon)
     states: ["NJ", "NY", "PA"],
     branchSlug: "uniondale-headquarters",
     links: {

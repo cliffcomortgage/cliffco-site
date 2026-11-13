@@ -199,7 +199,8 @@ from one. Where a published table exists, ship the table.
 The NMLS roster and `Leadership Bios.docx` are point-in-time snapshots. These corrections supersede them — do **not** publish the legacy versions:
 
 - **Fabian Roman** is no longer Head of Capital Markets. He is part of **Team Broder** (works with Adam Broder, VP). Don't publish the old title. Confirm his current title before publishing any bio.
-- **Christopher Clifford** is licensed in **every** Cliffco state: NH came through 2026-11-04 and IA was reported 2026-11-12. `PRESIDENT_STATES` in `loan-officers.ts` copies the company's state list, so **every state Cliffco adds appears on his bio instantly**, licensed or not. That is how IA showed for him before it was issued. When a state is added to `state-licenses.ts`, confirm his licence on NMLS and filter the state out of `PRESIDENT_STATES` until it's active.
+- **Christopher Clifford** is licensed in **every** Cliffco state: NH came through 2026-11-04 and IA on 2026-11-12. `PRESIDENT_STATES` in `loan-officers.ts` copies the company's state list, so **every state Cliffco adds appears on his bio instantly**, licensed or not. That is how IA showed for him before it was issued. When a state is added to `state-licenses.ts`, ask whether he holds it too, and if not, filter the state out of `PRESIDENT_STATES` until his licence update comes through.
+- **Licence updates from the user are already verified on NMLS.** Apply them as given. Don't ask them to re-check NMLS or record the licence as unverified (Sivon, 2026-11-13).
 - **Cynthia Cardona** is no longer with Cliffco. The current **Director of HR is Amanda Miller** — feature Amanda on the team page, not Cynthia.
 
 Always confirm leadership titles with Rafe before publishing.
