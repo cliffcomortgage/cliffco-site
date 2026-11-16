@@ -971,7 +971,10 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     nmls: "2502088",
     stateLicenses: { AZ: "LO-2011339" },
     title: "Loan Officer",
-    states: ["AZ", "CA", "FL", "MN", "NC", "NJ", "NY", "PA", "TN", "VT"],
+    // AK, IA, ID, NH, OK added 2026-11-16 (verified licences, from Sivon). He is WI-licensed too, but
+    // WI is held off: Cliffco has no company WI licence in state-licenses.ts, so the footer can't
+    // disclose it. Add WI here once the company licence is in.
+    states: ["AK", "AZ", "CA", "FL", "IA", "ID", "MN", "NC", "NH", "NJ", "NY", "OK", "PA", "TN", "VT"],
     branchSlug: "uniondale-headquarters",
     links: {
       email: "llevy@cliffcomortgage.com",

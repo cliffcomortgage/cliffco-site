@@ -6,6 +6,8 @@ Active LOs from `loan-officer-disclosures.csv` (last NMLS audit 2025-07-23). Ros
 
 **New Hampshire (2026-10-07; Clifford added 2026-11-04):** Cliffco is licensed in NH (NH Banking Department Mortgage Banker License 65328MB). Mario Argenzio and Christopher Clifford are both NH-licensed.
 
+**2026-11-16 (verified licences, from Sivon):** Logan Reese Levy (NMLS #2502088) is now licensed in **AK, IA, ID, NH, OK and WI**. All but WI are on the site. WI is held because Cliffco has no company Wisconsin licence on file (it isn't one of the 38 states).
+
 **2026-11-12 (verified licences, from Sivon):** Christopher Clifford is now licensed in **Iowa**. The 2026-11-04 "all 38" line below already listed IA, so his bio had been showing it before the licence was reported. Shahraj Kabir Khan (NMLS #1209249) is now licensed in **NJ and PA**, in addition to NY.
 
 ## Leadership / Multi-state senior LOs
