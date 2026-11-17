@@ -62,6 +62,7 @@ export const STATE_LICENSES: readonly StateLicense[] = [
   { code: "VA", name: "Virginia",     regulator: "Virginia Bureau of Financial Institutions",                           licenseNumber: "MC-7742" },
   { code: "VT", name: "Vermont",      regulator: "Vermont Department of Financial Regulation",                          licenseNumber: "LL-65328" },
   { code: "WA", name: "Washington",   regulator: "Washington State Department of Financial Institutions",               licenseNumber: "CL-65328" },
+  { code: "WI", name: "Wisconsin",    regulator: "Wisconsin Department of Financial Institutions - Licensed Mortgage Lender", licenseNumber: "65328BA" },
 ];
 
 /** Cliffco's stated priority growth/marketing territories. */

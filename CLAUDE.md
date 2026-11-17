@@ -36,11 +36,12 @@ The `compliance/` directory holds source-of-truth disclosure data (state license
 Critical facts that must show up in the right places:
 
 1. **Florida DBA: "Clout Mortgage, Inc."** — every FL-targeted page, FL LO bio, Orlando GBP, and FL marketing piece must include this DBA disclosure.
-2. **38 licensed states** (37 states + DC, confirmed 2026-11-04; Idaho added 2026-11-04, Arkansas 2026-10-22, New Hampshire 2026-10-07, Iowa 2026-09-02). Full list + license numbers in `compliance/state-licenses.md`. **MN is fully licensed** — treat it as a normal priority territory, not gated. Site copy must use `STATE_LICENSES.length` (from `website/src/data/state-licenses.ts`), never a typed-out number — hardcoded counts are how "32" went stale.
+2. **39 licensed states** (38 states + DC, confirmed 2026-11-17; Wisconsin added 2026-11-17, Idaho 2026-11-04, Arkansas 2026-10-22, New Hampshire 2026-10-07, Iowa 2026-09-02). Full list + license numbers in `compliance/state-licenses.md`. **MN is fully licensed** — treat it as a normal priority territory, not gated. Site copy must use `STATE_LICENSES.length` (from `website/src/data/state-licenses.ts`), never a typed-out number — hardcoded counts are how "32" went stale.
    **The microsites cannot import that array** — they are separate Astro projects — so their
    counts are typed and go stale silently. On 2026-11-06 cliffcomn was carrying three
    different wrong numbers at once ("36" on the homepage stat bar, "32" on two others, and
-   "37" in DSCR body copy and an FAQ answer). All six now read 38. **Whenever a state is
+   "37" in DSCR body copy and an FAQ answer). All six were set to 38, and moved to 39 with
+   Wisconsin on 2026-11-17. **Whenever a state is
    added, grep the microsites too:** `grep -rnE "licensed in [0-9]+ states|Licensed states" microsites/*/src`.
 3. **6 physical branches** (as of 2026-07-15): Uniondale NY (HQ), Bay Shore NY, Branchburg NJ, Ft. Lauderdale FL, Buckeye AZ, Excelsior MN. The Jamaica NY, Wantagh NY, and Orlando FL branches closed in July 2026 — do not reference them as current offices.
 4. **80+ active LOs.** Each gets a bio page at `/loan-officers/{name-nmlsid}/` with Person schema + sameAs to NMLS Consumer Access. Roster: `compliance/loan-officers.md`. An LO page lists **only the states that LO is licensed in** and carries **no state-disclosure block of its own**, because the footer already prints every company licence sentence (decided 2026-10-16, after per-LO blocks were added without sign-off and then removed).
@@ -199,7 +200,7 @@ from one. Where a published table exists, ship the table.
 The NMLS roster and `Leadership Bios.docx` are point-in-time snapshots. These corrections supersede them — do **not** publish the legacy versions:
 
 - **Fabian Roman** is no longer Head of Capital Markets. He is part of **Team Broder** (works with Adam Broder, VP). Don't publish the old title. Confirm his current title before publishing any bio.
-- **Christopher Clifford** is licensed in **every** Cliffco state: NH came through 2026-11-04 and IA on 2026-11-12. `PRESIDENT_STATES` in `loan-officers.ts` copies the company's state list, so **every state Cliffco adds appears on his bio instantly**, licensed or not. That is how IA showed for him before it was issued. When a state is added to `state-licenses.ts`, ask whether he holds it too, and if not, filter the state out of `PRESIDENT_STATES` until his licence update comes through.
+- **Christopher Clifford** is licensed in **every** Cliffco state: NH came through 2026-11-04, IA on 2026-11-12 and WI on 2026-11-17. `PRESIDENT_STATES` in `loan-officers.ts` copies the company's state list, so **every state Cliffco adds appears on his bio instantly**, licensed or not. That is how IA showed for him before it was issued. When a state is added to `state-licenses.ts`, ask whether he holds it too, and if not, filter the state out of `PRESIDENT_STATES` until his licence update comes through.
 - **Licence updates from the user are already verified on NMLS.** Apply them as given. Don't ask them to re-check NMLS or record the licence as unverified (Sivon, 2026-11-13).
 - **Cynthia Cardona** is no longer with Cliffco. The current **Director of HR is Amanda Miller** — feature Amanda on the team page, not Cynthia.
 

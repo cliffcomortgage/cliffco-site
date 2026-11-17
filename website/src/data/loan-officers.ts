@@ -79,8 +79,8 @@ export type LoanOfficer = {
 export const nmlsConsumerAccessUrl = (nmls: string): string =>
   `https://nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/${nmls}`;
 
-// Christopher Clifford is licensed in every Cliffco state: NH came through 2026-11-04 and IA was
-// confirmed 2026-11-12. CAUTION: this copies the company's state list, so any state Cliffco adds
+// Christopher Clifford is licensed in every Cliffco state: NH came through 2026-11-04, IA was
+// confirmed 2026-11-12 and WI 2026-11-17. CAUTION: this copies the company's state list, so any state Cliffco adds
 // shows on his bio immediately, whether or not his own licence exists yet - that is how IA was
 // listed for him before it was issued. When Cliffco adds a state, ask whether he holds it too;
 // if not yet, filter the state out here until his licence update comes through.
@@ -971,10 +971,9 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     nmls: "2502088",
     stateLicenses: { AZ: "LO-2011339" },
     title: "Loan Officer",
-    // AK, IA, ID, NH, OK added 2026-11-16 (verified licences, from Sivon). He is WI-licensed too, but
-    // WI is held off: Cliffco has no company WI licence in state-licenses.ts, so the footer can't
-    // disclose it. Add WI here once the company licence is in.
-    states: ["AK", "AZ", "CA", "FL", "IA", "ID", "MN", "NC", "NH", "NJ", "NY", "OK", "PA", "TN", "VT"],
+    // AK, IA, ID, NH, OK added 2026-11-16 and WI 2026-11-17, once Cliffco's company WI licence was
+    // in state-licenses.ts (verified licences, from Sivon).
+    states: ["AK", "AZ", "CA", "FL", "IA", "ID", "MN", "NC", "NH", "NJ", "NY", "OK", "PA", "TN", "VT", "WI"],
     branchSlug: "uniondale-headquarters",
     links: {
       email: "llevy@cliffcomortgage.com",
