@@ -179,6 +179,66 @@
       "permanent": true
     },
     {
+      "source": "/loan-officers/james-chen/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/james-chen",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/jchen/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/jchen",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/david-illouz/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/david-illouz",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/dillouz/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/dillouz",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/queeny-duong/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/queeny-duong",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/qduong/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/qduong",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
       "source": "/loan-officers/samantha-roach/",
       "destination": "/loan-officers/",
       "permanent": true
@@ -410,12 +470,12 @@
     },
     {
       "source": "/dillouz/",
-      "destination": "/loan-officers/david-illouz/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/dillouz",
-      "destination": "/loan-officers/david-illouz/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
@@ -705,12 +765,12 @@
     },
     {
       "source": "/jchen/",
-      "destination": "/loan-officers/james-chen/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/jchen",
-      "destination": "/loan-officers/james-chen/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
@@ -745,12 +805,12 @@
     },
     {
       "source": "/team-chen/",
-      "destination": "/loan-officers/james-chen/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/team-chen",
-      "destination": "/loan-officers/james-chen/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
@@ -1115,12 +1175,12 @@
     },
     {
       "source": "/qduong/",
-      "destination": "/loan-officers/queeny-duong/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/qduong",
-      "destination": "/loan-officers/queeny-duong/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {

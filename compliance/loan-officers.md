@@ -6,6 +6,8 @@ Active LOs from `loan-officer-disclosures.csv` (last NMLS audit 2025-07-23). Ros
 
 **New Hampshire (2026-10-07; Clifford added 2026-11-04):** Cliffco is licensed in NH (NH Banking Department Mortgage Banker License 65328MB). Mario Argenzio and Christopher Clifford are both NH-licensed.
 
+**Offboarded 2026-11-18 (from Sivon):** James Chen (NMLS #17991), Queeny Duong (#826674), David Illouz (#1584179) and Chandroutie Persaud. The first three were removed from the site, and their bio and vanity URLs (including `/team-chen/`) now redirect to the LO directory. Chandroutie Persaud was never on the site. Their rows below are part of the point-in-time snapshot and are left as they were.
+
 **Wisconsin (2026-11-17):** Cliffco is now licensed in WI (WI Licensed Mortgage Lender 65328BA State of Wisconsin Dept. of Financial Institutions). Logan Reese Levy and Christopher Clifford are both WI-licensed.
 
 **2026-11-16 (verified licences, from Sivon):** Logan Reese Levy (NMLS #2502088) is now licensed in **AK, IA, ID, NH, OK and WI**. WI went on the site 2026-11-17, with the company licence.
