@@ -46,6 +46,8 @@ export default defineConfig({
     '/loan-officers/dillouz/': '/loan-officers/',
     '/loan-officers/queeny-duong/': '/loan-officers/',
     '/loan-officers/qduong/': '/loan-officers/',
+    '/loan-officers/justin-hu/': '/loan-officers/',
+    '/loan-officers/jhu/': '/loan-officers/',
     // --- Legacy WordPress URL map (from cliffco_sitemap_urls old.xlsx, validated against built routes) ---
     '/about-us/': '/about/',
     '/abroder/': '/loan-officers/adam-broder/',
@@ -108,7 +110,7 @@ export default defineConfig({
     '/scottsdale-az/': '/buckeye-az/',
     '/locations/new-york/queens/': '/locations/new-york/',
     '/locations/florida/orlando/': '/locations/florida/',
-    '/jhu/': '/loan-officers/justin-hu/',
+    '/jhu/': '/loan-officers/',
     '/jperrone/': '/loan-officers/james-perrone/',
     '/jzucker/': '/loan-officers/',
     '/kadler/': '/loan-officers/kathie-adler/',

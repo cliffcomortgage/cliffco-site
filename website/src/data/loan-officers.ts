@@ -832,23 +832,6 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
-    slug: "justin-hu",
-    firstName: "Justin",
-    lastName: "Hu",
-    displayName: "Justin Hu",
-    nmls: "2553712",
-    title: "Loan Officer",
-    states: ["NY", "NJ"],
-    branchSlug: "uniondale-headquarters",
-    links: {
-      email: "jhu@cliffcomortgage.com",
-      directPhone: "516-874-6507",
-      cellPhone: "516-800-2870",
-      applyNow: "https://fastapp.cliffcomortgage.com/#/milestones?referrerId=jhu%40cliffcomortgage.com&loanType=MORTGAGE",
-    },
-    hasPhoto: true,
-  },
-  {
     slug: "kathie-adler",
     firstName: "Kathie",
     lastName: "Adler",

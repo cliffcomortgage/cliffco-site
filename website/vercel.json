@@ -239,6 +239,26 @@
       "permanent": true
     },
     {
+      "source": "/loan-officers/justin-hu/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/justin-hu",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/jhu/",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
+      "source": "/loan-officers/jhu",
+      "destination": "/loan-officers/",
+      "permanent": true
+    },
+    {
       "source": "/loan-officers/samantha-roach/",
       "destination": "/loan-officers/",
       "permanent": true
@@ -865,12 +885,12 @@
     },
     {
       "source": "/jhu/",
-      "destination": "/loan-officers/justin-hu/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {
       "source": "/jhu",
-      "destination": "/loan-officers/justin-hu/",
+      "destination": "/loan-officers/",
       "permanent": true
     },
     {

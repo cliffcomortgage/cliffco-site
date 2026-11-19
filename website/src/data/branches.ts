@@ -74,7 +74,6 @@ export const BRANCHES: readonly Branch[] = [
       "renald-appo-53967",
       "steven-rivera-1876188",
       "george-diamantakis-1367963",
-      "justin-hu-2553712",
       "thomas-whalen-9167",
       "christian-soto-1173591",
       "eric-mueller-1712181",
