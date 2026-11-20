@@ -44,6 +44,11 @@ export type LoanOfficer = {
     leadTo?: string;
     /** Office / direct-dial line */
     directPhone?: string;
+    /**
+     * A separate direct line, shown as "Direct". For when the Office number is the main line with
+     * an extension and the person also has their own number (Jessenya Delaney). Not a cell.
+     */
+    directLine?: string;
     /** Personal cell number */
     cellPhone?: string;
     applyNow?: string;
@@ -772,8 +777,9 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     branchSlug: "uniondale-headquarters",
     links: {
       email: "jdelaney@cliffcomortgage.com",
-      // WordPress also lists 516-350-5356 on its own: the same line without the extension.
-      directPhone: "516-350-5356 x 213",
+      // Corrected by Sivon 2026-11-20: office is the main line with her extension, plus her own direct line.
+      directPhone: "516-408-7300 x 213",
+      directLine: "516-350-5356",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=jdelaney&workFlowId=33774",
     },
     team: { name: "The Garland Group", slug: "the-garland-group", logoUrl: "/images/team%20logos/Garland_Group_Horizontal_White.png", bannerLogoHeight: "h-16" },

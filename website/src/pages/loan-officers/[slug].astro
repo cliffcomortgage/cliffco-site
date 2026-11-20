@@ -136,6 +136,12 @@ const schema = [
               <dd class="mt-1"><a href={telHref(lo.links.directPhone)} class="!text-white no-underline hover:underline">{lo.links.directPhone}</a></dd>
             </div>
           )}
+          {lo.links?.directLine && (
+            <div class="py-3 border-b border-white/15">
+              <dt class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">Direct</dt>
+              <dd class="mt-1"><a href={telHref(lo.links.directLine)} class="!text-white no-underline hover:underline">{lo.links.directLine}</a></dd>
+            </div>
+          )}
           {lo.links?.cellPhone && (
             <div class="py-3 border-b border-white/15">
               <dt class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-white/55">Cell</dt>
