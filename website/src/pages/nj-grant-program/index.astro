@@ -22,7 +22,7 @@ const benefits = [
 
 const howItWorks = [
   { step: "1", title: "See if you qualify", body: "A first-generation homebuyer is a first-time buyer whose parents don't currently own a home, or someone who was in foster care or experienced youth homelessness. Takes 2 minutes to check." },
-  { step: "2", title: "Talk to a real loan officer", body: "Eddie Morais, NMLS 243926, and Gary Johansen, NMLS 339278, are both licensed in NJ and will walk you through exactly what you qualify for. No cost, no obligation." },
+  { step: "2", title: "Talk to a real loan officer", body: "Eddie Morais, NMLS 243926, Gary Johansen, NMLS 339278, and Christian Soto, NMLS 1173591, are all licensed in NJ and will walk you through exactly what you qualify for. No cost, no obligation." },
   { step: "3", title: "It's one loan package, not an add-on", body: "Your mortgage, the Down Payment Assistance loan, and the First Generation assistance are one NJHMFA application that we originate together. That also means the assistance only exists as part of this package - it can't be attached to a mortgage you've started with another lender." },
   { step: "4", title: "Close and move in", body: "Occupy the home as your primary residence within 60 days of closing, and the 5-year forgiveness clock starts." },
 ];
@@ -77,7 +77,7 @@ const faq = [
   },
   {
     question: "How do I apply?",
-    answer: "Talk to a licensed Cliffco loan officer serving New Jersey. Eddie Morais and Gary Johansen both originate NJHMFA loans and can confirm your eligibility and county amount at no cost.",
+    answer: "Talk to a licensed Cliffco loan officer serving New Jersey. Eddie Morais, Gary Johansen, and Christian Soto all originate NJHMFA loans and can confirm your eligibility and county amount at no cost.",
   },
 ];
 
@@ -184,8 +184,8 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
   <section class="bg-white border-t border-[var(--color-ink)]" style="padding-block: var(--spacing-section);">
     <div class="container-wide">
       <p class="eyebrow">Who you'll talk to</p>
-      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2); font-weight: 700;">Two licensed New Jersey loan officers, not a call center.</h2>
-      <div class="mt-8 grid gap-6 sm:grid-cols-2 max-w-2xl">
+      <h2 class="mt-3 max-w-2xl" style="font-size: var(--text-h2); font-weight: 700;">Three licensed New Jersey loan officers, not a call center.</h2>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 max-w-4xl">
         <div class="border-2 border-[var(--color-ink)] bg-white p-6 flex flex-col">
           <img src="/team/edward-morais.webp" alt="Eddie Morais" class="w-24 h-24 object-cover" loading="lazy" />
           <h3 class="mt-4 text-base font-semibold text-[var(--color-ink)]">Eddie Morais</h3>
@@ -199,6 +199,21 @@ const schema = [faqPageSchema([...objections.map((o) => ({ question: o.q, answer
           <p class="text-sm text-[var(--color-text-muted)]">Regional Sales Director &middot; NMLS #339278</p>
           <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">Over 30 years in mortgage lending, more than $15 billion closed.</p>
           <a href="tel:+15857038862" class="mt-4 text-sm font-semibold text-[var(--color-ink)] no-underline hover:underline">(585) 703-8862</a>
+        </div>
+        <div class="border-2 border-[var(--color-ink)] bg-white p-6 flex flex-col">
+          <img src="/team/christian-soto.webp" alt="Christian Soto" class="w-24 h-24 object-cover" loading="lazy" />
+          <h3 class="mt-4 text-base font-semibold text-[var(--color-ink)]">Christian Soto</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Loan Officer &middot; NMLS #1173591</p>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">Over 7 years as a loan officer and 5 in retail banking. Speaks English and Spanish.</p>
+          <a href="tel:+15169301039" class="mt-4 text-sm font-semibold text-[var(--color-ink)] no-underline hover:underline">(516) 930-1039</a>
+        </div>
+        <!-- Angelique Street: Loan Officer Assistant on NJ lead intake for Eddie and Gary. Not NJ-licensed (NY only), so no NMLS number here and she doesn't originate NJ loans (Sivon, 2026-11-20). -->
+        <div class="border-2 border-[var(--color-ink)] bg-white p-6 flex flex-col">
+          <img src="/team/angelique-street.webp" alt="Angelique Street" class="w-24 h-24 object-cover" loading="lazy" />
+          <h3 class="mt-4 text-base font-semibold text-[var(--color-ink)]">Angelique Street</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Loan Officer Assistant</p>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">Helps you get started and makes sure your details reach Eddie or Gary.</p>
+          <a href="tel:+13154846080" class="mt-4 text-sm font-semibold text-[var(--color-ink)] no-underline hover:underline">(315) 484-6080</a>
         </div>
       </div>
     </div>
