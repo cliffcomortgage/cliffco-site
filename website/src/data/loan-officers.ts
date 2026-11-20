@@ -1004,7 +1004,9 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     branchSlug: "uniondale-headquarters",
     links: {
       email: "mg@cliffcomortgage.com",
-      directPhone: "516-350-5355",
+      // Office, direct and cell confirmed by Sivon 2026-11-20.
+      directPhone: "516-408-7300 x 108",
+      directLine: "516-350-5355",
       cellPhone: "516-451-9138",
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=mgarland&workFlowId=33774",
     },

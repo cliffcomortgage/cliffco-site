@@ -26,6 +26,8 @@ const teamSlugs = ["matthew-garland", "jessenya-delaney"];
 const teamMembers = teamSlugs.map((s) => LOAN_OFFICERS.find((lo) => lo.slug === s)!).filter(Boolean);
 const matthew = loanOfficer("matthew-garland")!;
 const LOGO = "/images/team%20logos/Garland_Group_Horizontal_White.png";
+// The team's call buttons use Matthew's direct line, not the main office number plus extension.
+const teamPhone = matthew.links?.directLine ?? matthew.links?.directPhone;
 
 const faq = [
   {
@@ -117,8 +119,8 @@ const calculators = [
     </p>
     <Fragment slot="actions">
       <a href={matthew.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener" class="btn btn-primary">Work With The Team</a>
-      {matthew.links?.directPhone && (
-        <a href={telHref(matthew.links.directPhone)} class="btn btn-secondary">{matthew.links.directPhone}</a>
+      {teamPhone && (
+        <a href={telHref(teamPhone)} class="btn btn-secondary">{teamPhone}</a>
       )}
     </Fragment>
   </TeamPoster>
@@ -203,7 +205,7 @@ const calculators = [
         </div>
         <div class="mt-6 flex flex-col gap-1.5 text-sm">
           {matthew.links?.email && <a href={`mailto:${matthew.links.email}`} class="!text-white/70 no-underline hover:!text-white">{matthew.links.email}</a>}
-          {matthew.links?.directPhone && <a href={telHref(matthew.links.directPhone)} class="!text-white/70 no-underline hover:!text-white">{matthew.links.directPhone}</a>}
+          {teamPhone && <a href={telHref(teamPhone)} class="!text-white/70 no-underline hover:!text-white">{teamPhone}</a>}
         </div>
       </div>
       <div class="lg:col-span-6 lg:col-start-7">
