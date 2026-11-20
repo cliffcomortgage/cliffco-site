@@ -804,6 +804,16 @@
       "permanent": true
     },
     {
+      "source": "/jdelaney/",
+      "destination": "/loan-officers/jessenya-delaney/",
+      "permanent": true
+    },
+    {
+      "source": "/jdelaney",
+      "destination": "/loan-officers/jessenya-delaney/",
+      "permanent": true
+    },
+    {
       "source": "/jgiaquinto/",
       "destination": "/loan-officers/",
       "permanent": true
@@ -1051,6 +1061,16 @@
     {
       "source": "/maziz",
       "destination": "/loan-officers/michael-aziz/",
+      "permanent": true
+    },
+    {
+      "source": "/mgarland/",
+      "destination": "/loan-officers/matthew-garland/",
+      "permanent": true
+    },
+    {
+      "source": "/mgarland",
+      "destination": "/loan-officers/matthew-garland/",
       "permanent": true
     },
     {

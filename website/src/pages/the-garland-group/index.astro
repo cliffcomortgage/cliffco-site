@@ -1,0 +1,220 @@
+---
+/**
+ * The Garland Group: Matthew Garland (Northeast Division Manager) and Jessenya "Jessie" Delaney
+ * (Licensed Loan Officer Assistant). Built 2026-11-20. WordPress has no team page, so there is no
+ * legacy URL to redirect.
+ *
+ * Every claim about the team comes from the two WordPress bios (cliffcomortgage.com/mgarland/ and
+ * /jdelaney/): 23+ years, $1B+ funded, "MG the Mortgage Guy", best-selling author, co-founder of
+ * Investfest and the Rants & Gems podcast (top 100 investing podcasts), homeownership advocate,
+ * real estate investor; Jessie's focus on repeat buyers, investors and self-employed clients.
+ * The product cards carry no figures on purpose: no rates, down payments or limits, so nothing
+ * here needs Guidelines/ sourcing or a trigger-term disclaimer.
+ */
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/layout/Breadcrumbs.astro";
+import { LOAN_OFFICERS, loanOfficer } from "../../data/loan-officers";
+import { STATE_LICENSES } from "../../data/state-licenses";
+import { faqPageSchema, articleSchema } from "../../lib/schema";
+import { telHref } from "../../lib/phone";
+import TeamPoster from "../../components/asym/TeamPoster.astro";
+import TeamBlock from "../../components/asym/TeamBlock.astro";
+import FaqList from "../../components/asym/FaqList.astro";
+import FormCard from "../../components/asym/FormCard.astro";
+
+const teamSlugs = ["matthew-garland", "jessenya-delaney"];
+const teamMembers = teamSlugs.map((s) => LOAN_OFFICERS.find((lo) => lo.slug === s)!).filter(Boolean);
+const matthew = loanOfficer("matthew-garland")!;
+const LOGO = "/images/team%20logos/Garland_Group_Horizontal_White.png";
+
+const faq = [
+  {
+    question: "Who will I work with at The Garland Group?",
+    answer: "Matthew Garland, Cliffco's Northeast Division Manager, works with you on the loan itself. Jessenya “Jessie” Delaney, a licensed loan officer assistant, keeps in touch along the way, so you always know where things stand and what comes next.",
+  },
+  {
+    question: "I'm not sure I'm ready to buy yet. Should I still reach out?",
+    answer: "Yes. Matthew is a homeownership advocate, and a first conversation is about showing you what it would take to get there, no matter where you're starting from. There's no credit pull and no commitment to talk it through.",
+  },
+  {
+    question: "Do you work with real estate investors?",
+    answer: "Yes. Matthew is a real estate investor himself and co-founded Investfest and the Rants & Gems real estate podcast. The team works with investors growing a rental portfolio or financing their next project, including through DSCR loans, which qualify on the property's rental income rather than your personal income.",
+  },
+  {
+    question: "I'm self-employed. Can you help?",
+    answer: "Yes. The team works with self-employed borrowers looking for a loan that fits the way they earn. Depending on your situation, that can mean qualifying with bank statements instead of tax returns.",
+  },
+  {
+    question: "Which states is the team licensed in?",
+    answer: `Matthew Garland is licensed in New Jersey and New York. Jessie Delaney is licensed in Tennessee and Virginia. Cliffco itself is licensed in ${STATE_LICENSES.length} states, so if your property is somewhere else, ask and we'll connect you with the right loan officer.`,
+  },
+];
+
+const schema = [
+  faqPageSchema(faq),
+  articleSchema({
+    headline: "The Garland Group | Cliffco Mortgage Bankers",
+    description: "The Garland Group at Cliffco Mortgage Bankers, led by Northeast Division Manager Matthew Garland: home loans for first-time and repeat buyers, real estate investors, and self-employed borrowers.",
+    url: "/the-garland-group/",
+    datePublished: "2026-11-20",
+    dateModified: "2026-11-20",
+    authorSlug: "matthew-garland",
+  }),
+];
+
+const whoToCall = [
+  { name: "Matthew Garland", slug: "matthew-garland", role: "Northeast Division Manager", tags: ["Purchase", "Refinance", "Real Estate Investors", "Self-Employed"] },
+  { name: "Jessie Delaney", slug: "jessenya-delaney", role: "Licensed Loan Officer Assistant", tags: ["Repeat Buyers", "Investors", "Self-Employed", "Keeping You Updated"] },
+];
+
+// Homebuyers first, investors second (CLAUDE.md positioning). No figures on these cards.
+const howWeHelp = [
+  { name: "First-time homebuyers", label: "Your first home", href: "/first-time-homebuyer/", body: "Matthew is a homeownership advocate. The team shows you what it takes to get there, which programs fit, and what to have ready, no matter where you're starting." },
+  { name: "Repeat & move-up buyers", label: "Your next home", href: "/purchasing-refinancing/", body: "Buying your next home while you own this one takes planning. The team walks you through the timing, the options, and what each one costs." },
+  { name: "Refinancing", label: "Lower your rate or tap equity", href: "/loans/refinancing/", body: "Rate-and-term or cash-out, the team runs the numbers with you so you can see whether a refinance actually pays off." },
+  { name: "Renovation loans", label: "Financing the next project", href: "/loans/renovation/", body: "A renovation loan can roll the cost of the work into the same mortgage as the purchase or refinance, so the project doesn't wait on a second loan." },
+  { name: "Real estate investors", label: "Grow a rental portfolio", href: "/real-estate-investor-mortgage/", body: "Matthew invests in real estate himself. DSCR loans qualify a rental on its own income instead of your tax returns, so you can keep building." },
+  { name: "Self-employed borrowers", label: "A loan that fits how you earn", href: "/self-employed-mortgage/", body: "When your tax returns don't show what you actually earn, bank statement and other alternative documentation programs can." },
+];
+
+const learn = [
+  { name: "Best-selling author", detail: "One more way Matthew teaches and inspires people on the ins and outs of real estate." },
+  { name: "Co-founder, Investfest", detail: "Built to teach and inspire people in all walks of life on the ins and outs of real estate." },
+  { name: "Co-founder, Rants & Gems", detail: "A real estate podcast that is now one of the top 100 investing podcasts in the world." },
+];
+
+const calculators = [
+  { href: "/mortgage-guides/calculators/affordability/", title: "Affordability Review", desc: "Find the price range that fits your income and savings.", badge: "Buyers" },
+  { href: "/mortgage-guides/calculators/dscr/", title: "DSCR Calculator", desc: "See whether a rental property's income covers its payment.", badge: "Investors" },
+];
+---
+
+<Layout
+  title="The Garland Group | Homebuyers & Real Estate Investors | Cliffco"
+  description="The Garland Group at Cliffco Mortgage Bankers, led by Matthew Garland, “MG the Mortgage Guy”: 23+ years and $1B+ in home loans for first-time and repeat buyers, investors, and self-employed borrowers."
+  schema={schema}
+>
+  <Breadcrumbs trail={[
+    { name: "Home", href: "/" },
+    { name: "The Garland Group", href: "/the-garland-group/" },
+  ]} />
+
+  <TeamPoster
+    eyebrow="Cliffco Mortgage Bankers · Uniondale, New York"
+    logo={{ src: LOGO, alt: "The Garland Group", maxHeight: "112px" }}
+    members={teamMembers}
+    teamTitle="Meet The Garland Group."
+    teamIntro="A division manager with more than two decades in the business, and a licensed assistant who keeps every client in the loop. Two people, one standard: you always know where things stand."
+    stats={[
+      { stat: "23+", label: "Years in the mortgage industry", sub: "Led by Matthew Garland" },
+      { stat: "$1B+", label: "In home loans funded", sub: "Across Matthew's career" },
+      { stat: "Top 100", label: "Investing podcast worldwide", sub: "Rants & Gems, co-founded by Matthew" },
+    ]}
+  >
+    From your first home to your next investment.
+    <p slot="lead" class="text-white/75 leading-relaxed" style="font-size: 1.0625rem;">
+      Matthew Garland, known to many as “MG the Mortgage Guy,” has spent more than 23 years helping people become homeowners and build wealth through real estate. Whether you're buying your first place or adding to a rental portfolio, the team brings that experience to your loan.
+    </p>
+    <Fragment slot="actions">
+      <a href={matthew.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener" class="btn btn-primary">Work With The Team</a>
+      {matthew.links?.directPhone && (
+        <a href={telHref(matthew.links.directPhone)} class="btn btn-secondary">{matthew.links.directPhone}</a>
+      )}
+    </Fragment>
+  </TeamPoster>
+
+  <!-- WHO TO CALL -->
+  <TeamBlock eyebrow="Who handles what" title="Two people. Every step covered.">
+    <ul class="list-none m-0 p-0 border-t-2 border-[var(--color-ink)]">
+      {whoToCall.map((m) => (
+        <li class="border-b border-black/15">
+          <a href={`/loan-officers/${m.slug}/`} class="group grid md:grid-cols-12 gap-x-6 gap-y-2 py-5 no-underline text-[var(--color-ink)] items-center">
+            <span class="md:col-span-3 font-semibold text-lg group-hover:underline">{m.name}</span>
+            <span class="md:col-span-3 font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">{m.role}</span>
+            <span class="md:col-span-5 flex flex-wrap gap-1.5">
+              {m.tags.map((tag) => (
+                <span class="text-xs font-medium px-2.5 py-1 border border-[var(--color-ink)]">{tag}</span>
+              ))}
+            </span>
+            <span class="md:col-span-1 text-sm font-semibold md:text-right">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </TeamBlock>
+
+  <!-- HOW WE HELP -->
+  <TeamBlock eyebrow="Who we help" title="Homeowners first.<br/>Investors too.">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {howWeHelp.map((card) => (
+        <a href={card.href} class="group border-2 border-[var(--color-ink)] p-6 no-underline text-[var(--color-ink)] flex flex-col gap-3 h-full hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+          <span class="font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)] group-hover:text-white/60">{card.label}</span>
+          <h3 class="font-semibold group-hover:!text-white" style="font-size: 1.125rem;">{card.name}</h3>
+          <p class="text-sm text-[var(--color-text-muted)] group-hover:text-white/75 leading-relaxed flex-1">{card.body}</p>
+          <span class="text-sm font-semibold mt-auto">Learn more →</span>
+        </a>
+      ))}
+    </div>
+  </TeamBlock>
+
+  <!-- LEARN WITH MG -->
+  <TeamBlock eyebrow="Beyond the closing table" title="Learn with MG." intro="Matthew shares what he's learned well past the loan file, so people in all walks of life can understand real estate before they commit to it.">
+    <ol class="list-none m-0 p-0 border-t-2 border-[var(--color-ink)] max-w-4xl">
+      {learn.map((item, i) => (
+        <li class="grid grid-cols-[3rem_1fr] gap-3 py-5 border-b border-black/15">
+          <span class="font-mono text-sm text-[var(--color-text-muted)]">0{i + 1}</span>
+          <div>
+            <h3 class="font-semibold text-[var(--color-ink)]" style="font-size: 1.0625rem;">{item.name}</h3>
+            <p class="mt-1 text-sm text-[var(--color-text)] leading-relaxed">{item.detail}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </TeamBlock>
+
+  <!-- CALCULATORS -->
+  <TeamBlock eyebrow="Free tools" title="Run the numbers first.">
+    <ol class="list-none m-0 p-0 border-t-2 border-[var(--color-ink)]">
+      {calculators.map((c) => (
+        <li class="border-b border-black/15">
+          <a href={c.href} class="group grid md:grid-cols-12 gap-x-6 gap-y-1 py-5 no-underline text-[var(--color-ink)] items-baseline">
+            <span class="md:col-span-2 font-mono font-medium text-[11px] uppercase tracking-[0.12em] text-[var(--color-text-muted)]">{c.badge}</span>
+            <span class="md:col-span-3 font-semibold text-lg group-hover:underline">{c.title}</span>
+            <span class="md:col-span-5 text-sm text-[var(--color-text-muted)] leading-relaxed">{c.desc}</span>
+            <span class="md:col-span-2 text-sm font-semibold md:text-right">Use calculator →</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </TeamBlock>
+
+  <!-- FAQ -->
+  <TeamBlock eyebrow="FAQ" title="Questions we hear every day.">
+    <div class="max-w-4xl"><FaqList items={faq} /></div>
+  </TeamBlock>
+
+  <!-- CTA + FORM -->
+  <TeamBlock dark eyebrow="Ready when you are" title="Let's map out your next move." intro="No credit pull. No commitment. Tell the team where you are today, and they'll show you what it takes to get where you want to be.">
+    <div class="grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <img src={LOGO} alt="The Garland Group" class="select-none w-auto" style="max-height: 96px;" loading="lazy" />
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={matthew.links?.applyNow ?? "/get-started/"} target="_blank" rel="noopener" class="btn btn-primary !bg-white !text-[var(--color-ink)] hover:!bg-white/85">Start Your Application</a>
+        </div>
+        <div class="mt-6 flex flex-col gap-1.5 text-sm">
+          {matthew.links?.email && <a href={`mailto:${matthew.links.email}`} class="!text-white/70 no-underline hover:!text-white">{matthew.links.email}</a>}
+          {matthew.links?.directPhone && <a href={telHref(matthew.links.directPhone)} class="!text-white/70 no-underline hover:!text-white">{matthew.links.directPhone}</a>}
+        </div>
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7">
+        <FormCard
+          eyebrow="Talk to The Garland Group"
+          title="Buying, refinancing, or investing? Start here."
+          sub="Tell us what you're working on and Matthew will walk you through your options."
+          formTo="mg@cliffcomortgage.com,websiteleads@cliffcomortgage.com"
+          formSource="team-garland"
+        />
+      </div>
+    </div>
+  </TeamBlock>
+</Layout>

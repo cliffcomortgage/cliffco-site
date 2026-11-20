@@ -6,6 +6,8 @@ Active LOs from `loan-officer-disclosures.csv` (last NMLS audit 2025-07-23). Ros
 
 **New Hampshire (2026-10-07; Clifford added 2026-11-04):** Cliffco is licensed in NH (NH Banking Department Mortgage Banker License 65328MB). Mario Argenzio and Christopher Clifford are both NH-licensed.
 
+**Added 2026-11-20 (from Sivon), The Garland Group, Uniondale HQ:** Matthew Garland (NMLS #58700), Northeast Division Manager, licensed in NJ and NY. Jessenya "Jessie" Delaney (NMLS #2663285), Licensed Loan Officer Assistant, licensed in TN and VA. Details from their WordPress pages (/mgarland/, /jdelaney/). Team page at `/the-garland-group/`.
+
 **Offboarded 2026-11-19 (from Sivon):** Justin Hu (NMLS #2553712). Removed from the site the same way, and `/loan-officers/justin-hu/` and `/jhu/` now redirect to the LO directory.
 
 **Offboarded 2026-11-18 (from Sivon):** James Chen (NMLS #17991), Queeny Duong (#826674), David Illouz (#1584179) and Chandroutie Persaud. The first three were removed from the site, and their bio and vanity URLs (including `/team-chen/`) now redirect to the LO directory. Chandroutie Persaud was never on the site. Their rows below are part of the point-in-time snapshot and are left as they were.

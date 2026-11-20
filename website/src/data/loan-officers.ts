@@ -761,6 +761,26 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
     hasPhoto: true,
   },
   {
+    // Added 2026-11-20 from cliffcomortgage.com/jdelaney/. WordPress title "Licensed LOA", spelled out.
+    slug: "jessenya-delaney",
+    firstName: "Jessenya",
+    lastName: "Delaney",
+    displayName: "Jessenya Delaney",
+    nmls: "2663285",
+    title: "Licensed Loan Officer Assistant",
+    states: ["TN", "VA"],
+    branchSlug: "uniondale-headquarters",
+    links: {
+      email: "jdelaney@cliffcomortgage.com",
+      // WordPress also lists 516-350-5356 on its own: the same line without the extension.
+      directPhone: "516-350-5356 x 213",
+      applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=jdelaney&workFlowId=33774",
+    },
+    team: { name: "The Garland Group", slug: "the-garland-group", logoUrl: "/images/team%20logos/Garland_Group_Horizontal_White.png", bannerLogoHeight: "h-16" },
+    bio: "Jessenya “Jessie” Delaney is a Licensed Loan Officer Assistant with The Garland Group at Cliffco Mortgage Bankers, working alongside Northeast Division Manager Matthew Garland. With a background as a Mortgage Loan Originator working directly with borrowers, she joined the team to strengthen the support it provides to repeat homebuyers, real estate investors, and self-employed clients, including those growing a rental portfolio, financing their next project, or looking for a loan that fits the way they earn. That experience taught Jessenya which questions tend to come up and when an update matters most. She keeps in touch along the way and takes the time to listen and walk through the details, so clients feel heard and always know where things stand and what comes next. What she values most is reinforcing the relationships the team has built. Jessenya is committed to giving every client the attention and follow-through they need to move forward with peace of mind.",
+    hasPhoto: true,
+  },
+  {
     slug: "johana-amaya",
     firstName: "Johana",
     lastName: "Amaya",
@@ -964,6 +984,26 @@ export const LOAN_OFFICERS: readonly LoanOfficer[] = [
       applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=mario&workFlowId=33774",
     },
     bio: "I have been a seasoned professional in the mortgage industry for over 20 years. I bring knowledge, experience and innovative products with superior service to Cliffco Mortgage Bankers. I am a native New Yorker born and raised in Queens NY and a graduate of St John's University. I am married for over 15 years and I am raising two beautiful teenage daughters with my wife in Whitestone NY. I am a diligent worker and I am determined to make your dreams come true by getting you the mortgage that is right for you.",
+    hasPhoto: true,
+  },
+  {
+    // Added 2026-11-20 from cliffcomortgage.com/mgarland/. Leads The Garland Group.
+    slug: "matthew-garland",
+    firstName: "Matthew",
+    lastName: "Garland",
+    displayName: "Matthew Garland",
+    nmls: "58700",
+    title: "Northeast Division Manager",
+    states: ["NJ", "NY"],
+    branchSlug: "uniondale-headquarters",
+    links: {
+      email: "mg@cliffcomortgage.com",
+      directPhone: "516-350-5355",
+      cellPhone: "516-451-9138",
+      applyNow: "https://cliffco.mymortgage-online.com/loan-app/?siteId=3232086255&lar=mgarland&workFlowId=33774",
+    },
+    team: { name: "The Garland Group", slug: "the-garland-group", logoUrl: "/images/team%20logos/Garland_Group_Horizontal_White.png", bannerLogoHeight: "h-16" },
+    bio: "Having been in the mortgage industry for more than 23 years, Matthew Garland also known as “MG the Mortgage Guy” has funded more than $1 billion in home loans. Thanks to his many years and passion in the industry, he has become a top advisor and leader in the industry. His deep-rooted passion and knowledge of the mortgage industry have driven him to share a wealth of information through different social media platforms, making him the #1 go-to expert for matters relating to mortgages and real estate investing. Matthew Garland is a Best Selling author, co-founder of Investfest as well as the “Rants & Gems” real estate podcast which is now one of the top 100 investing podcasts in the world. These platforms aim to teach as well as inspire people in all walks of life on the ins and outs of real estate. This has greatly helped forge an easy bridge between all the parties, which is especially crucial in the real estate side of business. Matthew Garland is a homeownership advocate. As a real estate investor himself, he encourages people to become homeowners and empowers them by equipping them with the skills and resources to do this no matter their current status.",
     hasPhoto: true,
   },
   {
